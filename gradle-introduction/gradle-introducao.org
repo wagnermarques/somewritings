@@ -1,0 +1,13 @@
+
+#+SETUPFILE: ./../etc/org_mode_SETUPFILE.org
+#+TITLE: Gradle: Introdução
+#+SUBTITLE: intermediario
+
+* PLANO
+** TEMA
+   Introdução ao Gradle
+** OBJETIVO
+   Criar e contruir um projeto simples demostrando as funcionalidades
+   básicas do gradle
+
+

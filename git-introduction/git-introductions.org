@@ -1,0 +1,41 @@
+
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+TITLE: INTRODUÇÃO AO GIT
+
+* por que usar git?
+Você deveria usar o git porque o mercado usa e existem muitos bons
+motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
+são esses. Ou seja, porque profissionais do mercado investem tempo
+aprendendo e estudando pra usar o git? 
+Mesmo porque não é tão simplizinho assim aprender git, então você tem que
+ter claro o porquê vale a pena o esforço de aprender.
+
+Respondendo a pergunta, sendo bastante simplório, mas bem claro e objetivo, imagine a
+seguinte situação: Seu grupo de TCC, de três alunos, por exemplo, estác
+editando um texto. Pode ser o texto do TCC mesmo.
+Então um de vocês digita uma parte, e outro outra e assim vai... é
+comum ocorrer esse tipo de divisão esquisita de trabalho como por
+exemplo: um escreve oo capítulo 1 o outro o capítulo 2 e despois junta
+num arquivo só.
+Acho que isso nunca fica bom, mas no início não dá tanto problema.
+O problema começa quando precisa fazer ajustes no texto e aí cada um
+pega uma cópia e faz ajustes e várias partes do texto. E agora pra
+juntar? Como você faria? Aproveita a oportunidade e pensa se ao invés
+de um arquivo só vocês estivessem trabalhando com uma cópia de vários
+arquivos de código e aí cada um faz várias alterações em partes
+diversas de vários arquivos. Junta tudo isso num código final como?
+
+
+* começando com o mais básico de tudo
+  
+ 
+* exercicios
+** Reconstruindo final file
+   [.
+
+
+
+
+   margin-left: 22px;
+    margin-right: 32px;
+    margin-top: 20px;

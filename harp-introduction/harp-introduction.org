@@ -1,0 +1,470 @@
+
+* pre-requisitos
+** node e npm instalados
+   todo: link pra ajuda...
+* Instalando o harp
+** comando de instalacaoa  cc
+   [wagner@localhost harp-introduction]$ su -c ' npm install harp -g
+*** output  
+Senha:
+[?25hnpm WARN deprecated jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+[?25hnpm WARN deprecated transformers@2.1.0: Deprecated, use jstransformer
+[?25h/usr/local/bin/harp -> /usr/local/lib/node_modules/harp/bin/harp
+[?25h
+> node-sass@3.7.0 install /usr/local/lib/node_modules/harp/node_modules/node-sass
+> node scripts/install.js
+
+Binary downloaded and installed at /usr/local/lib/node_modules/harp/node_modules/node-sass/vendor/linux-x64-48/binding.node
+[?25h
+> node-sass@3.7.0 postinstall /usr/local/lib/node_modules/harp/node_modules/node-sass
+> node scripts/build.js
+
+"/usr/local/lib/node_modules/harp/node_modules/node-sass/vendor/linux-x64-48/binding.node" exists. 
+ testing binary.
+Binary is fine; exiting.
+[?25h/usr/local/lib
+└─┬ harp@0.23.0 
+  ├── async@0.2.9 
+  ├── commander@2.0.0 
+  ├─┬ connect@2.30.2 
+  │ ├── basic-auth-connect@1.0.0 
+  │ ├─┬ body-parser@1.13.3 
+  │ │ ├── iconv-lite@0.4.11 
+  │ │ └─┬ raw-body@2.1.7 
+  │ │   ├── bytes@2.4.0 
+  │ │   └── iconv-lite@0.4.13 
+  │ ├── bytes@2.1.0 
+  │ ├─┬ compression@1.5.2 
+  │ │ ├─┬ accepts@1.2.13 
+  │ │ │ └── negotiator@0.5.3 
+  │ │ ├─┬ compressible@2.0.9 
+  │ │ │ └── mime-db@1.25.0 
+  │ │ └── vary@1.0.1 
+  │ ├── connect-timeout@1.6.2 
+  │ ├── content-type@1.0.2 
+  │ ├── cookie@0.1.3 
+  │ ├── cookie-parser@1.3.5 
+  │ ├── cookie-signature@1.0.6 
+  │ ├─┬ csurf@1.8.3 
+  │ │ └─┬ csrf@3.0.4 
+  │ │   ├── base64-url@1.3.3 
+  │ │   ├── rndm@1.2.0 
+  │ │   ├── tsscmp@1.0.5 
+  │ │   └─┬ uid-safe@2.1.3 
+  │ │     └── random-bytes@1.0.0 
+  │ ├── debug@2.2.0 
+  │ ├── depd@1.0.1 
+  │ ├─┬ errorhandler@1.4.3 
+  │ │ └─┬ accepts@1.3.3 
+  │ │   └── negotiator@0.6.1 
+  │ ├─┬ express-session@1.11.3 
+  │ │ ├── crc@3.3.0 
+  │ │ └─┬ uid-safe@2.0.0 
+  │ │   └── base64-url@1.2.1 
+  │ ├─┬ finalhandler@0.4.0 
+  │ │ ├── escape-html@1.0.2 
+  │ │ └── unpipe@1.0.0 
+  │ ├── fresh@0.3.0 
+  │ ├─┬ http-errors@1.3.1 
+  │ │ ├── inherits@2.0.3 
+  │ │ └── statuses@1.3.1 
+  │ ├─┬ method-override@2.3.7 
+  │ │ ├─┬ debug@2.3.3 
+  │ │ │ └── ms@0.7.2 
+  │ │ ├── methods@1.1.2 
+  │ │ ├── parseurl@1.3.1 
+  │ │ └── vary@1.1.0 
+  │ ├─┬ morgan@1.6.1 
+  │ │ └── basic-auth@1.0.4 
+  │ ├─┬ multiparty@3.3.2 
+  │ │ ├─┬ readable-stream@1.1.14 
+  │ │ │ ├── core-util-is@1.0.2 
+  │ │ │ ├── isarray@0.0.1 
+  │ │ │ └── string_decoder@0.10.31 
+  │ │ └── stream-counter@0.2.0 
+  │ ├── on-headers@1.0.1 
+  │ ├── qs@4.0.0 
+  │ ├─┬ response-time@2.3.2 
+  │ │ └── depd@1.1.0 
+  │ ├─┬ serve-favicon@2.3.2 
+  │ │ ├── ms@0.7.2 
+  │ │ └── parseurl@1.3.1 
+  │ ├─┬ serve-index@1.7.3 
+  │ │ ├── batch@0.5.3 
+  │ │ ├── mime-types@2.1.13 
+  │ │ └── parseurl@1.3.1 
+  │ ├─┬ serve-static@1.10.3 
+  │ │ ├── parseurl@1.3.1 
+  │ │ └─┬ send@0.13.2 
+  │ │   ├── depd@1.1.0 
+  │ │   ├── destroy@1.0.4 
+  │ │   ├── mime@1.3.4 
+  │ │   └── statuses@1.2.1 
+  │ ├─┬ type-is@1.6.14 
+  │ │ └── media-typer@0.3.0 
+  │ ├── utils-merge@1.0.0 
+  │ └── vhost@3.0.2 
+  ├─┬ download-github-repo@0.1.3 
+  │ └─┬ download@0.1.19 
+  │   ├─┬ decompress@0.2.5 
+  │   │ ├── adm-zip@0.4.7 
+  │   │ ├─┬ ext-name@1.0.1 
+  │   │ │ ├─┬ ext-list@0.2.0 
+  │   │ │ │ └─┬ got@0.2.0 
+  │   │ │ │   └── object-assign@0.3.1 
+  │   │ │ └── underscore.string@2.3.3 
+  │   │ ├─┬ stream-combiner@0.0.4 
+  │   │ │ └── duplexer@0.1.1 
+  │   │ ├─┬ tar@0.1.20 
+  │   │ │ ├── block-stream@0.0.9 
+  │   │ │ └─┬ fstream@0.1.31 
+  │   │ │   └── mkdirp@0.5.1 
+  │   │ └─┬ tempfile@0.1.3 
+  │   │   └── uuid@1.4.2 
+  │   ├── each-async@0.1.3 
+  │   ├── get-stdin@0.1.0 
+  │   ├── get-urls@0.1.2 
+  │   ├── mkdirp@0.3.5 
+  │   ├─┬ nopt@2.2.1 
+  │   │ └── abbrev@1.0.9 
+  │   ├─┬ request@2.79.0 
+  │   │ ├── aws-sign2@0.6.0 
+  │   │ ├── aws4@1.5.0 
+  │   │ ├── caseless@0.11.0 
+  │   │ ├─┬ combined-stream@1.0.5 
+  │   │ │ └── delayed-stream@1.0.0 
+  │   │ ├── extend@3.0.0 
+  │   │ ├── forever-agent@0.6.1 
+  │   │ ├─┬ form-data@2.1.2 
+  │   │ │ └── asynckit@0.4.0 
+  │   │ ├─┬ har-validator@2.0.6 
+  │   │ │ ├── commander@2.9.0 
+  │   │ │ ├─┬ is-my-json-valid@2.15.0 
+  │   │ │ │ ├── generate-function@2.0.0 
+  │   │ │ │ ├─┬ generate-object-property@1.2.0 
+  │   │ │ │ │ └── is-property@1.0.2 
+  │   │ │ │ ├── jsonpointer@4.0.1 
+  │   │ │ │ └── xtend@4.0.1 
+  │   │ │ └─┬ pinkie-promise@2.0.1 
+  │   │ │   └── pinkie@2.0.4 
+  │   │ ├─┬ hawk@3.1.3 
+  │   │ │ ├── boom@2.10.1 
+  │   │ │ ├── cryptiles@2.0.5 
+  │   │ │ ├── hoek@2.16.3 
+  │   │ │ └── sntp@1.0.9 
+  │   │ ├─┬ http-signature@1.1.1 
+  │   │ │ ├── assert-plus@0.2.0 
+  │   │ │ ├─┬ jsprim@1.3.1 
+  │   │ │ │ ├── extsprintf@1.0.2 
+  │   │ │ │ ├── json-schema@0.2.3 
+  │   │ │ │ └── verror@1.3.6 
+  │   │ │ └─┬ sshpk@1.10.1 
+  │   │ │   ├── asn1@0.2.3 
+  │   │ │   ├── assert-plus@1.0.0 
+  │   │ │   ├── bcrypt-pbkdf@1.0.0 
+  │   │ │   ├─┬ dashdash@1.14.1 
+  │   │ │   │ └── assert-plus@1.0.0 
+  │   │ │   ├── ecc-jsbn@0.1.1 
+  │   │ │   ├─┬ getpass@0.1.6 
+  │   │ │   │ └── assert-plus@1.0.0 
+  │   │ │   ├── jodid25519@1.0.2 
+  │   │ │   ├── jsbn@0.1.0 
+  │   │ │   └── tweetnacl@0.14.5 
+  │   │ ├── is-typedarray@1.0.0 
+  │   │ ├── isstream@0.1.2 
+  │   │ ├── json-stringify-safe@5.0.1 
+  │   │ ├── oauth-sign@0.8.2 
+  │   │ ├── qs@6.3.0 
+  │   │ ├── stringstream@0.0.5 
+  │   │ ├─┬ tough-cookie@2.3.2 
+  │   │ │ └── punycode@1.4.1 
+  │   │ ├── tunnel-agent@0.4.3 
+  │   │ └── uuid@3.0.1 
+  │   └─┬ through2@0.4.2 
+  │     ├── readable-stream@1.0.34 
+  │     └─┬ xtend@2.1.2 
+  │       └── object-keys@0.4.0 
+  ├── envy-json@0.2.1 
+  ├── escape-html@1.0.3 
+  ├─┬ fs-extra@0.18.2 
+  │ ├─┬ graceful-fs@3.0.11 
+  │ │ └── natives@1.1.0 
+  │ ├─┬ jsonfile@2.4.0 
+  │ │ └── graceful-fs@4.1.11 
+  │ └─┬ rimraf@2.5.4 
+  │   └─┬ glob@7.1.1 
+  │     ├── fs.realpath@1.0.0 
+  │     ├─┬ inflight@1.0.6 
+  │     │ └── wrappy@1.0.2 
+  │     ├─┬ minimatch@3.0.3 
+  │     │ └─┬ brace-expansion@1.1.6 
+  │     │   ├── balanced-match@0.4.2 
+  │     │   └── concat-map@0.0.1 
+  │     ├── once@1.4.0 
+  │     └── path-is-absolute@1.0.1 
+  ├── mime@1.2.11 
+  ├── parseurl@1.3.0 
+  ├── pause@0.1.0 
+  ├─┬ send@0.13.0 
+  │ ├── destroy@1.0.3 
+  │ ├── escape-html@1.0.2 
+  │ ├── etag@1.7.0 
+  │ ├── mime@1.3.4 
+  │ ├── ms@0.7.1 
+  │ ├─┬ on-finished@2.3.0 
+  │ │ └── ee-first@1.1.1 
+  │ ├── range-parser@1.0.3 
+  │ └── statuses@1.2.1 
+  └─┬ terraform@1.3.0 
+    ├─┬ autoprefixer@6.2.3 
+    │ ├── browserslist@1.0.1 
+    │ ├── caniuse-db@1.0.30000602 
+    │ ├── normalize-range@0.1.2 
+    │ ├── num2fraction@1.2.2 
+    │ └── postcss-value-parser@3.3.0 
+    ├── coffee-script@1.10.0 
+    ├── ejs@2.3.4 
+    ├─┬ harp-minify@0.4.0 
+    │ ├─┬ commander@2.9.0 
+    │ │ └── graceful-readlink@1.0.1 
+    │ ├─┬ html-minifier@1.1.1 
+    │ │ ├─┬ change-case@2.3.1 
+    │ │ │ ├── camel-case@1.2.2 
+    │ │ │ ├── constant-case@1.1.2 
+    │ │ │ ├── dot-case@1.1.2 
+    │ │ │ ├── is-lower-case@1.1.3 
+    │ │ │ ├── is-upper-case@1.1.2 
+    │ │ │ ├── lower-case@1.1.3 
+    │ │ │ ├── lower-case-first@1.0.2 
+    │ │ │ ├── param-case@1.1.2 
+    │ │ │ ├── pascal-case@1.1.2 
+    │ │ │ ├── path-case@1.1.2 
+    │ │ │ ├── sentence-case@1.1.3 
+    │ │ │ ├── snake-case@1.1.2 
+    │ │ │ ├── swap-case@1.1.2 
+    │ │ │ ├── title-case@1.1.2 
+    │ │ │ ├── upper-case@1.1.3 
+    │ │ │ └── upper-case-first@1.1.2 
+    │ │ ├─┬ cli@0.11.3 
+    │ │ │ └── exit@0.1.2 
+    │ │ ├─┬ concat-stream@1.5.2 
+    │ │ │ ├─┬ readable-stream@2.0.6 
+    │ │ │ │ ├── isarray@1.0.0 
+    │ │ │ │ ├── process-nextick-args@1.0.7 
+    │ │ │ │ └── util-deprecate@1.0.2 
+    │ │ │ └── typedarray@0.0.6 
+    │ │ └── relateurl@0.2.7 
+    │ ├─┬ language-classifier@0.0.1 
+    │ │ └─┬ classifier@0.1.0 
+    │ │   ├─┬ redis@2.6.3 
+    │ │   │ ├── double-ended-queue@2.1.0-0 
+    │ │   │ ├── redis-commands@1.3.0 
+    │ │   │ └── redis-parser@2.3.0 
+    │ │   └── underscore@1.8.3 
+    │ ├─┬ read-file-stdin@0.2.0 
+    │ │ └── gather-stream@1.0.0 
+    │ ├── sqwish@0.2.2 
+    │ ├─┬ uglify-js@2.6.1 
+    │ │ ├── uglify-to-browserify@1.0.2 
+    │ │ └─┬ yargs@3.10.0 
+    │ │   ├── camelcase@1.2.1 
+    │ │   ├─┬ cliui@2.1.0 
+    │ │   │ ├─┬ center-align@0.1.3 
+    │ │   │ │ ├─┬ align-text@0.1.4 
+    │ │   │ │ │ ├─┬ kind-of@3.1.0 
+    │ │   │ │ │ │ └── is-buffer@1.1.4 
+    │ │   │ │ │ ├── longest@1.0.1 
+    │ │   │ │ │ └── repeat-string@1.6.1 
+    │ │   │ │ └── lazy-cache@1.0.4 
+    │ │   │ ├── right-align@0.1.3 
+    │ │   │ └── wordwrap@0.0.2 
+    │ │   └── window-size@0.1.0 
+    │ └── write-file-stdout@0.0.2 
+    ├─┬ jade@1.11.0 
+    │ ├── character-parser@1.2.1 
+    │ ├─┬ clean-css@3.4.23 
+    │ │ ├── commander@2.8.1 
+    │ │ └── source-map@0.4.4 
+    │ ├── commander@2.6.0 
+    │ ├─┬ constantinople@3.0.2 
+    │ │ └── acorn@2.7.0 
+    │ ├─┬ jstransformer@0.0.2 
+    │ │ └── is-promise@2.1.0 
+    │ ├─┬ mkdirp@0.5.1 
+    │ │ └── minimist@0.0.8 
+    │ ├─┬ transformers@2.1.0 
+    │ │ ├─┬ css@1.0.8 
+    │ │ │ ├── css-parse@1.0.4 
+    │ │ │ └── css-stringify@1.0.5 
+    │ │ ├─┬ promise@2.0.0 
+    │ │ │ └── is-promise@1.0.1 
+    │ │ └─┬ uglify-js@2.2.5 
+    │ │   ├── optimist@0.3.7 
+    │ │   └── source-map@0.1.43 
+    │ ├── void-elements@2.0.1 
+    │ └─┬ with@4.0.3 
+    │   ├── acorn@1.2.2 
+    │   └── acorn-globals@1.0.9 
+    ├─┬ less@2.5.3 
+    │ ├─┬ errno@0.1.4 
+    │ │ └── prr@0.0.0 
+    │ ├── image-size@0.3.5 
+    │ ├── mkdirp@0.5.1 
+    │ ├─┬ promise@6.1.0 
+    │ │ └── asap@1.0.0 
+    │ └─┬ source-map@0.4.4 
+    │   └── amdefine@1.0.1 
+    ├── lodash@3.10.1 
+    ├─┬ lru-cache@4.0.0 
+    │ ├── pseudomap@1.0.2 
+    │ └── yallist@2.0.0 
+    ├── marked@0.3.5 
+    ├─┬ node-sass@3.7.0 
+    │ ├── async-foreach@0.1.3 
+    │ ├─┬ chalk@1.1.3 
+    │ │ ├── ansi-styles@2.2.1 
+    │ │ ├── escape-string-regexp@1.0.5 
+    │ │ ├─┬ has-ansi@2.0.0 
+    │ │ │ └── ansi-regex@2.0.0 
+    │ │ ├── strip-ansi@3.0.1 
+    │ │ └── supports-color@2.0.0 
+    │ ├─┬ cross-spawn-async@2.2.5 
+    │ │ └─┬ which@1.2.12 
+    │ │   └── isexe@1.1.2 
+    │ ├─┬ gaze@1.1.2 
+    │ │ └─┬ globule@1.1.0 
+    │ │   └── lodash@4.16.6 
+    │ ├── get-stdin@4.0.1 
+    │ ├── in-publish@2.0.0 
+    │ ├─┬ meow@3.7.0 
+    │ │ ├─┬ camelcase-keys@2.1.0 
+    │ │ │ └── camelcase@2.1.1 
+    │ │ ├── decamelize@1.2.0 
+    │ │ ├─┬ loud-rejection@1.6.0 
+    │ │ │ ├─┬ currently-unhandled@0.4.1 
+    │ │ │ │ └── array-find-index@1.0.2 
+    │ │ │ └── signal-exit@3.0.2 
+    │ │ ├── map-obj@1.0.1 
+    │ │ ├── minimist@1.2.0 
+    │ │ ├─┬ normalize-package-data@2.3.5 
+    │ │ │ ├── hosted-git-info@2.1.5 
+    │ │ │ ├─┬ is-builtin-module@1.0.0 
+    │ │ │ │ └── builtin-modules@1.1.1 
+    │ │ │ └─┬ validate-npm-package-license@3.0.1 
+    │ │ │   ├─┬ spdx-correct@1.0.2 
+    │ │ │   │ └── spdx-license-ids@1.2.2 
+    │ │ │   └── spdx-expression-parse@1.0.4 
+    │ │ ├── object-assign@4.1.0 
+    │ │ ├─┬ read-pkg-up@1.0.1 
+    │ │ │ ├─┬ find-up@1.1.2 
+    │ │ │ │ └── path-exists@2.1.0 
+    │ │ │ └─┬ read-pkg@1.1.0 
+    │ │ │   ├─┬ load-json-file@1.1.0 
+    │ │ │   │ ├── graceful-fs@4.1.11 
+    │ │ │   │ ├─┬ parse-json@2.2.0 
+    │ │ │   │ │ └─┬ error-ex@1.3.0 
+    │ │ │   │ │   └── is-arrayish@0.2.1 
+    │ │ │   │ ├── pify@2.3.0 
+    │ │ │   │ └─┬ strip-bom@2.0.0 
+    │ │ │   │   └── is-utf8@0.2.1 
+    │ │ │   └─┬ path-type@1.1.0 
+    │ │ │     └── graceful-fs@4.1.11 
+    │ │ ├─┬ redent@1.0.0 
+    │ │ │ ├─┬ indent-string@2.1.0 
+    │ │ │ │ └─┬ repeating@2.0.1 
+    │ │ │ │   └── is-finite@1.0.2 
+    │ │ │ └─┬ strip-indent@1.0.1 
+    │ │ │   └── get-stdin@4.0.1 
+    │ │ └── trim-newlines@1.0.0 
+    │ ├── mkdirp@0.5.1 
+    │ ├── nan@2.5.0 
+    │ ├─┬ node-gyp@3.4.0 
+    │ │ ├── fstream@1.0.10 
+    │ │ ├── graceful-fs@4.1.11 
+    │ │ ├── mkdirp@0.5.1 
+    │ │ ├─┬ npmlog@3.1.2 
+    │ │ │ ├─┬ are-we-there-yet@1.1.2 
+    │ │ │ │ └── delegates@1.0.0 
+    │ │ │ ├── console-control-strings@1.1.0 
+    │ │ │ ├─┬ gauge@2.6.0 
+    │ │ │ │ ├── aproba@1.0.4 
+    │ │ │ │ ├── has-color@0.1.7 
+    │ │ │ │ ├── has-unicode@2.0.1 
+    │ │ │ │ ├── object-assign@4.1.0 
+    │ │ │ │ └── wide-align@1.1.0 
+    │ │ │ └── set-blocking@2.0.0 
+    │ │ ├─┬ osenv@0.1.4 
+    │ │ │ ├── os-homedir@1.0.2 
+    │ │ │ └── os-tmpdir@1.0.2 
+    │ │ ├─┬ path-array@1.0.1 
+    │ │ │ └─┬ array-index@1.0.0 
+    │ │ │   └─┬ es6-symbol@3.1.0 
+    │ │ │     ├── d@0.1.1 
+    │ │ │     └─┬ es5-ext@0.10.12 
+    │ │ │       └── es6-iterator@2.0.0 
+    │ │ ├── semver@5.3.0 
+    │ │ └── tar@2.2.1 
+    │ └─┬ sass-graph@2.1.2 
+    │   ├── lodash@4.17.3 
+    │   └─┬ yargs@4.8.1 
+    │     ├─┬ cliui@3.2.0 
+    │     │ └── wrap-ansi@2.1.0 
+    │     ├── get-caller-file@1.0.2 
+    │     ├── lodash.assign@4.2.0 
+    │     ├─┬ os-locale@1.4.0 
+    │     │ └─┬ lcid@1.0.0 
+    │     │   └── invert-kv@1.0.0 
+    │     ├── require-directory@2.1.1 
+    │     ├── require-main-filename@1.0.1 
+    │     ├─┬ string-width@1.0.2 
+    │     │ ├── code-point-at@1.1.0 
+    │     │ └─┬ is-fullwidth-code-point@1.0.0 
+    │     │   └── number-is-nan@1.0.1 
+    │     ├── which-module@1.0.0 
+    │     ├── window-size@0.2.0 
+    │     ├── y18n@3.2.1 
+    │     └─┬ yargs-parser@2.4.1 
+    │       └── camelcase@3.0.0 
+    ├─┬ postcss@5.0.14 
+    │ ├── js-base64@2.1.9 
+    │ ├── source-map@0.5.6 
+    │ └─┬ supports-color@3.1.2 
+    │   └── has-flag@1.0.0 
+    ├─┬ stylus@0.54.5 
+    │ ├── css-parse@1.7.0 
+    │ ├── glob@7.0.6 
+    │ ├── mkdirp@0.5.1 
+    │ ├── sax@0.5.8 
+    │ └── source-map@0.1.43 
+    └── through@2.3.8 
+
+[wagner@localhost harp-introduction]$ 
+   
+** Criando um projeto hello world
+   :PROPERTIES:
+   :ORDERED:  t
+   :END:
+#+BEGIN_SOURCE sh
+
+[wagner@localhost harp-introduction]$ mkdir hello-world
+[wagner@localhost harp-introduction]$ cd hello-world/
+[wagner@localhost hello-world]$ echo h1 Hello World >> index.jade
+[wagner@localhost hello-world]$ harp server --port 9000
+------------
+Harp v0.23.0 â Chloi Inc. 2012â2015
+Your server is listening at http://localhost:9000/
+Press Ctl+C to stop the server
+------------
+
+#+END_SOURCE
+
+O Resultado no browser é demostrado na figura abaixo.
+[./imgs/hellowordAtBrowser.png]
+
+
+
+
+   
+* Referencias
+  http://kennethormandy.com/journal/start-a-blog-with-harp
+  https://harpjs.com/docs/quick-start   
