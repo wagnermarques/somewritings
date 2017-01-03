@@ -2,40 +2,862 @@
 #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
 #+TITLE: INTRODUÇÃO AO GIT
 
-* por que usar git?
-Você deveria usar o git porque o mercado usa e existem muitos bons
-motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
-são esses. Ou seja, porque profissionais do mercado investem tempo
-aprendendo e estudando pra usar o git? 
-Mesmo porque não é tão simplizinho assim aprender git, então você tem que
-ter claro o porquê vale a pena o esforço de aprender.
-
-Respondendo a pergunta, sendo bastante simplório, mas bem claro e objetivo, imagine a
-seguinte situação: Seu grupo de TCC, de três alunos, por exemplo, estác
-editando um texto. Pode ser o texto do TCC mesmo.
-Então um de vocês digita uma parte, e outro outra e assim vai... é
-comum ocorrer esse tipo de divisão esquisita de trabalho como por
-exemplo: um escreve oo capítulo 1 o outro o capítulo 2 e despois junta
-num arquivo só.
-Acho que isso nunca fica bom, mas no início não dá tanto problema.
-O problema começa quando precisa fazer ajustes no texto e aí cada um
-pega uma cópia e faz ajustes e várias partes do texto. E agora pra
-juntar? Como você faria? Aproveita a oportunidade e pensa se ao invés
-de um arquivo só vocês estivessem trabalhando com uma cópia de vários
-arquivos de código e aí cada um faz várias alterações em partes
-diversas de vários arquivos. Junta tudo isso num código final como?
-
-
-* começando com o mais básico de tudo
+* Tema
+  Introdução ao Git e Github
+* Objetivo
+  Dar suporte aos alunos que se inscreverem no curso "Como Usar Git e
+  Github" do MOOC Udacity, disponível
+  https://br.udacity.com/course/how-to-use-git-and-github--ud775/
+* Conteúdo  
+  Exercícios que contemplam os seguintes tópicos
+** Gerencia de mudanças em um ou mais arquivos com diff
+   
+* Competencias
+  Após o curso do Udacity e dos exercícios o aluno terá adquirido a
+  competência de trabalhar em equipe de desenvolvimento de software
+  bem como compartilhar seu código no github.
+* Metodologia
+  Este material não tem muita teoria e explicações porque isso tem no
+  curso da Udacity. O que tem aqui são exercícios baseados no curso
+  bem como a resposta dos exercícios em forma de tutoriais e vídeo aulas.
   
- 
-* exercicios
-** Reconstruindo final file
-   [.
+* Duração
+  Ainda não tenho muito claro, estou ainda fazendo esses exercícios
+
+* Avaliação
+  As avaliações serão realizadas em sala de aulas já que entregas de
+  trabalhos poderão ser requisitadas via repositórios por alguns
+  professores.
+
+* Recursos necessários
+  Instalação do git
+  
+* por que usar git?
+  Você deveria usar o git porque o mercado usa e existem muitos bons
+  motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
+  são esses. Ou seja, porque profissionais do mercado investem tempo
+  aprendendo e estudando pra usar o git? 
+  Mesmo porque não é tão simplizinho assim aprender git, então você tem que
+  ter claro o porquê vale a pena o esforço de aprender.
+  
+  Respondendo a pergunta, sendo bastante simplório, mas bem claro e objetivo, imagine a
+  seguinte situação: Seu grupo de TCC, de três alunos, por exemplo, estác
+  editando um texto. Pode ser o texto do TCC mesmo.
+  Então um de vocês digita uma parte, e outro outra e assim vai... é
+  comum ocorrer esse tipo de divisão esquisita de trabalho como por
+  exemplo: um escreve oo capítulo 1 o outro o capítulo 2 e despois junta
+  num arquivo só.
+  Acho que isso nunca fica bom, mas no início não dá tanto problema.
+  O problema começa quando precisa fazer ajustes no texto e aí cada um
+  pega uma cópia e faz ajustes e várias partes do texto. E agora pra
+  juntar? Como você faria? Aproveita a oportunidade e pensa se ao invés
+  de um arquivo só vocês estivessem trabalhando com uma cópia de vários
+  arquivos de código e aí cada um faz várias alterações em partes
+  diversas de vários arquivos. Junta tudo isso num código final como?
+
+* 1 Vendo as diferenças entre dois arquivos
+** Exercício 1 -> diff pra ver diferença entre arquivos
+  (a) Crie uma pasta com o nome projeto-git-intro e um (b) arquivo com
+  nome de nomeie "arqv1.txt" e (c) escreva nele o seguinte:
+  A
+  B
+  C
+  D
+
+  (d) Faça uma cópia desse arquivo e (e) renomeie como arqv2.txt
+  (f) Aí você deleta o A
+  (g) Acrescenta no final do arquivo a Letra E.
+  
+  (h)Faça um print do diff e (i)interprete as mudanças com base da saída do
+  diff.
+  
+  O que significa a indicação de mudança de linha com sinal de menos?
+  O que significa a indicação de mudança de linha com sinal de mais?
+  
+** Resolução do exercício 1  
+   Bom, vamos lá então... resolver o exercício 1.
+
+   Vou criar a pasta e o arquivo solicitado.
+   Bom eu tenho no meu hd externo uma pasta que eu chamo de env-dev
+   que significa pra mim "environment develop" ou seja, uma pasta onde
+   eu crio meus projetos. 
+   Você pode escolher criar a pasta em qualquer diretório que vc
+   queira, mas pelo amor de Deus... não coloca caracteres especiais no
+   nome nem use espaços... funciona, mas vai se acostumento a não usar
+   isso...
+   
+
+   #+name: ex1CriandoPastaEArqv1.txt
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   mkdir -p /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   touch arqvi1.txt
+   ls -la
+   #+END_SRC
+
+   #+RESULTS: ex1CriandoPastaEArqv1.txt
+   : total 12
+   : drwxrwxr-x. 2 wagner wagner 4096 Jan  2 22:25 .
+   : drwxrwxrwx. 8 wagner wagner 4096 Jan  2 22:25 ..
+   : -rw-rw-r--. 1 wagner wagner    8 Jan  2 22:28 arqvi1.txt
+
+   Criamos o arquivo, agora vamos escrever nele conforme solicitado no
+   exercício.
+
+   #+name: ex1EscrevendoNoArqv1.txt
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   echo "A" >  arqvi1.txt
+   echo "B" >> arqvi1.txt
+   echo "C" >> arqvi1.txt  
+   echo "D" >> arqvi1.txt  
+   cat  arqvi1.txt
+   #+END_SRC
+
+   #+RESULTS: ex1EscrevendoNoArqv1.txt
+   : A
+   : B
+   : C
+   : D
+
+   Bom pessoal, fizemos as tarefas (a) que era a criação da pasta, (b)
+   que é criação do arquivo e (c) escrevemos no arquivo criado o que foi solicitado.
+   Foi utilizado aqui a linha de comando pra fazer tudo isso mas vc
+   pode usar qualquer editor de texto. Pode fazer do jeito mais fácil
+   pra vc. O importante é entender a parte do git, ok?
+   
+   Bom, vamos continuar fazendo o que o exercício pede...
+   Vamos fazer uma cópia do arquivo renomeando para arqv2.txt,
+   conforme solicitado em (d) e (e).
+   
+   #+name: ex1_d_e
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   cp  arqvi1.txt arqvi2.txt
+   ls -la
+   #+END_SRC
+
+   #+RESULTS: ex1_d_e
+   : total 16
+   : drwxrwxr-x. 2 wagner wagner 4096 Jan  3 00:49 .
+   : drwxrwxrwx. 8 wagner wagner 4096 Jan  2 22:25 ..
+   : -rw-rw-r--. 1 wagner wagner    8 Jan  2 22:29 arqvi1.txt
+   : -rw-rw-r--. 1 wagner wagner    8 Jan  3 01:20 arqvi2.txt
+
+   Veja lá que temos o arquivo arqv2.txt agora no nosso diretório.
+   #+name: ex1_f_g
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   sed -i -e "1d"  arqvi2.txt
+   echo "E" >> arqvi2.txt
+   cat  arqvi2.txt
+   #+END_SRC
+
+   #+RESULTS: ex1_f_g
+   : B
+   : C
+   : D
+   : E
+   
+
+   A letra (f) pedia pra deletar a letra A. Usei o comando "sed -e
+   's/A//g'  arqvi2.txt" pra fazer isso. Você não precisa fazer assim
+   se não quizer ou se achar difícil. Fiz assim só pra enriquecer
+   nossa experiência e também porque fica mais fácil pra escrever a
+   resolução do exercício.
+   Já o comando "echo "E" > arqvi2.txt" escreve a letra "E" no final
+   do arquivo, confome pedia a letra (g).
+   
+   O útlimo comando "cat" mostra faz um print do conteúdo do arquivo
+   arqvi2.txt pra mostra que a gente fez o que foi solicitado.
+   
+   Agora as letras (h) pede pra gente fazer um diff e a letra (i) pede
+   pra gente interpretar a saída do diff.
+
+   Considerando que as mudanças que a gente fez no arquivo
+   "arqvi2.txt" foi bem, mas bem simples mesmo a gente até tem uma
+   idéia do que o diff vai mostrar. Vai mostrar que a gente deletou a
+   letra A e que a gente acrescentou a letra E no final. 
+   
+   Pô assim é fácil. Mas entenda que a idéia não é descobrir qual foi
+   a mudança que a gente fez, mas sim ver como o diff mostra pra gente
+   essa mudança. entendeu?
+
+   Bom então vamos lá...
+
+   #+name: ex1_h_i
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   diff -u  arqvi1.txt arqvi2.txt   
+   #+END_SRC
+
+   #+RESULTS: ex1_h_i
+0   [wagner@localhost projeto-git-intro]$ diff -u  arqvi1.txt arqvi2.txt
+1   --- arqvi1.txt	2017-01-02 22:29:30.078332174 -0200
+2   +++ arqvi2.txt	2017-01-03 01:20:40.826569072 -0200
+3   @@ -1,4 +1,4 @@
+4   -A
+5   B
+6   C
+7   D
+8   +E
+9   [wagner@localhost projeto-git-intro]$ 
+   
+
+   Agora vamos interpretar essa saída (i) linha por linha...
+   | Linha | Interpretação                                                                                 |
+   |     0 | Comando                                                                                       |
+   |     1 | Indica o primeiro arquivo do o diff tá comparando mais o timestamp                            |
+   |     2 | Indica o segundo arquivo que o diff tá comparando mais o timestamp                            |
+   |     3 | "-" significa arqvi1.txt. 1,4 significa que as mudanças começam na linha 1 e envolve 4 linhas |
+   |     3 | "+" significa arqvi2.txt. 1,5 significa que as mudanças começam na linha 1 e envolve 5 linhas |
+   |     4 | "-" significa que foi deletado o caractere "A" que é o conteúdo da linha deletada             |
+   |     5 | B não foi modificado, ou seja, tinha no arqvi1.txt e continua tendo no arqvi2.txt             |
+   |     6 | C idem                                                                                        |
+   |     7 | D idem                                                                                        |
+   |     8 | "+" Indica que essa linha foi acrescentada em arqvi2.txt e o conteúdo da linha é "E"          |
+   |     9 | é o prompt esperando um novo comando                                                          |
+   
+   
+
+
+** Exercício 2 -> diff entre dois arquivos do jogo asteróids
+   Conforme solicitado no curso, fazer o mesmo com esses dois arquivos
+   e mostrar a diferenças
+   Por que fazer o mesmo exercício duas vezes? Não é o mesmo exercício
+   exatamente não.. é que com esse você consegue perceber um pouco
+   mais a grande utilizade do comando diff já que não daria pra ver
+   facilmente tudo que mudou entre os dois arquivos sem uma ferramenta
+   como essa. Então pra ficar mais interessante, não tenha pressa
+   não... como você faria se você tivesse com saber quais as
+   diferenças entre esses dois aquivos apenas comparando os dois?
+   Então depois você usa o diff e vai perceber que é uma ferramenta
+   muito legal e útil.
+  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_old.js
+  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_new.js  
+    
+** Resolução do exercício 2
+
+* 2 Vendo o histórico dos arquivos
+** Exercício 2 -> Não simplesmente ver uma diferença, é legal ver o histórico
+   É legal, é importante ver a diferença entre duas versões
+   direferntes de arquivo. É util e importante. Mas seria muito mais
+   interessante ainda ver um histórico inteiro de mudanças neste
+   arquivo. Aí sim, é muito mais interessante ainda...
+   
+   Você precisa de dois conceitos pra entender isso. Claro que você
+   assistiu aos vídeos e viu que foi falado de CVS - Concurrent
+   Version Sistem e de Commits, em particular commits manuais. (Não
+   vou repetir aqui não... vê os vídeos lá, ou pergunte para o seu
+   professor) Dica. Procure o vídeo sobre Concept Map.
+   
+   Só pra contextualizar você precisar entender um conceito muito
+   importante. Se você está interessado em fazer um diff de uma versão
+   1, e da 3 você precisa de uma ferramenta de software que consiga
+   gerenciar essas mudanças pra você. Ou seja, uma ferramenta que
+   saiba o que mudou da versão 1 pra versão 2 e 3 pra que seja
+   possível você fazer um diff entre elas.
+   Por isso você precisa instalar o git e inicilizar o git para a
+   pasta onde o seu arquivo se encontra pra que o git guarde o
+   histórico das mudanças no código pra você.
+   
+   Portanto,
+   Neste exercício você fazer as seguintes tarefas:
+
+   1) Instale o git na sua máquina
+      Dê os seguinte comandos
+      Rode os os seguintes comandos: 
+      git config --global color.ui auto
+      git config ­­global user.name "seu nome"
+      git config ­­global user.email "seu.email@domimio.com"
+.
+
+
+   2) *Criando pasta para o projeto*
+      Crie uma pasta pra sua interface gráfica html, pode chamar ela
+      de projweb_gui
+
+   3) *Comando git init*
+      Inicialize o git com git init
+
+   4) *Criando um arquivo html com tags de estrutura*
+      Crie seu arquivo e crie a estrutura de um html nele (tags html,
+      head e body)
+      
+   5) *Usando commando git add*
+      Adicione esse arquivo para ser controlado pelo git
+      
+   6) *Usando o comando Commit*
+      Commite com msg ("initial commit com html estrutura básica)
+
+   7) *Editando o arquivo html*
+      Abra o arquivo novamente coloque um H1 com titulo e um paragrafo
+      com a descriçao do site
+
+   8) *Usando o comando Commit*
+      Commite com a msg (Titulo e Descrição do site)
+
+   9) *Alterando o arquivo*
+      adicione um stilo a sua pagina com a tag style
+      
+   10) *Usando o comando Commit*
+       Commite com a msg estilizando site
+
+   11) *usando git log e git diff*
+       Agora use os comandos git log e git diff e interprete a
+       saída. 11b)Explique porque diff opera sobre commits.
+       //experimente também 
+       git log --oneline -2 (linhas)
+       git log --oneline -2 origin/master
+
+   12) *Refletindo: Tralhando off line*
+       Interprete a saída do git log
+       Lembra daquele menina na floresta dizendo que estava offline. 
+       Perceba que você não precisou de internet pra fazer
+       isso certo? Ou seja, tudo isso que você está fazendo é offline. 
+
+   13) *Reflexão entre commit manual e automático*
+       Lembra que as meninas do curso explicaram que o wikipedia, o
+       dropbox o google drive também fazem controles de versão de um
+       documento? Só que os commits, ou seja, o registro das mudanças
+       ão é manual, é automática, sendo registrado sempre que você
+       salva por exemplo. Já com o git, o commit é manual? Quais são
+       as vantagens e desvantagens de commits manuais? Ah. faça uma
+       reflexão também sobre qual seria o melhor momento para commitar
+       alterações dizendo o porque de sua conclusão sobre o assunto.
+
+   14) *Trabalhando com mais confiança*
+       Já aconteceu com você de você fazer uma alteração em algum
+       arquivo ou projeto e depois não saber muito bem onde você errou
+       e decidir dar um control z pra voltar ao que era antes e
+       começar de novo? Já aconteceu comigo de querer voltar pra uma
+       versão de ontem, por exemplo, já que o control z não estava
+       disponível. Como essa o git facilita a nossa vida diante de
+       situações como essa?
+
+   15) *Trabalhando com multiplos arquivos*
+       Claro que um css deve sempre que possível ser escrito num
+       arquivo a parte. Faça isso com seu estilo e link ele no seu
+       html. 
+       Aproveite e faça também com um arquivo javascript. 
+       Commite explicando isso na msg.
+           
+** Exercicio 3 -> Vendo o histório, só que agora não do seu projeto.       
+   1) *Usando git clone*
+      Faça o clone do seguinte repositório
+      https://github.com/udacity/asteroids.git
+     
+
+* 3 Dicas do dia a dia (from: https://github.com/git-tips/tips)
+** git diff revisitado
+   Trabalhei ontem no projeto e não me lembro muito bem quais
+   modificações fiz ontem. 
+   git diff
+** Quais arquivos eu já tinha até um certo commit específico?
+   git diff-tree --no-commit-id --name-only -r <ommit-ish>
+
+** Quem modificou esses arquivos?
+** Quais modificações foram feitas num arquivo específico?
+** Tem arquivos em conflito?
+   git diff --name-only --diff-filter=U
 
 
 
 
-   margin-left: 22px;
-    margin-right: 32px;
-    margin-top: 20px;
+* 4 Branches  
+** Listando branches
+   git branch (lista branches locais)
+   git branch -r (lista branches remotos)
+
+** Merging
+   Mergin é a mesclagem de um outro brach no seu branch de trabalho
+   corrente. Você tá trazendo mudanças de um outro contexto (outro brach)
+   pro seu contexto de trabalho que é o seu branch corrente combinando os
+   arquivos que você está usando atualmente no seu branch de
+   trabalho.[fn:GitTowerMergeConglicts]
+   
+*** Resolvendo Conflitos 
+    Ocorre qua se em um contexto que dois programadores mudaram um
+    mesmo arquivo onde um modificou uma linha e o outro alterou essa
+    mesma linha. Quem está certo? O git pode pode decidir, então ele
+    marca o arquivo como estando em conflito. Pra continuar o
+    desenvolvimento do projeto precisa resolver esse conflito.
+    
+    O primeiro passo é entender o que aconteceu.
+    Pra verificar de um git status
+    
+
+   #+name: gitStatusWihConflict
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+     cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+     echo $(pwd)
+     git status
+   #+END_SRC
+
+   #+RESULTS: gitStatusWihConflict
+
+   #+begin_example
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      On branch master
+      Your branch and 'remotes/origin/master' have diverged,
+      and have 1 and 1 different commit each, respectively.
+        (use "git pull" to merge the remote branch into yours)
+      You have unmerged paths.
+        (fix conflicts and run "git commit")
+
+      Changes to be committed:
+
+              modified:   autocomplete_config.el
+              modified:   cedet_config.el
+              new file:   config-enviroment.el
+              modified:   config_package_system.el
+              new file:   eclim_config.el
+              new file:   eclim_starter.sh
+              modified:   find_files.el
+              new file:   fzl_customization_functions.el
+              new file:   init.bk.el
+              new file:   magit_installation.el
+              new file:   test.php
+
+      Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+
+              both added:      dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+              both modified:   emacsinitfile.log
+              both modified:   init.el
+              both modified:   org_mode_config.el
+
+#+end_example
+   #+begin_src sh  :eval never
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      On branch master
+      Your branch and 'remotes/origin/master' have diverged,
+      and have 1 and 1 different commit each, respectively.
+        (use "git pull" to merge the remote branch into yours)
+      You have unmerged paths.
+        (fix conflicts and run "git commit")
+
+      Changes to be committed:
+
+              modified:   autocomplete_config.el
+              modified:   cedet_config.el
+              new file:   config-enviroment.el
+              modified:   config_package_system.el
+              new file:   eclim_config.el
+              new file:   eclim_starter.sh
+              modified:   find_files.el
+              new file:   fzl_customization_functions.el
+              new file:   init.bk.el
+              new file:   magit_installation.el
+              new file:   test.php
+
+      Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+
+              both added:      dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+              both modified:   emacsinitfile.log
+              both modified:   init.el
+              both modified:   org_mode_config.el
+
+#+end_src
+
+   Temos uma situação de conflito que envolve quatro arquivos,
+   conforme acima.
+   
+   Vamos ve o que aconteceu com o arquivo init.el
+   
+   #+name: diffNameOnlyFilterU
+   #+BEGIN_SRC sh  :eval never :var x=2 :results output replace  :exports both
+          cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+          echo $(pwd)
+          git diff --name-only --diff-filter=U
+      #+END_SRC
+
+   #+RESULTS: diffNameOnlyFilterU
+      : /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      : dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+      : emacsinitfile.log
+      : init.el
+      : org_mode_config.el
+
+   #+name: diffInit.el
+   #+BEGIN_SRC sh   :eval never :var x=2 :results output replace  :exports both
+          cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+          echo $(pwd)
+          git diff init.el
+      #+END_SRC
+
+   #+RESULTS: diffInit.el
+   #+begin_example
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      diff --cc init.el
+      index c887a6f,d7ab670..0000000
+      --- a/init.el
+      +++ b/init.el
+      @@@ -1,16 -1,26 +1,35 @@@
+        (setq debug-on-error t)
+       +
+        (require 'cl)
+
+++<<<<<<< HEAD
+++=======
+      + ;(setq url-proxy-services '(("no_proxy"   . "work\\.com")
+      + ;                           ("http_proxy" . "wagner:nicolas1*@192.168.0.2:3128")
+      + ;			    ("ftp_proxy"  . "wagner:nicolas1*@192.168.0.2:3128")
+      + ;			    ("all_proxy"  . "wagner:nicolas1*@192.168.0.2:3128")))
+      + 
+      + 
+      + ;from https://www.reddit.com/r/emacs/comments/3inht4/emacs_25_on_windows_behind_a_proxy_cant_download/
+      + ;(setq url-proxy-services
+      + ;    '(("no_proxy" . "^\\(localhost\\|192.168.0.*\\)")
+      + ;      ("http" . "192.168.0.2:3128")
+      + ;      ("https" . "192.168.0.2:3128")))
+      + ;(setq url-http-proxy-basic-auth-storage
+      + ;    (list (list "192.168.0.2:3128"
+      + ;            (cons "Input your LDAP UID !"
+      + ;                  (base64-encode-string "wagner:nicolas1*")))))
+      + 
+      ++>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+
+       -(setq **HOME** (concat (concat "/home/" (getenv "USER")) "/"))
+       +;;(setq url-proxy-services '(("no_proxy"   . "work\\.com")
+       +;;                           ("http_proxy" . "wagner:nicolas1*@192.168.0.2:3128")
+       +;;			    ("ftp_proxy"  . "wagner:nicolas1*@192.168.0.2:3128")
+       +;;			    ("all_proxy"  . "wagner:nicolas1*@192.168.0.2:3128")))
+
+
+       +(setq **HOME** (concat (concat "/home/" (getenv "USER")) "/"))
+       +
+
+        (defun fzl_print_global_variables()
+          "print defined variables and its values"
+      @@@ -47,14 -56,11 +66,21 @@@
+
+
+
+       +
+        ;;DEFINE THIS ENVIRONMENTAL VARIABLE
+      ++<<<<<<< HEAD
+       +;;THIS JUST REPRESENTS A DIRECTORY WHERE SHOULD BE YOU DEVTOOLS WHERE ARE YOURS INTEGRATED DIR
+       +(if (not (and (getenv "FZL_HOME")  (getenv "FZL_HOME_SERVER")))
+       +
+       +    ;;in case FZL_HOME was not defined...
+       +    (message "PLEASE EXPORT FZL_HOME AND FZL_HOME_SERVER ENVIRONMENT VARIABLES")
+       +
+      ++=======
+      + ;;THIS JUST REPRESENTS A DIRECTORY WHERE SHOULD BE YOU DEVTOOLS IN ITS INTEGRATED DIR
+      + (if (not (and (getenv "FZL_HOME")  (getenv "FZL_HOME_SERVER")))
+      +     ;;in case FZL_HOME was not defined...
+      +     (message "PLEASE EXPORT FZL_HOME AND FZL_HOME_SERVER ENVIRONMENT VARIABLES")
+      ++>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+
+          ;;in case FZL_HOME was defined...
+          (progn
+      @@@ -68,14 -74,13 +94,23 @@@
+                (progn    
+                  (setq **FZL_HOME** (file-name-as-directory **FZL_HOME_provided**))
+                  (setq **FZL_HOME_SERVER** (file-name-as-directory **FZL_HOME_SERVER_provided**)))
+      ++<<<<<<< HEAD
+       +      (error "Sorry the $FZL_HOME and $FZL_HOME_SERVER must be accessible"))
+      ++=======
+      +       (error "Sorry the $FZL_HOME and $FZL_HOME_SERVER must be accecible"))
+      ++>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+
+
+            (setq **DEV_TOOLS_BASEDIR** (concat **FZL_HOME** "integrated/"))
+            (message **DEV_TOOLS_BASEDIR**)
+      ++<<<<<<< HEAD
+       +
+       +    ;;CHANGE DEV TOOLS ACCORDINGLY
+       +    (setq **M2_HOME**     (concat **DEV_TOOLS_BASEDIR** "build/apache-maven-3.3.3/"))    
+      ++=======
+      +     ;;CHANGE DEV TOOLS ACCORDINGLY
+      +     (setq **M2_HOME**     (concat **DEV_TOOLS_BASEDIR** "build/apache-maven-3.3.9"))    
+      ++>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+            (setq **NEXUS_HOME**  (concat **DEV_TOOLS_BASEDIR** "build/nexus-3.0.1-01/"))
+
+            (setq **JAVA_HOME**   (concat **DEV_TOOLS_BASEDIR** "jdks/jdk1.8.0_65/"))
+#+end_example
+
+
+   Bom pra entender qual é o conflito a gente deu um git diff init.el
+   O git indica pra gente qual é a regiao de conflito através como sendo
+   tudo que esta dentro da região marcada com 
+   
+   ++<<<<<<< HEAD
+   LINHAS DO ARQUIVO DENTRO DA REGIAO DE CONFLITO
+   ++>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+   
+   Então agora é só decidir como deve ficar o arquivo final editando a
+   região de conflito e deixando como deve ficar o resultado final e
+   depois que fizer isso em todas as regiões de conflito, a gente tem
+   dizer pro git que já nos decidimos e resolvemos os conflitos usando o
+   comando git add <nome-do-arquivo.
+   
+   Vamos lá fazer isso então?
+   Bom um dos trechos em conflito está abaixo. Vou editar essa regiãod e
+   conflito como exemplo pra gente acompanhar e vou editar as outras
+   depois também pra solucionar todos os conflitos. Por último a gente dá
+   um git add init.el
+   
+   Eis a região de conflito que vamos resolver juntos...
+   
+   #+name: editandoUmaRegiaoDeConflito
+   #+BEGIN_SRC lisp  :eval never 
+<<<<<<< HEAD
+;;THIS JUST REPRESENTS A DIRECTORY WHERE SHOULD BE YOU DEVTOOLS WHERE ARE YOURS INTEGRATED DIR
+(if (not (and (getenv "FZL_HOME")  (getenv "FZL_HOME_SERVER")))
+
+    ;;in case FZL_HOME was not defined...
+    (message "PLEASE EXPORT FZL_HOME AND FZL_HOME_SERVER ENVIRONMENT VARIABLES")
+
+=======
+;;THIS JUST REPRESENTS A DIRECTORY WHERE SHOULD BE YOU DEVTOOLS IN ITS INTEGRATED DIR
+(if (not (and (getenv "FZL_HOME")  (getenv "FZL_HOME_SERVER")))
+    ;;in case FZL_HOME was not defined...
+    (message "PLEASE EXPORT FZL_HOME AND FZL_HOME_SERVER ENVIRONMENT VARIABLES")
+>>>>>>> 28e5f69afa0c7bb80e00b0beeec6afbb6ce8b7b0
+
+      #+END_SRC
+
+   #+name:  ResultadoFinalDaEdicaoDaRegiaoDeConflito
+   #+BEGIN_SRC lisp  :eval never 
+
+     ;;THIS JUST REPRESENTS A DIRECTORY WHERE SHOULD BE YOU DEVTOOLS WHERE ARE YOURS INTEGRATED DIR
+     (if (not (and (getenv "FZL_HOME")  (getenv "FZL_HOME_SERVER")))
+
+         ;;in case FZL_HOME was not defined...
+         (message "PLEASE EXPORT FZL_HOME AND FZL_HOME_SERVER ENVIRONMENT VARIABLES")
+
+      #+END_SRC
+
+   Não sei se vc percebeu, mas era uma questão só de estilo de
+   codificação, neste caso. ou seja, tinha uma linha onde foi inserido um
+   espaço o que modificou as linhas abaixo dela e gerou, portanto o
+   conflito.
+   Esse foi um exemplo bastante simplório porque é só pra ilustrar uma
+   situação de como resolver conflitos com git, mas pode ser que o
+   conflito envolvesse lógica do software e aí precisaria então uma
+   atenção especial na solução do problema. Na prática, entretanto, para
+   efeitos do git apenas, a solução do conflito envolve só editar a
+   região de conflito e depois dar um git add nomeDoArquivo. Só isso.
+   
+   Editei as regiões de conflito do arquivo init.el, mas ainda não dei um
+   git add init.el
+   
+   Antes ainda de dar um git add init.el, vamos averiguar se tem conflito
+   ainda?
+   
+   #+name: diffNameOnlyFilterU_PosEditInitEl
+   #+BEGIN_SRC sh  :eval never :var x=2 :results output replace  :exports both
+     cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+     echo $(pwd)
+     git diff --name-only --diff-filter=U
+   #+END_SRC
+
+
+   #+RESULTS: diffNameOnlyFilterU_PosEditInitEl
+      : /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      : dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+      : emacsinitfile.log
+      : init.el
+      : org_mode_config.el
+
+
+
+   #+name: gitStatusWihConflict_PosEditInitEl
+   #+BEGIN_SRC sh  :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+        cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+        echo $(pwd)
+        git status
+      #+END_SRC
+
+   #+RESULTS: gitStatusWihConflict_PosEditInitEl
+   #+begin_example
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      On branch master
+      Your branch and 'remotes/origin/master' have diverged,
+      and have 1 and 1 different commit each, respectively.
+        (use "git pull" to merge the remote branch into yours)
+      You have unmerged paths.
+        (fix conflicts and run "git commit")
+
+      Changes to be committed:
+
+              modified:   autocomplete_config.el
+              modified:   cedet_config.el
+              new file:   config-enviroment.el
+              modified:   config_package_system.el
+              new file:   eclim_config.el
+              new file:   eclim_starter.sh
+              modified:   find_files.el
+              new file:   fzl_customization_functions.el
+              new file:   init.bk.el
+              new file:   magit_installation.el
+              new file:   test.php
+
+      Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+
+              both added:      dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+              both modified:   emacsinitfile.log
+              both modified:   init.el
+              both modified:   org_mode_config.el
+
+#+end_example
+
+   #+name: Result->gitStatusWihConflict_PosEditInitEl
+   #+BEGIN_SRC sh  
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      On branch master
+      Your branch and 'remotes/origin/master' have diverged,
+      and have 1 and 1 different commit each, respectively.
+        (use "git pull" to merge the remote branch into yours)
+      You have unmerged paths.
+        (fix conflicts and run "git commit")
+
+      Changes to be committed:
+
+              modified:   autocomplete_config.el
+              modified:   cedet_config.el
+              new file:   config-enviroment.el
+              modified:   config_package_system.el
+              new file:   eclim_config.el
+              new file:   eclim_starter.sh
+              modified:   find_files.el
+              new file:   fzl_customization_functions.el
+              new file:   init.bk.el
+              new file:   magit_installation.el
+              new file:   test.php
+
+      Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+
+              both added:      dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+              both modified:   emacsinitfile.log
+              both modified:   init.el
+              both modified:   org_mode_config.el
+      #+END_SRC
+
+
+   Percebe-se que, apesar de eu ter editado as regiões de conflito o git
+   ainda não foi avisado que eu já fiz isso e que não tem mais
+   conflito. Vamos avisa-lo então...
+   
+   #+name: gitAddInitEl_PosEditInitEl
+   #+BEGIN_SRC sh  :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+     git add init.el
+   #+END_SRC
+
+   #+RESULTS: gitAddInitEl_PosEditInitEl
+
+
+   Agora que o git já está avisado da resolução do conflito no arquivo
+   init.el, vamos dar um git status de novo?
+   
+   #+BEGIN_SRC sh  :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+     cd '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile'
+     echo $(pwd)
+     git status
+   #+END_SRC
+
+   #+RESULTS:
+
+   #+begin_example
+      /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile
+      On branch master
+      Your branch and 'remotes/origin/master' have diverged,
+      and have 1 and 1 different commit each, respectively.
+        (use "git pull" to merge the remote branch into yours)
+      You have unmerged paths.
+        (fix conflicts and run "git commit")
+
+      Changes to be committed:
+
+              modified:   autocomplete_config.el
+              modified:   cedet_config.el
+              new file:   config-enviroment.el
+              modified:   config_package_system.el
+              new file:   eclim_config.el
+              new file:   eclim_starter.sh
+              modified:   find_files.el
+              new file:   fzl_customization_functions.el
+              new file:   init.bk.el
+              modified:   init.el
+              new file:   magit_installation.el
+              new file:   test.php
+
+      Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+
+              both added:      dir_for_org_mode_tutorials_artifacts/org-mode-tutorials-artifacts/org_mode_SETUPFILE_Export_Tutorials.org
+              both modified:   emacsinitfile.log
+              both modified:   org_mode_config.el
+
+   #+end_example
+
+   Dá pra perceber que o arquivo init.el não está sendo mais listado no
+   unmerged paths, o que mostra que agora o git tá resolvido com o
+   conflito relacionado a este arquivo. Então é só repetir para os
+   demais.
+   
+   Depois de resolver todos os conflitos é possível fazer um git push
+      
+   #+name: gitStatusWihConflict
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+     [wagner@emulti2 emacsinitfile]$ git push
+     warning: push.default is unset; its implicit value has changed in
+     Git 2.0 from 'matching' to 'simple'. To squelch this message
+     and maintain the traditional behavior, use:
+
+     git config --global push.default matching
+
+     To squelch this message and adopt the new behavior now, use:
+
+     git config --global push.default simple
+
+     When push.default is set to 'matching', git will push local branches
+     to the remote branches that already exist with the same name.
+
+     Since Git 2.0, Git defaults to the more conservative 'simple'
+     behavior, which only pushes the current branch to the corresponding
+     remote branch that 'git pull' uses to update the current branch.
+
+     See 'git help config' and search for 'push.default' for further information.
+     (the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+     'current' instead of 'simple' if you sometimes use older versions of Git)
+
+     error: unable to read askpass response from '/usr/libexec/openssh/gnome-ssh-askpass'
+     Username for 'https://github.com': wagnermarques
+     error: unable to read askpass response from '/usr/libexec/openssh/gnome-ssh-askpass'
+     Password for 'https://wagnermarques@github.com': 
+     Counting objects: 19, done.
+     Delta compression using up to 8 threads.
+     Compressing objects: 100% (19/19), done.
+     Writing objects: 100% (19/19), 2.30 KiB | 0 bytes/s, done.
+     Total 19 (delta 14), reused 0 (delta 0)
+     remote: Resolving deltas: 100% (14/14), completed with 9 local objects.
+     To https://github.com/wagnermarques/emacsinitfile.git
+        28e5f69..111e2e5  master -> master
+     [wagner@emulti2 emacsinitfile]$ 
+
+   #+END_SRC
+
+
+
+
+* templates for this file
+
+   #+name:  BlockName1
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+
+
+   #+END_SRC
+
+
+
+   #+name: BlockName2
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+
+
+   #+END_SRC
