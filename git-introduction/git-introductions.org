@@ -188,20 +188,22 @@
    #+name: ex1_h_i
    #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
-   diff -u  arqvi1.txt arqvi2.txt   
+   diff -u arqvi1.txt arqvi2.txt
    #+END_SRC
 
-   #+RESULTS: ex1_h_i
-0   [wagner@localhost projeto-git-intro]$ diff -u  arqvi1.txt arqvi2.txt
-1   --- arqvi1.txt	2017-01-02 22:29:30.078332174 -0200
-2   +++ arqvi2.txt	2017-01-03 01:20:40.826569072 -0200
-3   @@ -1,4 +1,4 @@
-4   -A
-5   B
-6   C
-7   D
-8   +E
-9   [wagner@localhost projeto-git-intro]$ 
+   #+name: ex1_h_i
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   0   [wagner@localhost projeto-git-intro]$ diff -u  arqvi1.txt arqvi2.txt
+   1   --- arqvi1.txt	2017-01-02 22:29:30.078332174 -0200
+   2   +++ arqvi2.txt	2017-01-03 01:20:40.826569072 -0200
+   3   @@ -1,4 +1,4 @@
+   4   -A
+   5   B
+   6   C
+   7   D
+   8   +E
+   9   [wagner@localhost projeto-git-intro]$ 
+   #+END_SRC
    
 
    Agora vamos interpretar essa saída (i) linha por linha...
