@@ -5,6 +5,24 @@ http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 
+from https://github.com/fniessen/orgmk
+allow #+BIND to define local variable values for export
+#+BIND: org-export-allow-bind-keywords t
+
+don't insert a time stamp into the exported file
+#+BIND: org-export-time-stamp-file nil
+
+activate smart quotes during export (convert " to \og, \fg in French)
+curly quotes in HTML
+#+BIND: org-export-with-smart-quotes t
+
+interpret "_" and "^" for export when braces are used
+#+BIND:org-export-with-sub-superscripts '{}
+
+
+
+
+
 
 * REMARKS AND DISCLAYMERS
 ** Recommended readings:
@@ -42,7 +60,7 @@ http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
 
 ** Autoria do documento
   #+OPTIONS: author:t
-  #+AUTHOR: Wagner França Marques
+  #+AUTHOR: Wagner & Jeferson
   #+DESCRIPTION: 
   #+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.3.2)
 
@@ -135,3 +153,5 @@ https://www.gnu.org/software/emacs/manual/html_mono/org.html#Exporting
   
 [fn:emacsmanuals] https://www.gnu.org/software/emacs/manual/
 [fn:org-mode-manual] https://www.gnu.org/software/emacs/manual/org.html
+
+

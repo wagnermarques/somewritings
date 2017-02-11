@@ -1,4 +1,3 @@
-
 #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
 #+TITLE: INTRODUÇÃO AO GIT
 
@@ -10,8 +9,7 @@
   https://br.udacity.com/course/how-to-use-git-and-github--ud775/
 * Conteúdo  
   Exercícios que contemplam os seguintes tópicos
-** Gerencia de mudanças em um ou mais arquivos com diff
-   
+  Gerencia de mudanças em um ou mais arquivos com diff   
 * Competencias
   Após o curso do Udacity e dos exercícios o aluno terá adquirido a
   competência de trabalhar em equipe de desenvolvimento de software
@@ -19,18 +17,21 @@
 * Metodologia
   Este material não tem muita teoria e explicações porque isso tem no
   curso da Udacity. O que tem aqui são exercícios baseados no curso
-  bem como a resposta dos exercícios em forma de tutoriais e vídeo aulas.
-  
+  bem como a resposta dos exercícios em forma de tutoriais e vídeo aulas.  
 * Duração
-  Ainda não tenho muito claro, estou ainda fazendo esses exercícios
-
+  A mesma duração do curso do udacity
 * Avaliação
   As avaliações serão realizadas em sala de aulas já que entregas de
   trabalhos poderão ser requisitadas via repositórios por alguns
   professores.
-
 * Recursos necessários
   Instalação do git
+  Não vamos entrar em detalhes sobre esta parte.
+  Tem um montão de tutoriais sobre isso...
+
+  *Instalando git*
+  https://git-scm.com/book/pt-br/v1/Primeiros-passos-Instalando-Git
+  
   
 * por que usar git?
   Você deveria usar o git porque o mercado usa e existem muitos bons
@@ -56,7 +57,7 @@
   diversas de vários arquivos. Junta tudo isso num código final como?
 
 * 1 Vendo as diferenças entre dois arquivos
-** Exercício 1 -> diff pra ver diferença entre arquivos
+** Exercício 1.1 -> diff pra ver diferença entre arquivos
   (a) Crie uma pasta com o nome projeto-git-intro e um (b) arquivo com
   nome de nomeie "arqv1.txt" e (c) escreva nele o seguinte:
   A
@@ -74,7 +75,7 @@
   O que significa a indicação de mudança de linha com sinal de menos?
   O que significa a indicação de mudança de linha com sinal de mais?
   
-** Resolução do exercício 1  
+** Resolução do exercício 1.1  
    Bom, vamos lá então... resolver o exercício 1.
 
    Vou criar a pasta e o arquivo solicitado.
@@ -88,7 +89,7 @@
    
 
    #+name: ex1CriandoPastaEArqv1.txt
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :evalnever :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    mkdir -p /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro
    cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
    touch arqvi1.txt
@@ -105,7 +106,7 @@
    exercício.
 
    #+name: ex1EscrevendoNoArqv1.txt
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
    echo "A" >  arqvi1.txt
    echo "B" >> arqvi1.txt
@@ -131,22 +132,7 @@
    conforme solicitado em (d) e (e).
    
    #+name: ex1_d_e
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
-   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
-   cp  arqvi1.txt arqvi2.txt
-   ls -la
-   #+END_SRC
-
-   #+RESULTS: ex1_d_e
-   : total 16
-   : drwxrwxr-x. 2 wagner wagner 4096 Jan  3 00:49 .
-   : drwxrwxrwx. 8 wagner wagner 4096 Jan  2 22:25 ..
-   : -rw-rw-r--. 1 wagner wagner    8 Jan  2 22:29 arqvi1.txt
-   : -rw-rw-r--. 1 wagner wagner    8 Jan  3 01:20 arqvi2.txt
-
-   Veja lá que temos o arquivo arqv2.txt agora no nosso diretório.
-   #+name: ex1_f_g
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
    sed -i -e "1d"  arqvi2.txt
    echo "E" >> arqvi2.txt
@@ -186,13 +172,13 @@
    Bom então vamos lá...
 
    #+name: ex1_h_i
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
    diff -u arqvi1.txt arqvi2.txt
    #+END_SRC
 
    #+name: ex1_h_i
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
    0   [wagner@localhost projeto-git-intro]$ diff -u  arqvi1.txt arqvi2.txt
    1   --- arqvi1.txt	2017-01-02 22:29:30.078332174 -0200
    2   +++ arqvi2.txt	2017-01-03 01:20:40.826569072 -0200
@@ -205,7 +191,8 @@
    9   [wagner@localhost projeto-git-intro]$ 
    #+END_SRC
    
-
+   #+CAPTION: Interpretação da saida do diff -u linha por linha
+   #+NAME:   tab:interpretacao1 diff
    Agora vamos interpretar essa saída (i) linha por linha...
    | Linha | Interpretação                                                                                 |
    |     0 | Comando                                                                                       |
@@ -213,6 +200,7 @@
    |     2 | Indica o segundo arquivo que o diff tá comparando mais o timestamp                            |
    |     3 | "-" significa arqvi1.txt. 1,4 significa que as mudanças começam na linha 1 e envolve 4 linhas |
    |     3 | "+" significa arqvi2.txt. 1,5 significa que as mudanças começam na linha 1 e envolve 5 linhas |
+   |       | O sinal "-" indica o arquivo original e o "+" o novo.                                         |
    |     4 | "-" significa que foi deletado o caractere "A" que é o conteúdo da linha deletada             |
    |     5 | B não foi modificado, ou seja, tinha no arqvi1.txt e continua tendo no arqvi2.txt             |
    |     6 | C idem                                                                                        |
@@ -220,28 +208,181 @@
    |     8 | "+" Indica que essa linha foi acrescentada em arqvi2.txt e o conteúdo da linha é "E"          |
    |     9 | é o prompt esperando um novo comando                                                          |
    
+** Exercício 1.2 -> diff entre dois arquivos do jogo asteróids
+   Conforme solicitado no curso sobre git e github do Udacity, fazer o
+   mesmo, ou seja, usar a ferramenta diff -u com os dois arquivos do
+   game asteroids e interpretar as diferenças.
+
+   Por que fazer o mesmo exercício duas vezes? 
+   Não é o mesmo exercício exatamente não.. 
+   A diferença desse exercício pro exercício anterior é que no exercício anterior o foco
+   éra fazer você ver COMO O COMANDO diff -u mostrava a diferença,
+   mesmo porque você já sabia de cor quais eram as diferenças entre os
+   dois arquivos e nesse o foco é ver quais são as mudanças mesmo
+   porque não dá pra saber quais são as diferenças só no visual, ou
+   seja, precisa mesmo de uma ferramenta pra isso.
    
+   Então pra ficar e pra compreender melhor o objetivo desse exerício
+   2, por favor não tenha pressa não... vai com calma...
 
-
-** Exercício 2 -> diff entre dois arquivos do jogo asteróids
-   Conforme solicitado no curso, fazer o mesmo com esses dois arquivos
-   e mostrar a diferenças
-   Por que fazer o mesmo exercício duas vezes? Não é o mesmo exercício
-   exatamente não.. é que com esse você consegue perceber um pouco
-   mais a grande utilizade do comando diff já que não daria pra ver
-   facilmente tudo que mudou entre os dois arquivos sem uma ferramenta
-   como essa. Então pra ficar mais interessante, não tenha pressa
-   não... como você faria se você tivesse com saber quais as
+   Reponda pra mim... quer dizer pra você mesmo... 
+   Como você faria se você tivesse com saber quais as
    diferenças entre esses dois aquivos apenas comparando os dois?
-   Então depois você usa o diff e vai perceber que é uma ferramenta
+   Então, depois de tentar responder, você usa o diff e vai perceber que é uma ferramenta
    muito legal e útil.
-  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_old.js
-  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_new.js  
+   
+   Os dois arquivos de que estamos falando são esses...
+   https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_old.js
+   https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_new.js  
     
-** Resolução do exercício 2
+** Resolução do exercício 1.2
+   Bom vamos pra resolução do exercício 1.2?
+   Já temos uma pasta "projeto-git-intro"
+   Vamos colocar esses dois arquivos nesta pasta mesmo, beleza?
+   
+   #+name: ex2_a
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   wget https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_old.js
+   wget https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_new.js  
+   ls -la
+   #+END_SRC
+
+   #+RESULTS: ex2_a
+   : total 144
+   : drwxrwxr-x. 2 wagner wagner  4096 Jan  3 01:53 .
+   : drwxrwxrwx. 8 wagner wagner  4096 Jan  2 22:25 ..
+   : -rw-rw-r--. 1 wagner wagner     8 Jan  2 22:29 arqvi1.txt
+   : -rw-rw-r--. 1 wagner wagner     8 Jan  3 01:20 arqvi2.txt
+   : -rw-rw-r--. 1 wagner wagner 30688 Set 17  2014 game_new.js
+   : -rw-rw-r--. 1 wagner wagner 30688 Set 17  2014 game_new.js.1
+   : -rw-rw-r--. 1 wagner wagner 30683 Set 17  2014 game_old.js
+   : -rw-rw-r--. 1 wagner wagner 30683 Set 17  2014 game_old.js.1
+
+   A gente percebe pelo ls que o wget fez o download dos arquivos
+   game_new.js e game_old.js. Os outros com final 1 é porque rodei
+   duas vezes o bloco de comandos acima e o wget fez o download de novo.
+
+   Então, conforme a gente tava conversando...
+   Abra aí esses dois arquivos lado a lado e tente ver quais são as
+   diferenças entre eles...
+   
+   Eu espero... vai lá... aproveita a oportunidade...
+
+   Percebeu que não é tão fácil e é com certaza, muito inseguro.
+   Lembre que poderia ser um arquivo de código do seu tcc e poderia
+   não ser só um simples exercício, poderia ser uma situação real.
+
+   Bom, agora vamos fazer o diff -u...
+   
+   #+name: ex2_b
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projeto-git-intro   
+   diff -u game_old.js game_new.js
+   #+END_SRC
+
+
+   #+name: ex2_b2
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   [wagner@localhost projeto-git-intro]$ diff -u game_old.js game_new.js
+--- game_old.js	2014-09-17 12:37:22.000000000 -0300
++++ game_new.js	2014-09-17 12:37:44.000000000 -0300
+@@ -4,9 +4,9 @@
+ //
+ 
+ KEY_CODES = {
++  13: 'enter',
+   32: 'space',
+   37: 'left',
+-  38: 'up',
+   39: 'right',
+   40: 'down',
+   70: 'f',
+@@ -392,7 +392,7 @@
+       this.vel.rot = 0;
+     }
+ 
+-    if (KEY_STATUS.up) {
++    if (KEY_STATUS.spacr) {
+       var rad = ((this.rot-90) * Math.PI)/180;
+       this.acc.x = 0.5 * Math.cos(rad);
+       this.acc.y = 0.5 * Math.sin(rad);
+@@ -406,7 +406,7 @@
+     if (this.delayBeforeBullet > 0) {
+       this.delayBeforeBullet -= delta;
+     }
+-    if (KEY_STATUS.space) {
++    if (KEY_STATUS.enter) {
+       if (this.delayBeforeBullet <= 0) {
+         this.delayBeforeBullet = 10;
+         for (var i = 0; i < this.bullets.length; i++) {
+@@ -919,7 +919,7 @@
+     waiting: function () {
+       Text.renderText(ipad ? 'Touch Sreen to Start' : 'Press Space to Start', 36, Game.canvasWidth/2 - 270, Game.canvasHeight/2);
+       if (KEY_STATUS.space || window.gameStart) {
+-        KEY_STATUS.space = false; // hack so we don't shoot right away
++        KEY_STATUS.space = false; // hack so we don't move right away
+         window.gameStart = false;
+         this.state = 'start';
+       }
+[wagner@localhost projeto-git-intro]$ 
+   #+END_SRC   
+
+Humm... Vamos dar uma analisada então nas modificações...
+
+   #+CAPTION: Exercicio 2 - Interpretação da saida do diff -u linha por linha
+   #+NAME:   tab:Exercicio2 interpretacao1 diff
+   #+ATTR_HTML: :width 100%
+   #+ATTR_LATEX: :center nil
+   #+LATEX: \noindent
+   #+ATTR_LATEX: :center nil
+   #+ATTR_LaTeX: :width 0.25\linewidth
+| trecho                                                                  | Interpretação                                                                      |
+| +  13: 'enter',                                                         | Foi adicionado o codigo 13 relacionando-o com a tecla enter                        |
+| -  38: 'up',                                                            | Foi excluída linha que relacionava o código 38 com a tecla up                      |
+| @@ -4,9 +4,9 @@                                                         | Essas modificações são bem no inicinho do arquivo, linha 1 a 4.                    |
+|                                                                         | Veja se não é isso mesmo na figura 1.                                              |
+| @@ -392,7 +392,7 @@                                                     | O arquivo vai mostrar modificações que começam na linha 292 tanto do arquivo       |
+|                                                                         | de um arquivo como do outro. São modificações que estão lá no meião dos arqs       |
+| -    if (KEY_STATUS.up) {                                               | Dá pra perceber que o programador apagou essa linha que usava a tela "up"          |
+| +    if (KEY_STATUS.spacr) {                                            | e acrescentou essa, substituindo portanto, pela tecla space                        |
+|                                                                         | No exercício do curso, era pra achar esse "typo" "spacr"                           |
+|                                                                         | Type significa em inglês um erro de digitação já que como você pode ver nas linhas |
+|                                                                         | que definem o KEY_CODES que era pra se escrito "space"                             |
+| @@ -406,7 +406,7 @@                                                     | Mais modificações...                                                               |
+| -    if (KEY_STATUS.space) {                                            | O programador fez a mesma mudança da tecla up e space                              |
+| +    if (KEY_STATUS.enter) {                                            | Só que agora ele escrever space corretamente.                                      |
+| @@ -919,7 +919,7 @@                                                     | Mais modificações                                                                  |
+| -        KEY_STATUS.space = false; // hack so we don't shoot right away | Dá pra percebe pelos comentários do programador que a tecla space era relacionada  |
+| +        KEY_STATUS.space = false; // hack so we don't move right away  | a ação de atirar (shoot) agora está relacionado a movimentar (move)                |
+|                                                                         |                                                                                    |   
+   #+LATEX: \hfill
+
+Agora responde pra mim, você acha que apenas visualizando o arquivo
+lado a lado a gente conseguiria ter essa visão clara e segura das
+modificações realizadas no arquivo?
+Então, pegar habilidade com diff vai te recompensar mais tarde, pode
+ter certeza.
+Só uma nota adicional. O comando diff pode ser utilizado sem o
+parâmetro "u". A saída fica um pouco diferente e pra não ficar muito
+longo o nosso material de apoio a gente usou o diff só com a opção
+"u". Essa opção não é sem motivo. No futura quando você for contribuir
+com algum código de outro programador é comum que suas modificações
+sejam analisadas no formado unificado, ou seja, com a opção "u"
+mesmo. 
+O formato unificado é um formato padrão e por isso é bastante
+utilizado, dê uma olhada no link
+https://en.wikipedia.org/wiki/Diff_utility
+Se eu achar um em português substituo depois.
+ 
+ #+CAPTION: Arquivos game_new.js e game_old.js lado a lado
+ #+NAME:   fig:ArqsGameNewOldLadoALadoo#+ATTR_HTML: alt="arqs game_new.js e game_old.js lado a lado"
+ #+ATTR_HTML: width="50" style="border:5px solid black;"
+ #+ATTR_HTML: style="float:center;"
+ [[./imgs/ResolucaoEx2_fig1.png]]
 
 * 2 Vendo o histórico dos arquivos
-** Exercício 2 -> Não simplesmente ver uma diferença, é legal ver o histórico
+** Exercício 2.1 -> Não simplesmente ver uma diferença, é legal ver o histórico
    É legal, é importante ver a diferença entre duas versões
    direferntes de arquivo. É util e importante. Mas seria muito mais
    interessante ainda ver um histórico inteiro de mudanças neste
@@ -264,7 +405,7 @@
    histórico das mudanças no código pra você.
    
    Portanto,
-   Neste exercício você fazer as seguintes tarefas:
+   Neste exercício você deve fazer as seguintes tarefas:
 
    1) Instale o git na sua máquina
       Dê os seguinte comandos
@@ -272,53 +413,55 @@
       git config --global color.ui auto
       git config ­­global user.name "seu nome"
       git config ­­global user.email "seu.email@domimio.com"
-.
 
 
    2) *Criando pasta para o projeto*
       Crie uma pasta pra sua interface gráfica html, pode chamar ela
       de projweb_gui
 
+
    3) *Comando git init*
       Inicialize o git com git init
+
 
    4) *Criando um arquivo html com tags de estrutura*
       Crie seu arquivo e crie a estrutura de um html nele (tags html,
       head e body)
+
       
    5) *Usando commando git add*
       Adicione esse arquivo para ser controlado pelo git
+
       
    6) *Usando o comando Commit*
       Commite com msg ("initial commit com html estrutura básica)
+
 
    7) *Editando o arquivo html*
       Abra o arquivo novamente coloque um H1 com titulo e um paragrafo
       com a descriçao do site
 
+
    8) *Usando o comando Commit*
       Commite com a msg (Titulo e Descrição do site)
+      Use o git diff e o git log pra acompanhar as modificações que
+      você fez.
 
-   9) *Alterando o arquivo*
-      adicione um stilo a sua pagina com a tag style
-      
-   10) *Usando o comando Commit*
-       Commite com a msg estilizando site
+      Agora use os comandos git log e git diff e interprete a
+      saída. 11b)Explique porque diff opera sobre commits.
+      //experimente também 
+      Aproveite pra usar essas variações do git log
+      git log --oneline -2 (linhas)
 
-   11) *usando git log e git diff*
-       Agora use os comandos git log e git diff e interprete a
-       saída. 11b)Explique porque diff opera sobre commits.
-       //experimente também 
-       git log --oneline -2 (linhas)
-       git log --oneline -2 origin/master
 
-   12) *Refletindo: Tralhando off line*
+   9) *Refletindo: Tralhando off line*
        Interprete a saída do git log
        Lembra daquele menina na floresta dizendo que estava offline. 
        Perceba que você não precisou de internet pra fazer
        isso certo? Ou seja, tudo isso que você está fazendo é offline. 
 
-   13) *Reflexão entre commit manual e automático*
+
+   10) *Reflexão entre commit manual e automático*
        Lembra que as meninas do curso explicaram que o wikipedia, o
        dropbox o google drive também fazem controles de versão de um
        documento? Só que os commits, ou seja, o registro das mudanças
@@ -328,7 +471,8 @@
        reflexão também sobre qual seria o melhor momento para commitar
        alterações dizendo o porque de sua conclusão sobre o assunto.
 
-   14) *Trabalhando com mais confiança*
+
+   11) *Trabalhando com mais confiança*
        Já aconteceu com você de você fazer uma alteração em algum
        arquivo ou projeto e depois não saber muito bem onde você errou
        e decidir dar um control z pra voltar ao que era antes e
@@ -337,19 +481,662 @@
        disponível. Como essa o git facilita a nossa vida diante de
        situações como essa?
 
-   15) *Trabalhando com multiplos arquivos*
+
+   12) *Trabalhando com multiplos arquivos*
        Claro que um css deve sempre que possível ser escrito num
        arquivo a parte. Faça isso com seu estilo e link ele no seu
        html. 
-       Aproveite e faça também com um arquivo javascript. 
-       Commite explicando isso na msg.
-           
+   12 a) De um git status antes de commitar
+   12 b) Commite
+   12 c) De um git status de novo
+   
+   
+** Resolução do Exercício 2.1 -> Não simplesmente ver uma diferença, é legal ver o histórico
+   
+   Pra resolução desse exercício você vai precisar instalar o git.
+   Tem um monte de tutorial na internet, essa parte é tranquila.
+   No meu sistema o git já está instalado, vamos conferir?
+   To rando o comando abaixo na minha máquina...
+   #+name: ex2.1 item1a
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   git --version
+   #+END_SRC
+
+   Eis o resultado..
+   #+RESULTS: ex2.1 item1a
+   : git version 2.4.11
+
+   Agora, vou me identificar para o git.
+   Me identificar?
+   O git vai gerenciar o meu código, é ele quem vai viabilizar um
+   histórico de modificações que eu faço no meu código...
+   Nada mais justo do que ele saber quem é que tá fazendo as
+   modificações, voce não acha? Afinal se alguém fazer alguma
+   besteira, é bom saber quem foi pra poder orientar a pessoa.
+   Então vamos lá, vou me identificar com os seguintes comandos.
+   #+name: ex2.1_item1
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   git config --global color.ui auto
+   git config ­­global user.name "wagnermaques"
+   git config ­­global user.email "wagnerdocri@gmail.com"   
+   #+END_SRC
+
+   Items 2. Criando uma pasta para o projeto...
+   #+name: ex2.1_item2
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   mkdir -p /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   echo $(pwd)
+   #+END_SRC
+   
+   Pessoal, e tranquilo os comandinhos né?
+   Usei mkdir com opção "-p" pra criar a pasta "projExercicio2" no
+   caminho especificado.
+   Depois deu um change dir "cd" pra entrar na pasta que eu criei
+   E dei um echo $(pwd), que pode ser um pouco estranho pra alguns de
+   vocês, mas o que isso faz é simplesmente um echo da saída pwd que é
+   o caminho do diretório que eu estava, o projExercício2.
+   O mais importante é criar a pasta, você pode fazer do seu jeito, e
+   se ficar com dúvida sobre esses comandinho pode perguntar pro professor.
+   #+RESULTS: ex2.1_item2
+   : /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+
+   
+   Item3
+   Esse item pede pra gente inicialiar o git com o comando git init.
+   Sem muita teoria, porque isso vcs podem pegar lá no curso da
+   udacity, mas dando uma pincelada, você precisa entender o seguinte:
+   
+   O git controla tudo que a gente faz dentro da pasta do projeto que
+   é a projExercicio2. Como eu sei que o git não tá controlando nada
+   ainda?
+   Eu vou saber isso se eu listar o conteúdo da pasta e não tiver um
+   diretório oculto ".git" dentro da pasta. Se tiver o diretório o git
+   tá inicializado e controlando, se não tiver, o git não tá
+   controlando nada.
+   A gente sabe que no momento o git não tá controlando nada porque a
+   gente acabou de criar a pasta, então se eu listar o conteúdo da
+   pasta do projeto não vai ter esse diretório oculto ".git". 
+   Vamos conferir isso então?
+
+   #+name: ex2.1_item3
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   ls -la
+   #+END_SRC
+
+   Pelo resultado do comando você pode constatar que não tem a pasta .git
+   #+RESULTS: ex2.1_item3
+   : total 8
+   : drwxrwxr-x. 2 wagner wagner 4096 Jan  3 16:03 .
+   : drwxrwxrwx. 9 wagner wagner 4096 Jan  3 16:03 ..
+
+   Mas nós estamos consados de ver só diff entre dois arquivos a gente
+   quer ver o histórico de todas as modificações e tudo que o git pode
+   fazer por nós, então vamos inicializar o git para a pasta do nosso
+   projeto...
+
+   #+name: ex2.1_item3a
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git init
+   #+END_SRC
+   
+   Após rodar o comando você pode ver que a mensagem é bem clara.
+   Se tiver dificuldades, cola no google translate pra você ver...
+   #+RESULTS: ex2.1_item3a
+   : Initialized empty Git repository in /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2/.git/
+
+   Bom é claro que agora a gente vai dar um ls -la de novo pra ver se
+   a pastinha .git tá la...
+
+#+name: ex2.1_itemb
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   ls -la
+   #+END_SRC
+
+   Tá, não tá?
+   #+RESULTS: ex2.1_itemb
+   : total 12
+   : drwxrwxr-x. 3 wagner wagner 4096 Jan  3 16:15 .
+   : drwxrwxrwx. 9 wagner wagner 4096 Jan  3 16:03 ..
+   : drwxrwxr-x. 7 wagner wagner 4096 Jan  3 16:15 .git
+
+   Pois é... agora a gente pode usar o git, já que é ele quem
+   viabiliza pra gente o histórico das modificações que a gente vai
+   fazer...
+
+   Item4
+   Vamos criar um arquivo html só coms tags de estutura, conforme
+   solicita o exercício...
+   
+
+
+   #+name: ex2.1_item4
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   touch index.html
+   echo  "<!DOCTYPE html>" > index.html
+   echo "<html>" >> index.html
+   echo "<head>"  >> index.html
+   echo "<title>Page Title</title>"  >> index.html
+   echo "</head>"  >> index.html
+   echo "<body>"  >> index.html
+   echo "</body>"  >> index.html
+   echo "</html>"  >> index.html
+   cat index.html
+   #+END_SRC
+
+   Eis o conteúdo do nosso index.html
+   #+RESULTS: ex2.1_item4
+   : <!DOCTYPE html>
+   : <html>
+   : <head>
+   : <title>Page Title</title>
+   : </head>
+   : <body>
+   : </body>
+   : </html>
+
+   
+   item5
+   O item 5 fala pra gente usar o git add pra adiciona-lo ao controle
+   do git.
+
+   Vamos fazer isso sim, mas vamos primeiro dar uma olhadinha como a
+   gente sabe que o nosso novo arquivo index.html não tá adicinado. A
+   gente precisa saber, pra que gente poder sabe o que estamos
+   fazendo...
+   Como eu sei que o index.não está dicionado? com o git status
+   Faz sentido não é? vou dar uma olhada no estatus desse arquivo...
+   Vamos faze então...
+
+
+#+name: ex2.1_item5a
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git status
+   #+END_SRC
+
+   wow...
+   pera lá... 
+   vamos ler isso..
+   "on branch master" (deixa isso pra depois...)
+   "Initial commit" (Também essa questão do commit, daqui a pouco a
+   gente fala sobre isso)
+
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+
+   Ah.. untracked files... agora o git tá começando a falar o que eu
+   quero saber... 
+
+   Na sequencia o git lista os arquivos que estão untracked, ou seja,
+   ainda não gerenciados pelo git.
+   
+   O git é educado, ele não mecher em nada seu sem você falar pra ele
+   fazer isso.
+
+   Por isso ele tá dizendo que o nosso arquivo index.html é untracked.
+   
+   Mas é claro que a gente quer que o git cuide das modificações nesse
+   aruivo pra gente então vamos dizer pra ele fazer isso.. e é agora
+   que entra o comando git add.
+
+   
+   #+RESULTS: ex2.1_item5a
+   #+begin_example
+   On branch master
+
+   Initial commit
+
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+
+           index.html
+
+   nothing added to commit but untracked files present (use "git add" to track)
+#+end_example
+
+
+Bom já interpretamos a saída do git status, agora vamos adicionar o
+nosso arquivo index.html para o git gerenciar ele pra gente...
+Vou aproveitar e dar um git status de novo na sequencia pra vc poder
+comparar as duas saídas ok?
+
+   #+name: ex2.1_item5b
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git add index.html
+   git status
+   #+END_SRC
+
+   #+RESULTS: ex2.1_item5b
+   : On branch master
+   : 
+   : Initial commit
+   : 
+   : Changes to be committed:
+   :   (use "git rm --cached <file>..." to unstage)
+   : 
+   : 	new file:   index.html
+   : 
+
+   
+ Opa.. O git tá nos dizendo que o nosso arquivo index.html está com
+ status "new file". Já não é mais untracked. Beleza.
+
+ Ah.. antes de ir para o proximo passo da resolução do exercício,
+ responde pra mim...
+
+ Esse arquivo sofreu alguma modificação?
+ Não né?
+ Parece que não mais isso é importante porque o estado desse arquivo,
+ você pode considerar também como não modificado. O git sabe que
+ depois que agente adicionou o arquivo pra ser gerenciado não ocorreu
+ mudança nenhuma. Vamos modifica-lo da aqui a pouco.
+
+
+   Item 6  *Usando o comando Commit*
+   Eu sei que você aprendeu o que é commit nos vídeos do curso.
+   Mas vamos refrescar um pouco a nossa memória...
+   O commit é um conceito importantíssimo pra gente quando usamos o
+   git.
+   A primeira coisa que você precisa saber é que commit não é a mesma
+   coisa que salvar, embora depois que o commit serve justamente pra
+   isso, salvar nossas modifcações no projeto.
+   A diferença é que salvar é uma ação que você vai fazendo sempre que
+   você lembra não é... tipo um documento de texto ou planilha. Você
+   vai salvando, quanto mais melhor... tem até o recurso de salvar
+   automático não tem?
+   O commit não é assim, você tem que commitar quando você fizer um
+   conjunto de mudanças que faça algum sentido. Ou seja, não seria
+   legal você comitar uma modurança do tipo "mudei a cor da página
+   principal do site" e depois "mudei a logo", "mudei a fonte"... Faz
+   mais sentido você commitar "mudei o tema do site". Mudar o tema
+   envolve um conjunto de modificações que juntas fazem um sentido.
+   Guarda isso com carinho, você vai agradecer seu professores depois
+   por isso...
+   
+   Que que acontece se a gente der um commit agora?
+   Vamos ver?
+
+   Pra efeitos deste exercício não vou mudar fazer 30 modificações pra
+   depois fazer um commit. Vou commitar pouca coisa pra facilitar com
+   o a elaboração do material, mas guarde esse conceito no seu
+   coração. U+2665 \u2665
+
+   É recomendado uma assistida de novo ao vídeo que fala do
+   versionamento do google drive, do dropbox e compara com o
+   versionamento manual do git. Lembra desse vídeo?
+
+   #+name: ex2.1_item6
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git commit -m "primeiro commit pra ver o que acontece"
+   #+END_SRC
+
+   Na saída do nosso commit o git nos indica algumas coisas...
+   master -> calma mais tarde a gente fala sobre isso.
+   (root-commite -> idem
+   c8a1ee6 -> é um id pro commit. Isso é importante. Os commits são
+   pequenas verões que você vai commitando.. pode ser que você queira
+   voltar seu código pra um commit anterior e pra isso você vai
+   precisar do id do commit que você quizer voltar. Mas não precisa
+   anotar não, fica no banco de dados do git.
+   1 file changed, 8 insertions(+) -> um arquivo modificado com 8
+   inserções. Lembra do sinalzinho de mais pra indicar acréscimos lá
+   do diff -u?
+   create mode 100644 index.html -> não me lembro agora...
+   #+RESULTS: ex2.1_item6
+   : [master (root-commit) c8a1ee6] primeiro commit pra ver o que acontece
+   :  1 file changed, 8 insertions(+)
+   :  create mode 100644 index.html
+
+   Já o comando de status agora vai mostar o seguinte...
+   #+name: ex2.1_item6b
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git status
+   #+END_SRC
+
+   Nada pra ser commitado. "working directory clean" significa que o
+   diretório de trabalho (nossa pasta) está limpa. Não tem nada pra commitar.
+   #+RESULTS: ex2.1_item6b
+   : On branch master
+   : nothing to commit, working directory clean
+
+   Item 7
+   *Editando o arquivo html*
+   Abra o arquivo novamente coloque um H1 com titulo e um paragrafo
+   com a descriçao do site
+   
+   Pra não ficar muito complicado vou fazer isso com um editor de
+   texto mesmo, conforme demostra a figura abaixo...
+
+
+ #+CAPTION: Arquivo index.html modifado com tag H1 e p
+ #+NAME:   fig:arqIndexModificadoEx21Iem7
+ #+ATTR_HTML: alt="arqIndexModificadoEx21Iem7"
+ #+ATTR_HTML: width="50" style="border:5px solid black;"
+ #+ATTR_HTML: style="float:center;"   
+   [[./imgs/ResolucaoEx2_1_Passo7_indexhtml.png]]
+
+   Item 8
+   *Usando o comando Commit*
+   Commite com a msg (Titulo e Descrição do site)
+
+   Já fizemos as modificações que o item 7 pediu, agora o item quer
+   que a gente commite.
+   
+   Vamos fazer isso, mas vamos dar uma examinada no git status?
+
+
+   #+name: ex2.1_item8
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git status
+   #+END_SRC
+
+   Você percebe que o status do nosso index.html agora é modified?
+   O git percebeu que a gente fez mudanças no nosso arquivo.
+   #+RESULTS: ex2.1_item8
+   : On branch master
+   : Changes not staged for commit:
+   :   (use "git add <file>..." to update what will be committed)
+   :   (use "git checkout -- <file>..." to discard changes in working directory)
+   : 
+   : 	modified:   index.html
+   : 
+   : no changes added to commit (use "git add" and/or "git commit -a")
+
+   Bom vamos então fazer o que o item 8 nos pede, vamos commitar.
+   Vou colocar opçao -a mas não vou entrar em detalhes agora. 
+   Pra efeitos do nosso tutorial pode usar -a à vontade...
+   #+name: ex2.1_item8b
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git commit -a -m "Adicionei tag H1 e Tag p com descricao do arquivo"
+   #+END_SRC
+
+   Essa é a saída do nosso commit.
+   #+RESULTS: ex2.1_item8b
+   : [master f26f3e8] Adicionei tag H1 e Tag p com descricao do arquivo
+   :  1 file changed, 3 insertions(+)
+
+   E verificando o status de novo...
+   #+name: ex2.1_item8c
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git status
+   #+END_SRC
+
+   Após o commit, não tem nenhuma modificação pra commitar.
+   #+RESULTS: ex2.1_item8c
+   : On branch master
+   : nothing to commit, working directory clean
+
+
+   Este item 8 do exercício fala pra gente usar o git log e o git diff
+   pra acompanhar as modificações que foram feiras no nosso projeto.
+   Vamos fazer isso então...
+
+   Primeiro vamos conhecer o git log.
+   
+   #+name: ex2.1_item8d
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git log
+   #+END_SRC
+
+
+   O Resultado do nosso git log é justamente o log das modificações
+   realizadas mostrando exatamente em quais commits elas ocorreram,
+   bem como quem fez a alteração.
+   #+RESULTS: ex2.1_item8d
+   #+begin_example
+   commit f26f3e8467f762bf6fafb8db8cbf0cad403b0f2d
+   Author: wagnermarques <wagnerdocri@gmail.com>
+   Date:   Tue Jan 3 17:28:40 2017 -0200
+
+       Adicionei tag H1 e Tag p com descricao do arquivo
+
+   commit c8a1ee69166d500bc66f5b4f8c2eece8e5514c77
+   Author: wagnermarques <wagnerdocri@gmail.com>
+   Date:   Tue Jan 3 17:00:57 2017 -0200
+
+       primeiro commit pra ver o que acontece
+#+end_example
+
+
+   Agora vamos ver a saída do git diff.
+   #+name: ex2.1_item8e
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git diff
+   #+END_SRC
+   Saída nenhuma. 
+   Mas se a gente identificar os commits que queremos ver as
+   modificações...
+   #+RESULTS: ex2.1_item8e
+
+   Vamos ver então, vou passar pro git diff os dois commits...
+   #+name: ex2.1_item8f
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git diff c8a1ee69166d500bc66f5b4f8c2eece8e5514c77  f26f3e8467f762bf6fafb8db8cbf0cad403b0f2d
+   #+END_SRC
+
+   Agora sim, o resultado que a gente tava querendo...
+   Por que o git diff não funcionou?
+   Porque o git diff sem parametro nenhum mostra as alterações que
+   você fez e que você não comitou ainda. Como a gente tinha comitado,
+   não tinha nada pra mostra. Mas identificando os commit é
+   interessante porque os commits, como a gente tinha falado
+   anteriormente, tem significados e pelo diff a gente vê esse
+   significado baseado nas alterções realizadas.
+   #+RESULTS: ex2.1_item8f
+   #+begin_example
+   diff --git a/index.html b/index.html
+   index 37d904d..79c4cae 100644
+   --- a/index.html
+   +++ b/index.html
+   @@ -4,5 +4,8 @@
+    <title>Page Title</title>
+    </head>
+    <body>
+   +  <h1>Um Titulo</h1>
+   +  <p>Este arquivo index.html faz parte da resolucao do exercicio2
+   +  sobre git</p>
+    </body>
+    </html>
+#+end_example
+
+Não vou interpretar com detalhes porque é a mesma coisa que a gente
+fez no exercício anterior, ok? Mas qualquer dúvida pode perguntar ao
+seu professor.
+
+Aproveitando pra usar a variação de git log sugerida...
+
+   #+name: ex2.1_item8g
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git log --oneline -2
+   #+END_SRC
+
+É legal porque quando você tiver bastantes commits talvez você queira
+vê-los assim, um em cada linha.
+   #+RESULTS: ex2.1_item8g
+   : f26f3e8 Adicionei tag H1 e Tag p com descricao do arquivo
+   : c8a1ee6 primeiro commit pra ver o que acontece
+
+
+Item9
+    *Refletindo sobre Tralhar off line*
+       Interprete a saída do git log
+       Lembra daquele menina na floresta dizendo que estava offline. 
+       Perceba que você não precisou de internet pra fazer
+       isso certo? Ou seja, tudo isso que você está fazendo é offline. 
+       
+       Bom o item pede pra refletir.
+       Realmente não foi necessário internet pra nada.
+       Todo o trabalho foi feito offline
+       
+       Na verdade o git tem muitos recursos a mais pra trabalhar
+       offline, ou seja, não precisa de github pra usar git, nem de
+       qualquer outra site parecido como bitbuchet etc..
+       
+       Você instala e usa. E dá até pra compartilhar código também
+       porque existem comando pra vc exportar seu projeto pra poder
+       passar pra um amigo e depois de os dois trabalharem dá pra
+       fazer um merge de tudo tranquilamente, sem precisar de
+       internet.
+       
+       Os sites tipo o github tem suas vantagens porque tem um
+       propósito de rede social de código. Pra isso precisa de
+       internet mesmo..
+       
+
+item10
+*Reflexão entre commit manual e automático*
+Lembra que as meninas do curso explicaram que o wikipedia, o
+dropbox o google drive também fazem controles de versão de um
+documento? Só que os commits, ou seja, o registro das mudanças
+ão é manual, é automática, sendo registrado sempre que você
+salva por exemplo. Já com o git, o commit é manual? Quais são
+as vantagens e desvantagens de commits manuais? Ah. faça uma
+reflexão também sobre qual seria o melhor momento para commitar
+alterações dizendo o porque de sua conclusão sobre o assunto.
+
+Bom aqui você precisa lembrar dos vídeos.
+Mas o basicão é que com os commits manuais você dá significados às
+suas mudanças enquanto que commits automáticos (que é o versionamento
+de arquivos do google drive, dropbox, wikipedia e outros) não dá pra
+relacionar sigificados específicos para as versões.
+
+
+Item11
+      11) *Trabalhando com mais confiança*
+       Já aconteceu com você de você fazer uma alteração em algum
+       arquivo ou projeto e depois não saber muito bem onde você errou
+       e decidir dar um control z pra voltar ao que era antes e
+       começar de novo? Já aconteceu comigo de querer voltar pra uma
+       versão de ontem, por exemplo, já que o control z não estava
+       disponível. Como essa o git facilita a nossa vida diante de
+       situações como essa?
+
+       Com git você trabalha com mais confiança com certeza porque
+          você pode perceber que fez algo de muito errado e não está
+          conseguindo solucionar e pode ser que você queira voltar pra
+          uma versão (commit) anterior e começar de novo.
+          Outra grande segurança é que você pode usar o git diff pra
+          ver quais mudanças você fez e que não deu certo. Sabe quando
+          o código não tá rodando e você não lembra qual modificação
+          você fez pós o momento que ele rodava? usa o diff que fica
+          facinho e com certeza não vai passar nenhuma modificação
+          fora de seus olhos...
+          
+
+   Item 12
+   *Trabalhando com multiplos arquivos*
+   Claro que um css deve sempre que possível ser escrito num
+   arquivo a parte. Faça isso com seu estilo e linke ele no seu
+   html. 
+   12 a) De um git status antes de commitar
+   12 b) Commite
+   12 c) De um git status de novo
+   
+   Bom vamos pra solução...
+   Vou criar os arquivos com commandos tá?
+   
+   
+   #+name: ex2.1_item12a
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   touch estilos.css
+   echo "body { background-color : yellow }" > estilos.css
+   ls -l
+   git status
+   #+END_SRC
+
+
+
+Vou linka-lo no index.html via editor de texto, conforme mostra a
+figura abaixo.
+
+ #+CAPTION: Linkando arquivo css no html
+ #+NAME:   fig:LinkandoArqCssNoHtml
+ #+ATTR_HTML: alt="arqs game_new.js e game_old.js lado a lado"
+ #+ATTR_HTML: width="50" style="border:5px solid black;"
+ #+ATTR_HTML: style="float:center;"
+[[./imgs/ResolucaoEx2_1_Passo12_indexhtml.png]]
+
+
+   Após a criaçao do arquivo
+   E após linka o css no index.html
+   Temos a seguinte saída...
+   Perceba que o arquivo estilos.css foi criado e que está untracked
+   Considerando que agente teve que alterar o index.html com a tag
+   link, o status do index.html agora é "modified"
+   #+RESULTS: ex2.1_item12a
+   #+begin_example
+   total 8
+   -rw-rw-r--. 1 wagner wagner  35 Jan  3 18:15 estilos.css
+   -rw-rw-r--. 1 wagner wagner 256 Jan  3 18:14 index.html
+   On branch master
+   Changes not staged for commit:
+     (use "git add <file>..." to update what will be committed)
+     (use "git checkout -- <file>..." to discard changes in working directory)
+
+           modified:   index.html
+
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+
+           estilos.css
+
+   no changes added to commit (use "git add" and/or "git commit -a")
+#+end_example
+
+
+
+   #+name: ex2.1_item12b
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git add estilos.css
+   git commit -a -m "adicionado estilo ao index.html"
+   #+END_SRC
+
+   #+RESULTS: ex2.1_item12b
+   : [master 7ffb730] adicionado estilo ao index.html
+   :  2 files changed, 2 insertions(+)
+   :  create mode 100644 estilos.css
+
+
+   #+name: ex2.1_item12c
+   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   cd  /run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/projExercicio2
+   git status
+   #+END_SRC
+
+   #+RESULTS: ex2.1_item12c
+   : On branch master
+   : nothing to commit, working directory clean
+
+   Beleza?
+   Se tem um assunto que vai a pena estudar e que vai te recompensar
+   no futura.. esse assunto é o git... Onde você for trabalhar
+   certamente usa...
+   Seus professores estão à disposição, não perca a oportunidade!
+   n
+
+
 ** Exercicio 3 -> Vendo o histório, só que agora não do seu projeto.       
    1) *Usando git clone*
       Faça o clone do seguinte repositório
       https://github.com/udacity/asteroids.git
      
-
 * 3 Dicas do dia a dia (from: https://github.com/git-tips/tips)
 ** git diff revisitado
    Trabalhei ontem no projeto e não me lembro muito bem quais
@@ -847,8 +1634,12 @@
 
 
 
+* git-submodule
 
-* templates for this file
+  [wagner@localhost emacsinitfile]$ git submodule --add git://orgmode.org/org-mode.git
+  
+  
+* templates for this file :noexport:
 
    #+name:  BlockName1
    #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
@@ -859,7 +1650,30 @@
 
 
    #+name: BlockName2
-   #+BEGIN_SRC sh :eval never-exports :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+   #+BEGIN_SRC sh :eval never :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
 
 
    #+END_SRC
+
+;
+
+* Footnotes
+[fn:GitTowerMergeConglicts] https://www.git-tower.com/learn/
+
+* functions :noexport:
+  http://sachachua.com/sharing/evil-plans.org
+#+name: list-files-with-target
+#+begin_src emacs-lisp :var directory="~/Google Drive/Delegation/Processes" :var pattern="How to" :var target=50 :var strip="\\.gdoc$"
+  (let ((count 0)
+        (files
+         (directory-files directory nil pattern)))
+    (format "%d items - %d%%\n%s" 
+            (length files)
+            (/ (* 100.0 (length files)) target)
+            (mapconcat
+             (lambda (x)
+               (setq count (1+ count))
+               (format "%d. %s" count (replace-regexp-in-string strip "" x)))
+             files
+             "\n")))
+#+end_src
