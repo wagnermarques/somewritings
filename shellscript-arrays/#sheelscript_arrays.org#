@@ -1,0 +1,103 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+TITLE: SHELLSCRIPT ARRAYS
+
+* refs
+  https://gist.github.com/LeCoupa/122b12050f5fb267e75f
+  
+* Tema
+  Shellscript arrays
+* Objetivo
+  Aprender a trabalhar com arrays em sheellscript
+* Conteúdo  
+  Basico pra trabalhar com arrays
+  Usando a linguagem sheellscript pra fazer o trabalho
+* Competencias
+  Operacionalizar sistema operacional linux
+* Metodologia
+  Demostrações e exercícios conceituais pra fixação do conteúdo
+  Demonstrações e exercícios práticos de uso no dia a dia com linux
+  (A partir do windows 10 dá pra habilitar o shell do ubuntu e usar no
+  window também)
+  Algumas perguntas possívels de entrevistas de emprego sobre o assunto
+* Duração
+  Assim que eu terminar a gente estabelece isso...
+
+* Avaliação
+  Prática dos exercícios em sala de aula simullando contextos onde o
+  Aluno estaria trablahando com linux
+  Simular uma entrevista de emprego pra ver se nesse assunto você não
+  iria dizer alguma "abobrinha"
+* Recursos necessários
+  Estou usando o Fedora, mas qualquer linux deverá servir
+  
+* Por que usar sheellscript e arrays 
+  Pode acreditar, arrays é basicão, a gente usa toda hora em
+  programação e em scripts, portanto, trabalhando com linux array com
+  shellscript é fundamental
+
+
+* Criando um Array e mostrando o seu conteúdo
+* Iterando no array
+  
+
+#+name: definindo_array
+#+BEGIN_SRC sh :shebang "#!/bin/bash" :results output replace  :exports both
+  echo "Defindinindo um array para alunos..."
+  arrAlunos[0]="aluno1";               
+  arrAlunos[1]="aluno2";
+  arrAlunos[2]="aluno3";
+  echo "Definindo um array para professores..."
+  arrProfs=([2]="ProfIdx2" [0]="ProfIdx0" [1]="ProfIdx1");
+
+  #Definindo um array de disciplinas
+  #arrDisc("tlbdII" "SO1" "SO2");
+
+
+  echo "Aluno Indice 0 : ${arrAlunos[0]} " 
+  echo "Aluno Indice 1 : ${arrAlunos[1]} "
+  echo "Aluno Indice 2 : ${arrAlunos[2]}"
+  echo "Aluno Indice 3 (so tem ate o idx 2) : ${arrAlunos[3]}"
+  echo "Aluno Indice (nao informei) : ${arrAlunos}"  #Se vc nao disser qual e o index do elemento, o interpretador assumo como zero
+
+  echo "O tamanho do do elemento especifico que esta dentro do array: ${#arrAlunos[i]}"
+  echo "O Tamanho do array: ${#arrAlunos[@]}"
+         
+#+END_SRC
+
+#+RESULTS: definindo_array
+: Defindinindo um array para alunos...
+: Definindo um array para professores...
+: Aluno Indice 0 : aluno1 
+: Aluno Indice 1 : aluno2 
+: Aluno Indice 2 : aluno3
+: Aluno Indice 3 (so tem ate o idx 2) : 
+: Aluno Indice (nao informei) : aluno1
+: O tamanho do do elemento especifico que esta dentro do array: 6
+: O Tamanho do array: 3
+
+
+* 
+
+
+
+* Footnotes
+[fn:ref1] https://gist.github.com/LeCoupa/122b12050f5fb267e75f
+
+
+* functions :noexport:
+  http://sachachua.com/sharing/evil-plans.org
+#+name: list-files-with-target
+#+begin_src emacs-lisp :var directory="~/Google Drive/Delegation/Processes" :var pattern="How to" :var target=50 :var strip="\\.gdoc$"
+  (let ((count 0)
+        (files
+         (directory-files directory nil pattern)))
+    (format "%d items - %d%%\n%s" 
+            (length files)
+            (/ (* 100.0 (length files)) target)
+            (mapconcat
+             (lambda (x)
+               (setq count (1+ count))
+               (format "%d. %s" count (replace-regexp-in-string strip "" x)))
+             files
+             "\n")))
+#+end_src

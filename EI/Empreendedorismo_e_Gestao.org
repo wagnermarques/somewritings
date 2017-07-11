@@ -1,0 +1,252 @@
+Empreendedorismo e Gestao
+
+
+Anotações
+
+Características de um empreendedor:
+
+
+* PTD
+| Aula | Data | Conteúdo                                                                                                               |
+|      |      | Introdução, conceitos definições e                                                                                     |
+|      |      | 2. O contexto do empreendedorismo no Brasil e no mundo globalizado: características e perfil do empreendedor           |
+|      |      | 3. Introdução a planonegócios e planejamento                                                                           |
+|      |      | 4. Tipos de empresas e empresários                                                                                     |
+|      |      | 5. Modelos de negócios naInternet e na Informática                                                                     |
+|      |      | 6. Plano de Negócios para empresas de TI                                                                               |
+|      |      | 7. Identificando e avaliando oportunidades de negócios na Informática                                                  |
+|      |      | 8. Criando um ambiente empresarial através de uma incubadora                                                           |
+|      |      | 9. Apresentação e discussão de casos de sucesso de empreendedorismo                                                    |
+|      |      | 10. A inovação na Informática: introdução; programas de computador; serviço; produto                                   |
+|      |      | 11. Processos da criação inovadora: conceito e implementação; apresentação e discussão de casos de empresas inovadoras |
+|      |      | 12. Obtendo conhecimento e inovação:busca/ pesquisa de informações                                                     |
+|      |      | 13. Assegurando a criação                                                                                              |
+
+Links:
+http://inei.org.br/
+http://www.sebrae.com.br/sites/PortalSebrae
+https://endeavor.org.br/
+http://www.ibqp.org.br/
+https://d335luupugsy2.cloudfront.net/cms%2Ffiles%2F6588%2F1479379347ICE+2016+-+Links+V1.pdf
+http://www.anjosdobrasil.net/
+http://www.inovapaulasouza.sp.gov.br/
+
+
+* Planos de Aulas
+
+** 6. Plano de Negócios para empresas de TI                                                                               
+   Livro "O Marketing no Negócio Electrónico"
+   http://web.spi.pt/negocio_electronico/documentos/manuais_PDF/Manual_IV.pdf
+
+   Plano de negócios para empresas na Internet
+   http://www.paqtc.org.br/portal_novo/upload_documento/7455391344622888112.pdf
+
+
+** _7. Identificando e avaliando oportunidades de negócios na Informática_                                                  
+
+   Qual é o seu sonho? 
+   Qual é o seu projeto? 
+   Identificando Oportunidades?
+   Cuidado também pra não ficar correndo atrás de um sonho e perder
+   oportunidades que seriam fantásticas pra vc.
+   É uma questão de sabedoria!!!
+
+*** Ideação e a Criatividade
+**** Exercício 1 de Ideação e Criatividade (Two Words)
+     Pegar duas palavras aleatórias 
+     Utilize essas duas palavras para criar sua companhia fictícia
+     Identifique quais seriam seus clientes
+     O que você venderia para eles
+     E como você faria isso
+**** Exercício 2 de Ideação e Criatividade (Best out of the worst)    
+     Escolha para o colega a pior idéia de negócio possível, por
+     exemplo vender gelo para eskimó, ou celular para bichos de
+     estimação.
+     Agora a tarefa do seu amigo é transmormar essa péssima idéia de
+     negócio em uma boa idéia. Por exemplo: utilizar o gps do celular
+     do animal de estimação em um gps pra sempre localizá-lo. Talvez
+     usar a câmera do celular para vê-lo remotamente.
+
+**** Exercício 3 de Ideação e Criatividade (Mindmapping)        
+     On a large sheet of paper or whiteboard:
+
+     Write the word(s) of your highlighted phrase from the previous section in the middle.
+     For the next 3-5 minutes, you will write the first 3-5 words that come to mind around that word,
+     then subsequently around each of the words of that next layer,
+     and so on. Try to go to at least 3 or 4 layers out.
+     When done, highlight a few of the words on the outside layer.
+     Piece them together into a few potential companies - as serious or as silly as you like!
+
+     An example if your previous reflection highlighted "helping people", then the resulting mindmap may be something like the below.
+     drawing of a mindmap example
+     Example business ideas from the above might include:
+
+     A non-profit to help people with autism to find meaningful careers
+     Crowdfunding for organic farms in Africa
+     Developing medicines for self-esteem growth
+
+     The opportunities are endless!
+     It is especially important that you develop a few layers out and are unrestrictive and write the first things that come to mind when doing the mindmapping, allowing for diversity in words for lots of choice when developing company ideas later. 
+
+
+    Oportunidades de Negócios na Internet para MPEs
+    https://dlq8vi77lxj74.cloudfront.net/media/e55e91b2cc22ba117ba8d1546537f7a4c037cf67/05fa2de99c48086b28d6e7a491a75f6f313af79d/7a28fbfd6d031f78099f1937b9c3e740.pdf
+   
+** _9. Apresentação e discussão de casos de sucesso de empreendedorismo_
+*** O empreendedor valoriza pessoas
+  Unanimidade: Todos os empreendedores valorizam pessoas. Suas conexões
+  não são estratégicas, no sentido de obter vantagem delas, mas são
+  estratégicas no sentido o relacionamento com as pessoas é matéria
+  prima para obter sabedoria e discernimento. 
+  Em geral citam que é necessário escolhser sim com quais pessoas se
+  relacionar, quando possível é claro.
+  Por exemplo, no vídeo da Dna Maria de Nazaré, ela tem um
+  relacionamento com seus pares católicos e com os padres
+  também [fn:VideoMariaDeNazare], no vídeo do Carlos, ele demonstra
+  grande apreço por pessoas e pelo social e pela
+  sustentabilidade[fn:CarlosEngCivil]. Tanto o vídeo do Carlos como do
+  Marcelo Sales [fn:VideoDoSilvioSantos] também valorizam a família.
+
+*** O projeto do empreendedor é um ingrediente necessário para sua felicidade 
+  As pessoas tem mais de um sonho. Não pode ser a única razão pra
+  viver. Mas o projeto do empreendendor de sucesso é um dos objetivos
+  mais importantes dele.
+  Por isso, toda História de um projeto empreendedor se confunde com a
+  história de vida do próprio empreendedor. Ou seja, a história do
+  projeto do empreendedor faz parte das emoções mais
+  intensas do empreendedor. Quando o empreendedor começa a contar a
+  história de seu projeto empreendedor ele mistura a história do projeto
+  com sua história de vida. 
+  É muito comum o empreendedor
+  chorar [fn:VideoMariaDeNazare][fn:CarlosEngCivil] e demostrar suas emoções porque o
+  projeto empreendedor é algo que envolve suas emoções.
+  Emfim, o projeto do emprendedor é mais um ingrediente necessário para
+  sua felicidade, por isso é comum que no final das palestras e falas
+  dos empreendedores eles citem e desejem "felicidade" aos
+  ouvintes[fn:VideoDoSilvioSantos] [fn:CarlosEngCivil] .
+  É interessante também, falando em vida de pessoas e vida
+
+*** Nicho de mercado
+  Vídeo da Dna Francisca. Roupas só para padres.
+
+*** referencias
+[fn:VideoMariaDeNazare] https://www.youtube.com/watch?v=JdCwyINYMf0
+
+[fn:VideoMariaDeNazare] vídeo da Dna Francisca (Roupas para Padres)
+em http://www.portaleduca.com.br/aluno/cursoConteudo.php?conteudo=7835
+acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoSilvioSantos] Vídeo do Silvio santos em
+https://www.youtube.com/watch?v=oi706LKU9Rc acessado em [2017-01-21 Sáb]
+
+[fn:CarlosEngCivil] "Day1 | Uma história de empreendedorismo e
+sensibilidade - Carlos Terepins [Even]" em
+https://www.youtube.com/watch?v=3nLHj7Zcwqg acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoMarceloSalesNerd] Palestra Empreendedorismo - As Conexões que Movem a Vida em
+https://www.youtube.com/watch?v=eStNcJ7S7No acessado em [2017-01-21 Sáb]
+
+
+** 12. Obtendo conhecimento e inovação:busca/ pesquisa de informações                                                     
+*** Clientes
+    https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/b7a36406c8e607dc11a5488b2963a3f6/asset-v1:MITx+Launch.x_3+1T2017+type@asset+block/interview-quote2.jpg
+***** Finding Interview Subjects
+
+    Develop a list of a few potential customer segments (segments are groups of customers that have similar needs and buying characteristics).
+    Aim for at least 5 one-on-one interviews per segment
+        Find people within the category who are on the leading edge of
+    innovations in the space - the ones who tend to adopt the newest technologies
+        Maintain at least one degree of separation - that means no interviewing family and friends
+        Ask for referrals (who would you recommend that I speak with next?)
+        Get creative - find different recruiting means like going to the locations where these customers frequent, looking people up on LinkedIn, etc.
+        Promise to be brief
+
+****** Pro Tips - Before and After
+ Before
+
+     Practice, practice, practice
+     Write an interview guide (not a script)
+
+ During / Process
+
+     Take notes
+     Have a few warm-up interviews before interviewing your ideal customer
+
+ After
+
+     Set expectations (not a presentation, not trying to sell, just seeking information)
+     Follow up / stay in touch
+     Write up key insights right away (and share them)
+
+
+
+****** Conducting an Effective Interview
+     What NOT To Do
+
+         Don't come into a customer interview feeling you have the answers. If your idea doesn't adjust at least some based on these conversations, you're not listening.
+         Don't expect customers to have the answer (possible exception: lead users). They'll know their frustrations and needs, but not necessarily how to solve it. Lead users may have cobbled together a solution, though.
+         Do not sell! No demos! No presentations! This is the time to learn, not to sell.
+
+     What To Do
+
+         Focus on the need, not the solution!
+         Beware of confirmation bias - you are NOT there to validate what you think, you are there to uncover a need.
+         Do it in person, one at a time - this will allow you to pick up on cues from gestures and facial expressions.
+         Ask open-ended questions - this makes it a conversation and allows you to get to more depth of the need you may not have thought about before.
+         Get subjects to tell a story.
+         Listen much more than you talk!
+         Follow your nose and drill down (Why? Why?...).
+         Understand their priorities.
+
+****** Interview Guide - Example
+       The following is an example of the market research process from an MIT Launch Summer company, LandMe, who connects high school students looking for summer programs and internships to the programs running these opportunities. Note, the below is a simplified version of the research process.
+
+logo of LandMe
+Who to Survey
+The platform would be free to students and charge programs, so since the programs would be the 'customer', these are who needed to be interviewed. The platform is also intended to be for top students, so the programs should be the top, most highly desired programs.
+
+Discovery Question
+What would make the lives of people who offer summer programs and internships easier?
+
+Hypothesis
+Program and internship directors would pay to get more applicants.
+
+Interview Questions
+
+    "How do you market your program to find applicants?"
+    "What areas of marketing do you pay for?"
+    "What kinds of students apply to your programs?"
+    "Is there anything about your applicant pool that you want to improve?"
+    "Would you be willing to pay to get additional applicants?"
+
+
+Results / Insights
+
+    Selective summer programs already have enough applicants
+    But they would like to have more representation from some under-represented groups
+
+
+****** Example Interview Video
+       https://www.youtube.com/watch?v=TGujgmyLUiU
+       
+
+** 13. Assegurando a criação                                                                                              
+
+
+* Notas de Rodapé
+
+[fn:VideoMariaDeNazare] https://www.youtube.com/watch?v=JdCwyINYMf0
+
+[fn:VideoMariaDeNazare] vídeo da Dna Francisca (Roupas para Padres)
+em http://www.portaleduca.com.br/aluno/cursoConteudo.php?conteudo=7835
+acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoSilvioSantos] Vídeo do Silvio santos em
+https://www.youtube.com/watch?v=oi706LKU9Rc acessado em [2017-01-21 Sáb]
+
+[fn:CarlosEngCivil] "Day1 | Uma história de empreendedorismo e
+sensibilidade - Carlos Terepins [Even]" em
+https://www.youtube.com/watch?v=3nLHj7Zcwqg acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoMarceloSalesNerd] Palestra Empreendedorismo - As Conexões que Movem a Vida em
+https://www.youtube.com/watch?v=eStNcJ7S7No acessado em [2017-01-21 Sáb]

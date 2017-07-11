@@ -1,0 +1,368 @@
+#+TITLE: Tutorial Desktop Linux: Habilitando plugin do java no firefox (linux)
+
+* OBJETIVO
+  Demostrar como se habilitar o plugin do java no firefox
+
+* DISCLAIMER  
+  Estou fazendo isso na minha máquina e disponibilizando para
+  consulta. Não me responsabilizo pelo seus erros durante a utilização
+  deste tutorial, só pelos meus...
+
+* ROTEIRO
+  + Download do Java
+    
+ 
+  + Seguir recomendações de
+    https://java.com/en/download/help/enable_browser_ubuntu.xml
+    https://www.java.com/pt_BR/download/help/enable_browser_ubuntu.xml
+   
+  + Mostrando o estado inicial do sistema
+    Alguns comandos que vão mostra o estado inicial do meu sistema
+    antes de habilitar o plugin do java
+      
+* Estado do ambiente antes do tutorial
+  
+  Os comandos abaixo mostram como está meu ambiente no início deste
+  tutorial.
+  O comando "uname -a"  mostra as características do linux que estou utilizando
+  O comando "firefox -version" mostra a versão do firefox
+  O comando "echo $(java -version)" mostra que não estou com nenhuma
+  versão de java instalado
+ 
+#+NAME: Linux Utilizado
+#+BEGIN_SRC sh :var repoPath='/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/env-dev/sources/emacsinitfile' :results output replace  :exports both
+uname -a
+firefox -version
+echo $(java -version)
+#+END_SRC
+
+#+RESULTS: Linux Utilizado
+: Linux localhost.localdomain 4.8.13-100.fc23.x86_64 #1 SMP Fri Dec 9 14:51:40 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+: Mozilla Firefox 50.1.0
+: 
+
+* Preparando para habilitar o plugin
+  
+  Então vamos lá...
+  Vamos seguir os passos deste site
+  https://java.com/en/download/help/enable_browser_ubuntu.xml
+
+  Vamos criar o diretório cd /usr/lib/firefox-addons/plugins
+  Você já tem esse diretório na sua máquina?
+
+  Pra olhar dê o seguinte comando...  
+  #+NAME: VENDO_SE_JA_EXISTE_DIR
+  #+BEGIN_SRC sh :results output replace  :exports both
+  cd /usr/lib/firefox-addons/plugins
+  echo $(pwd)
+  #+END_SRC
+
+  #+RESULTS: VENDO_SE_JA_EXISTE_DIR
+  : /usr/lib/firefox-addons/plugins
+
+  qualquer saída diferente disso, significa que você não tem o
+  diretório. Neste caso você precisa criá-lo. Para isso, dê o seguinte
+  comando.
+
+  #+NAME: CRIANDO_DIRETORIO
+  #+BEGIN_SRC sh :results output replace  :exports both
+  mkdir -p /usr/lib/firefox-addons/plugins
+  #+END_SRC
+
+* Instalando o Java
+  Agora vamos instalar o java na máquina
+  Tem uma questão sobre instalar um jdk ou um jre. Não vou entrar
+  nessa questão agora, mas na dúvida instale um jdk.
+  Pra fazer download de um jdk:
+  http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.
+
+  Fiz o download aqui neste diretório
+  #+NAME: mostrando arquivo de download
+  #+BEGIN_SRC sh :results output replace  :exports both
+  ls -l /home/wagner/PROGSATIVOS/jdk-8u121-linux-x64.tar.gz
+  #+END_SRC
+
+  #+RESULTS: mostrando arquivo de download
+  : -rw-rw-r--. 1 wagner wagner 183246769 Dez 14 17:42 /home/wagner/PROGSATIVOS/jdk-8u121-linux-x64.tar.gz
+  
+  Agora precisa somente descompactar esse jdk. Pra isso faça o
+  seguinte...
+
+
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  cd /home/wagner/PROGSATIVOS/
+  tar xvf jdk-8u121-linux-x64.tar.gz
+  #+END_SRC
+
+  Agora você tem um diretório resultante da descompactação do seu
+  jdk. É o diretório com nome "jdk1.8.0_121"
+
+
+  #+BEGIN_SRC sh :results output replace  :exports both
+  cd /home/wagner/PROGSATIVOS/
+  ls -l
+  #+END_SRC
+
+  #+RESULTS:
+  : total 178964
+  : drwxrwxr-x. 3 wagner wagner      4096 Dez 28 20:47 fzlbpms
+  : drwxr-xr-x. 8 wagner wagner      4096 Dez 12 22:50 jdk1.8.0_121
+  : -rw-rw-r--. 1 wagner wagner 183246769 Dez 14 17:42 jdk-8u121-linux-x64.tar.gz
+
+  
+  Depois que você descompactou é necessário usar o update-alternatives
+  para realmente instalar o seu jdk como o java da sua máquina.
+  Antes de dar um comando do tipo update-alternative --install pra
+  realmente fazer isso, vamos ver se já tem algum java configurado na
+  minha máquina.
+  Você vai dizer pra mim..
+  Se você deu um java -version e não obteve resultado significa que
+  você não tem nenhum java instalado na máquina! Correto?
+  Não exatamente.
+  Pra ver corretamente a situação do java na máquina o certo mesmo é
+  você fazer o seguinte...
+  
+  #+NAME:update-alternatives --config java
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --config java 
+  #+END_SRC
+
+  #+RESULTS: update-alternatives --config java
+  [wagner@localhost ~]$ update-alternatives --config java
+
+  Há 3 programas que oferecem "java".
+  
+  Seleção    Comando
+  -----------------------------------------------
+  1           /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b16.fc23.x86_64/jre/bin/java
+  *+ 2           /run/media/wagner/Seagate Expansion Drive/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+  3           /run/media/wagner/EE2437F12437BB81/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+
+  Indique para manter a seleção atual[+] ou digite o número da seleção: 
+
+
+  Perceba que tem três instalações de java que eu posso selecionar.
+  A primeira é um jdk que não está selecionada para uso, pois o sinal
+  de "+" está
+  na instalação 2. Tanto a 2 como a 3, por sua vez, não estão
+  disponíveis porque são jdks que eu descompactei em diretórios do meu
+  hd externo e como eles não estão espetados na minha máquina eles não
+  estão disponíveis para serem utilizados. Óbvio que usar um java do
+  pendrive ou hd externo é má prática. Faço isso por motivos
+  específicos que não vou entrar na questão agora.
+  
+  Então, vale aqui uma reflexão sobre instalaçõs java.
+  java -version não vir nada, não quer dizer que não tem java
+  instalado. O java instalado pode não estar disponível como vocês
+  puderam ver logo acima.
+  
+  Eu poderia selecionar o jdk 1 pra usar, mas vou querer instalar um
+  que não seja do openjdk. Não é que não seja bom, é que para
+  situações específicas é necessário o java da oracle.
+
+  Você percebeu algo muito legal do java no linux? Você pode ter
+  várias instalações de java e escolher qual você quer que seja
+  utilizada no seu sistema e alternar entre elas sempre que quizer.
+
+  Na verdade o linux escolhe entre elas de acordo com um número que
+  indica a prioridade de cada instalação.
+  
+  Vamos aproveitar o ensejo pra ver qual é a prioridade de cada uma
+  das instalações porque vamos querer dar uma prioridade maior que
+  todas elas pra instalação que vamos fazer agora...
+
+  #+NAME: update-alternatives --display java | grep priority (1)
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --display java | grep priority
+  #+END_SRC
+
+  #+RESULTS:
+  : /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b16.fc23.x86_64/jre/bin/java - family java-1.8.0-openjdk.x86_64 priority 1800111
+  : /run/media/wagner/Seagate Expansion Drive/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java - priority 1900000
+  : /run/media/wagner/EE2437F12437BB81/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java - priority 2000
+
+  Pela saída que tivemos a maior prioridade é apontada em "priority
+  1900000" que é o java da opção 2.
+
+  Vamos instalar o nosso java que descompactamos agora pouco e vamos
+  dar uma prioridade de 120000 beleza?
+  Você precisa ser root.
+
+  
+  #+NAME: update-alternativas --install java
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --install /usr/bin/java java /home/wagner/PROGSATIVOS/jdk1.8.0_121/bin/java 120000
+  #+END_SRC
+
+  
+  Bom, se nossa instalação do nosso java que descompactamos funcionou,
+  o comando abaixo deverá mostralo não é?
+  #+NAME: update-alternatives --display java | grep priority (2)
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --display java | grep priority
+  #+END_SRC
+
+  #+RESULTS: update-alternatives --display java | grep priority (2)
+  : /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b16.fc23.x86_64/jre/bin/java - family java-1.8.0-openjdk.x86_64 priority 1800111
+  : /run/media/wagner/Seagate Expansion Drive/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java - priority 1900000
+  : /run/media/wagner/EE2437F12437BB81/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java - priority 2000
+  : /home/wagner/PROGSATIVOS/jdk1.8.0_121/bin/java - priority 120000
+
+  Pela saída do comando dá pra ver realmente nossa nova instalação do
+  java.
+  
+  Mas calma lá. Isso quer dizer que nosso java está instalado e
+  disponível para ser selecionado como a instalação a ser utilizada.
+  Pelo comando abaixo você vai ver que o java da opção 2 ainda esta
+  selecionado e vamos ter que mudar a seleção pra nossa
+  instalação. Lembrando que pra fazer essa seleção você tem que ser root.
+
+
+  #+NAME: update-alternatives --config java (2)
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --config java
+  #+END_SRC
+
+  #+RESULTS: update-alternatives --config java (2)
+  Há 4 programas que oferecem "java".
+
+  Seleção    Comando
+  -----------------------------------------------
+  1           /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b16.fc23.x86_64/jre/bin/java
+  *+ 2           /run/media/wagner/Seagate Expansion Drive/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+  3           /run/media/wagner/EE2437F12437BB81/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+  4           /home/wagner/PROGSATIVOS/jdk1.8.0_121/bin/java
+  
+  Indique para manter a seleção atual[+] ou digite o número da seleção: 
+  
+
+  Pra selecionar a opção 4, é só digitar o 4 logo após "  Indique para
+  manter a seleção atual[+] ou digite o número da seleção: "
+  e dar um ENTER.
+
+
+
+
+  #+NAME:update-alternatives --config java (3)
+  #+BEGIN_SRC sh :results output replace  :exports both
+  update-alternatives --config java
+  #+END_SRC
+
+  #+RESULTS: update-alternatives --config java (3)
+  Há 4 programas que oferecem "java".
+
+  Seleção    Comando
+  -----------------------------------------------
+  1           /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b16.fc23.x86_64/jre/bin/java
+ * 2           /run/media/wagner/Seagate Expansion Drive/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+   3           /run/media/wagner/EE2437F12437BB81/wagnerdocri@gmail.com2/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_65/bin/java
+ + 4           /home/wagner/PROGSATIVOS/jdk1.8.0_121/bin/java
+   
+ Indique para manter a seleção atual[+] ou digite o número da seleção: 
+ 
+ Veja agora que a opção de instalação de java selecionada é a "4"
+ (sinal de "+")
+ 
+ Agora vemos que nosso java é um java disponínel... vamos confirmar?
+
+  #+NAME:java -version (2)
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  java -version
+  #+END_SRC
+
+  #+RESULTS: java -version (2)
+  java version "1.8.0_121"
+  Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+  Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
+
+
+  Agora temos um java instalado e disponível. Nos resta agora ativar o
+  plugin do java no firefox.
+
+* habilitando o plugin do java no firefox
+  Já havíamos preparado para habilitar o plugin
+  A preparação foi criar o diretório
+  /usr/lib/firefox-addons/plugins
+  
+  Depois instalamos um java e agora vamos habilitar o plugin do java
+  no firefox através da criação de um link simbólico (atalho) neste
+  diretório de plugins do firefox apontando para o local onde o plugin
+  está de verdade que é no diretório do nosso java descompactado.
+
+  #+NAME: habilitando java plugin no ff (1)
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  cd /usr/lib/firefox-addons/plugins
+  ls -la
+  #+END_SRC
+
+  #+RESULTS: habilitando java plugin no ff (1)
+  : total 8
+  : drwxr-xr-x. 2 root root 4096 Jan 26 12:29 .
+  : drwxr-xr-x. 3 root root 4096 Jan 26 12:29 ..
+
+ O comando ls -l mostra que não tem nada no diretório
+ /usr/lib/firefox-addons/plugins
+ 
+ Vamos criar então nosso link simbólico...
+ Pra evitar problemas de permissão, seja root para este comando
+  #+NAME: habilitando java plugin no ff (2)
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  cd /usr/lib/firefox-addons/plugins
+  ln -s /home/wagner/PROGSATIVOS/jdk1.8.0_121/jre/lib/amd64/libnpjp2.so
+  ls -la
+  #+END_SRC
+
+  #+RESULTS: habilitando java plugin no ff (2)
+  : total 12
+  : drwxr-xr-x. 2 root root 4096 Jan 26 15:54 .
+  : drwxr-xr-x. 3 root root 4096 Jan 26 12:29 ..
+  : lrwxrwxrwx. 1 root root   63 Jan 26 15:54 libnpjp2.so -> /home/wagner/PROGSATIVOS/jdk1.8.0_121/jre/lib/amd64/libnpjp2.so
+
+* testando
+  
+* toubleshooting (quando não funciona)
+  A questão é que o firefox pode não estar esperando que o seu plugin
+  esteja na pasta onde aquela página tá mostrando. O pior é que não se
+  sabe ao certo o quanto isso pode variar dependendo da distribuição linux
+  ou sistema operacional que você esteja utilizando.
+  Neste caso, quando não funciona esta é sua primeira tarefa, onde eu
+  tenho que criar meu link simbólico do java plugin pro firefox
+  detectá-lo?
+
+  A gente sabe de antemão que o firefox procura em uma pasta chamada
+  plugin não é? Que tal se a gente pesquisasse em nosso perfil de
+  usuário por uma pasta com esse nome?
+
+  Na minha máquina tal comando gera a seguinte saída...
+  #+NAME:Troubleshooting find plugins folder
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  find /home/wagner/ -type d -iname plugins | grep *moz*
+  #+END_SRC
+
+  #+RESULTS: Troubleshooting find plugins folder
+
+  
+
+* testando se o plugin do java está funcionando no firefox 
+  
+  
+
+
+
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  
+  #+END_SRC
+
+  #+BEGIN_SRC sh :eval never-exports :results output replace  :exports both
+  
+  #+END_SRC
+  
+  
+
+
+
+## Java Browser (Mozilla) Plugin 32-bit ##
+alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so libjavaplugin.so /usr/java/latest/jre/lib/i386/libnpjp2.so 2000000
+
+## Java Browser (Mozilla) Plugin 64-bit ##
+alternatives --install /usr/lib64/mozilla/plugins/libjavaplugin.so libjavaplugin.so.x86_64 /usr/java/latest/jre/lib/amd64/libnpjp2.so 2000000

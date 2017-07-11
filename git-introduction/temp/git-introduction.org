@@ -1,0 +1,205 @@
+
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+TITLE: INTRODUÇÃO AO GIT
+
+* Tema
+  Introdução ao Git e Github
+* Objetivo
+  Dar suporte aos alunos que se inscreverem no curso "Como Usar Git e
+  Github" do MOOC Udacity, disponível
+  https://br.udacity.com/course/how-to-use-git-and-github--ud775/
+* Conteúdo  
+  Exercícios que contemplam os seguintes tópicos
+** Gerencia de mudanças em um ou mais arquivos com diff
+   
+* Competencias
+  Após o curso do Udacity e dos exercícios o aluno terá adquirido a
+  competência de trabalhar em equipe de desenvolvimento de software
+  bem como compartilhar seu código no github.
+* Metodologia
+  Este material não tem muita teoria e explicações porque isso tem no
+  curso da Udacity. O que tem aqui são exercícios baseados no curso
+  bem como a resposta dos exercícios em forma de tutoriais e vídeo aulas.
+  
+* Duração
+  Ainda não tenho muito claro, estou ainda fazendo esses exercícios
+
+* Avaliação
+  As avaliações serão realizadas em sala de aulas já que entregas de
+  trabalhos poderão ser requisitadas via repositórios por alguns
+  professores.
+
+* Recursos necessários
+  Instalação do git
+  
+* por que usar git?
+Você deveria usar o git porque o mercado usa e existem muitos bons
+motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
+são esses. Ou seja, porque profissionais do mercado investem tempo
+aprendendo e estudando pra usar o git? 
+Mesmo porque não é tão simplizinho assim aprender git, então você tem que
+ter claro o porquê vale a pena o esforço de aprender.
+
+Respondendo a pergunta, sendo bastante simplório, mas bem claro e objetivo, imagine a
+seguinte situação: Seu grupo de TCC, de três alunos, por exemplo, estác
+editando um texto. Pode ser o texto do TCC mesmo.
+Então um de vocês digita uma parte, e outro outra e assim vai... é
+comum ocorrer esse tipo de divisão esquisita de trabalho como por
+exemplo: um escreve oo capítulo 1 o outro o capítulo 2 e despois junta
+num arquivo só.
+Acho que isso nunca fica bom, mas no início não dá tanto problema.
+O problema começa quando precisa fazer ajustes no texto e aí cada um
+pega uma cópia e faz ajustes e várias partes do texto. E agora pra
+juntar? Como você faria? Aproveita a oportunidade e pensa se ao invés
+de um arquivo só vocês estivessem trabalhando com uma cópia de vários
+arquivos de código e aí cada um faz várias alterações em partes
+diversas de vários arquivos. Junta tudo isso num código final como?
+
+* Vendo as diferenças entre dois arquivos
+** Exercício 1 -> diff pra ver diferença entre arquivos
+  Crie um arquivo e nomeie ele arqv1.txt e escreve nele o seguinte:
+A
+B
+C
+D
+
+ Faça uma cópia desse arquivo e renomeie como arqv2.txt
+ Aí você deleta o A
+ Acrescenta no final do arquivo a Letra E.
+
+ Faça um print do diff e interprete as mudanças com base da saída do
+ diff.
+ 
+ O que significa a indicação de mudança de linha com sinal de menos?
+ O que significa a indicação de mudança de linha com sinal de mais?
+
+** Resolução do exercício 1
+  
+** Exercício 2 -> diff entre dois arquivos do jogo asteróids
+   Conforme solicitado no curso, fazer o mesmo com esses dois arquivos
+   e mostrar a diferenças
+   Por que fazer o mesmo exercício duas vezes? Não é o mesmo exercício
+   exatamente não.. é que com esse você consegue perceber um pouco
+   mais a grande utilizade do comando diff já que não daria pra ver
+   facilmente tudo que mudou entre os dois arquivos sem uma ferramenta
+   como essa. Então pra ficar mais interessante, não tenha pressa
+   não... como você faria se você tivesse com saber quais as
+   diferenças entre esses dois aquivos apenas comparando os dois?
+   Então depois você usa o diff e vai perceber que é uma ferramenta
+   muito legal e útil.
+  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_old.js
+  https://storage.googleapis.com/supplemental_media/udacityu/2960778928/game_new.js  
+
+** Resolução do exercício 2
+
+** Exercício 2 ->  Não simplesmente ver uma diferença, é legal ver o histórico
+   É legal, é importante ver a diferença entre duas versões
+   direferntes de arquivo. É util e importante. Mas seria muito mais
+   interessante ainda ver um histórico inteiro de mudanças neste
+   arquivo. Aí sim, é muito mais interessante ainda...
+   
+   Você precisa de dois conceitos pra entender isso. Claro que você
+   assistiu aos vídeos e viu que foi falado de CVS - Concurrent
+   Version Sistem e de Commits, em particular commits manuais. (Não
+   vou repetir aqui não... vê os vídeos lá, ou pergunte para o seu
+   professor) Dica. Procure o vídeo sobre Concept Map.
+   
+   Só pra contextualizar você precisar entender um conceito muito
+   importante. Se você está interessado em fazer um diff de uma versão
+   1, e da 3 você precisa de uma ferramenta de software que consiga
+   gerenciar essas mudanças pra você. Ou seja, uma ferramenta que
+   saiba o que mudou da versão 1 pra versão 2 e 3 pra que seja
+   possível você fazer um diff entre elas.
+   Por isso você precisa instalar o git e inicilizar o git para a
+   pasta onde o seu arquivo se encontra pra que o git guarde o
+   histórico das mudanças no código pra você.
+   
+   Portanto,
+   Neste exercício você fazer as seguintes tarefas:
+
+   1) Instale o git na sua máquina
+
+   2) *Criando pasta para o projeto*
+      Crie uma pasta pra sua interface gráfica html, pode chamar ela
+      de projweb_gui
+
+   3) *Comando git init*
+      Inicialize o git com git init
+
+   4) *Criando um arquivo html com tags de estrutura*
+      Crie seu arquivo e crie a estrutura de um html nele (tags html,
+      head e body)
+      
+   5) *Usando commando git add*
+      Adicione esse arquivo para ser controlado pelo git
+      
+   6) *Usando o comando Commit*
+      Commite com msg ("initial commit com html estrutura básica)
+
+   7) *Editando o arquivo html*
+      Abra o arquivo novamente coloque um H1 com titulo e um paragrafo
+      com a descriçao do site
+
+   8) *Usando o comando Commit*
+      Commite com a msg (Titulo e Descrição do site)
+
+   9) *Alterando o arquivo*
+      adicione um stilo a sua pagina com a tag style
+      
+   10) *Usando o comando Commit*
+       Commite com a msg estilizando site
+
+   11) *usando git log e git diff*
+       Agora use os comandos git log e git diff e interprete a
+       saída. 11b)Explique porque diff opera sobre commits.
+       
+   12) *Refletindo: Tralhando off line*
+       Interprete a saída do git log
+       Lembra daquele menina na floresta dizendo que estava offline. 
+       Perceba que você não precisou de internet pra fazer
+       isso certo? Ou seja, tudo isso que você está fazendo é offline. 
+
+   13) *Reflexão entre commit manual e automático*
+       Lembra que as meninas do curso explicaram que o wikipedia, o
+       dropbox o google drive também fazem controles de versão de um
+       documento? Só que os commits, ou seja, o registro das mudanças
+       ão é manual, é automática, sendo registrado sempre que você
+       salva por exemplo. Já com o git, o commit é manual? Quais são
+       as vantagens e desvantagens de commits manuais? Ah. faça uma
+       reflexão também sobre qual seria o melhor momento para commitar
+       alterações dizendo o porque de sua conclusão sobre o assunto.
+
+   14) *Trabalhando com mais confiança*
+       Já aconteceu com você de você fazer uma alteração em algum
+       arquivo ou projeto e depois não saber muito bem onde você errou
+       e decidir dar um control z pra voltar ao que era antes e
+       começar de novo? Já aconteceu comigo de querer voltar pra uma
+       versão de ontem, por exemplo, já que o control z não estava
+       disponível. Como essa o git facilita a nossa vida diante de
+       situações como essa?
+
+   15) *Trabalhando com multiplos arquivos*
+       Claro que um css deve sempre que possível ser escrito num
+       arquivo a parte. Faça isso com seu estilo e link ele no seu
+       html. 
+       Aproveite e faça também com um arquivo javascript. 
+       Commite explicando isso na msg.
+           
+       
+** 
+       
+  
+
+* começando com o mais básico de tudo
+  
+ 
+* exercicios
+** Reconstruindo final file
+   [.
+
+
+
+
+   margin-left: 22px;
+    margin-right: 32px;
+    margin-top: 20px;

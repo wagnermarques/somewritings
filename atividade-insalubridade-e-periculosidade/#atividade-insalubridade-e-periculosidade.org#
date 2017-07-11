@@ -1,0 +1,52 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+TITLE: Calculo Insalubridade e Periculosidade
+
+* Tema
+  Insalubridade e Periculosidade
+* Objetivo
+  Aprender conceitos principais sobre Insalubridade e Periculosidade
+  bem como realizar cálculos para efeitos de folha de pagamento
+* Conteúdo  
+  Esta atividade apresenta conceitos de Insalubridade e Periculosidade
+  bem como procedimentos para cálculos
+* Competencias
+  Após estudar esta atividade o aluno terá compreensão sobre os dois
+  assuntos, realizar os cálculos e também conhecerá os erros mais
+  comuns cometidos durante os cálculos.
+* Metodologia
+  
+  A) Pode fazer em grupo de 4
+  B) Deverão realizar a atividade em uma aula (segunda) e entregar na
+  própria segunda. Eu vou avaliar o trabalho de vocês até quinta
+  feira
+  C) Na quinta eu vou entregar o gabarito pra vocês terem a
+  oportunidade se auto-avaliarem também  segunda e se auto
+  avaliarem. A auto avaliação de vocês também deve ser entregue no
+  mesmo dia.
+  
+
+  1. Esta atividade prevê uma aula de 2 horas
+     Para tanto, terá um momento de leitura e compreensão dos conceitos. Na verdade já foi explanado os conceitos em sala de aula, mas servirá como revisão.
+  2. Depois serão apresentados alguns cálculos bem como as "pegadinhas"
+     mais comumns onde os alunos costumam errar nesta área.
+  3. Depois traz alguns exercícios para serem resolvidos
+  4. Por útlimo apresenta alguns calculos errados que vocês (alunos)
+     deverão explicar qual é o erro
+  5. Garabito das questões será dado na próxima aula para vocês
+     compararem o desempenho de vocês nas questões
+  6. Vocês darão notas pra vocês mesmos 
+     
+* Apresentação de cálculos
+  | Salário          |       1200 |
+  | Ad Peric         | 30% do Sal |
+  | HE               |        10h |
+  | %HE              |        50% |
+  |                  |            |
+  | Sal/h (Sem Peri) |            |
+  |                  |            |
+  #+TBLFM: $2=@2$1::@6$2=@2$1+1
+
+  + Salário por hora (Sem o Adicional de Periculosidade)
+    1200 / 220 = 
+
+

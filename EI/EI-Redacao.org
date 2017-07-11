@@ -1,0 +1,886 @@
+Redação EI
+
+Anotações
+
+Características de um empreendedor:
+
+
+* PTD
+| Aula | Data | Conteúdo                                                                                                               |
+|      |      | Introdução, conceitos definições e                                                                                     |
+|      |      | 2. O contexto do empreendedorismo no Brasil e no mundo globalizado: características e perfil do empreendedor           |
+|      |      | 3. Introdução a planonegócios e planejamento                                                                           |
+|      |      | 4. Tipos de empresas e empresários                                                                                     |
+|      |      | 5. Modelos de negócios naInternet e na Informática                                                                     |
+|      |      | 6. Plano de Negócios para empresas de TI                                                                               |
+|      |      | 7. Identificando e avaliando oportunidades de negócios na Informática                                                  |
+|      |      | 8. Criando um ambiente empresarial através de uma incubadora                                                           |
+|      |      | 9. Apresentação e discussão de casos de sucesso de empreendedorismo                                                    |
+|      |      | 10. A inovação na Informática: introdução; programas de computador; serviço; produto                                   |
+|      |      | 11. Processos da criação inovadora: conceito e implementação; apresentação e discussão de casos de empresas inovadoras |
+|      |      | 12. Obtendo conhecimento e inovação:busca/ pesquisa de informações                                                     |
+|      |      | 13. Assegurando a criação                                                                                              |
+
+Links:
+http://inei.org.br/
+http://www.sebrae.com.br/sites/PortalSebrae
+https://endeavor.org.br/
+http://www.ibqp.org.br/
+https://d335luupugsy2.cloudfront.net/cms%2Ffiles%2F6588%2F1479379347ICE+2016+-+Links+V1.pdf
+http://www.anjosdobrasil.net/
+http://www.inovapaulasouza.sp.gov.br/
+
+
+* Planos de Aulas
+
+** 1. Introdução, conceitos definições e    
+*** Conceito de Empreendedor
+"...   qualquer   tentativa   de   
+criação  e  desenvolvimen-
+to  de  novos  negócios  ou  
+criação  de  novas  empre-
+sas,  como  o  trabalho  por  
+conta  própria,  uma  nova  
+organização          empresa-
+rial,   ou   a   expansão   de   
+uma   empresa   já   existen-
+te,  por  um  indivíduo,  uma  
+equipe  de  pessoas,  ou  um  
+negócio     estabelecido"
+
+    Quem sabe transformar uma solução em negócio
+    Interno x Externo p.765
+    Por necessidade x Por oportunidade p.765
+    TAE: Txa de Empreendedorismo Inicial
+    TEE: Txa de Empreendedorismo Estabelecido
+    
+*** Empreendorismo nascente x novo x estabelecido
+    Os   *empreendedores   nascentes*
+    estão   envolvidos  na  estruturação  de  um  negócio  do  qual são  proprietários,  
+    mas  que  ainda  _não  pagou salários, pró-labores ou qualquer outra forma de remuneração aos proprietários por mais de três meses_. 
+    
+
+
+    Já  os  *empreendedores  novos*  administram  e  são proprietários  de  um  novo  
+    negócio que  pagou  salários, gerou  pró-labores ou qualquer outra forma de remuneração aos proprietários por mais de 
+    _três e menos de 42 meses_. 
+
+
+    Os   *empreendedores   estabelecidos* 
+    administram  e  são  proprietários  de  um  
+    negócio tido  como  consolidado,  que  pagou  salários,  gerou
+    pró-labores  ou  qualquer  outra  forma  de remuneração aos
+    proprietários 
+    por _mais de 42 meses (3,5 anos)_
+
+    p.8
+    https://www.sebrae.com.br/Sebrae/Portal%20Sebrae/Estudos%20e%20Pesquisas/gem%202014_relat%C3%B3rio%20executivo.pdf
+    
+*** Conceito de startaps
+    Estas 
+    empresas iniciais
+    de  base  tecnológica
+    de  impacto  econômico 
+    e de alto potencial de escalabilidade de negócio p.17
+
+
+*** Conceito de Produto
+    O que o consumidor quer comprar é a solução, é o benefício
+    O cliente não compra renew compra beleza, juventude
+
+*** Mercado Consumidor, Nicho de Mercado
+*** Conceito de Processo Empreendedor    
+    [[./imgs/ProcessoEmpreendedorGEM2015.png]]
+
+
+** 2. O contexto do empreendedorismo no Brasil e no mundo globalizado: características e perfil do empreendedor           
+*** No Brasil   
+    http://search.proquest.com/openview/20badcfc65946060f12ccbd86b050017/1?pq-origsite=gscholar&cbl=1576337
+**** Quem são os pequenos negócios?
+     Para o Sebrae, eles podem ser divididos em quatro segmentos por faixa de faturamento, com exceção do pequeno produtor rural. Tal segmentação segue os critérios da Lei Complementar 123/2006, também chamada de Lei Geral das Micro e Pequenas Empresas.
+
+     Resumidamente, os pequenos negócios são divididos da seguinte maneira:
+
+    *Microempreendedor Individual* - Faturamento anual até R$ 60 mil;
+    5mil por mes
+    *Microempresa* - Faturamento anual até R$ 360 mil;
+    Empresa de Pequeno Porte - Faturamento anual entre R$ 360 mil e R$ 3,6 milhões;
+    Pequeno Produtor Rural - Propriedade com até 4 módulos fiscais ou faturamento anual de até R$ 3,6 milhões
+
+**** Panorama geral
+     em  2015,  atingimos  a  maior  taxa  de  empreendedorismo  da série  histórica.  
+     Em  cada  *dez  brasileiros* (entre  18  e  64  anos),  *quase quatro*  
+     possuem  um   negócio ou   realizaram   alguma   ação, no  último  ano,  visando  criar  um  negócio
+
+**** Centro de Empreendedorismo e Novos Negócios cenn GEM Global Entrepreneurship Monitor
+     http://www.bibliotecas.sebrae.com.br/chronus/ARQUIVOS_CHRONUS/bds/bds.nsf/4826171de33895ae2aa12cafe998c0a5/$File/7347.pdf
+***** 1 - ATIVIDADE   EMPREENDEDORA   NO   BRASIL E NO MUNDO EM 2015 pg. 25
+      De  2014  a  2015,  o  *Brasil  passou  do  décimo  para  o  oitavo  lugar*  no  ranking  dos  
+      31 países de economias impulsionadas pela 
+      eficiência, 
+      o *Brasil apresenta a TEA (TEA= Txa de Emprend em Estágio Inicial) mais alta  do  grupo,  superando  os  países
+      componentes dos BRICs, os Estados Unidos e a Alemanha*.  p.27
+      Mais que o brasil (Equador, Líbano, Chile, Colombia, Perú, Barbados,
+      Brasil
+
+
+      identificada a  existência de  _*correlação_  negativa  entre*  o
+      *nível  de  _desenvolvimento dos   países*_    (fatores,     eficiência
+      e inovação) _*e as taxas de empreendedorismo inicial*_ (TEA). (p.27)
+      Economias desenvolvidas tem empregos mais atraentes (Aqui, muitas vezes, é empreender
+      pra sobreviver)
+      Economias desenvolvidas as barreiras técnicas e financeiras são maiores
+      
+      TEE - Taxa de Empreendedorismo Estabelecido (Brasil é o Segundo) p.28
+      Taxa de descontinuidade dos negócios: "Desistiu ou vendeu um
+      empreeendimento do qual era administradora e proprietária" 
+      
+***** PERFIL do emprendedor no brasil
+      Sexo feminino,
+      escolaridade inferior ao segundo grau completo
+      25 a 34 anos
+      com até 4 pessoas no grupo familiar
+      renda inferior a três salários mínimos,
+      Naturais da cidade do empreendimento p.767
+      Em 2001 70,9% era masculino, em 2005 50%, em maior número de mulheres
+      [Análise: 
+      Muitas passaram a ser chefes de família
+      Não tem as mesmas oportunidades que os homens no mercado de trabalho]
+
+      Sonho1: Casa própria
+      Sonho2: Viajar pelo Brasil
+      Sonho3: Adquirir carro
+      Sonho4: Ter seu próprio negócio p.769
+
+      
+***** 2 - TAXAS ESPECÍFICAS DE EMPREENDE-DORISMO  NO  MUNDO  E  NO  BRASIL  EM  2015 pg35
+      *Txa de Descontinuidade no Brasil* é descrecente mas ainda alta. O
+      principal fator apresentado é a falta de lucratividade. (ver
+      gráfico) p.776
+
+      TTE - Taxa total de atividade empreendedora 
+      TEA - Taxa de empreendedorismo inicial
+      
+      TEA de 2005 = 21,0% 
+      de cada 100 brasileiros, 21 estão envolvidos com  uma atividade
+      empreendedora em estágio inicial (Tabela 1.1). 
+****** Txa de Empreend por Estágio dos Empreend      
+           #+NAME: fig:figure name
+           #+CAPTION: Taxa de Empreendedorismos Segundo Estágio dos Empreendimentos
+           #+ATTR_HTML: width="300"
+           #+attr_latex: :width 4in :placement [H]
+           #+attr_org: :width 100
+           [[./imgs/TaxasDeEmpreendSegundoEstagioDosEmpreendimentos.png]]
+
+****** Txa Empreend Vs PIB 
+           #+NAME: fig:figure name
+           #+CAPTION: Taxa de Empreendedorismos vs PIB
+           #+ATTR_HTML: width="100"
+           #+attr_latex: :width 4in :placement [H]
+           #+attr_org: :width 100       
+           [[./imgs/TaxaEmpreend_x_PIB.png]]
+
+           
+***** 4 - CARACTERÍSTICAS  DOS  EMPREENDIMENTOS pg.49
+***** 5 - BUSCA DE ORGÃO DE APOIO pg.63
+***** 6 - INVESTIDORES pg.69
+***** 7 - MENTALIDADE  EMPREENDEDORA  E  POTENCIAIS EMPREENDEDORES pg.75 
+***** 8  -  CONDIÇÕES  PARA  EMPREENDER  NO  PAÍS - BRASIL - 2015 pg.83
+
+O Brasil ocupa  a  116 a  posição  no  *ranking  de  facilidade para fazer negócios* (de um total de 189 posições) do Banco Mundial.  pg,17
+Para  *obter  um  simples  Alvará*,  por exemplo, o empreendedor luta na 169 a posição (de 189) p.17
+Para *obter crédito*, que é um dos mais elevados do mundo, ele batalha  na posição  97  (das  mesmas  189).  
+
+
+
+***** UM BOM NEGÒCIO
+      Escala
+      Tempo Livre
+      Independência Financeira
+      Trabalhar onde(local) você quizer
+      Não Sazonal
+      Roda no Piloto automático
+      Baixo investimento / Alto Valor de retorno
+
+*** No Mundo
+**** What is MIT Launch?    
+      90% of students are interested in becoming entrepreneurs
+      75% don't know where to start.      
+      Entrepreneurship is an effective means of prototyping *multiple
+      career options*
+***** School Clubs      
+      https://mitlaunch.com/clubs/
+      MIT Launch provides materials and support to high schools
+      throughout the school year to allow students to develop
+      entrepreneurial skills and mindset by launching startups
+
+      Club members start a company in teams, using course materials
+      that follow the rigor and standards of MIT.
+      
+       This is not a business plan contest. The aim is to create a
+       real startup - to solve a real need in a differentiated way.
+
+       The focus is on taking action, learning from results, and
+       making changes to improve chances of success. 
+
+***** Who can start an MIT Launch Club?
+      High school students and administrators may start an MIT Launch
+      Club at their school. The program is limited to high school and
+      does not support starting a club at a university at this time.
+
+***** Who do I need to get a Launch Club at my school?
+      The following key players need to be identified: the school
+      champion (chapter president and primary contact for MIT Launch),
+      a faculty sponsor, and a student leadership team (Education
+      lead, Finance lead, Marketing lead)
+
+***** What materials are provided?
+      Club organizers are provided training on how to teach
+      entrepreneurship through monthly webinars, plus are provided
+      videos and powerpoint documents to teach during their club
+      meetings. We also match teams with mentors for additional
+      support.
+
+***** Is there a fee to start a club?
+      We have a small club membership fee of *$250 per school* to allow
+      us to provide support for this program. Schools with a high
+      portion of low income students may apply for a fee waiver. Note
+      that teams invited to the final pitch event must secure their
+      own travel and lodging costs for the event.
+
+
+
+** 3. Introdução a planonegócios e planejamento                                                                               
+
+
+** 4. Tipos de empresas e empresários                                                                                     
+
+
+** 5. Modelos de negócios naInternet e na Informática                                                                     
+
+
+** 6. Plano de Negócios para empresas de TI                                                                               
+   Livro "O Marketing no Negócio Electrónico"
+   http://web.spi.pt/negocio_electronico/documentos/manuais_PDF/Manual_IV.pdf
+
+   Plano de negócios para empresas na Internet
+   http://www.paqtc.org.br/portal_novo/upload_documento/7455391344622888112.pdf
+
+
+
+** _7. Identificando e avaliando oportunidades de negócios na Informática_                                                  
+
+   Qual é o seu sonho? 
+   Qual é o seu projeto? 
+   Identificando Oportunidades?
+   Cuidado também pra não ficar correndo atrás de um sonho e perder
+   oportunidades que seriam fantásticas pra vc.
+   É uma questão de sabedoria!!!
+
+*** Ideação e a Criatividade
+**** Exercício 1 de Ideação e Criatividade (Two Words)
+     Pegar duas palavras aleatórias 
+     Utilize essas duas palavras para criar sua companhia fictícia
+     Identifique quais seriam seus clientes
+     O que você venderia para eles
+     E como você faria isso
+**** Exercício 2 de Ideação e Criatividade (Best out of the worst)    
+     Escolha para o colega a pior idéia de negócio possível, por
+     exemplo vender gelo para eskimó, ou celular para bichos de
+     estimação.
+     Agora a tarefa do seu amigo é transmormar essa péssima idéia de
+     negócio em uma boa idéia. Por exemplo: utilizar o gps do celular
+     do animal de estimação em um gps pra sempre localizá-lo. Talvez
+     usar a câmera do celular para vê-lo remotamente.
+
+**** Exercício 3 de Ideação e Criatividade (Mindmapping)        
+     On a large sheet of paper or whiteboard:
+
+     Write the word(s) of your highlighted phrase from the previous section in the middle.
+     For the next 3-5 minutes, you will write the first 3-5 words that come to mind around that word,
+     then subsequently around each of the words of that next layer,
+     and so on. Try to go to at least 3 or 4 layers out.
+     When done, highlight a few of the words on the outside layer.
+     Piece them together into a few potential companies - as serious or as silly as you like!
+
+     An example if your previous reflection highlighted "helping people", then the resulting mindmap may be something like the below.
+     drawing of a mindmap example
+     Example business ideas from the above might include:
+
+     A non-profit to help people with autism to find meaningful careers
+     Crowdfunding for organic farms in Africa
+     Developing medicines for self-esteem growth
+
+     The opportunities are endless!
+     It is especially important that you develop a few layers out and are unrestrictive and write the first things that come to mind when doing the mindmapping, allowing for diversity in words for lots of choice when developing company ideas later. 
+
+
+    Oportunidades de Negócios na Internet para MPEs
+    https://dlq8vi77lxj74.cloudfront.net/media/e55e91b2cc22ba117ba8d1546537f7a4c037cf67/05fa2de99c48086b28d6e7a491a75f6f313af79d/7a28fbfd6d031f78099f1937b9c3e740.pdf
+   
+*** Ideação e o técnica de Branstorming
+    Overview of the brainstorming process
+    Our creative process brainstorming and ideation consists of three steps:
+    
+    Discovery
+    Filtering
+    Analysis
+**** Discovery
+     The discovery process will include:
+      
+     Choosing your interest area
+     Ways of finding opportunities:
+       Needs
+       Gaps
+     Turning needs and gaps into ideas
+     Activities to brainstorm
+     
+***** 1: Choosing Your Interest Area
+     Choose an industry of interest to you, for example:
+
+      Energy / sustainability
+      Education
+      Mobile / technology
+      Lifestyle / consumer
+      Health and wellness
+
+
+      Craft some problem statements, starting with "how might we". Every word within the initial part of this prompt is powerful in helping setup a problem to be solved for the purposes of a potential startup. Problem solving with words like "can" or "should" (how can we, how should we), start to imply judgment, which shuts down options instead of opening them up. Similarly, "how" keeps things open instead of a more closed question like "what". Finally, "we" sends a powerful message within the brainstorming session that there is no ownership of ideas - all ideas are meant to be built on, adapted, and collaborated on together.
+
+      Some example problem statements within education might be:
+
+      How might we make high school classroom materials more engaging?
+      How might we allow education to cater to different learning styles?
+      How might we bring students together around interests instead of geography?
+
+      When developing your problem statements within your interest area, be careful to ensure that this problem statement is not too specific or too vague.
+
+      Too specific is when it is crafted in a way that assumes a specific solution, such as "how might we use iPads to bring education to students in remote locations?" Instead, this could be phrased as "how might we bring education to students in remote locations?" allowing multiple potential solutions.
+      Similarly, the statement should not start too vague. A problem statement like "how might we make education more effective? allows too much variation of interpretation, and therefore potential solutions. It has hardly narrowed the prompt down from "education" in any way, so is not a compelling prompt.
+
+      You might also consider researching some trends more generally and within the industry for potentially compelling problems to solve. 
+
+***** 2: Ways of Finding Opportunities
+***** Needs: 
+      Ways that current customers of the market are being underserved. 
+      What to do: 
+      Compare how things are now to how customers wish they would be.   
+      How to do it: Interview customers about their needs and
+      frustrations. 
+***** Gaps: 
+      Opportunities to appeal to new customers who aren't currently
+      being addressed. 
+      What to do: Determine new potential customers who do not have the
+      skills or access for current offerings. 
+      How to do it: Choose a market and assess barriers to being a customer.
+
+***** Finding Opportunities through NEEDS
+      Needs: 
+      Needs are ways that current customers of the market are being underserved relative to their desired conditions. A needs assessment can be used to determining and addressing the discrepancy between the current condition and desired condition.
+
+      Ways of performing a needs assessment:
+
+      Listen to your customers - Determine ideal customers in the segment and interview them about their needs and frustrations. Be sure not to be leading - ask open ended questions.
+      Watch your competitors - Look at both top companies and newly hyped companies in the industry and assess their strengths and weaknesses. Ask some passionate customers about ways that they wish the offerings served them better.
+      Keep up with legislation -
+      Check quickly if there are any new governmental regulations that may present any new needs, or may limit what you are able to do within the space. Currently, drones are an example of a highly regulated field, that the regulations may limit certain startup opportunities.
+
+***** Finding Opportunities through GAPS
+      Gaps: Gaps represent opportunities to appeal to a specific niche group of customers in a more specialized way. These can be assessed by determining where certain customers are underserved in the market by not having the skills or access to current offerings.
+
+      Assessing market gaps:
+    
+      Choose a specific type of offering or industry category
+      Determine current customers
+      Assess barriers to being a customer - Determine if there are certain skills, access, awareness, etc that makes the offering accessible to these customers, but permits it from being desirable or accessible to others
+      Determine what other customers would adopt - If offerings were easier to use, more accessible, or otherwise barriers lowered, what customers might you want to target. Examples might include
+          the elderly,
+          third world countries,
+          less technologically advanced people,
+          etc.
+
+***** 3: Turning Needs and Gaps Into Ideas
+      Develop a preliminary idea of how to solve the need, fill the gap, or take advantage of the trend. This will best be done after doing market research to further validate the need, and really assessing the most efficient way to solve those needs. We'll get further into this throughout the course. Having a preliminary idea of how to solve a need can be helpful, though be sure to not get too attached to the solution versus the problem you are trying to solve!
+    
+      Problem states
+      Interesting trends
+      Need or Gap
+      Idéia
+    
+      Note: The examples on the following pages show the OUTPUT - the final chosen idea of the creative process (versus the full suite of ideas you will develop through this process).
+
+***** Brainstorm
+      Needs - Assess how current needs are being solved, and what needs aren't being solved
+          YOUR needs that are underserved
+          Customer needs - interview 4-5 active customers in this industry
+
+      Note: ask the right questions - focus on asking open-ended questions, examples:
+
+      Can you walk me through your typical day / use of this product?
+      What are your favorite parts? What would allow you to get more out of it? What keeps you from enjoying it more? What are your biggest frustrations?
+
+          Do additional online research and identify the biggest unmet needs
+      Gaps
+          Assess existing offerings, and barriers to use
+          Assess underserved market segments, and what it would take to serve them
+
+***** Brainstorm Importante Lembrar
+****** As you brainstorm, there are NO BAD IDEAS
+       Build on ideas - ask "how might this work?" versus "why wouldn't it work?"
+       Write down ALL ideas - no matter how silly - they can build to something great!
+       Go for quantity - this isn't the time to be refining ideas yet - that comes later
+****** Regras do brainstorming
+       Não julgar
+       Encorajar as idéias
+       Construir em cima das idéias
+       Ser visual
+       pririzar quantidade
+****** Exemplo de frases para evitar
+       Temos que ser realistas...
+       Não tem precedentes...
+       O único problema é que...
+       Ao invés disso seja...
+       Aventureiro, "Selvagem", Solucionador de problemas (alguém que
+       agrega), seja: Empreendedor
+***** Brainstorming: Resumindo
+      Some Final Thoughts
+      Start with a Problem Statement
+
+      How will you solve your problem statement? Here are some potential prompts to help you come up with ideas:
+
+      Who are the customers of the problem?
+      Is there a different end user than paying customer?
+      What would make them willing to pay more than they are now for a solution?
+      Where is the frustration the largest?
+      Where is the frustration most frequent?
+      What skills do I have that would give me an advantage in solving this?
+
+
+      Write down as many ideas that come to mind, without spending much time on any of them. The goal here is quantity!
+
+***** Filtrando Idéias
+      Filtering Ideas - Intro
+      First, ensure that you have a list of at least 20-30 ideas (and by
+      ideas, we mean specific needs or gaps, regardless of any
+      preliminary idea of the solution). Group similar ideas, and see if
+      the grouping generates new ideas, or a theme.
+
+      Next, we'll filter the ideas (again, the needs or gaps) to find the one most ideally suited for your startup. Keep in mind throughout this process that there is not a magical formula for finding the right idea.
+***** Which Ideas are "Best"?
+      To answer this question, think about: 
+      What do investors look for in a company?
+
+      The following video will shed some light on the most important
+      factors. 
+      In particular, how to be a team that people believe in, and what makes for a good business opportunity.     
+
+
+
+     Filtering
+     Analysis
+
+
+**** Filtering
+     Video: Filtering Ideas
+     https://www.youtube.com/watch?v=NcLOvFEguQQ
+
+***** Técnica de Filtragem de Idéias     
+Fit - be a founding team that others believe in
+Roughly assess each idea from 1-10, using the following questions:
+
+    How passionate are you about this idea?
+    How enthusiastic are you to solve this problem?
+    Does this idea play to your strengths?
+
+Potential - give confidence that you would be creating value that you can capture
+Roughly assess each idea from 1-10, using the following questions:
+
+    Is it a mission / north star vision (versus just a product idea / set of features)?
+    Would you be solving a real need?
+    Are there enough people with this need who face it frequently enough to make it worth solving?
+    Are customers willing to pay for a solution?
+    Can you differentiate yourself against competitors?
+    How scalable is this idea?
+
+Determine which ideas score high on both dimensions. Narrow to a few ideas through this process, then review these a bit further. Do some research, plus get some outside input. If you find yourself leaning towards one even if it not being the highest ranked, that's fine! Trust your gut over the numbers - this was just a helpful first pass to narrow the list.
+
+There's no magical formula for the perfect idea, but it's important to be passionate about what you are working on, have the ability to execute on it, and feel confident in the potential.
+
+***** Compartilhando sua idéia
+      https://courses.edx.org/courses/course-v1:MITx+Launch.x_3+1T2017/courseware/8faf4c2ab2d046e0899bb0aab5473f3b/c6309f26727d4b11b1b2a37b8213eb2d/?child=first
+
+      Some of you may be nervous about sharing your idea, though this shouldn't be something to be nervous about.
+
+      Startup success is more about execution than the idea itself. Most ideas have been thought of before, and are easy to come by, but the hard part is actually doing something with those ideas, and doing it well.
+      The risk of someone else taking an idea is really low. Someone with whom you share the idea would need to have the perfect mix of interest in the idea, ambition and time to be able to work on it, and the skills to be able to execute. Factored together, this is an extremely low probability!
+      The value of sharing an idea far outweighs the risk. Every time you share your idea, you gain the opportunity to get feedback and make it better.
+      
+      illustration of innovator showing an idea to a potential
+      customer
+      https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/5d746259cfe0dac18728e783dafa09fb/asset-v1:MITx+Launch.x_3+1T2017+type@asset+block/interviews-2.jpg
+
+      
+      Submit your top need from brainstorming and a preliminary idea of how you plan to solve it, though keep in mind that it will likely change! The best entrepreneurs are those who are open to feedback from their customers and adapt to early market research.
+      
+      Use the Discussion Forum "Ideation" thread for any questions! 
+
+**** Analysis
+*** Questionário
+    
+How might you identify potential ideas?
+X Needs and Gaps
+Ah-ha Moments
+Think Outside the Box
+correct
+
+ Q2
+1/1 point (graded)
+Which is the correct order of doing structured brainstorming?
+Put yourself in situations that inspire brainstorming like taking a shower
+Look at cool new startups in the market, think about where else the market is going, and choose the coolest idea
+X Identify your interest areas, explore needs and gaps of the market, and optimize options for fit and potential correct
+Make a list of your strengths, identify markets that are growing, and develop ideas that are at the intersection
+You have used 1 of 1 attempt
+Correct (1/1 point) 
+
+
+
+** 8. Criando um ambiente empresarial através de uma incubadora                                                           
+
+
+** _9. Apresentação e discussão de casos de sucesso de empreendedorismo_
+*** O empreendedor valoriza pessoas
+  Unanimidade: Todos os empreendedores valorizam pessoas. Suas conexões
+  não são estratégicas, no sentido de obter vantagem delas, mas são
+  estratégicas no sentido o relacionamento com as pessoas é matéria
+  prima para obter sabedoria e discernimento. 
+  Em geral citam que é necessário escolhser sim com quais pessoas se
+  relacionar, quando possível é claro.
+  Por exemplo, no vídeo da Dna Maria de Nazaré, ela tem um
+  relacionamento com seus pares católicos e com os padres
+  também [fn:VideoMariaDeNazare], no vídeo do Carlos, ele demonstra
+  grande apreço por pessoas e pelo social e pela
+  sustentabilidade[fn:CarlosEngCivil]. Tanto o vídeo do Carlos como do
+  Marcelo Sales [fn:VideoDoSilvioSantos] também valorizam a família.
+
+*** O projeto do empreendedor é um ingrediente necessário para sua felicidade 
+  As pessoas tem mais de um sonho. Não pode ser a única razão pra
+  viver. Mas o projeto do empreendendor de sucesso é um dos objetivos
+  mais importantes dele.
+  Por isso, toda História de um projeto empreendedor se confunde com a
+  história de vida do próprio empreendedor. Ou seja, a história do
+  projeto do empreendedor faz parte das emoções mais
+  intensas do empreendedor. Quando o empreendedor começa a contar a
+  história de seu projeto empreendedor ele mistura a história do projeto
+  com sua história de vida. 
+  É muito comum o empreendedor
+  chorar [fn:VideoMariaDeNazare][fn:CarlosEngCivil] e demostrar suas emoções porque o
+  projeto empreendedor é algo que envolve suas emoções.
+  Emfim, o projeto do emprendedor é mais um ingrediente necessário para
+  sua felicidade, por isso é comum que no final das palestras e falas
+  dos empreendedores eles citem e desejem "felicidade" aos
+  ouvintes[fn:VideoDoSilvioSantos] [fn:CarlosEngCivil] .
+  É interessante também, falando em vida de pessoas e vida
+
+*** Nicho de mercado
+  Vídeo da Dna Francisca. Roupas só para padres.
+
+*** referencias
+[fn:VideoMariaDeNazare] https://www.youtube.com/watch?v=JdCwyINYMf0
+
+[fn:VideoMariaDeNazare] vídeo da Dna Francisca (Roupas para Padres)
+em http://www.portaleduca.com.br/aluno/cursoConteudo.php?conteudo=7835
+acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoSilvioSantos] Vídeo do Silvio santos em
+https://www.youtube.com/watch?v=oi706LKU9Rc acessado em [2017-01-21 Sáb]
+
+[fn:CarlosEngCivil] "Day1 | Uma história de empreendedorismo e
+sensibilidade - Carlos Terepins [Even]" em
+https://www.youtube.com/watch?v=3nLHj7Zcwqg acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoMarceloSalesNerd] Palestra Empreendedorismo - As Conexões que Movem a Vida em
+https://www.youtube.com/watch?v=eStNcJ7S7No acessado em [2017-01-21 Sáb]
+
+
+** 10. A inovação na Informática: introdução; programas de computador; serviço; produto                                   
+
+   
+** 11. Processos da criação inovadora: conceito e implementação; apresentação e discussão de casos de empresas inovadoras 
+
+
+** 12. Obtendo conhecimento e inovação:busca/ pesquisa de informações                                                     
+*** Clientes
+    https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/b7a36406c8e607dc11a5488b2963a3f6/asset-v1:MITx+Launch.x_3+1T2017+type@asset+block/interview-quote2.jpg
+*** Pesquisa de Mercado    
+    Q: Market Research
+    Market Research
+
+    Now that you better understand why starting with and focusing on the customer is important, we'll cover how to assess their needs. There are lots of potential ways to get input from customers and pros and cons of each.
+
+    The right market research method must be chosen based on what you're trying to discover. At this stage in the process, you have a problem statement and need or gap, and want to learn more about how this impacts customers to see how you might be able to fill that need. Let's explore the pros and cons of each market research method to see which fits our current stage.
+    Match each market research method to the description
+    2.0 points possible (graded)
+
+Place the correct number beside each.
+
+1) Fast and good if contains some good numerical data, but can be too general or dated.
+
+2) Valuable to get actionable insights from real customers, but takes a lot of time and preparation to do well.
+
+3) Can get large amounts of quantitative data, but results can be highly scrutinized depending on questions used.
+
+4) Helpful to get info from a lot of people at once, but can be skewed by a few outspoken people.
+
+Interview
+unanswered
+
+Focus Groups
+unanswered
+
+Surveys
+unanswered
+
+Google
+unanswered
+
+**** Market Research - Recap
+     Market Research Methods
+     There are advantages to each different research method, though the advantages of one in particular makes it most valuable for this early stage. 
+    
+     https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/b32ef87a73b0048a30d13ace6fcff649/asset-v1:MITx+Launch.x_3+1T2017+type@asset+block/research-pro-con.png
+     [[https://d37djvu3ytnwxt.cloudfront.net/assets/courseware/v1/b32ef87a73b0048a30d13ace6fcff649/asset-v1:MITx+Launch.x_3+1T2017+type@asset+block/research-pro-con.png][Quadro]]
+
+     Interviews, therefore, are the most valuable to do for early
+     market research to get actionable insights on customer needs to
+     build an offering of value. 
+
+**** Common MISTAKES of Market Research
+     
+     The above entrepreneur only hears what he wants to hear, which is that the customer likes his product. So he is continually patting himself on the back and saying what a great job he's done, and that people say he's built something great. But has he really? Customers don't really think it would solve their needs, nor would they really buy it. So how can this aspiring entrepreneur keep his enthusiasm for his idea checked at the door, and ask customers for REAL feedback?
+     
+     Let's start by covering what NOT to do, then we'll cover what to DO.
+     
+     Be careful about how you craft questions you might ask, and try to avoid these common mistakes:
+     
+    Biased / Leading:
+        How likely are you to buy this product?
+        Would having an organization system help you feel more organized?
+    Absolutely do not use "absolutes" in questions:
+        Do you always eat breakfast?
+    Difficult to Evaluate:
+        How big is your need for this product?
+        Do you like ice cream?
+
+    Again, these are what NOT to do, and the next section will cover what
+    TO DO. 
+
+
+***** Finding Interview Subjects
+
+    Develop a list of a few potential customer segments (segments are groups of customers that have similar needs and buying characteristics).
+    Aim for at least 5 one-on-one interviews per segment
+        Find people within the category who are on the leading edge of
+    innovations in the space - the ones who tend to adopt the newest technologies
+        Maintain at least one degree of separation - that means no interviewing family and friends
+        Ask for referrals (who would you recommend that I speak with next?)
+        Get creative - find different recruiting means like going to the locations where these customers frequent, looking people up on LinkedIn, etc.
+        Promise to be brief
+
+****** Pro Tips - Before and After
+ Before
+
+     Practice, practice, practice
+     Write an interview guide (not a script)
+
+ During / Process
+
+     Take notes
+     Have a few warm-up interviews before interviewing your ideal customer
+
+ After
+
+     Set expectations (not a presentation, not trying to sell, just seeking information)
+     Follow up / stay in touch
+     Write up key insights right away (and share them)
+
+
+
+****** Conducting an Effective Interview
+     What NOT To Do
+
+         Don't come into a customer interview feeling you have the answers. If your idea doesn't adjust at least some based on these conversations, you're not listening.
+         Don't expect customers to have the answer (possible exception: lead users). They'll know their frustrations and needs, but not necessarily how to solve it. Lead users may have cobbled together a solution, though.
+         Do not sell! No demos! No presentations! This is the time to learn, not to sell.
+
+     What To Do
+
+         Focus on the need, not the solution!
+         Beware of confirmation bias - you are NOT there to validate what you think, you are there to uncover a need.
+         Do it in person, one at a time - this will allow you to pick up on cues from gestures and facial expressions.
+         Ask open-ended questions - this makes it a conversation and allows you to get to more depth of the need you may not have thought about before.
+         Get subjects to tell a story.
+         Listen much more than you talk!
+         Follow your nose and drill down (Why? Why?...).
+         Understand their priorities.
+
+****** Interview Guide - Example
+       The following is an example of the market research process from an MIT Launch Summer company, LandMe, who connects high school students looking for summer programs and internships to the programs running these opportunities. Note, the below is a simplified version of the research process.
+
+logo of LandMe
+Who to Survey
+The platform would be free to students and charge programs, so since the programs would be the 'customer', these are who needed to be interviewed. The platform is also intended to be for top students, so the programs should be the top, most highly desired programs.
+
+Discovery Question
+What would make the lives of people who offer summer programs and internships easier?
+
+Hypothesis
+Program and internship directors would pay to get more applicants.
+
+Interview Questions
+
+    "How do you market your program to find applicants?"
+    "What areas of marketing do you pay for?"
+    "What kinds of students apply to your programs?"
+    "Is there anything about your applicant pool that you want to improve?"
+    "Would you be willing to pay to get additional applicants?"
+
+
+Results / Insights
+
+    Selective summer programs already have enough applicants
+    But they would like to have more representation from some under-represented groups
+
+
+****** Example Interview Video
+       https://www.youtube.com/watch?v=TGujgmyLUiU
+       
+
+** 13. Assegurando a criação                                                                                              
+
+
+* Cursos Curtos
+
+Curso do Sebrae: Microempreendedor individual: como se formalizar
+http://www.sebrae.com.br/sites/PortalSebrae/ead/microempreendedor%20individual%20como%20se%20formalizar,10ee662493ba8510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae:PLANEJAMENTO ESTRATÉGICO: Invista no planejamento
+http://www.sebrae.com.br/sites/PortalSebrae/ead/invista%20no%20planejamento,db574bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Fluxo de caixa
+http://www.sebrae.com.br/sites/PortalSebrae/ead/fluxo%20de%20caixa,1ab14bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Viabilidade de negócios
+http://www.sebrae.com.br/sites/PortalSebrae/ead/viabilidade%20de%20negocios,ef5e662493ba8510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Formação do preço de venda
+http://www.sebrae.com.br/sites/PortalSebrae/ead/formacao%20do%20preco%20de%20venda,d1d14bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Sustentabilidade
+http://www.sebrae.com.br/sites/PortalSebrae/ead/sustentabilidade,d59b662493ba8510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Oportunidades e visão de negócios
+http://www.sebrae.com.br/sites/PortalSebrae/ead/oportunidades%20e%20visao%20de%20negocios,555c662493ba8510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Aprender a empreender
+http://www.sebrae.com.br/sites/PortalSebrae/ead/aprender%20a%20empreender,9fd04bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Inovação
+http://www.sebrae.com.br/sites/PortalSebrae/ead/inovacao,7b554bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Curso do Sebrae: Análise e planejamento financeiro
+http://www.sebrae.com.br/sites/PortalSebrae/ead/analise%20e%20planejamento%20financeiro,3e6b4bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Gestão da Inovação: Inovar para competir
+http://www.sebrae.com.br/sites/PortalSebrae/ead/gestao%20da%20inovacao%20inovar%20para%20competir,3c544bbfa8c98510VgnVCM1000004c00210aRCRD
+
+Pequenas empresas nas redes sociais
+http://www.sebrae.com.br/sites/PortalSebrae/ead/pequenas%20empresas%20nas%20redes%20sociais,508c662493ba8510VgnVCM1000004c00210aRCRD
+
+Desenvolva sua empresa
+http://www.sebrae.com.br/sites/PortalSebrae/ead/desenvolva%20sua%20empresa,0f8a6d6eddca8510VgnVCM1000004c00210aRCRD
+
+Empreender
+http://www.sebrae.com.br/sites/PortalSebrae/ead/empreender,cbd66d6eddca8510VgnVCM1000004c00210aRCRD
+Conheça as características dos gestores de sucesso e saiba como
+desenvolver comportamentos que garantam a sobrevivência de sua
+empresa.
+
+Iniciando na importação
+http://www.sebrae.com.br/sites/PortalSebrae/ead/iniciando%20na%20importacao,0cf44bbfa8c98510VgnVCM1000004c00210aRCRD
+Conheça as questões legais envolvidas e aprenda um passo a passo para
+fazer da importação uma alternativa de negócios, sem colocar em risco
+a sua empresa.
+
+Excelência em Serviços
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/excelencia_em_servicos.html
+
+Foco no resultado
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/foco_no_resultado.html
+
+
+Introdução ao Gerenciamento de Projetos
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/introducao_ao_gerenciamento_de_projetos.html
+
+Ferramentas práticas para inovar
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/ferramentas_praticas_para_inovar.html
+
+Investimento
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/investimento.html
+
+
+Como fazer investimentos - Básico
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/como_fazer_investimentos_basico.html
+
+Como fazer investimentos - Avançado
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/como-fazer-investimentos-avancado.html
+
+Microempreendedor Individual
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/microempreendedor-individual.html
+
+*Como tornar seu negócio escalável e inovador*
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/como_tornar_seu_negocio_escalavel_e_inovador.html
+
+*Planejamento Estratégico para Empreendedores*
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/planejamento_estrategico_para_empreendedores.html
+
+*O Direito na vida do empreendedor*
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/o-direito-na-vida-do-empreendedor.html
+
+*Startup: Ferramentas para começar seu negócio*
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/startup-ferramentas-para-comecar-seu-negocio.html
+
+*Gestão da Carreira*
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/gestao-da-carreira.html
+
+*Atitude para a Mudança*
+No cenário corporativo atual, a capacidade de adaptar-se às mudanças é uma das habilidades mais valorizada nas pessoas.
+https://www.santandernegocioseempresas.com.br/desenvolvimento/cursosonline/atitude_para_a_mudanca.html
+
+
+
+
+
+
+
+
+* Bookmark do empreendedor
+  Fundação Parque Tecnológico da Paraíba: http://www.paqtc.org.br/
+
+* Notas de Rodapé
+
+[fn:VideoMariaDeNazare] https://www.youtube.com/watch?v=JdCwyINYMf0
+
+[fn:VideoMariaDeNazare] vídeo da Dna Francisca (Roupas para Padres)
+em http://www.portaleduca.com.br/aluno/cursoConteudo.php?conteudo=7835
+acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoSilvioSantos] Vídeo do Silvio santos em
+https://www.youtube.com/watch?v=oi706LKU9Rc acessado em [2017-01-21 Sáb]
+
+[fn:CarlosEngCivil] "Day1 | Uma história de empreendedorismo e
+sensibilidade - Carlos Terepins [Even]" em
+https://www.youtube.com/watch?v=3nLHj7Zcwqg acessado em [2017-01-21 Sáb]
+
+[fn:VideoDoMarceloSalesNerd] Palestra Empreendedorismo - As Conexões que Movem a Vida em
+https://www.youtube.com/watch?v=eStNcJ7S7No acessado em [2017-01-21 Sáb]

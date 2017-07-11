@@ -1,0 +1,28 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{3}\relax 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-20001}{QQ2-1-2}{org-gantt-todo}}{4}\relax 
+\doTocEntry\tocsubsection{1.1}{\csname a:TocLink\endcsname{1}{x1-30001.1}{QQ2-1-3}{anotacoes :no-exports:}}{4}\relax 
+\doTocEntry\tocsubsection{1.2}{\csname a:TocLink\endcsname{1}{x1-40001.2}{QQ2-1-4}{Ministra\c c\~oes Plano de Curso}}{4}\relax 
+\doTocEntry\tocsubsubsection{1.2.1}{\csname a:TocLink\endcsname{1}{x1-50001.2.1}{QQ2-1-5}{Write manual}}{4}\relax 
+\doTocEntry\tocsubsubsection{1.2.2}{\csname a:TocLink\endcsname{1}{x1-60001.2.2}{QQ2-1-6}{Fix bugs}}{4}\relax 
+\doTocEntry\tocsubsection{1.3}{\csname a:TocLink\endcsname{1}{x1-70001.3}{QQ2-1-7}{Other stuff}}{4}\relax 
+\doTocEntry\tocsubsubsection{1.3.1}{\csname a:TocLink\endcsname{1}{x1-80001.3.1}{QQ2-1-8}{Add features}}{4}\relax 
+\doTocEntry\tocsubsubsection{1.3.2}{\csname a:TocLink\endcsname{1}{x1-90001.3.2}{QQ2-1-9}{Add missing docstrings}}{5}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-100002}{QQ2-1-10}{Something [1/4]}}{5}\relax 
+\doTocEntry\tocsubsection{2.1}{\csname a:TocLink\endcsname{1}{x1-110002.1}{QQ2-1-11}{{\bfseries  \sffamily  TODO} Else [32\%]}}{5}\relax 
+\doTocEntry\tocsubsection{2.2}{\csname a:TocLink\endcsname{1}{x1-120002.2}{QQ2-1-12}{{\bfseries  \sffamily  TODO} don't bother}}{5}\relax 
+\doTocEntry\tocsubsection{2.3}{\csname a:TocLink\endcsname{1}{x1-130002.3}{QQ2-1-13}{{\bfseries  \sffamily  TODO} one}}{5}\relax 
+\doTocEntry\tocsubsection{2.4}{\csname a:TocLink\endcsname{1}{x1-140002.4}{QQ2-1-14}{{\bfseries  \sffamily  DONE} two}}{5}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-150003}{QQ2-1-15}{Ordered-Test\hfill {}\textsc  {test}}}{5}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-160003.1}{QQ2-1-16}{Order1}}{5}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-170003.2}{QQ2-1-17}{Order2}}{5}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-180003.3}{QQ2-1-18}{Millstone\hfill {}\textsc  {milestone}}}{6}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-190004}{QQ2-1-19}{Ordered-Test2\hfill {}\textsc  {toast}}}{6}\relax 
+\doTocEntry\tocsubsection{4.1}{\csname a:TocLink\endcsname{1}{x1-200004.1}{QQ2-1-20}{Order3}}{6}\relax 
+\doTocEntry\tocsubsection{4.2}{\csname a:TocLink\endcsname{1}{x1-210004.2}{QQ2-1-21}{Order4\hfill {}\textsc  {l2tag}}}{6}\relax 
+\doTocEntry\tocsubsubsection{4.2.1}{\csname a:TocLink\endcsname{1}{x1-220004.2.1}{QQ2-1-22}{SO 1}}{6}\relax 
+\doTocEntry\tocsubsubsection{4.2.2}{\csname a:TocLink\endcsname{1}{x1-230004.2.2}{QQ2-1-23}{SO 2}}{6}\relax 
+\doTocEntry\tocsubsubsection{4.2.3}{\csname a:TocLink\endcsname{1}{x1-240004.2.3}{QQ2-1-24}{SO 3}}{6}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-250005}{QQ2-1-25}{Direct Schedule Test}}{6}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-260006}{QQ2-1-26}{Linked-to-test}}{6}\relax 
+\doTocEntry\tocsubsection{6.1}{\csname a:TocLink\endcsname{1}{x1-270006.1}{QQ2-1-27}{Linked-to-test}}{7}\relax 
