@@ -1,0 +1,7 @@
+#+title: typescript-introduction
+
+* INTRODUÇÃO
+  
+
+* Refs
+[fn:tsTut] http://www.diullei.com/TypeScript-ptBR/tutorial.html

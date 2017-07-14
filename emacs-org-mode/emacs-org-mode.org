@@ -58,123 +58,157 @@
 
 
 * Babel (Block Code Vars)
-  Usar vari·veis bash com blocos de cÛdigo   
 
-** Blocos de CÛdigos Babel
+** Trabalhando com codigo
+   http://orgmode.org/manual/Working-With-Source-Code.html
+*** bloco de codigo a partir de um arquivo externo
+
+*** header arguments   
+    http://orgmode.org/manual/Header-arguments.html#Header-arguments
+
+*** include files
+    Codigo provindos de um arquivo de codigo
+    #+INCLUDE: "~/.emacs" src emacs-lisp
+    http://orgmode.org/manual/Include-files.html
+
+*** rodando comandos do shell
+  
+   begin_src sh
+   #+name obter usuario com id
+   #+begin_src sh
+   id
+   #+end_src
+
+   #+RESULTS:
+   | uid=1000(wagner) gid=1000(wagner) grupos=1000(wagner) | 10(wheel) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 |
+  
+
+   begin_src sh :dir /sudo::
+   #+name obter usuario com id e propriedade :dir /sudo
+   #+begin_src sh :dir /sudo::
+   id
+   #+end_src
+
+   #+RESULTS:
+   : uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+
+   Isso significa que vocÍ È root nesse comando, o emacs, a primeira
+   vez que vocÍ roda o comando, vai pedir a senha do root, mas depois
+   ele usa a senha que vc j· forneceu nas vezes subsequentes.
+   
+  
+
+*** propriedades do bloco de cÛdigo
+    linguagem: sh ou emacs-lisp etc
+    :eval never-exports  
+    :results output replace  
+    :exports both
+BEGIN_SRC emacs-lisp  :eval never-exports :output output :export both
 
 Propriedade :output
 O valor "replace" (:output replace È o padr„o), ent„o n„o precisa
 colocar se n„o quizer.
 O valor "output" significa...
    
+*** Sintaxe Highlight
+ #+name: codigo_em_emacs-lisp
+ #+BEGIN_SRC emacs-lisp  :eval never-exports :output output :export both
+ ;; fontify code in code blocks
+ (message "mensagem5")
+ #+END_SRC    
 
-** Sintaxe Highlight
-#+name: codigo_em_emacs-lisp
-#+BEGIN_SRC emacs-lisp  :eval never-exports :output output :export both
-;; fontify code in code blocks
-(message "mensagem5")
-#+END_SRC    
+ #+RESULTS: codigo_em_emacs-lisp
+ : mensagem5
 
-#+RESULTS: codigo_em_emacs-lisp
-: mensagem5
-
-** Sintaxe highlight na exportaÁ„o
-   https://github.com/syl20bnr/spacemacs/issues/7055
-
-
-
-
-
-
-
+*** Sintaxe highlight na exportaÁ„o
+    https://github.com/syl20bnr/spacemacs/issues/7055
 *** Refs
     http://stackoverflow.com/questions/20309842/how-to-syntax-highlight-for-org-mode-inline-source-code-src-lang
     http://orgmode.org/worg/org-contrib/babel/examples/fontify-src-code-blocks.html
 
+*** Usando vari·veis em Blocos de CÛdigos ShellScript
 
-** Usando vari·veis em Blocos de CÛdigos ShellScript
+ #+name: var abobe BEGIN_SRC sh works
+ #+var: Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "")
+ #+BEGIN_SRC sh :eval never-exports  :results output replace  :exports both
+ echo $Path #If var were in line with BEGIN_SRC line would work, but above dont
+ ls -l $($Path) #YES works
+ #+END_SRC
 
-#+name: var abobe BEGIN_SRC sh works
-#+var: Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "")
-#+BEGIN_SRC sh :eval never-exports  :results output replace  :exports both
-echo $Path #If var were in line with BEGIN_SRC line would work, but above dont
-ls -l $($Path) #YES works
-#+END_SRC
-
-#+RESULTS:
-: 
-: total 8
-: -rw-rw-r--. 1 wagner wagner  183 Jan  6 00:21 1
-: -rw-rw-r--. 1 wagner wagner 1464 Jan  6 00:34 emacs-org-mode.org
+ #+RESULTS:
+ : 
+ : total 8
+ : -rw-rw-r--. 1 wagner wagner  183 Jan  6 00:21 1
+ : -rw-rw-r--. 1 wagner wagner 1464 Jan  6 00:34 emacs-org-mode.org
 
 
-#+name: var inline with BEGING_SRC sh
-#+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
-echo $Path #YES PRINT $Path variable value
-ls -l $($Path) #YES list files in $Path 
-#+END_SRC
+ #+name: var inline with BEGING_SRC sh
+ #+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
+ echo $Path #YES PRINT $Path variable value
+ ls -l $($Path) #YES list files in $Path 
+ #+END_SRC
 
-#+RESULTS: var inline with BEGING_SRC sh
-: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/'
-: total 8
-: -rw-rw-r--. 1 wagner wagner  183 Jan  6 00:21 1
-: -rw-rw-r--. 1 wagner wagner 1471 Jan  6 00:35 emacs-org-mode.org
-
+ #+RESULTS: var inline with BEGING_SRC sh
+ : '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/'
+ : total 8
+ : -rw-rw-r--. 1 wagner wagner  183 Jan  6 00:21 1
+ : -rw-rw-r--. 1 wagner wagner 1471 Jan  6 00:35 emacs-org-mode.org
 
 
 
-#+name: Must use $($Path) because $Path does not works
-#+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
-echo $Path #YES PRINT $Path variable value
-ls -l $Path 2>&1 #inhibit all possible output
-#+END_SRC
 
-#+RESULTS: Must use $($Path) because $Path does not works
+ #+name: Must use $($Path) because $Path does not works
+ #+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
+ echo $Path #YES PRINT $Path variable value
+ ls -l $Path 2>&1 #inhibit all possible output
+ #+END_SRC
 
-
-Still not can change dir to $Path neither $($Path) but ls $($Path) works
-#+name: Changing dir to var  Path value
-#+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
-echo $Path #YES PRINT $Path variable value
-
-cd  $Path 2>&1 #does not works as showed below
-
-cd $($Path) 2>&1 #does not work as showed below
-echo [1] -$(pwd) # print user home directory
-
-p=$Path
-cd $p 2>&1 #does not work as showed below
-echo [2] -$(pwd) # print user home directory
-
-p=$($Path) 
-cd $p 2>&1 #does not work as showed below 
-echo [3] -$(pwd) # print user home directory
-
-p="$($Path)" 
-cd $p 2>&1 #does not work as showed below 
-echo [4] -$(pwd) # print user home directory
-
-p="$($Path)" 
-cd "$($Path)" #does not work as showed below 
-echo [5] -$(pwd) # print user home directory
-
-export p=$Path 
-cd $p #does not work as showed below 
-echo [6] -$(pwd) # print user home directory
+ #+RESULTS: Must use $($Path) because $Path does not works
 
 
-#+END_SRC
+ Still not can change dir to $Path neither $($Path) but ls $($Path) works
+ #+name: Changing dir to var  Path value
+ #+BEGIN_SRC sh :eval never-exports :var Path=(format "'%s%s'" (file-name-directory (buffer-file-name)) "") :results output replace  :exports both
+ echo $Path #YES PRINT $Path variable value
 
-#+RESULTS: Changing dir to var  Path value
-: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/'
-: sh: line 7: cd: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/': Arquivo ou diret√≥rio n√£o encontrado
-: [1] -/home/wagner
-: sh: line 13: cd: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/': Arquivo ou diret√≥rio n√£o encontrado
-: [2] -/home/wagner
-: [3] -/home/wagner
-: [4] -/home/wagner
-: [5] -/home/wagner
-: [6] -/home/wagner
+ cd  $Path 2>&1 #does not works as showed below
+
+ cd $($Path) 2>&1 #does not work as showed below
+ echo [1] -$(pwd) # print user home directory
+
+ p=$Path
+ cd $p 2>&1 #does not work as showed below
+ echo [2] -$(pwd) # print user home directory
+
+ p=$($Path) 
+ cd $p 2>&1 #does not work as showed below 
+ echo [3] -$(pwd) # print user home directory
+
+ p="$($Path)" 
+ cd $p 2>&1 #does not work as showed below 
+ echo [4] -$(pwd) # print user home directory
+
+ p="$($Path)" 
+ cd "$($Path)" #does not work as showed below 
+ echo [5] -$(pwd) # print user home directory
+
+ export p=$Path 
+ cd $p #does not work as showed below 
+ echo [6] -$(pwd) # print user home directory
+
+
+ #+END_SRC
+
+ #+RESULTS: Changing dir to var  Path value
+ : '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/'
+ : sh: line 7: cd: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/': Arquivo ou diret√≥rio n√£o encontrado
+ : [1] -/home/wagner
+ : sh: line 13: cd: '/run/media/wagner/96fea5f1-d297-4f63-a035-abf6511467be/wagnerdocri@gmail.com2/envs/somewritings/emacs-org-mode/': Arquivo ou diret√≥rio n√£o encontrado
+ : [2] -/home/wagner
+ : [3] -/home/wagner
+ : [4] -/home/wagner
+ : [5] -/home/wagner
+ : [6] -/home/wagner
 
 
 

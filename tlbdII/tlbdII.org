@@ -1,0 +1,39 @@
+#+Title: TÉCNICAS DE LINGUAGENS PARA BANCO DE DADOS II
+* 1. Revisão das regras de conversão do modelo conceitual para o modelo relacional/ lógico
+* 2. Apresentação da linguagem
+** SQL: histórico, ANSI SQL
+* 3. Introdução ao SGBD SQL
+** Server: histórico e visão geral
+* 4. Implementação de banco de
+** dados: criação e exclusão de banco de dados
+* 5. Variáveis e constantes
+* 6. Interface de comando
+* 7. Comandos da ferramenta x
+** comandos SQL
+
+* 8. Linguagem de definição de
+** dados - DDL
+*** tipos de dados; 
+*** criar, apagar e alterar
+** tabelas:
+*** o constraints:
+**** Conceitos de chave primária (UK, CK e NN);
+**** conceitos de integridade referencial
+**** constraint de foreign key
+* 9. Linguagem de manipulação
+** de dados - DML:
+*** inserir, apagar e alterar  dados;
+*** comandos de transação:
+*** comandos de seleção de dados com cláusulas:
+*** funções
+**** agrupamento,
+**** numéricas, 
+**** caracteres,
+**** datas
+*** funções de agregação:
+**** máximo
+**** mínimo, 
+**** soma,
+**** contagem
+**** média
+

@@ -1,0 +1,45 @@
+-a
+- e (
+and
+).
+
+-o
+ ou (or).
+
+
+
+-d
+é um diretório
+-e
+o arquivo existe
+-f
+é um arquivo normal
+-G
+o grupo do arquivo é o do usuário atual
+-L
+o arquivo/diretório é um link simbólico
+-O
+o dono do arquivo é o usuário atual
+-p
+o arquivo é um named pipe
+-r
+o arquivo/diretório tem permissão de leitura
+-s
+o tamanho do arquivo é maior que zero
+-N
+o arquivo foi modificado desde a última leitura
+-w
+o arquivo/diretório tem permissão de escrita
+-x
+o arquivo/diretório tem permissão de execução
+-nt
+o arquivo é mais recente (Newer Than)
+-ot
+o arquivo é mais antigo (Older Than)
+-ef
+o arquivo é o mesmo (Equal File
+
+
+* Leituras
+[fn:ref1] http://www.rra.etc.br/linux/apresentacoes/Um_passeio_pelo_Shell_Script.pdf
+[fn:ref2] https://www.telecom.uff.br/pet/petws/downloads/apostilas/LINUX.pdf
