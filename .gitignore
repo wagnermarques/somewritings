@@ -1,5 +1,5 @@
 # Ignore everthing
 *
 # But org files
-*.org
+!*.org
 
