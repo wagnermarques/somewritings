@@ -1154,6 +1154,41 @@ figura abaixo.
 
 
 * 4 Branches  
+** Criando branches
+   Para criar um novo branch basta fazer o seguinte:
+   #+BEGIN_SRC sh
+   git branch Anots_estudos
+   #+END_SRC
+   Bom talvez você tenha um nome melhor pro seu branch. Eu coloquei
+   esse nome "Anots_estudos" porque tenho um projeto onde eu escrevo e
+   faço todas as anotações. Resolvi criar esse branch pra trabalhar
+   com minhas anotações de estudos.
+   Portanto, ese comando acaba dr criar um um novo branch, como o nome
+   Anots_estudos. Quer conferir? Liste os branches existendes com o
+   comando.
+
+   #+NAME: lista branches pra mostrar branch Anots_estudos
+   #+BEGIN_SRC sh 
+   git branch
+   #+END_SRC
+
+   #+RESULTS: lista branches pra mostrar branch Anots_estudos
+   | Anots_estudos |        |
+   | *             | master |
+
+
+** fazendo push dos branches
+   Quanto você cria branches e trabalha especificamente em cada um
+   fazendos seus respectivos comits etec.. ao fazer git push só com o
+   comando "git push", seus branches não vão pra origem remota do
+   repositório. Pra que isso aconteça use o comando:
+#+NAME: mostrando git push --all -u
+#+BEGIN_SRC sh
+git push --all -u
+#+END_SRC 
+ref:
+https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-in-git
+
 ** Listando branches
    git branch (lista branches locais)
    git branch -r (lista branches remotos)

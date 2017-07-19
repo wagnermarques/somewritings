@@ -1,5 +1,6 @@
 #+Title:Etec-ProgramacaoDeComputadoresII
 
+
 1. Revisão de conceitos:
  classes, objetos, instância,
 métodos sem retorno e com
@@ -55,3 +56,12 @@ a
 requisições web
 * 9. Conceitos de Threads
 
+#+NAME: <code_blk_name>
+  #+HEADER: :session <session_name>
+  #+HEADER: :var data1=1 :var data2=2 :var data3=3
+
+  #+HEADER: :results value<value|output>  scalar<table|vector|list|scalar|verbatim|file>  org<raw|org|html|latex|pp|drawer> replace<silent|replace|append|prepend>
+
+  #+BEGIN_SRC <lang>
+
+#+END_SRC
