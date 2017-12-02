@@ -1670,7 +1670,8 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
 
 
 ** Apagando um branch remoto
-   git push origin --delete <branch_name>
+   git push --delete origin <branch_name>
+
 ** 
 * git-submodule
 
