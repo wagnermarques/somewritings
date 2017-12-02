@@ -1191,6 +1191,9 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
    git branch (lista branches locais)
    git branch -r (lista branches remotos)
 
+** Fazendo checkout de um branch remoto
+   git checkout remotes/origin/Anots_estudos
+
 ** Merging
    Mergin é a mesclagem de um outro brach no seu branch de trabalho
    corrente. Você tá trazendo mudanças de um outro contexto (outro brach)
@@ -1667,7 +1670,8 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
 
 
 ** Apagando um branch remoto
-git push origin --delete <branch_name>
+   git push origin --delete <branch_name>
+** 
 * git-submodule
 
   [wagner@localhost emacsinitfile]$ git submodule --add git://orgmode.org/org-mode.git
