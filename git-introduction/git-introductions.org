@@ -31,8 +31,7 @@
 
   *Instalando git*
   https://git-scm.com/book/pt-br/v1/Primeiros-passos-Instalando-Git
-  
-  
+    
 * por que usar git?
   Você deveria usar o git porque o mercado usa e existem muitos bons
   motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
@@ -1176,7 +1175,6 @@ figura abaixo.
    | Anots_estudos |        |
    | *             | master |
 
-
 ** fazendo push dos branches
    Quanto você cria branches e trabalha especificamente em cada um
    fazendos seus respectivos comits etec.. ao fazer git push só com o
@@ -1668,7 +1666,8 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
    #+END_SRC
 
 
-
+** Apagando um branch remoto
+git push origin --delete <branch_name>
 * git-submodule
 
   [wagner@localhost emacsinitfile]$ git submodule --add git://orgmode.org/org-mode.git
