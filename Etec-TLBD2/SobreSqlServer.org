@@ -1,0 +1,49 @@
+#+Title: Sobre Sqlserver
+
+* Tipo de dados
+** Categoria de dados[fn:categoriadedados]
+Tipos de dados em SQL Server são organizados nas seguintes categorias:
+	
+*Numéricos exatos*: 	Cadeias de caracteres Unicode
+*Numéricos aproximados*: 	Cadeia de caracteres binária
+*Data e hora*: 	Outros tipos de dados
+*Cadeias de caracteres*
+Tipos de dados de valor grande: varchar (max), e nvarchar (max)
+Tipos de dados de objeto grande: texto, ntext, imagem, varbinary (max), e xml
+
+*** Numéricos exatos
+bigint 	numeric
+bit 	smallint
+decimal 	smallmoney
+int 	tinyint
+money
+
+*** Numéricos aproximados
+float 	real
+
+*** Data e hora
+date 	datetimeoffset
+datetime2 	smalldatetime
+datetime 	time
+
+*** Cadeias de caracteres
+    char 	varchar
+texto 	
+
+*** Cadeias de caracteres Unicode
+nchar 	nvarchar
+ntext
+*** Cadeia de caracteres binária
+binary 	varbinary
+image
+
+*** Outros tipos de dados
+ 	
+cursor 	rowversion
+hierarchyid 	uniqueidentifier
+sql_variant 	xml
+Tipos de geometria espacial 	Tipos de Geografia espacial
+table
+
+
+[fn:categoriadedados] https://docs.microsoft.com/pt-br/sql/t-sql/data-types/data-types-transact-sql

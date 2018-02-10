@@ -92,18 +92,18 @@
 
 ** Trabalhando com codigo
    http://orgmode.org/manual/Working-With-Source-Code.html
-1. O padrãozão pra inserir um bloco de código é...
+*** O padrãozão pra inserir um bloco de código é...
    #+NAME: <NOME_DO_BLOCO_DE_CODIGO>
    #+BEGIN_SRC <LINGUAGEM_DO_BLOCO> <OPCOES> <PROPRIEDADES DE HEADER DO BLOCO>
     CODIGO NA LINGUAGEM ESPECIFICADA
    #+END_SRC
    
-2. Atalhos para inserção de blocos de código
+*** Atalhos para inserção de blocos de código
    https://emacs.stackexchange.com/questions/12841/quickly-insert-source-blocks-in-org-mode
    Digite "<s" sem as aspas e dê um ENTER
    Tem mais sobre isso em:
    http://orgmode.org/manual/Easy-Templates.html
-2.1 pra customizar você pode colocar isso no seu arq de conf do emacs
+*** pra customizar você pode colocar isso no seu arq de conf do emacs
 
 #+NAME: org-structure-template-alist to config <s
 #+BEGIN_SRC emacs-lisp 
@@ -118,7 +118,9 @@
 #+RESULTS: org-structure-template-alist to config <s
 | s | #+NAME: <code_blk_name> |
 
-
+*** compartilhar variavies entre os blocos
+    https://orgmode.org/manual/var.html
+    
 
 
 
