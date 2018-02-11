@@ -1,8 +1,8 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE_4Beamer.org
 #+Title:Etec-ProgramacaoDeComputadoresII
 
-
-1. Revisão de conceitos:
- classes, objetos, instância,
+* Revisão de conceitos:
+  classes, objetos, instância,
 métodos sem retorno e com
 retorno:
 o com e sem parâmetros,
@@ -10,14 +10,14 @@ passagem parâmetros
 por valores e por
 referências
  herança e polimorfismo;
-2. Interface:
+* Interface:
  Generics
 paramétrico)
 (polimorfismo
-3. Serialização
+* Serialização
 
 
-4. Conexão com o banco de
+* Conexão com o banco de
 dados
  ORM - Modelagem Objeto-
 Relacional;
@@ -33,9 +33,9 @@ Dados;
 classes para representação
 de dados ou objetos no
 formato grid
-5. Criação de relatório:
-6. Conceito de MVC
-7. Miniaplicativos para execução
+* Criação de relatório:
+* Conceito de MVC
+* Miniaplicativos para execução
 de
 programas
 específicos

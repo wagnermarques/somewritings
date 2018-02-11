@@ -1,5 +1,5 @@
-#+Title:LojaInfo
-
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+Title: Atividade 1 - Loja de Informática
 * Introdução
   Olá pessoal, dê uma olhada, por favor, aí na imagem pra compreender
   a atividade, ok?
@@ -12,7 +12,7 @@
     Claro que pra usar o comando docker vc precisa instalar ele
     também. No meu caso estou usando a versão indicada abaixo. 
     Tem muitos tutorials sobre como instalar o docker no google.
-    #+name docker version
+    #+name: docker version
     #+begin_src sh  :eval exports  :results output replace  :exports both
     docker --version
     #+end_src
@@ -23,7 +23,7 @@
 
     Com o docker funcionando, você pode fazer o pull da imagem do
     mssqlserver
-    #+name docker pull mssqlserver
+    #+name: docker pull mssqlserver
     #+begin_src sh  :results output replace  :exports both
     docker pull microsoft/mssql-server-linux:latest
     #+end_src
@@ -134,7 +134,7 @@
     #+RESULTS: drop_database
 
 * o comando sqlcmd
-  #+name sqlcmd
+  #+name: sqlcmd
   #+begin_src sh :results output replace  :exports both
  docker exec mssql-server /opt/mssql-tools/bin/sqlcmd
 #+end_src
@@ -171,7 +171,7 @@ usage: sqlcmd            [-U login id]          [-P password]
   [-? show syntax summary]
 #+end_example
 
-* Criacao do Banco de dados LojaInfo
+* Criacao do Banco de dados
   O script abaixo é o conteúdo do arquivo  script
   Exec_sp_databases.sql.  
   Seque o conteúdo do script. A gente vai
@@ -184,7 +184,7 @@ usage: sqlcmd            [-U login id]          [-P password]
   a execução da Store Procedure sp_databases. O resultado é igual o
   show databases do mysql, por exemplo.
 
-    #+name sp_databases
+    #+name: sp_databases
     #+begin_src sh :results output replace  :exports both
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/Exec_sp_databases.sql
     #+end_src
@@ -201,7 +201,7 @@ usage: sqlcmd            [-U login id]          [-P password]
 Olhando aí o resultado a gente vê que não tem o nosso banco. 
 Vamos criá-lo...
 
-    #+name create_database
+    #+name: create_database
     #+begin_src sh :results output replace  :exports both
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_database.sql
     #+end_src
@@ -219,7 +219,7 @@ Vamos criá-lo...
 Opa, demos um create database e agora podemos ver que temos o banco.
 
 * Criação das tabelas
-    #+name script_create_tables
+    #+name: script_create_tables
     #+begin_src sh :results output replace  :exports both
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
     #+end_src
@@ -315,7 +315,7 @@ como fazer isso blz?
   A gente vai incluir uma constraint chamada foreign key, que vc já
   conhece, claro de tlbd1.
 
-    #+name script_constraints
+    #+name: script_constraints
     #+begin_src sh :results output replace  :exports both
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_contraints.sql
     #+end_src
