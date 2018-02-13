@@ -9,6 +9,14 @@ from https://github.com/fniessen/orgmk
 allow #+BIND to define local variable values for export
 #+BIND: org-export-allow-bind-keywords t
 
+from https://stackoverflow.com/questions/26636562/org-mode-weirdness-with-org-export-with-sub-superscripts
+:CABECALHO:
+# # desabilita o superscrito/subscrito  | não exporta programação
+#+OPTIONS: ^:nil p:nil
+
+#+OPTIONS: tags:nil
+#+STARTUP: showeverything
+
 don't insert a time stamp into the exported file
 #+BIND: org-export-time-stamp-file nil
 

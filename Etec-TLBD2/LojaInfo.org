@@ -183,7 +183,8 @@ usage: sqlcmd            [-U login id]          [-P password]
   passar esse script pro comando sqlcmd que vai executá-lo e mostrar
   o resultado logo abaixo.
   
-  #+INCLUDE: "./sql_scripts/Exec_sp_databases.sql" src sql
+  #+INCLUDE: "./sql_scripts/Exec_sp_databases.sql"  :only-contents t :src sql 
+
 
   Como você pode perceber, o conteúdo do nosso script é simplesmente
   a execução da Store Procedure sp_databases. O resultado é igual o
@@ -211,7 +212,7 @@ Vamos criá-lo...
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_database.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_database.sql"
+    #+INCLUDE: "./sql_scripts/create_database.sql"  :only-contents t :src sql
 
     #+RESULTS: create_database
     : DATABASE_NAME                                                                                                                    DATABASE_SIZE REMARKS                                                                                                                                                                                                                                                       
@@ -232,7 +233,7 @@ Opa, demos um create database e agora podemos ver que temos o banco.
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_tables.sql"
+    #+INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
 
     #+RESULTS: script_create_tables
     : Changed database context to 'lojainfo'.
@@ -264,7 +265,7 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables_tests.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_tables_tests.sql"
+    #+INCLUDE: "./sql_scripts/create_tables_tests.sql"  :only-contents t :src sql
 
     #+RESULTS: testa_tabelas
     #+begin_example
@@ -335,7 +336,7 @@ como fazer isso blz?
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_contraints.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_contraints.sql"
+    #+INCLUDE: "./sql_scripts/create_contraints.sql"  :only-contents t :src sql
 
     #+RESULTS: script_constraints
     #+begin_example
@@ -446,7 +447,7 @@ já que o select mostra que a tabela venda não retornou registros.
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_constraints_tests.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_constraints_tests.sql"
+    #+INCLUDE: "./sql_scripts/create_constraints_tests.sql"  :only-contents t :src sql
 
     #+RESULTS: Test_relacionamentos
     : Changed database context to 'lojainfo'.
@@ -511,7 +512,7 @@ Tabela de itens da compra do carlos
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/inserts.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/inserts.sql"
+    #+INCLUDE: "./sql_scripts/inserts.sql"  :only-contents t :src sql
 
     #+RESULTS: inserts
     #+begin_example
@@ -607,7 +608,7 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/select_vendas_por_cada_cliente.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/select_vendas_por_cada_cliente.sql"
+    #+INCLUDE: "./sql_scripts/select_vendas_por_cada_cliente.sql"  :only-contents t :src sql
 
     #+RESULTS: vendas por cada cliente
     #+begin_example
@@ -733,7 +734,7 @@ repedir o id da venda pra pode mostrar cada item.
 Se vc quizer mostrar o nome do iten vc vai ter um problema de lógica e
 obviamente um erro do banco já que não dá pra agrupar pelo id da venda
 e mostrar cada item. Mas pensando bem a gente não quer mostrar cada
-iten a gente só quer fazer a soma dos valores de cada item e aí sim
+iten a gente só quer fazer a soma dos valoreses de cada item e aí sim
 teremos apenas um valor pra cada id de venda e aí funciona. Se tiver
 dúvida aqui pergunta pro professor na aula que ele te explica melhor.
 Vamos fazer isso...
@@ -743,7 +744,7 @@ Vamos fazer isso...
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/select_agregacoes.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/select_agregacoes.sql"
+    #+INCLUDE: "./sql_scripts/select_agregacoes.sql"  :only-contents t :src sql
 
     #+RESULTS: select agregacoes
     : Changed database context to 'lojainfo'.

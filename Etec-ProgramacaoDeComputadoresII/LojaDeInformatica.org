@@ -322,3 +322,38 @@ Veja que os arquivos do projeto estão lá também. Compare com os
 arquivos do projeto da sua máquina.
 [[file:./imgs/proj-loja-info-no-github-commit-primeiro2.png]]
 
+
+* agora vamos programar um pouco
+** abra seu eclipse e importe o projeto
+[[file:./imgs/eclipse-import-maven-project1.png]]
+
+file:./imgs/eclipse-import-maven-project2.png
+
+file:./imgs/eclipse-import-maven-project3.png
+
+file:./imgs/eclipse-import-maven-project4.png
+
+file:./imgs/eclipse-import-maven-project5.png
+
+file:./imgs/eclipse-import-maven-project6.png
+
+** vamos criar uma primeira tela swing pra nossa aplicacao
+
+[[file:./imgs/eclipse-2-codigo-tela1.png]]
+
+file:./imgs/eclipse-2-rodando-o-projeto1.png
+
+file:./imgs/eclipse-2-codigo-tela1-executando.png
+
+** criando telas de formularios para cadastrar cliente, hardware
+   
+Como vamos fazer pelo menos tres telas, o que for comum entre elas a
+gente usa uma classe abstrata pra economizar codigo...
+
+[[file:././PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/TelaDeCadastro.java]]
+
+#+INCLUDE: "./PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/TelaDeCadastro.java" :only-contents t :src java
+
+
+
+
