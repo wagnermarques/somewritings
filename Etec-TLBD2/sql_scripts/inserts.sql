@@ -4,9 +4,9 @@ GO
 print N'Lembra que a gente tinha inserido alguns registros só pra mostrar que nossas tabelas haviam sido criadas?'
 print N'Pois é. Agora vamos zerar esses registros'
 print N'Entao, apagando registro anteriores...'
--- delete from tb_clientes;
--- delete from tb_hardware;
--- delete from tb_vendas;
+delete from tb_clientes;
+delete from tb_hardware;
+delete from tb_vendas;
 delete from tb_vendas_itens;
 GO
 
@@ -37,7 +37,7 @@ select * from tb_hardware
 
 print N'=============================================='
 print N'Inserindo a Venda para os clientes Jeferson e Carlos'
---dessa vez vamos desprezar a terceira forma normal pra simplificar.
+print N'dessa vez vamos desprezar a terceira forma normal pra simplificar.'
 insert into tb_vendas values (2,'2018-02-10', 8471, 100, 8371),
  (3,'2018-02-10',1086,0,1086);
 GO
@@ -49,19 +49,19 @@ select * from tb_vendas
 
 print N'=============================================='
 print N'Inserindo itens da compra do Jerferson'
-insert into tb_vendas_itens values (2,4,10, 600.50),
-(2,5,10,3005),
-(2,6,10,1050),
-(2,7,10,809),
-(2,8,10,3002);
+insert into tb_vendas_itens values (3,4,10, 600.50),
+(3,5,10,3005),
+(3,6,10,1050),
+(3,7,10,809),
+(3,8,10,3002);
 
 
 print N'Inserindo itens da compra do Carlos'
-insert into tb_vendas_itens values (2,4,1,60.50),
-(3,5,1,300.50),
-(3,6,1,105),
-(3,7,1,80.9),
-(3,8,1,3002);
+insert into tb_vendas_itens values (4,4,1,60.50),
+(4,5,1,300.50),
+(4,6,1,105),
+(4,7,1,80.9),
+(4,8,1,3002);
 GO
 
 print N'select * from tb_vendas_itens'
