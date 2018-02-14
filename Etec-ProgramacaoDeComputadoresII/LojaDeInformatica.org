@@ -3,7 +3,8 @@
 * Introdução
   Vamos fazer um aplicativo em swing pra uma loja de informática
   pessoal.
-* requisitos
+
+* requisitos pra nossa parte 1 da nossa aplicação
   Primeiro veja se vc tem o maven instalado na sua máquina
   #+name: mvn -version
   #+BEGIN_SRC sh :results output
@@ -57,6 +58,7 @@
   fazer depois de vc ter criado seu repositório.
   [[file:./imgs/github-new-repository-instructions-img.png]]
  
+
 * fazendo o clone do seu repositório pra sua maquina
   O que que é clonar o repositório pra sua máquina? É trazer uma cópia
   do seu repositório que está no github pra sua máquina, mais
@@ -185,6 +187,7 @@
   acho que vale muito a pena agora vc ler
   http://blog.caelum.com.br/processo-de-build-com-o-maven/
 
+
 * usando o git pra ver as alteracoes no respositorio
   Bom, depois que a gente clonou nosso repositório, entramos dentro
   dele e criamos o nosso projeto do maven. Obviamente o nosso
@@ -286,6 +289,7 @@ github. Vamos commitar então...
   :   (use "git branch --unset-upstream" to fixup)
   : nothing to commit, working tree clean
 
+
 * Exercício de criar, ou alterar, arquivo README.md
 Beleza, agora, se o seu projeto já tem o arquivo README.md, altere ele
 explicando do que se trata seu projeto. Depois será necessário apenas
@@ -295,6 +299,7 @@ um com o notepad++ mesmo. Só que aí vc tem que dar um git add , depois
 um git commit.
 Peça ajuda pro seu professor, mas tente fazer primeiro segundo o fluxo
 de trabalho que estudamos até aqui.
+
 
 * dando gitpush pra enviar o proj pro github
 #+NAME: git push1
@@ -354,6 +359,234 @@ gente usa uma classe abstrata pra economizar codigo...
 
 #+INCLUDE: "./PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/TelaDeCadastro.java" :only-contents t :src java
 
+** dando funcionalidade aos botoes
+
+Pra dar a funcionalidade nos botoes a gente colocou esse trecho no
+contrutor de TelaCadClientes...
+#+BEGIN_SRC java
+	this.btnLimpar.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				TelaCadClientes.this.limparFormulario();
+			}
+		});
+		
+		this.btnSalvar.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				TelaCadClientes.this.salvar();
+			}
+		});
+		
+		this.btnCancelar.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Btn cancelar pressionado");
+				TelaCadClientes.this.cancelar();
+			}
+		});
+#+END_SRC
+   
+e também os métodos que os actionsPerformed estão precisando no corpo
+da classe...
+Observe também a anotação @override que denota que essas
+funcionalidades foram previsar na superclasse.
+#+BEGIN_SRC java
+
+	@Override
+	void limparFormulario() {
+		System.out.println("void limparFormulario() {....");
+		this.txtNome.setText("");
+		this.txtEndereco.setText("");
+		this.txtFone.setText("");
+		this.txtEmail.setText("");
+	}
+
+	@Override
+	void salvar() {
+		this.cliente.setNome(this.txtNome.getText());
+		this.cliente.setEndereco(this.txtEndereco.getText());
+		this.cliente.setFone(this.txtFone.getText());
+		this.cliente.setEmail(this.txtEmail.getText());
+		System.out.println("Falta só criar os dao pra salvar "+this.cliente);
+	}
+
+	@Override
+	void cancelar() {
+		System.out.println("void cancelar() {...");
+		this.setVisible(false);
+		this.setBackground(Color.cyan);
+	}
+
+#+END_SRC
+
+** Exercício para casa
+   Fazer os outras telas, a de hardware e a de vendas
+
+** vamos configurar a persistencia com jdbc 
+A classe JdbcUtil vai fornecer uma connexao pra gente... da uma olhada
+nela..
+
+*** classe jdbcUtil
+
+#+INCLUDE: PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/persistence/JdbcUtil.java :src java
+
+O trecho mais importante é o metodo que a gente vai invocar quando a
+gente quizer uma conexao
+#+BEGIN_SRC java
+	public static Connection getConnection() throws SQLException{
+		if(JdbcUtil.conn != null) {
+			return JdbcUtil.conn;
+		}else {
+			return DriverManager.getConnection(
+					JdbcUtil.connectionUrl,
+					JdbcUtil.connectionUsername,
+					JdbcUtil.connectionPassword);
+		}
+	}
+#+END_SRC
+
+
+*** DAO
+
+Bom, essa classe é pra pegar a conexão, agora a gente vai fazer o
+nosso dao pro nosso cliente. O DAO é um padrão de projeto que se chama
+Data Access Object. O professor explica melhor em sala. Dê uma olhada
+no nosso DAO pro cliente.
+
+#+INCLUDE: PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/persistence/ClienteJdbcDAO.java :src java
+
+Essa classe é fácil de entender. toda vez que a gente quizer salvar um
+cliente a gente chama o método salvar dessa classe e assim por
+diante...
 
 
 
+[[file:./o
+
+
+
+
+
+
+
+
+
+*** colocando a dependencia do jdbc no nosso classpah
+O professores vai te explicar o que são essas dependencias e o que é
+classpath.
+Veja que já temos as classes que necessárias pra criar a conexão (Jdbcutil.java) e pra
+usar  a conexão (ClienteJdbcDao.java).
+Além disso nosso botão "SAVLAR" também já aciona direitinho essas
+classes pra salvar um cliente.
+Mas se vc rodar o projeto vai dar erro, porque vc tem que colocar o
+conector do banco de dados no classpath da sua aplicação.
+Pra fazer isso vc deve colocar o seguinte código na sessão
+"<dependencies>' do seu pom.xml...
+
+#+BEGIN_SRC xml
+    <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>6.1.0.jre8</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.6</version>
+    </dependency>    
+#+END_SRC
+Isso importa pro seu projeto os conectores fazendo o donwload deles
+automaticamente e colocando no seu projeto. Veja que tem o conector do
+sqlserver e do mysql.
+
+Só que não basta só fazer o download dessas dependencias, você quer
+que elas acompanhem o executável do seu projeto. Vc vai querer que seu
+jar gerado pela aplicação seja executável nao vai? Claro... não
+estamos desenvolvendo uma api, é um projeto que a gente quer que o
+usuário execute, então vc realmente quer que o seu jar seja
+executável.
+Isso não é totalmente de graça.Vc tem que colocar os seguintes trechos
+no seu pom.xml.
+
+#+BEGIN_SRC xml
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+	<configuration>
+	  <archive>
+	    <manifest>
+	      <addClasspath>true</addClasspath>
+              <mainClass>br.edu.etec.lojainformatica.App</mainClass>
+	      <classpathPrefix>${project.build.outputDirectory}.lib</classpathPrefix>
+	    </manifest>
+	  </archive>
+        </configuration>                                
+      </plugin>
+#+END_SRC
+
+Esse trecho acima faz com que o jar que o maven cria tenha o seu
+arquivo Manifest.MF alterado indicando qual é  sua classe que tem o
+método main que vc quer que execute quanto o usuário executar o seu
+jar e também a configuração do classpath pra que seu projeto gerado
+consiga enxergar os jars de que ele dependente pra executar, no caso
+os jars conectores do banco de dados.
+
+
+O trecho precisa estar no seu pom.xml pra que os jars do seu projeto
+seja copiado pra um local que o seu jar executável possa
+conhecê-los. Leia o xml que vai fazer sentido.. vc vai ver que é um
+plugin do maven pra lidar com dependencias e também que está escrito
+copy lá deixando claro o que ele vai fazer pra gente.
+#+BEGIN_SRC xml
+      <plugin>
+	<artifactId>maven-dependency-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <phase>package</phase>
+	    <goals>
+	      <goal>copy-dependencies</goal>
+	    </goals>
+	    <configuration>
+	      <outputDirectory>${project.build.outputDirectory}.lib</outputDirectory>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+#+END_SRC
+
+Já essa parte de baixo é pra gente rodar o nosso projeto usando o
+comando maven. Nem sempre eu uso, mas se vcs quizerem usar é so dar um
+mvn exec:java br.edu.etec.lojainformatica.App que o projeto
+executa. Isso seria muito útil caso a gente já não tivesse resolvido a
+questão de copiar as dependencias pro nosso pacote (jar)
+executável. Agora que a gente resolveu o problema das dependencias a
+gente pode fazer o seguinte pra rodar o projeto: java -jar target/jardonossoprojeto.jar
+
+
+#+BEGIN_SRC xml
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>1.5.0</version>
+	<executions>
+	  <execution>
+	    <goals>
+	      <goal>java</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <mainClass>br.edu.etec.lojainformatica.App</mainClass>
+	</configuration>
+      </plugin>
+    </plugins>
+
+#+END_SRC
+
+
+
+
+* referencias
+[fn:mvn-jar-plugin] https://maven.apache.org/shared/maven-archiver/examples/manifestFile.html
+[fn:mvn-dependency-plugin] https://maven.apache.org/plugins/maven-dependency-plugin/usage.html

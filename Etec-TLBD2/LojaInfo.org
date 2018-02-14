@@ -233,7 +233,9 @@ Opa, demos um create database e agora podemos ver que temos o banco.
       docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
     #+end_src
 
+
     #+INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
+
 
     #+RESULTS: script_create_tables
     : Changed database context to 'lojainfo'.
