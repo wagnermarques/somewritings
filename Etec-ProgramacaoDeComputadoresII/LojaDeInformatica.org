@@ -4,6 +4,7 @@
   Vamos fazer um aplicativo em swing pra uma loja de informática
   pessoal.
 
+
 * requisitos pra nossa parte 1 da nossa aplicação
   Primeiro veja se vc tem o maven instalado na sua máquina
   #+name: mvn -version
@@ -586,6 +587,7 @@ gente pode fazer o seguinte pra rodar o projeto: java -jar target/jardonossoproj
 
 
 
+** vamos terminar nosso dao
 
 * referencias
 [fn:mvn-jar-plugin] https://maven.apache.org/shared/maven-archiver/examples/manifestFile.html
