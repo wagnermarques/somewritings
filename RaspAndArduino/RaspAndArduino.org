@@ -1,0 +1,20 @@
+#+Title: Anotaoes Importantes (Raspberry & Arduino) Projects
+
+* Motores
+** tipos de motores
+*** FK180SH [fn:RC_Airplane_SU-27_Sukhoi_Twin_180_Motor]
+   Tem de dois modelos: FK-180SH-17140 e FK-180SH-09450 
+   O 09450 recebe 6 a 12V e chega a 7800 rpm e corrente 0,085A.
+
+* Helices
+  Pra aviao com duas helices, tem que olhar que elas tem a indicação
+  de direita e esquerda
+
+* Baterias
+  2S 7,4v
+* referencias
+[fn:RC_Airplane_SU-27_Sukhoi_Twin_180_Motor] https://www.youtube.com/watch?v=YoRfb47oiZY&t=7s
+[fn:pdf-FK-180SH] http://www.amk.sk/obr/mabuchi/fk_180sh.pdf
+[fn:fk180sh3240] http://www.mopselectric.com/ebay/fk180sh3240.pdf
+[fn:ff_e_fk_dcmotors_kaysan] http://www.kysanelectronics.com/Products/Detail.php?recordID=7071
+[fn:ff_e_fk_dcmotors_kaysan_COMPRAR] http://www.kysanelectronics.com/Products/Detail.php?recordID=7071

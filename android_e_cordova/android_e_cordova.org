@@ -1,0 +1,43 @@
+#+Title: Anots.. android_e_cordova 
+
+* workflow básico pra desenvolver com cordova[fn:Create_your_first_Cordova_app]
+cordova create nome_do_seu_app br.edu.eteczl.nome_do_seu_app NomeDoSeuApp
+cd nome_do_seu_app
+cordova platform add ios
+cordova platform add android
+cordova requirements
+cordova build
+cordova emulate android
+Se der um erro de sem.ver == null não permitido, pra plataforma
+android6 use esse fix do operador ternário
+?[fn:fix-sem_ver_null_android640]
+
+* Na hora de rodar vc pode especificar o emulador que vc quizer[fn:android-platfrom-guide]
+  Na sessão "Configure an Emulator"
+  primeiro vc vê quais emuladores vc tem com
+  cordova run android --list
+
+  Depois vc roda de novo com o nome especifico de um dos emuladores
+  que apareceram pra vc
+  cordova run android --target=NOME_DE_UM_DOS_EMULADORES
+
+* pra ver as plataformas disponiveis pra rodar na plataforma android
+cordova run android --list
+
+* testando a plataforma adicionada 
+cordova requirements
+Vc tem que instalar o sdk do android 
+Alem disso o cordova (ate o momento da escrita desse texto) suporta
+apenas api 25 do android, ou seja, android 6 marshmallow[fn:cordova-android-plataform-guide]
+
+
+* verificando o target do projeto
+
+* DONE emulador
+emulator.exe -list-avds 
+
+
+[fn:cordova-android-plataform-guide] https://cordova.apache.org/docs/en/latest/guide/platforms/android/
+[fn:Create_your_first_Cordova_app] https://cordova.apache.org/docs/en/latest/guide/cli/index.html
+[fn:fix-sem_ver_null_android640] https://stackoverflow.com/questions/47018914/cordova-android-emulation-error-cannot-read-property-semver-of-null
+[fn:android-platfrom-guide]  https://cordova.apache.org/docs/en/4.0.0/guide/platforms/android/index.html

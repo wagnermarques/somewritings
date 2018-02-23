@@ -1,0 +1,38 @@
+#+Title: Etec TM Cordova
+
+* Usando o Cordova
+A melhor fonte de informação pra vc aprender a usar o cordova é a
+documentação oficial[fn:cordovadoc]
+
+
+* Instalando o Cordova
+Na máquina do aluno já tá instalado. Depois eu faço um tutorial pra
+vcs instalarem na máquina de vcs
+
+
+* Primeira Aplicação
+
+
+* Template :noexport:
+Template é um modelo que de site que vc pode aplicar no seu projeto
+** usando um template
+Entra no site do npm e pesquisa por "cordova:template"
+Encontrou o template? escolha uma das pções abaixo pra criar o projeto
+usando o template. [fn:cordovatemplates]
+#+BEGIN_SRC sh
+$ cordova create hello com.example.hello HelloWorld --template <npm-package-name>
+$ cordova create hello com.example.hello HelloWorld --template <git-remote-url>
+$ cordova create hello com.example.hello HelloWorld --template <path-to-template>
+#+END_SRC
+** criando um template
+
+
+* android avd[fn:androidemulator]
+** Pra listar os devices: emulator -list-avds
+** Pra executar 
+emulator -avd Nexus_5X_API_23 -netdelay none -netspeed full
+
+* referencias
+[fn:cordovatemplates] https://cordova.apache.org/docs/en/latest/guide/cli/template.html
+[fn:cordovadoc] https://cordova.apache.org/docs/en/latest/
+[fn:androidemulator] https://developer.android.com/studio/run/emulator-commandline.html
