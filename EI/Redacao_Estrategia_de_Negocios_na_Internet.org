@@ -40,58 +40,8 @@ http://www.inovapaulasouza.sp.gov.br/
 
    Plano de negócios para empresas na Internet
    http://www.paqtc.org.br/portal_novo/upload_documento/7455391344622888112.pdf
-
-
-** _7. Identificando e avaliando oportunidades de negócios na Informática_                                                  
-
-   Qual é o seu sonho? 
-   Qual é o seu projeto? 
-   Identificando Oportunidades?
-   Cuidado também pra não ficar correndo atrás de um sonho e perder
-   oportunidades que seriam fantásticas pra vc.
-   É uma questão de sabedoria!!!
-
-*** Ideação e a Criatividade
-**** Exercício 1 de Ideação e Criatividade (Two Words)
-     Pegar duas palavras aleatórias 
-     Utilize essas duas palavras para criar sua companhia fictícia
-     Identifique quais seriam seus clientes
-     O que você venderia para eles
-     E como você faria isso
-**** Exercício 2 de Ideação e Criatividade (Best out of the worst)    
-     Escolha para o colega a pior idéia de negócio possível, por
-     exemplo vender gelo para eskimó, ou celular para bichos de
-     estimação.
-     Agora a tarefa do seu amigo é transmormar essa péssima idéia de
-     negócio em uma boa idéia. Por exemplo: utilizar o gps do celular
-     do animal de estimação em um gps pra sempre localizá-lo. Talvez
-     usar a câmera do celular para vê-lo remotamente.
-
-**** Exercício 3 de Ideação e Criatividade (Mindmapping)        
-     On a large sheet of paper or whiteboard:
-
-     Write the word(s) of your highlighted phrase from the previous section in the middle.
-     For the next 3-5 minutes, you will write the first 3-5 words that come to mind around that word,
-     then subsequently around each of the words of that next layer,
-     and so on. Try to go to at least 3 or 4 layers out.
-     When done, highlight a few of the words on the outside layer.
-     Piece them together into a few potential companies - as serious or as silly as you like!
-
-     An example if your previous reflection highlighted "helping people", then the resulting mindmap may be something like the below.
-     drawing of a mindmap example
-     Example business ideas from the above might include:
-
-     A non-profit to help people with autism to find meaningful careers
-     Crowdfunding for organic farms in Africa
-     Developing medicines for self-esteem growth
-
-     The opportunities are endless!
-     It is especially important that you develop a few layers out and are unrestrictive and write the first things that come to mind when doing the mindmapping, allowing for diversity in words for lots of choice when developing company ideas later. 
-
-
-    Oportunidades de Negócios na Internet para MPEs
-    https://dlq8vi77lxj74.cloudfront.net/media/e55e91b2cc22ba117ba8d1546537f7a4c037cf67/05fa2de99c48086b28d6e7a491a75f6f313af79d/7a28fbfd6d031f78099f1937b9c3e740.pdf
    
+
 ** _9. Apresentação e discussão de casos de sucesso de empreendedorismo_
 *** O empreendedor valoriza pessoas
   Unanimidade: Todos os empreendedores valorizam pessoas. Suas conexões
@@ -145,6 +95,58 @@ https://www.youtube.com/watch?v=3nLHj7Zcwqg acessado em [2017-01-21 Sáb]
 
 [fn:VideoDoMarceloSalesNerd] Palestra Empreendedorismo - As Conexões que Movem a Vida em
 https://www.youtube.com/watch?v=eStNcJ7S7No acessado em [2017-01-21 Sáb]
+
+
+** _7. Identificando e avaliando oportunidades de negócios na Informática_                                                  
+
+   Qual é o seu sonho? 
+   Qual é o seu projeto? 
+   Identificando Oportunidades?
+   Cuidado também pra não ficar correndo atrás de um sonho e perder
+   oportunidades que seriam fantásticas pra vc.
+   É uma questão de sabedoria!!!
+
+*** Ideação e a Criatividade
+**** Exercício 1 de Ideação e Criatividade (Two Words)
+     Pegar duas palavras aleatórias 
+     Utilize essas duas palavras para criar sua companhia fictícia
+     Identifique quais seriam seus clientes
+     O que você venderia para eles
+     E como você faria isso
+**** Exercício 2 de Ideação e Criatividade (Best out of the worst)    
+     Escolha para o colega a pior idéia de negócio possível, por
+     exemplo vender gelo para eskimó, ou celular para bichos de
+     estimação.
+     Agora a tarefa do seu amigo é transmormar essa péssima idéia de
+     negócio em uma boa idéia. Por exemplo: utilizar o gps do celular
+     do animal de estimação em um gps pra sempre localizá-lo. Talvez
+     usar a câmera do celular para vê-lo remotamente.
+
+**** Exercício 3 de Ideação e Criatividade (Mindmapping)        
+
+     On a large sheet of paper or whiteboard:
+
+     Write the word(s) of your highlighted phrase from the previous section in the middle.
+     For the next 3-5 minutes, you will write the first 3-5 words that come to mind around that word,
+     then subsequently around each of the words of that next layer,
+     and so on. Try to go to at least 3 or 4 layers out.
+     When done, highlight a few of the words on the outside layer.
+     Piece them together into a few potential companies - as serious or as silly as you like!
+
+     An example if your previous reflection highlighted "helping people", then the resulting mindmap may be something like the below.
+     drawing of a mindmap example
+     Example business ideas from the above might include:
+
+     A non-profit to help people with autism to find meaningful careers
+     Crowdfunding for organic farms in Africa
+     Developing medicines for self-esteem growth
+
+     The opportunities are endless!
+     It is especially important that you develop a few layers out and are unrestrictive and write the first things that come to mind when doing the mindmapping, allowing for diversity in words for lots of choice when developing company ideas later. 
+
+
+    Oportunidades de Negócios na Internet para MPEs
+    https://dlq8vi77lxj74.cloudfront.net/media/e55e91b2cc22ba117ba8d1546537f7a4c037cf67/05fa2de99c48086b28d6e7a491a75f6f313af79d/7a28fbfd6d031f78099f1937b9c3e740.pdf
 
 
 ** 12. Obtendo conhecimento e inovação:busca/ pesquisa de informações                                                     
@@ -232,7 +234,7 @@ Results / Insights
 
 ** 13. Assegurando a criação                                                                                              
 
-
+   
 * Notas de Rodapé
 
 [fn:VideoMariaDeNazare] https://www.youtube.com/watch?v=JdCwyINYMf0

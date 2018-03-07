@@ -192,15 +192,16 @@ usage: sqlcmd            [-U login id]          [-P password]
 
     #+name: sp_databases
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/Exec_sp_databases.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/Exec_sp_databases.sql
     #+end_src
 
     #+RESULTS: sp_databases
     : DATABASE_NAME                                                                                                                    DATABASE_SIZE REMARKS                                                                                                                                                                                                                                                       
     : -------------------------------------------------------------------------------------------------------------------------------- ------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    : master                                                                                                                                    6144 NULL                                                                                                                                                                                                                                                          
+    : lojainfo                                                                                                                                 16384 NULL                                                                                                                                                                                                                                                          
+    : master                                                                                                                                    6592 NULL                                                                                                                                                                                                                                                          
     : model                                                                                                                                    16384 NULL                                                                                                                                                                                                                                                          
-    : msdb                                                                                                                                     14144 NULL                                                                                                                                                                                                                                                          
+    : msdb                                                                                                                                     15808 NULL                                                                                                                                                                                                                                                          
     : tempdb                                                                                                                                   16384 NULL                                                                                                                                                                                                                                                          
 
 
@@ -209,19 +210,14 @@ Vamos criá-lo...
 
     #+name: create_database
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_database.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_database.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/create_database.sql"  :only-contents t :src sql
 
     #+RESULTS: create_database
-    : DATABASE_NAME                                                                                                                    DATABASE_SIZE REMARKS                                                                                                                                                                                                                                                       
-    : -------------------------------------------------------------------------------------------------------------------------------- ------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    : lojainfo                                                                                                                                 16384 NULL                                                                                                                                                                                                                                                          
-    : master                                                                                                                                    6144 NULL                                                                                                                                                                                                                                                          
-    : model                                                                                                                                    16384 NULL                                                                                                                                                                                                                                                          
-    : msdb                                                                                                                                     14144 NULL                                                                                                                                                                                                                                                          
-    : tempdb                                                                                                                                   16384 NULL                                                                                                                                                                                                                                                          
+    : Msg 1801, Level 16, State 3, Server 39dbf20408b6, Line 1
+    : Database 'lojainfo' already exists. Choose a different database name.
 
 
 Opa, demos um create database e agora podemos ver que temos o banco.
@@ -230,7 +226,7 @@ Opa, demos um create database e agora podemos ver que temos o banco.
 * Criação das tabelas
     #+name: script_create_tables
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
     #+end_src
 
 
@@ -264,7 +260,7 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
 
     #+name: testa_tabelas
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables_tests.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables_tests.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/create_tables_tests.sql"  :only-contents t :src sql
@@ -274,12 +270,16 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
     Changed database context to 'lojainfo'.
     id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
     ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
+              1 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
 
-    (0 rows affected)
+    (1 rows affected)
     id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
     ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+              1 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
+              2 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
+              3 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
 
-    (0 rows affected)
+    (3 rows affected)
     Inserindo alguns clientes...
 
     (1 rows affected)
@@ -294,24 +294,29 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
     id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
     ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
               1 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
+              2 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
 
-    (1 rows affected)
+    (2 rows affected)
     Mostrando os hardwares inseridos
     id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
     ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
               1 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
               2 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
               3 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
+              4 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
+              5 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
+              6 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
 
-    (3 rows affected)
+    (6 rows affected)
     :( Aqui temos um problema inserindo uma venda pro cliente 500 sendo que o cliente 500 nao existe
 
     (1 rows affected)
     id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
     ----------- ----------- ---------------- ---------- ---------- ----------
               1         500       2018-10-02      80.00      10.00      70.00
+              2         500       2018-10-02      80.00      10.00      70.00
 
-    (1 rows affected)
+    (2 rows affected)
     #+end_example
 
 
@@ -511,7 +516,7 @@ Tabela de itens da compra do carlos
 
     #+name: inserts
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/inserts.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/inserts.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/inserts.sql"  :only-contents t :src sql
@@ -523,11 +528,11 @@ Tabela de itens da compra do carlos
     Pois ï¿½. Agora vamos zerar esses registros
     Entao, apagando registro anteriores...
 
-    (1 rows affected)
+    (2 rows affected)
 
-    (3 rows affected)
+    (6 rows affected)
 
-    (0 rows affected)
+    (2 rows affected)
 
     (0 rows affected)
     ==============================================
@@ -537,9 +542,9 @@ Tabela de itens da compra do carlos
     select * from tb_clientes
     id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
     ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
-              2 Jeferson                                           Aguia Haia 123                                                                                       11-99999-9999   jef@dom.com                                                           
-              3 Carlos                                             Aguia Haia 456                                                                                       11-99999-9999   carlos@dom.com                                                        
-              4 Ralf                                               Aguia Haia 789                                                                                       11-99999-9999   ralf@dom.com                                                          
+              3 Jeferson                                           Aguia Haia 123                                                                                       11-99999-9999   jef@dom.com                                                           
+              4 Carlos                                             Aguia Haia 456                                                                                       11-99999-9999   carlos@dom.com                                                        
+              5 Ralf                                               Aguia Haia 789                                                                                       11-99999-9999   ralf@dom.com                                                          
 
     (3 rows affected)
     ==============================================
@@ -549,11 +554,11 @@ Tabela de itens da compra do carlos
     select * from tb_hardware
     id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
     ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-              4 gabinete                                                             61         100          10 NULL                                                                                                                                                                                                                                                            
-              5 processador                                                         301         100          10 NULL                                                                                                                                                                                                                                                            
-              6 placa m?e                                                           101         100          10 NULL                                                                                                                                                                                                                                                            
-              7 Dico R?gido                                                          81         100          10 NULL                                                                                                                                                                                                                                                            
-              8 Monitor                                                             300         100          10 NULL                                                                                                                                                                                                                                                            
+              7 gabinete                                                             61         100          10 NULL                                                                                                                                                                                                                                                            
+              8 processador                                                         301         100          10 NULL                                                                                                                                                                                                                                                            
+              9 placa m?e                                                           101         100          10 NULL                                                                                                                                                                                                                                                            
+             10 Dico R?gido                                                          81         100          10 NULL                                                                                                                                                                                                                                                            
+             11 Monitor                                                             300         100          10 NULL                                                                                                                                                                                                                                                            
 
     (5 rows affected)
     ==============================================
@@ -607,7 +612,7 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
    
     #+name: vendas por cada cliente
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/select_vendas_por_cada_cliente.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/select_vendas_por_cada_cliente.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/select_vendas_por_cada_cliente.sql"  :only-contents t :src sql

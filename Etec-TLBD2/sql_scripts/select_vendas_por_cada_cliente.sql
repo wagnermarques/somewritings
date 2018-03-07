@@ -1,13 +1,14 @@
 use lojainfo;
 GO
-Select "Selec * tb_vendas"
+Select "Select * tb_vendas"
 select * from tb_vendas;
 print N' Ei mas aqui nao tem todos os clientes, e o ralf?'
 print N' Vamos ter que usar o tb_clientes porque é nela que tem todos os clientes'
 select * from tb_clientes c join tb_vendas v on c.id_cliente = v.id_cliente;
+
 print N' É mas ainda nao apareceu todos os clientes e sim só os que compraram alguma coisa.'
 print N' Pra que aparece todos os clientes, mesmo que que nao tenham vendas pra eles...'
-print N' precimas incluílos todos com left join'
+print N' precisamos incluílos todos com left join'
 select c.id_cliente as IdClienteDaTblCliente,
        v.id_cliente as IdClienteDaTblVendas,
        c.nome from

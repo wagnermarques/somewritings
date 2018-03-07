@@ -30,7 +30,7 @@ $ cordova create hello com.example.hello HelloWorld --template <path-to-template
 * android avd[fn:androidemulator]
 ** Pra listar os devices: emulator -list-avds
 ** Pra executar 
-emulator -avd Nexus_5X_API_23 -netdelay none -netspeed full
+   emulator -avd Nexus_5X_API_23 -netdelay none -netspeed full
 
 * referencias
 [fn:cordovatemplates] https://cordova.apache.org/docs/en/latest/guide/cli/template.html
