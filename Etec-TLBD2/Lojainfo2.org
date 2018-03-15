@@ -214,8 +214,11 @@
 
 * Funcao data
   #+Name: funcao replace
-  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "145-146"
-
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "145-189"
+* Criando uma funcao
+  #+Name: funcao replace
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "191-200"
+  
 
 * Rodando o script inteiro
   #+NAME: runscript
@@ -323,7 +326,7 @@
   Adiciona 30 dias a data @Dta
   @DTA e getdate()       
   -----------------------
-  2018-03-15 04:39:12.730
+  2018-03-15 18:54:52.650
 
   (1 rows affected)
   Data + 30 Dias  
@@ -358,32 +361,17 @@
   (1 rows affected)
   Parte HORA de getdate()
   -----------------------
-                        4
+                       18
 
   (1 rows affected)
   Parte MIN de getdate()
   ----------------------
-                      39
+                      54
 
   (1 rows affected)
   Parte SEG de getdate()
   ----------------------
-                      12
-
-  (1 rows affected)
-
-  ------------------------------
-  March                         
-
-  (1 rows affected)
-
-  -----------
-            0
-
-  (1 rows affected)
-
-  ----------- ----------- -----------
-            1           1        1900
+                      52
 
   (1 rows affected)
   ######## CRIANDO FUNCAO
@@ -398,17 +386,4 @@
   Msg 102, Level 15, State 1, Server 39dbf20408b6, Procedure OBTER_CLIENTES_QUE_NAO_COMPRARAM_NADA, Line 2
   Incorrect syntax near '*'.
   #+end_example
-
-
-
-
-
-
-
-
-
-
-
-  
-
 
