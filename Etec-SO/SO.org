@@ -1,0 +1,68 @@
+#+Title:Sistemas Operacionais
+* O que é um SO
+Gerenciamento de Recursos
+Máquina Extendida
+* História dos SOs
+O primeiro computador verdadeiramente digital foi projetado pelo
+matemático inglês Charles Babbage (1792-1871).
+* A primeira geração (1945-1955): válvulas
+O professor John Atanasoff e seu aluno de graduação Clifford Berry
+-primeiro computador digital funcional na Universidade do Estado de
+Iowa. Ele usava 300 válvulas.
+
+Konrad Zuse em Berlim construiu o computador Z3 a partir de relés eletromagnéticos.
+
+Em 1944, o Colossus - grupo de cientistas (incluindo Alan Turing)
+Mark I- em Bletch ley Park, Inglaterra,  Howard Aiken, em Harvard
+
+ENIAC -William Mauchley e seu aluno de graduação J. Presper Eckert na Universidade da Pensilvânia
+
+único grupo de pessoas (normalmente
+engenheiros) projetava, construía, programava, operava
+e mantinha cada máquina
+
+código de máquina absoluto, ou, ligando circuitos elétricos através da
+conexão de milhares de cabos a painéis de ligações para controlar as
+funções básicas da máquina
+
+Ninguém tinha ouvido falar ainda de sistemas operacionais. 
+
+* A segunda geração (1955-1965): transistores e sistemas em lote (batch)
+introdução do transistor em meados dos anos 1950
+computadores de grande porte (mainframes)
+
+* A terceira geração (1965-1980): CIs e multiprogramação
+A IBM tentou solucionar o problema de linhas de computadores com uma
+única tacada introduzindo o System/360
+O IBM 360 foi a primeira linha importante de com-
+putadores a usar CIs (circuitos integrados) de peque-
+na escala
+sempre que
+uma tarefa sendo executada terminava, o sistema ope-
+racional podia carregar uma nova tarefa do disco para
+a partição agora vazia e executá-la. Essa técnica é cha-
+mada de spooling (da expressão Simultaneous Peri-
+pheral Operation On Line)
+
+Esse desejo por um tempo de resposta rápido abriu
+o caminho para o timesharing (compartilhamento de
+tempo), uma variante da multiprogramação
+
+MULTICS (MULTiplexed
+Information and Computing Service- Serviço de
+Computação e Informação Multiplexada)
+
+Apesar da falta de sucesso comercial, o MULTICS
+teve uma influência enorme em sistemas operacionais
+subsequentes (especialmente UNIX e seus derivativos,
+FreeBSD, Linux, iOS e Android)
+
+* A quarta geração (1980-presente):computadores pessoais
+Com o desenvolvimento dos circuitos integrados em larga escala (Large
+Scale Integration - LSI)
+Intel lançou o 8080,
+
+* A quinta geração (1990-presente):computadores móveis
+O primeiro telefone verdadeiramente móvel foi cria-
+do na década de 1970 e, pesando cerca de um quilo,
+era positivamente um peso-pena.

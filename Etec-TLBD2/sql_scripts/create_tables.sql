@@ -40,5 +40,5 @@ create table tb_vendas_itens(
 GO
 
 -- pra ver se as tabelas foram criadas mesmo....
-SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '%'
+-- SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '%'
 

@@ -1,3 +1,21 @@
+use master;
+
+drop database lojainfo
+go
+
+CREATE DATABASE lojainfo;
+-- Exec sp_databases;
+Go
+
+
+use lojainfo;
+-- Exec sp_tables
+
+:r create_tables.sql
+-- Exec sp_tables
+
+:r create_tables_tests.sql
+
 
 /*
 https://technet.microsoft.com/pt-br/library/ms187953(v=sql.105).aspx
@@ -123,3 +141,65 @@ SELECT FLOOR(123.45), FLOOR(-123.45), FLOOR($123.45);
 PRINT N'================================================================='
 GO
 
+
+PRINT N'########FUNCOES DATA'
+DECLARE @DTA DATETIME;
+SELECT  @DTA = GETDATE()
+
+PRINT N'########FUNCOES DATAADD'
+PRINT N'DATEADD (datepart, number, date)'
+PRINT N'Adiciona 30 dias a data @Dta'
+SELECT @DTA as '@DTA e getdate()'
+
+DECLARE @DTAMAIS30 DATE;
+SELECT @DTAMAIS30 = DATEADD(DAY, 30, GETDATE())
+SELECT @DTAMAIS30 AS 'Data + 30 Dias'
+
+PRINT N'########FUNCOES DATADIFF'
+PRINT N'DATEDIFF (datepart, startdate, enddate)'
+PRINT N'Retorna um inteiro que pode representar anos, meses, horas, minutos, segundos ou milisegundos'
+DECLARE @QTOS_DIAS_DESSE_ANO int;
+SELECT @QTOS_DIAS_DESSE_ANO = DATEDIFF(DAY, '01/01/2018', GETDATE())
+SELECT @QTOS_DIAS_DESSE_ANO AS 'N de dias desse ano'
+
+
+PRINT N''
+
+PRINT N'########FUNCOES DATEPART (datepart, date)'
+DECLARE @DATE_PART_MES INT;
+DECLARE @DATE_PART_ANO INT;
+DECLARE @DATE_PART_DIA INT;
+DECLARE @DATE_PART_HORA INT;
+DECLARE @DATE_PART_MIN INT;
+DECLARE @DATE_PART_SEG INT;
+
+SELECT @DATE_PART_ANO = DATEPART(YEAR, @DTA)
+SELECT @DATE_PART_MES = DATEPART(MONTH, @DTA)
+SELECT @DATE_PART_DIA = DATEPART(DAY, @DTA)
+SELECT @DATE_PART_HORA = DATEPART(hour, @DTA)
+SELECT @DATE_PART_MIN = DATEPART(minute, @DTA)
+SELECT @DATE_PART_SEG = DATEPART(second, @DTA)
+
+SELECT @DATE_PART_ANO AS 'Parte ANO de getdate()'
+SELECT @DATE_PART_MES AS 'Parte MES de getdate()'
+SELECT @DATE_PART_DIA AS 'Parte DIA de getdate()'
+SELECT @DATE_PART_HORA AS 'Parte HORA de getdate()'
+SELECT @DATE_PART_MIN AS 'Parte MIN de getdate()'
+SELECT @DATE_PART_SEG AS 'Parte SEG de getdate()'
+
+
+PRINT N'######## CRIANDO FUNCAO'
+PRINT N'funcao escalar soma 1+2 e mostra o resultado'
+GO -- ESSE GO é pra gente nao tomar o erro:  'CREATE FUNCTION' must be the first statement in a query batch.
+CREATE FUNCTION SOMA(@a INT , @b INT) RETURNS INT
+       AS
+       BEGIN
+         RETURN @a+@b
+       END 
+Go
+
+SELECT dbo.SOMA(1,2)
+
+Go
+CREATE FUNCTION OBTER_CLIENTES_QUE_NAO_COMPRARAM_NADA()
+RETURNS (SELECT *

@@ -62,7 +62,7 @@
   diretorio /sql_scripts onde esta nossos scripts que vamos rodar.
   #+name docker run mssqlserver
   #+begin_src sh
-    docker run --name mssql-server -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs mssql-server  
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs mssql-server  
   #+end_src
 
   #+RESULTS:
@@ -75,7 +75,7 @@
   no container.
   #+name docker verifica pasta sql_script 
   #+begin_src sh
-    docker exec mssql-server ls
+    docker exec sqlserver ls
   #+end_src
 
   #+RESULTS:
@@ -124,129 +124,53 @@
   : 
   : Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
 
-** dropando o banco pra quando quizer comecar do zero
-    Esse script serve simplesmente pra dropar o banco
-    A gente dropa o banco as vezes quando queremos rodar os nossos
-    scripts do zero
-    #+name: drop_database
-    #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/drop_database.sql
-    #+end_src
-
-    #+RESULTS: drop_database
-    : Changed database context to 'master'.
-
-
 * o comando sqlcmd
+   Esse comando é só pra demostrar que nosso container sqlserver está
+   funcionando e também pra demonstrar como utilizar o comando sqlcmd.
   #+name: sqlcmd
   #+begin_src sh :results output replace  :exports both
- docker exec mssql-server /opt/mssql-tools/bin/sqlcmd
-#+end_src
+  docker exec mssql-server /opt/mssql-tools/bin/sqlcmd
+  #+end_src
 
-#+RESULTS:
-#+begin_example
-Microsoft (R) SQL Server Command Line Tool
-Version 13.1.0007.0 Linux
-Copyright (c) 2012 Microsoft. All rights reserved.
-
-usage: sqlcmd            [-U login id]          [-P password]
-  [-S server or Dsn if -D is provided] 
-  [-H hostname]          [-E trusted connection]
-  [-N Encrypt Connection][-C Trust Server Certificate]
-  [-d use database name] [-l login timeout]     [-t query timeout]
-  [-h headers]           [-s colseparator]      [-w screen width]
-  [-a packetsize]        [-e echo input]        [-I Enable Quoted Identifiers]
-  [-c cmdend]
-  [-q "cmdline query"]   [-Q "cmdline query" and exit]
-  [-m errorlevel]        [-V severitylevel]     [-W remove trailing spaces]
-  [-u unicode output]    [-r[0|1] msgs to stderr]
-  [-i inputfile]         [-o outputfile]
-  [-k[1|2] remove[replace] control characters]
-  [-y variable length type display width]
-  [-Y fixed length type display width]
-  [-p[1] print statistics[colon format]]
-  [-R use client regional setting]
-  [-K application intent]
-  [-M multisubnet failover]
-  [-b On error batch abort]
-  [-D Dsn flag, indicate -S is Dsn] 
-  [-X[1] disable commands, startup script, environment variables [and exit]]
-  [-x disable variable substitution]
-  [-? show syntax summary]
-#+end_example
-
+*  dropando o banco pra quando quizer comecar do zero
+    Essa parte do script serve simplesmente pra dropar o banco
+    A gente dropa o banco as vezes quando queremos rodar os nossos
+    scripts do zero.
+    NANE: drop_database
+    INCLUDE: ./sql_scripts/aula_funcoes.sql 
 
 * Criacao do Banco de dados
   O script abaixo é o conteúdo do arquivo  script
+
   Exec_sp_databases.sql.  
+
   Seque o conteúdo do script. A gente vai
   passar esse script pro comando sqlcmd que vai executá-lo e mostrar
   o resultado logo abaixo.
   
   #+INCLUDE: "./sql_scripts/Exec_sp_databases.sql"  :only-contents t :src sql 
 
-
   Como você pode perceber, o conteúdo do nosso script é simplesmente
-  a execução da Store Procedure sp_databases. O resultado é igual o
-  show databases do mysql, por exemplo.
+  a execução da Store Procedure sp_databases. 
+  O resultado é igual o show databases do mysql, por exemplo.
 
-    #+name: sp_databases
-    #+begin_src sh :results output replace  :exports both
-      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/Exec_sp_databases.sql
-    #+end_src
+  Bom agora a gente vai rodar o script aula_funcoes.sql. O escript á
+  apresentado logo abaixo pra vc conhece-lo.
 
-    #+RESULTS: sp_databases
-    : DATABASE_NAME                                                                                                                    DATABASE_SIZE REMARKS                                                                                                                                                                                                                                                       
-    : -------------------------------------------------------------------------------------------------------------------------------- ------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    : lojainfo                                                                                                                                 16384 NULL                                                                                                                                                                                                                                                          
-    : master                                                                                                                                    6592 NULL                                                                                                                                                                                                                                                          
-    : model                                                                                                                                    16384 NULL                                                                                                                                                                                                                                                          
-    : msdb                                                                                                                                     15808 NULL                                                                                                                                                                                                                                                          
-    : tempdb                                                                                                                                   16384 NULL                                                                                                                                                                                                                                                          
+  Estamos te mostrando só o pedaço do script que cria o banco de
+  dados. 
 
+  #+Name: create database
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "6
 
-Olhando aí o resultado a gente vê que não tem o nosso banco. 
-Vamos criá-lo...
-
-    #+name: create_database
-    #+begin_src sh :results output replace  :exports both
-      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_database.sql
-    #+end_src
-
-    #+INCLUDE: "./sql_scripts/create_database.sql"  :only-contents t :src sql
-
-    #+RESULTS: create_database
-    : Msg 1801, Level 16, State 3, Server 39dbf20408b6, Line 1
-    : Database 'lojainfo' already exists. Choose a different database name.
-
-
-Opa, demos um create database e agora podemos ver que temos o banco.
-
+  Rodando sp_databases de novo vc vai ver que o banco foi criado
+  
 
 * Criação das tabelas
-    #+name: script_create_tables
-    #+begin_src sh :results output replace  :exports both
-      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables.sql
-    #+end_src
-
-
-    #+INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
-
-
-    #+RESULTS: script_create_tables
-    : Changed database context to 'lojainfo'.
-    : TABLE_CATALOG                                                                                                                    TABLE_SCHEMA                                                                                                                     TABLE_NAME                                                                                                                       TABLE_TYPE
-    : -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ----------
-    : lojainfo                                                                                                                         dbo                                                                                                                              tb_clientes                                                                                                                      BASE TABLE
-    : lojainfo                                                                                                                         dbo                                                                                                                              tb_hardware                                                                                                                      BASE TABLE
-    : lojainfo                                                                                                                         dbo                                                                                                                              tb_vendas                                                                                                                        BASE TABLE
-    : lojainfo                                                                                                                         dbo                                                                                                                              tb_vendas_itens                                                                                                                  BASE TABLE
-    : 
-    : (4 rows affected)
-
-
-
-
+  
+  Instruções sql pra criação das tabelas.
+  NAME:create_tables.sql
+  INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
 
 * Testa tabelas e mostra necessidade dos relacionamentos
 
@@ -254,7 +178,8 @@ Opa, demos um create database e agora podemos ver que temos o banco.
   tabela inserindo e depois dando um select.
 
 Você vai aprender com esse script também que apesar de a gente ter
-nossas tabelas não dá pra usar ainda. Vc vai ver o erro de inserir na
+nossas tabelas não dá pra usar elas ainda, em uma aplicação, por
+exemplo. Vc vai ver o erro de inserir na
 tabela uma venda pra um cliente que não existe. :( 
 A próxima sessão dessa atividade vai mostrar como resolver isso.
 
@@ -263,72 +188,17 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
       docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables_tests.sql
     #+end_src
 
-    #+INCLUDE: "./sql_scripts/create_tables_tests.sql"  :only-contents t :src sql
+    INCLUDE: "./sql_scripts/create_tables_tests.sql"
 
-    #+RESULTS: testa_tabelas
-    #+begin_example
-    Changed database context to 'lojainfo'.
-    id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
-    ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
-              1 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
-
-    (1 rows affected)
-    id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
-    ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-              1 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
-              2 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
-              3 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
-
-    (3 rows affected)
-    Inserindo alguns clientes...
-
-    (1 rows affected)
-    Inserindo alguns hardwares...
-
-    (1 rows affected)
-
-    (1 rows affected)
-
-    (1 rows affected)
-    Mostrando os clientes inseridos
-    id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
-    ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
-              1 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
-              2 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
-
-    (2 rows affected)
-    Mostrando os hardwares inseridos
-    id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
-    ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-              1 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
-              2 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
-              3 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
-              4 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
-              5 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
-              6 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
-
-    (6 rows affected)
-    :( Aqui temos um problema inserindo uma venda pro cliente 500 sendo que o cliente 500 nao existe
-
-    (1 rows affected)
-    id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
-    ----------- ----------- ---------------- ---------- ---------- ----------
-              1         500       2018-10-02      80.00      10.00      70.00
-              2         500       2018-10-02      80.00      10.00      70.00
-
-    (2 rows affected)
-    #+end_example
-
-
-
-Entao, perceba vc que id_cliente nao tem cadastrado. Entao isso torna
-o banco inconsistente. Não queremos isso. O seu diretor não quer
-isso. Vc tem que usar uma constraint pra que o banco nao deixe isso
-acontecer, ou seja, que o banco retorne uma mensagem pra quem for o
-engraçadinho ou mal informado que for fazer isso.
+    
+    Entao, perceba vc que id_cliente nao tem cadastrado. Entao isso torna
+    o banco inconsistente. Não queremos isso. O seu diretor não quer
+    isso. Vc tem que usar uma constraint pra que o banco nao deixe isso
+    acontecer, ou seja, que o banco retorne uma mensagem pra quem for o
+    engraçadinho ou mal informado que for fazer isso.
   
-Então preste atenção na próxima sessão dessa atividade pra você saber
-como fazer isso blz?
+    Então preste atenção na próxima sessão dessa atividade pra você saber
+    como fazer isso blz?
 
 
 * Relacionamentos
@@ -340,7 +210,7 @@ como fazer isso blz?
 
     #+name: script_constraints
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_contraints.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_contraints.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/create_contraints.sql"  :only-contents t :src sql
@@ -356,7 +226,7 @@ como fazer isso blz?
     Vamos ver as definicoes das tabelas tb_venas e tb_vendas_itens
     Name                                                                                                                             Owner                                                                                                                            Type                            Created_datetime       
     -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ------------------------------- -----------------------
-    tb_vendas                                                                                                                        dbo                                                                                                                              user table                      2018-02-13 15:51:26.333
+    tb_vendas                                                                                                                        dbo                                                                                                                              user table                      2018-03-11 17:09:38.260
 
 
     Column_name                                                                                                                      Type                                                                                                                             Computed                            Length      Prec  Scale Nullable                            TrimTrailingBlanks                  FixedLenNullInSource                Collation                                                                                                                       
@@ -382,13 +252,13 @@ como fazer isso blz?
 
     index_name                                                                                                                       index_description                                                                                                                                                                                                  index_keys                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    PK__tb_venda__4595B5AB01D2896E                                                                                                   clustered, unique, primary key located on PRIMARY                                                                                                                                                                  id_venda                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    PK__tb_venda__4595B5ABCB2F8095                                                                                                   clustered, unique, primary key located on PRIMARY                                                                                                                                                                  id_venda                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
     constraint_type                                                                                                                                                                                                                                                  constraint_name                                                                                                                  delete_action update_action status_enabled status_for_replication constraint_keys                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ------------- ------------- -------------- ---------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     FOREIGN KEY                                                                                                                                                                                                                                                      fk_vda_cli                                                                                                                       No Action     No Action     Enabled        Is_For_Replication     id_cliente                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                         REFERENCES lojainfo.dbo.tb_clientes (id_cliente)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-    PRIMARY KEY (clustered)                                                                                                                                                                                                                                          PK__tb_venda__4595B5AB01D2896E                                                                                                   (n/a)         (n/a)         (n/a)          (n/a)                  id_venda                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    PRIMARY KEY (clustered)                                                                                                                                                                                                                                          PK__tb_venda__4595B5ABCB2F8095                                                                                                   (n/a)         (n/a)         (n/a)          (n/a)                  id_venda                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
     Table is referenced by foreign key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
     ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -396,7 +266,7 @@ como fazer isso blz?
     No views with schema binding reference table 'tb_vendas'.
     Name                                                                                                                             Owner                                                                                                                            Type                            Created_datetime       
     -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ------------------------------- -----------------------
-    tb_vendas_itens                                                                                                                  dbo                                                                                                                              user table                      2018-02-13 15:51:26.337
+    tb_vendas_itens                                                                                                                  dbo                                                                                                                              user table                      2018-03-11 17:09:38.263
 
 
     Column_name                                                                                                                      Type                                                                                                                             Computed                            Length      Prec  Scale Nullable                            TrimTrailingBlanks                  FixedLenNullInSource                Collation                                                                                                                       
@@ -421,13 +291,13 @@ como fazer isso blz?
 
     index_name                                                                                                                       index_description                                                                                                                                                                                                  index_keys                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    PK__tb_venda__87C9438BBDBADE45                                                                                                   clustered, unique, primary key located on PRIMARY                                                                                                                                                                  id_item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    PK__tb_venda__87C9438BD387A30C                                                                                                   clustered, unique, primary key located on PRIMARY                                                                                                                                                                  id_item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
     constraint_type                                                                                                                                                                                                                                                  constraint_name                                                                                                                  delete_action update_action status_enabled status_for_replication constraint_keys                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ------------- ------------- -------------- ---------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     FOREIGN KEY                                                                                                                                                                                                                                                      fk_itens_vda                                                                                                                     No Action     No Action     Enabled        Is_For_Replication     id_venda                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                                                                                                                                                                                                                         REFERENCES lojainfo.dbo.tb_vendas (id_venda)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-    PRIMARY KEY (clustered)                                                                                                                                                                                                                                          PK__tb_venda__87C9438BBDBADE45                                                                                                   (n/a)         (n/a)         (n/a)          (n/a)                  id_item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    PRIMARY KEY (clustered)                                                                                                                                                                                                                                          PK__tb_venda__87C9438BD387A30C                                                                                                   (n/a)         (n/a)         (n/a)          (n/a)                  id_item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
     No foreign keys reference table 'tb_vendas_itens', or you do not have permissions on referencing tables.
     No views with schema binding reference table 'tb_vendas_itens'.
@@ -451,7 +321,7 @@ Obviamente não foi possível inserir essa venda no mínimo problemática
 já que o select mostra que a tabela venda não retornou registros.
     #+name: Test_relacionamentos
     #+begin_src sh :results output replace  :exports both
-      docker exec mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_constraints_tests.sql
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_constraints_tests.sql
     #+end_src
 
     #+INCLUDE: "./sql_scripts/create_constraints_tests.sql"  :only-contents t :src sql
@@ -459,7 +329,7 @@ já que o select mostra que a tabela venda não retornou registros.
     #+RESULTS: Test_relacionamentos
     : Changed database context to 'lojainfo'.
     : Vamos inserir denovo aquela venda pra um cliente que nao existe
-    : Msg 547, Level 16, State 1, Server 48726b8c1f1b, Line 3
+    : Msg 547, Level 16, State 1, Server 39dbf20408b6, Line 3
     : The INSERT statement conflicted with the FOREIGN KEY constraint "fk_vda_cli". The conflict occurred in database "lojainfo", table "dbo.tb_clientes", column 'id_cliente'.
     : The statement has been terminated.
     : id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
@@ -621,8 +491,8 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
     #+begin_example
     Changed database context to 'lojainfo'.
 
-    -----------------
-    Selec * tb_vendas
+    ------------------
+    Select * tb_vendas
 
     (1 rows affected)
     id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
@@ -635,18 +505,17 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
      Vamos ter que usar o tb_clientes porque ï¿½ nela que tem todos os clientes
     id_cliente  nome                                               endereco                                                                                             fone            email                                                                  id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
     ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ---------------------------------------------------------------------- ----------- ----------- ---------------- ---------- ---------- ----------
-              2 Jeferson                                           Aguia Haia 123                                                                                       11-99999-9999   jef@dom.com                                                                      3           2       2018-02-10    8471.00     100.00    8371.00
-              3 Carlos                                             Aguia Haia 456                                                                                       11-99999-9999   carlos@dom.com                                                                   4           3       2018-02-10    1086.00        .00    1086.00
+              3 Jeferson                                           Aguia Haia 123                                                                                       11-99999-9999   jef@dom.com                                                                      4           3       2018-02-10    1086.00        .00    1086.00
 
-    (2 rows affected)
+    (1 rows affected)
      ï¿½ mas ainda nao apareceu todos os clientes e sim sï¿½ os que compraram alguma coisa.
      Pra que aparece todos os clientes, mesmo que que nao tenham vendas pra eles...
-     precimas incluï¿½los todos com left join
+     precisamos incluï¿½los todos com left join
     IdClienteDaTblCliente IdClienteDaTblVendas nome                                              
     --------------------- -------------------- --------------------------------------------------
-                        2                    2 Jeferson                                          
-                        3                    3 Carlos                                            
-                        4                 NULL Ralf                                              
+                        3                    3 Jeferson                                          
+                        4                 NULL Carlos                                            
+                        5                 NULL Ralf                                              
 
     (3 rows affected)
 
@@ -660,9 +529,9 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
      Ja que os itens estao relacionados com idVenda, vamos incluir o campo id venda na projecao da nossa query
     IdClienteDaTblCliente IdClienteDaTblVendas nomeCliente                                        IdVendaDaTblVendas
     --------------------- -------------------- -------------------------------------------------- ------------------
-                        2                    2 Jeferson                                                            3
-                        3                    3 Carlos                                                              4
-                        4                 NULL Ralf                                                             NULL
+                        3                    3 Jeferson                                                            4
+                        4                 NULL Carlos                                                           NULL
+                        5                 NULL Ralf                                                             NULL
 
     (3 rows affected)
      O resultado acima mostra que nem todos os registros de clientes tem uma venda associada
@@ -687,34 +556,25 @@ Analise o código abaixo pra ver como chegamos a um sql pra resolver
       Agora vai a nossa query pra mostrar do lado direito os itens de cada compra
     IdClienteDaTblCliente IdClienteDaTblVendas nomeCliente                                        IdVendaDaTblVendas idItem      idHardware  qtde        vlrTotItem
     --------------------- -------------------- -------------------------------------------------- ------------------ ----------- ----------- ----------- ----------
-                        2                    2 Jeferson                                                            3           1           4          10     600.50
-                        2                    2 Jeferson                                                            3           2           5          10    3005.00
-                        2                    2 Jeferson                                                            3           3           6          10    1050.00
-                        2                    2 Jeferson                                                            3           4           7          10     809.00
-                        2                    2 Jeferson                                                            3           5           8          10    3002.00
-                        3                    3 Carlos                                                              4           6           4           1      60.50
-                        3                    3 Carlos                                                              4           7           5           1     300.50
-                        3                    3 Carlos                                                              4           8           6           1     105.00
-                        3                    3 Carlos                                                              4           9           7           1      80.90
-                        3                    3 Carlos                                                              4          10           8           1    3002.00
+                        3                    3 Jeferson                                                            4           6           4           1      60.50
+                        3                    3 Jeferson                                                            4           7           5           1     300.50
+                        3                    3 Jeferson                                                            4           8           6           1     105.00
+                        3                    3 Jeferson                                                            4           9           7           1      80.90
+                        3                    3 Jeferson                                                            4          10           8           1    3002.00
 
-    (10 rows affected)
+    (5 rows affected)
       Agora vai a nossa query pra mostrar do lado direito os itens de cada compra
     IdClienteDaTblCliente IdClienteDaTblVendas nomeCliente                                        IdVendaDaTblVendas idItem      idHardware 
     --------------------- -------------------- -------------------------------------------------- ------------------ ----------- -----------
-                        2                    2 Jeferson                                                            3           1           4
-                        2                    2 Jeferson                                                            3           2           5
-                        2                    2 Jeferson                                                            3           3           6
-                        2                    2 Jeferson                                                            3           4           7
-                        2                    2 Jeferson                                                            3           5           8
-                        3                    3 Carlos                                                              4           6           4
-                        3                    3 Carlos                                                              4           7           5
-                        3                    3 Carlos                                                              4           8           6
-                        3                    3 Carlos                                                              4           9           7
-                        3                    3 Carlos                                                              4          10           8
-                        4                 NULL Ralf                                                             NULL        NULL        NULL
+                        3                    3 Jeferson                                                            4           6           4
+                        3                    3 Jeferson                                                            4           7           5
+                        3                    3 Jeferson                                                            4           8           6
+                        3                    3 Jeferson                                                            4           9           7
+                        3                    3 Jeferson                                                            4          10           8
+                        4                 NULL Carlos                                                           NULL        NULL        NULL
+                        5                 NULL Ralf                                                             NULL        NULL        NULL
 
-    (11 rows affected)
+    (7 rows affected)
     #+end_example
 
 
@@ -763,3 +623,6 @@ Vamos fazer isso...
     :                  4 Carlos                                                                              3548.90
     : 
     : (2 rows affected)
+
+* script completo
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql src sql 

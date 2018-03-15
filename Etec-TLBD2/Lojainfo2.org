@@ -1,0 +1,414 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+Title: Atividade 1 - Loja de Informática
+
+* Introdução
+  Olá pessoal, dê uma olhada, por favor, aí na imagem pra compreender
+  a atividade, ok?
+  [[file:LojaInfo.png]]
+
+* preparando o ambiente :noexport:
+** Instalação do mssqlserver no linux
+*** Fazendo pull da imagem do mssqlserver
+    Primeiro você deve fazer o pull da imagem container
+    Claro que pra usar o comando docker vc precisa instalar ele
+    também. No meu caso estou usando a versão indicada abaixo. 
+    Tem muitos tutorials sobre como instalar o docker no google.
+    #+name: docker version
+    #+begin_src sh  :eval exports  :results output replace  :exports both
+    docker --version
+    #+end_src
+
+    #+RESULTS:
+    : Docker version 1.12.6, build ae7d637/1.12.6
+
+
+    Com o docker funcionando, você pode fazer o pull da imagem do
+    mssqlserver
+    #+name: docker pull mssqlserver
+    #+begin_src sh  :results output replace  :exports both
+    docker pull microsoft/mssql-server-linux:latest
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    latest: Pulling from microsoft/mssql-server-linux
+    f6fa9a861b90: Already exists
+    da7318603015: Already exists
+    6a8bd10c9278: Already exists
+    d5a40291440f: Already exists
+    bbdd8a83c0f1: Already exists
+    3a52205d40a6: Already exists
+    6192691706e8: Already exists
+    1a658a9035fb: Already exists
+    827975ce0c02: Already exists
+    ea7199b7fbb6: Already exists
+    Digest: sha256:ff4bd7961f6c788d980953ae4edbb7cfc7e604dfe2b702fc26548080254c522a
+    Status: Image is up to date for microsoft/mssql-server-linux:latest
+    #+end_example
+
+*** rodando o mssqllserver
+   Agora você tem que rodar o container, e depois, checar se o seu container está rodando
+  #+name docker ps
+  #+begin_src sh
+  docker ps
+  #+end_src
+
+  #+RESULTS:
+  : CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+  Aqui a gente roda nosso container pra obter uma instancia do
+  mssqlserver rodando. Repare que o sqlserver tera a disposicao o
+  diretorio /sql_scripts onde esta nossos scripts que vamos rodar.
+  #+name docker run mssqlserver
+  #+begin_src sh
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs mssql-server  
+  #+end_src
+
+  #+RESULTS:
+  : 48726b8c1f1bf8698f80524e25f9006e67ce720dafcc2fe613884f527b3cf1d1
+
+  
+  Será que nosso container tem mesmo um diretório /sql_scripts?
+  Tem que ter né, porque é lá que estarão nossos script que vamos
+  rodar. Vamos conferir se tem mesmo então... Pra isso é só dar um ls
+  no container.
+  #+name docker verifica pasta sql_script 
+  #+begin_src sh
+    docker exec sqlserver ls
+  #+end_src
+
+  #+RESULTS:
+  | bin         |
+  | boot        |
+  | core        |
+  | dev         |
+  | etc         |
+  | home        |
+  | install.sh  |
+  | lib         |
+  | lib64       |
+  | media       |
+  | mnt         |
+  | opt         |
+  | proc        |
+  | root        |
+  | run         |
+  | sbin        |
+  | sql_scripts |
+  | srv         |
+  | sys         |
+  | tmp         |
+  | usr         |
+  | var         |
+  
+  Então pela saída acima tá comprovado que nossa pastinha de scripts
+  tá... 
+
+
+  Agora você pode dar uma conferida se a porta 1433 está aberta. Pra
+  isso você pode usar o nmap. Tem que instala-lo.
+  #+name checando porta 1433
+  #+begin_src sh  :eval exports  :results output replace  :exports both
+  nmap 172.17.0.1
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : Starting Nmap 7.40 ( https://nmap.org ) at 2018-02-10 11:42 -02
+  : Nmap scan report for 172.17.0.1
+  : Host is up (0.00042s latency).
+  : Not shown: 999 closed ports
+  : PORT     STATE SERVICE
+  : 1433/tcp open  ms-sql-s
+  : 
+  : Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
+
+* o comando sqlcmd
+   Esse comando, abaixo, é só pra demostrar que nosso container sqlserver está
+   funcionando e também pra demonstrar como utilizar o comando sqlcmd.
+  #+name: sqlcmd
+  #+begin_src sh :results output replace  :exports both
+  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd
+  #+end_src
+
+  #+RESULTS: sqlcmd
+  #+begin_example
+  Microsoft (R) SQL Server Command Line Tool
+  Version 13.1.0007.0 Linux
+  Copyright (c) 2012 Microsoft. All rights reserved.
+
+  usage: sqlcmd            [-U login id]          [-P password]
+    [-S server or Dsn if -D is provided] 
+    [-H hostname]          [-E trusted connection]
+    [-N Encrypt Connection][-C Trust Server Certificate]
+    [-d use database name] [-l login timeout]     [-t query timeout]
+    [-h headers]           [-s colseparator]      [-w screen width]
+    [-a packetsize]        [-e echo input]        [-I Enable Quoted Identifiers]
+    [-c cmdend]
+    [-q "cmdline query"]   [-Q "cmdline query" and exit]
+    [-m errorlevel]        [-V severitylevel]     [-W remove trailing spaces]
+    [-u unicode output]    [-r[0|1] msgs to stderr]
+    [-i inputfile]         [-o outputfile]
+    [-k[1|2] remove[replace] control characters]
+    [-y variable length type display width]
+    [-Y fixed length type display width]
+    [-p[1] print statistics[colon format]]
+    [-R use client regional setting]
+    [-K application intent]
+    [-M multisubnet failover]
+    [-b On error batch abort]
+    [-D Dsn flag, indicate -S is Dsn] 
+    [-X[1] disable commands, startup script, environment variables [and exit]]
+    [-x disable variable substitution]
+    [-? show syntax summary]
+  #+end_example
+  
+* dropando o banco pra quando quizer comecar do zero
+  Conforme a gente tem feito em sala de aula, a gente quer sempre que
+  o nosso script drope o banco e começe sempre do zero.
+  Segue abaixo a parte do script que serve simplesmente pra dropar o banco.
+
+  #+NANE: drop_database
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql  :src sql  :lines "-5"
+
+* Criacao do Banco de dados
+  #+Name: create database
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "6-10"
+
+  Rode Exec sp_databases pra confirmar que o banco foi criado
+
+* Criando as as tabelas
+  Eis aqueles create tables basicoes
+  #+INCLUDE: ./sql_scripts/create_tables.sql  :only-contents t :src sql 
+
+* Testando se as tabelas foram criadas mesmo
+  #+INCLUDE: ./sql_scripts/create_tables_tests.sql  :only-contents t :src sql 
+
+* Basicão de variáveis
+  #+Name: basicao de variaveis
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "24-35"
+  
+* Funcao Charindex
+  #+Name: funcao charindex
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "42-70"
+
+* Funcao concat
+  #+Name: funcao concat
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "79-81"
+
+* Funcao trim
+  #+Name: funcao trim
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "85-93"
+
+* Funcao replace
+  #+Name: funcao replace
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "96-105"
+
+* Funcao Ceiling
+  #+Name: funcao replace
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "121-130"
+
+* Funcao floor
+  #+Name: funcao replace
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "103-142"
+
+* Funcao data
+  #+Name: funcao replace
+  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "145-146"
+
+
+* Rodando o script inteiro
+  #+NAME: runscript
+  #+BEGIN_SRC sh :results output
+  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/aula_funcoes.sql
+  #+END_SRC
+
+  #+RESULTS: runscript
+  #+begin_example
+  Changed database context to 'master'.
+  Changed database context to 'lojainfo'.
+  ########BASICAO DE VARIAVEIS
+
+  -----------
+            0
+
+  (1 rows affected)
+
+  -----------
+            1
+
+  (1 rows affected)
+  ===================================
+  ########FUNCAO CHARINDEX
+  CHARINDEX: bicicle
+
+  -----------
+           48
+
+  (1 rows affected)
+  CHARINDEX: are
+
+  -----------
+           12
+
+  (1 rows affected)
+  CHARINDEX: ARE
+
+  -----------
+           12
+
+  (1 rows affected)
+  CHARINDEX: Ref
+
+  -----------
+            1
+
+  (1 rows affected)
+  CHARINDEX: ect
+
+  -----------
+            5
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCAO CONCAT
+  Result                        
+  ------------------------------
+  Happy Birthday 11/25          
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCAO TRIM
+
+  -----------------------------------------------------
+  Five spaces are at the beginning of this string.     
+  Five spaces are at the beginning of this string.     
+  Five spaces are at the beginning of this string.     
+  Five spaces are at the beginning of this string.     
+  Five spaces are at the beginning of this string.     
+
+  (5 rows affected)
+  =================================================================
+  ########FUNCAO REPLACE
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  abxxxfghixxx                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCAO STRING
+
+  ------
+   123.5
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCAO CEILING
+
+  --------------------- --------------------- ---------------------
+               124.0000             -123.0000                 .0000
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCAO FLOOR
+
+  ------- ------- ---------------------
+      123    -124              123.0000
+
+  (1 rows affected)
+  =================================================================
+  ########FUNCOES DATA
+  ########FUNCOES DATAADD
+  DATEADD (datepart, number, date)
+  Adiciona 30 dias a data @Dta
+  @DTA e getdate()       
+  -----------------------
+  2018-03-15 04:39:12.730
+
+  (1 rows affected)
+  Data + 30 Dias  
+  ----------------
+        2018-04-14
+
+  (1 rows affected)
+  ########FUNCOES DATADIFF
+  DATEDIFF (datepart, startdate, enddate)
+  Retorna um inteiro que pode representar anos, meses, horas, minutos, segundos ou milisegundos
+  N de dias desse ano
+  -------------------
+                   73
+
+  (1 rows affected)
+
+  ########FUNCOES DATEPART (datepart, date)
+  Parte ANO de getdate()
+  ----------------------
+                    2018
+
+  (1 rows affected)
+  Parte MES de getdate()
+  ----------------------
+                       3
+
+  (1 rows affected)
+  Parte DIA de getdate()
+  ----------------------
+                      15
+
+  (1 rows affected)
+  Parte HORA de getdate()
+  -----------------------
+                        4
+
+  (1 rows affected)
+  Parte MIN de getdate()
+  ----------------------
+                      39
+
+  (1 rows affected)
+  Parte SEG de getdate()
+  ----------------------
+                      12
+
+  (1 rows affected)
+
+  ------------------------------
+  March                         
+
+  (1 rows affected)
+
+  -----------
+            0
+
+  (1 rows affected)
+
+  ----------- ----------- -----------
+            1           1        1900
+
+  (1 rows affected)
+  ######## CRIANDO FUNCAO
+  funcao escalar soma 1+2 e mostra o resultado
+
+  -----------
+            3
+
+  (1 rows affected)
+  Msg 102, Level 15, State 1, Server 39dbf20408b6, Procedure OBTER_CLIENTES_QUE_NAO_COMPRARAM_NADA, Line 2
+  Incorrect syntax near '('.
+  Msg 102, Level 15, State 1, Server 39dbf20408b6, Procedure OBTER_CLIENTES_QUE_NAO_COMPRARAM_NADA, Line 2
+  Incorrect syntax near '*'.
+  #+end_example
+
+
+
+
+
+
+
+
+
+
+
+  
+
+

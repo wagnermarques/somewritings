@@ -1,2 +1,2 @@
 create database lojainfo
-Exec sp_databases
+-- Exec sp_databases
