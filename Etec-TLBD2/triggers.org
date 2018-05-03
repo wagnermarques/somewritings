@@ -1,0 +1,195 @@
+#+Title: Triggers
+
+* preparativos :noexport:
+  
+  #+BEGIN_SRC emacs-lisp
+  (message "emacs-lisp code...")
+  #+END_SRC
+
+  #+RESULTS:
+  : emacs-lisp code...
+
+
+  Tem que lembrar de subir o container com esse commando pra
+  disponibilizar os scripts na pasta /sql_scripts
+  #+name docker run sqlserver
+  #+begin_src shell
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs sqlserver  
+  #+end_src
+
+  #+RESULTS:
+  : d306760168a10a184bd82b92f5c7671ca22c90e239f9007941c48ff3fc4e3d4e
+
+  Agora, esse comando demostra que os scripts estao disponiveis
+  #+name: ls /sql_scripts
+  #+begin_src shell :results output replace  :exports both
+     docker exec sqlserver ls -l /sql_scripts
+  #+end_src
+
+  #+RESULTS: ls /sql_scripts
+  #+begin_example
+  total 76
+  -rw-rw-r-- 1 1000 1000 2741 May  3 19:10 #aula_triggers.sql#
+  -rw-rw-r-- 1 1000 1000   18 Feb  1 19:45 Exec_sp_databases.sql
+  -rw-rw-r-- 1 1000 1000  676 Feb 10 14:24 LojaInfo_create_table.sql
+  -rw-rw-r-- 1 1000 1000 5738 Mar 15 04:40 aula_funcoes.sql
+  -rw-rw-r-- 1 1000 1000  677 Mar  9 01:17 aula_funcoes2.sql
+  -rw-rw-r-- 1 1000 1000 3943 Mar 15 19:05 aula_funcoes_old.sql
+  -rw-rw-r-- 1 1000 1000  270 May  3 15:43 aula_trigers.sql
+  -rw-rw-r-- 1 1000 1000 2740 May  3 19:08 aula_triggers.sql
+  -rw-rw-r-- 1 1000 1000  172 Feb 10 21:40 create_constraints_tests.sql
+  -rw-rw-r-- 1 1000 1000  779 Feb 10 21:11 create_contraints.sql
+  -rw-rw-r-- 1 1000 1000   46 Mar 15 03:05 create_database.sql
+  -rw-rw-r-- 1 1000 1000 1015 Mar 15 03:10 create_tables.sql
+  -rw-rw-r-- 1 1000 1000  799 Feb 10 20:56 create_tables_tests.sql
+  -rw-rw-r-- 1 1000 1000  109 Feb 13 16:06 drop_database.sql
+  -rw-rw-r-- 1 1000 1000 1918 Feb 13 15:50 inserts.sql
+  -rw-rw-r-- 1 1000 1000 2359 Mar 23 23:11 lojainfo_sqlserver_storeprocedures.sql
+  -rw-rw-r-- 1 1000 1000  475 Feb 13 16:15 select_agregacoes.sql
+  -rw-rw-r-- 1 1000 1000 2942 Mar  7 04:22 select_vendas_por_cada_cliente.sql
+  #+end_example
+
+
+
+
+  Agora sim podemos rodar algum script, vamos rodar o script da nossa aula
+  #+name: runscript
+  #+begin_src shell :results output replace  :exports both
+     docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/aula_triggers.sql
+  #+end_src
+
+  #+RESULTS: runscript
+  #+begin_example
+  Changed database context to 'master'.
+  #######################################
+  ####    MOSTRANDO OS BANCOS       ####
+  #######################################
+  DATABASE_NAME                                                                                                                    DATABASE_SIZE REMARKS                                                                                                                                                                                                                                                       
+  -------------------------------------------------------------------------------------------------------------------------------- ------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  lojainfo                                                                                                                                 16384 NULL                                                                                                                                                                                                                                                          
+  master                                                                                                                                    6144 NULL                                                                                                                                                                                                                                                          
+  model                                                                                                                                    16384 NULL                                                                                                                                                                                                                                                          
+  msdb                                                                                                                                     14016 NULL                                                                                                                                                                                                                                                          
+  tempdb                                                                                                                                   16384 NULL                                                                                                                                                                                                                                                          
+  #######################################
+  ####   CRIANDO AS TABELAS         ####
+  #######################################
+  Changed database context to 'lojainfo'.
+  ########################################################
+  ####   mostrando que nao tem dados nas tabelas     ####
+  ########################################################
+  id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
+  ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
+
+  (0 rows affected)
+  id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
+  ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  (0 rows affected)
+  ########################################################
+  ####   inserindo registros     ####
+  ########################################################
+  Inserindo alguns clientes...
+
+  (1 rows affected)
+  #####Inserindo alguns hardwares...
+
+  (1 rows affected)
+
+  (1 rows affected)
+
+  (1 rows affected)
+  #####Mostrando os clientes inseridos
+  id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
+  ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
+            1 jeferson                                           av eteczl 1                                                                                          11-99999-9999   email...                                                              
+
+  (1 rows affected)
+  #####Mostrando os hardwares inseridos
+  id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
+  ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            1 gabinete                                                             50          10          10 NULL                                                                                                                                                                                                                                                            
+            2 processador                                                          50          10          10 NULL                                                                                                                                                                                                                                                            
+            3 placa mae                                                            50          10          10 NULL                                                                                                                                                                                                                                                            
+
+  (3 rows affected)
+  #####:( Aqui temos um problema inserindo uma venda pro cliente 500 sendo que o cliente 500 nao existe
+
+  (1 rows affected)
+  id_venda    id_cliente  data             vlr_total  desconto   vlr_pago  
+  ----------- ----------- ---------------- ---------- ---------- ----------
+            1         500       2018-10-02      80.00      10.00      70.00
+
+  (1 rows affected)
+  #######################################
+  #### MOSTRANDO AS TABELAS DO BANCO ####
+  #######################################
+  TABLE_QUALIFIER                                                                                                                  TABLE_OWNER                                                                                                                      TABLE_NAME                                                                                                                       TABLE_TYPE                       REMARKS                                                                                                                                                                                                                                                       
+  -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- -------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  (0 rows affected)
+  Msg 111, Level 15, State 1, Server d306760168a1, Line 10
+  'CREATE TRIGGER' must be the first statement in a query batch.
+  ###################################################
+  #### inserindo um reg pra ver a trigger rodar  ####
+  ###################################################
+  Msg 8152, Level 16, State 4, Server d306760168a1, Line 7
+  String or binary data would be truncated.
+  The statement has been terminated.
+  ###################################################
+  #### select na nossa tbl de auditoria          ####
+  ###################################################
+  id_cliente  nome                                               endereco                                                                                             fone            email                                                                  acao_de_auditoria                                                                                    data_de_autidoria
+  ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ---------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- -----------------
+
+  (0 rows affected)
+  #+end_example
+
+  
+    
+* O que são triggers
+  Conhecido como gatilhos de códigos, ou seja, códigos que devem ser
+  ativados (rodados) automaticamente quando ocorre operações DML.
+
+* Tipos de trigggers
+  Triggers do tipo After (Depois de alguma instrução sql ocorrer)
+  Triggers do tipo Instead (Substitui alguma instrução sql pelo código
+  da trigger)
+
+* cuidado com erros comuns
+  'CREATE TRIGGER' must be the first statement in a query batch.
+
+* Exemplos de triggers do tipo after
+  
+    AFTER INSERT Trigger
+    AFTER UPDATE Trigger
+    AFTER DELETE Trigger
+
+    #+BEGIN_SRC sql
+    CREATE TRIGGER trgAfterInsertCliente ON [dbo].[lojainfo] 
+    FOR INSERT
+    AS
+    declare @cliid int;
+    declare @clinome varchar(100);
+    declare @cliend varchar(100);
+    declare @clifone varchar(100);
+    declare @cliemail varchar(100);
+
+    declare @audit_action varchar(100);
+    
+    select @cliid=i.id_cliente from inserted i;	
+    select @clinome=i.nome from inserted i;	
+    select @cliend=i.endereco from inserted i;	
+    select @clifone=i.fone from inserted i
+    select @cliemail=i.email from inserted i
+
+    set @audit_action='Registro Inserido -- [Triger do tipo Afet Insert].';
+
+    insert into tb_clientes_auditoria
+    (id_cliente,nome,endereco,fone,email,acao_de_auditoria,data_de_auditoria) 
+    values(@cliid,@clinome,@cliend,@clifone,@cliemail,@audit_action,getdate());
+    
+    PRINT 'FIM DA EXECUCAO DA TRIGUER after inser cliente.'
+    GO
+    #+END_SRC
+
