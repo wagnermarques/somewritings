@@ -1,7 +1,16 @@
+#+Title: Emacs org-mode
+* Apresentação
+  Sobre o org-mode... 
+* Links
+** Externos[fn:External-links]
+   [[ http://www.astro.uva.nl/~dominik ]] para um site externo
+   [[doi:10.1000/182]] 
+   
 * Inserindo uma data (timestamp) no documento
   C-c ! (org-time-stamp-inactive) Insere um timestamp que nao gera uma
   entrada na agenda do org-mode
   [2017-01-18 Qua]
+
 * Inserindo uma data do calendário
   C-c <
   <2017-01-19 Qui>
@@ -449,3 +458,6 @@ O valor "output" significa...
      #+END_SRC
      
      
+
+* foootnotes
+[fn:[fn:External-links] https://orgmode.org/manual/External-links.html
