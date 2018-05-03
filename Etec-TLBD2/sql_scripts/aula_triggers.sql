@@ -27,13 +27,14 @@ create table  tb_clientes(
 )
 
 create table  tb_clientes_auditoria(
-       id_cliente int PRIMARY KEY identity(1,1),
+       id_auditoria int PRIMARY KEY identity(1,1),
+       id_cliente int,
        nome nvarchar(50) not null,
        endereco nvarchar(100),
        fone nvarchar(15),
        email nvarchar(70),
-       acao_de_auditoria nvarchar(100),
-       data_de_autidoria date
+       acao_de_auditoria nvarchar(255),
+       data_de_auditoria datetime
 )
 
 create table tb_hardware(
@@ -110,8 +111,9 @@ https://technet.microsoft.com/pt-br/library/ms187953(v=sql.105).aspx
 PRINT '#######################################'
 PRINT '####CRIANDO NOSSA PRIMEIRA TRIGGER ####'
 PRINT '#######################################'
+Go
 
-    CREATE TRIGGER trgAfterInsertCliente ON [dbo].[lojainfo] 
+    CREATE TRIGGER trgAfterInsertCliente ON tb_clientes 
     FOR INSERT
     AS
     declare @cliid int;
@@ -128,11 +130,11 @@ PRINT '#######################################'
     select @clifone=i.fone from inserted i
     select @cliemail=i.email from inserted i
 
-    set @audit_action='Registro Inserido -- [Triger do tipo Afet Insert].';
+    set @audit_action='Registro Inserido -- [Triger do tipo Afet Insert na tb_clientes].';
 
-    insert into tb_clientes_auditoria
-    (id_cliente,nome,endereco,fone,email,acao_de_auditoria,data_de_auditoria) 
+    insert into tb_clientes_auditoria (id_cliente,nome,endereco,fone,email,acao_de_auditoria,data_de_auditoria) 
     values(@cliid,@clinome,@cliend,@clifone,@cliemail,@audit_action,getdate());
+
     
     PRINT 'FIM DA EXECUCAO DA TRIGUER after inser cliente.'
     GO
@@ -142,7 +144,7 @@ PRINT '###################################################'
 PRINT '#### inserindo um reg pra ver a trigger rodar  ####'
 PRINT '###################################################'
 
-insert into tb_clientes values ('jefersonTrig','av eteczl 1Trig', '11-99999-9999Trig','emailTrig...')
+insert into tb_clientes values ('jefTrig','av 1Trig', '11-9999Trig','emailTrig...')
 
 PRINT '###################################################'
 PRINT '#### select na nossa tbl de auditoria          ####'
