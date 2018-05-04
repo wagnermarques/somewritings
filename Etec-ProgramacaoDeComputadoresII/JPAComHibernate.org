@@ -81,7 +81,7 @@
   Lembrando que vc tem que adequar as configurações pro seu ambiente
   O prof te ajuda...
 
-  #+INCLUDE:PC2LojaDeInformatica/lojainformatica/src/main/resources/hibernate.cfg.xml :src xml
+  #+INCLUDE:./PC2LojaDeInformatica/lojainformatica/src/main/resources/hibernate.cfg.xml :src xml
 
 
   O que é é importante ressaltar nesse arquivo hibernate.cfg.xml é o
@@ -144,5 +144,71 @@ Aqui nós estamos indicando quais são as classes que o hibernate vai
 considerar pra construir o banco. Essas classes tem que estar
 anotadas.
 
+
+* Anotação das classes
+  
+  As classes tem que ter pelo menos duas anotações...
+  #+BEGIN_SRC java
+  package br.edu.etec.lojainformatica.model;
+
+  import javax.persistence.*;
+
+  @Entity
+  public class Cliente {
+
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id_cliente;
+	private String nome;
+	private String endereco;
+	private String fone;
+	private String email;
+
+  #+END_SRC
+
+  A anotação @Entity e a anotação @Id.  A entity significa que essa
+  classe é uma classe em que suas instancias serão mantidas no banco
+  de dados utilizando JPA. 
+  A anotação @Id indica qual o campo que serã a chave primária
+  A anotação opcional
+  @GeneratedValue(strategy=GenerationType.IDENTITY) indica que
+  queremos que nossa chave primária deve ser autonumeração.
+
+
+* Obtendo uma sessão
+  Lembra que a gente utilizava uma classe JdbcUtil.java que tinha um
+  método estático getConnection o qual retornava um conexão...
+  Agora termos uma classe HibernateUtil com um método estático que
+  retorna uma sessão do hibernate.
+  
+  Segue nossa classe pra gente conhecer...
+  
+  #+INCLUDE:./PC2LojaDeInformatica/lojainformatica/src/main/java/br/edu/etec/lojainformatica/persistence/HibernateUtil.java :src java
+
+
+* Agora, persistindo uma instancia de cliente
+  
+  Bom, o padrão DAO a gente já conhecia.
+
+#+BEGIN_SRC java
+	public static void main(String[] args) {
+		//App app = new App();
+		
+          
+		Cliente c1 = new Cliente();      
+                c1.setNome("Huguinho");
+                c1.setEndereco("End do Huguinho");
+                c1.setFone("1234");       
+		
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        
+		ClienteHibernateDAO<Cliente> clienteDao = new ClienteHibernateDAO<Cliente>(session);
+		clienteDao.beginTransaction();
+                clienteDao.persistir(c1);  
+                clienteDao.commit();
+                clienteDao.closeSession();
+                
+	}
+#+END_SRC
 
 
