@@ -84,3 +84,65 @@
   #+INCLUDE:PC2LojaDeInformatica/lojainformatica/src/main/resources/hibernate.cfg.xml :src xml
 
 
+  O que é é importante ressaltar nesse arquivo hibernate.cfg.xml é o
+  seguinte...
+
+  O sessão do arquivo mais importante é o session-factory...
+  por isso que depois no código, qdo vc for utilizar o hibernate, vc
+  vai ver que vc cria uma session... 
+  Bom então faz muito sentido essa sessão do xml chamar session
+  factory porque é exatamente a configuração do session que vc vai
+  obter pelo código.
+  Por enquanto vc precisa entender somente que a session é o acesso ao
+  banco mais algumas funcionaldiades importantes do hibernate.
+
+  Esse parte configuraçã a conexão com o banco utilizando aqueles
+  mesmos parametros que utilizamos antes quando utilizávamos apenas o
+  jdbc puro, sem o hibernate.
+  #+BEGIN_SRC xml
+      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <property name="connection.url">jdbc:mysql://192.168.33.151/lojainfo?serverTimezone=UTC</property>
+      <property name="connection.username">root</property>
+      <property name="connection.password">admin123</property>
+  #+END_SRC
+
+
+  #+BEGIN_SRC xml
+  <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+  #+END_SRC
+
+  Pra entender essa sessão vc só precisa lembrar que cada banco tem um
+  dialeto diferente de sql, então estamos utilizando o dialeto do
+  mysql.
+
+  #+BEGIN_SRC xml  
+      <!-- Echo all executed SQL to stdout -->
+      <property name="show_sql">true</property>
+  #+END_SRC
+
+  Esse true avisa hibernate que queremos que ele nos mostre todos os
+  sqls que ele contruir pra interagir com o banco de dados.
+  
+#+BEGIN_SRC xml     
+      <!-- Database DDL behavior-->
+      <property name="hibernate.hbm2ddl.auto">update</property>
+#+END_SRC
+
+Esse "update" significa que queremos que o hibernate mantenha o nosso
+banco sempre modificado conforme as alterações que fazemos nas nossas entities.
+
+#+BEGIN_SRC xml
+       <!-- 
+      <property name="hibernate.hbm2ddl.auto">create-drop</property>
+      -->
+      <mapping class="br.edu.etec.lojainformatica.model.Cliente" />
+      <mapping class="br.edu.etec.lojainformatica.model.Hardware" />
+      <mapping class="br.edu.etec.lojainformatica.model.Vendas" />
+#+END_SRC
+
+Aqui nós estamos indicando quais são as classes que o hibernate vai
+considerar pra construir o banco. Essas classes tem que estar
+anotadas.
+
+
+
