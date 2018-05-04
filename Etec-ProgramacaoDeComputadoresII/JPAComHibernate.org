@@ -66,16 +66,21 @@
   version da dependencia, mas o bom é usar boas práticas bem como a prática de mercado que é
   usar o properties porque assim fica mais simpes mudar de versão no
   futuro. 
-  
-  Pom na integra:
+
+  Pom, na integra...
   #+INCLUDE:PC2LojaDeInformatica/lojainformatica/pom.xml :src xml
   
-  Por enquanto não se preocupe com os plugins,  a gente vai conhecer
-  eles depois quando for o caso... :)
 
-* Agora que vc já tem o hibernate disponível tem que configurá-lo
   
-  Pra isso vc usa um arquivo com esse nome:
-  hibernate.cfg.xml
-  Segue o arquivo na íntegra...
+* Configurar o Hibernate
+  A gente configura toda a conexão e demais caractarísitcas de
+  funcionamento do hibernate utillizando o arquivo hibernate.cfg.xml
+  Vc vai colocar esse arquivo em DIRETORIO_DO_SEU_PROJETO/src/main/resources/hibernate.cfg.xml
   
+  Segue o meu Hibernete.cfg.xml que utilizei pra fazer essa aula, 
+  Lembrando que vc tem que adequar as configurações pro seu ambiente
+  O prof te ajuda...
+
+  #+INCLUDE:PC2LojaDeInformatica/lojainformatica/src/main/resources/hibernate.cfg.xml :src xml
+
+
