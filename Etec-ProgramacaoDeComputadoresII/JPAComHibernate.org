@@ -1,0 +1,81 @@
+#+Title: Configurando JPA com Hibernate
+
+* O que é JPA e Hibernate
+  A gente viu isso na aula teórica... :))
+
+
+* Passo a passo pra usar JPA com Hibernate
+  Primeiro, você precisa do hibernate propriamente dito
+  Ou vc faz o donwload na mão ou simplesmente coloca as seguintes
+  dependencia no seu pom.xml
+
+  Por favor, nao vai esquecer que tem que ser dentro da tag 'dependecies'
+
+  #+BEGIN_SRC xml
+    <!-- JPA 2.1 COM Hibernate 5 -->
+    <!-- Hibernate -->
+    <!-- Hibernate Core -->
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${version.hibernate}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${version.hibernate}</version>
+      <scope>runtime</scope>
+    </dependency>                
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>${version.hibernate-jpa-2.1-api}</version>
+    </dependency>
+    
+    <!-- c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.2</version>
+    </dependency>  
+  #+END_SRC
+
+  Lembrando que precisamos fornecer o valor para a versão do
+  hibernate-entitymanager e do hibernate-core porque o que term de
+  informação é uma sintaxe do maven pra coleta-las como uma tag da
+  sessao properties do pom indicada respectivamente por
+  ${version.hibernate} e ${version.hibernate-jpa-2.1-api}
+
+  Essa sintaxe está dizendo que o maven vai procurar o valor da versão
+  respectivamente na tab <version.hibernate> e
+  <version.hibernate-jpa-2.1-api> que estejam dentro da sessão
+  properties do seu pom. Segue a sessão properties do pom e na
+  sequencia o pom inteiro na integra pra vcs verem...
+  
+  #+BEGIN_SRC xml
+  <properties>
+    <version.hibernate>5.2.2.Final</version.hibernate>
+    <version.hibernate-jpa-2.1-api>1.0.0.Final</version.hibernate-jpa-2.1-api>
+  </properties>
+  #+END_SRC
+
+  Lembrando que dá pra colocar esses valores diretamente na tag
+  version da dependencia, mas o bom é usar boas práticas bem como a prática de mercado que é
+  usar o properties porque assim fica mais simpes mudar de versão no
+  futuro. 
+  
+  Pom na integra:
+  #+INCLUDE:PC2LojaDeInformatica/lojainformatica/pom.xml :src xml
+  
+  Por enquanto não se preocupe com os plugins,  a gente vai conhecer
+  eles depois quando for o caso... :)
+
+* Agora que vc já tem o hibernate disponível tem que configurá-lo
+  
+  Pra isso vc usa um arquivo com esse nome:
+  hibernate.cfg.xml
+  Segue o arquivo na íntegra...
+  
