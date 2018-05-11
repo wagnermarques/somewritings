@@ -1,6 +1,6 @@
 #+Title: Triggers
 
-* preparativos :noexport:
+* preparativos                                                     :noexport:
   
   #+BEGIN_SRC emacs-lisp
   (message "emacs-lisp code...")

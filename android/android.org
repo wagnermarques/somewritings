@@ -1,0 +1,154 @@
+#+Title: Comandos do android
+
+* Preparando o ambiente
+  Preparar um ambiente pra programar com o android requer instalar
+  algumas ferramentas.
+  
+  Por enquanto, estou usando apenas esse script que já revela o que
+  precisou ser instalado. Depois eu melhoro isso.
+
+  #+INCLUDE: ./scripts/environment_setup.sh :src shell
+
+  #+SESSSION: sessao1
+  #+NAME: environment_setup_check_variables.sh
+  #+BEGIN_SRC sh :results code :exports both
+  source ./scripts/environment_setup.sh
+  bash ./scripts/environment_setup_check_variables.sh
+  #+END_SRC
+
+  #+RESULTS: environment_setup_check_variables.sh
+  #+BEGIN_SRC sh
+  $ANDROID_HOME=
+  /home/wagner/PROGSATIVOS/androidSdk
+  $JAVA_HOME=
+  /home/wagner/PROGSATIVOS/jdk1.8.0_161
+  $GRADLE_HOME=
+  /home/wagner/PROGSATIVOS/gradle-4.6-rc-2
+  $PATH=
+  /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_151/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.5.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/sqlite:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/hsqldb/bin:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/tools:/platform-tools:/home/wagner/PROGSATIVOS/gradle-4.6-rc-2/bin
+  #+END_SRC
+
+
+
+
+* Criar nosso primeiro projeto
+  Pra obter uma ajuda do comando android create project rode o
+  seguinte escript
+
+  Pra criar um projeto utilize esse comando...
+
+  #+BEGIN_SRC sh :exports both
+  #!/bin/bash
+  source ./scripts/environment_setup.sh
+  projectName=projhello
+  projectPath=./projetos/$projectName
+  projectMainActivity=MainActivity
+  projectPackage=br.com.androidproject.project
+  android \
+      create project --target 1 \
+      --name $projectName \
+      --path $projectPath \
+      --activity $projectMainActivity \
+      --package $projectPackage
+  #+END_SRC
+
+  #+RESULTS:
+  | Created | project   | directory:                                                                                                                         | ./projetos/projhello |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/src/br/com/androidproject/project |                      |
+  | Added   | file      | ./projetos/projhello/src/br/com/androidproject/project/MainActivity.java                                                           |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res                               |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/bin                               |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/libs                              |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res/values                        |                      |
+  | Added   | file      | ./projetos/projhello/res/values/strings.xml                                                                                        |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res/layout                        |                      |
+  | Added   | file      | ./projetos/projhello/res/layout/main.xml                                                                                           |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res/drawable-hdpi                 |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res/drawable-mdpi                 |                      |
+  | Created | directory | /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/projhello/res/drawable-ldpi                 |                      |
+  | Added   | file      | ./projetos/projhello/AndroidManifest.xml                                                                                           |                      |
+  | Added   | file      | ./projetos/projhello/build.xml                                                                                                     |                      |
+  | Added   | file      | ./projetos/projhello/proguard-project.txt                                                                                          |                      |
+
+  Mas o que que é esse --targets? Pra ver dê esse comando abaixo
+
+  #+NAME: list targets
+  #+BEGIN_SRC sh
+  #!/bin/bash
+  android list targets
+  #+END_SRC
+
+  #+NAME: list targets
+  #+BEGIN_SRC shell :exports both
+  ./list_targets.sh
+  #+END_SRC
+
+
+* emulando o projeto
+
+** usando emulator
+   https://developer.android.com/studio/run/emulator-commandline
+   #+NAME: emulator -list-avds
+   #+BEGIN_SRC sh
+   source ./scripts/environment_setup.sh
+   emulator -list-avds
+   #+END_SRC
+
+   #+RESULTS: emulator -list-avds
+   | 4_WVGA_Nexus_S_API_23 |
+   | Galaxy_Nexus_API_23   |
+   | Nexus_4_API_24        |
+   | Nexus_5X_API_P        |
+   | Nexus_5X_API_P_2      |
+   | Nexus_5_API_25        |
+   
+Esses emuladores sao os que eu tenho instalado na minha
+máquina. Instalá-los já é outra história que não vai dar pra colocar
+aqui agora. Mas pra ficar simples, você pode instalar o android studio
+e, pelo menos pra isso, vc usa ele. Pergunte pro seu professor na sala
+que ele te explica.
+
+#+NAME emulator @avd_name
+#+BEGIN_SRC sh
+source ./scripts/environment_setup.sh
+emulator @Nexus_4_API_24 &
+#+END_SRC
+
+#+RESULTS:
+| emulator: | Listening | for    | console | connections | on       | port: |  5554 |               |
+| emulator: | Serial    | number | of      | this        | emulator | (for  | ADB): | emulator-5554 |
+
+quando o emulador inicia a gente tem esse resultado...
+[[file:imgs/img1.png]]
+[[file:imgs/img1.png]]
+[[file:imgs/img1.png]]
+
+
+
+
+** usando adb
+  Pra emular a gente tem, primeiro, que ver quais devices temos pra
+  emular...
+  Pra entender o comando adb você pode consultar
+  https://developer.android.com/studio/command-line/adb 
+
+  #+NAME: adb devices
+  #+BEGIN_SRC sh
+  source ./scripts/environment_setup.sh
+  adb devices
+  #+END_SRC
+
+
+  | List          | of     | devices | attached |
+  | emulator-5554 | device |         |          |
+  |               |        |         |          |
+
+  #+RESULTS: list avds
+  : List of devices attached
+
+
+
+  se tiver em branco é porque nao tem nenhum dispositivo pra vc rodar
+  o seu projeto
+
+  

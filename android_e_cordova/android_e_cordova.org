@@ -12,6 +12,7 @@ Se der um erro de sem.ver == null não permitido, pra plataforma
 android6 use esse fix do operador ternário
 ?[fn:fix-sem_ver_null_android640]
 
+
 * Na hora de rodar vc pode especificar o emulador que vc quizer[fn:android-platfrom-guide]
   Na sessão "Configure an Emulator"
   primeiro vc vê quais emuladores vc tem com
@@ -21,14 +22,15 @@ android6 use esse fix do operador ternário
   que apareceram pra vc
   cordova run android --target=NOME_DE_UM_DOS_EMULADORES
 
+
 * pra ver as plataformas disponiveis pra rodar na plataforma android
-cordova run android --list
+  cordova run android --list
 
 * testando a plataforma adicionada 
-cordova requirements
-Vc tem que instalar o sdk do android 
-Alem disso o cordova (ate o momento da escrita desse texto) suporta
-apenas api 25 do android, ou seja, android 6 marshmallow[fn:cordova-android-plataform-guide]
+  cordova requirements
+  Vc tem que instalar o sdk do android 
+  Alem disso o cordova (ate o momento da escrita desse texto) suporta
+  apenas api 25 do android, ou seja, android 6 marshmallow[fn:cordova-android-plataform-guide]
 
 
 * verificando o target do projeto

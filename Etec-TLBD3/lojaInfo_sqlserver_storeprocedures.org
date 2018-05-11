@@ -1,0 +1,136 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+Title: Atividade TLBD3 - Loja de Informática (store procedures)
+* Introdução
+Em nossos procedimentos armazenados vamos sempre colocar o nome
+prefixado por proc_*, ou seja, proc_funcionalidade. Exemplos de nomes
+seriam, proc_fazbackupdobanco, proc_restaruabanco
+
+Isso é importante pra evitar conflito de nomes com storeprocedures
+nativas do sqlserver que tem seus nomes profixados com sp_*.[fn:create-procedure-transact-sql]
+
+
+** Sintaxe da Stored Procedure [fn:create-procedure-transact-sql] 
+#+BEGIN_SRC sql
+-- Transact-SQL Syntax for Stored Procedures in SQL Server and Azure SQL Database  
+
+CREATE [ OR ALTER ] { PROC | PROCEDURE } 
+    [schema_name.] procedure_name [ ; number ]   
+    [ { @parameter [ type_schema_name. ] data_type }  
+        [ VARYING ] [ = default ] [ OUT | OUTPUT | [READONLY]  
+    ] [ ,...n ]   
+[ WITH <procedure_option> [ ,...n ] ]  
+[ FOR REPLICATION ]   
+AS { [ BEGIN ] sql_statement [;] [ ...n ] [ END ] }  
+[;]  
+
+<procedure_option> ::=   
+    [ ENCRYPTION ]  
+    [ RECOMPILE ]  
+    [ EXECUTE AS Clause ]  
+
+#+END_SRC
+
+
+** Primeira Procedure: Usando Parametros
+   #+INCLUDE: ../Etec-TLBD2/sql_scripts/lojainfo_sqlserver_storeprocedures.sql :src sql :lines "4-28"
+   Observe o seguinte neste código... O professora vai abordar isso na aula
+   junto com vc...
+
+   O uso do IF...
+
+   O uso do Create Procedure
+
+   Bloco de código Begin e End
+
+   Declaração de variável
+
+   Atribuição de valor à variável
+
+   Maneira de executar nossa stored procedure
+
+
+** Segunda Procedure: Parametro de Retorno 
+   #+INCLUDE: ../Etec-TLBD2/sql_scripts/lojainfo_sqlserver_storeprocedures.sql :src sql :lines "29-61"
+   Percebeu a palavra chave "output" junto com a variável
+   @PrecoComDesconto?  Isso pra pra dizer pra stored procedure o
+   seguinte: Ô stored procedure... pega a sua variáve de output e,
+   depois que você roddar, pega o valor dela e copia nessa minha
+   variável @PrecoComDesconto.
+
+
+** Terceira Procedure: Parametros Nomeados
+   terceira procedure
+   #+INCLUDE: ../Etec-TLBD2/sql_scripts/lojainfo_sqlserver_storeprocedures.sql :src sql :lines "64-70"
+   Que que vcs estão vendo nesse código?
+   A gente tá chamando a mesma procedure,blz?
+   Só que agora a diferença é que a gente não precisa passar os
+   parâmetros na mesma ordem em que eles foram declarados na procedure
+   porque a gente tá identificando o nome do parametro no momento da
+   chamada da procedure
+
+ 
+   
+** Rodando o script inteiro
+
+  #+NAME: store procedures
+  #+BEGIN_SRC sh :results output  :exports both
+  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/lojainfo_sqlserver_storeprocedures.sql
+  #+END_SRC
+
+  #+RESULTS: store procedures
+  #+begin_example
+  Changed database context to 'lojainfo'.
+  ########## PRIMEIRA PROCEDURE (RECEBENDO PARAMETROS) ##########
+  Mostrando como usa parametros no procedimento
+  Desconto Minimo Desconto Maximo
+  --------------- ---------------
+            10.50           20.50
+
+  (1 rows affected)
+  Desconto Minimo Desconto Maximo
+  --------------- ---------------
+            10.50           20.50
+
+  (1 rows affected)
+  ########## SEGUNDA PROCEDURE (RECEBENDO PARAMETROS E RETORNANDO VALOR) ##########
+  Mostrando como usa parametros no procedimento
+  Preco Com Desconto
+  ------------------
+               50.00
+
+  (1 rows affected)
+  mostrando o resultado da procedure
+  o vlr da variavel de output da procedure foi atribuido a nossa variavel @PrecoComDesconto
+  Vlr da Variavel @PrecoComDesconto
+  ---------------------------------
+                              50.00
+
+  (1 rows affected)
+  ########## TERCEIRA PROCEDURE (USANDO VARS NOMEADAS NA CHAMADA DO PROC) ##########
+  Mostrando  envio nos parï¿½metros nomeados...
+  HResult 0x1FE2, Level 16, State 2
+  The formal parameter "@pco" was not declared as an OUTPUT parameter, but the actual parameter passed in requested output.
+  Again:Vlr da Variavel @PrecoComDesconto
+  ---------------------------------------
+                                    50.00
+
+  (1 rows affected)
+  ########## LIST PROCEDURES ##########
+  name                                                                                                                             type
+  -------------------------------------------------------------------------------------------------------------------------------- ----
+  select_produtos_por_faixa_de_desconto                                                                                            P   
+  aplica_desconto_no_preco                                                                                                         P   
+  select_produtos_com_algum_desconto                                                                                               P   
+
+  (3 rows affected)
+  #+end_example
+
+
+
+* referencias
+
+[fn:create-procedure-transact-sql] https://docs.microsoft.com/pt-br/sql/t-sql/statements/create-procedure-transact-sql
+
+
+
+

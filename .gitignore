@@ -1,6 +1,7 @@
 Etec-TLBD2/LojaInfoV1-EnviadaWagnerECarlos
 Etec-ProgramacaoDeComputadoresII/LojaDeInformaticaV1-EnviadaJeferson/
 Etec-ProgramacaoDeComputadoresII/PC2LojaDeInformatica
+android/projetos/**
 **/jquery.mobile-1.4.5
 **/target/*
 **/*.zip
@@ -14,4 +15,4 @@ Etec-ProgramacaoDeComputadoresII/PC2LojaDeInformatica
 **/.#*
 **/*.part
 **/*.mkv
-
+**/**/*.org_archive

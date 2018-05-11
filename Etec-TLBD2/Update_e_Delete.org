@@ -1,0 +1,88 @@
+#+Title: Update e Delete
+
+* preparativos                                                     :noexport:
+** Rodando um bloco emacs-lisp pra testar a execucao dos blocos C-c C-c
+  #+BEGIN_SRC emacs-lisp
+  (message "emacs-lisp Doc Update e Delete...")
+  #+END_SRC
+
+  #+RESULTS:
+  : emacs-lisp Doc Update e Delete...
+
+** Subindo o Container
+  Tem que lembrar de subir o container com esse commando pra
+  disponibilizar os scripts na pasta /sql_scripts
+  #+name docker run sqlserver
+  #+begin_src shell
+  docker rm sqlserver
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs sqlserver  
+  #+end_src
+
+  #+RESULTS:
+  | sqlserver                                                        |
+  | 6aee92c44dce795bd357abba6bc5df64352c858639826c07f98232a6c7a91e4e |
+
+** Testando se os scripts estao na pasta /sql_scripts do container
+   Agora, esse comando demostra que os scripts estao disponiveis
+  #+name: ls /sql_scripts
+  #+begin_src shell :results output replace  :exports both
+     docker exec sqlserver ls -l /sql_scripts
+  #+end_src
+
+  #+RESULTS: ls /sql_scripts
+  #+begin_example
+  total 76
+  -rw-rw-r-- 1 1000 1000 2741 May  3 19:10 #aula_triggers.sql#
+  -rw-rw-r-- 1 1000 1000   18 Feb  1 19:45 Exec_sp_databases.sql
+  -rw-rw-r-- 1 1000 1000  676 Feb 10 14:24 LojaInfo_create_table.sql
+  -rw-rw-r-- 1 1000 1000 5738 Mar 15 04:40 aula_funcoes.sql
+  -rw-rw-r-- 1 1000 1000  677 Mar  9 01:17 aula_funcoes2.sql
+  -rw-rw-r-- 1 1000 1000 3943 Mar 15 19:05 aula_funcoes_old.sql
+  -rw-rw-r-- 1 1000 1000  270 May  3 15:43 aula_trigers.sql
+  -rw-rw-r-- 1 1000 1000 2740 May  3 19:08 aula_triggers.sql
+  -rw-rw-r-- 1 1000 1000  172 Feb 10 21:40 create_constraints_tests.sql
+  -rw-rw-r-- 1 1000 1000  779 Feb 10 21:11 create_contraints.sql
+  -rw-rw-r-- 1 1000 1000   46 Mar 15 03:05 create_database.sql
+  -rw-rw-r-- 1 1000 1000 1015 Mar 15 03:10 create_tables.sql
+  -rw-rw-r-- 1 1000 1000  799 Feb 10 20:56 create_tables_tests.sql
+  -rw-rw-r-- 1 1000 1000  109 Feb 13 16:06 drop_database.sql
+  -rw-rw-r-- 1 1000 1000 1918 Feb 13 15:50 inserts.sql
+  -rw-rw-r-- 1 1000 1000 2359 Mar 23 23:11 lojainfo_sqlserver_storeprocedures.sql
+  -rw-rw-r-- 1 1000 1000  475 Feb 13 16:15 select_agregacoes.sql
+  -rw-rw-r-- 1 1000 1000 2942 Mar  7 04:22 select_vendas_por_cada_cliente.sql
+  #+end_example
+
+** Rodando o script da da aula Update_e_Deletex
+  Agora sim podemos rodar algum script, vamos rodar o script da nossa aula
+  #+name: runscript
+  #+begin_src shell :results output replace  :exports both
+     docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/aula_update_e_delete.sql
+  #+end_src
+
+  #+RESULTS: runscript
+  #+begin_example
+  Changed database context to 'master'.
+  Changed database context to 'lojainfo'.
+  Changed database context to 'lojainfo'.
+  ### DANDO UM SHOW TABLES
+  TABLE_NAME                                                                                                                      
+  --------------------------------------------------------------------------------------------------------------------------------
+  tb_clientes                                                                                                                     
+  tb_hardware                                                                                                                     
+  tb_vendas                                                                                                                       
+  tb_vendas_itens                                                                                                                 
+
+  (4 rows affected)
+  Msg 102, Level 15, State 1, Server 6aee92c44dce, Line 2
+  Incorrect syntax near 'inserts'.
+  id_cliente  nome                                               endereco                                                                                             fone            email                                                                 
+  ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------------------------------------------------------------------
+
+  (0 rows affected)
+  #+end_example
+
+
+
+
+
+  
