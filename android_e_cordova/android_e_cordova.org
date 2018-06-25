@@ -26,6 +26,7 @@ android6 use esse fix do operador ternário
 * pra ver as plataformas disponiveis pra rodar na plataforma android
   cordova run android --list
 
+
 * testando a plataforma adicionada 
   cordova requirements
   Vc tem que instalar o sdk do android 
@@ -35,8 +36,8 @@ android6 use esse fix do operador ternário
 
 * verificando o target do projeto
 
-* DONE emulador
-emulator.exe -list-avds 
+* emulador
+  emulator.exe -list-avds 
 
 
 [fn:cordova-android-plataform-guide] https://cordova.apache.org/docs/en/latest/guide/platforms/android/

@@ -1,0 +1,7 @@
+#+Title: Nodejs anots
+
+* usando nodejs pra servir um html estatico
+
+https://stackoverflow.com/questions/4720343/loading-basic-html-in-node-js
+https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js
+https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http

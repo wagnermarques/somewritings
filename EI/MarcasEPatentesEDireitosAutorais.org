@@ -1,0 +1,82 @@
+#+Title: Marcas e Patentes e Direitos Autorais
+
+* Introdução
+  Empreendedorismo em relação aos assuntos
+  Lei trata o direito autoral de uma forma e de propriedade industrial
+  de outra
+** Programa de computador é tratado diferente do direito autoral
+   Há conexões entre os dois ramos do direito
+   Programa Computador 9609/98
+   Direitos autorais 9610/80
+   PC tem uma conexão entre a prop induc e o dir autoral porque muitas
+   máquinas são criadas pra serem registradas como prop ind mas o
+   programa de computador que serve pra aquela máquina apenas
+   acompanha essa máquina. E então esse programa também é registrada
+   como prop industrial.
+
+* Marcas e Patentes
+  Patente e Marca passa a ser protegida a partir do registro no INPI
+  Lei 9279 regem o registro de marcas e patentes
+* Diferença entre marca e patente  
+  Patente é protegida por um período específico 20 anos, depois cai em
+  domínio público
+  Marca pode sua proteção renovada indefinidamente
+* Patentes
+  Invenções
+  Modelos de Utilidade (Melhorias)
+  Descoberta não é invenção, descobrir uma erva que cura não é criação
+  da erva é apenas descoberta. Mas se se chegar a procedimentos
+  humanos que venha a aprimorar a utilização aí sim esse procedimento
+  pode ser patenteado.
+  
+* Direitos Autorais
+** Justificativa
+*** Social 
+    Estimula o autor a continuar criando
+*** Prestígio Nacional
+    A Nação torna-se 
+** Direito autoral é um direito fundamental
+   Está previsto na CF é clausula pétria 
+   É um direito fundamental individual
+   Diferente de Copiright americano porque lá é o congresso que tem o
+   poder de promover o progresso das artes da cultura e uma das
+   maneiras é a proteção do direito do autor. Na nossa CF nao tem esse
+   "promover" a cultura, da ciência das invenções... é só uma questão
+   de direito individual apenas. Isso traz diferenças porque lá tem a
+   premissa de que pra que haja o direito é necessário que o que está
+   sendo produzido seja um incremento algo que evolui, mas no brasil é
+   só a questão da exteriorização e pronto.
+** Requisitos
+   Objeto do direito autoral e seus requisitos
+   A idéia, opensamento não é protegico, ele tem que ser exteriorizado
+   Uma regra de um jogo não pode ser protegida porque não dá espaço
+   pra genialidade não acrescenta cultura. 
+   Uma sentença pode ser criativa pode conter esforço criativo etc,
+   mas não pode ser objeto de direito autoral porque não se pode
+   restringir de maneira nenhuma sua circulação o que é um dos
+   direitos do autor.
+   Nomes, por mais criativos que sejam, também não
+   Palavras novas, "erronia", não poderia porque restringiria o uso
+   das plavras
+   
+
+*** Originalidade: Um risco no papel não é o caso de proteção
+    Caso da empresa que copiou a lista de telefonica da primeira. A
+    segunda não se esforçou pra buscar os endereços e a primeira
+    sim. Mas então os americanos decidiram que não se pode ter direito
+    de autor sobre uma lista telefônica porque não tem a capacidade de
+    incrementar a cultura.
+*** Criatividade
+*** Fixar num suporte tangivel ou intangível
+    Tem que exteriorizar a idéia
+*** Promover o incremento da cultura
+    
+* Casos Direitos Autorais
+  Loja que quiz colocar a marca "Garota de Ipanema". Pelo direito
+  autoral esse título é reconhecida titularidade ao criador da
+  música. O INPI certamente negaria esse registro de marca.
+
+* referencias
+  [fn:saberdireitoDirAutoralAula1] https://www.youtube.com/watch?v=0dbOwYjZpWc&t=2062s
+   
+  

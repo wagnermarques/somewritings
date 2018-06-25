@@ -24,6 +24,15 @@ Um contribuinte individual, com NIT, apenas recolhe no INSS (Instituto Nacional 
 Se uma empresa contratar um trabalhador que possua apenas o NIT, deverá fazer o cadastro do funcionário no PIS.
   
 
+* Requisitos Admissão empregado CLT
+  
+  Receber CTPS e emitir contra recibo
+  Efetivar antações (Anotações Mínimas: Ident do Empregador, Dta De
+  Admissao, remunerações"
+  Devolver CTPS Com contra recibo em 48h
+  
+  
+
 * Referencias
 [fn:significado-nis] https://www.significados.com.br/nis/
 [fn:significado-pis] https://www.significados.com.br/pis/

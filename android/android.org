@@ -1,6 +1,84 @@
 #+Title: Comandos do android
 
+* Variáveis de ambiente
+  https://developer.android.com/studio/command-line/variables
+
+** Variável do local de Instlação do SDK 
+   ANDROID_HOME está depreciado em favor de ANDROID_SDK_ROOT
+   Ambos apontam pro local onde o sdk está instalado
+
+** Variávies relativas ao emulador   
+   Por padrão o emulador salva suas configuraçoes em $HOME/.android/
+   Por exemplo, no momento o conteúdo desse diretório na minha máquina é...
+   #+BEGIN_SRC sh
+   ls $HOME/.android/
+   #+END_SRC
+
+   #+RESULTS:
+   | adbkey                          |
+   | adbkey.pub                      |
+   | analytics.settings              |
+   | avd                             |
+   | breakpad                        |
+   | build-cache                     |
+   | build-cache.lock                |
+   | cache                           |
+   | debug.keystore                  |
+   | debug.keystore.lock             |
+   | emu-last-feature-flags.protobuf |
+   | emu-update-last-check.ini       |
+   | modem-nv-ram-5554               |
+   | modem-nv-ram-5580               |
+   | modem-nv-ram-5582               |
+   | modem-nv-ram-5584               |
+  
+Pra obter informações do seu ambiente relativo ao emulador, digite o
+seguinte comando
+#+NAME:emulator -help-environment
+#+BEGIN_SRC sh :results verbatim
+  emulator -help-environment
+#+END_SRC
+
+#+RESULTS: emulator -help-environment
+#+begin_example
+
+  The Android emulator looks at various environment variables when it starts:
+
+  If ANDROID_LOG_TAGS is defined, it will be used as in '-logcat <tags>'.
+
+  If 'http_proxy' is defined, it will be used as in '-http-proxy <proxy>'.
+
+  If ANDROID_VERBOSE is defined, it can contain a comma-separated list of
+  verbose items. for example:
+
+      ANDROID_VERBOSE=socket,radio
+
+  is equivalent to using the '-verbose -verbose-socket -verbose-radio'
+  options together. unsupported items will be ignored.
+
+  If ANDROID_LOG_TAGS is defined, it will be used as in '-logcat <tags>'.
+
+  If ANDROID_EMULATOR_HOME is defined, it replaces the path of the '$HOME/.android'
+  directory which contains the emulator config data (key stores, etc.).
+
+  If ANDROID_SDK_ROOT is defined, it indicates the path of the SDK
+  installation directory.
+
+#+end_example
+
+
+  ANDROID_LOG_TAGS indica tags a serem usadas em '-logcat <tags>'.
+
+  'http_proxy' it will be used as in '-http-proxy <proxy>'.
+
+  ANDROID_VERBOSE contain a comma-separated list of  verbose
+  items. for example:ANDROID_VERBOSE=socket,radio
+
+  ANDROID_EMULATOR_HOME is defined, it replaces the path of the '$HOME/.android'
+
+
 * Preparando o ambiente
+
   Preparar um ambiente pra programar com o android requer instalar
   algumas ferramentas.
   
@@ -18,17 +96,11 @@
 
   #+RESULTS: environment_setup_check_variables.sh
   #+BEGIN_SRC sh
-  $ANDROID_HOME=
-  /home/wagner/PROGSATIVOS/androidSdk
-  $JAVA_HOME=
-  /home/wagner/PROGSATIVOS/jdk1.8.0_161
-  $GRADLE_HOME=
-  /home/wagner/PROGSATIVOS/gradle-4.6-rc-2
-  $PATH=
-  /usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_151/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.5.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/sqlite:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/hsqldb/bin:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/tools:/platform-tools:/home/wagner/PROGSATIVOS/gradle-4.6-rc-2/bin
+  $ANDROID_HOME=/home/wagner/PROGSATIVOS/androidSdk
+  $JAVA_HOME=/home/wagner/PROGSATIVOS/jdk1.8.0_161
+  $GRADLE_HOME=/home/wagner/PROGSATIVOS/gradle-4.6-rc-2
+  $PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/jdks/jdk1.8.0_151/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.5.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.3/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/sqlite:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/dbs/hsqldb/bin:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/tools:/platform-tools:/home/wagner/PROGSATIVOS/gradle-4.6-rc-2/bin
   #+END_SRC
-
-
 
 
 * Criar nosso primeiro projeto
@@ -138,17 +210,23 @@ quando o emulador inicia a gente tem esse resultado...
   adb devices
   #+END_SRC
 
+  Com o meu emulador ligado, o adb devices retorna o seguinte...
 
   | List          | of     | devices | attached |
   | emulator-5554 | device |         |          |
   |               |        |         |          |
 
+  Sem nenhum emulador ligado ou dispositivo físico detectado, o adb
+  não retorna nada.
+
   #+RESULTS: list avds
   : List of devices attached
-
-
 
   se tiver em branco é porque nao tem nenhum dispositivo pra vc rodar
   o seu projeto
 
+
+* Notificações
+  https://developer.android.com/guide/topics/ui/notifiers/notifications?hl=pt-br
+  
   

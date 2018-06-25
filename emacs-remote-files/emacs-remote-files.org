@@ -1,0 +1,84 @@
+#+Title: emacs-remote-files
+
+* Apresentacao
+  Este texto faz uma apresentação sobre como editar arquivos com emacs
+  que não estão na sua máquina. Ou seja, editar arquivos remotos.
+  Pra exemplificar vou editar alquns arquivos de configuração do
+  fail2ban[fn:fail2ban-site] que eu tenho em uma máquina remota.
+  O emacs é simplesmente fantástico pra esse tipo de tarefa e para
+  tanto utiliza o tramp[fn:tramp-emacs-wiki][fn:tramp-user-manual].
+  
+
+* find-file function with tranp sintax [fn:man_remotefiles]
+** exemplos da sintaxe do  tramp
+ /host:filename
+ /user@host:filename
+ /user@host#port:filename
+ /method:user@host:filename
+ /method:user@host#port:filename
+
+** funcao find-file
+ O emacs tem a função find-file que recebe uma string e abre o arquivo
+ pra vc. Dá pra usar essa função pra abrir arquivos remotos também.
+ A idéia então é usar a sintaxe do tramp pra abrir e editar nossos
+ arquivos remotos. 
+ Veja o exemplo abaixo:
+
+#+Name: test
+#+Session: 1
+#+BEGIN_SRC emacs-lisp :results silent
+(defun getRemoteMachineIp()
+(getenv "FZL_REMOTE_MACHINE"))
+#+END_SRC
+
+#+NAME: get_remote_machine_ip_code
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/home/wagner/test.txt"))
+      (setq trampSintaxFile (concat (concat "/scp:" (concat remoteIp ":")) filePathInRemoteFS))
+      (find-file  trampSintaxFile))
+#+END_SRC
+
+** Agora abrindo e editando arquivos do fail2ban
+Pra dar uma olhada nos logs do fail2ban podemos fazer abrir o arquivo
+de log do fail2ban que está na máquina remota no nosso /var/log/fail2ban.log
+O Código abaixo serve só pra montar  a sintaxe de acesso ao arquivo
+que resulta no seguinte: /scp:root@ip_da_maquina_remota:/var/log/fail2ban.log
+
+
+
+#+NAME: /var/log/apache/error_log
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/var/log/fail2ban.log")
+      (user "root"))
+      (setq trampFile (concat (concat remoteIp ":") filePathInRemoteFS))
+      (setq trampMethod (concat (concat "/scp:" user) "@"))
+      (setq trampSintaxAccessFile (concat trampMethod trampFile))
+      (message trampSintaxAccessFile)
+      (find-file trampSintaxAccessFile))
+#+END_SRC
+
+#+RESULTS:
+: /scp:root@50.116.3.116:/var/log/fail2ban.log
+
+
+
+
+#+NAME:find-file with tramp sintaxe 1
+#+BEGIN_SRC emacs-lisp :var strRemoteIp=get_remote_machine_ip_code 
+(message strRemoteIp)
+ #+END_SRC
+
+
+* fail2ban
+
+
+* refs
+[fn:man_remotefiles] https://www.gnu.org/software/emacs/manual/html_node/emacs/Remote-Files.html
+[fn:fail2ban-site] https://github.com/fail2ban
+[fn:fail2ban-wiki] https://www.fail2ban.org/wiki/index.php/Main_Page
+[fn:tramp-emacs-wiki] https://www.emacswiki.org/emacs/TrampMode
+[fn:tramp-user-manual] https://www.gnu.org/software/tramp/
