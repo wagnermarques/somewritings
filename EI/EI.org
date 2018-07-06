@@ -1,0 +1,52 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+INCLUDE: "../etc/org_mode_COMMON_SETUP_FILE.org"
+#+INCLUDE: "../etc/org_mode_SETUPFILE_4Beamer.org"
+#+INCLUDE: "../etc/org_mode_SETUPFILE1_4HTML_Export.org"
+
+#+TITLE: Empreendorismo & Inovação
+#+SUBTITLE: segredo da prosperidade
+
+* Empreendedorismo & Inovação
+** Conceito de Empreendedorismo                                                 
+   Conceito de Empreendedorismo
+** Conceito de Inovação 
+   Conceito de Inovação
+** Empreend & Inov o por quê 
+   Gap entre Produção do Conhecimento e Criação de Valor econômico   
+   ----- 
+   "Na apresentação do MCTIC, Luiz Fernando Fauth mostrou que, embora
+   haja produção científica crescente no Brasil desde 1996, isso não
+   se converteu em competitividade e resultados na balança comercial
+   com produtos de maior complexidade tecnológica. Por isso, o novo
+   marco tem como objetivo a transformação do conhecimento científico
+   e tornar a aproximação dos atores do Sistema Nacional de Ciência,
+   Tecnologia e Inovação (SNCTI) para o trabalho conjunto de forma
+   mais harmônica, ou seja, com foco no aumento da cooperação entre
+   atores públicos e privados e avaliação com foco em
+   resultado."
+
+** Frame 1
+*** Thanks to Eric Fraga                                           :B_block:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
+    for the first viable Beamer setup in Org
+*** Thanks to everyone else                                        :B_block:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ACT: <2->
+    :BEAMER_ENV: block
+    :END:
+    for contributing to the discussion
+**** This will be formatted as a beamer note                       :B_note:
+     :PROPERTIES:
+     :BEAMER_env: note
+     :END:
+** Frame 2 (where we will not use columns)
+*** Request
+    Please test this stuff!
+
+
+** Referencias
+   http://www.unifesp.br/noticias-anteriores/item/3360-unifesp-realiza-debate-sobre-o-marco-legal-da-ciencia-tecnologia-e-inovacao

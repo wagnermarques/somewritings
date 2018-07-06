@@ -1,10 +1,13 @@
-Empreendedorismo e Gestao
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+SETUPFILE: ../etc/org_mode_SETUPFILE_4Beamer.org
 
+#+TITLE: Empreendedorismo e Gestao
+
+Empreendedorismo e Gestao
 
 Anotações
 
 Características de um empreendedor:
-
 
 * PTD
 | Aula | Data | Conteúdo                                                                                                               |

@@ -4,7 +4,7 @@ Etec-ProgramacaoDeComputadoresII/PC2LojaDeInformatica
 android/projetos/**
 Etec-TM-Cordova/demos
 
-
+**/*pdf
 **/target/*
 **/*.zip
 **/.git

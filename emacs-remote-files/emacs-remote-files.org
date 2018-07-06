@@ -40,15 +40,17 @@
       (find-file  trampSintaxFile))
 #+END_SRC
 
+
 ** Agora abrindo e editando arquivos do fail2ban
 Pra dar uma olhada nos logs do fail2ban podemos fazer abrir o arquivo
 de log do fail2ban que está na máquina remota no nosso /var/log/fail2ban.log
 O Código abaixo serve só pra montar  a sintaxe de acesso ao arquivo
 que resulta no seguinte: /scp:root@ip_da_maquina_remota:/var/log/fail2ban.log
+A Diferença do primeiro acesso é que agora a gente está indicando qual
+é o usuário. Para abrir o log do fail2ban é necessário ser root
 
 
-
-#+NAME: /var/log/apache/error_log
+#+NAME: /var/log/fail2ban.log
 #+Session: 1
 #+BEGIN_SRC emacs-lisp
 (let ((remoteIp (getRemoteMachineIp))
@@ -62,18 +64,73 @@ que resulta no seguinte: /scp:root@ip_da_maquina_remota:/var/log/fail2ban.log
 #+END_SRC
 
 #+RESULTS:
-: /scp:root@50.116.3.116:/var/log/fail2ban.log
+: #<buffer fail2ban.log>
+
+** Abrindo o arquivo de configuração do fail2ban
+#+NAME: /etc/fail2ban/fail2ban.conf
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/etc/fail2ban/fail2ban.conf")
+      (user "root"))
+      (setq trampFile (concat (concat remoteIp ":") filePathInRemoteFS))
+      (setq trampMethod (concat (concat "/scp:" user) "@"))
+      (setq trampSintaxAccessFile (concat trampMethod trampFile))
+      (find-file trampSintaxAccessFile))
+#+END_SRC
+
+#+RESULTS:
+: #<buffer fail2ban.conf>
+
+
+#+NAME: /etc/fail2ban/fail2ban.conf
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/etc/fail2ban/fail2ban.conf")
+      (user "root"))
+      (setq trampFile (concat (concat remoteIp ":") filePathInRemoteFS))
+      (setq trampMethod (concat (concat "/scp:" user) "@"))
+      (setq trampSintaxAccessFile (concat trampMethod trampFile))
+      (find-file trampSintaxAccessFile))
+#+END_SRC
+
+#+RESULTS:
+: #<buffer fail2ban.conf>
+
+
+#+NAME: /etc/fail2ban/jail.conf
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/etc/fail2ban/jail.conf")
+      (user "root"))
+      (setq trampFile (concat (concat remoteIp ":") filePathInRemoteFS))
+      (setq trampMethod (concat (concat "/scp:" user) "@"))
+      (setq trampSintaxAccessFile (concat trampMethod trampFile))
+      (find-file trampSintaxAccessFile))
+#+END_SRC
+
+#+RESULTS:
+: #<buffer jail.conf>
 
 
 
+#+NAME: /etc/fail2ban/paths-fedora.conf
+#+Session: 1
+#+BEGIN_SRC emacs-lisp
+(let ((remoteIp (getRemoteMachineIp))
+      (filePathInRemoteFS "/etc/fail2ban/paths-fedora.conf")
+      (user "root"))
+      (setq trampFile (concat (concat remoteIp ":") filePathInRemoteFS))
+      (setq trampMethod (concat (concat "/scp:" user) "@"))
+      (setq trampSintaxAccessFile (concat trampMethod trampFile))
+      (find-file trampSintaxAccessFile))
+#+END_SRC
 
-#+NAME:find-file with tramp sintaxe 1
-#+BEGIN_SRC emacs-lisp :var strRemoteIp=get_remote_machine_ip_code 
-(message strRemoteIp)
- #+END_SRC
-
-
-* fail2ban
+#+RESULTS:
+: #<buffer paths-fedora.conf>
+   
 
 
 * refs
