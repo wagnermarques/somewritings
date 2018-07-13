@@ -1,0 +1,12 @@
+#+Title: Design Digital (Plano)
+* Conceitos de Design Gráfico aplicado à construção de aplicativos e sites
+* Teoria das cores, tipografia e composição
+* Ferramentas de seleção e manipulação de objetos
+* Ferramentas de edição e tratamento
+* Transformação de objeto
+* Timeline, máscara e mesclagem de camadas
+* Ferramentas de texto
+* Estilo e filtros de imagens
+* Manipulação de documentos
+* Recursos para a criação/manipulação de imagens para a construção de botões, banners, logomarca
+* Regras (Heurísticas) de usabilidade

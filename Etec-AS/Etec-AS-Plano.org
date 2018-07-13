@@ -1,0 +1,23 @@
+#+Title: As Plano
+
+* Competências
+1. Modelar projeto de sistemas.
+2. Utilizar modelos para o desenvolvimento de
+sistemas
+
+* Habilidades
+1.1 Coletar requisitos de usuários e sistemas.
+1.2 Utilizar métodos de abordagem e coleta de dados e
+procedimentos de pesquisa.
+2. Utilizar modelos para o desenvolvimento de
+sistemas.
+
+* Bases Tecnológicas
+Introdução e conceitos básicos de análise de sistemas e projetos
+** Ciclo de vida de um sistema
+*** Estudo da viabilidade;
+*** Especificação de requisitos;
+*** Concepções do modelo Cascata;
+*** Concepções dos modelos Ágeis.
+** Introdução à análise e projeto orientado a objetos
+
