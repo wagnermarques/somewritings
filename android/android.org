@@ -5,7 +5,7 @@
 
 ** Variável do local de Instlação do SDK 
    ANDROID_HOME está depreciado em favor de ANDROID_SDK_ROOT
-   Ambos apontam pro local onde o sdk está instalado
+   Ambas devem apontar pro local onde o sdk está instalado
 
 ** Variávies relativas ao emulador   
    Por padrão o emulador salva suas configuraçoes em $HOME/.android/

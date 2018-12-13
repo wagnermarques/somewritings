@@ -1,0 +1,107 @@
+#+TITLE: PostgreSql Notes
+
+* conectando em um banco
+postgres=# \c nome_do_banco
+
+* Acessar o psql
+su -u postgres psql
+
+* Listar databases
+postgres=# \l
+                                       List of databases
+         Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+----------------------+----------+----------+-------------+-------------+-----------------------
+ novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+ novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+ postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+ template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
+                      |          |          |             |             | postgres=CTc/postgres
+ template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
+                      |          |          |             |             | postgres=CTc/postgres
+(5 rows)
+
+
+O comando \l+ mostra um pouco mais de informações
+postgres=# \l+
+                                                                         List of databases
+         Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   |  Size   | Tablespace |                Description   
+              
+----------------------+----------+----------+-------------+-------------+-----------------------+---------+------------+------------------------------
+--------------
+ novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | 
+ novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7521 kB | pg_default | 
+ postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | default administrative connec
+tion database
+ template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | unmodifiable empty database
+                      |          |          |             |             | postgres=CTc/postgres |         |            | 
+ template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | default template for new data
+bases
+                      |          |          |             |             | postgres=CTc/postgres |         |            | 
+(5 rows)
+
+postgres=# 
+
+* listar roles
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of 
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+postgres=# 
+
+* configurar acesso via tcp
+  https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
+* Configure o arquivo postgresql.conf db
+** com uma pesquisa vc pode encontrar onde este arquivo está
+[wagner@localhost ~]$ sudo find / -name "postgresql.conf"
+find: /run/user/1000/gvfs: Permissão negada
+/etc/postgresql-setup/upgrade/postgresql.conf
+/var/lib/docker/overlay2/6186dbc99db0dd9421ba8de389b6e7a1f451f81ccbbc2508db4dc825fad3777c/diff/usr/lib/tmpfiles.d/postgresql.conf
+/var/lib/docker/overlay2/e8d0c15cd089111a12c3fd19d4ef47db1f2b8be4dbd5caf2777b5e043aee890c/diff/usr/lib/tmpfiles.d/postgresql.conf
+/var/lib/docker/volumes/0545ec6fa7cfc12eeb88b9c88139be2dc19cd396c05708041496f13e1f12571f/_data/postgresql.conf
+/var/lib/docker/volumes/7968fdd30d8d1846ac513a1a0ff7211a2dc16fcfb2f0557a3289c7bed0778f54/_data/postgresql.conf
+/var/lib/docker/volumes/8e6d2050adcc035f9695ede330922a2490ae0c78bdc1d2297c7126108570d82e/_data/postgresql.conf
+/var/lib/docker/volumes/61b385d1768017066e1476557196f0021f62ad93de6b8738b52bc9b196bea27d/_data/postgresql.conf
+/var/lib/docker/volumes/48a02dae84d8953920bb8e3cc3675a6e971e6b3b866359517c3c4e5a73cf9634/_data/postgresql.conf
+/var/lib/docker/volumes/39d912a61967cb6b50104a3ee2ea2c7b4f996e6edafec33cda54ad0287b1f74c/_data/postgresql.conf
+/var/lib/docker/volumes/c0174d9e89d4266f3d3ec51f4ef16b5bd2759182b8cbef774dba13ed0aaed374/_data/postgresql.conf
+/var/lib/pgsqlantigo/data/postgresql.conf
+/var/lib/pgsql/data/postgresql.conf
+/usr/lib/tmpfiles.d/postgresql.conf
+/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/postgresql.conf
+[wagner@localhost ~]$ 
+
+** Configurando o posgresql.conf
+Encontre onde está o seu postgresql.conf e troca a linha 
+listen_addresses = 'localhost'
+por
+listen_addresses = '*'
+
+* Configure o arquivo pg_hba.conf
+
+** encontre o arquivo pg_hba.conf
+[wagner@localhost ~]$ sudo find / -name pg_hba.conf
+[sudo] senha para wagner: 
+Sinto muito, tente novamente.
+[sudo] senha para wagner: 
+find: /run/user/1000/gvfs: Permissão negada
+/var/lib/docker/volumes/0545ec6fa7cfc12eeb88b9c88139be2dc19cd396c05708041496f13e1f12571f/_data/pg_hba.conf
+/var/lib/docker/volumes/7968fdd30d8d1846ac513a1a0ff7211a2dc16fcfb2f0557a3289c7bed0778f54/_data/pg_hba.conf
+/var/lib/docker/volumes/8e6d2050adcc035f9695ede330922a2490ae0c78bdc1d2297c7126108570d82e/_data/pg_hba.conf
+/var/lib/docker/volumes/61b385d1768017066e1476557196f0021f62ad93de6b8738b52bc9b196bea27d/_data/pg_hba.conf
+/var/lib/docker/volumes/48a02dae84d8953920bb8e3cc3675a6e971e6b3b866359517c3c4e5a73cf9634/_data/pg_hba.conf
+/var/lib/docker/volumes/39d912a61967cb6b50104a3ee2ea2c7b4f996e6edafec33cda54ad0287b1f74c/_data/pg_hba.conf
+/var/lib/docker/volumes/c0174d9e89d4266f3d3ec51f4ef16b5bd2759182b8cbef774dba13ed0aaed374/_data/pg_hba.conf
+/var/lib/pgsqlantigo/data/pg_hba.conf
+/var/lib/pgsql/data/pg_hba.conf
+/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/pg_hba.conf
+[wagner@localhost ~]$ 
+
+
+
+** Configure o arquivo pg_hba.conf
+No arquivo pg_hba.conf colocar nas últimas linhas o seguinte...
+host    all             all              0.0.0.0/0                       md5
+host    all             all              ::/0                            md5
+

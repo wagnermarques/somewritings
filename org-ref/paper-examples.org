@@ -1,0 +1,6 @@
+#+Title:paper-example
+
+* Introdução
+cite:larman2007utilizando
+
+bibliography:../etc/bibliografia.bib

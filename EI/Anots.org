@@ -1,0 +1,35 @@
+#+Title: Anots
+* Escolha de um Software OpenSource
+Licença - Liberdade
+Comunidade...
+Número de usuários no forum
+Número de posts/dia
+
+* 
+
+* USA Health orgs
+** CMS
+https://www.cms.gov/
+The Centers for Medicare & Medicaid Services, CMS, is part of the
+Department of Health and Human Services (HHS). 
+
+** Inpatient Prospective Payment System
+ final rule
+http://bulletin.facs.org/2017/12/the-2018-inpatient-prospective-payment-system-final-rule/
+The Centers for Medicare & Medicaid Services (CMS) released the
+Inpatient Prospective Payment System (IPPS) final rule August 2. The
+rule establishes fiscal year (FY) 2018 policies for Medicare payments
+to hospitals for inpatient stays occurring between October 1, 2017
+
+** medicare.gov
+https://www.medicare.gov/about-us
+Medicare is funded through the Hospital Insurance Trust Fund and the
+Supplementary Medical Insurance Trust Fund.
+
+** Find a long-term care hospital 
+https://www.medicare.gov/longtermcarehospitalcompare/
+
+** Long-Term Care Hospital (LTCH) Quality Reporting (QRP) 
+
+https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/LTCH-Quality-Reporting/index.html
+
