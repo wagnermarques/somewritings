@@ -1,6 +1,0 @@
-#+Title: TCM&TCP
-
-Criando o projeto
-#+BEGIN_SRC sh
-
-#+END_SRC

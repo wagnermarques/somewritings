@@ -1,7 +1,0 @@
-#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
-#+Title: Atividade Controle de Usuarios de Aplicacoes
-* Introdução
-  Toda aplicação precisa de controle de usuario.
-  A gente vai fazer um agora, nesta atividade.
-  
-  

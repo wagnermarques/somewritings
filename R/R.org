@@ -1,3 +1,0 @@
-#+Title: Anotacoes Sobre R
-
-* Scripts portaveis

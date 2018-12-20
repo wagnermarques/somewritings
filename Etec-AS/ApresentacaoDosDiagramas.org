@@ -1,5 +1,0 @@
-#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
-#+Title: UML - Apresentação dos Diagramas
-
-Linguagems tem elementos sintáticos atrelados a conceitos
-Elementos sintáticos comuns
