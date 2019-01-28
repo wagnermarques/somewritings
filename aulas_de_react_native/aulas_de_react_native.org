@@ -1,0 +1,40 @@
+#+Title: Aulas de React Native
+
+* Preparando o ambiente
+**  Istalar o nodejs
+*** Instalar os pacotes necessários
+    #+NAME npm install -g expo-cli
+    #+BEGIN_SRC sh :results output :exports both
+        npm install -g expo-cli
+    #+END_SRC
+
+    #+RESULTS:
+
+* Criando a primeira aplicação
+  https://facebook.github.io/react-native/docs/getting-started
+
+  #+NAME expo init ReacNativePrimProj
+  #+BEGIN_SRC sh :session s1 :results output 
+    ProjDir="/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/"             
+    cd $ProjDir && expo init ReactNativePrimProj --template blank
+  #+END_SRC
+
+  #+RESULTS:
+  #+begin_example
+    cd ReactNativePrimProj
+    npm start
+  #+end_example
+  
+* Conhecendo a nossa primeira aplicação
+
+* Rodando a nossa primeira aplicação
+  
+  #+NAME cd ReactNativePrimProj
+  #+BEGIN_SRC sh :sessio s1
+  echo $ProjDir + "asdf"
+  #+END_SRC
+
+  #+RESULTS:
+  : + asdf
+
+

@@ -1677,7 +1677,31 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
 
   [wagner@localhost emacsinitfile]$ git submodule --add git://orgmode.org/org-mode.git
   
+  Quando vc já tinha um submodule e simplesmente apagou o subdiretório
+  dele, pode dar algum problema na hora de vc quer usar eles.
+  Vai dar problema porque vc apagou o diretório do submodulo e também
+  quando vc der um git submodule update também não vai funcionar.
+  git config --list vai mostrar que tem coisas configuras relativas
+  aos seus submodules.
+  O ideal neste caso é localizar o .gitmodules e apagar todos já que a
+  idéia a adiciona-los novamente
+  Use git submodule add de novo pra adicionar, só que agora usa o -f
+  de --force conforme exemplos abaixo.
+
+  git submodule add -f https://github.com/fxbois/web-mode.git web-mode
+  git submodule add -f https://github.com/emacs-ess/ESS.git ESS
   
+  #+NAME git submodule status
+  #+BEGIN_SRC sh :results output :exports both
+  cd /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile
+  git submodule status
+  #+END_SRC
+
+  #+RESULTS:
+  :  a7cdc6ce7787c2cb01ffcb8b358a1ba14d296325 ESS (swank_funcs-2456-ga7cdc6ce)
+  :  c6d5cab4fc30ff9ca8b55a2a37d3ae3f7f540859 web-mode (v15-60-gc6d5cab)
+
+
 * templates for this file :noexport:
 
    #+name:  BlockName1

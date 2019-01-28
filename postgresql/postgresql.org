@@ -1,107 +1,290 @@
 #+TITLE: PostgreSql Notes
 
-* conectando em um banco
-postgres=# \c nome_do_banco
+* OrientaÁıes sobre esse material
 
-* Acessar o psql
-su -u postgres psql
+** Sobre comandos em que vc precisa ser root
+   O comando abaixo È era pra ser sÛ um "sudo find / -name
+   pg_hba.conf"
+   Ent„o porque t· um pouco mais mais complicado, conforme abaixo?
 
-* Listar databases
-postgres=# \l
-                                       List of databases
-         Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
-----------------------+----------+----------+-------------+-------------+-----------------------
- novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
- novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
- postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
- template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
-                      |          |          |             |             | postgres=CTc/postgres
- template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
-                      |          |          |             |             | postgres=CTc/postgres
-(5 rows)
+   #+NAME sudo find / -name pg_hba.conf
+   #+BEGIN_SRC sh
+    echo $ROOT_PASSWORD | sudo -S find / -name pg_hba.conf
+    #+END_SRC
+
+    … que quando vc usa o sudo do jeito mais comum que utilizamos no
+    dia a dia, ou seja, em sua configuraÁ„o basicona, ele pede a sua senha de
+    root. Como eu rodo esses comandos automaticamente com org-mode, na
+    hora de digitar esse texto, eu como eu colocaria a minha senha de
+    root aqui? Pra n„o precisar digitar eu coloquei minha senha como
+    uma vari·vel de ambiente e passo ela com "echo $ROOT_PASSWORD |" e
+    preparo o sudo pra receber ela com a opÁ„o -S
+    SÛ isso. Ma pra vc usar o comando n„o precisa fazer tudo isso, sÛ
+    d· um sudo cmd que t· tudo certo pra vc.
 
 
-O comando \l+ mostra um pouco mais de informaÁıes
-postgres=# \l+
-                                                                         List of databases
-         Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   |  Size   | Tablespace |                Description   
+
+
+* Instalando o postgresql
+  Os passos pra fazer a instalaÁ„o s„o:
+
+  1) ObtenÁ„o e InstalaÁ„o dos bin·rios
+     Em geral a gente usa o gerenciador de pacotes ou builda pelo
+     codigo fonte. 
+  2) Inicializar o diretÛrio de armazenamento initdb
+  3) Configurar a porta e as interfaces que o serviÁo vai ouvir (postgresql.conf)
+  4) Configurar as permissıes de acesso (arquivo pg_hba.conf)
+  5) Iniciar o serviÁo
+  6) Criar banco de teste
+  7) Procedimentos de testes de conexıes conforme configurado em
+     postgresql.conf e pg_hba.conf
+       
+** ObtenÁ„o e InstalaÁ„o dos bin·rios
+   O mÈtodo mais pr·tico no linux È utilizar o gerenciador de pacotes
+
+** Iniciar diretorio de armazenamento com initdb
+   
+** Configurar a porta e as interfaces de rede (postgresql.conf)
+
+    Vc pode encontrar o seu postgresql.conf com o seguinte comando
+    Vc vai perceber que ele se encontra no diretÛrio que vc
+    inicializou com initdb
+
+    #+NAME find postgresql.conf
+    #+BEGIN_SRC sh :results output
+    echo $ROOT_PASSWORD | sudo -S find / -name postgresql.conf
+    #+END_SRC
+
+    #+RESULTS:
+    : /var/lib/pgsql/11/data/postgresql.conf
+    : /var/lib/docker/overlay2/316135cc69fc1ad652b86c9f7c6ca3762cc8aa622160e141c214cba4f4450f2b/diff/usr/lib/tmpfiles.d/postgresql.conf
+    : /home/wagner/wagnerdocri@gmail3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/postgresql.conf
+ 
+   Encontre onde est· o seu postgresql.conf e troca a linha 
+    listen_addresses = 'localhost'
+    por
+    listen_addresses = '*'
+    e se a porta 5432 tiver comentada, pode descomentar e se o seu
+    postgresql tiver em produÁ„o È bom mudar essa porta por seguranÁa.
+
+
+** configurando o pg_hba.conf (HBA stands for host-based authentication) [ln:pgDocsHbaConf]  
+
+   O local padr„o do pg_hba.conf È o diretÛrio de dados do pg. O
+   diretÛrio de dados È chamado tecnicamente de "database cluster's
+   data directory" pela documentaÁ„o do postgresql. 
+
+   Se vc est· em uma m·quina em que n„o foi vc que instalou o
+   postgresql e n„o sabe onde se encontra o arquivo pg_hba.conf, vc pode usar o
+   comando find pra encontr·-lo.
+   
+   #+NAME sudo find / -name pg_hba.conf
+   #+BEGIN_SRC sh
+   echo $ROOT_PASSWORD | sudo -S find / -name pg_hba.conf
+   #+END_SRC
+
+   Esta È a saÌda do comando na minha m·quina.    
+   #+RESULTS:
+    | /var/lib/pgsql/11/data/pg_hba.conf                                                                                |
+    | /home/wagner/wagnerdocri@gmail3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/pg_hba.conf |
+
+   O conte˙do do arquivo È organizado em linhas e colunas, conforme
+   exemplo da documentaÁ„o do postgresql.
+   
+   #+NAME exemplo pg_hba.conf
+   #+BEGIN_SRC example
+   local      database  user  auth-method  [auth-options] 
+   host       database  user  address  auth-method  [auth-options]
+   hostssl    database  user  address  auth-method  [auth-options]
+   hostnossl  database  user  address  auth-method  [auth-options]
+   host       database  user  IP-address  IP-mask  auth-method  [auth-options]
+   hostssl    database  user  IP-address  IP-mask  auth-method  [auth-options]
+   hostnossl  database  user  IP-address  IP-mask  auth-method  [auth-options]
+   #+END_SRC
+   
+   *local* significa que ser· utilizado o socket para conex„o
+   *host* significa que ser· utilizado tpc/ip pra conex„o
+   *hostssl* - tcp/ip com ssl
+   *hostnossl* - tcp/ip sem ssl   
+   *database,user,address,IP-address,Ip-maks* j· pra sacar o que È nÈ?    
+   *auth-method*[ln:pgDocsAuthMethods] È o mÈtodo de autenticaÁ„o
+    *peer* sÛ pra conexıes locais. Obtem o usu·rio do prÛprio sistema operacional.
+    *trust* significa que n„o precisa de nenhum mÈtodo de autenticaÁ„o
+    *reject* significa rejeitado independente do mÈtodo de autenticaÁ„o
+    *scram-sha-256* usa o mÈtodo SCRAM-SHA-256 pra verificar usu·rio e senha
+    *md5* usa o mÈtodo SCRAM-SHA-256
+    *password* Senha n„o criptografada
+    *gss* usa GSSAPI[ln:wikiGSSAPI] pra autenticar o usu·rio
+    *sspi* usa SSPI[ln:wikiSSPI] pra autenticar o usu·rio. SÛ faz sentido no windows
+    *ident* O postgres vai perguntar pra um servidor de identididade
+   no mesmo ip que est· tentando se conectar nele. No linux È comum um
+   desses ouvindo na porta 113. Ent„o pra usar ident vc precisa disso.
+    *ldap* Servidor ldap
+    *radius* usa radios pra verificar usuario e senha
+    *cert* usa certificado ssl do cliente
+    *pam* usa Pluggable Authentication Modules (PAM) do linux
+    *bsd* usa sistema de autenticaÁ„o do BSD
+
+    O arquivo padr„o, criado automaticamente no processo de instalaÁ„o
+    È mais ou menos assim...
+    #+NAME pg_hba.conf padrao
+    #+BEGIN_SRC example 
+    # TYPE  DATABASE        USER            ADDRESS                 METHOD
+    # "local" is for Unix domain socket connections only
+    local   all             all                                     peer
+    # IPv4 local connections:
+    host    all             all             127.0.0.1/32            ident
+    # IPv6 local connections:
+    host    all             all             ::1/128                 ident
+    # Allow replication connections from localhost, by a user with the
+    # replication privilege.
+    local   replication     all                                     peer
+    host    replication     all             127.0.0.1/32            ident
+    host    replication     all             ::1/128                 ident                                                                       
+    #+END_SRC
+   
+   Uma configuraÁ„o que uso sÛ pra programar È o seguinte...
+   #+NAME
+   #+BEGIN_SRC 
+   host    all             all              0.0.0.0/0                       md5
+   host    all             all             ::1/128                          md5
+   #+END_SRC
+
+   Siginifica que com a conex„o tcp/ip habilitada eu consigo conectar
+   usando ipv4 e informando o usuario e senha configurada no prÛprio postgresql.
+   
+*** configurar acesso via tcp
+    https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
+
+** Configurar permissıes de acesso
+
+** Iniciar o serviÁo
+   Tem v·rias maneiras de inicializar o postgresql. 
+   No momento, na minha m·quina, como uso systemd, uso o seguinte
+   comando
+   sudo systemctl start postgresql-11.service
+   sudo systemctl status postgresql-11.service
+   #+NAME sudo systemctl start postgresql
+   #+BEGIN_SRC sh :results output
+   echo $ROOT_PASSWORD | sudo -S systemctl start postgresql-11.service
+   echo $ROOT_PASSWORD | sudo -S systemctl status postgresql-11.service
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   ‚óè postgresql-11.service - PostgreSQL 11 database server
+      Loaded: loaded (/usr/lib/systemd/system/postgresql-11.service; disabled; vendor preset: disabled)
+      Active: active (running) since Sun 2019-01-06 01:05:33 -02; 7s ago
+        Docs: https://www.postgresql.org/docs/11/static/
+     Process: 5844 ExecStartPre=/usr/pgsql-11/bin/postgresql-11-check-db-dir ${PGDATA} (code=exited, status=0/SUCCESS)
+    Main PID: 5849 (postmaster)
+       Tasks: 8 (limit: 4394)
+      Memory: 19.0M
+      CGroup: /system.slice/postgresql-11.service
+              ‚îú‚îÄ5849 /usr/pgsql-11/bin/postmaster -D /var/lib/pgsql/11/data/
+              ‚îú‚îÄ5850 postgres: logger   
+              ‚îú‚îÄ5852 postgres: checkpointer   
+              ‚îú‚îÄ5853 postgres: background writer   
+              ‚îú‚îÄ5854 postgres: walwriter   
+              ‚îú‚îÄ5855 postgres: autovacuum launcher   
+              ‚îú‚îÄ5856 postgres: stats collector   
+              ‚îî‚îÄ5857 postgres: logical replication launcher   
+
+   jan 06 01:05:31 Unknown systemd[1]: Stopped PostgreSQL 11 database server.
+   jan 06 01:05:31 Unknown systemd[1]: Starting PostgreSQL 11 database server...
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.414 -02 [5849] LOG:  listening on IPv6 address "::1", port 5432
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.414 -02 [5849] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.512 -02 [5849] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.706 -02 [5849] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.991 -02 [5849] LOG:  redirecting log output to logging collector process
+   jan 06 01:05:32 Unknown postmaster[5849]: 2019-01-06 01:05:32.991 -02 [5849] HINT:  Future log output will appear in directory "log".
+   jan 06 01:05:33 Unknown systemd[1]: Started PostgreSQL 11 database server.
+   #+end_example
+
+** mudar a senha do usu·rio postgres
+   sudo passwd postgres
+   (informe a nova senha)
+   su postgres
+   psql
+   \password postgresql
+   (informe a nova senha)
+   
+** criar um banco de teste
+   
+
+
+** Criar banco de teste
+   
+
+** Testes de acesso
+   su -u postgres psql
+
+
+
+* Usando o postgresql
+** comandos do tipo \X
+   postgres=# \c nome_do_banco
+
+** Listar databases
+ postgres=# \l
+                                        List of databases
+          Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+ ----------------------+----------+----------+-------------+-------------+-----------------------
+  novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+  novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+  postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | 
+  template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
+                       |          |          |             |             | postgres=CTc/postgres
+  template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +
+                       |          |          |             |             | postgres=CTc/postgres
+ (5 rows)
+
+
+ O comando \l+ mostra um pouco mais de informaÁıes
+ postgres=# \l+
+                                                                          List of databases
+          Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   |  Size   | Tablespace |                Description   
               
-----------------------+----------+----------+-------------+-------------+-----------------------+---------+------------+------------------------------
---------------
- novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | 
- novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7521 kB | pg_default | 
- postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | default administrative connec
-tion database
- template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | unmodifiable empty database
-                      |          |          |             |             | postgres=CTc/postgres |         |            | 
- template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | default template for new data
-bases
-                      |          |          |             |             | postgres=CTc/postgres |         |            | 
-(5 rows)
+ ----------------------+----------+----------+-------------+-------------+-----------------------+---------+------------+------------------------------
+ --------------
+  novo_sus_development | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | 
+  novo_sus_test        | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7521 kB | pg_default | 
+  postgres             | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 |                       | 7653 kB | pg_default | default administrative connec
+ tion database
+  template0            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | unmodifiable empty database
+                       |          |          |             |             | postgres=CTc/postgres |         |            | 
+  template1            | postgres | UTF8     | pt_BR.UTF-8 | pt_BR.UTF-8 | =c/postgres          +| 7521 kB | pg_default | default template for new data
+ bases
+                       |          |          |             |             | postgres=CTc/postgres |         |            | 
+ (5 rows)
 
-postgres=# 
+ postgres=# 
 
-* listar roles
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of 
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 
-postgres=# 
+** listar roles
+ postgres=# \du
+                                    List of roles
+  Role name |                         Attributes                         | Member of 
+ -----------+------------------------------------------------------------+-----------
+  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 
-* configurar acesso via tcp
-  https://blog.bigbinary.com/2016/01/23/configure-postgresql-to-allow-remote-connection.html
-* Configure o arquivo postgresql.conf db
-** com uma pesquisa vc pode encontrar onde este arquivo est·
-[wagner@localhost ~]$ sudo find / -name "postgresql.conf"
-find: /run/user/1000/gvfs: Permiss„o negada
-/etc/postgresql-setup/upgrade/postgresql.conf
-/var/lib/docker/overlay2/6186dbc99db0dd9421ba8de389b6e7a1f451f81ccbbc2508db4dc825fad3777c/diff/usr/lib/tmpfiles.d/postgresql.conf
-/var/lib/docker/overlay2/e8d0c15cd089111a12c3fd19d4ef47db1f2b8be4dbd5caf2777b5e043aee890c/diff/usr/lib/tmpfiles.d/postgresql.conf
-/var/lib/docker/volumes/0545ec6fa7cfc12eeb88b9c88139be2dc19cd396c05708041496f13e1f12571f/_data/postgresql.conf
-/var/lib/docker/volumes/7968fdd30d8d1846ac513a1a0ff7211a2dc16fcfb2f0557a3289c7bed0778f54/_data/postgresql.conf
-/var/lib/docker/volumes/8e6d2050adcc035f9695ede330922a2490ae0c78bdc1d2297c7126108570d82e/_data/postgresql.conf
-/var/lib/docker/volumes/61b385d1768017066e1476557196f0021f62ad93de6b8738b52bc9b196bea27d/_data/postgresql.conf
-/var/lib/docker/volumes/48a02dae84d8953920bb8e3cc3675a6e971e6b3b866359517c3c4e5a73cf9634/_data/postgresql.conf
-/var/lib/docker/volumes/39d912a61967cb6b50104a3ee2ea2c7b4f996e6edafec33cda54ad0287b1f74c/_data/postgresql.conf
-/var/lib/docker/volumes/c0174d9e89d4266f3d3ec51f4ef16b5bd2759182b8cbef774dba13ed0aaed374/_data/postgresql.conf
-/var/lib/pgsqlantigo/data/postgresql.conf
-/var/lib/pgsql/data/postgresql.conf
-/usr/lib/tmpfiles.d/postgresql.conf
-/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/postgresql.conf
-[wagner@localhost ~]$ 
-
-** Configurando o posgresql.conf
-Encontre onde est· o seu postgresql.conf e troca a linha 
-listen_addresses = 'localhost'
-por
-listen_addresses = '*'
-
-* Configure o arquivo pg_hba.conf
-
-** encontre o arquivo pg_hba.conf
-[wagner@localhost ~]$ sudo find / -name pg_hba.conf
-[sudo] senha para wagner: 
-Sinto muito, tente novamente.
-[sudo] senha para wagner: 
-find: /run/user/1000/gvfs: Permiss„o negada
-/var/lib/docker/volumes/0545ec6fa7cfc12eeb88b9c88139be2dc19cd396c05708041496f13e1f12571f/_data/pg_hba.conf
-/var/lib/docker/volumes/7968fdd30d8d1846ac513a1a0ff7211a2dc16fcfb2f0557a3289c7bed0778f54/_data/pg_hba.conf
-/var/lib/docker/volumes/8e6d2050adcc035f9695ede330922a2490ae0c78bdc1d2297c7126108570d82e/_data/pg_hba.conf
-/var/lib/docker/volumes/61b385d1768017066e1476557196f0021f62ad93de6b8738b52bc9b196bea27d/_data/pg_hba.conf
-/var/lib/docker/volumes/48a02dae84d8953920bb8e3cc3675a6e971e6b3b866359517c3c4e5a73cf9634/_data/pg_hba.conf
-/var/lib/docker/volumes/39d912a61967cb6b50104a3ee2ea2c7b4f996e6edafec33cda54ad0287b1f74c/_data/pg_hba.conf
-/var/lib/docker/volumes/c0174d9e89d4266f3d3ec51f4ef16b5bd2759182b8cbef774dba13ed0aaed374/_data/pg_hba.conf
-/var/lib/pgsqlantigo/data/pg_hba.conf
-/var/lib/pgsql/data/pg_hba.conf
-/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/pg_hba.conf
-[wagner@localhost ~]$ 
+ postgres=# 
 
 
 
-** Configure o arquivo pg_hba.conf
-No arquivo pg_hba.conf colocar nas ˙ltimas linhas o seguinte...
-host    all             all              0.0.0.0/0                       md5
-host    all             all              ::/0                            md5
+
+* usando elephantsql
+  
+  #+NAME
+  #+BEGIN_SRC sh
+    curl -u :xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx  https://api.elephantsql.com/api/backup?db=my-db
+  #+END_SRC
+ 
+* Refs
+[ln:pgInstFedCent]  https://www.if-not-true-then-false.com/2012/install-postgresql-on-fedora-centos-red-hat-rhel/
+[ln:pgDocsHbaConf] https://www.postgresql.org/docs/10/auth-pg-hba-conf.html
+[ln:wikiGSSAPI] https://en.wikipedia.org/wiki/Generic_Security_Services_Application_Program_Interface
+[ln:wikiSSPI] https://en.wikipedia.org/wiki/Security_Support_Provider_Interface
+[ln:pgDocsAuthMethods] https://www.postgresql.org/docs/10/auth-methods.html
+
 

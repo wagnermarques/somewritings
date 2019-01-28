@@ -5,3 +5,48 @@
 https://stackoverflow.com/questions/4720343/loading-basic-html-in-node-js
 https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js
 https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
+
+* inspecinando debugger
+  https://nodejs.org/en/docs/guides/debugging-getting-started/
+  https://nodejs.org/api/debugger.html
+  Atualmente não precisa instalar nada pra inspecionar seu app
+  1) Inicie o seu software com a opção --inspect
+  node src/main.js --inspect
+  2) 
+
+* folders
+  https://docs.npmjs.com/files/folders
+** Configurando diretório global de instalação de pacotes
+   Por padrão o local é:
+   /usr/local ou no local onde o node estiver instalado
+   Qdo você instala pacotes globalmente dá pra usar o pacote pela
+   linha de comando
+   Pra escolher o diretório de instalação do node é só estabelecer o
+   prefix, algo assim... {prefix}/bin/node
+   
+   Pra consultar qual é o prefix atual..
+   #+NAME npm config get prefix
+   #+BEGIN_SRC sh :exports both :results output
+   npm config get prefix
+   #+END_SRC
+
+   #+RESULTS:
+   : /usr
+
+   Se vc der um ls -la /usr/lib
+   Pode ser que o seu /usr/lib/node_modules aparece pertencendo ao root
+   drwxr-xr-x.   6 root root  4096 jan 12 11:41 node_modules
+
+   isso faz com que ao instalar um pacote global vc tenha que ser root
+   pra evitar isso eu faço o seguinte...
+   sudo chown -R wagner:wagner /usr/lib/node_modules/
+   
+* npm link
+  https://docs.npmjs.com/cli/link
+  o comando npm link cria um link simbólico no diretório de instalação
+  global de pacotes do node. Esse link vai apontar pro projeto que vc
+  deu o comando.
+  Na verdade significa que o seu projeto que vc deu o npm link vai ser
+  considerado com se fosse uma instalado globalmente na máquina.
+  O nome do seu pacote que estará agora disponível globalmente vai ser
+  o que está no seu package.json e não o nome do diretório do seu projeto.

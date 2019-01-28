@@ -1,7 +1,5 @@
 #+Title: Apostila Inov Tec
 
-
-
 * Revis Bibliográfica: Inovação
   http://pedrotrillo.com/wp-content/uploads/2016/01/Whatisdisruptiveinnovation.pdf
   
@@ -9,11 +7,14 @@
 
   https://www.sciencedirect.com/science/article/pii/S0959652613005751
 
+
 * Revis Bibliográfica: Empreendedorismo e Inovação
+
 
 * Revis Bibliográfica: Inovação na Saúde
   http://www.scielo.br/scielo.php?pid=S0102-311X2016001400101&script=sci_arttext&tlng=pt
   https://www.ghdonline.org/uploads/Health_IT_Innovation.pdf
+
 
 * Revis Bibliográfica: Teoria Inovação 
 
@@ -168,6 +169,10 @@ qualidade da informação são relevantes neste caso.
    https://www.youtube.com/channel/UChyx-6aVOvoKY_l0TF8jTCg
    https://www.youtube.com/channel/UCVAcIPEoCeuaDYICLJzpRSw
    https://www.youtube.com/channel/UC61qCC3gN6IDfIRkIKOqjIA
+   http://himsstv.brightcovegallery.com/
+
+** Cursos
+   https://www.edx.org/course/creating-sustaining-innovation-culture-uqx-corpinn4x?utm_source=sailthru&utm_medium=email&utm_campaign=newsletter_themed_20181204
 
 * Sistemas de Saúde No Mundo
   https://www.commonwealthfund.org/publications/fund-reports/2014/jun/mirror-mirror-wall-2014-update-how-us-health-care-system?redirect_source=/publications/fund-reports/2014/jun/mirror-mirror
@@ -176,6 +181,7 @@ qualidade da informação são relevantes neste caso.
   
 ** inovação nos Sistemas de Saúde No Mundo
    https://www.rand.org/content/dam/rand/pubs/research_reports/RR1100/RR1143/RAND_RR1143.pdf
+
 
 * SUS - Sistema Único de Saúde
   https://en.wikipedia.org/wiki/Sistema_%C3%9Anico_de_Sa%C3%BAde
@@ -199,6 +205,7 @@ SI-PNI
 SISCOLO/SISMAMA
 SISPRENATAL
 
+
 * Modelo de Cuidado nos Sistemas de Saúde
   A Universidade Australiana de Deaking formulou em 2008 para o
 "Australian residential aged-care sector" um modelo de cuidado
@@ -219,6 +226,7 @@ conhecido com partnership-centred que envolve três pilares fundamentais.
    Exemplos:
    https://go.christiansteven.com/-temporary-slug-cb0079ff-56ed-4ae1-b5ba-d84adc19aa61?hs_preview=RTKQUQXw-6700288048&utm_campaign=SQL-RD&utm_content=80863995&utm_medium=social&utm_source=twitter&hss_channel=tw-257500999
 
+
 * Temas importantes em Informática em Saúde
 ** 
 ** CMD
@@ -235,8 +243,81 @@ conhecido com partnership-centred que envolve três pilares fundamentais.
    http://datasus.saude.gov.br/metodologias/pgdm-processo-de-gerenciamento-e-desenvolvimento-mobile
 ** Acesso a Informação  
 
+** value-based care (VBC) e CMS Quality Strategy
+   https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/Value-Based-Programs/Value-Based-Programs.html
+   https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/Value-Based-Programs/CMS-Quality-Strategy.html
+** Referential Matching e Patient Identity Interoperability
+   how it can eliminate duplicate medical records
+   https://mhealthintelligence.com/resources/white-papers/healthcare-needs-a-new-architecture-for-patient-identity-interoperability?eid=CXTEL000000249793&elqCampaignId=7986&elqTrackId=ba418f3d9b84403598fc725b8f8ea8b1&elq=de702818e9d44202a6def795a37feebd&elqaid=8426&elqat=1&elqCampaignId=7986
 
+** Automação
+   
 * Assistir esses videos
   https://www.youtube.com/watch?v=URGeSTbPu-Y
   http://cns.saude.ce.gov.br/downloads/dados/instala%C3%A7%C3%A3o_simplificado_flash.swf
   
+
+* sobre startups
+** Negócios do tipo matchmakers
+  Negócios do tipo "matchmakers": Airbnb, o Bla Bla Car e a
+  Eventbrite. "Aplicativos de encontro entre
+  "vendedores""[fn:startups_exemplos1]
+
+  A questão da "externalidade de rede" (ou efeito rede) que quer dizer
+  que cada usuário que se cadastra agrega valor ao negócio, ou seja,
+  "gera um valor extra" aos outros usuários que querem se agregar ao
+  negócio. "[fn:startups_exemplos1]
+
+  Pelo fato de lidar tanto com quem quer vender como com quem quer
+  adquirir um serviço, essas aplicações são conhecidos como
+  "multisided platforms""[fn:startups_exemplos1] É importante manter
+  um "equilíbrio".
+
+** exemplos de startups
+
+   
+   dockway"[fn:startups_exemplos1]
+
+
+* Interessantes
+  
+Lei nº 13.797, de 03/01/19 DOU de 04/01/19 p.3 - seção 1 - nº 3 -
+Altera a Lei nº 12.213, de 20 de janeiro de 2010, para autorizar a
+pessoa física a realizar doações aos fundos controlados pelos
+Conselhos Municipais, Estaduais e Nacional do Idoso diretamente em sua
+declaração de Ajuste Anual do Imposto sobre a Renda da Pessoa Física.
+
+Lei nº 13.787, de 27/12/18 DOU de 28/12/18 p.3 - seção 1 - n° 249 -
+Dispõe sobre a digitalização e a utilização de sistemas informatizados
+para a guarda, o armazenamento e o manuseio de prontuário de paciente.
+
+Medida Provisória nº 869, de 27/12/18 DOU de 28/12/18 p.8 - seção 1 -
+n° 249 - Altera a Lei nº 13.709, de 14/08/2018, para dispor sobre a
+proteção de dados pessoais e para criar a Autoridade Nacional de
+Proteção de Dados, e dá outras providências.
+
+Consulta Pública MS-ANVISA nº 588, de 26/12/18 DOU de 28/12/18 p.421 -
+seção 1 - n° 249 - Fica estabelecido o prazo para envio de comentários
+e sugestões ao texto da proposta de Resolução da Diretoria Colegiada
+(RDC) que define os critérios e os procedimentos para implementação do
+gerenciamento informatizado da distribuição de numeração e talonários
+de Receituário de Controle Especial no território nacional.
+
+Resolução MS-CNS-600, de 11/10/18 DOU de 14/01/19 p. 66 - seção 1 n°
+09 - Aprova o posicionamento brasileiro para a Global Conference on
+Primary Health Care, Astana, 2018, anexo a esta resolução.
+ftp://ftp.saude.sp.gov.br/ftpsessp/bibliote/informe_eletronico/2019/iels.jan.19/Iels09/U_RS-MS-CNS-600_111018.pdf
+
+
+Portaria MS-FUNASA nº 125, de 07/01/19 DOU de 11/01/19 p. 47 - seção 1
+n° 08 - Designa Coordenador do Projeto e respectivo suplente para
+execução do PROJETO DE COOPERAÇÃO TÉCNICA INTERNACIONAL TC-87, firmado
+com a Organização Pan-Americana da Saúde - OPAS.
+ftp://ftp.saude.sp.gov.br/ftpsessp/bibliote/informe_eletronico/2019/iels.jan.19/Iels08/U_PT-MS-FUNASA-125_070119.pdf
+
+
+
+
+
+* refs
+[fn:startups_exemplos1] https://endeavor.org.br/desenvolvimento-pessoal/enxergando-barreiras-que-nos-impedem-de-crescer/?utm_campaign=news_0701_nao_empreendedores_opt-in&utm_medium=email&utm_source=RD+Station

@@ -2,175 +2,56 @@
 #+Title: Atividade 1 - Loja de Informática
 
 * Introdução
-  Olá pessoal, dê uma olhada, por favor, aí na imagem pra compreender
-  a atividade, ok?
-  [[file:LojaInfo.png]]
-
-
-* preparando o ambiente :noexport:
-** Instalação do mssqlserver no linux
-*** Fazendo pull da imagem do mssqlserver
-    Primeiro você deve fazer o pull da imagem container
-    Claro que pra usar o comando docker vc precisa instalar ele
-    também. No meu caso estou usando a versão indicada abaixo. 
-    Tem muitos tutorials sobre como instalar o docker no google.
-    #+name: docker version
-    #+begin_src sh  :eval exports  :results output replace  :exports both
-    docker --version
-    #+end_src
-
-    #+RESULTS:
-    : Docker version 1.12.6, build ae7d637/1.12.6
-
-
-    Com o docker funcionando, você pode fazer o pull da imagem do
-    mssqlserver
-    #+name: docker pull mssqlserver
-    #+begin_src sh  :results output replace  :exports both
-    docker pull microsoft/mssql-server-linux:latest
-    #+end_src
-
-    #+RESULTS:
-    #+begin_example
-    latest: Pulling from microsoft/mssql-server-linux
-    f6fa9a861b90: Already exists
-    da7318603015: Already exists
-    6a8bd10c9278: Already exists
-    d5a40291440f: Already exists
-    bbdd8a83c0f1: Already exists
-    3a52205d40a6: Already exists
-    6192691706e8: Already exists
-    1a658a9035fb: Already exists
-    827975ce0c02: Already exists
-    ea7199b7fbb6: Already exists
-    Digest: sha256:ff4bd7961f6c788d980953ae4edbb7cfc7e604dfe2b702fc26548080254c522a
-    Status: Image is up to date for microsoft/mssql-server-linux:latest
-    #+end_example
-
-*** rodando o mssqllserver
-   Agora você tem que rodar o container, e depois, checar se o seu container está rodando
-  #+name docker ps
-  #+begin_src sh
-  docker ps
-  #+end_src
-
-  #+RESULTS:
-  : CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-  Aqui a gente roda nosso container pra obter uma instancia do
-  mssqlserver rodando. Repare que o sqlserver tera a disposicao o
-  diretorio /sql_scripts onde esta nossos scripts que vamos rodar.
-  #+name docker run mssqlserver
-  #+begin_src sh
-    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs mssql-server  
-  #+end_src
-
-  #+RESULTS:
-  : 48726b8c1f1bf8698f80524e25f9006e67ce720dafcc2fe613884f527b3cf1d1
-
+  Este material guiará você na execução desta atividade prática.
+  O objetivo é a criação de um banco de dados relacional que suporte o
+  processo de persistência de uma aplicação do tipo loja de
+  informática.
   
-  Será que nosso container tem mesmo um diretório /sql_scripts?
-  Tem que ter né, porque é lá que estarão nossos script que vamos
-  rodar. Vamos conferir se tem mesmo então... Pra isso é só dar um ls
-  no container.
-  #+name docker verifica pasta sql_script 
-  #+begin_src sh
-    docker exec sqlserver ls
-  #+end_src
-
-  #+RESULTS:
-  | bin         |
-  | boot        |
-  | core        |
-  | dev         |
-  | etc         |
-  | home        |
-  | install.sh  |
-  | lib         |
-  | lib64       |
-  | media       |
-  | mnt         |
-  | opt         |
-  | proc        |
-  | root        |
-  | run         |
-  | sbin        |
-  | sql_scripts |
-  | srv         |
-  | sys         |
-  | tmp         |
-  | usr         |
-  | var         |
+  Neste atividade será criado banco de dados, as tabelas os
+  relacionamentos.
   
-  Então pela saída acima tá comprovado que nossa pastinha de scripts
-  tá... 
+  O aluno deverá recriar esse banco de dados e enviar seu próprio
+  script como resposta.
 
+  Portanto, o aluno deverá serguir as seguintes orientações para
+  criação do seu escript e conclusão da sua tarefa
 
-  Agora você pode dar uma conferida se a porta 1433 está aberta. Pra
-  isso você pode usar o nmap. Tem que instala-lo.
-  #+name checando porta 1433
-  #+begin_src sh  :eval exports  :results output replace  :exports both
-  nmap 172.17.0.1
-  #+end_src
+  Ou seja, o script deve fazer o seguinte...
+  1) Criação do banco de dados
+  2) Criação das tabelas
+  3) Configuração da integridade referencial
+  4) Cadastro de 20 clientes
+  5) Cadastro de 20 hardwares
+  6) Cadastro de 20 vendas considerando que deve haver clientes que
+     fizeram repetidas compras, clientes que não fizeram compras e
+     hardwares que não chegaram a ser vendidos.
+  7) Listar todos os clientes e todos os hardwares
+  8) Listar Nomes dos clientes que não realizaram compras
+  9) Listar Nomes dos clientes que realizaram compras
+  10) Listar Nomes dos hardwares que não foram vendidos
 
-  #+RESULTS:
-  : 
-  : Starting Nmap 7.40 ( https://nmap.org ) at 2018-02-10 11:42 -02
-  : Nmap scan report for 172.17.0.1
-  : Host is up (0.00042s latency).
-  : Not shown: 999 closed ports
-  : PORT     STATE SERVICE
-  : 1433/tcp open  ms-sql-s
-  : 
-  : Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
+  Apesar de este material trazer informações adicionais como variáveis
+  em sql o aluno pode ver isso como conhecimento adicional apenas.
 
-* o comando sqlcmd
-   Esse comando é só pra demostrar que nosso container sqlserver está
-   funcionando e também pra demonstrar como utilizar o comando sqlcmd.
-  #+name: sqlcmd
-  #+begin_src sh :results output replace  :exports both
-  docker exec mssql-server /opt/mssql-tools/bin/sqlcmd
-  #+end_src
+* Criando o banco de dados
+    
+  Utilize esse comando no início do seu script para criar seu banco de dados.
+  #+NAME:create_tables.sql
+  #+INCLUDE: "./sql_scripts/create_database.sql"  :only-contents t :src sql
 
-*  dropando o banco pra quando quizer comecar do zero
-    Essa parte do script serve simplesmente pra dropar o banco
-    A gente dropa o banco as vezes quando queremos rodar os nossos
-    scripts do zero.
-    NANE: drop_database
-    INCLUDE: ./sql_scripts/aula_funcoes.sql 
-
-* Criacao do Banco de dados
-  O script abaixo é o conteúdo do arquivo  script
-
-  Exec_sp_databases.sql.  
-
-  Seque o conteúdo do script. A gente vai
-  passar esse script pro comando sqlcmd que vai executá-lo e mostrar
-  o resultado logo abaixo.
-  
-  #+INCLUDE: "./sql_scripts/Exec_sp_databases.sql"  :only-contents t :src sql 
-
-  Como você pode perceber, o conteúdo do nosso script é simplesmente
-  a execução da Store Procedure sp_databases. 
-  O resultado é igual o show databases do mysql, por exemplo.
-
-  Bom agora a gente vai rodar o script aula_funcoes.sql. O escript á
-  apresentado logo abaixo pra vc conhece-lo.
-
-  Estamos te mostrando só o pedaço do script que cria o banco de
-  dados. 
-
-  #+Name: create database
-  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "6
-
-  Rodando sp_databases de novo vc vai ver que o banco foi criado
-  
 
 * Criação das tabelas
   
-  Instruções sql pra criação das tabelas.
-  NAME:create_tables.sql
-  INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
+  Lembra de antes dar um create database lojainfo.
+  Instruções sql pra utilização do banco e criação das tabelas.  
+  
+  #+NAME:create_tables.sql
+  #+INCLUDE: "./sql_scripts/create_tables.sql"  :only-contents t :src sql
+  
+  Eu rodo os scripts com o comando sqlcmd mas vc pode fazer do jeito
+  simples que fazemos na sala de aula mesmo. Digita esses comandos no
+  editor de scripts sql do sqlstudio manager.
+  
 
 * Testa tabelas e mostra necessidade dos relacionamentos
 
@@ -188,7 +69,8 @@ A próxima sessão dessa atividade vai mostrar como resolver isso.
       docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno#123 -i /sql_scripts/create_tables_tests.sql
     #+end_src
 
-    INCLUDE: "./sql_scripts/create_tables_tests.sql"
+
+    #+INCLUDE: "./sql_scripts/create_tables_tests.sql" :src sql
 
     
     Entao, perceba vc que id_cliente nao tem cadastrado. Entao isso torna
@@ -626,3 +508,4 @@ Vamos fazer isso...
 
 * script completo
   #+INCLUDE: ./sql_scripts/aula_funcoes.sql src sql 
+

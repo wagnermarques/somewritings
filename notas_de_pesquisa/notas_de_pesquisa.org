@@ -1,0 +1,3 @@
+#+Title: Notas de pesquisa
+
+Replicar e reproduzir resultados científicos é um importante tópico atualmente

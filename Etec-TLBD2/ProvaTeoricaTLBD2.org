@@ -1,0 +1,20 @@
+#+Title: Prova Teórica Tlbd2
+
+1) O que é um SGBD?
+2) O que é SQL?
+3) Em que categoria de programas de computador você classficaria os
+seguintes softwares:
+Mysql, Postgresql, Sqlite, javaDB, DB2, SqlServer, HQSQL Derby
+4) O que são instruções DML e DDL? Dê pelo menos três exemplos de cada
+   uma
+5) Qual o perigo de utilizar a instrução update sem where? Explique e
+   de um exemplo
+6) Qual o perigo de utilizar a instrução delete sem o where? Explique
+   e de um exemplo
+8) O que é integridade referencial. Dê um exemplo em sql
+
+
+Para facilitar a escrita dos códigos sql e evitar de ter que instalar
+um banco dados apenas para isso, e também a título de enriquecimentod
+da experiência do aluno, o mesmo poderá utilizar a ferramenta
+https://www.db-fiddle.com/  

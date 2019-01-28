@@ -1,3 +1,26 @@
 #+Title: Anotacoes Sobre R
 
 * Scripts portaveis
+* funções apply
+  https://www.datacamp.com/community/tutorials/r-tutorial-apply-family?utm_source=adwords_ppc&utm_campaignid=1658343524&utm_adgroupid=63833882055&utm_device=c&utm_keyword=%2Bsapply%20%2Br&utm_matchtype=b&utm_network=g&utm_adpostion=1t1&utm_creative=319558765411&utm_targetid=aud-522010995285:kwd-376025357755&utm_loc_interest_ms=&utm_loc_physical_ms=1001773&gclid=Cj0KCQiA-JXiBRCpARIsAGqF8wWtQ4kIAHLouq-kHjYTP_HkrIUA78HINW0WSiGqCoazbhLnDLet830aAqEUEALw_wcB
+  
+* dplyr
+** Two Table Verbs  
+   https://dplyr.tidyverse.org/articles/two-table.html
+   https://rpubs.com/williamsurles/293454
+   https://r4ds.had.co.nz/
+   https://r4ds.had.co.nz/relational-data.html
+   https://r4ds.had.co.nz/
+
+*** Mesclando dados de tabelas
+    
+    Mutating joins
+    Adiciona Variáveis à tabela que matching linhas da outra
+
+    Filtering joins
+    Filtra linhas de uma tabela baseado se elas são iguais ou nao às
+    linhas de outra tabela
+
+    Set operations
+    Combina as linhas no data set como se ?, which combine the observations in the data sets as if they were set elements.
+

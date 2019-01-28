@@ -1,0 +1,25 @@
+#+Title: Learning GIS R
+
+* Plotly
+  https://plot.ly/r/maps/
+
+* mapas interativos mapview e leaflet
+  http://rgooglemaps.r-forge.r-project.org/Mapview.html
+  https://rstudio.github.io/leaflet/
+
+* Incluir no relatório
+  http://smul.prefeitura.sp.gov.br/economia_urbana/mapas/cap3_p2.pdf
+
+* Dados
+  http://www.imp.seade.gov.br/frontend/#/tabelas
+  http://dados.prefeitura.sp.gov.br/pt_PT/dataset/distritos
+
+* Mapview
+  https://github.com/r-spatial/mapview
+
+* ggsn
+  http://oswaldosantos.github.io/ggsn/
+
+* bookmark
+  https://www.r-spatial.org/r/2017/01/30/mapedit_intro.html
+  
