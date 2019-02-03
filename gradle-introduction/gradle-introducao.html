@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
 <head>
-<!-- 2016-12-02 Sex 11:21 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 2019-02-03 dom 17:20 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gradle: Introdução</title>
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Wagner França Marques" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="wagner" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -53,13 +53,98 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
@@ -92,88 +177,15 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" title="OrgModeTuts-ESTILO-PADRAO"  type="text/css" href="org-mode-tutorials-css-style.css" />
-<link rel="stylesheet" type="text/css" href="http://www.star.bris.ac.uk/bjm/css/bjm.css" />
-<link rel="alternate stylesheet" title="OrgModeTuts-ThanksForBjm" type="text/css" href="http://www.star.bris.ac.uk/bjm/css/bjm.css" />
-<script type="text/javascript" src="http://orgmode.org/org-info.js">
-/**
- *
- * @source: http://orgmode.org/org-info.js
- *
- * @licstart  The following is the entire license notice for the
- *  JavaScript code in http://orgmode.org/org-info.js.
- *
- * Copyright (C) 2012-2013 Free Software Foundation, Inc.
- *
- *
- * The JavaScript code in this tag is free software: you can
- * redistribute it and/or modify it under the terms of the GNU
- * General Public License (GNU GPL) as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option)
- * any later version.  The code is distributed WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
- *
- * As additional permission under GNU GPL version 3 section 7, you
- * may distribute non-source (e.g., minimized or compacted) forms of
- * that code without the copy of the GNU GPL normally required by
- * section 4, provided you include this license notice and a URL
- * through which recipients can access the Corresponding Source.
- *
- * @licend  The above is the entire license notice
- * for the JavaScript code in http://orgmode.org/org-info.js.
- *
- */
-</script>
-
-<script type="text/javascript">
-
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-
-<!--/*--><![CDATA[/*><!--*/
-org_html_manager.set("TOC_DEPTH", "5");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
-org_html_manager.set("LOCAL_TOC", "1");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "0");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-/*]]>*///-->
-</script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -218,48 +230,1034 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Gradle: Introdução
-<br>
+<br />
 <span class="subtitle">intermediario</span>
 </h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline3">PLANO</a>
-<ul>
-<li><a href="#orgheadline1">TEMA</a></li>
-<li><a href="#orgheadline2">OBJETIVO</a></li>
-</ul>
-</li>
+<li><a href="#org298d892">1. Instalação do Gradle e Conf do Path</a></li>
+<li><a href="#orga2349b4">2. Criação de um projeto java básico</a></li>
+<li><a href="#org9758274">3. Conhecendo a estrutura do projeto</a></li>
+<li><a href="#org4993198">4. Buildando e Executando o projeto</a></li>
+<li><a href="#org8ac18e5">5. Fluxo de trabalho dom o gradle</a></li>
+<li><a href="#orgd2bc702">6. Tasks do gradle</a></li>
+<li><a href="#org66361ac">7. Referencias</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">PLANO</h2>
-<div class="outline-text-2" id="text-orgheadline3">
-</div><div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1">TEMA</h3>
-<div class="outline-text-3" id="text-orgheadline1">
+<div id="outline-container-org298d892" class="outline-2">
+<h2 id="org298d892"><span class="section-number-2">1</span> Instalação do Gradle e Conf do Path</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-Introdução ao Gradle
+#+NAME export env vars
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #483d8b;">export</span> <span style="color: #a0522d;">GRADLE_HOME</span>=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">PATH</span>=$<span style="color: #a0522d;">PATH</span>:$<span style="color: #a0522d;">GRADLE_HOME</span>/bin     
+gradle -v
+</pre>
+</div>
+
+<pre class="example">
+
+------------------------------------------------------------
+Gradle 5.1.1
+------------------------------------------------------------
+
+Build time:   2019-01-10 23:05:02 UTC
+Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+Kotlin DSL:   1.1.1
+Kotlin:       1.3.11
+Groovy:       2.5.4
+Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+OS:           Linux 4.20.5-200.fc29.x86_64 amd64
+
+</pre>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orga2349b4" class="outline-2">
+<h2 id="orga2349b4"><span class="section-number-2">2</span> Criação de um projeto java básico</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://guides.gradle.org/building-java-applications/">https://guides.gradle.org/building-java-applications/</a>
+</p>
+
+<p>
+Pra criar um projeto com gradle a gente cria uma pasta, entra nela e
+dá o comando gradle init + parametros.
+Esse "init" é um plugin do gradle[gradleCodsInitPlugin]
+</p>
+
+<p>
+#+NAME criac proj java                    
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">export</span> <span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/                                 
+mkdir -p $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>
+
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>
+rm -rf demojavaproj
+mkdir demojavaproj &amp;&amp; <span style="color: #483d8b;">cd</span> demojavaproj
+<span style="color: #483d8b;">echo</span> 1 | gradle init --type java-application <span style="color: #8b2252;">\</span>
+            --project-name demojavaproject <span style="color: #8b2252;">\</span>
+            --package br.com.exemplo <span style="color: #8b2252;">\</span>
+            --test-framework junit <span style="color: #b22222;">#</span><span style="color: #b22222;">\</span>
+            <span style="color: #b22222;">#</span><span style="color: #b22222;">-Dhttp.proxyHost=192.168.0.2 -Dhttp.proxyPort=3128 -Dhttp.proxyUser=cid2 -Dhttp.proxyPort=cid2</span>
+
+<span style="color: #483d8b;">pwd</span>
+ls -l
+</pre>
+</div>
+
+<pre class="example">
+
+[wagner@Unknown gradle-introduction]$ [wagner@Unknown gradle-introduction]$ [wagner@Unknown gradle-introduction]$ [wagner@Unknown gradle-introduction]$ [wagner@Unknown projetos]$ [wagner@Unknown projetos]$ [wagner@Unknown demojavaproj]$ &gt; &gt; &gt; &gt; Task :wrapper
+Task :init
+
+BUILD SUCCESSFUL in 0s
+2 actionable tasks: 2 executed
+/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj
+total 28
+-rw-rw-r--. 1 wagner wagner  949 fev  3 14:16 build.gradle
+drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:16 gradle
+-rwxrwxr-x. 1 wagner wagner 5305 fev  3 14:16 gradlew
+-rw-rw-r--. 1 wagner wagner 2269 fev  3 14:16 gradlew.bat
+-rw-rw-r--. 1 wagner wagner  363 fev  3 14:16 settings.gradle
+drwxrwxr-x. 4 wagner wagner 4096 fev  3 14:16 src
+</pre>
+
+<p>
+Nos comandos acima, o mais importante foi gradle init que pode ser
+dado também com o gradle &#x2013;task :init
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2">OBJETIVO</h3>
-<div class="outline-text-3" id="text-orgheadline2">
+
+<div id="outline-container-org9758274" class="outline-2">
+<h2 id="org9758274"><span class="section-number-2">3</span> Conhecendo a estrutura do projeto</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-Criar e contruir um projeto simples demostrando as funcionalidades
-básicas do gradle
+Segue abaixo a estrutura do projeto. O importante conhecer pra que
+que serve cada um, o professor vai ler com vcs em sala de aula e
+explicar cada um desses arquivos.
+</p>
+
+
+<ul class="org-ul">
+<li><p>
+build.gradle
+</p>
+<div class="org-src-container">
+<pre class="src src-groovy">/*
+ * This file was generated by the Gradle 'init' task.
+ *
+ * This generated file contains a sample Java project to get you started.
+ * For more details take a look at the Java Quickstart chapter in the Gradle
+ * user guide available at https://docs.gradle.org/5.1.1/userguide/tutorial_java_projects.html
+ */
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building an application
+    id 'application'
+}
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    implementation 'com.google.guava:guava:26.0-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'br.com.exemplo.App'
+</pre>
+</div></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+.gitignore
+</p>
+<div class="org-src-container">
+<pre class="src src-groovy"># Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+</pre>
+</div></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>.gradle</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+gradle
+</p>
+
+<p>
+Diretório de cache do gradle
+</p></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+gradlew
+</p>
+
+<p>
+Um shellscript pra usar o o comando gradlew (gradle wrapper) no
+linux
+</p></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+gradlew.bat
+</p>
+
+<p>
+Arquivo de lote pra usar o comando gradlew (gradle wrapper) no
+windows
+</p></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+settings.gradle
+</p>
+
+<div class="org-src-container">
+<pre class="src src-groovy">/*
+ * This file was generated by the Gradle 'init' task.
+ *
+ * The settings file is used to specify which projects to include in your build.
+ *
+ * Detailed information about configuring a multi-project build in Gradle can be found
+ * in the user guide at https://docs.gradle.org/5.1.1/userguide/multi_project_builds.html
+ */
+
+rootProject.name = 'demojavaproject'
+</pre>
+</div></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+src
+</p>
+
+<p>
+diretório de código 
+</p></li>
+
+<li><p>
+codigo java (src/main/java/br/com/exemplo/App.java)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">/*</span>
+<span style="color: #b22222;"> * This Java source file was generated by the Gradle 'init' task.</span>
+<span style="color: #b22222;"> */</span>
+<span style="color: #a020f0;">package</span> br.com.<span style="color: #008b8b;">exemplo</span>;
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">App</span> {
+    <span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">getGreeting</span>() {
+        <span style="color: #a020f0;">return</span> <span style="color: #8b2252;">"Hello world."</span>;
+    }
+
+    <span style="color: #a020f0;">public</span> <span style="color: #a020f0;">static</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">main</span>(<span style="color: #228b22;">String</span>[] <span style="color: #a0522d;">args</span>) {
+        System.out.println(<span style="color: #a020f0;">new</span> <span style="color: #228b22;">App</span>().getGreeting());
+    }
+}
+</pre>
+</div></li>
+
+<li><p>
+codigo java (src/test/java/br/com/exemplo/AppTest.java)
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #b22222;">/*</span>
+<span style="color: #b22222;"> * This Java source file was generated by the Gradle 'init' task.</span>
+<span style="color: #b22222;"> */</span>
+<span style="color: #a020f0;">package</span> br.com.<span style="color: #008b8b;">exemplo</span>;
+
+<span style="color: #a020f0;">import</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.<span style="color: #228b22;">Test</span>;
+<span style="color: #a020f0;">import</span> <span style="color: #a020f0;">static</span> <span style="color: #008b8b;">org</span>.<span style="color: #008b8b;">junit</span>.<span style="color: #008b8b;">Assert</span>.*;
+
+<span style="color: #a020f0;">public</span> <span style="color: #a020f0;">class</span> <span style="color: #228b22;">AppTest</span> {
+    <span style="color: #008b8b;">@Test</span> <span style="color: #a020f0;">public</span> <span style="color: #228b22;">void</span> <span style="color: #0000ff;">testAppHasAGreeting</span>() {
+        <span style="color: #228b22;">App</span> <span style="color: #a0522d;">classUnderTest</span> = <span style="color: #a020f0;">new</span> <span style="color: #228b22;">App</span>();
+        assertNotNull(<span style="color: #8b2252;">"app should have a greeting"</span>, classUnderTest.getGreeting());
+    }
+}
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org4993198" class="outline-2">
+<h2 id="org4993198"><span class="section-number-2">4</span> Buildando e Executando o projeto</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Pessoal, vcs precisam lembrar que o código não roda do jeito que tá,
+precisa gerar os bytecodes empacotar pra depois rodar.
+Então pra rodar tem que: buildar, e empacotar.
+Pra efeitos do nosso projetinho de exemplo, empacotar significa
+gerar um arquivo jar que possa ser executável.
+Vai vai pensar que é todo jar que é executável heinn, pra ser ele
+precisa de ter uma método main e uma configuraçãozinha sobre
+isso. Agente vai ver isso daqui a pouco.
+</p>
+
+<p>
+Bom, pelo código java dá pra perceber que a funcionalidade dele é
+emitir uma saudação, e a classe de teste testa exatamente isso, se a
+saudação não é nula.
+</p>
+
+
+<p>
+#+NAME arquivo properties                    
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">cd $GRADLE_PROJECTS_DIR/demojavaproj</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">echo "org.gradle.daemon=true" &gt; gradle.properties</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">echo "org.gradle.parallel=true" &gt;&gt; gradle.properties</span>
+</pre>
+</div>
+
+<p>
+#+NAME buildando o projeto                  
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj &amp;&amp; gradle build
+</pre>
+</div>
+
+
+<pre class="example">
+   [wagner@Unknown gradle-introduction]$ gradle -v
+
+------------------------------------------------------------
+Gradle 5.1.1
+------------------------------------------------------------
+
+Build time:   2019-01-10 23:05:02 UTC
+Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+Kotlin DSL:   1.1.1
+Kotlin:       1.3.11
+Groovy:       2.5.4
+Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+JVM:          1.8.0_201 (Oracle Corporation 25.201-b09)
+OS:           Linux 4.20.5-200.fc29.x86_64 amd64
+
+[wagner@Unknown gradle-introduction]$ gradle build
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+
+&gt; Task :buildEnvironment
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+classpath
+No dependencies
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 4s
+1 actionable task: 1 executed
+[wagner@Unknown gradle-introduction]$ 
+
+</pre>
+
+
+<p>
+Mas a gente faz o build pra que mesmo? A resposta é: pra obter o
+nosso projeto como um pacote, ou seja, um arquivo só que pode ser
+utilizado. A maioria das pessoas já pensa num arquivo .exe mas o
+java pode gerar vários tipos de arquivos inclusive um executável
+embora a extensão não seja exe mas .jar, isso mesmo um arquivo
+executável com a extensão .jar
+Um jar pode ser um arquivo executável ou não, se a gente quer que
+ele seja a gente configura o MANIFEST dele pra que ele seja e se a
+gente não quer que ele seja executável a gente não configura.
+É muito comum que um arquivo jar não seja executável. As
+dependencias dos nossos projetos java, e vc vai lembrar quando a
+gente trabalha com jdbc, por exemplo, que tem que usar a
+dependencia jdbc do banco que é um jar.. esse jar não é
+executável. É código java empacotado que serve pra gente usar nos
+nossos projetos e nesse caso não é executável já que a gente quer
+somente usar as classes desse jar no nosso projeto que aí sim pode
+ser configurado como um jar executável.
+Se vc não entendeu isso o professor escalarece pra vc na sala de
+aula.
+Então a gente deu um gradle build e ele deve então ter gerado o
+nosso projeto como um pacote certo? Vamos ver&#x2026;
+</p>
+
+<p>
+#+NAME avaliando build1                  
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj
+ls -l 
+ls -l build
+ls -l build/distributions
+</pre>
+</div>
+
+<pre class="example">
+
+[wagner@Unknown demojavaproj]$ total 32
+drwxrwxr-x. 9 wagner wagner 4096 fev  3 14:21 build
+-rw-rw-r--. 1 wagner wagner  949 fev  3 14:16 build.gradle
+drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:16 gradle
+-rwxrwxr-x. 1 wagner wagner 5305 fev  3 14:16 gradlew
+-rw-rw-r--. 1 wagner wagner 2269 fev  3 14:16 gradlew.bat
+-rw-rw-r--. 1 wagner wagner  363 fev  3 14:16 settings.gradle
+drwxrwxr-x. 4 wagner wagner 4096 fev  3 14:16 src
+total 28
+drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 classes
+drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 distributions
+drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 libs
+drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 reports
+drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 scripts
+drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 test-results
+drwxrwxr-x. 5 wagner wagner 4096 fev  3 14:21 tmp
+total 5488
+-rw-rw-r--. 1 wagner wagner 3000320 fev  3 14:21 demojavaproject.tar
+-rw-rw-r--. 1 wagner wagner 2615429 fev  3 14:21 demojavaproject.zip
+</pre>
+
+<p>
+Acima a gente vê o resultado do nosso build. É um diretório chamado
+build que dentro dele tem as compilação das classes java dentre
+outros artefatos resultantes do build.
+No diretório build/distributions tem o nosso projeto empacotado
+como .tar e como .zip
+O arquivo .tar é mais comumente utilizado no linux, e o zip com
+certeza vc já conhece.
+</p>
+
+
+
+<p>
+#+NAME  build1 Descompact
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj/build/distributions            
+unzip demojavaproject.zip 2&gt;&amp;1
+<span style="color: #483d8b;">cd</span> demojavaproject
+ls -l
+ls -l bin
+<span style="color: #483d8b;">cd</span> bin
+<span style="color: #483d8b;">pwd</span>
+<span style="color: #483d8b;">cd</span> ..
+ls -l lib
+</pre>
+</div>
+
+<pre class="example">
+
+[wagner@Unknown distributions]$ Archive:  demojavaproject.zip
+   creating: demojavaproject/
+   creating: demojavaproject/lib/
+  inflating: demojavaproject/lib/demojavaproject.jar  
+  inflating: demojavaproject/lib/guava-26.0-jre.jar  
+  inflating: demojavaproject/lib/jsr305-3.0.2.jar  
+  inflating: demojavaproject/lib/checker-qual-2.5.2.jar  
+  inflating: demojavaproject/lib/error_prone_annotations-2.1.3.jar  
+  inflating: demojavaproject/lib/j2objc-annotations-1.1.jar  
+  inflating: demojavaproject/lib/animal-sniffer-annotations-1.14.jar  
+   creating: demojavaproject/bin/
+  inflating: demojavaproject/bin/demojavaproject  
+  inflating: demojavaproject/bin/demojavaproject.bat
+[wagner@Unknown demojavaproject]$ total 8
+drwxr-xr-x. 2 wagner wagner 4096 fev  3 15:22 bin
+drwxr-xr-x. 2 wagner wagner 4096 fev  3 15:22 lib
+total 12
+-rwxr-xr-x. 1 wagner wagner 5504 fev  3 15:22 demojavaproject
+-rwxr-xr-x. 1 wagner wagner 2496 fev  3 15:22 demojavaproject.bat
+[wagner@Unknown bin]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/build/distributions/demojavaproject/bin
+[wagner@Unknown demojavaproject]$ total 2928
+-rw-rw-r--. 1 wagner wagner    3482 jan  5 22:51 animal-sniffer-annotations-1.14.jar
+-rw-rw-r--. 1 wagner wagner  193322 fev  3 13:10 checker-qual-2.5.2.jar
+-rw-rw-r--. 1 wagner wagner    1064 fev  3 15:22 demojavaproject.jar
+-rw-rw-r--. 1 wagner wagner   13704 fev  3 13:10 error_prone_annotations-2.1.3.jar
+-rw-rw-r--. 1 wagner wagner 2740721 fev  3 13:10 guava-26.0-jre.jar
+-rw-rw-r--. 1 wagner wagner    8764 jan  5 22:51 j2objc-annotations-1.1.jar
+-rw-rw-r--. 1 wagner wagner   19936 fev  3 13:10 jsr305-3.0.2.jar
+</pre>
+
+
+<p>
+Pessoal, vamos lá compreender nosso build&#x2026;
+Unzipei o projeto que gerou uma pasta do proje com o diretório bin
+e o diretório lib
+O diretório bin tem dois arquivos um bat e ouhtro pra executar no
+linux.
+A pasta lib tem alguns jars de que nosso projeto depende e muito
+interessante tem o demojavaproject.jar
+Cada um deles, obviamente, tem sua razão de estar alí. Não vou
+entrar em cada um mas vou passar uns links&#x2026;
+</p>
+
+<ul class="org-ul">
+<li><p>
+jsr305-3.0.2.jar
+</p>
+
+<p>
+Disponibiliza anotações para qualidade de código
+<a href="https://www.infoq.com/news/2008/06/jsr-305-update">https://www.infoq.com/news/2008/06/jsr-305-update</a>
+<a href="https://www.youtube.com/watch?v=J2fgb8nWUo8">https://www.youtube.com/watch?v=J2fgb8nWUo8</a>
+</p></li>
+
+<li><p>
+animal-sniffer-annotations-1.14.jar
+</p>
+
+<p>
+Útil qdo vc tem código de uma versão do java que precisa rodar em
+uma versão diferente que sem o animal-siffer seria incompatível.
+<a href="https://www.baeldung.com/maven-animal-sniffer">https://www.baeldung.com/maven-animal-sniffer</a>
+</p></li>
+
+<li><p>
+checker-qual-2.5.2.jar
+</p>
+
+<p>
+Ferramenta de qualidade de código
+<a href="https://checkerframework.org/manual/#installation">https://checkerframework.org/manual/#installation</a>
+</p></li>
+
+<li><p>
+demojavaproject.jar
+</p>
+
+<p>
+Esse é o jar do nosso projeto. Infelizmente o gradle não
+configurou ele pra ser um executável, conforme demostra o código
+abaixo.
+Entretanto, o gradle te dá maneiras que, a meu veu, eles acham
+que é mais prática pra executar o seu projeto que são os arquivos
+executáveis que a gente já viu anteriormente neste texto.
+</p></li>
+</ul>
+<p>
+#+NAME run jar                  
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj/build/distributions/demojavaproject/lib
+java -jar demojavaproject.jar
+</pre>
+</div>
+
+<pre class="example">
+
+[wagner@Unknown lib]$ nenhum atributo de manifesto principal em demojavaproject.jar
+
+</pre>
+
+<ul class="org-ul">
+<li>error<sub>prone</sub><sub>annotations</sub>-2.1.3.jar</li>
+
+<li>guava-26.0-jre.jar</li>
+
+<li>j2objc-annotations-1.1.jar</li>
+</ul>
+
+
+
+
+<p>
+Vamos dar uma olhada nos arquivos do diretório bin primeiro, o .bat
+Abaixo segue o arquivo, parece meio complicadinho mas a gente não
+vei editar ele pra nada, a gente só vai usar pra executar nosso programa
+</p>
+<div class="org-src-container">
+<pre class="src src-bat">@<span style="color: #a020f0;">if</span> <span style="color: #8b2252;">"%DEBUG%"</span> == <span style="color: #8b2252;">""</span> @<span style="color: #483d8b;">echo</span> off
+<span style="color: #b22222;">@rem ##########################################################################</span>
+<span style="color: #b22222;">@rem</span>
+<span style="color: #b22222;">@rem  demojavaproject startup script for Windows</span>
+<span style="color: #b22222;">@rem</span>
+<span style="color: #b22222;">@rem ##########################################################################</span>
+
+<span style="color: #b22222;">@rem Set local scope for the variables with windows NT shell</span>
+<span style="color: #a020f0;">if</span> <span style="color: #8b2252;">"%OS%"</span>==<span style="color: #8b2252;">"Windows_NT"</span> <span style="color: #483d8b;">setlocal</span>
+
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">DIRNAME</span>=%~dp0
+<span style="color: #a020f0;">if</span> <span style="color: #8b2252;">"%DIRNAME%"</span> == <span style="color: #8b2252;">""</span> <span style="color: #483d8b;">set</span> <span style="color: #a0522d;">DIRNAME</span>=.
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">APP_BASE_NAME</span>=%~n0
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">APP_HOME</span>=%<span style="color: #a0522d;">DIRNAME</span>%..
+
+<span style="color: #b22222;">@rem Add default JVM options here. You can also use JAVA_OPTS and DEMOJAVAPROJECT_OPTS to pass JVM options to this script.</span>
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">DEFAULT_JVM_OPTS</span>=
+
+<span style="color: #b22222;">@rem Find java.exe</span>
+<span style="color: #a020f0;">if</span> <span style="color: #a020f0;">defined</span> <span style="color: #a0522d;">JAVA_HOME</span> <span style="color: #a020f0;">goto</span> <span style="color: #008b8b;">findJavaFromJavaHome</span>
+
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">JAVA_EXE</span>=java.exe
+%<span style="color: #a0522d;">JAVA_EXE</span>% -<span style="color: #228b22;">version</span> &gt;NUL 2&gt;&amp;1
+<span style="color: #a020f0;">if</span> <span style="color: #8b2252;">"%ERRORLEVEL%"</span> == <span style="color: #8b2252;">"0"</span> <span style="color: #a020f0;">goto</span> <span style="color: #008b8b;">init</span>
+
+<span style="color: #483d8b;">echo</span>.
+<span style="color: #483d8b;">echo</span> ERROR: JAVA_HOME is <span style="color: #a020f0;">not</span> <span style="color: #483d8b;">set</span> <span style="color: #a0522d;">and</span> no 'java' command could be found <span style="color: #a020f0;">in</span> your <span style="color: #483d8b;">PATH</span>.
+<span style="color: #483d8b;">echo</span>.
+<span style="color: #483d8b;">echo</span> Please <span style="color: #483d8b;">set</span> <span style="color: #a0522d;">the</span> JAVA_HOME variable <span style="color: #a020f0;">in</span> your environment to match the
+<span style="color: #483d8b;">echo</span> location of your Java installation.
+
+<span style="color: #a020f0;">goto</span> <span style="color: #008b8b;">fail</span>
+
+<span style="font-weight: bold;">:findJavaFromJavaHome</span>
+<span style="color: #483d8b;">set</span> <span style="color: #a0522d;">JAVA_HOME</span>=%JAVA_HOME:<span style="color: #8b2252;">"=%</span>
+<span style="color: #8b2252;">set JAVA_EXE=%JAVA_HOME%/bin/java.exe</span>
+
+<span style="color: #8b2252;">if exist "</span>%<span style="color: #a0522d;">JAVA_EXE</span>%<span style="color: #8b2252;">" goto </span><span style="color: #008b8b;">init</span>
+
+<span style="color: #8b2252;">echo.</span>
+<span style="color: #8b2252;">echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%</span>
+<span style="color: #8b2252;">echo.</span>
+<span style="color: #8b2252;">echo Please set the JAVA_HOME variable in your environment to match the</span>
+<span style="color: #8b2252;">echo location of your Java installation.</span>
+
+<span style="color: #8b2252;">goto </span><span style="color: #008b8b;">fail</span>
+
+<span style="color: #8b2252;">:init</span>
+<span style="color: #8b2252;">@rem Get command-line arguments, handling Windows variants</span>
+
+<span style="color: #8b2252;">if not "</span>%<span style="color: #a0522d;">OS</span>%<span style="color: #8b2252;">" == "</span>Windows_NT<span style="color: #8b2252;">" goto </span><span style="color: #008b8b;">win9xME_args</span>
+
+<span style="color: #8b2252;">:win9xME_args</span>
+<span style="color: #8b2252;">@rem Slurp the command line arguments.</span>
+<span style="color: #8b2252;">set CMD_LINE_ARGS=</span>
+<span style="color: #8b2252;">set _SKIP=2</span>
+
+<span style="color: #8b2252;">:win9xME_args_slurp</span>
+<span style="color: #8b2252;">if "</span>x%~1<span style="color: #8b2252;">" == "</span>x<span style="color: #8b2252;">" goto </span><span style="color: #008b8b;">execute</span>
+
+<span style="color: #8b2252;">set CMD_LINE_ARGS=%*</span>
+
+<span style="color: #8b2252;">:execute</span>
+<span style="color: #8b2252;">@rem Setup the command line</span>
+
+<span style="color: #8b2252;">set CLASSPATH=%APP_HOME%\lib\demojavaproject.jar;%APP_HOME%\lib\guava-26.0-jre.jar;%APP_HOME%\lib\jsr305-3.0.2.jar;%APP_HOME%\lib\checker-qual-2.5.2.jar;%APP_HOME%\lib\error_prone_annotations-2.1.3.jar;%APP_HOME%\lib\j2objc-annotations-1.1.jar;%APP_HOME%\lib\animal-sniffer-annotations-1.14.jar</span>
+
+<span style="color: #8b2252;">@rem Execute demojavaproject</span>
+<span style="color: #8b2252;">"</span>%<span style="color: #a0522d;">JAVA_EXE</span>%<span style="color: #8b2252;">" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DEMOJAVAPROJECT_OPTS%  -</span><span style="color: #8b2252;">classpath</span><span style="color: #8b2252;"> "</span>%<span style="color: #a0522d;">CLASSPATH</span>%<span style="color: #8b2252;">" br.com.exemplo.App %CMD_LINE_ARGS%</span>
+
+<span style="color: #8b2252;">:end</span>
+<span style="color: #8b2252;">@rem End local scope for the variables with windows NT shell</span>
+<span style="color: #8b2252;">if "</span>%<span style="color: #a0522d;">ERRORLEVEL</span>%<span style="color: #8b2252;">"=="</span>0<span style="color: #8b2252;">" goto </span><span style="color: #008b8b;">mainEnd</span>
+
+<span style="color: #8b2252;">:fail</span>
+<span style="color: #8b2252;">rem Set variable DEMOJAVAPROJECT_EXIT_CONSOLE if you need the _script_ return code instead of</span>
+<span style="color: #8b2252;">rem the _cmd.exe /</span><span style="color: #8b2252;">c</span><span style="color: #8b2252;">_ return code!</span>
+<span style="color: #8b2252;">if  not "" == "</span>%<span style="color: #a0522d;">DEMOJAVAPROJECT_EXIT_CONSOLE</span>%<span style="color: #8b2252;">" exit 1</span>
+<span style="color: #8b2252;">exit /</span><span style="color: #8b2252;">b</span><span style="color: #8b2252;"> 1</span>
+
+<span style="color: #8b2252;">:mainEnd</span>
+<span style="color: #8b2252;">if "</span>%<span style="color: #a0522d;">OS</span>%<span style="color: #8b2252;">"=="</span>Windows_NT<span style="color: #8b2252;">" endlocal</span>
+
+<span style="color: #8b2252;">:omega</span>
+</pre>
+</div>
+
+<p>
+Agora o outro pra ser executado no linux
+Mesma coisa, vc não precisa entender shellscript pra executar ele
+certo? No futuro estude shellscript que vale a pena&#x2026;   
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/usr/bin/</span><span style="color: #a020f0;">env</span><span style="color: #b22222;"> sh</span>
+
+<span style="color: #b22222;">##############################################################################</span>
+<span style="color: #b22222;">##</span>
+<span style="color: #b22222;">##  </span><span style="color: #b22222;">demojavaproject start up script for UN*X</span>
+<span style="color: #b22222;">##</span>
+<span style="color: #b22222;">##############################################################################</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Attempt to set APP_HOME</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Resolve links: $0 may be a link</span>
+<span style="color: #a0522d;">PRG</span>=<span style="color: #8b2252;">"$0"</span>
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Need this for relative symlinks.</span>
+<span style="color: #a020f0;">while</span> [ -h <span style="color: #8b2252;">"$PRG"</span> ] ; <span style="color: #a020f0;">do</span>
+    <span style="color: #a0522d;">ls</span>=<span style="color: #ff00ff;">`ls -ld "$PRG"`</span>
+    <span style="color: #a0522d;">link</span>=<span style="color: #ff00ff;">`expr "$ls" : '.*-&gt; \(.*\)$'`</span>
+    <span style="color: #a020f0;">if</span> expr <span style="color: #8b2252;">"$link"</span> : <span style="color: #8b2252;">'/.*'</span> &gt; /dev/null; <span style="color: #a020f0;">then</span>
+        <span style="color: #a0522d;">PRG</span>=<span style="color: #8b2252;">"$link"</span>
+    <span style="color: #a020f0;">else</span>
+        <span style="color: #a0522d;">PRG</span>=<span style="color: #ff00ff;">`dirname "$PRG"`</span><span style="color: #8b2252;">"/$link"</span>
+    <span style="color: #a020f0;">fi</span>
+<span style="color: #a020f0;">done</span>
+<span style="color: #a0522d;">SAVED</span>=<span style="color: #8b2252;">"`pwd`"</span>
+<span style="color: #483d8b;">cd</span> <span style="color: #8b2252;">"`dirname \"$PRG\"`/.."</span> &gt;/dev/null
+<span style="color: #a0522d;">APP_HOME</span>=<span style="color: #8b2252;">"`pwd -P`"</span>
+<span style="color: #483d8b;">cd</span> <span style="color: #8b2252;">"$SAVED"</span> &gt;/dev/null
+
+<span style="color: #a0522d;">APP_NAME</span>=<span style="color: #8b2252;">"demojavaproject"</span>
+<span style="color: #a0522d;">APP_BASE_NAME</span>=<span style="color: #ff00ff;">`basename "$0"`</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Add default JVM options here. You can also use JAVA_OPTS and DEMOJAVAPROJECT_OPTS to pass JVM options to this script.</span>
+<span style="color: #a0522d;">DEFAULT_JVM_OPTS</span>=<span style="color: #8b2252;">""</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Use the maximum available, or set MAX_FD != -1 to use that value.</span>
+<span style="color: #a0522d;">MAX_FD</span>=<span style="color: #8b2252;">"maximum"</span>
+
+<span style="color: #0000ff;">warn</span> () {
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"$*"</span>
+}
+
+<span style="color: #0000ff;">die</span> () {
+    <span style="color: #483d8b;">echo</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"$*"</span>
+    <span style="color: #483d8b;">echo</span>
+    <span style="color: #a020f0;">exit</span> 1
+}
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">OS specific support (must be 'true' or 'false').</span>
+<span style="color: #a0522d;">cygwin</span>=false
+<span style="color: #a0522d;">msys</span>=false
+<span style="color: #a0522d;">darwin</span>=false
+<span style="color: #a0522d;">nonstop</span>=false
+<span style="color: #a020f0;">case</span> <span style="color: #8b2252;">"`uname`"</span><span style="color: #a020f0;"> in</span>
+  CYGWIN* )
+    <span style="color: #a0522d;">cygwin</span>=true
+    ;;
+  Darwin* )
+    <span style="color: #a0522d;">darwin</span>=true
+    ;;
+  MINGW* )
+    <span style="color: #a0522d;">msys</span>=true
+    ;;
+  NONSTOP* )
+    <span style="color: #a0522d;">nonstop</span>=true
+    ;;
+<span style="color: #a020f0;">esac</span>
+
+<span style="color: #a0522d;">CLASSPATH</span>=$<span style="color: #a0522d;">APP_HOME</span>/lib/demojavaproject.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/guava-26.0-jre.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/jsr305-3.0.2.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/checker-qual-2.5.2.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/error_prone_annotations-2.1.3.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/j2objc-annotations-1.1.jar:$<span style="color: #a0522d;">APP_HOME</span>/lib/animal-sniffer-annotations-1.14.jar
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Determine the Java command to use to start the JVM.</span>
+<span style="color: #a020f0;">if</span> [ -n <span style="color: #8b2252;">"$JAVA_HOME"</span> ] ; <span style="color: #a020f0;">then</span>
+    <span style="color: #a020f0;">if</span> [ -x <span style="color: #8b2252;">"$JAVA_HOME/jre/sh/java"</span> ] ; <span style="color: #a020f0;">then</span>
+        <span style="color: #b22222;"># </span><span style="color: #b22222;">IBM's JDK on AIX uses strange locations for the executables</span>
+        <span style="color: #a0522d;">JAVACMD</span>=<span style="color: #8b2252;">"$JAVA_HOME/jre/sh/java"</span>
+    <span style="color: #a020f0;">else</span>
+        <span style="color: #a0522d;">JAVACMD</span>=<span style="color: #8b2252;">"$JAVA_HOME/bin/java"</span>
+    <span style="color: #a020f0;">fi</span>
+    <span style="color: #a020f0;">if</span> [ ! -x <span style="color: #8b2252;">"$JAVACMD"</span> ] ; <span style="color: #a020f0;">then</span>
+        die <span style="color: #8b2252;">"ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME</span>
+
+<span style="color: #8b2252;">Please set the JAVA_HOME variable in your environment to match the</span>
+<span style="color: #8b2252;">location of your Java installation."</span>
+    <span style="color: #a020f0;">fi</span>
+<span style="color: #a020f0;">else</span>
+    <span style="color: #a0522d;">JAVACMD</span>=<span style="color: #8b2252;">"java"</span>
+    which java &gt;/dev/null 2&gt;&amp;1 || die <span style="color: #8b2252;">"ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.</span>
+
+<span style="color: #8b2252;">Please set the JAVA_HOME variable in your environment to match the</span>
+<span style="color: #8b2252;">location of your Java installation."</span>
+<span style="color: #a020f0;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Increase the maximum file descriptors if we can.</span>
+<span style="color: #a020f0;">if</span> [ <span style="color: #8b2252;">"$cygwin"</span> = <span style="color: #8b2252;">"false"</span> -a <span style="color: #8b2252;">"$darwin"</span> = <span style="color: #8b2252;">"false"</span> -a <span style="color: #8b2252;">"$nonstop"</span> = <span style="color: #8b2252;">"false"</span> ] ; <span style="color: #a020f0;">then</span>
+    <span style="color: #a0522d;">MAX_FD_LIMIT</span>=<span style="color: #ff00ff;">`ulimit -H -n`</span>
+    <span style="color: #a020f0;">if</span> [ $<span style="color: #a0522d;">?</span> -eq 0 ] ; <span style="color: #a020f0;">then</span>
+        <span style="color: #a020f0;">if</span> [ <span style="color: #8b2252;">"$MAX_FD"</span> = <span style="color: #8b2252;">"maximum"</span> -o <span style="color: #8b2252;">"$MAX_FD"</span> = <span style="color: #8b2252;">"max"</span> ] ; <span style="color: #a020f0;">then</span>
+            <span style="color: #a0522d;">MAX_FD</span>=<span style="color: #8b2252;">"$MAX_FD_LIMIT"</span>
+        <span style="color: #a020f0;">fi</span>
+        <span style="color: #483d8b;">ulimit</span> -n $<span style="color: #a0522d;">MAX_FD</span>
+        <span style="color: #a020f0;">if</span> [ $<span style="color: #a0522d;">?</span> -ne 0 ] ; <span style="color: #a020f0;">then</span>
+            warn <span style="color: #8b2252;">"Could not set maximum file descriptor limit: $MAX_FD"</span>
+        <span style="color: #a020f0;">fi</span>
+    <span style="color: #a020f0;">else</span>
+        warn <span style="color: #8b2252;">"Could not query maximum file descriptor limit: $MAX_FD_LIMIT"</span>
+    <span style="color: #a020f0;">fi</span>
+<span style="color: #a020f0;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">For Darwin, add options to specify how the application appears in the dock</span>
+<span style="color: #a020f0;">if</span> $<span style="color: #a0522d;">darwin</span>; <span style="color: #a020f0;">then</span>
+    <span style="color: #a0522d;">GRADLE_OPTS</span>=<span style="color: #8b2252;">"$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""</span>
+<span style="color: #a020f0;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">For Cygwin, switch paths to Windows format before running java</span>
+<span style="color: #a020f0;">if</span> $<span style="color: #a0522d;">cygwin</span> ; <span style="color: #a020f0;">then</span>
+    <span style="color: #a0522d;">APP_HOME</span>=<span style="color: #ff00ff;">`cygpath --path --mixed "$APP_HOME"`</span>
+    <span style="color: #a0522d;">CLASSPATH</span>=<span style="color: #ff00ff;">`cygpath --path --mixed "$CLASSPATH"`</span>
+    <span style="color: #a0522d;">JAVACMD</span>=<span style="color: #ff00ff;">`cygpath --unix "$JAVACMD"`</span>
+
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">We build the pattern for arguments to be converted via cygpath</span>
+    <span style="color: #a0522d;">ROOTDIRSRAW</span>=<span style="color: #ff00ff;">`find -L / -maxdepth 1 -mindepth 1 -type d 2&gt;/dev/null`</span>
+    <span style="color: #a0522d;">SEP</span>=<span style="color: #8b2252;">""</span>
+    <span style="color: #a020f0;">for</span> dir<span style="color: #a020f0;"> in</span> $<span style="color: #a0522d;">ROOTDIRSRAW</span> ; <span style="color: #a020f0;">do</span>
+        <span style="color: #a0522d;">ROOTDIRS</span>=<span style="color: #8b2252;">"$ROOTDIRS$SEP$dir"</span>
+        <span style="color: #a0522d;">SEP</span>=<span style="color: #8b2252;">"|"</span>
+    <span style="color: #a020f0;">done</span>
+    <span style="color: #a0522d;">OURCYGPATTERN</span>=<span style="color: #8b2252;">"(^($ROOTDIRS))"</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">Add a user-defined pattern to the cygpath arguments</span>
+    <span style="color: #a020f0;">if</span> [ <span style="color: #8b2252;">"$GRADLE_CYGPATTERN"</span> != <span style="color: #8b2252;">""</span> ] ; <span style="color: #a020f0;">then</span>
+        <span style="color: #a0522d;">OURCYGPATTERN</span>=<span style="color: #8b2252;">"$OURCYGPATTERN|($GRADLE_CYGPATTERN)"</span>
+    <span style="color: #a020f0;">fi</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">Now convert the arguments - kludge to limit ourselves to /bin/sh</span>
+    <span style="color: #a0522d;">i</span>=0
+    <span style="color: #a020f0;">for</span> arg<span style="color: #a020f0;"> in</span> <span style="color: #8b2252;">"$@"</span> ; <span style="color: #a020f0;">do</span>
+        <span style="color: #a0522d;">CHECK</span>=<span style="color: #ff00ff;">`echo "$arg"|egrep -c "$OURCYGPATTERN" -`</span>
+        <span style="color: #a0522d;">CHECK2</span>=<span style="color: #ff00ff;">`echo "$arg"|egrep -c "^-"`</span>                                 <span style="color: #b22222;">### </span><span style="color: #b22222;">Determine if an option</span>
+
+        <span style="color: #a020f0;">if</span> [ $<span style="color: #a0522d;">CHECK</span> -ne 0 ] &amp;&amp; [ $<span style="color: #a0522d;">CHECK2</span> -eq 0 ] ; <span style="color: #a020f0;">then</span>                    <span style="color: #b22222;">### </span><span style="color: #b22222;">Added a condition</span>
+            <span style="color: #483d8b;">eval</span> <span style="color: #ff00ff;">`echo args$i`</span>=<span style="color: #ff00ff;">`cygpath --path --ignore --mixed "$arg"`</span>
+        <span style="color: #a020f0;">else</span>
+            <span style="color: #483d8b;">eval</span> <span style="color: #ff00ff;">`echo args$i`</span>=<span style="color: #8b2252;">"\"$arg\""</span>
+        <span style="color: #a020f0;">fi</span>
+        <span style="color: #a0522d;">i</span>=$((i+1))
+    <span style="color: #a020f0;">done</span>
+    <span style="color: #a020f0;">case</span> $<span style="color: #a0522d;">i</span><span style="color: #a020f0;"> in</span>
+        (0) <span style="color: #483d8b;">set</span> -- ;;
+        (1) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> ;;
+        (2) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> ;;
+        (3) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> ;;
+        (4) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> ;;
+        (5) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> <span style="color: #8b2252;">"$args4"</span> ;;
+        (6) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> <span style="color: #8b2252;">"$args4"</span> <span style="color: #8b2252;">"$args5"</span> ;;
+        (7) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> <span style="color: #8b2252;">"$args4"</span> <span style="color: #8b2252;">"$args5"</span> <span style="color: #8b2252;">"$args6"</span> ;;
+        (8) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> <span style="color: #8b2252;">"$args4"</span> <span style="color: #8b2252;">"$args5"</span> <span style="color: #8b2252;">"$args6"</span> <span style="color: #8b2252;">"$args7"</span> ;;
+        (9) <span style="color: #483d8b;">set</span> -- <span style="color: #8b2252;">"$args0"</span> <span style="color: #8b2252;">"$args1"</span> <span style="color: #8b2252;">"$args2"</span> <span style="color: #8b2252;">"$args3"</span> <span style="color: #8b2252;">"$args4"</span> <span style="color: #8b2252;">"$args5"</span> <span style="color: #8b2252;">"$args6"</span> <span style="color: #8b2252;">"$args7"</span> <span style="color: #8b2252;">"$args8"</span> ;;
+    <span style="color: #a020f0;">esac</span>
+<span style="color: #a020f0;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Escape application args</span>
+<span style="color: #0000ff;">save</span> () {
+    <span style="color: #a020f0;">for</span> i do printf %s<span style="color: #8b2252;">\\</span>n <span style="color: #8b2252;">"$i"</span> | sed <span style="color: #8b2252;">"s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/"</span> ; <span style="color: #a020f0;">done</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">" "</span>
+}
+<span style="color: #a0522d;">APP_ARGS</span>=$(<span style="color: #ff00ff;">save</span> <span style="color: #8b2252;">"$@"</span>)
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Collect all arguments for the java command, following the shell quoting and substitution rules</span>
+<span style="color: #483d8b;">eval</span> set -- $<span style="color: #a0522d;">DEFAULT_JVM_OPTS</span> $<span style="color: #a0522d;">JAVA_OPTS</span> $<span style="color: #a0522d;">DEMOJAVAPROJECT_OPTS</span> -classpath <span style="color: #8b2252;">"\"$CLASSPATH\""</span> br.com.exemplo.App <span style="color: #8b2252;">"$APP_ARGS"</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">by default we should be in the correct project dir, but when run from Finder on Mac, the cwd is wrong</span>
+<span style="color: #a020f0;">if</span> [ <span style="color: #8b2252;">"$(</span><span style="color: #ff00ff;">uname</span><span style="color: #8b2252;">)"</span> = <span style="color: #8b2252;">"Darwin"</span> ] &amp;&amp; [ <span style="color: #8b2252;">"$HOME"</span> = <span style="color: #8b2252;">"$PWD"</span> ]; <span style="color: #a020f0;">then</span>
+  <span style="color: #483d8b;">cd</span> <span style="color: #8b2252;">"$(</span><span style="color: #ff00ff;">dirname</span><span style="color: #8b2252;"> "$0")"</span>
+<span style="color: #a020f0;">fi</span>
+
+<span style="color: #a020f0;">exec</span> <span style="color: #8b2252;">"$JAVACMD"</span> <span style="color: #8b2252;">"$@"</span>
+</pre>
+</div>
+
+<p>
+Bom vamos executar nosso programa então&#x2026;
+</p>
+
+<p>
+#+NAME exec prog                  
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj/build/distributions/demojavaproject/bin
+./demojavaproject
+</pre>
+</div>
+
+<pre class="example">
+
+[wagner@Unknown bin]$ Hello world.
+
+</pre>
+
+<p>
+Executando esse arquivo dá pra perceber que o programa foi
+executado.
+</p>
+
+
+<p>
+To me sentindo meio culpado por não ter rodado o teste antes, mas
+eis aí..
+</p>
+
+<p>
+#+NAME rod teste                  
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+<span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">GRADLE_PROJECTS_DIR</span>/demojavaproj
+gradle test
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ac18e5" class="outline-2">
+<h2 id="org8ac18e5"><span class="section-number-2">5</span> Fluxo de trabalho dom o gradle</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Quando vc tiver trabalhando com o seu projeto que usa gradle as taks
+que vc usará em geral são;
+gradle clean, pra limpar tudo que tiver sido construído
+gradle build pra buildar
+gradle test pra testar
+gradle run pra rodar 
+gradle distZip pra gerar um zip do projeto 
 </p>
 </div>
+</div>
+
+<div id="outline-container-orgd2bc702" class="outline-2">
+<h2 id="orgd2bc702"><span class="section-number-2">6</span> Tasks do gradle</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+O que vem depois do gradle&#x2026; o clean o init o build etc&#x2026; são
+tasks do gradle
+</p>
+
+<p>
+O comando gradle tasks mostra as tasks que estão disponíveis pra vc
+utilizar.
+</p>
+
+
+<p>
+#+NAME example gralde tasks                    
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">      <span style="color: #b22222;">#</span><span style="color: #b22222;">starts code</span>
+      [wagner@Unknown demojavaproj]$ gradle tasks
+
+&gt; Task :tasks
+
+------------------------------------------------------------
+Tasks runnable from root project
+------------------------------------------------------------
+
+Application tasks
+-----------------
+run - Runs this project as a JVM application
+
+Build tasks
+-----------
+assemble - Assembles the outputs of this project.
+build - Assembles and tests this project.
+buildDependents - Assembles and tests this project and all projects that depend on it.
+buildNeeded - Assembles and tests this project and all projects it depends on.
+classes - Assembles main classes.
+clean - Deletes the build directory.
+jar - Assembles a jar archive containing the main classes.
+testClasses - Assembles test classes.
+
+Build Setup tasks
+-----------------
+init - Initializes a new Gradle build.
+wrapper - Generates Gradle wrapper files.
+
+Distribution tasks
+------------------
+assembleDist - Assembles the main distributions
+distTar - Bundles the project as a distribution.
+distZip - Bundles the project as a distribution.
+installDist - Installs the project as a distribution as-is.
+
+Documentation tasks
+-------------------
+javadoc - Generates Javadoc API documentation for the main source code.
+
+Help tasks
+----------
+buildEnvironment - Displays all buildscript dependencies declared<span style="color: #a020f0;"> in</span> root project <span style="color: #8b2252;">'demojavaproject'</span>.
+components - Displays the components produced by root project <span style="color: #8b2252;">'demojavaproject'</span>. [incubating]
+dependencies - Displays all dependencies declared<span style="color: #a020f0;"> in</span> root project <span style="color: #8b2252;">'demojavaproject'</span>.
+dependencyInsight - Displays the insight into a specific dependency<span style="color: #a020f0;"> in</span> root project <span style="color: #8b2252;">'demojavaproject'</span>.
+dependentComponents - Displays the dependent components of components<span style="color: #a020f0;"> in</span> root project <span style="color: #8b2252;">'demojavaproject'</span>. [incubating]
+<span style="color: #483d8b;">help</span> - Displays a help message.
+model - Displays the configuration model of root project <span style="color: #8b2252;">'demojavaproject'</span>. [incubating]
+projects - Displays the sub-projects of root project <span style="color: #8b2252;">'demojavaproject'</span>.
+properties - Displays the properties of root project <span style="color: #8b2252;">'demojavaproject'</span>.
+tasks - Displays the tasks runnable from root project <span style="color: #8b2252;">'demojavaproject'</span>.
+
+Verification tasks
+------------------
+check - Runs all checks.
+<span style="color: #483d8b;">test</span> - Runs the unit tests.
+
+Rules
+-----
+Pattern: clean&lt;TaskName&gt;: Cleans the output files of a task.
+Pattern: build&lt;ConfigurationName&gt;: Assembles the artifacts of a configuration.
+Pattern: upload&lt;ConfigurationName&gt;: Assembles and uploads the artifacts belonging to a configuration.
+
+To see all tasks and more detail, run gradle tasks --all
+
+To see more detail about a task, run gradle help --task &lt;task&gt;
+
+BUILD SUCCESSFUL<span style="color: #a020f0;"> in</span> 0s
+1 actionable task: 1 executed
+[wagner@Unknown demojavaproj]$ 
+
+</pre>
+</div>
+
+<p>
+Tem bastante né? Com o tempo a gente vai se acostumando com as
+funcionalidades de cada uma. A verdade é que elas é que salvam a
+patria qdo vc tiver enroscado com alguma questão específica do seu
+projeto. Isso vai acontecer quando vc tiver trabalhando na área&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org66361ac" class="outline-2">
+<h2 id="org66361ac"><span class="section-number-2">7</span> Referencias</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+tarfileWikiPedia <a href="https://pt.wikipedia.org/wiki/Tar_(computa%C3%A7%C3%A3o)">https://pt.wikipedia.org/wiki/Tar_(computação)</a>
+gradleCodsInitPlugin <a href="https://docs.gradle.org/current/userguide/build_init_plugin.html">https://docs.gradle.org/current/userguide/build_init_plugin.html</a>
+<a href="http://professorramos.com/index.php/script-bat-2-como-criar-um-menu-em-arquivos-bat/">http://professorramos.com/index.php/script-bat-2-como-criar-um-menu-em-arquivos-bat/</a>
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Wagner França Marques</p>
-<p class="date">Created: 2016-12-02 Sex 11:21</p>
+<p class="author">Author: wagner</p>
+<p class="date">Created: 2019-02-03 dom 17:20</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

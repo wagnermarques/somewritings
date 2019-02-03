@@ -1,0 +1,493 @@
+#+Title: Populacaoo Idosa SP
+
+* Introdução e Apresentação
+  Compreender os distritos sobre a perspectiva das faixas etárias no envelhecimento
+  O objetivo deste texte é contribuir com uma análise da feixa etária
+  idosa dos distritos
+  
+  O Seade publica anualmente o "sp demográfico"[fn:spdemografico2018][fn:spdemografico2017][fn:spdemografico2016][fn:spdemografico2015][fn:spdemografico2014] que pode ser
+  consultado em https://www.seade.gov.br/produtos/sp-demografico/
+
+  O último, de 2018 [fn:spdemografico2018] não trouxe dados
+  distritais, e esse texto utilizada dados do próprio seade com foco
+  nos distritos pelo fato de serem mais dentro da realiade do IPGG. O
+  que é interessante, dentro do contexto deste texto, no spdemográfico
+  de 2018 é que a pupulação deverá passar a reduzir por volta
+  de 2050. É um contexto em que a pupulação cada vez mais idosa estará
+  inserida e que pode indicar possivelmente menos cuidadores por
+  idoso. O estudo apontou também que "A idade média da população era 24 anos em 1950, atinge 30 anos em 2000, 
+e deverá alcançar 44 anos em 2050, passando de um padrão de população 
+muito jovem, para outro de população adulta jovem. "[fn:spdemografico2018]p.1
+
+  O tema do envelhecimento foi apontado somente no sp demográfico de 2014.
+  "O  processo  de  envelhecimento  é  nítido  em  todas  as  áreas
+  do Município de São Paulo. Um indicador sensível para se avaliar
+  este fenômeno  é  a idade  média  da  população,  que, no  conjunto
+  da capital, deverá aumentar 4,37 anos, ao passar de 34,71 anos, em
+  2014, para 39,08 anos, em 2030. Os maiores incrementos na idade
+  média  deverão  ser  registrados nos  distritos  de Vila  Andrade
+  (6,03 anos) e Anhanguera (5,91 anos), enquanto os menores ocorrerão
+  no Pari (2,38 anos) e Belém (2,42 anos)" [fn:spdemografico2014] p.6
+
+  "Os  distritos  com  maiores  idades  médias  da  população deverão
+ser os mesmos em 2014 e 2030: Alto de Pinheiros (42,48 anos e 47,23
+anos,respectivamente); e Jardim Paulista (42,32 anos e 47,00 anos)."[fn:spdemografico2014]p.7
+  
+  Sendo assim, considerando que o sead fornece dos dados para análises
+  quanto demograficos relativos ao processo de envelhecimento este
+  texto busca realizar esta contribuição.
+
+
+  Apesar de a Fundação SEADE observou que:
+
+
+
+O instituto baseou-se no aumento da idade média da população, que
+segundo a figura abaixo, parece crescer uniformemente nos distritos de
+São Paulo.
+[[file:./imgs/from_seade/evolucao_idade_media_distritos_sp.jpg]]
+  Fonte:[fn:spdemografico2014] p.7
+  
+
+Em 2030, Alto de Pinheiros (10,3%) e Consolação(10,4%)ocuparãoa
+posição  de  distritos menos  jovem Hoje,o distrito mais envelhecido é
+Alto de Pinheiros, com 25% de sua população com mais de 60 anos, sendo
+que aproximadamente 8% dela já tem mais de 75
+anos [fn:spdemografico2014] p8
+
+
+* Levantamento de dados e metodologia
+  Os dados foram coletados das tabelas do seade[fn:tabelaseade] para o
+  perído de 2018. 
+  Para manipulação dos dados foi utilizado ferramenta R com pacotes
+  sf, ggplot dentre outros.
+  Conforme as boas práticas da ciência de dados, os scripts em R são apresentados para garantir a reprodução das
+  análises por quem se interessar.
+
+
+* script de preparação para análise dos arquivos de dados
+  Este script instala os pacotes necessários para reproduzir as
+  análises deste documento.
+  No caso de utilizar um proxy de rede, descomentar a sessão
+  Sys.setenv e utilizar usuário e senha apropriados para sua rede.
+
+  #+Name R env setup
+  #+BEGIN_SRC R :session s1 :results output :exports code
+
+      cranRepoUrl <- "http://cran.us.r-project.org";
+      #Sys.setenv(
+      #    "http_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta",
+      #    "ftp_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta",
+      #    "all_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta");
+
+      pkgsToBeInstalled <- c("curl", "dplyr",,"spDataLarge","ggplot2");
+    
+      install.packages(
+                   pkgsToBeInstalled,
+                   repo = cranRepoUrl,
+                   dependencies = TRUE)
+  #+END_SRC
+
+  Agora com os pacotes instalados, é necessário fazer o download dos
+  dados.
+  
+  Para geração de mapas dos distritos de são paulo, utilizou-se este shapefile, após descompactado
+  http://dados.prefeitura.sp.gov.br/dataset/af41e7c4-ae27-4bfc-9938-170151af7aee/resource/9e75c2f7-5729-4398-8a83-b4640f072b5d/download/layerdistrito.zip
+  
+  #+Name downloads de arquivos necessarios
+  #+BEGIN_SRC R :session s1 :results output :exports code
+ 
+      shpFilesDir = paste(getwd(),"shapefiles",sep="/");      
+      csvFilesDir = paste(getwd(),"csvfiles",sep="/");
+
+      filePath_shpFileDISTRITO = paste(shpFilesDir,"LAYER_DISTRITO/DEINFO_DISTRITO.shp", sep="/")
+      filePath_DadosDoMapa = paste(csvFilesDir,"dados_do_mapa.csv", sep="/")
+      print(filePath_DadosDoMapa)
+      print(filePath_shpFileDISTRITO)
+  #+END_SRC
+
+  #+RESULTS:
+  : [1] "/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/GIS/csvfiles/dados_do_mapa.csv"
+  : [1] "/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/GIS/shapefiles/LAYER_DISTRITO/DEINFO_DISTRITO.shp"
+
+
+* Gerando alguns mapas premilinares
+
+  #+NAME mapas preliminares
+  #+BEGIN_SRC R :session s1 :results output 
+      library("sf")
+      library("mapview")
+      library("leaflet")
+      library(ggplot2)
+      library(ggmap)
+
+      register_google(key = "AIzaSyAF4SsLUCcsaGGwVKQeGPWUQ9p-mKaA7Kw")
+      locIPGG <- geocode("Praca Padre Aleixo Monteiro Mafra, 34")
+      names(locIPGG)
+      #location=c(-88.68,42.14)
+      #mapIPGG <- get_map(location=c(-88.68,42.14))
+                            #maptype = "satellite", 
+                            #zoom = 6, 
+                            #source = "google")
+      #ggmap(mapIPGG)
+      #m <- get_googlemap(center = c(lon = -95.3632715, lat = 29.7632836))
+      #ggmap(m)
+      #mDistritos <- leaflet() %>%
+      #addTiles()  # Add default OpenStreetMap map tiles
+      #mDistritos
+
+      #mView <- mapview(mDistritos)
+      #mView
+
+      #df = data.frame(Lat = , Long = lgtIPGG)
+      #leaflet(dfEquipSaude2017) %>% addCircles()
+      #plot(shpSPDistritos);
+
+      #https://pt.wikipedia.org/wiki/Zona_Leste_de_S%C3%A3o_Paulo
+  #+END_SRC
+
+  #+RESULTS:
+  : Source : https://maps.googleapis.com/maps/api/geocode/json?address=Praca+Padre+Aleixo+Monteiro+Mafra,+34&key=xxx-mKaA7Kw
+  : [1] "lon" "lat"
+  : Source : https://maps.googleapis.com/maps/api/staticmap?center=29.763284,-95.363271&zoom=10&size=640x640&scale=2&maptype=terrain&key=xxx-mKaA7Kw
+  : Error in aperm.default(map, c(2, 1, 3)) : 
+  :   primeiro argumento invÃ¡lido: deve ser um array
+  : AlÃ©m disso: Warning message:
+  : In get_googlemap(center = c(lon = -95.3632715, lat = 29.7632836)) :
+  :   HTTP 400 Bad Request
+  : Error in ggmap(m) : objeto 'm' nÃ£o encontrado
+
+  
+
+* Conhecendo um pouco dos dados que serão apresentados no mapa
+** Reconhecendo Regiao Leste Zona Leste1 e Zona Leste 2
+
+   #+NAME   dataframes                   
+   #+BEGIN_SRC R :session s1 :results output :exports bouth  
+      library(sf)
+      library(mapview)
+      library(leaflet)
+      library(ggplot2)
+      library(ggmap)
+
+      csvFilesDir = paste(getwd(),"csvfiles",sep="/");
+      
+      filePath_csvEquipSaude2017 = paste(csvFilesDir,"EQUIPAMENTOS_CSV_TEMA_SAUDE/DEINFO_SA_CADSAU_2007_Dados.csv", sep="/")
+      filePath_csvFaixaEtarDist2018 = paste(csvFilesDir,"faixaEtariaPorDistritosPaulistasEm2018.csv",sep="/");
+
+      dfEquipSaude2017 <- read.csv(filePath_csvEquipSaude2017,header = TRUE)
+      #dfEquip
+      dfFxEtar2018 <- read.csv(file = filePath_csvFaixaEtarDist2018,header = TRUE);
+      st_shDistritos <- st_read(filePath_shpFileDISTRITO)
+      #names(st_shDistritos)
+      #nrow(dfEquipSaude2017)
+      #nrow(dfFxEtar2018)
+
+      shDistFxEt <-  st_shDistritos %>% left_join(dfFxEtar2018, by = "SIGLA_DIST") 
+
+      #dfDadosDoMapa <- read.csv(filePath_DadosDoMapa, sep=";");
+      #dfDadosDoMapa[,c(3,4)]
+      #stDadosDoMapa <- st_read(dfDadosDoMapa, options=c("X_POSSIBLE_NAMES=lat","Y_POSSIBLE_NAMES=lng"))
+
+      #str(dfDadosDoMapa)
+      
+      #st_crs(stDadosDoMapa)
+      
+      
+      #summary(st_shDistritos)
+      #names(st_shDistritos)
+      #st_shDistritos[,c(4,7)]
+      
+      #mv <- mapview(shDistFxEt)
+      #addStaticLabels(mv, shDistFxEt, 
+      
+      ggplot(data = shDistFxEt) + 
+              geom_sf(aes(fill = X75Mais));
+              #geom_sf_label(aes(label = X75Mais))
+
+
+      #plot(st_shDistritos, axes = TRUE, cex.axes = 0.1)
+      #plot(st_geometry(st_shDistritos), cex.axes = 0.1)
+      #st_crs(st_shDistritos)
+      #st_is_valid(st_shDistritos)
+
+      #Calcula areas dos polignos
+      #st_area(st_shDistritos)
+
+      #calcula longitut lineas
+      #st_length(st_shDistritos)
+
+      #Colore o mapa
+      #plot(st_shDistritos["NOME_DIST"],
+      #                col=c("Dark Green","blue","yellow","black"))
+
+      #plot(st_geometry(st_shDistritos, add = TRUE))
+      #title(main = "Distritos de Sao Paulo", cex.main = 2.3)
+      #text(1.2,3,"2fasdasfd",pos=5,col="red",cex=1)
+      
+      #legend("bottomleft", title = "Densidad")
+
+
+
+      #dfFxEtar2018$Localidades
+      
+   #+END_SRC
+
+   #+RESULTS:
+   : Reading layer `DEINFO_DISTRITO' from data source `/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/GIS/shapefiles/LAYER_DISTRITO/DEINFO_DISTRITO.shp' using driver `ESRI Shapefile'
+   : Simple feature collection with 96 features and 9 fields
+   : geometry type:  POLYGON
+   : dimension:      XY
+   : bbox:           xmin: 313434.8 ymin: 7343789 xmax: 360663.2 ymax: 7416202
+   : epsg (SRID):    29193
+   : proj4string:    +proj=utm +zone=23 +south +ellps=aust_SA +towgs84=-66.87,4.37,-38.52,0,0,0,0 +units=m +no_defs
+   : Warning message:
+   : Column `SIGLA_DIST` joining factors with different levels, coercing to character vector
+   
+   Existe o conceito de Região Leste, Zona Leste 1 e Zona Leste 2
+   Distritos da Regiao Leste
+   #+NAME distr da regiao zl1 e Zl2
+   #+BEGIN_SRC R :session s1 :results output :exports bouth  
+      #starts code
+      library(dplyr)
+      
+      dfEqRLeste <- dfEquipSaude2017 %>% filter(REGIAO5 == "Leste")
+      tbDistXREG05 <- table(dfEqRLeste$DISTRITO,dfEqRLeste$REGIAO8)
+      dfDistXREG05 <- data.frame(tbDistXREG05)
+      dfDistL1 <- dfDistXREG05 %>% dplyr::filter(Var2 == "Leste 1" & Freq != 0)
+      dfDistL2 <- dfDistXREG05 %>% dplyr::filter(Var2 == "Leste 2" & Freq != 0)      
+      #dfDistL1
+      #dfDistL2
+      #dfEquipSaudeRegLeste <- subset(dfEquipSaude2017, REGIAO5 == "Leste")
+      dfFxEtar2018_Zl2 <- subset(dfFxEtar2018, zl == "ZL2")
+      #names(dfFxEtar2018_Zl2)
+      print(">>> $X75Mais");
+      summary(dfFxEtar2018_Zl2$X75Mais)
+      print(">>> X70a74")
+      summary(dfFxEtar2018_Zl2$X70a74)
+      print(">>> X65a69")
+      summary(dfFxEtar2018_Zl2$X65a69)
+      print(">>> $X60a64")
+      summary(dfFxEtar2018_Zl2$X60a64)
+
+      #distZl1 <- filter(dfFxEtarDist2018$zl, zl == "ZL1")
+      #distZl1
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   [1] ">>> $X75Mais"
+      Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      1780    3006    3204    3369    3802    5704
+   [1] ">>> X70a74"
+      Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      1590    2554    2886    3021    3375    4884
+   [1] ">>> X65a69"
+      Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      2346    3763    4447    4506    5221    6982
+   [1] ">>> $X60a64"
+      Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      3057    5101    6073    6084    6361    9224
+   #+end_example
+
+** idosos nas regiões   
+
+   #+NAME idosos                   
+   #+BEGIN_SRC R :session s1 :results output :exports bouth  
+      #starts code
+      library(dplyr)
+      library(ggplot2)
+      #View(dfFxEtar2018)
+      #summary(dfFxEtar2018$X75Mais)
+      #summary(dfFxEtar2018$Localidades)
+                  
+      print("");      
+      dfFxEtar2018_Zl2[,c(1,17,18,19,20)]
+
+      #dfFxEtar2018ZL1 <- dfFxEtar2018ZL1[order()]
+      #dfFxEtar2018ZL1[,c(1,20)]
+      #dfFxEtar2018ZL1
+      #g <- dfFxEtar2018_Zl2 %>% ggplot(aes(Localidades,X75Mais)) + geom_col() + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      #g
+      #g <- dfFxEtar2018_Zl2 %>% ggplot(aes(Localidades,X70a74)) + geom_col() + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      #g
+      #g <- dfFxEtar2018_Zl2 %>% ggplot(aes(Localidades,X65a69)) + geom_col() + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      #g
+      #g <- dfFxEtar2018_Zl2 %>% ggplot(aes(Localidades,X60a64)) + geom_col() + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+      #g
+      
+      #boxplot(
+      #    X75Mais ~ Localidades, 
+      #    data = dfFxEtar2018_Zl2,
+      #    main = "Mais de 75 anos",
+      #    xlab = "Num de Idosos Maiores de 75 anos",
+      #    ylab = "Distritos da ZL2")
+
+      #table(dfFxEtar2018$Localidades,dfFxEtar2018$X75Mais)
+      #names(dfFxEtar2018)
+      
+      #dfFxEt2018 <- data.frame(table(dfFxEtar2018$Localidades,dfFxEtar2018$X75Mais))
+      #dfFxEt2018
+
+      #dfEquipSaudeZL1 <- subset(dfEquipSaude2017, REGIAO8 == "Leste 1")
+      #levels(dfEquipSaudeZL1$DISTRITO)
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   [1] ""
+             Localidades X60a64 X65a69 X70a74 X75Mais
+   24       Cidade Lider   6180   4727   3219    3334
+   25  Cidade Tiradentes   8745   6056   3557    3117
+   28 Ermelino Matarazzo   5314   3999   2642    3200
+   31         Guaianases   4279   3114   2007    2164
+   32           Iguatemi   5360   3718   2292    2128
+   35     Itaim Paulista   9224   6588   4355    4575
+   36           Itaquera   9147   6982   4884    5704
+   42      Jardim Helena   5101   3763   2554    2789
+   46     Jose Bonifacio   6298   5221   3375    3349
+   47            Lajeado   6361   4491   2886    3006
+   58    Parque do Carmo   3057   2346   1590    1780
+   65         Ponte Rasa   4933   3772   2755    3901
+   75         Sao Mateus   7202   5448   3880    4853
+   76         Sao Miguel   4057   3016   2253    3243
+   77         Sao Rafael   5795   4306   2998    3121
+   86        Vila Curuca   6073   4604   3246    3802
+   89         Vila Jacui   6299   4447   2864    3204
+   #+end_example
+   
+
+
+
+#+NAME shapefile with r
+#+BEGIN_SRC R :session s1 :results output
+#+END_SRC
+#+NAME test
+#+BEGIN_SRC R :session s1 :results output
+    #install.packages("leaflet");
+    #library(leaflet)
+    library("sf")    # for static and interactive maps
+    #library(sp);
+    #world_sp = as(world, Class = "Spatial")
+    #names(world_sp)
+    #m <- leaflet() %>%
+    #addTiles() %>%  # Add default OpenStreetMap map tiles
+    #addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+    #print(m)  # Print the map
+
+    spMun <- st_read(system.file("shapefiles/SP-MUN/35MUE250GC_SIR.shp", package="sf"))
+    class(spMun);
+#+END_SRC
+
+#+RESULTS:
+: Cannot open data source 
+: Error in CPL_read_ogr(dsn, layer, query, as.character(options), quiet,  : 
+:   Open failed.
+: Erro: objeto 'spMun' nÃ£o encontrado
+
+
+#+Name vignete sf
+#+BEGIN_SRC R :results output
+vignette(package = "sf") 
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Vignettes in package âsfâ:
+
+sf1                     1. Simple Features for R (source, html)
+sf2                     2. Reading, Writing and Converting Simple
+                        Features (source, html)
+sf3                     3. Manipulating Simple Feature Geometries
+                        (source, html)
+sf4                     4. Manipulating Simple Features (source, html)
+sf5                     5. Plotting Simple Features (source, html)
+sf6                     6. Miscellaneous (source, html)
+
+#+end_example
+
+
+
+
+
+
+
+
+
+
+#+NAME list files
+#+BEGIN_SRC R :session s1 :file imgs/img1.png :results value graphics
+     Sys.getenv("R_LIBS_USER")
+     .libPaths();
+     library(tmap, lib.loc=RLibsDir)    # for static and interactive maps
+     library(sf, lib.loc=RLibsDir)
+#    library(raster)
+#    library(dplyr)
+#    library(spData)
+#    library(spDataLarge)
+
+#    library(leaflet) # for interactive maps
+#    library(mapview) # for interactive maps
+#    library(ggplot2) # tidyverse vis package
+#    library(shiny)   # for web applications
+    
+#    list.files(path="kmzfiles", pattern="*.kmz", full.names=FALSE);
+#    unzip(
+#    zipfile="kmzfiles/Municipios_SP.kmz",
+#    exdir="kmlfiles/");
+    
+#    list.files(path="kmlfiles", pattern="*.kml", full.names=FALSE);
+     #tm_shape(nz) +
+     #tm_fill()
+#+END_SRC
+
+#+RESULTS:
+[[file:imgs/img1.png]]
+
+
+#+NAME xxx
+#+BEGIN_SRC R :session s1
+
+#+END_SRC
+
+
+#+begin_src R :file imgs/img1.png :results value graphics
+  library(lattice)
+  #library(maptools)
+  print(xyplot(1:10 ~ 1:10))
+#+end_src
+
+
+#+begin_src R :file imgs/testeWWW.png :results value graphics
+ library(lattice)
+ print(xyplot(1:10 ~ 1:10))
+#+end_src
+
+#+RESULTS:
+[[file:imgs/testeWWW.png]]
+
+
+
+* Shape files
+  s.ambiente.sp.gov.br/if/MAPA_SHAPE_ARQGIS.rar
+  shop.forest-gis.com/downloads/ForestGIS_BaseLayers.zip
+
+
+
+* Limitações deste estudo
+  Foram coletados da tabela do seade apenas dados de 2018 e não
+  realizado série histórica.
+  
+
+* Refs
+
+http://www.gmapas.com/poligonos-ibge/poligonos-municipios-ibge-sao-paulo/Municipios_SP.kmz?attredirects=0&d=1
+
+[fn:spdemografico2014] https://www.seade.gov.br/produtos/midia/spdemografico/spdemog_jan2014.pdf
+[fn:spdemografico2015] http://www.seade.gov.br/produtos/midia/2018/08/SPDemografico_Num-05_dez20151207_ok.pdf
+[fn:spdemografico2016] http://www.seade.gov.br/produtos/midia/2016/10/SPDemografico_MORTALIDADE_INFANTIL_publica%C3%A7%C3%A3_Outubro2016.pdf
+[fn:spdemografico2017] http://www.seade.gov.br/produtos/midia/2017/09/SPDemografico_Num-03_2017.pdf
+[fn:spdemografico2018] http://www.seade.gov.br/produtos/midia/2018/11/SPDemografico_Num-04_nov2018.pdf
+[fn:tabelaseade] http://www.imp.seade.gov.br/frontend/#/tabelas
+[fn:rgeo_robinll] https://geocompr.robinlovelace.net/adv-map.html
+[fn:mapview] https://github.com/r-spatial/mapview
