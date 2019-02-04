@@ -1,0 +1,25 @@
+NOME DO ARQUIVO,VARIAVEL,NOME DA VARIAVEL,DESCRICAO DA VARIAVEL,FONTE,TIPO,TAMANHO
+GEOINFO_SA_CADSAU_2017,ID,Identificador,Número de identificação do estabelecimento georreferenciado,SMUL/GEOINFO,TEXTO,08
+GEOINFO_SA_CADSAU_2017,COORD_E,Coordenada Leste,Coordenada Leste em metro (UTM/SIRGAS2000),SMUL/GEOINFO,TEXTO,9
+GEOINFO_SA_CADSAU_2017,COORD_N,Coordenada Norte,Coordenada Norte em metro (UTM/SIRGAS2000),SMUL/GEOINFO,TEXTO,10
+GEOINFO_SA_CADSAU_2017,SETCENS,Setor censitário,Setor censitário ,IBGE,TEXTO,15
+GEOINFO_SA_CADSAU_2017,AREAP,Área de ponderação,Área de ponderação (agrupamento de setores censitários) ,IBGE,TEXTO,13
+GEOINFO_SA_CADSAU_2017,CODDIST,Código do distrito conforme IBGE,Código do Distrito Municipal ,IBGE,TEXTO,09
+GEOINFO_SA_CADSAU_2017,DISTRITO,Distrito municipal,Nome do Distrito Municipal,IBGE,TEXTO,18
+GEOINFO_SA_CADSAU_2017,CODSUBPREF,Código da Subprefeitura,Código da Subprefeitura,SMUL/GEOINFO,TEXTO,02
+GEOINFO_SA_CADSAU_2017,SUBPREF,Subprefeitura,Nome da Subprefeitura,SMUL/GEOINFO,TEXTO,25
+GEOINFO_SA_CADSAU_2017,REGIAO5,Região conforme divisão do Município em 5 áreas,Região conforme divisão do Município em 5 áreas,SMUL/GEOINFO,TEXTO,06
+GEOINFO_SA_CADSAU_2017,REGIAO8,Região conforme divisão do Município em 8 áreas,Região conforme divisão do Município em 8 áreas,SMUL/GEOINFO,TEXTO,07
+GEOINFO_SA_CADSAU_2017,ESTAB_SA,Estabelecimento de saúde,Denominação  do estabelecimento de saúde,CNES/SMS/Ceinfo,TEXTO,74
+GEOINFO_SA_CADSAU_2017,ENDERECO,Endereço,Endereço,SMS/Ceinfo,TEXTO,21
+GEOINFO_SA_CADSAU_2017,BAIRRO,Bairro,Bairro,SMS/Ceinfo,TEXTO,17
+GEOINFO_SA_CADSAU_2017,TELEFONE,Telefone,Telefone,SMS/Ceinfo,TEXTO,15
+GEOINFO_SA_CADSAU_2017,CEP,Código de endereçamento postal,Número do CEP,SMS/Ceinfo,TEXTO,14
+GEOINFO_SA_CADSAU_2017,CNES,Cadastro Nacional de Estabelecimentos de Saúde,Número do estabelecimento junto ao Ministério da Saúde,Min. Saúde/CNES,TEXTO,04
+GEOINFO_SA_CADSAU_2017,SA_DEPADM,Código da dependência administrativa,Código da esfera administrativa,SMUL/GEOINFO,CATEGORIA,02
+GEOINFO_SA_CADSAU_2017,DEPADM,Dependência administrativa ,Identificação da esfera administrativa,SMUL/GEOINFO,CATEGORIA,09
+GEOINFO_SA_CADSAU_2017,SA_TIPO,Código do tipo de estabelecimento,Código do tipo de estabelecimento,SMS/Ceinfo,CATEGORIA,02
+GEOINFO_SA_CADSAU_2017,TIPO,Tipo de estabelecimento,Tipo de estabelecimento,SMS/Ceinfo,CATEGORIA,29
+GEOINFO_SA_CADSAU_2017,SA_CLASSE,Código da classe dos tipos de estabelecimentos de saúde,Código da classificação dos tipos de estabelecimentos de saúde,SMUL/GEOINFO,CATEGORIA,02
+GEOINFO_SA_CADSAU_2017,CLASSE,Classe dos tipos de estabelecimentos de saúde,Classificação dos tipos de estabelecimentos de saúde,SMUL/GEOINFO,CATEGORIA,07
+GEOINFO_SA_CADSAU_2017,LEITOS,Leitos hospitalares,Número de leitos hospitalares (contempla SUS e Não SUS),Min. Saúde/CNES,VALOR,03

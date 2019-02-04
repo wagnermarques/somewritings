@@ -1,0 +1,27 @@
+NOME DO ARQUIVO,VARIAVEL,NOME DA VARIAVEL,DESCRICAO DA VARIAVEL,FONTE,TIPO,TAMANHO
+DEINFO_SA_CADSAU_2014,ID,Identificador,Número de identificação do estabelecimento georreferenciado ,SMDU/Deinfo,TEXTO,08
+DEINFO_SA_CADSAU_2014,COORD_E,Coordenada Leste,Coordenada Leste em metro (UTM/SIRGAS2000),SMDU/Deinfo,TEXTO,9
+DEINFO_SA_CADSAU_2014,COORD_N,Coordenada Norte,Coordenada Norte em metro (UTM/SIRGAS2000),SMDU/Deinfo,TEXTO,10
+DEINFO_SA_CADSAU_2014,SETCENS,Setor censitário,Setor censitário ,IBGE,TEXTO,15
+DEINFO_SA_CADSAU_2014,AREAP,Área de ponderação,Área de ponderação (agrupamento de setores censitários) ,IBGE,TEXTO,13
+DEINFO_SA_CADSAU_2014,CODDIST,Código do distrito ,Código do Distrito Municipal,IBGE,TEXTO,09
+DEINFO_SA_CADSAU_2014,DISTRITO,Distrito municipal,Nome do Distrito Municipal,SMDU/Deinfo,TEXTO,18
+DEINFO_SA_CADSAU_2014,CODSUBPREF,Código da Subprefeitura,Código da Subprefeitura,SMDU/Deinfo,TEXTO,02
+DEINFO_SA_CADSAU_2014,SUBPREF,Subprefeitura,Nome da Subprefeitura,SMDU/Deinfo,TEXTO,25
+DEINFO_SA_CADSAU_2014,REGIAO5,Região conforme divisão do Município em 5 áreas,Região conforme divisão do Município em 5 áreas,SMDU/Deinfo,TEXTO,06
+DEINFO_SA_CADSAU_2014,REGIAO8,Região conforme divisão do Município em 8 áreas,Região conforme divisão do Município em 8 áreas,SMDU/Deinfo,TEXTO,07
+DEINFO_SA_CADSAU_2014,ESTAB_SA,Estabelecimento de saúde,Denominação  do estabelecimento de saúde,CNES/SMS/Ceinfo,TEXTO,74
+DEINFO_SA_CADSAU_2014,ENDERECO,Endereço,Endereço,SMS/Ceinfo,TEXTO,21
+DEINFO_SA_CADSAU_2014,BAIRRO,Bairro,Bairro,SMS/Ceinfo,TEXTO,17
+DEINFO_SA_CADSAU_2014,TELEFONE,Telefone,Telefone,SMS/Ceinfo,TEXTO,15
+DEINFO_SA_CADSAU_2014,CEP,Código de endereçamento postal,Número do CEP,SMS/Ceinfo,TEXTO,14
+DEINFO_SA_CADSAU_2014,CNES,Cadastro Nacional de Estabelecimentos de Saúde,Número do estabelecimento junto ao Ministério da Saúde,Min. Saúde/CNES,TEXTO,04
+DEINFO_SA_CADSAU_2014,SA_DEPADM,Código da dependência administrativa,Código da esfera administrativa,SMDU/Deinfo,CATEGORIA,02
+DEINFO_SA_CADSAU_2014,DEPADM,Dependência administrativa ,Identificação da esfera administrativa,SMDU/Deinfo,CATEGORIA,09
+DEINFO_SA_CADSAU_2014,SA_TIPO,Código do tipo de estabelecimento,Código do tipo de estabelecimento,SMS/Ceinfo,CATEGORIA,02
+DEINFO_SA_CADSAU_2014,TIPO,Tipo de estabelecimento,Tipo de estabelecimento,SMS/Ceinfo,CATEGORIA,29
+DEINFO_SA_CADSAU_2014,SA_CLASSE,Código da classe dos tipos de estabelecimentos de saúde,Código da classificação dos tipos de estabelecimentos de saúde,SMDU/Deinfo,CATEGORIA,02
+DEINFO_SA_CADSAU_2014,CLASSE,Classe dos tipos de estabelecimentos de saúde,Classificação dos tipos de estabelecimentos de saúde,SMDU/Deinfo,CATEGORIA,07
+DEINFO_SA_CADSAU_2014,LEITOS,Leitos hospitalares,Número de leitos hospitalares,Min. Saúde/CNES,VALOR,03
+,,,,,,
+,,,,,,
