@@ -1,0 +1,68 @@
+#+Title: Anotacoes
+
+* Criando mapas com R
+  rworldmap[fn:RJounalrworldmap] interessante para dados globais
+  porque facilita bastante a junção de dados relativo a paises
+  
+* ggmap
+  
+   #+NAME ggmap1                    
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+      library(ggmap)
+      library(leaflet)
+
+      register_google(key = "AIzaSyAF4SsLUCcsaGGwVKQeGPWUQ9p-mKaA7Kw")
+      locIPGG <- geocode("Praca Padre Aleixo Monteiro Mafra, 34")      
+
+      m <- leaflet() %>%
+      addTiles() %>%  # Add default OpenStreetMap map tiles
+      addMarkers(lng=locIPGG$lon, lat=locIPGG$lat, popup="IPGG")
+      m
+   #+END_SRC
+
+   #+RESULTS:
+   : Source : https://maps.googleapis.com/maps/api/geocode/json?address=Praca+Padre+Aleixo+Monteiro+Mafra,+34+-+Sao+Paulo+-+SP&key=xxx-mKaA7Kw
+   : [90m# A tibble: 1 x 2[39m
+   :     lon   lat
+   :   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m
+   : [90m1[39m -[31m46[39m[31m.[39m[31m4[39m -[31m23[39m[31m.[39m[31m5[39m
+   : Source : https://maps.googleapis.com/maps/api/geocode/json?address=Praca+Padre+Aleixo+Monteiro+Mafra,+34&key=xxx-mKaA7Kw
+   : Classes â€˜tbl_dfâ€™, â€˜tblâ€™ and 'data.frame':	1 obs. of  2 variables:
+   :  $ lon: num -46.4
+   :  $ lat: num -23.5
+
+
+* Base de dados Dados Abertos dados.prefeitura.sp.gov.br
+** Api ckan
+   https://docs.ckan.org/en/latest/maintaining/datastore.html
+   
+** Estabelecimentos de Saúde
+   http://dados.prefeitura.sp.gov.br/pt_PT/dataset/cadastro-dos-estabelecimentos-de-saude
+   "Este conjunto de dados contém informações sobre todos os
+   equipamentos municipais de saúde, fruto de um esforço realizado
+   pelo Departamento de Produção e Análise de Informação (Deinfo), da
+   Secretaria Municipal de Desenvolvimento Urbano (SMDU). As bases
+   provêm do Cadastro Nacional de Estabelecimentos de Saúde -
+   CNES/Ministério da Saúde, e a Secretaria Municipal de Saúde
+   acrescenta em aplicação própria os dados de serviços, localização
+   geográfica, modalidade de gerenciamento, tipo de serviço e
+   disponibiliza estas informações. Está disponível em formato aberto
+   toda a série histórica, de 2004 a 2014, e os dados estão dispostos
+   por ano. Em 2003, somente as instituições públicas e privadas que
+   prestavam serviços ao SUS foram incorporadas ao Cadastro Nacional
+   de Estabelecimentos de Saúde (CNES). Gradualmente, os outros
+   estabelecimentos também foram incluídos. Dados e Recursos"
+   Acessado em 05/02/2018
+   
+   Link do recurso csv
+   http://dados.prefeitura.sp.gov.br/dataset/f944b957-2193-48a4-9068-72a26e6ee577/resource/fd72d932-fc65-43cc-a74f-f309225f74e8/download/deinfosacadsau2014.csv
+
+   
+
+* anots
+  cadSau14 tem DISTRITO, CODDIST que dá pra mesclar com shapefile de distritos
+  depois plotar LAT e LONG com os polígonos dos distritos
+  
+* Refs
+[fn:RJounalrworldmap] https://journal.r-project.org/archive/2011-1/RJournal_2011-1_South.pdf

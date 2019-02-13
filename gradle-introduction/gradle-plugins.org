@@ -1,0 +1,31 @@
+#+Title: Gradle Plugins
+
+* Introdução
+  A idéia de plugin vc já conhece... com certeza...
+  Lembra que um plugin que a gente instalava antigamente nos
+  navegadores... pra que que eles serviam? Pra acrescentar alguma
+  funcionalidade nova no navegador. 
+  Em geral, muitos softwares trabalham com essa idéia de plugin os
+  quaise vc instala e usa as funcionalidades que eles adicionam no seu
+  software.
+  A idéia é a mesma com relação aos plugins do gradle. Vc diz pro
+  gradle que vai usar um plugin e a partir de então algumas
+  funcionalidades passam a estart disponíveis pra vc.
+  Por exemplo, se vc vai fazer software para o android, vc vai querer
+  usar o plugin do gradle para o android...
+  Além disso, se vc gostaria que o gradle tivesse alguma
+  funcionalidade que ele não tem, vc pode criar seu próprio
+  plugin. Quem fez isso foi o pessoal da Netflix, por
+  exemplo[fn:nebula]. O que não quer dizer que é um bicho de sete
+  cabeças fazer isso[fn:gradleGuideDesignPlugin]...
+  Dá pra fazer uma pesquisa por plugins do gralde em https://plugins.gradle.org/
+* Entendendo plugins do gradle
+  Tem várias informações na internet sobre os plugins do
+  gralde[fn:awesomeGradle]
+
+  
+
+* Refs
+  [fn:awesomeGradle] https://github.com/ksoichiro/awesome-gradle
+  [fn:nebula] https://nebula-plugins.github.io/
+  [fn:gradleGuideDesignPlugin] https://guides.gradle.org/designing-gradle-plugins/

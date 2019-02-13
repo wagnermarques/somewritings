@@ -1,0 +1,176 @@
+#+Title: Aula Sobre Activity
+
+
+* O Que é uma activity
+  A Activity cria uma janela pra vc na qual você pode colocar sua
+  interface do usuário.
+  Você vai querer subscrever os seguintes métodos:
+  onCreate(Bundle) que roda qdo sua activity estiver sendo
+  inicializada. Aqui vc vai chamar o método setContentView(int) com o
+  xml do layout que gera a interface do usuário.
+  
+  onPause() roda quando o usuário sai da sua interface.
+  Não se esqueça jamais de colocar um código aqui que salva o que o
+  seu usuário estava fazendo.
+
+* Ciclo de Vida de Uma Activity
+
+  O Android que gerencia a activity pra vc.
+  Qdo ela está sendo inicializada ela é colocada no topo das demais
+  granhando o foco ou seja, ela vai ser a activity que vai estar
+  rodando.
+  Acivity que estava rodando antes da sua iniciar nunca deixa de
+  rodar, uo seja, de estar na memória, mas fica pausada em segundo plano e fica em segundo plano até o usuário sair da
+  activity que estiver no tipo.
+
+  Fases de uma activity:
+  *Rodando* se ela está no topo das demais
+  *Pausada* Qdo ela perde o foco, ou seja, qdo outra activity passa a
+  estar rodando. Mesmo que ela ainda esteja visível, mas não sendo a
+  de cima ela vai estar pausada. Pausada não quer dizer que ela não
+  existe, ela está viva na memória no so só que ninguém pode garantir
+  que o android não mate ela numa situação de memória crítica.
+  *Parada* Qdo ela está completamente escondida porque outra está
+  rodando.
+  Mesmo parada ela mantém todo o estado embora não esteja mais
+  visível. Também pode ser matada pelo so em caso de memória
+  crítica. Qdo ela for mostrada novamente para o usuário deve ser
+  restaurada em seu estado qdo foi parada.
+
+  #+CAPTION Ciclo de vida da Activity (fonte Documentação do Android)
+  [[file:imgs/ciclodevida.png]]
+  
+* Criando uma Activity
+  Crie um projeto no android studio conforme essa sequecia de imagens
+
+  #+BEGIN_SRC elisp
+  (setq org-image-actual-width nil)
+  #+END_SRC
+
+  #+RESULTS:
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj1.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj2.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj3.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj4.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj5.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj6.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj7.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj8.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj9.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj10.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj11.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj12.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj13.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj14.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj15.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj16.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj17.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj18.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj19.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj20.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj21.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj22.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj23.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj24.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj25.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj26.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj27.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj28.png]]
+
+  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
+  #+ATTR_ORG: :width 150
+  [[file:imgs/criaproj29.png]]
+
+ 
+  Agora dá uma olhada nesse código e perceba que a agente tá usando
+  logcat pra ver o ciclo de vida da activity
+
+  #+INCLUDE:  /home/wagner/AndroidStudioProjects/ProjSobreActivity/app/src/main/java/com/example/wagner/projsobreactivity/MainActivity.kt  :src kotlin
+
+  
+* Refs
+  https://developer.android.com/reference/android/app/Activity

@@ -1,0 +1,814 @@
+#+Title: Analises
+
+* Introdução e Apresentação
+  Compreender os distritos sobre a perspectiva das faixas etárias no envelhecimento
+  O objetivo deste texte é contribuir com uma análise da feixa etária
+  idosa dos distritos
+  
+  O Seade publica anualmente o "sp demográfico"[fn:spdemografico2018][fn:spdemografico2017][fn:spdemografico2016][fn:spdemografico2015][fn:spdemografico2014] que pode ser
+  consultado em https://www.seade.gov.br/produtos/sp-demografico/
+
+  O último, de 2018 [fn:spdemografico2018] não trouxe dados
+  distritais, e esse texto utilizada dados do próprio seade com foco
+  nos distritos pelo fato de serem mais dentro da realiade do IPGG. O
+  que é interessante, dentro do contexto deste texto, no spdemográfico
+  de 2018 é que a pupulação deverá passar a reduzir por volta
+  de 2050. É um contexto em que a pupulação cada vez mais idosa estará
+  inserida e que pode indicar possivelmente menos cuidadores por
+  idoso. O estudo apontou também que "A idade média da população era 24 anos em 1950, atinge 30 anos em 2000, 
+e deverá alcançar 44 anos em 2050, passando de um padrão de população 
+muito jovem, para outro de população adulta jovem. "[fn:spdemografico2018]p.1
+
+  O tema do envelhecimento foi apontado somente no sp demográfico de 2014.
+  "O  processo  de  envelhecimento  é  nítido  em  todas  as  áreas
+  do Município de São Paulo. Um indicador sensível para se avaliar
+  este fenômeno  é  a idade  média  da  população,  que, no  conjunto
+  da capital, deverá aumentar 4,37 anos, ao passar de 34,71 anos, em
+  2014, para 39,08 anos, em 2030. Os maiores incrementos na idade
+  média  deverão  ser  registrados nos  distritos  de Vila  Andrade
+  (6,03 anos) e Anhanguera (5,91 anos), enquanto os menores ocorrerão
+  no Pari (2,38 anos) e Belém (2,42 anos)" [fn:spdemografico2014] p.6
+
+  "Os  distritos  com  maiores  idades  médias  da  população deverão
+ser os mesmos em 2014 e 2030: Alto de Pinheiros (42,48 anos e 47,23
+anos,respectivamente); e Jardim Paulista (42,32 anos e 47,00 anos)."[fn:spdemografico2014]p.7
+  
+  Sendo assim, considerando que o sead fornece dos dados para análises
+  quanto demograficos relativos ao processo de envelhecimento este
+  texto busca realizar esta contribuição.
+
+
+  Apesar de a Fundação SEADE observou que:
+
+
+
+O instituto baseou-se no aumento da idade média da população, que
+segundo a figura abaixo, parece crescer uniformemente nos distritos de
+São Paulo.
+[[file:./imgs/from_seade/evolucao_idade_media_distritos_sp.jpg]]
+  Fonte:[fn:spdemografico2014] p.7
+  
+
+Em 2030, Alto de Pinheiros (10,3%) e Consolação(10,4%)ocuparãoa
+posição  de  distritos menos  jovem Hoje,o distrito mais envelhecido é
+Alto de Pinheiros, com 25% de sua população com mais de 60 anos, sendo
+que aproximadamente 8% dela já tem mais de 75
+anos [fn:spdemografico2014] p8
+
+
+* Levantamento de dados e metodologia
+  Os dados foram coletados das tabelas do seade[fn:tabelaseade] para o
+  perído de 2018. 
+
+  Abaixo segue uma imagem da página para melhor reconhecimento
+  [[file:./imgs/from_seade/pagina_tabelas_do_seade.png]]
+
+  Para manipulação dos dados foi utilizado ferramenta R com pacotes
+  sf, ggplot dentre outros.
+  Os scripts em R são apresentados para garantir a reprodução das
+  análises por quem se interessar.
+
+
+* Configurando R para analise
+  Este script instala os pacotes necessários para reproduzir as
+  análises deste documento.
+  No caso de utilizar um proxy de rede, descomentar a sessão
+  Sys.setenv e utilizar usuário e senha apropriados para sua rede.
+
+  #+Name R env setup
+  #+BEGIN_SRC R :session s1 :results output :exports code
+
+      cranRepoUrl <- "http://cran.us.r-project.org";
+      #Sys.setenv(
+      #    "http_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta",
+      #    "ftp_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta",
+      #    "all_proxy" = "http://usuario:senha@ipDoSeuProxy:Porta");
+
+      #pkgsToBeInstalled <- c("curl", "dplyr","spDataLarge","ggplot2");
+    
+      #install.packages(
+      #             pkgsToBeInstalled,
+      #             repo = cranRepoUrl,
+      #             dependencies = TRUE)
+  #+END_SRC
+
+  #+RESULTS:
+
+
+* Dados utilizados para análise
+  Agora com os pacotes instalados, é necessário fazer o download dos
+  dados.
+  
+  Para geração de mapas dos distritos de são paulo, utilizou-se este shapefile, após descompactado
+  http://dados.prefeitura.sp.gov.br/dataset/af41e7c4-ae27-4bfc-9938-170151af7aee/resource/9e75c2f7-5729-4398-8a83-b4640f072b5d/download/layerdistrito.zip
+
+  Entrar http://www.imp.seade.gov.br/frontend/#/tabelas e fazer o
+  download "população por grupo de idade" para o período de 2018.
+
+
+* Carregando os dados para o R e explorando eles inicialmente
+  
+   #+NAME  organizacao dos arquivos                  
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+      library(sf)
+      library(dplyr)
+
+      shpFilesDir = paste(getwd(),"shapefiles",sep="/");      
+      csvFilesDir = paste(getwd(),"csvfiles",sep="/");
+      xlsFilesDir = paste(getwd(),"excelfiles", sep="/");
+      
+
+      #Estabelecimentos de Saude georeferenciados do cnes 2014
+      filePath_deinfosacadsau2014 = paste(csvFilesDir,"deinfosacadsau2014.csv",sep="/");
+      dfCadSau14   <- read.csv(
+                         file = filePath_deinfosacadsau2014,
+                         header = TRUE);
+      tbCadSau14 <- dfCadSau %>% as_tibble()
+                   
+      #Faixa etaria por distrito SIGLA_DIST                   
+      filePath_csvFaixaEtarDist2018 = paste(csvFilesDir,"faixaEtariaPorDistritosPaulistasEm2018.csv",sep="/");
+      dfFxEtar2018 <- read.csv(
+                         file = filePath_csvFaixaEtarDist2018,header = TRUE);
+
+      tbFxEtar2018 <- dfFxEtar2018 %>% as_tibble()
+                   
+      #shape file com poligono dos distritos de SP                   
+      filePath_shpFileDISTRITO = paste(shpFilesDir,"LAYER_DISTRITO/DEINFO_DISTRITO.shp", sep="/")
+      st_shDistritos <- st_read(filePath_shpFileDISTRITO)
+      tb_shDistritos <- st_shDistritos %>% as_tibble() 
+
+      #Combinando os dados para analise      
+      uniqueSiglaDistritosFromShfile <- unique(st_shDistritos$SIGLA_DIST)
+      uniqueSiglaDistritosFromdfFxEt <- unique(dfFxEtar2018$SIGLA_DIST)
+
+      str(uniqueSiglaDistritosFromShfile)
+      str(uniqueSiglaDistritosFromdfFxEt)
+      
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   Linking to GEOS 3.6.1, GDAL 2.3.2, PROJ 4.9.3
+
+   Attaching package: âdplyrâ
+
+   The following objects are masked from âpackage:statsâ:
+
+       filter, lag
+
+   The following objects are masked from âpackage:baseâ:
+
+       intersect, setdiff, setequal, union
+   Error in eval(lhs, parent, parent) : objeto 'dfCadSau' nÃ£o encontrado
+   Reading layer `DEINFO_DISTRITO' from data source `/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/GIS/shapefiles/LAYER_DISTRITO/DEINFO_DISTRITO.shp' using driver `ESRI Shapefile'
+   Simple feature collection with 96 features and 9 fields
+   geometry type:  POLYGON
+   dimension:      XY
+   bbox:           xmin: 313434.8 ymin: 7343789 xmax: 360663.2 ymax: 7416202
+   epsg (SRID):    29193
+   proj4string:    +proj=utm +zone=23 +south +ellps=aust_SA +towgs84=-66.87,4.37,-38.52,0,0,0,0 +units=m +no_defs
+    Factor w/ 96 levels "AAL","ANH","API",..: 41 45 1 39 95 46 40 43 44 47 ...
+    Factor w/ 96 levels "AAL","ANH","API",..: 4 3 2 5 1 7 12 6 8 10 ...
+   #+end_example
+   
+** Explorando os dados dfCadSau14  
+   Essa tbl de cadastro de equipamentos tem um REGIAO8 que separa qual
+   distrito e zl1 zl2 ou zl3 
+   Esse campo sera merclado do shape file pra poder mostrar
+   diferentemente no mapa essas regioes
+
+   #+NAME summary dfCadSau14
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+      summary(dfCadSau14)
+      str(dfCadSau14)      
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+          ID              LONG                LAT               SETCENS        
+    Min.   :   1.0   Min.   :-46801990   Min.   :-23923044   Min.   :3.55e+14  
+    1st Qu.: 367.5   1st Qu.:-46701490   1st Qu.:-23628168   1st Qu.:3.55e+14  
+    Median : 735.0   Median :-46636549   Median :-23559060   Median :3.55e+14  
+    Mean   : 734.7   Mean   :-46610581   Mean   :-23574426   Mean   :3.55e+14  
+    3rd Qu.:1101.5   3rd Qu.:-46514274   3rd Qu.:-23509500   3rd Qu.:3.55e+14  
+    Max.   :1468.0   Max.   :-44671580   Max.   :-23399045   Max.   :3.55e+14  
+
+        AREAP             CODDIST                 DISTRITO      CODSUBPREF   
+    Min.   :3.55e+12   Min.   : 1.00   JARDIM SAO LUIS:  42   Min.   : 1.00  
+    1st Qu.:3.55e+12   1st Qu.:27.00   SAPOPEMBA      :  35   1st Qu.: 9.00  
+    Median :3.55e+12   Median :45.00   JABAQUARA      :  34   Median :17.00  
+    Mean   :3.55e+12   Mean   :48.76   JARDIM ANGELA  :  33   Mean   :16.31  
+    3rd Qu.:3.55e+12   3rd Qu.:72.00   PARELHEIROS    :  31   3rd Qu.:24.00  
+    Max.   :3.55e+12   Max.   :96.00   CAPAO REDONDO  :  30   Max.   :31.00  
+                                       (Other)        :1262                  
+             SUBPREF       REGIAO5       REGIAO8   
+    SE           :  79   Centro: 79   Sul 2  :316  
+    M'BOI MIRIM  :  75   Leste :521   Leste 2:311  
+    ITAQUERA     :  68   Norte :280   Leste 1:210  
+    CAMPO LIMPO  :  67   Oeste :128   Norte 1:167  
+    MOOCA        :  64   Sul   :459   Sul 1  :143  
+    VILA PRUDENTE:  64                Oeste  :128  
+    (Other)      :1050                (Other):192  
+                           ESTABELECI                               ENDERECO   
+    CER II JARDIM CAMPOS        :   2   CENTENARIO DE V PRUDENTE,PCA,108:   8  
+    ELISIO TEIXEIRA LEITE-UBS   :   2   VITORINO CARMILO,R,599          :   8  
+    JD TRES CORACOES-UBS        :   2   BRAS LEME,AV,2945               :   7  
+    A C CAMARGO - HOSP DO CANCER:   1   TAQUARI,R,549                   :   7  
+    A E CARVALHO-ESF            :   1   CECI,AV,2235                    :   6  
+    A E CARVALHO-UBS            :   1   FREDERICO ALVARENGA,R,259       :   6  
+    (Other)                     :1458   (Other)                         :1425  
+                  BAIRRO        TELEFONE             CEP          
+    IPIRANGA         :  24   Min.   : 1031900   Min.   :  236000  
+    CIDADE TIRADENTES:  23   1st Qu.:37682259   1st Qu.: 3124020  
+    ITAQUERA         :  21   Median :55883628   Median : 4336050  
+    SANTANA          :  20   Mean   :49724863   Mean   : 4629211  
+    MOOCA            :  19   3rd Qu.:62803201   3rd Qu.: 5569120  
+    ITAIM PAULISTA   :  17   Max.   :80077137   Max.   :57601401  
+    (Other)          :1343   NA's   :167        NA's   :76        
+                CNES        SA_DEPADM           DEPADM        SA_TIPO     
+    2027631.000000:   7   Min.   :1.000   Estadual :  70   Min.   : 1.00  
+    2752336.000000:   7   1st Qu.:1.000   Municipal:1299   1st Qu.:24.00  
+    2788144.000000:   6   Median :1.000   Privado  :  98   Median :45.00  
+    4050312.000000:   6   Mean   :1.252                    Mean   :37.61  
+    2751844.000000:   5   3rd Qu.:1.000                    3rd Qu.:48.00  
+    2751984.000000:   5   Max.   :4.000                    Max.   :59.00  
+    (Other)       :1431                                                   
+                                       TIPO       SA_CLASSE    
+    UNIDADE BASICA DE SAUDE              :457   Min.   :1.000  
+    PROGRAMAS E SERVICOS                 :316   1st Qu.:3.000  
+    ASSISTENCIA MEDICA AMBULATORIAL      :117   Median :5.000  
+    HOSPITAL GERAL                       : 50   Mean   :5.301  
+    SERVICO DE DIAGNOSTICO POR IMAGEM    : 50   3rd Qu.:7.000  
+    CENTRO DE ATENCAO PSICOSSOCIAL ADULTO: 32   Max.   :9.000  
+    (Other)                              :445                  
+                                                  CLASSE        LEITOS       
+    UBS/POSTO DE SAUDE/CENTRO DE SAUDE               :463   Min.   :   0.00  
+    OUTROS ESTABELECIMENTOS E SERVICOS ESPECIALIZADOS:324   1st Qu.:   0.00  
+    AMBULATORIOS ESPECIALIZADOS                      :169   Median :   0.00  
+    SAUDE MENTAL                                     :130   Mean   :  11.85  
+    URGENCIA/EMERGENCIA                              :119   3rd Qu.:   0.00  
+    HOSPITAL                                         : 87   Max.   :1506.00  
+    (Other)                                          :175
+   'data.frame':	1467 obs. of  24 variables:
+    $ ID        : int  1 2 3 4 5 6 7 8 9 10 ...
+    $ LONG      : int  -46490063 -46773393 -46651898 -46454974 -46539564 -46704938 -46766027 -46743017 -46491950 -46757991 ...
+    $ LAT       : int  -23522787 -23673297 -23531575 -23538945 -23599363 -23743565 -23630816 -23659403 -23586723 -23408249 ...
+    $ SETCENS   : num  3.55e+14 3.55e+14 3.55e+14 3.55e+14 3.55e+14 ...
+    $ AREAP     : num  3.55e+12 3.55e+12 3.55e+12 3.55e+12 3.55e+12 ...
+    $ CODDIST   : int  65 19 70 36 74 23 17 45 75 62 ...
+    $ DISTRITO  : Factor w/ 96 levels "AGUA RASA","ALTO DE PINHEIROS",..: 65 19 70 36 74 23 17 45 75 62 ...
+    $ CODSUBPREF: int  22 17 9 27 29 19 17 18 30 1 ...
+    $ SUBPREF   : Factor w/ 31 levels "ARICANDUVA-FORMOSA-CARRAO",..: 8 3 28 13 31 4 3 17 26 21 ...
+    $ REGIAO5   : Factor w/ 5 levels "Centro","Leste",..: 2 5 1 2 2 5 5 5 2 3 ...
+    $ REGIAO8   : Factor w/ 8 levels "Centro","Leste 1",..: 3 8 1 3 2 8 8 8 3 4 ...
+    $ ESTABELECI: Factor w/ 1464 levels "A C CAMARGO - HOSP DO CANCER",..: 112 141 411 451 556 572 638 669 697 924 ...
+    $ ENDERECO  : Factor w/ 927 levels "ABRAHAO CALIL REZEK,R,91",..: 520 816 915 32 306 795 29 562 100 648 ...
+    $ BAIRRO    : Factor w/ 625 levels "","ACLIMACAO",..: 28 255 35 123 63 554 140 228 241 361 ...
+    $ TELEFONE  : int  22800080 58742846 38260096 62860015 NA 59280272 58436257 55111153 29195248 29014606 ...
+    $ CEP       : int  3680000 5666000 1153000 8210090 3244030 4837150 57601401 5846380 3947030 5208230 ...
+    $ CNES      : Factor w/ 1070 levels "2026961.000000",..: 967 921 867 968 1000 957 1026 924 963 965 ...
+    $ SA_DEPADM : int  1 1 1 1 1 1 1 1 1 1 ...
+    $ DEPADM    : Factor w/ 3 levels "Estadual","Municipal",..: 2 2 2 2 2 2 2 2 2 2 ...
+    $ SA_TIPO   : int  49 49 49 49 49 49 49 49 49 49 ...
+    $ TIPO      : Factor w/ 55 levels "AMA ESPECIALIDADES",..: 1 1 1 1 1 1 1 1 1 1 ...
+    $ SA_CLASSE : int  1 1 1 1 1 1 1 1 1 1 ...
+    $ CLASSE    : Factor w/ 10 levels "AMBULATORIOS ESPECIALIZADOS",..: 1 1 1 1 1 1 1 1 1 1 ...
+    $ LEITOS    : int  0 0 0 0 0 0 0 0 0 0 ...
+   #+end_example
+
+
+** Explorando shDistritos
+   #+NAME explorando shDistritos                    
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+      str(tb_shDistritos)
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   Classes âtbl_dfâ, âtblâ and 'data.frame':	96 obs. of  10 variables:
+    $ CLASSID   : num  4 4 4 4 4 4 4 4 4 4 ...
+    $ FEATID    : num  8583485 8583484 8583445 8583479 8583437 ...
+    $ REVISIONNU: num  1 1 1 1 1 1 1 1 1 1 ...
+    $ NOME_DIST : Factor w/ 96 levels "AGUA RASA","ALTO DE PINHEIROS",..: 46 45 5 39 95 40 41 43 44 47 ...
+    $ SIGLA_DIST: Factor w/ 96 levels "AAL","ANH","API",..: 41 45 1 39 95 46 40 43 44 47 ...
+    $ COD_DIST  : Factor w/ 96 levels "01","10","11",..: 42 41 45 35 93 36 37 39 40 96 ...
+    $ COD_SUB   : Factor w/ 32 levels "01","02","03",..: 27 18 21 8 29 8 2 23 11 28 ...
+    $ DATA_CRIAC: Date, format: "2007-03-19" "2007-03-19" ...
+    $ USUARIO_ID: num  0 0 0 0 0 0 0 0 0 0 ...
+    $ geometry  :sfc_POLYGON of length 96; first list element: List of 1
+     ..$ : num [1:3338, 1:2] 352437 352451 352469 352469 352469 ...
+     ..- attr(*, "class")= chr  "XY" "POLYGON" "sfg"
+    - attr(*, "sf_column")= chr "geometry"
+    - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA NA NA NA
+     ..- attr(*, "names")= chr  "CLASSID" "FEATID" "REVISIONNU" "NOME_DIST" ...
+   #+end_example
+
+
+* Juntando e Prep dados para analise
+    
+   #+NAME unindo st_shDistritos com dfFxEtar2018                     
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+            
+      #Juntando dados de fx etaria com shape de distritos      
+      #print(tbFxEtar2018   [order(dfFxEtar2018$Localidades), c("SIGLA_DIST","Localidades")], n=96)
+      #nrow(dfFxEtar2018)
+      #print(tb_shDistritos [order(st_shDistritos$NOME_DIST), c("SIGLA_DIST","NOME_DIST")], n=96)
+      #nrow(st_shDistritos)
+
+      #Unindo shapefile polygono dos distritos com dfFxEtaria pela sigla distrito
+      #dados1 <-  tb_shDistritos %>% left_join(tbFxEtar2018, by = "SIGLA_DIST") 
+
+      #Identificando abrang do IPGG,  Ermelindo, Itaim e Sao Miguel
+      #lut <- c(
+      #        "SMI" = "IPGG",
+      #        "ERM" = "IPGG",
+      #        "IPA" = "IPGG")
+      #dados1$ArIpgg <- lut[dados1$SIGLA_DIST]
+      #table(dados1$ArIpgg,dados1$Localidades)
+
+
+      #Identificando ZL1 e L2
+      #dados1$zl <- dfCadSau14
+      table(unique(dfCadSau14$CODDIST))
+      
+      #table(uniqueDfCadSau14$DISTRITO)
+      #table(uniqueDfCadSau14$REGIAO8)
+      
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   :  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 
+   :  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+   : 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 
+   :  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+   : 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 
+   :  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+   : 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 
+   :  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+
+
+
+
+* Estudo da Faixa etária idosa por distritos
+  
+  Os dados obtidos do SEADE são organizados por faixa etária de 60 a
+  64 anos, de 65 a 69 anos, de 70 a 74 anos e mais de 75 anos.
+  
+  Uma demonstração de como os dados estão organizados encontra-se no
+  final do texto como anexo 1
+
+   #+NAME apresent dos dados
+   #+BEGIN_SRC R :session s1 :results output :exports bouth  
+   
+      print(">>> $X75Mais");
+      summary(dfFxEtar2018$X75Mais)
+      print(">>> X70a74")
+      summary(dfFxEtar2018$X70a74)
+      summary(dfFxEtar2018$X65a69)
+      print(">>> $X60a64")
+      summary(dfFxEtar2018$X60a64)
+
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   [1] ">>> $X75Mais"
+
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+       223    3035    4550    4496    5822    9765
+   [1] ">>> X70a74"
+
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+       192    2314    3128    3214    3941    6978
+      Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+       284    3362    4361    4516    5551   10055
+   [1] ">>> $X60a64"
+
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+       392    4106    5734    5834    7219   13990
+   #+end_example
+
+   As estatísticas acima demostram que o município com menor número de
+   idosos com 75 anos tem 223 idosos. Os dados do anexo 1 dá pra ver
+   que é o distrito de Marsilac e o que tem mais idosos nessa faixa
+   etária tem 9765 (Vila Mariana). Pode-se dizer que a média de idosos
+   nessa idade entre todos os distritos é por volta de 4000. 
+   
+   O anexo 1 que mostra os dados que estão sendo utilizados para esta
+   análise estão em ordem descrescente por número de idosos acima de
+   75 anos.
+   Considerando uma média (sem rigor estatístico) de aproximadamente
+   4000, segue uma lista de distritos que podem ser considerados como
+   "acima da média" com relação ao número de idosos acima de 75
+   anos. 
+   O restante dos distritos podem ser consultados no anexo 1.
+   #+BEGIN_EXAMPLE
+   92       Vila Mariana   9010   7817   5828    9765
+   79              Saude   8905   7327   5596    9605
+   37          Jabaquara  11472   8743   6343    9516
+   69             Sacoma  12568   9464   6643    9454
+   78          Sapopemba  13271  10055   6978    8202
+   71            Santana   7614   6237   4570    7943
+   61           Perdizes   7691   6627   4938    7880
+   43    Jardim Paulista   5926   5310   4295    7668
+   22      Cidade Ademar  11802   9007   6297    7436
+   60              Penha   7269   5892   4499    7394
+   74          Sao Lucas   7831   6250   4714    7355
+   34         Itaim Bibi   6097   5344   4124    7181
+   64           Pirituba   8968   6860   4871    6676
+   27            Cursino   6728   5275   3840    6504
+   33           Ipiranga   6173   4931   3658    6502
+   84           Tucuruvi   6219   5050   3767    6479
+   82            Tatuape   6013   4729   3489    6374
+   29     Freguesia do O   7903   5984   4206    6290
+   53              Moema   6068   5273   3855    6256
+   83           Tremembe   9498   7140   4901    6254
+   11        Brasilandia  10474   7708   5243    6120
+   44        Jd Sao Luis  11626   8591   5654    6075
+   94      Vila Medeiros   6593   5149   3856    5996
+   95      Vila Prudente   6096   4880   3693    5977
+   1           Agua Rasa   5179   4232   3277    5770
+   36           Itaquera   9147   6982   4884    5704
+   19      Capao Redondo  11278   8406   5522    5508
+   30             Grajau  13990   9824   6081    5489
+   87       Vila Formosa   5730   4544   3378    5483
+   23       Cidade Dutra   9264   7127   4950    5476
+   63          Pinheiros   4297   3716   2901    5465
+   72        Santo Amaro   4703   4052   3280    5451
+   54              Mooca   4738   3746   2842    5449
+   20             Carrao   5066   4179   3232    5383
+   93       Vila Matilde   5897   4698   3472    5374
+   48               Lapa   4294   3549   2779    5368
+   70      Santa Cecilia   5082   4185   3158    5284
+   51           Mandaqui   6041   4664   3505    5074
+   17        Campo Limpo   9222   6753   4448    5006
+   15         Campo Belo   4030   3496   2802    4900
+   75         Sao Mateus   7202   5448   3880    4853
+   96         Vila Sonia   5837   4708   3456    4847
+   18           Cangaiba   6667   5063   3640    4805
+   26         Consolacao   3612   3126   2497    4724
+   16       Campo Grande   5982   4615   3347    4699
+   41      Jardim Angela  11154   7876   4903    4697
+   35     Itaim Paulista   9224   6588   4355    4575
+   91         Vila Maria   5168   3973   2885    4570
+   21         Casa Verde   4732   3784   2825    4530
+   5         Artur Alvim   5220   4364   3285    4379   
+   #+END_EXAMPLE
+
+
+  
+   Provavelmente, durante a visualização dos dados nos mapas, em
+   relação aos distritos, haverá a necessidade de identificar o
+   distrito. Para tanto, utilize este mapa com a sigla oficial de cada
+   distrito para identifica-los.
+   #+NAME mapa nome dos distritos
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth :file imgs/map_dist_SIGLA_DIST.png  
+      #starts code
+      library(sf)
+      library(ggplot2)
+
+      ggplot(data = shDistFxEt) +
+              geom_sf(aes(fill = SIGLA_DIST)) +
+              #geom_sf_label(aes(label = SIGLA_DIST),size=2) +
+              guides(fill = 
+                  guide_legend(
+                           title = "SIGLA", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))                     
+
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:imgs/map_dist_SIGLA_DIST.png]]
+
+
+Uma outra alternativa para visualização dos municípios é pelos seus
+nomes.
+   [[file:./imgs/map_nome_dists.png]]
+
+Uma terceira alternativa para visualizar e localizar os distritos no
+mapa é acessar o link abaixo
+http://www.mapas-sp.com/bairros.htm
+
+   #+NAME   mapas 75mais
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth  :file imgs/map_dist_75mais.png
+      library(sf)
+      library(ggplot2)
+      library(gridExtra)
+      library(grid)
+
+      p75Mais <- ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X75Mais)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos com mais de 75 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+
+      p70a74 <- ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X70a74)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 70 e 74 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+
+      p65a69 <- ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X65a69)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 65 e 69 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+
+      p60a64 <- ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X60a64)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 60 e 65 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+      grid.arrange(p75Mais, p70a74, p65a69, p60a64, nrow = 2)
+                    
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:imgs/map_dist_75mais.png]]
+
+Segundo a imagem acima os distritos com as cores mais claras são os
+que tem maior número de idosos (por volta de 7500 idosos)  acima de 75 anos e os mais escuros são
+os que tem menos, por volta de 2500 idosos.
+Portanto, os distritos que tem mais idosos acima de 75 anos são Vila
+Mariana, Saúde e Jabaquara o mesmo pode-se dizer para idos entre 70
+e 74. O distrito de sacomã tem mais idos jovens mais chega a se
+aproximar dos desses três ditritos para idosos acima de 75 anos
+também.
+Pode-se dize que sapopemba apresenta número significativo de idosos
+mais jovens a exemplo de grajaú e jaraguá.
+Observa que idosos jovens ainda são superiores em números que os mais
+idosos.
+
+
+* Os mesmos mapas separados pra melhor visualização
+
+   #+NAME   mapas 75mais_2
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth  :file ./imgs/map_dist_75mais_2.png
+      library(sf)
+      library(ggplot2)
+      library(gridExtra)
+      library(grid)
+
+      ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X75Mais)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos com mais de 75 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:./imgs/map_dist_75mais_2.png]]
+
+   #+NAME   mapas 70a74_2
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth  :file imgs/map_dist_70a74_2.png
+      library(sf)
+      library(ggplot2)
+      library(gridExtra)
+      library(grid)
+
+      ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X70a74)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 70 e 74 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:imgs/map_dist_70a74_2.png]]
+
+   #+NAME   mapas 65a64mais_2
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth  :file imgs/map_dist_65a64mais_2.png
+      library(sf)
+      library(ggplot2)
+      library(gridExtra)
+      library(grid)
+
+      ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X65a69)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 65 e 69 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:imgs/map_dist_65a64mais_2.png]]
+
+   #+NAME  60a64_2
+   #+BEGIN_SRC R :session s1 :results value graphics :exports bouth  :file imgs/map_dist_60a64_2.png
+      library(sf)
+      library(ggplot2)
+      library(gridExtra)
+      library(grid)
+
+      ggplot(data = shDistFxEt) +
+                 geom_sf(aes(fill = X60a64)) +
+                 guides(fill = 
+                 guide_legend(
+                           title = "Num Idosos entre 60 e 65 anos", 
+                           title.position = "left",
+                           title.theme = element_text(
+                           size = 15,
+                           face = "italic",
+                           colour = "blue",
+                           angle = 90
+                     )))   
+   #+END_SRC
+
+   #+RESULTS:
+   [[file:imgs/map_dist_60a64_2.png]]
+  
+
+
+
+  
+* Anexo 1: Mostra dos dados utilizados
+  Listagem de dados analisados, provenientes da tabela do seade
+   #+NAME apresent dos dados
+   #+BEGIN_SRC R :session s1 :results output :exports bouth  
+      names(dfFxEtar2018)
+      dfFxEtar2018OrderX75Mais <- dfFxEtar2018[order(-dfFxEtar2018$X75Mais),]
+      dfFxEtar2018OrderX75Mais[,c(1,19,20,21,22)]
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+    [1] "Localidades"   "Localidades.1" "SIGLA_DIST"    "zl"           
+    [5] "X"             "Periodo"       "X0a4"          "X5a9"         
+    [9] "X10a14"        "X15a19"        "X20a24"        "X25a29"       
+   [13] "X30a34"        "X35a39"        "X40a44"        "X45a49"       
+   [17] "X50a54"        "X55a59"        "X60a64"        "X65a69"       
+   [21] "X70a74"        "X75Mais"       "cod.ibge"
+
+            Localidades X60a64 X65a69 X70a74 X75Mais
+   92       Vila Mariana   9010   7817   5828    9765
+   79              Saude   8905   7327   5596    9605
+   37          Jabaquara  11472   8743   6343    9516
+   69             Sacoma  12568   9464   6643    9454
+   78          Sapopemba  13271  10055   6978    8202
+   71            Santana   7614   6237   4570    7943
+   61           Perdizes   7691   6627   4938    7880
+   43    Jardim Paulista   5926   5310   4295    7668
+   22      Cidade Ademar  11802   9007   6297    7436
+   60              Penha   7269   5892   4499    7394
+   74          Sao Lucas   7831   6250   4714    7355
+   34         Itaim Bibi   6097   5344   4124    7181
+   64           Pirituba   8968   6860   4871    6676
+   27            Cursino   6728   5275   3840    6504
+   33           Ipiranga   6173   4931   3658    6502
+   84           Tucuruvi   6219   5050   3767    6479
+   82            Tatuape   6013   4729   3489    6374
+   29     Freguesia do O   7903   5984   4206    6290
+   53              Moema   6068   5273   3855    6256
+   83           Tremembe   9498   7140   4901    6254
+   11        Brasilandia  10474   7708   5243    6120
+   44        Jd Sao Luis  11626   8591   5654    6075
+   94      Vila Medeiros   6593   5149   3856    5996
+   95      Vila Prudente   6096   4880   3693    5977
+   1           Agua Rasa   5179   4232   3277    5770
+   36           Itaquera   9147   6982   4884    5704
+   19      Capao Redondo  11278   8406   5522    5508
+   30             Grajau  13990   9824   6081    5489
+   87       Vila Formosa   5730   4544   3378    5483
+   23       Cidade Dutra   9264   7127   4950    5476
+   63          Pinheiros   4297   3716   2901    5465
+   72        Santo Amaro   4703   4052   3280    5451
+   54              Mooca   4738   3746   2842    5449
+   20             Carrao   5066   4179   3232    5383
+   93       Vila Matilde   5897   4698   3472    5374
+   48               Lapa   4294   3549   2779    5368
+   70      Santa Cecilia   5082   4185   3158    5284
+   51           Mandaqui   6041   4664   3505    5074
+   17        Campo Limpo   9222   6753   4448    5006
+   15         Campo Belo   4030   3496   2802    4900
+   75         Sao Mateus   7202   5448   3880    4853
+   96         Vila Sonia   5837   4708   3456    4847
+   18           Cangaiba   6667   5063   3640    4805
+   26         Consolacao   3612   3126   2497    4724
+   16       Campo Grande   5982   4615   3347    4699
+   41      Jardim Angela  11154   7876   4903    4697
+   35     Itaim Paulista   9224   6588   4355    4575
+   91         Vila Maria   5168   3973   2885    4570
+   21         Casa Verde   4732   3784   2825    4530
+   5         Artur Alvim   5220   4364   3285    4379
+   4          Aricanduva   4646   3775   2945    4312
+   68        Rio Pequeno   5737   4358   3099    4169
+   49          Liberdade   4122   3456   2598    4148
+   7          Bela Vista   3997   3384   2513    4001
+   65         Ponte Rasa   4933   3772   2755    3901
+   13       Cachoeirinha   6259   4557   3088    3844
+   40            Jaragua   8406   5860   3745    3803
+   86        Vila Curuca   6073   4604   3246    3802
+   2   Alto de Pinheiros   2876   2546   2080    3791
+   45             Jacana   4629   3595   2572    3649
+   12            Butanta   3212   2787   2158    3644
+   73       Sao Domingos   4353   3408   2563    3446
+   50              Limao   4151   3295   2321    3382
+   46     Jose Bonifacio   6298   5221   3375    3349
+   24       Cidade Lider   6180   4727   3219    3334
+   76         Sao Miguel   4057   3016   2253    3243
+   88     Vila Guilherme   3147   2526   1899    3215
+   89         Vila Jacui   6299   4447   2864    3204
+   28 Ermelino Matarazzo   5314   3999   2642    3200
+   77         Sao Rafael   5795   4306   2998    3121
+   25  Cidade Tiradentes   8745   6056   3557    3117
+   59           Pedreira   6236   4448   2894    3045
+   47            Lajeado   6361   4491   2886    3006
+   85       Vila Andrade   5485   3833   2536    2821
+   42      Jardim Helena   5101   3763   2554    2789
+   67          Republica   3246   2568   1889    2694
+   8               Belem   2421   1966   1408    2638
+   55            Morumbi   2784   2295   1785    2622
+   66     Raposo Tavares   4467   3507   2432    2524
+   81            Socorro   2177   1848   1495    2312
+   14            Cambuci   2129   1678   1258    2295
+   31         Guaianases   4279   3114   2007    2164
+   56        Parelheiros   5256   3620   2275    2129
+   32           Iguatemi   5360   3718   2292    2128
+   39            Jaguare   2299   1848   1411    2045
+   90    Vila Leopoldina   2191   1648   1174    1958
+   58    Parque do Carmo   3057   2346   1590    1780
+   62              Perus   3204   2307   1513    1632
+   9          Bom Retiro   1667   1300    919    1611
+   38            Jaguara   1423   1173    878    1317
+   57               Pari    806    654    533    1010
+   6         Barra Funda    848    717    554     994
+   10               Bras   1403   1032    717     952
+   3          Anhanguera   2683   1672    936     886
+   80                 Se    965    681    497     637
+   52           Marsilac    392    284    192     223
+   #+end_example
+
+
+* Refs
+
+http://www.gmapas.com/poligonos-ibge/poligonos-municipios-ibge-sao-paulo/Municipios_SP.kmz?attredirects=0&d=1
+
+[fn:spdemografico2014] https://www.seade.gov.br/produtos/midia/spdemografico/spdemog_jan2014.pdf
+[fn:spdemografico2015] http://www.seade.gov.br/produtos/midia/2018/08/SPDemografico_Num-05_dez20151207_ok.pdf
+[fn:spdemografico2016] http://www.seade.gov.br/produtos/midia/2016/10/SPDemografico_MORTALIDADE_INFANTIL_publica%C3%A7%C3%A3_Outubro2016.pdf
+[fn:spdemografico2017] http://www.seade.gov.br/produtos/midia/2017/09/SPDemografico_Num-03_2017.pdf
+[fn:spdemografico2018] http://www.seade.gov.br/produtos/midia/2018/11/SPDemografico_Num-04_nov2018.pdf
+[fn:tabelaseade] http://www.imp.seade.gov.br/frontend/#/tabelas
+[fn:rgeo_robinll] https://geocompr.robinlovelace.net/adv-map.html
+[fn:mapview] https://github.com/r-spatial/mapview

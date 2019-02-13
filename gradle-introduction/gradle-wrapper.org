@@ -1,0 +1,235 @@
+#+SETUPFILE: ./../etc/org_mode_SETUPFILE.org
+
+#+TITLE: Gradle Wrapper
+#+SUBTITLE: intermediario
+
+* Motivação
+  Imagina que vc tem um gradle instalado na sua máquina que não é da
+  mesma versão que o meu. Só que vc não vai conseguir buildar o meu
+  app com a versão do gradle que eu usei pra fazer o meu app. Isso
+  acontece por algum motivo que que não importa por enquanto.
+  Neste caso o jeito é mudar a usa versão pra mesma que eu usei.
+  E se vc tiver que trabalhar com um terceiro app que usa uma outra
+  versão diferente de novo que não é compatível de novo...
+  Tem que ter um jeito mais fácil... e tem...
+  É o gradle wraper.
+  Eu faço o meu app com uma versão do gradle e aí no meu projeto tem
+  um arquivo gradew que quando vc roda ele pra buildar o projeto a
+  versão do gradle que vai ser utilizada é exatamente a minha, mesmo
+  que a versão instalada na sua máquina seja diferente. Além disso, se
+  a sua versão for diferente, automaticamente será feito o download da
+  versão correta pra buildar o projeto. Tudo automaticamente...
+  Então vamos ver como funciona.
+
+* Como funciona o gradle wrapper[fn:gradleWrapperDoc]
+  Bom, vamos usar o projeto que a gente fez no tutorial de introdução
+  do ao gradle.
+  
+  
+   #+NAME ls do projeto                  
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export GRADLE_PROJECTS_DIR=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj
+      ls -l $GRADLE_PROJECTS_DIR
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : [wagner@Unknown gradle-introduction]$ total 32
+   : drwxrwxr-x. 9 wagner wagner 4096 fev  3 21:30 build
+   : -rw-rw-r--. 1 wagner wagner  949 fev  3 22:45 build.gradle
+   : drwxrwxr-x. 3 wagner wagner 4096 fev  3 22:45 gradle
+   : -rwxrwxr-x. 1 wagner wagner 5305 fev  3 22:45 gradlew
+   : -rw-rw-r--. 1 wagner wagner 2269 fev  3 22:45 gradlew.bat
+   : -rw-rw-r--. 1 wagner wagner  363 fev  3 22:45 settings.gradle
+   : drwxrwxr-x. 4 wagner wagner 4096 fev  3 14:16 src
+
+
+   #+NAME gradle.properties                  
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export GRADLE_PROJECTS_DIR=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj
+      ls -l $GRADLE_PROJECTS_DIR
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : [wagner@Unknown demojavaproj]$ total 32
+   : drwxrwxr-x. 9 wagner wagner 4096 fev  3 21:30 build
+   : -rw-rw-r--. 1 wagner wagner  949 fev  3 22:45 build.gradle
+   : drwxrwxr-x. 3 wagner wagner 4096 fev  3 22:45 gradle
+   : -rwxrwxr-x. 1 wagner wagner 5305 fev  3 22:45 gradlew
+   : -rw-rw-r--. 1 wagner wagner 2269 fev  3 22:45 gradlew.bat
+   : -rw-rw-r--. 1 wagner wagner  363 fev  3 22:45 settings.gradle
+   : drwxrwxr-x. 4 wagner wagner 4096 fev  3 14:16 src
+
+
+   #+NAME ./gradlew build
+   #+BEGIN_SRC sh :session s1 :results output :exports both
+      #starts code
+      cd $GRADLE_PROJECTS_DIR
+      ./gradlew build      
+   #+END_SRC
+
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown gradle-introduction]$ cd projetos/demojavaproj
+   [wagner@Unknown demojavaproj]$ ./gradlew build
+   Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+
+   BUILD SUCCESSFUL in 8s
+   7 actionable tasks: 7 up-to-date
+   [wagner@Unknown demojavaproj]$ 
+   #+END_EXAMPLE
+
+
+   Se vc observar direitinho o comando do gradle que foi utilizado pra
+   buildar o projeto é o arquivo gradlew que está no próprio
+   projeto. Só isso, mas nada. 
+   A partir de agora, se um projeto usa o gradew é esse arquivo que vc
+   tem que utilizar porque quer dizer que o projeto deve ser buildado
+   com ele.
+
+* E se o projeto não tiver um gradlew?
+  Considerando que o recomendado é usar o gradle wraper, pode ser que
+  o projeto não tenha um gradlew. 
+  No nosso projeto a gente deu um gradle init que criou um gradlew pra
+  gente.
+  Mas se o projeto já tiver sido criado e não tiver, a documentação do
+  gradle wrapper diz que podemos dar o comando gradle wrapper que aí
+  vai driar o script gradlew.
+  
+* Configurando o gradle wraper
+  
+  Bom, agora vc já sabe que o gradle wrapper é que vai ser utilizado
+  pra buidar nosso projeto. Então pode ser que a gente queira
+  configurar o gradle wrapper. 
+  Talvez a estabelecer qual versão do gradle deverá ser utilizada no
+  gradle wrapper.
+  
+  Dentro do nosso projeto tem um diretório gradle e dentro dele tem um
+  diretório wrapper e dentro do diretório wrapper tem o jar do gradle
+  verdadeiro que builda nosso projeto e... vejam só... um arquivo
+  gradle-wrapper.properties.
+  Humm gradle-wrapper.properties? Esse properties deixa dá a entender
+  que é pra ajustar as propriedades do nosso gradle wrapper ou seja
+  configurá-lo.
+  Abaixo está o comando que mostra isso que eu to falando...
+
+  #+NAME config gradle wrapper                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $GRADLE_PROJECTS_DIR
+      ls -l gradle
+      ls -l gradle/wrapper
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : [wagner@Unknown demojavaproj]$ total 4
+   : drwxrwxr-x. 2 wagner wagner 4096 fev  3 22:45 wrapper
+   : total 60
+   : -rw-rw-r--. 1 wagner wagner 55190 fev  3 22:45 gradle-wrapper.jar
+   : -rw-rw-r--. 1 wagner wagner   202 fev  3 22:45 gradle-wrapper.properties
+
+   bom, agora, vamos dar uma olhada no nosso
+   gradle-wrapper.properties? Vamos ver então..
+   
+   Ah, mas é bom saber que se vc tiver configurações globais do gradle
+   na sua máquina, aquela que fica no seu diretório de usuário, tipo
+   /home/$USER/.gradle/gradle.properties, essas configurações seão
+   honradas pelo gradle wraper blz?
+   Uma boa leitura que encontrei sobre gradle wrapper
+   é [fn:gradleWraperByBryanHerbst] é ao Bryan Herbst. Claro e a
+   documentação também[fn:gradleWrapperDoc].
+
+   #+NAME vendo o nosso gradle wrapper properties                
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $GRADLE_PROJECTS_DIR
+      cat $GRADLE_PROJECTS_DIR/gradle/wrapper/gradle-wrapper.properties
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : [wagner@Unknown demojavaproj]$ distributionBase=GRADLE_USER_HOME
+   : distributionPath=wrapper/dists
+   : distributionUrl=https\://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+   : zipStoreBase=GRADLE_USER_HOME
+   : zipStorePath=wrapper/dists
+
+   Vamos lá então, entender o gradle-wrapper.properties
+
+   distributionBase=GRADLE_USER_HOME
+   Quer dizer o diretório onde o seu gradle está instalado, se vc não
+   tiver o gradle instalado o gradle wrapper vai instalar um pra vc
+   pode usar o gradle wrapper. É que o gradle wrapper depende do
+   gradle né?... faz sentido...
+
+   
+   #+NAME entendendo distributionBase=GRADLE_USER_HOME                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      echo $GRADLE_USER_HOME
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+
+   distributionBase=GRADLE_USER_HOME
+   GRADLE_USER_HOME aponta, por padrão, para o diretório home do usuário
+
+   distributionPath=wrapper/dists
+   Dentro do GRADLE_USER_HOME vai ter o diretório wrapper/dists que é
+   onde o gradle vai guardar as distribuições do gradle, ou seja, os
+   gradles de versões diferentes que vc precisar.
+   
+   acho que a gente pode dar uma olhada no diretório
+   GRADLE_USER_HOME/wrapper/dists da minha máquina agora, que vc acha?
+   Vamos ver então..
+   
+   
+   #+NAME  ls GRADLE_USER_HOME/wrapper/dists
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l /home/wagner/.gradle/
+      ls -l /home/wagner/.gradle/wrapper/dists
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+
+   total 32
+   drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:18 build-scan-data
+   drwx------. 9 wagner wagner 4096 fev  3 14:18 caches
+   drwxrwxr-x. 4 wagner wagner 4096 jan 30 16:33 daemon
+   -rw-rw-r--. 1 wagner wagner  932 fev  8 23:43 gradle.properties
+   drwxrwxr-x. 4 wagner wagner 4096 jan  5 22:50 native
+   drwxrwxr-x. 3 wagner wagner 4096 jan 30 16:00 notifications
+   drwxrwxr-x. 2 wagner wagner 4096 fev  3 13:10 workers
+   drwxrwxr-x. 3 wagner wagner 4096 jan  5 22:49 wrapper
+   total 8
+   drwxrwxr-x. 3 wagner wagner 4096 jan  5 22:49 gradle-4.6-all
+   drwxrwxr-x. 3 wagner wagner 4096 jan 31 11:22 gradle-5.1.1-bin
+   #+end_example
+
+   Interessante... dá pra ver que tem duas versões do gradle lá né?...
+
+   Bom, vamos continuar compreendendo a configuração do nosso
+   gradle-wrapper.properties
+
+   distributionUrl=https\://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+   Olha que interessante. Aqui vc diz qual é a versão do gradle que
+   deve ser feito o download pra buildar seu projeto. Da pra ver que
+   lá no dists essa verão 5.5.1 aparece...
+
+   zipStoreBase=GRADLE_USER_HOME
+   zipStorePath=wrapper/dists
+   Essas duas é mais ou menos a mesma coisa que as anteriores. Vc só
+   vai querer mudar elas caso vc queira arquivar os arquivos zip que
+   foram baixados em locais específicos.
+
+   
+* Referencias
+  [fn:gradleWrapperDoc] https://docs.gradle.org/current/userguide/gradle_wrapper.html
+  [fn:gradleWraperByBryanHerbst] https://medium.com/@bherbst/understanding-the-gradle-wrapper-a62f35662ab7

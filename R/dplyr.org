@@ -1,0 +1,124 @@
+#+Title: Dplyr
+
+
+
+  #+Name R env setup
+  #+BEGIN_SRC R :session s1 :results output :exports code
+
+      cranRepoUrl <- "http://cran.us.r-project.org";
+      Sys.setenv(
+          "http_proxy" = "http://cid2:cid2@192.168.0.2:3128",
+          "ftp_proxy" = "http://cid2:cid2@192.168.0.2:3128",
+          "all_proxy" = "http://cid2:cid2@192.168.0.2:3128");
+
+      pkgsToBeInstalled <- c("hflights");
+    
+      install.packages(
+                   pkgsToBeInstalled,
+                   repo = cranRepoUrl,
+                   dependencies = TRUE)
+  #+END_SRC
+
+  #+RESULTS:
+  #+begin_example
+  Installing package into ‘/usr/lib64/R/library’
+  (as ‘lib’ is unspecified)
+  tentando a URL 'http://cran.us.r-project.org/src/contrib/hflights_0.1.tar.gz'
+  Content type 'application/x-gzip' length 2205510 bytes (2.1 MB)
+  ==================================================
+  downloaded 2.1 MB
+
+  ,* installing *source* package ‘hflights’ ...
+  ,** package ‘hflights’ successfully unpacked and MD5 sums checked
+  ,** R
+  ,** data
+  ,*** moving datasets to lazyload DB
+  ,** byte-compile and prepare package for lazy loading
+  ,** help
+  ,*** installing help indices
+    converting help for package ‘hflights’
+      finding HTML links ... done
+      hflights                                html  
+  ,** building package indices
+  ,** testing if installed package can be loaded
+  ,* DONE (hflights)
+  Warning in file.create(f.tg) :
+    não foi possível criar arquivo '/usr/share/doc/R/html/packages.html', motivo 'Permission denied'
+  Warning in utils::make.packages.html(.Library, docdir = R.home("doc")) :
+    cannot update HTML package index
+
+  The downloaded source packages are in
+          ‘/tmp/RtmpRCyhnj/downloaded_packages’
+  Updating HTML index of packages in '.Library'
+  Warning messages:
+  1: In file.create(f.tg) :
+    não foi possível criar arquivo '/usr/share/doc/R/html/packages.html', motivo 'Permission denied'
+  2: In make.packages.html(.Library) : cannot update HTML package index
+  #+end_example
+
+
+   #+NAME                     
+   #+BEGIN_SRC R :session s1 :results output :exports both  
+      #starts code
+      # Load the dplyr package
+      library(dplyr)
+      library(hflights)
+      hflights <- as_tibble(hflights_df)
+      
+      # Both the dplyr and hflights packages are loaded into workspace
+      lut <- c(
+      "AA" = "American", 
+      "AS" = "Alaska", 
+      "B6" = "JetBlue", 
+      "CO" = "Continental", 
+      "DL" = "Delta", 
+      "OO" = "SkyWest", 
+      "UA" = "United", 
+      "US" = "US_Airways", 
+      "WN" = "Southwest", 
+      "EV" = "Atlantic_Southeast", 
+      "F9" = "Frontier", 
+      "FL" = "AirTran", 
+      "MQ" = "American_Eagle", 
+      "XE" = "ExpressJet", 
+      "YV" = "Mesa")
+
+      # Add the Carrier column to hflights
+      hflights$Carrier <- lut[hflights$UniqueCarrier]
+      hflights[10,c("Carrier","UniqueCarrier")]
+# Glimpse at hflights
+glimpse(hflights)
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+   Error in as_tibble(hflights_df) : objeto 'hflights_df' não encontrado
+         Carrier UniqueCarrier
+   5433 American            AA
+   Observations: 227,496
+   Variables: 22
+   $ Year              [3m[90m<int>[39m[23m 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 201…
+   $ Month             [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+   $ DayofMonth        [3m[90m<int>[39m[23m 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+   $ DayOfWeek         [3m[90m<int>[39m[23m 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, …
+   $ DepTime           [3m[90m<int>[39m[23m 1400, 1401, 1352, 1403, 1405, 1359, 1359, 1355, 144…
+   $ ArrTime           [3m[90m<int>[39m[23m 1500, 1501, 1502, 1513, 1507, 1503, 1509, 1454, 155…
+   $ UniqueCarrier     [3m[90m<chr>[39m[23m "AA", "AA", "AA", "AA", "AA", "AA", "AA", "AA", "AA…
+   $ FlightNum         [3m[90m<int>[39m[23m 428, 428, 428, 428, 428, 428, 428, 428, 428, 428, 4…
+   $ TailNum           [3m[90m<chr>[39m[23m "N576AA", "N557AA", "N541AA", "N403AA", "N492AA", "…
+   $ ActualElapsedTime [3m[90m<int>[39m[23m 60, 60, 70, 70, 62, 64, 70, 59, 71, 70, 70, 56, 63,…
+   $ AirTime           [3m[90m<int>[39m[23m 40, 45, 48, 39, 44, 45, 43, 40, 41, 45, 42, 41, 44,…
+   $ ArrDelay          [3m[90m<int>[39m[23m -10, -9, -8, 3, -3, -7, -1, -16, 44, 43, 29, 5, -9,…
+   $ DepDelay          [3m[90m<int>[39m[23m 0, 1, -8, 3, 5, -1, -1, -5, 43, 43, 29, 19, -2, -3,…
+   $ Origin            [3m[90m<chr>[39m[23m "IAH", "IAH", "IAH", "IAH", "IAH", "IAH", "IAH", "I…
+   $ Dest              [3m[90m<chr>[39m[23m "DFW", "DFW", "DFW", "DFW", "DFW", "DFW", "DFW", "D…
+   $ Distance          [3m[90m<int>[39m[23m 224, 224, 224, 224, 224, 224, 224, 224, 224, 224, 2…
+   $ TaxiIn            [3m[90m<int>[39m[23m 7, 6, 5, 9, 9, 6, 12, 7, 8, 6, 8, 4, 6, 5, 6, 12, 8…
+   $ TaxiOut           [3m[90m<int>[39m[23m 13, 9, 17, 22, 9, 13, 15, 12, 22, 19, 20, 11, 13, 1…
+   $ Cancelled         [3m[90m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+   $ CancellationCode  [3m[90m<chr>[39m[23m "", "", "", "", "", "", "", "", "", "", "", "", "",…
+   $ Diverted          [3m[90m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+   $ Carrier           [3m[90m<chr>[39m[23m "American", "American", "American", "American", "Am…
+   #+end_example
+
+
