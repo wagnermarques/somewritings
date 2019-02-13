@@ -10,7 +10,6 @@ Etec-TM-Cordova/demos
 **/*.zip
 **/.git
 **/*.html
-**/*.png
 **/*.odt
 **/*.dvi
 **/*.tex
@@ -20,95 +19,3 @@ Etec-TM-Cordova/demos
 **/*.mkv
 **/**/*.org_archive
 *.rar
-
-
-#p r o j e t o   d o   a n d r o i d (Com e sem android studio)
-# from: https://github.com/JetBrains/kotlin/blob/master/.gitignore
-.idea/shelf
-/android.tests.dependencies
-/ideaSDK
-/clionSDK
-/android-studio/sdk
-/tmp
-workspace.xml
-*.versionsBackup
-/idea/testData/debugger/tinyApp/classes*
-.gradle/
-build/
-!**/src/**/build
-!**/test/**/build
-*.iml
-!**/testData/**/*.iml
-kotlin-ultimate/
-# from https://github.com/android10/Android-CleanArchitecture-Kotlin/blob/master/.gitignore
-# Windows thumbnail db
-Thumbs.db
-*.apk
-*.ap_
-*.dex
-*.class
-/*/local.properties
-/*/out
-/*/*/build
-/*/*/production
-*.iml
-*.iws
-*.ipr
-*~
-*.swp
-/*/build/
-
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-.signing/
-
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-#https://gist.github.com/iainconnor/8605514
-# Built application files
-/*/build/
-
-# Crashlytics configuations
-com_crashlytics_export_strings.xml
-
-# Local configuration file (sdk path, etc)
-local.properties
-
-# Gradle generated files
-.gradle/
-
-# Signing files
-.signing/
-
-# User-specific configurations
-.idea/libraries/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
-.idea/vcs.xml
-*.iml
-
-# OS-specific files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db        
-

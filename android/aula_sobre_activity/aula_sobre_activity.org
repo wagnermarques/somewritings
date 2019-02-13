@@ -43,11 +43,6 @@
 * Criando uma Activity
   Crie um projeto no android studio conforme essa sequecia de imagens
 
-  #+BEGIN_SRC elisp
-  (setq org-image-actual-width nil)
-  #+END_SRC
-
-  #+RESULTS:
 
   #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
   #+ATTR_ORG: :width 150
