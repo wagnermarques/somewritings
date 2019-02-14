@@ -157,7 +157,9 @@
   logcat pra ver o ciclo de vida da activity
 
   #+INCLUDE:  /home/wagner/AndroidStudioProjects/ProjSobreActivity/app/src/main/java/com/example/wagner/projsobreactivity/MainActivity.kt  :src kotlin
-
+  O código final da nossa activity pode ser consultado aqui..
+  https://github.com/wagnermarques/somewritings/blob/master/android/aula_sobre_activity/projeto/ProjSobreActivity/app/src/main/java/com/example/wagner/projsobreactivity/MainActivity.kt
+  
   
 * Refs
   https://developer.android.com/reference/android/app/Activity
