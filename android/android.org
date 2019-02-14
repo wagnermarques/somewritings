@@ -269,7 +269,7 @@ quando o emulador inicia a gente tem esse resultado...
   o seu projeto
 
 
-* Notificações
+* NotificÃµes
   https://developer.android.com/guide/topics/ui/notifiers/notifications?hl=pt-br
   
   

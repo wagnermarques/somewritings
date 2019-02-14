@@ -1,6 +1,5 @@
 #+Title: Aula Sobre Activity
 
-
 * O Que é uma activity
   A Activity cria uma janela pra vc na qual você pode colocar sua
   interface do usuário.
@@ -12,6 +11,7 @@
   onPause() roda quando o usuário sai da sua interface.
   Não se esqueça jamais de colocar um código aqui que salva o que o
   seu usuário estava fazendo.
+
 
 * Ciclo de Vida de Uma Activity
 
@@ -107,14 +107,6 @@
   #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
   #+ATTR_ORG: :width 150
   [[file:imgs/criaproj16.png]]
-
-  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
-  #+ATTR_ORG: :width 150
-  [[file:imgs/criaproj17.png]]
-
-  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
-  #+ATTR_ORG: :width 150
-  [[file:imgs/criaproj18.png]]
 
   #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
   #+ATTR_ORG: :width 150
