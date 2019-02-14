@@ -144,9 +144,6 @@
   #+ATTR_ORG: :width 150
   [[file:imgs/criaproj27.png]]
 
-  #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
-  #+ATTR_ORG: :width 150
-  [[file:imgs/criaproj28.png]]
 
   #+ATTR_HTML: :width 450 :alt img :title Criacao do Projeto  :align center
   #+ATTR_ORG: :width 150
