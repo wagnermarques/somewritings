@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.support:design-theme-28.0.0-alpha1">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-theme-28.0.0-alpha1.aar/df62d8bc601118592d5cb7ea21bf9532/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-theme-28.0.0-alpha1.aar/df62d8bc601118592d5cb7ea21bf9532/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/design-theme-28.0.0-alpha1.aar/df62d8bc601118592d5cb7ea21bf9532/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/design-theme/28.0.0-alpha1/503cf95d950818bfa694ba8af7e177d430ba9449/design-theme-28.0.0-alpha1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

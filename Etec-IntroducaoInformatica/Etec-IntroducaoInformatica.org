@@ -1,0 +1,436 @@
+#+Title: Introdução a Informática
+#+Subtitle: Primeira Aula
+
+* Bases Tecnológicas
+** Evolução da Informática
+** Representacao Binaria da Informacao
+** Hardware
+   
+   #+NAME: lscpu                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      lscpu
+   #+END_SRC
+
+   #+RESULTS: lscpu
+   #+begin_example
+
+   Arquitetura:                x86_64
+   Modo(s) operacional da CPU: 32-bit, 64-bit
+   Ordem dos bytes:            Little Endian
+   CPU(s):                     4
+   Lista de CPU(s) on-line:    0-3
+   Thread(s) per nÃºcleo:       2
+   NÃºcleo(s) por soquete:      2
+   Soquete(s):                 1
+   NÃ³(s) de NUMA:              1
+   ID de fornecedor:           GenuineIntel
+   FamÃ­lia da CPU:             6
+   Modelo:                     142
+   Nome do modelo:             Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz
+   Step:                       9
+   CPU MHz:                    1561.585
+   CPU MHz mÃ¡x.:               3100,0000
+   CPU MHz mÃ­n.:               400,0000
+   BogoMIPS:                   5424.00
+   VirtualizaÃ§Ã£o:              VT-x
+   cache de L1d:               32K
+   cache de L1i:               32K
+   cache de L2:                256K
+   cache de L3:                3072K
+   CPU(s) de nÃ³0 NUMA:         0-3
+   OpÃ§Ãµes:                     fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d
+   #+end_example
+
+   
+   #+NAME: lspci
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      lspci
+   #+END_SRC
+
+   #+RESULTS: lspci
+   #+begin_example
+
+   00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v6/7th Gen Core Processor Host Bridge/DRAM Registers (rev 02)
+   00:02.0 VGA compatible controller: Intel Corporation HD Graphics 620 (rev 02)
+   00:04.0 Signal processing controller: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor Thermal Subsystem (rev 02)
+   00:14.0 USB controller: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller (rev 21)
+   00:14.2 Signal processing controller: Intel Corporation Sunrise Point-LP Thermal subsystem (rev 21)
+   0 (rev 21)
+   1 (rev 21)
+   1 (rev 21)
+   00:17.0 SATA controller: Intel Corporation Sunrise Point-LP SATA Controller [AHCI mode] (rev 21)
+   5 (rev f1)
+   6 (rev f1)
+   00:1f.0 ISA bridge: Intel Corporation Sunrise Point LPC Controller/eSPI Controller (rev 21)
+   00:1f.2 Memory controller: Intel Corporation Sunrise Point-LP PMC (rev 21)
+   00:1f.3 Audio device: Intel Corporation Sunrise Point-LP HD Audio (rev 21)
+   00:1f.4 SMBus: Intel Corporation Sunrise Point-LP SMBus (rev 21)
+   01:00.0 Network controller: Qualcomm Atheros QCA9565 / AR9565 Wireless Network Adapter (rev 01)
+   02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL810xE PCI Express Fast Ethernet controller (rev 07)
+   #+end_example
+
+   #+RESULTS: lshw
+   : 
+   : sudo: lshw: comando nÃ£o encontrado
+
+
+
+   
+   #+NAME: lsusb                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      lsusb
+   #+END_SRC
+
+   #+RESULTS: lsusb
+   : 
+   : Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+   : Bus 001 Device 005: ID 0cf3:e005 Qualcomm Atheros Communications 
+   : Bus 001 Device 003: ID 0bda:0129 Realtek Semiconductor Corp. RTS5129 Card Reader Controller
+   : Bus 001 Device 002: ID 1bcf:28c0 Sunplus Innovation Technology Inc. 
+   : Bus 001 Device 006: ID 17ef:74ee Lenovo 
+   : Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+   
+   
+   #+NAME: lsblk
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      lsblk
+   #+END_SRC
+
+   #+RESULTS: lsblk
+   #+begin_example
+
+   NAME            MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+   sda               8:0    0 931,5G  0 disk 
+   â”œâ”€sda1            8:1    0   650M  0 part /boot/efi
+   â”œâ”€sda2            8:2    0   128M  0 part 
+   â”œâ”€sda3            8:3    0   468G  0 part 
+   â”œâ”€sda4            8:4    0   990M  0 part 
+   â”œâ”€sda5            8:5    0  10,7G  0 part 
+   â”œâ”€sda6            8:6    0   1,1G  0 part 
+   â”œâ”€sda7            8:7    0     1G  0 part /boot
+   â””â”€sda8            8:8    0 449,1G  0 part 
+     â”œâ”€fedora-root 253:0    0    50G  0 lvm  /
+     â”œâ”€fedora-swap 253:1    0   3,9G  0 lvm  [SWAP]
+     â””â”€fedora-home 253:2    0 395,2G  0 lvm  /home
+   sr0              11:0    1  41,5M  0 rom  /run/media/wagner/CDROM
+   #+end_example
+
+
+   
+   #+NAME: df -disk                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      df -h
+   #+END_SRC
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown ~]$ df
+Sist. Arq.              Blocos de 1K     Usado Disponível Uso% Montado em
+devtmpfs                     1934684         0    1934684   0% /dev
+tmpfs                        1949924     60676    1889248   4% /dev/shm
+tmpfs                        1949924      1448    1948476   1% /run
+tmpfs                        1949924         0    1949924   0% /sys/fs/cgroup
+/dev/mapper/fedora-root     51343840  39749220    8956796  82% /
+tmpfs                        1949924        48    1949876   1% /tmp
+/dev/mapper/fedora-home    406851288 321514492   64600184  84% /home
+/dev/sda7                     999320    198452     732056  22% /boot
+/dev/sda1                     661504     75796     585708  12% /boot/efi
+tmpfs                         389984        40     389944   1% /run/user/1000
+/dev/sr0                       42476     42476          0 100% /run/media/wagner/CDROM
+[wagner@Unknown ~]$ 
+
+   #+END_EXAMPLE
+
+   #+RESULTS: df -disk
+   #+begin_example
+
+   Sist. Arq.               Tam. Usado Disp. Uso% Montado em
+   /dev
+   /dev/shm
+   /run
+   /sys/fs/cgroup
+   /
+   /tmp
+   /home
+   /boot
+   /boot/efi
+   /run/user/1000
+   /run/media/wagner/CDROM
+   #+end_example
+
+   
+   #+NAME:  free                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      free -h
+   #+END_SRC
+
+   #+RESULTS: free
+   : 
+   : total        used        free      shared  buff/cache   available
+   : Mem:          3,7Gi       1,6Gi       663Mi       124Mi       1,5Gi       1,8Gi
+   : Swap:         3,8Gi          0B       3,8Gi
+
+
+   
+   #+NAME:  mount                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mount
+   #+END_SRC
+
+   #+RESULTS: mount
+   #+begin_example
+
+   sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+   proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+   devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=1934684k,nr_inodes=483671,mode=755)
+   securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+   tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel)
+   devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+   tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,mode=755)
+   tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,seclabel,mode=755)
+   cgroup2 on /sys/fs/cgroup/unified type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate)
+   cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,xattr,name=systemd)
+   pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+   efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)
+   bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+   cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,cpuset)
+   cgroup on /sys/fs/cgroup/net_cls,net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,net_cls,net_prio)
+   cgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,hugetlb)
+   cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,blkio)
+   cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,perf_event)
+   cgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,memory)
+   cgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,pids)
+   cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,cpu,cpuacct)
+   cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,freezer)
+   cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,seclabel,devices)
+   configfs on /sys/kernel/config type configfs (rw,relatime)
+   /dev/mapper/fedora-root on / type ext4 (rw,relatime,seclabel)
+   selinuxfs on /sys/fs/selinux type selinuxfs (rw,relatime)
+   systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=41,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=17344)
+   mqueue on /dev/mqueue type mqueue (rw,relatime,seclabel)
+   debugfs on /sys/kernel/debug type debugfs (rw,relatime,seclabel)
+   hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+   tmpfs on /tmp type tmpfs (rw,nosuid,nodev,seclabel)
+   /dev/mapper/fedora-home on /home type ext4 (rw,relatime,seclabel)
+   /dev/sda7 on /boot type ext4 (rw,relatime,seclabel)
+   /dev/sda1 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+   sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+   tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=389984k,mode=700,uid=1000,gid=1000)
+   /dev/mapper/fedora-root on /var/lib/docker/containers type ext4 (rw,relatime,seclabel)
+   /dev/mapper/fedora-root on /var/lib/docker/overlay2 type ext4 (rw,relatime,seclabel)
+   /dev/sr0 on /run/media/wagner/CDROM type iso9660 (ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,uid=1000,gid=1000,dmode=500,fmode=400,uhelper=udisks2)
+   #+end_example
+
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      sudo ls /proc
+   #+END_SRC
+
+   #+RESULTS: 
+   #+begin_example
+
+   MemTotal:        3899852 kB
+   MemFree:          718616 kB
+   MemAvailable:    1895740 kB
+   Buffers:          155036 kB
+   Cached:          1293524 kB
+   SwapCached:            0 kB
+   Active:          1882828 kB
+   Inactive:         963940 kB
+   Active(anon):    1399520 kB
+   Inactive(anon):   125696 kB
+   Active(file):     483308 kB
+   Inactive(file):   838244 kB
+   Unevictable:           0 kB
+   Mlocked:               0 kB
+   SwapTotal:       4034556 kB
+   SwapFree:        4034556 kB
+   Dirty:               200 kB
+   Writeback:             0 kB
+   AnonPages:       1398300 kB
+   Mapped:           535568 kB
+   Shmem:            127012 kB
+   KReclaimable:     122324 kB
+   Slab:             225216 kB
+   SReclaimable:     122324 kB
+   SUnreclaim:       102892 kB
+   KernelStack:        8784 kB
+   PageTables:        17364 kB
+   NFS_Unstable:          0 kB
+   Bounce:                0 kB
+   WritebackTmp:          0 kB
+   CommitLimit:     5984480 kB
+   Committed_AS:    4561012 kB
+   VmallocTotal:   34359738367 kB
+   VmallocUsed:           0 kB
+   VmallocChunk:          0 kB
+   Percpu:             2208 kB
+   HardwareCorrupted:     0 kB
+   AnonHugePages:         0 kB
+   ShmemHugePages:        0 kB
+   ShmemPmdMapped:        0 kB
+   CmaTotal:              0 kB
+   CmaFree:               0 kB
+   HugePages_Total:       0
+   HugePages_Free:        0
+   HugePages_Rsvd:        0
+   HugePages_Surp:        0
+   Hugepagesize:       2048 kB
+   Hugetlb:               0 kB
+   DirectMap4k:      197124 kB
+   DirectMap2M:     3860480 kB
+   DirectMap1G:     1048576 kB
+   #+end_example
+
+   
+   #+NAME: cat proc/...                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat /proc/version
+   #+END_SRC
+
+   #+RESULTS: cat proc/...
+   : 
+   : Linux version 4.20.8-200.fc29.x86_64 (mockbuild@bkernel04.phx2.fedoraproject.org) (gcc version 8.2.1 20181215 (Red Hat 8.2.1-6) (GCC)) #1 SMP Wed Feb 13 13:08:05 UTC 2019
+
+   
+   #+NAME: cat /proc/meminfo                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat /proc/meminfo
+   #+END_SRC
+
+   #+RESULTS: cat /proc/meminfo
+   #+begin_example
+
+   MemTotal:        3899852 kB
+   MemFree:          718888 kB
+   MemAvailable:    1896008 kB
+   Buffers:          155056 kB
+   Cached:          1293512 kB
+   SwapCached:            0 kB
+   Active:          1882932 kB
+   Inactive:         964004 kB
+   Active(anon):    1399616 kB
+   Inactive(anon):   125772 kB
+   Active(file):     483316 kB
+   Inactive(file):   838232 kB
+   Unevictable:           0 kB
+   Mlocked:               0 kB
+   SwapTotal:       4034556 kB
+   SwapFree:        4034556 kB
+   Dirty:                56 kB
+   Writeback:             0 kB
+   AnonPages:       1398400 kB
+   Mapped:           535532 kB
+   Shmem:            127012 kB
+   KReclaimable:     122328 kB
+   Slab:             225248 kB
+   SReclaimable:     122328 kB
+   SUnreclaim:       102920 kB
+   KernelStack:        8752 kB
+   PageTables:        17364 kB
+   NFS_Unstable:          0 kB
+   Bounce:                0 kB
+   WritebackTmp:          0 kB
+   CommitLimit:     5984480 kB
+   Committed_AS:    4565072 kB
+   VmallocTotal:   34359738367 kB
+   VmallocUsed:           0 kB
+   VmallocChunk:          0 kB
+   Percpu:             2208 kB
+   HardwareCorrupted:     0 kB
+   AnonHugePages:         0 kB
+   ShmemHugePages:        0 kB
+   ShmemPmdMapped:        0 kB
+   CmaTotal:              0 kB
+   CmaFree:               0 kB
+   HugePages_Total:       0
+   HugePages_Free:        0
+   HugePages_Rsvd:        0
+   HugePages_Surp:        0
+   Hugepagesize:       2048 kB
+   Hugetlb:               0 kB
+   DirectMap4k:      197124 kB
+   DirectMap2M:     3860480 kB
+   DirectMap1G:     1048576 kB
+   #+end_example
+
+   
+   #+NAME:  cat /proc/scsi/scsi                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat /proc/scsi/scsi
+   #+END_SRC
+
+   #+RESULTS: cat /proc/scsi/scsi
+   : 
+   : Attached devices:
+   : Host: scsi0 Channel: 00 Id: 00 Lun: 00
+   :   Vendor: ATA      Model: WDC WD10SPZX-75Z Rev: 1A02
+   :   Type:   Direct-Access                    ANSI  SCSI revision: 05
+   : Host: scsi2 Channel: 00 Id: 00 Lun: 00
+   :   Vendor: Linux    Model: File-Stor Gadget Rev: 0310
+   :   Type:   CD-ROM                           ANSI  SCSI revision: 02
+
+
+   
+   #+NAME: cat /proc/partitions                      
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat /proc/partitions 
+   #+END_SRC
+
+   #+RESULTS: cat /proc/partitions
+   #+begin_example
+
+   major minor  #blocks  name
+
+      8        0  976762584 sda
+      8        1     665600 sda1
+      8        2     131072 sda2
+      8        3  490684416 sda3
+      8        4    1013760 sda4
+      8        5   11224064 sda5
+      8        6    1121280 sda6
+      8        7    1048576 sda7
+      8        8  470871040 sda8
+    253        0   52428800 dm-0
+    253        1    4034560 dm-1
+    253        2  414404608 dm-2
+     11        0      42476 sr0
+   #+end_example
+
+** Software
+** Sistemas Operacionais
+** Redes de Computadores
+** Software/hardware livre e proprietário
+** Virtualização
+** Computação na nuvem
+* Laboratório de Sistemas Operacionais
+** Criação e Execuçao de Máquinas Virtuais
+** Linhas de comando
+** Navegação Básica
+** Manipulação de Arquivos
+** Permissões
+** Comandos em Lote (Shellscript)
+** Processos
+** Utilização de Interfaces Gráficas
+
+* Criação de vídeos
+  Exemplo de vídeo explicativo de alunos
+  https://www.youtube.com/watch?v=hVjYkCWARHU
+
+
+
+
+

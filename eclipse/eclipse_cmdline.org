@@ -1,0 +1,238 @@
+#+Title: Eclipse Command Line
+
+
+
+* Eclipse pela linha de comando
+
+** Osgi command line
+   Iniciar console osgi do equinox do eclipse
+   ./eclipse -console (mais fácil, só que o eclipse em sí abre também)
+
+   Para o eclipse não abrir junto com o console...
+   ./eclipse -console -noSplash -noExit -vmargs
+   -Declipse.application.launchDefault=false 
+   
+   ./eclipse -console -noSplash -Declipse.application.launchDefault=false
+
+headers <bundle-id> (Ex: osgi> headers 16)
+This can be used to list the headers for a particular bundle.
+
+packages <package-name> (Ex: osgi> packages org.wso2.foo)
+This can be used to list all the bundles which use the given package.
+
+install file:<file-path> (Ex: osgi> install file:/home/temp/bundle1.jar)
+This can be used to install a bundle into running OSGi environment. After installing, use start command to activate the bundle.
+
+active (Ex: osgi> active)
+This can be used to list all active bundles in the current instance.
+
+refresh (Ex: osgi> refresh)
+This can be used to refresh the system. All the package resolutions are refreshed when this is executed. Always refresh the system after uninstalling a bundle as a best practice.
+
+   #+NAME                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+   #+END_SRC
+
+   ss - status de todos os bundles
+   start id
+   stop id
+   install file:///C:/workspace/test/hello
+   uninstall id
+   diag id
+   b id (mostra metadata do bundle id)
+   
+
+** inicio de como usar   
+   ss p2.console
+   https://wiki.eclipse.org/Equinox/p2/Console_Users_Guide
+   
+
+** Instalando eclipse plugins com o "p2 director application"
+   Dá pra criar um eclipse personalizado do zero ou personalizar um
+   eclipse que vc fez download.
+   Personalizar um eclipse que vc já fez o download exige alguns
+   parâmetros a mais.
+   https://wiki.eclipse.org/Equinox/p2/Getting_Started
+   p2 substitui a tela de software update do eclipse
+   https://wiki.eclipse.org/Equinox/p2/User_Interface
+   asdf
+   #+NAME ambiente                  
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export eclipseHome=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/ides/eclipse-modeling-2018-12-R-linux-gtk-x86_64
+      export eclipseWorkspaceDir=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/users/default/workspaces/eclipse-modeling-2018-12-R-linux-gtk-x86_64
+      export repository=http://download.eclipse.org/releases/2018-12
+      export p2DirectorApplic=org.eclipse.equinox.p2.director
+   #+END_SRC
+
+   #+RESULTS:
+
+
+   
+   #+NAME                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $eclipseHome
+      ls -l
+      #./eclipse \
+      #    -application $p2DirectorApplic \
+      #    -repository $repository \
+      #    -list
+
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+
+   [wagner@Unknown eclipse-modeling-2018-12-R-linux-gtk-x86_64]$ total 1676
+   -rw-rw-r--.   1 wagner wagner    1434 mai 30  2017 about.html
+   -rw-rw-r--.   1 wagner wagner 1038344 fev 14 19:14 artifacts.xml
+   drwxrwxr-x.  12 wagner wagner    4096 fev 14 21:46 configuration
+   drwxrwxr-x.   2 wagner wagner    4096 dez 14 10:47 dropins
+   -rwxr-xr-x.   1 wagner wagner   61176 dez  6 13:00 eclipse
+   -rw-rw-r--.   1 wagner wagner     633 fev 14 19:14 eclipse.ini
+   -rw-rw-r--.   1 wagner wagner   12637 fev 29  2016 epl-v10.html
+   drwxrwxr-x. 668 wagner wagner   69632 fev 14 18:59 features
+   drwxrwxr-x.   3 wagner wagner    4096 fev 14 10:42 home
+   -rwxr-xr-x.   1 wagner wagner  140566 dez  6 13:00 icon.xpm
+   -rw-rw-r--.   1 wagner wagner    9013 fev 29  2016 notice.html
+   drwxrwxr-x.   5 wagner wagner    4096 fev 14 21:46 p2
+   drwxrwxr-x.  27 wagner wagner  335872 fev 14 18:59 plugins
+   drwxrwxr-x.   2 wagner wagner    4096 dez 14 10:47 readme
+   #+end_example
+   
+   #+NAME                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $eclipseHome
+      
+      ./eclipse \
+          -application $p2DirectorApplic
+          -repository $repository
+          -installIU org.eclipse.cdt.feature.group
+          -tag AddCDT
+          -destination $eclipseHome
+          -profile SDKProfile
+
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+
+   [wagner@Unknown eclipse-modeling-2018-12-R-linux-gtk-x86_64]$ total 1676
+   -rw-rw-r--.   1 wagner wagner    1434 mai 30  2017 about.html
+   -rw-rw-r--.   1 wagner wagner 1038344 fev 14 19:14 artifacts.xml
+   drwxrwxr-x.  12 wagner wagner    4096 fev 14 19:17 configuration
+   drwxrwxr-x.   2 wagner wagner    4096 dez 14 10:47 dropins
+   -rwxr-xr-x.   1 wagner wagner   61176 dez  6 13:00 eclipse
+   -rw-rw-r--.   1 wagner wagner     633 fev 14 19:14 eclipse.ini
+   -rw-rw-r--.   1 wagner wagner   12637 fev 29  2016 epl-v10.html
+   drwxrwxr-x. 668 wagner wagner   69632 fev 14 18:59 features
+   drwxrwxr-x.   3 wagner wagner    4096 fev 14 10:42 home
+   -rwxr-xr-x.   1 wagner wagner  140566 dez  6 13:00 icon.xpm
+   -rw-rw-r--.   1 wagner wagner    9013 fev 29  2016 notice.html
+   drwxrwxr-x.   5 wagner wagner    4096 fev 14 19:20 p2
+   drwxrwxr-x.  27 wagner wagner  335872 fev 14 18:59 plugins
+   drwxrwxr-x.   2 wagner wagner    4096 dez 14 10:47 readme
+   #+end_example
+
+   
+   #+NAME                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $eclipseHome
+      ./eclipsec \
+         -application org.eclipse.equinox.p2.director 
+         -repository http://download.eclipse.org/releases/helios/
+         -installIU org.eclipse.cdt.feature.group/<version>
+
+   #+END_SRC
+
+   #+NAME test vars                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $eclipseHome
+      #eclipse -consoleLog true  -data $eclipseWorkspaceDir
+      ./eclipse \
+         -clean -purgeHistory \
+         -application org.eclipse.equinox.p2.director \
+            -noSplash \
+            -repository <repo1>,<repo2>,<repo3> \
+      -installIUs <feature1>,<feature2>,<feature3>,
+
+
+      ./eclipse \
+      -clean -purgeHistory \
+      -application org.eclipse.equinox.p2.director \
+      -noSplash \
+      -repository \
+      http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/,\
+      http://download.eclipse.org/releases/juno,\
+      http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site,\
+      http://update.atlassian.com/atlassian-eclipse-plugin/e3.8 \
+      -installIUs \
+      org.eclipse.xpand.sdk.feature.group,\
+      org.eclipse.swtbot.eclipse.feature.group,\
+      org.eclipse.swtbot.eclipse.test.junit4.feature.group,\
+      org.eclipse.swtbot.feature.group,\
+      org.eclipse.swtbot.forms.feature.group,\
+      org.eclipse.swtbot.ide.feature.group,\
+      org.eclipse.egit.mylyn.feature.group,\
+      org.eclipse.mylyn.bugzilla_feature.feature.group,\
+      org.eclipse.mylyn.builds.feature.group,\
+      org.eclipse.mylyn.context_feature.feature.group,\
+      org.eclipse.mylyn.discovery.feature.group,\
+      org.eclipse.mylyn.gerrit.feature.feature.group,\
+      org.eclipse.mylyn.git.feature.group,\
+      org.eclipse.mylyn.github.feature.feature.group,\
+      org.eclipse.mylyn.hudson.feature.group,\
+      org.eclipse.mylyn.ide_feature.feature.group,\
+      org.eclipse.mylyn.java_feature.feature.group,\
+      org.eclipse.mylyn.monitor.feature.group,\
+      org.eclipse.mylyn.pde_feature.feature.group,\
+      org.eclipse.mylyn.tasks.ide.feature.group,\
+      org.eclipse.mylyn.team_feature.feature.group,\
+      org.eclipse.mylyn.trac_feature.feature.group,\
+      org.eclipse.mylyn.wikitext_feature.feature.group,\
+      org.eclipse.mylyn_feature.feature.group,\
+      org.eclipse.emf.cdo.sdk.feature.group,\
+      org.eclipse.emf.query.sdk.feature.group,\
+      com.atlassian.connector.eclipse.jira.feature.group \
+      -vmargs -Declipse.p2.mirrors=true -Djava.net.preferIPv4Stack=true
+   #+END_SRC
+
+   #+RESULTS:
+   #+begin_example
+
+   [wagner@nsi_pc_149_3 eclipse-modeling-2018-12-R-linux-gtk-x86_64]$ total 896
+   -rw-rw-r--.   1 wagner wagner   1434 mai 30  2017 about.html
+   -rw-rw-r--.   1 wagner wagner 455833 dez 14 10:47 artifacts.xml
+   drwxrwxr-x.  12 wagner wagner   4096 fev 14 12:02 configuration
+   drwxrwxr-x.   2 wagner wagner   4096 dez 14 10:47 dropins
+   -rwxr-xr-x.   1 wagner wagner  61176 dez  6 13:00 eclipse
+   -rw-rw-r--.   1 wagner wagner    633 dez 14 10:47 eclipse.ini
+   -rw-rw-r--.   1 wagner wagner  12637 mai 30  2017 epl-v10.html
+   drwxrwxr-x. 294 wagner wagner  36864 dez 14 10:47 features
+   drwxrwxr-x.   3 wagner wagner   4096 fev 14 10:42 home
+   -rwxr-xr-x.   1 wagner wagner 140566 dez  6 13:00 icon.xpm
+   -rw-rw-r--.   1 wagner wagner   9338 dez  5 11:14 notice.html
+   drwxrwxr-x.   4 wagner wagner   4096 fev 14 12:00 p2
+   drwxrwxr-x.  15 wagner wagner 151552 dez 14 10:47 plugins
+   drwxrwxr-x.   2 wagner wagner   4096 dez 14 10:47 readme
+   [wagner@nsi_pc_149_3 eclipse-modeling-2018-12-R-linux-gtk-x86_64]$ /home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/users/default/workspaces/eclipse-modeling-2018-12-R-linux-gtk-x86_64
+   #+end_example
+
+
+
+
+* References
+  https://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fp2_director.html
+  https://help.eclipse.org/kepler/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fmisc%2Fruntime-options.html
+  https://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fp2_director.html
+  https://help.eclipse.org/kepler/index.jsp?topic=/org.eclipse.platform.doc.isv/guide/p2_director.html
+  https://wiki.eclipse.org/Equinox/p2/Console_Users_Guide
+  https://help.eclipse.org/mars/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fconsole_shell.htm
+  https://www.eclipse.org/equinox/documents/quickstart.php
+
