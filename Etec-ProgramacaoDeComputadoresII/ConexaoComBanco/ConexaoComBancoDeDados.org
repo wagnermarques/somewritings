@@ -1,0 +1,106 @@
+#+Title: Conexao com Banco de Dados
+#+Subtitle: O B√°sico do b√°sico
+
+* Criacao do Projeto
+   #+NAME: criando projeto                   
+   #+BEGIN_EXAMPLE shell 
+      #starts code
+      [wagner@localhost Etec-ProgramacaoDeComputadoresII]$ mvn archetype:generate
+      [INFO] Scanning for projects...
+      Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.5/maven-clean-plugin-2.5.pom
+(... V√°rias saidas ....)
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 1328: 
+Choose org.apache.maven.archetypes:maven-archetype-quickstart version: 
+1: 1.0-alpha-1
+2: 1.0-alpha-2
+3: 1.0-alpha-3
+4: 1.0-alpha-4
+5: 1.0
+6: 1.1
+7: 1.3
+8: 1.4
+Choose a number: 8: 
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/maven-archetype-quickstart-1.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/maven-archetype-quickstart-1.4.pom (1.6 kB at 189 B/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-bundles/1.4/maven-archetype-bundles-1.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-bundles/1.4/maven-archetype-bundles-1.4.pom (4.5 kB at 9.8 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/33/maven-parent-33.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/33/maven-parent-33.pom (44 kB at 72 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/apache/21/apache-21.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/apache/21/apache-21.pom (17 kB at 30 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/maven-archetype-quickstart-1.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/maven-archetype-quickstart-1.4.jar (7.1 kB at 15 kB/s)
+Define value for property 'groupId': br.edu.eteczl
+Define value for property 'artifactId': ConexaoComBanco
+Define value for property 'version' 1.0-SNAPSHOT: : 
+Define value for property 'package' br.edu.eteczl: : 
+Confirm properties configuration:
+groupId: br.edu.eteczl
+artifactId: ConexaoComBanco
+version: 1.0-SNAPSHOT
+package: br.edu.eteczl
+ Y: : 
+[INFO] ----------------------------------------------------------------------------
+[INFO] Using following parameters for creating project from Archetype: maven-archetype-quickstart:1.4
+[INFO] ----------------------------------------------------------------------------
+[INFO] Parameter: groupId, Value: br.edu.eteczl
+[INFO] Parameter: artifactId, Value: ConexaoComBanco
+[INFO] Parameter: version, Value: 1.0-SNAPSHOT
+[INFO] Parameter: package, Value: br.edu.eteczl
+[INFO] Parameter: packageInPathFormat, Value: br/edu/eteczl
+[INFO] Parameter: package, Value: br.edu.eteczl
+[INFO] Parameter: version, Value: 1.0-SNAPSHOT
+[INFO] Parameter: groupId, Value: br.edu.eteczl
+[INFO] Parameter: artifactId, Value: ConexaoComBanco
+[WARNING] The directory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/Etec-ProgramacaoDeComputadoresII/ConexaoComBanco already exists.
+[INFO] Project created from Archetype in dir: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/Etec-ProgramacaoDeComputadoresII/ConexaoComBanco
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:47 min
+[INFO] Finished at: 2019-03-12T14:41:36-03:00
+[INFO] ------------------------------------------------------------------------
+[wagner@localhost Etec-ProgramacaoDeComputadoresII]$ 
+   #+END_EXAMPLE
+
+
+* JDBC Driver
+  https://mvnrepository.com/artifact/postgresql/postgresql/9.1-901-1.jdbc4
+  
+  #+NAME: dependencia
+  #+BEGIN_EXAMPLE xml
+  <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+  <dependency>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>9.1-901-1.jdbc4</version> 
+  </dependency>
+  #+END_EXAMPLE
+
+  
+
+  sua tag dpendencies do arquivo pom.xml deve ficar assim...
+
+  #+NAME: Tag dependencies
+  #+BEGIN_EXAMPLE xml
+    <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>9.1-901-1.jdbc4</version> 
+  </dependency>
+
+  #+END_EXAMPLE
+
+  
+ * A classe JDBCUtil
+  … a classe que usa padr„o singleton pra pra entregar a conexao
+  
+  

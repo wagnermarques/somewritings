@@ -1,5 +1,6 @@
 #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
 #+Title: Atividade 1 - Loja de Informática
+
 * Introdução
   Vamos fazer um aplicativo em swing pra uma loja de informática
   pessoal.
@@ -300,7 +301,6 @@ um com o notepad++ mesmo. Só que aí vc tem que dar um git add , depois
 um git commit.
 Peça ajuda pro seu professor, mas tente fazer primeiro segundo o fluxo
 de trabalho que estudamos até aqui.
-
 
 * dando gitpush pra enviar o proj pro github
 #+NAME: git push1

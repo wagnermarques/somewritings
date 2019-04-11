@@ -1,0 +1,7 @@
+#+Title: dev_appweb_segura
+#+Subtitle: Notas
+
+
+
+* Refs
+[fn:postBlogCaelum] https://blog.caelum.com.br/os-3-pilares-do-desenvolvimento-seguro-de-aplicacoes-web/

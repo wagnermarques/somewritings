@@ -1,0 +1,29 @@
+#+Title: Modelo Físico de Dados
+#+Subtitle: uma introdução
+
+Fonte: https://en.wikipedia.org/wiki/Physical_data_model
+
+O modelo físico de dados também pode ser chamado de "projeto do bando
+de dados" ou "projeto e implementação do banco de dados". 
+
+Os artefatos, ou objetos, do banco de dados fazem parte do modelo
+físico. Esses objetos são os instrumentos que viabilizam
+relacionamento entre tabelas. 
+
+O modelo físico pode ou não incluir uma media específica de armazenamento.
+
+A implementação física dos bancos de dados existentes diferem entre sí
+signfiicativamente.
+
+Existe a abordagem ANSI/SPARC Architetcture three schema que aborda o
+esquema interno utilizado para gerenciamento dos dados.
+Essa abordagem considera 3 diferentes tipos de schemas que são os tres
+nívels de arquitetura da implementação do banco de dados.
+
+O schema externo: descreve as maneiras externas em que os dados serão visualizados
+O schema conceitual: descreve os items e relacionamentos entre eles,
+juntamente com as restrições. Só existe um schema conceitual por banco.
+O schema interno: o nível mais baixo que contém as definições de como
+os registros são armazenados e presentados, os campos e os indices. 
+
+

@@ -1,0 +1,160 @@
+#+Title: Aula ExampleLoginApp
+#+Subtitle: Sem banco de dados
+
+* Objetivo
+  Construir uma activity 
+  Mostrar o básico de kotlin
+
+* Requisitos funcionais da aplicacao
+  Qdo o usuario digita o usuario admin e senha admin123 aparece o
+  toast "login realizado com sucesso", caso contrario, "usuario ou
+  senha incorretos"
+  
+  Para efeitos de aula, vc vai criar o projeto no android studio
+  mesmo, pra facilitar a vida, por enquanto...
+
+
+* Preparando o ambiente pra desenvolver para o android
+
+   #+NAME: pasta projetos e variaveis de ambiente
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+
+      #setup android home and path
+      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin
+      
+      #pasta de projetos android
+      export projetosDir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos
+
+   #+END_SRC
+
+   #+RESULTS: pasta projetos e variaveis de ambiente
+
+
+
+   #+NAME: gradleee
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+   #+END_SRC
+
+   #+RESULTS: gradleee
+
+
+
+   Os comandos abaixo é só pra gente ver que os comandos do android
+   estao no nosso path
+   #+NAME: testando os comandos do android          
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      echo [adb]
+      adb version
+
+      echo .
+      echo .      
+      echo [sdkmanager]
+      sdkmanager --version
+
+      echo .
+      echo .
+      echo [avdmanager]
+      avdmanager list
+
+      echo .
+      echo .
+      echo [gradle]
+      gradle -v
+
+      echo .
+      echo .
+      echo [ emulator ]
+      cd $ANDROID_SDK_ROOT/emulator
+      emulator -version
+
+
+   #+END_SRC
+
+    
+
+   update do sdk
+   
+   #+NAME: sdkmanager -update                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      sdkmanager --update
+   #+END_SRC
+
+   #+RESULTS: sdkmanager -update
+   : 
+   : Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...                                                                                         Warning: File /home/wagner/.android/repositories.cfg could not be loaded.
+   : Fetch remote repository...         [==                                     ] 6% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...              [=======================================] 100% Computing updates...
+
+   
+* Criando o projeto
+  
+  Criar um projeto android via linha de comando é um pouco complicado
+  e por enquanto vamos usar o android studio mesmo
+  
+
+* Apresentação do projeto e seus artefatos
+  
+  
+   #+NAME: ls projeto 
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projetosDir/ExampleLoginApp1
+      ls -l
+   #+END_SRC
+
+   #+RESULTS: ls projeto
+   #+begin_example
+
+   [wagner@Unknown ExampleLoginApp1]$ total 44
+   drwxrwxr-x. 5 wagner wagner 4096 mar  6 22:56 app
+   drwxrwxr-x. 3 wagner wagner 4096 mar  6 22:22 build
+   -rw-rw-r--. 1 wagner wagner  710 mar  6 22:17 build.gradle
+   -rw-rw-r--. 1 wagner wagner  893 mar  6 22:07 ExampleLoginApp1.iml
+   drwxrwxr-x. 3 wagner wagner 4096 mar  6 22:06 gradle
+   -rw-rw-r--. 1 wagner wagner  817 mar  6 22:07 gradle.properties
+   -rwxrw-r--. 1 wagner wagner 5296 mar  6 22:06 gradlew
+   -rw-rw-r--. 1 wagner wagner 2260 mar  6 22:06 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  437 mar  6 22:06 local.properties
+   -rw-rw-r--. 1 wagner wagner   15 mar  6 22:06 settings.gradle
+   #+end_example
+
+
+
+   Nosso código é só o arquivo  ExampleLoginActivity.kt e SimulaDB.kt
+   e o resource xml da activity
+   
+   Vamos mostrar os arquivos logo abaixo
+   
+   #+NAME: ls projeto1
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      echo $projetosDir
+      cd $projetosDir/ExampleLoginApp1      
+      ls -l app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp1
+      ls -l app/src/main/res/layout
+   #+END_SRC
+
+   #+RESULTS: ls projeto1
+   : 
+   : /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos
+   : [wagner@Unknown ExampleLoginApp1]$ total 8
+   : -rw-rw-r--. 1 wagner wagner 1351 mar  6 22:26 ExampleLoginActivity.kt
+   : -rw-rw-r--. 1 wagner wagner  801 mar  6 22:29 SimulaDB.kt
+   : total 8
+   : -rw-rw-r--. 1 wagner wagner 1440 mar  6 22:09 activity_example_login.xml
+   : -rw-rw-r--. 1 wagner wagner 2259 mar  6 22:21 content_example_login.xml
+
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/ExampleLoginApp1/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp1/ExampleLoginActivity.kt :src kotlin
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/ExampleLoginApp1/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp1/SimulaDB.kt :src kotlin
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/ExampleLoginApp1/app/src/main/res/layout/activity_example_login.xml :src xml
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/ExampleLoginApp1/app/src/main/res/layout/content_example_login.xml :src  xml
+
