@@ -9,7 +9,7 @@ Isso é importante pra evitar conflito de nomes com storeprocedures
 nativas do sqlserver que tem seus nomes profixados com sp_*.[fn:create-procedure-transact-sql]
 
 
-** Sintaxe da Stored Procedure [fn:create-procedure-transact-sql] 
+** TODO Sintaxe da Stored Procedure [fn:create-procedure-transact-sql] 
 #+BEGIN_SRC sql
 -- Transact-SQL Syntax for Stored Procedures in SQL Server and Azure SQL Database  
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "904932299421",
+    "firebase_url": "https://aulasdeandroid.firebaseio.com",
+    "project_id": "aulasdeandroid",
+    "storage_bucket": "aulasdeandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904932299421:android:d24b35ae1e495921",
+        "android_client_info": {
+          "package_name": "aulasdeandroid.eteczl.br"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904932299421-tugtjjd1skupcag3tslc5kb5ncd6pced.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "aulasdeandroid.eteczl.br",
+            "certificate_hash": "698ed2aace81bae2bfd27ce2fe1e38e9db6ddc3f"
+          }
+        },
+        {
+          "client_id": "904932299421-os730geim4dm55stujr0tpb2cgr329dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARR2xiZOpFf2IqAqW7H-bvq7bAf8PABU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904932299421-os730geim4dm55stujr0tpb2cgr329dq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

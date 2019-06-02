@@ -3,36 +3,8 @@
 
 * Tema
   Introdução ao Git e Github
-* Objetivo
-  Dar suporte aos alunos que se inscreverem no curso "Como Usar Git e
-  Github" do MOOC Udacity, disponível
-  https://br.udacity.com/course/how-to-use-git-and-github--ud775/
-* Conteúdo  
-  Exercícios que contemplam os seguintes tópicos
-  Gerencia de mudanças em um ou mais arquivos com diff   
-* Competencias
-  Após o curso do Udacity e dos exercícios o aluno terá adquirido a
-  competência de trabalhar em equipe de desenvolvimento de software
-  bem como compartilhar seu código no github.
-* Metodologia
-  Este material não tem muita teoria e explicações porque isso tem no
-  curso da Udacity. O que tem aqui são exercícios baseados no curso
-  bem como a resposta dos exercícios em forma de tutoriais e vídeo aulas.  
-* Duração
-  A mesma duração do curso do udacity
-* Avaliação
-  As avaliações serão realizadas em sala de aulas já que entregas de
-  trabalhos poderão ser requisitadas via repositórios por alguns
-  professores.
-* Recursos necessários
-  Instalação do git
-  Não vamos entrar em detalhes sobre esta parte.
-  Tem um montão de tutoriais sobre isso...
 
-  *Instalando git*
-  https://git-scm.com/book/pt-br/v1/Primeiros-passos-Instalando-Git
-    
-* por que usar git?
+* Porquê esse tema é importante
   Você deveria usar o git porque o mercado usa e existem muitos bons
   motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
   são esses. Ou seja, porque profissionais do mercado investem tempo
@@ -55,7 +27,36 @@
   arquivos de código e aí cada um faz várias alterações em partes
   diversas de vários arquivos. Junta tudo isso num código final como?
 
-* 1 Vendo as diferenças entre dois arquivos
+
+* Objetivo
+
+* Instrumentos de Apoio
+  https://br.udacity.com/course/how-to-use-git-and-github--ud775/
+
+* Conteúdo  
+
+
+* Competencias
+  Aluno terá adquirido a
+  competência de trabalhar em equipe de desenvolvimento de software
+  bem como compartilhar seu código no github.
+
+* Metodologia
+
+* Duração
+
+
+* Avaliação
+  Atividades práticas e teóricas
+
+
+* Recursos necessários
+  Instalação do git
+  Conta no github    https://github.com
+  Conta no bitbucket  https://bitbucket.org/
+
+* Antes de entrar no assunto principal
+** 1 Vendo as diferenças entre dois arquivos
 ** Exercício 1.1 -> diff pra ver diferença entre arquivos
   (a) Crie uma pasta com o nome projeto-git-intro e um (b) arquivo com
   nome de nomeie "arqv1.txt" e (c) escreva nele o seguinte:
@@ -380,7 +381,7 @@ Se eu achar um em português substituo depois.
  #+ATTR_HTML: style="float:center;"
  [[./imgs/ResolucaoEx2_fig1.png]]
 
-* 2 Vendo o histórico dos arquivos
+** 2 Vendo o histórico dos arquivos
 ** Exercício 2.1 -> Não simplesmente ver uma diferença, é legal ver o histórico
    É legal, é importante ver a diferença entre duas versões
    direferntes de arquivo. É util e importante. Mas seria muito mais
@@ -1136,23 +1137,29 @@ figura abaixo.
       Faça o clone do seguinte repositório
       https://github.com/udacity/asteroids.git
      
-* 3 Dicas do dia a dia (from: https://github.com/git-tips/tips)
-** git diff revisitado
+
+
+* Instalação do git
+  https://git-scm.com/book/pt-br/v1/Primeiros-passos-Instalando-Git
+  
+    
+
+* git diff revisitado
    Trabalhei ontem no projeto e não me lembro muito bem quais
    modificações fiz ontem. 
    git diff
-** Quais arquivos eu já tinha até um certo commit específico?
+* Quais arquivos eu já tinha até um certo commit específico?
    git diff-tree --no-commit-id --name-only -r <ommit-ish>
 
-** Quem modificou esses arquivos?
-** Quais modificações foram feitas num arquivo específico?
-** Tem arquivos em conflito?
+* Quem modificou esses arquivos?
+* Quais modificações foram feitas num arquivo específico?
+* Tem arquivos em conflito?
    git diff --name-only --diff-filter=U
 
 
 
 
-* 4 Branches  
+* Branches  
 ** Criando branches
    Para criar um novo branch basta fazer o seguinte:
    #+BEGIN_SRC sh
@@ -1701,7 +1708,20 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
   :  a7cdc6ce7787c2cb01ffcb8b358a1ba14d296325 ESS (swank_funcs-2456-ga7cdc6ce)
   :  c6d5cab4fc30ff9ca8b55a2a37d3ae3f7f540859 web-mode (v15-60-gc6d5cab)
 
+* atualizar o seu repositorio local em relação ao remoto   
+** jeito mais simples  
+   O manual do git (git pull --help) diz que o que o git pull faz é o
+   seguinte...
+   git fetch
+   git merge FETCH_HEAD
+   Caso o git pull esteja com o parametro --rabase, o git vai dar um
+   rabase ao inves de merge
+** jeito mais "correto"
+   
 
+git pull
+  git pull fetch
+  
 * templates for this file :noexport:
 
    #+name:  BlockName1
@@ -1722,7 +1742,7 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
 
 * Footnotes
 [fn:GitTowerMergeConglicts] https://www.git-tower.com/learn/
-
+https://github.com/git-tips/tips
 * functions :noexport:
   http://sachachua.com/sharing/evil-plans.org
 #+name: list-files-with-target
@@ -1740,3 +1760,4 @@ https://stackoverflow.com/questions/23892037/push-all-local-branches-to-origin-i
              files
              "\n")))
 #+end_src
+

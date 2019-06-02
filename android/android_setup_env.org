@@ -1,0 +1,76 @@
+#+Title: Setting up Android Environment
+
+* Configurando Ambiente para utilizar o sdk do android
+  https://developer.android.com/studio/command-line/  
+
+
+** Variaveis de ambiente
+*** Variaveis do local de Instalacao do SDK 
+    ANDROID_HOME esta depreciado em favor de ANDROID_SDK_ROOT
+    Ambas devem apontar pro local onde o sdk esta instalado
+
+
+*** Utilizando as variaveis de ambiente para configurar nosso path
+    
+   #+NAME:  export env vars                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk 
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
+      echo $PATH
+   #+END_SRC
+
+   #+RESULTS: export env vars
+   : 
+   : [wagner@nsi_pc_149_3 quickstart-android]$ > [wagner@nsi_pc_149_3 quickstart-android]$ /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile/bin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
+
+     Após configurar essas variávies no seu path já dá pra utilizar
+     comandos que a gente precisa... Depois a gente vai conversar
+     sobre cada um deles....
+         
+
+*** Testando se os comandos do android sdk estao no nosso path
+     Os comandos abaixo testam se o nosso sdk do android esta no nosso path
+     #+NAME: test adv devices
+     #+BEGIN_SRC shell :session s1 :results output :exports both
+         #starts code        
+         echo "-------------------"
+         adb version
+         sdkmanager version
+         emulator -version
+         echo "-------------------"
+         gradle -v
+     #+END_SRC
+
+     #+RESULTS: test adv devices
+     #+begin_example
+
+     -------------------
+     Android Debug Bridge version 1.0.40
+     Version 28.0.2-5303910
+     Installed as /home/wagner/PROGSATIVOS/androidSdk/platform-tools/adb
+     Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [                                       ] 3% Fetch remote repository...                                                                                         Warning: java.net.ConnectException: Connection timed out (Connection timed out)
+     Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...                                                                                         Warning: Failed to download any source lists!
+     Fetch remote repository...                                                                                         Warning: File /home/wagner/.android/repositories.cfg could not be loaded.
+     Fetch remote repository...         [=                                      ] 4% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...                                                                                              Warning: Failed to find package version
+     Computing updates...              [wagner@nsi_pc_149_3 quickstart-android]$ [140408177076032]:ERROR:android/android-emu/android/qt/qt_setup.cpp:28:Qt library not found at ../emulator/lib64/qt/lib
+     Could not launch '/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/quickstart-android/../emulator/qemu/linux-x86_64/qemu-system-i386': No such file or directory
+     -------------------
+     ------------------------------------------------------------
+     Gradle 5.1.1
+     ------------------------------------------------------------
+
+     Build time:   2019-01-10 23:05:02 UTC
+     Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+     Kotlin DSL:   1.1.1
+     Kotlin:       1.3.11
+     Groovy:       2.5.4
+     Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+     JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+     OS:           Linux 5.0.17-200.fc29.x86_64 amd64
+     #+end_example
+
+ 
+     

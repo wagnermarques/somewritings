@@ -1,0 +1,166 @@
+#+Title: Comandos do android
+
+
+
+* Apresentacao deste texto pra Aula de Hoje
+  A gente vai fazer de novo o listview.
+  Na verdade vários de vcs fizeram na aula passada, mas a maioria não.
+  Na aula passada eu deixei só essas tres imagens abaixo, que vcs
+  devem ter aí com vcs também...
+  
+  Estou colocando elas abaixo novamente pra gente conversar sobre elas
+  mas também, neste texto, tem um tutorial utilizando outras imagem
+  completamente diferentes que pode facilitar pro pessoal que teve
+  dificuldade com essas imagens.
+ 
+  A diferença entre o trabalho dessas três imagens e do novo tutorial
+  que estou trazendo pra vcs nessa aula é que na aula passada vcs
+  tinham que criar um botão que abria a listview.
+
+  No tutorial novo, neste documento, a activity principal já é a list
+  própria listview.
+
+
+  Última palavrinha pra vcs começaram a aula:
+  Criar uma listview básico com um array de strings é fácil é só
+  seguir esses três passos:
+  + Criar uma activity
+    Claro porque a listview tem que aparecer em uma activity
+    Detalhe: Na figura CodigoPraAbrirA_ListViewActivity.png o que eu
+    estou mostrando é minha activity principal criada sem xml, usando
+    anko. Não é a active da listview. Essa activity mostra o botão com
+    a linha startActivity<ListViewActivity>() que é a que abre o a
+    activity da listvew.
+    O que importa é que vc vai precisar de uma activity pra listview
+    propriamente dita. Neste caso vc só precisava olhar a imagem
+    codigo_da_ListViewActivity.png que é a segunda apresentada abaixo.
+
+  + Inserir o widget da list view no xml da sua activity
+    Isso está na imagem ListViewActivity-LayoutXML.png
+    
+  + Aí, no código da Activity da ListView vc inicia ela
+    Isso tá na imagem codigo_da_ListViewActivity.png
+    O código simplesmente cria uma ArrayList de string nas linhas 24
+    a 29.
+    A linha 23 obtem o widget da list view e a linha 30 insere os
+    dados na listview.
+    A linha 30 tem vários detalhes pra entender mas vc pode colocar o
+    que vc quizer na sua array e usar ela como modelo pra mostrar uma
+    listvew simples.
+
+   #+NAME:CodigoPraAbrirA_ListViewActivity.png]]
+   #+CAPTION: CodigoPraAbrirA_ListViewActivity.png]]
+   #+attr_ORG: :width 800px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px
+  [[./imgs/SimpleListViewProj/aulaanterior/CodigoPraAbrirA_ListViewActivity.png]]
+
+   #+NAME:ListViewActivity-LayoutXML.png
+   #+CAPTION :ListViewActivity-LayoutXML.png
+   #+attr_ORG: :width 800px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px
+  [[./imgs/SimpleListViewProj/aulaanterior/ListViewActivity-LayoutXML.png]]
+
+
+   #+NAME:codigo_da_ListViewActivity.png
+   #+CAPTION: codigo_da_ListViewActivity.png
+   #+attr_ORG: :width 800px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px
+  [[./imgs/SimpleListViewProj/aulaanterior/codigo_da_ListViewActivity.png]]
+  
+
+** pula essa parte pessoal
+   No futuro, qdo vc tiver aprendido mais um pouco você volta pra cá
+   Lembra aqueles comandos do android que eu mostrei pra vcs em uma ou
+   duas aulas anteriores?
+   Poís esse código abaixo coloca o sdk no meu path pra eu poder rodar
+   aqueles comandos.
+   
+    #+NAME export env vars
+    #+BEGIN_SRC shell :results output :exports both
+      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk && \
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
+      echo $PATH
+     #+END_SRC
+
+     #+RESULTS:
+     : /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box/:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
+         
+     #+NAME test adv devices
+     #+BEGIN_SRC shell :session s1 :results output :exports both
+         #starts code        
+         adb devices
+     #+END_SRC
+
+     #+RESULTS:
+     : 
+     : List of devices attached
+     : * daemon not running; starting now at tcp:5037
+     : * daemon started successfully
+     : c1ca8fb	device
+
+
+* Tutorial Novo
+  
+   #+NAME:f1.png
+   #+CAPTION: f1.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f1.png]]
+
+
+   #+NAME:f2.png
+   #+CAPTION: f2.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f2.png]]
+
+
+   #+NAME:f3.png
+   #+CAPTION: f3.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f3.png]]
+
+
+   #+NAME:f4.png
+   #+CAPTION: f4.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f4.png]]
+
+
+   #+NAME:f5.png
+   #+CAPTION: f5.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f5.png]]
+
+
+   #+NAME:f6.png
+   #+CAPTION: f6.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f6.png]]
+
+
+   #+NAME:f7.png
+   #+CAPTION: f7.png
+   #+attr_ORG: :width 200px
+   #+attr_html: :width 800px
+   #+attr_latex: :width 800px   
+   [[./imgs/SimpleListViewProj/f7.png]]
+
+
+
+  
+

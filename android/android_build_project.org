@@ -1,0 +1,131 @@
+#+Title: Build Project
+#+Subtitle: 
+
+   #+NAME:  export env vars                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk 
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
+      echo $PATH
+   #+END_SRC
+
+   #+RESULTS: export env vars
+   : 
+   : [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile/bin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
+
+
+* buildando o projeto
+
+   #+NAME: export projdir=...      
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      #export projdir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/sqlite
+      export projdir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/quickstart-android
+      gradle -v
+   #+END_SRC
+
+   #+RESULTS: export projdir=...
+   #+begin_example
+
+   [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ 
+   ------------------------------------------------------------
+   Gradle 5.1.1
+   ------------------------------------------------------------
+
+   Build time:   2019-01-10 23:05:02 UTC
+   Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+   Kotlin DSL:   1.1.1
+   Kotlin:       1.3.11
+   Groovy:       2.5.4
+   Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+   JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+   OS:           Linux 5.0.17-200.fc29.x86_64 amd64
+   #+end_example
+
+   
+   #+NAME: gradlew assembleDebug               
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ###entra na pasta do projeto
+      cd $projdir
+      
+      ###limpa build anterior se tiver
+      ./gradlew clean 2>1&
+      
+      ###mostra que nao ha apk antes do assembleDebug (nao tem diretorio debug)
+      #ls $projdir/app/
+      
+      ###build variate debug
+      ./gradlew assembleDebug #--debug #--stacktrace
+      
+      ###mostra que tem o apk contruido
+      ls -l $projdir/app/build
+   #+END_SRC
+
+   #+RESULTS: gradlew assembleDebug
+   #+begin_example
+
+   [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ [wagner@nsi_pc_149_3 quickstart-android]$ 
+   ------------------------------------------------------------
+   Gradle 5.1.1
+   ------------------------------------------------------------
+
+   Build time:   2019-01-10 23:05:02 UTC
+   Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+   Kotlin DSL:   1.1.1
+   Kotlin:       1.3.11
+   Groovy:       2.5.4
+   Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+   JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+   OS:           Linux 5.0.17-200.fc29.x86_64 amd64
+   #+end_example
+
+
+
+
+
+
+
+
+* rodando o projeto
+  
+   #+NAME: ./gradlew installDebug   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+      ### Entrando no dir do projeto
+      cd $projdir
+      
+      ### Vendo qual dispositivo a gente vai instalar o apk
+      adb devices
+
+      ### Instalando
+      ./gradlew installDebug
+
+   #+END_SRC
+
+   
+   #+NAME: adb shell am start -n    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ### Iniciando a aplicacao no dispositivo
+      adb shell am start -n "eteczl.edu.br.exampleloginapp2/.ManterUsuarioActivity"
+   #+END_SRC
+
+   #+RESULTS: adb shell am start -n
+   : 
+   : starts code
+   : ### Iniciando a aplicacao no dispositivo
+   : adb shell am start -n "eteczl.edu.br.exampleloginapp2/.ManterUsuarioActivity"
+   : Starting: Intent { cmp=eteczl.edu.br.exampleloginapp2/.ManterUsuarioActivity }
+
+
+
+   #+NAME:  whatch logcat app                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+   #+END_SRC

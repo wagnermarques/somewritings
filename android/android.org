@@ -1,282 +1,10 @@
 #+Title: Comandos do android
+#+Subtitle: Como verificar se os comandos do android estao no path da sua m√°quina
 
-* Android usando linha de comando
-  https://developer.android.com/studio/command-line/  
-** Variaveis de ambiente[ln:cmdline_variables
-*** Variaveis do local de Instalacao do SDK 
-    ANDROID_HOME est· depreciado em favor de ANDROID_SDK_ROOT
-    Ambas devem apontar pro local onde o sdk est· instalado
-
-    #+NAME export env vars
-    #+BEGIN_SRC shell :results output :exports both
-      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
-      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk && \
-      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
-      echo $PATH
-     #+END_SRC
-
-     #+RESULTS:
-     : /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
-     ApÛs configurar essas vari·vies no seu path j· d· pra utilizar
-     comandos que a gente precisa... Depois a gente vai conversar
-     sobre cada um deles....
-         
-     #+NAME test adv devices
-     #+BEGIN_SRC shell :session s1 :results output :exports both
-         #starts code        
-         echo "-------------------"
-         adb version
-         sdkmanager version
-         emulator -version
-
-         echo "-------------------"
-         gradle -v
-     #+END_SRC
-
-     #+RESULTS:
-     #+begin_example
-
-     -------------------
-     Android Debug Bridge version 1.0.40
-     Version 4986621
-     Installed as /home/wagner/PROGSATIVOS/androidSdk/platform-tools/adb
-     Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...                                                                                         Warning: File /home/wagner/.android/repositories.cfg could not be loaded.
-     Fetch remote repository...         [==                                     ] 6% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...                                                                                              Warning: Failed to find package version
-     Computing updates...              [wagner@Unknown ~]$ [140310301914944]:ERROR:android/android-emu/android/qt/qt_setup.cpp:28:Qt library not found at ../emulator/lib64/qt/lib
-     Could not launch '/home/wagner/../emulator/qemu/linux-x86_64/qemu-system-i386': No such file or directory
-     [wagner@Unknown ~]$ -------------------
-     ------------------------------------------------------------
-     Gradle 5.1.1
-     ------------------------------------------------------------
-
-     Build time:   2019-01-10 23:05:02 UTC
-     Revision:     3c9abb645fb83932c44e8610642393ad62116807
-
-     Kotlin DSL:   1.1.1
-     Kotlin:       1.3.11
-     Groovy:       2.5.4
-     Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
-     JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
-     OS:           Linux 4.20.4-200.fc29.x86_64 amd64
-     #+end_example
-     
-** Criar nosso primeiro projeto pela linha de comando
-   https://developer.android.com/training/basics/firstapp/?hl=pt-br
-   https://developer.android.com/training/basics/firstapp/creating-project
-   https://docs.gradle.org/current/userguide/build_init_plugin.html
-   
-   
-   Atigamente a gente usava o comando android create, mas ele ta
-   depreciado.
-   Como um projeto do android nada mais È que um projeto do gradle com
-   configuraÁıes especÌficas, vamos usar o gradle pra criar nosso
-   usando o gradle.
-   Segundo a documentaÁ„o do gradle È sÛ criar uma pasta pro projeto e
-   depois dar o comando gradle init[ln:gradleBuilds] Esse comando gera
-   a estrutura do projeto pra gente.Outro link da documentaÁ„o do
-   gradle[ln:gradleBuilds2] sugere utilizar o comando "gradle init --type java-application"
-   
-
-   https://developer.android.com/samples/
-
-   #+NAME lugar onde estao os projetos do android                  
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code            
-      export ANDROID_STUDIO_PROJECTS_DIR=/home/wagner/AndroidStudioProjects/
-      cd $ANDROID_STUDIO_PROJECTS_DIR
-      mkdir CmdProj
-      cd CmdProj
-      touch gradle.properties
-      echo "org.gradle.jvmargs=-Xmx1536m" > gradle.properties
-      echo "kotlin.code.style=official" >> gradle.properties
-      #echo "systemProp.http.proxyHost=192.168.0.2" > gradle.properties
-      #echo "systemProp.http.proxyPort=3128" >> gradle.properties
-      #echo "systemProp.http.proxyUser=cid" >> gradle.properties
-      #echo "systemProp.http.proxyPassword=cid" >> gradle.properties
-      #echo "systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost" >> gradle.properties
-      #echo "systemProp.https.proxyHost=192.168.0.2" >> gradle.properties
-      #echo "systemProp.https.proxyPort=3128" >> gradle.properties
-      #echo "systemProp.https.proxyUser=cid" >> gradle.properties
-      #echo "systemProp.https.proxyPassword=cid" >> gradle.properties
-      #echo "systemProp.https.nonProxyHosts=*.nonproxyrepos.com|localhost" >> gradle.properties
-      #gradle init --type java-application
-   #+END_SRC
-   
-   #+RESULTS:
-   : 
-   : [wagner@Unknown ~]$ [wagner@Unknown AndroidStudioProjects]$ mkdir: n√É¬£o foi poss√É¬≠vel criar o diret√É¬≥rio √¢¬Ä¬úCmdProj√¢¬Ä¬ù: File exists
-  
-   Entao vamos criar um projeto l· mesmo junto com os outros
-   projetos....
-
-** Conhecendo a estrutura do nosso projeto
-   Entrando no diret√≥rio do projeto e listando o seu conte√∫do,
-   conforme comandos abaixo, podemos conhecer a estrutura do nosso projeto.
-   #+NAME  
-   #+BEGIN_SRC sh :session s1 :results output :exports both  
-     cd $ANDROID_STUDIO_PROJECTS_DIR
-     ls -l CmdProj
-  #+END_SRC
-
-  #+RESULTS:
-  #+begin_example
-
-  total 40
-  -rw-rw-r--. 1 wagner wagner  942 jan 30 19:56 build.gradle
-  -rw-rw-r--. 1 wagner wagner  606 jan 31 11:22 CmdProj.iml
-  drwxrwxr-x. 3 wagner wagner 4096 jan 30 17:45 gradle
-  -rw-rw-r--. 1 wagner wagner   56 jan 31 22:02 gradle.properties
-  -rwxrwxr-x. 1 wagner wagner 5305 jan 30 17:45 gradlew
-  -rw-rw-r--. 1 wagner wagner 2269 jan 30 17:45 gradlew.bat
-  -rw-rw-r--. 1 wagner wagner  349 jan 31 11:22 local.properties
-  -rw-rw-r--. 1 wagner wagner  355 jan 30 19:56 settings.gradle
-  drwxrwxr-x. 4 wagner wagner 4096 jan 30 19:56 src
-  #+end_example
-
-  Esses s√£o os diret√≥rios do nosso projeto
-  + build.gradle
-    
-  + gradle
-
-  + gradle.properties
-
-  + gradlew
-
-  + gradlew.bat
-
-  + settings.gradle
-
-  + src
-    
-** Estrutura de um projeto criado no Android Studio  
-   
-   #+NAME estrut proj criado no Android Studio                     
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $ANDROID_STUDIO_PROJECTS_DIR
-      ls -l MyApplication
-   #+END_SRC
-
-   #+RESULTS:
-   #+begin_example
-
-   [wagner@Unknown AndroidStudioProjects]$ total 44
-   drwxrwxr-x. 5 wagner wagner 4096 jan  9 23:14 app
-   drwxrwxr-x. 3 wagner wagner 4096 jan  9 22:53 build
-   -rw-rw-r--. 1 wagner wagner  644 jan  5 22:49 build.gradle
-   drwxrwxr-x. 3 wagner wagner 4096 jan  5 22:49 gradle
-   -rw-rw-r--. 1 wagner wagner  817 jan  5 23:18 gradle.properties
-   -rwxrw-r--. 1 wagner wagner 5296 jan  5 22:49 gradlew
-   -rw-rw-r--. 1 wagner wagner 2260 jan  5 22:49 gradlew.bat
-   -rw-rw-r--. 1 wagner wagner  437 jan  5 22:49 local.properties
-   -rw-rw-r--. 1 wagner wagner  890 jan  5 23:17 MyApplication.iml
-   -rw-rw-r--. 1 wagner wagner   15 jan  5 22:49 settings.gradle
-   #+end_example
+#+INCLUDE: android_setup_env.org
 
 
-   #+NAME estrut proj criado no Android Studio                     
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $ANDROID_STUDIO_PROJECTS_DIR/MyApplication
-      ls -l app
-   #+END_SRC
-
-   #+RESULTS:
-   : 
-   : [wagner@Unknown MyApplication]$ total 44
-   : -rw-rw-r--. 1 wagner wagner 23291 jan  9 23:14 app.iml
-   : drwxrwxr-x. 7 wagner wagner  4096 jan  9 22:53 build
-   : -rw-rw-r--. 1 wagner wagner  1082 jan  5 22:49 build.gradle
-   : drwxrwxr-x. 2 wagner wagner  4096 jan  5 22:49 libs
-   : -rw-rw-r--. 1 wagner wagner   751 jan  5 22:49 proguard-rules.pro
-   : drwxrwxr-x. 7 wagner wagner  4096 jan  5 22:49 src
-   
-
-  Mas o que que È esse --targets? Pra ver dÍ esse comando abaixo
-
-  #+NAME: list targets
-  #+BEGIN_SRC sh
-  #!/bin/bash
-  android list targets
-  #+END_SRC
-
-  #+NAME: list targets
-  #+BEGIN_SRC shell :exports both
-  ./list_targets.sh
-  #+END_SRC
-
-
-
-   
-* emulando o projeto
-
-** usando emulator
-   https://developer.android.com/studio/run/emulator-commandline
-   #+NAME: emulator -list-avds
-   #+BEGIN_SRC sh
-   source ./scripts/environment_setup.sh
-   emulator -list-avds
-   #+END_SRC
-
-   
-Esses emuladores sao os que eu tenho instalado na minha
-m·quina. Instal·-los j· È outra histÛria que n„o vai dar pra colocar
-aqui agora. Mas pra ficar simples, vocÍ pode instalar o android studio
-e, pelo menos pra isso, vc usa ele. Pergunte pro seu professor na sala
-que ele te explica.
-
-#+NAME emulator @avd_name
-#+BEGIN_SRC sh
-source ./scripts/environment_setup.sh
-emulator @Nexus_4_API_24 &
-#+END_SRC
-
-
-
-quando o emulador inicia a gente tem esse resultado...
-[[file:imgs/img1.png]]
-[[file:imgs/img1.png]]
-[[file:imgs/img1.png]]
-
-
-
-
-** usando adb
-  Pra emular a gente tem, primeiro, que ver quais devices temos pra
-  emular...
-  Pra entender o comando adb vocÍ pode consultar
-  https://developer.android.com/studio/command-line/adb 
-
-  #+NAME: adb devices
-  #+BEGIN_SRC sh
-    source ./scripts/environment_setup.sh
-    adb devices
-  #+END_SRC
-
-  Com o meu emulador ligado, o adb devices retorna o seguinte...
-
-  | List          | of     | devices | attached |
-  | emulator-5554 | device |         |          |
-  |               |        |         |          |
-
-  Sem nenhum emulador ligado ou dispositivo fÌsico detectado, o adb
-  n„o retorna nada.
-
-  #+RESULTS: list avds
-  : List of devices attached
-
-  se tiver em branco È porque nao tem nenhum dispositivo pra vc rodar
-  o seu projeto
-
-
-* NotificaÁıes
-  https://developer.android.com/guide/topics/ui/notifiers/notifications?hl=pt-br
-  
-  
-
-* Refs
-[ln:cmdline_variables]  https://developer.android.com/studio/command-line/variables
-[ln:gradleBuilds] https://guides.gradle.org/creating-new-gradle-builds/
-[ln:gradleBuilds2] https://docs.gradle.org/current/userguide/build_init_plugin.html
-
+ adb shell am start -n
+ "aulasdeandroid.eteczl.br/eteczl.edu.br.firebaseauth.MainActivity" -a
+ android.intent.action.MAIN -c android.intent.category.LAUNCHER -D
 

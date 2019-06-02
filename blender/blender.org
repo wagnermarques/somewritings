@@ -1,32 +1,34 @@
 
 #+TITLE:Blender Notes
 
-
+* Shortcuts
+  Shift-Crlt-Alt-C (Set Origin)
+  Shift-S
 
 ** Dicas
-TAB - Alternat entre object mode e edit mode
+   TAB - Alternat entre object mode e edit mode
 *** visualizacoes
-Telca HOME centraliza a cena (Rotate Around Selection) no User PReferences
-
+    HOME centraliza a cena
+    
 *** Arredondar cantos
-Subdivision Surfaces e Bevel (Vai na chave de roda como obj
-selecionado e adiciona modificadores))
+    Subdivision Surfaces e Bevel (Vai na chave de roda como obj
+    selecionado e adiciona modificadores))
 
 *** Selecao de objetos
-Seleção de objetos é feita com o botão direito do mouse o esquerdo só
-posiciona o 3d cursor
-Tecla A pra selecionar ou desselecionar tudo
-Tecla B (De box) permite selecionar objetos com o mouse
-Tecla Crtl + arrasto do mouse pra seleção livre
-Selecionar Arestas Paralelas (Ctl+Alt e clica na aresta) e coloca +
-segmentos com Ctl+E pra abrir o menu de Edges ou seja arestas e
-subdivide pra acescentar mais arestas
-Tecla L seleciona todos os poligonos da parte de um objeto agregado
-com Ctrl J
-Selecionar loope de poligonos tipo da esfera (Crl+Alt + o click de
+    Left-Mouse-Click - Seleção de objetos
+    A selecionar/desselecionar tudo
+    B (De box) permite selecionar objetos com o mouse
+    Crtl + arrasto do mouse pra seleção livre
+    Ctl+Alt Selecionar Arestas Paralelas e coloca +
+    Tecla L seleciona todos os poligonos da parte de um objeto agregado
+    Selecionar loope de poligonos tipo da esfera (Crl+Alt + o click de
 selecao)
+    Selecionar faces,vertices ou aresta (no modo de edicao C-Tab) abre
+    popup
+    Duplicar o que foi selecionado S-d
+*** Copiar um objeto 
+    Shfit+D
 
-Copiar um objeto Shfit+D
 *** Linkar objetos
     Sempre tem que dar um Ctrl-A Aply scale pra deixar tudo x y e z
     como 0.0.0
@@ -34,7 +36,11 @@ Copiar um objeto Shfit+D
     Ctr+P 
     Object / Parents /Objects
     
+
 *** espelhar
     Pra espelhar tem que definir o pivot point
     Em geral pro 3D Cursor
 
+*** Bones
+    Posicionamento
+    S-s coloca o cursor, depois seleciona o bone e S-s para o cursor
