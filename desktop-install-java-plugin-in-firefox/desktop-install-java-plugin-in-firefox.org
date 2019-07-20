@@ -1,7 +1,7 @@
 #+TITLE: Tutorial Desktop Linux: Habilitando plugin do java no firefox (linux)
 
 * OBJETIVO
-  Demostrar como se habilitar o plugin do java no firefox
+  Demostrar como habilitar o plugin do java no firefox
 
 * DISCLAIMER  
   Estou fazendo isso na minha máquina e disponibilizando para

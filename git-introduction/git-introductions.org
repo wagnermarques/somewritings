@@ -30,8 +30,10 @@
 
 * Objetivo
 
+
 * Instrumentos de Apoio
   https://br.udacity.com/course/how-to-use-git-and-github--ud775/
+
 
 * Conteúdo  
 
@@ -41,7 +43,9 @@
   competência de trabalhar em equipe de desenvolvimento de software
   bem como compartilhar seu código no github.
 
+
 * Metodologia
+
 
 * Duração
 
@@ -54,6 +58,7 @@
   Instalação do git
   Conta no github    https://github.com
   Conta no bitbucket  https://bitbucket.org/
+
 
 * Antes de entrar no assunto principal
 ** 1 Vendo as diferenças entre dois arquivos
@@ -1148,13 +1153,18 @@ figura abaixo.
    Trabalhei ontem no projeto e não me lembro muito bem quais
    modificações fiz ontem. 
    git diff
+
 * Quais arquivos eu já tinha até um certo commit específico?
    git diff-tree --no-commit-id --name-only -r <ommit-ish>
 
+
 * Quem modificou esses arquivos?
+
 * Quais modificações foram feitas num arquivo específico?
+
 * Tem arquivos em conflito?
    git diff --name-only --diff-filter=U
+
 
 
 
@@ -1761,3 +1771,5 @@ https://github.com/git-tips/tips
              "\n")))
 #+end_src
 
+
+    

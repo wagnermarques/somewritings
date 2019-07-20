@@ -1,9 +1,0 @@
-* Apresentação
-  Escrevendo algumas coisas como preparação de aulas e anotações
-  diversas em org-mode
-* Exportação
-  Para exportar usando beamer, colocar no inicio do arquivo
-  #+SETUPFILE: ../etc/org_mode_SETUPFILE_4Beamer.org
-  Para exportar em html
-  #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
-

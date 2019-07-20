@@ -458,6 +458,12 @@ O valor "output" significa...
      #+END_SRC
      
      
+** exportar
+*** :exports
+    :exports code
+    :exports both
+    :exports none
+
 
 * foootnotes
 [fn:[fn:External-links] https://orgmode.org/manual/External-links.html
