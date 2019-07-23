@@ -1,0 +1,71 @@
+#+Title: Arquivo de InicializaÃ§Ã£o do Emacs
+#+Subtitle:
+
+* A inicialização do emacs
+
+  Quando vc liga o emacs, durante a inicialização o emacs vai procurar
+  e carregar os seguintes arquivos. Caso sejam encontrados o emacs vai
+  executar eles. A procura é feita na seguinte ordem (testar essa ordem):
+
+  ~/.emacs
+  ~/.emacs.el
+  ~/.emacs.d/init.el
+
+  Meu diretório ~./emacs tem os seguintes arquivos...
+  
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -la ~/.emacs.d
+   #+END_SRC
+
+   #+RESULTS: 
+   #+begin_example
+
+   total 80
+   drwx------.   7 wagner wagner  4096 jul 18 23:52  .
+   drwx------.  87 wagner wagner 16384 jul 19 00:01  ..
+   -rw-rw-r--.   1 wagner wagner  6074 jul 18 23:52  ac-comphist.dat
+   drwx------.   2 wagner wagner 12288 jul 19 08:53  auto-save-list
+   backup%~
+   drwxrwxr-x. 131 wagner wagner 12288 jul 17 00:40  elpa
+   drwxrwxr-x.   2 wagner wagner  4096 jan  5  2019  snippets
+   -rw-rw-r--.   1 wagner wagner  1181 jan 10  2019  srecode-map.el
+   -rw-rw-r--.   1 wagner wagner   806 jun 29 15:43  tramp
+   drwxrwxr-x.   2 wagner wagner  4096 mai 19 02:53  transient
+   type-break#'
+   type-break -> wagner@nsipc163.ipgg.saude.sp.gov.br.4804:1556610427
+   drwxrwxr-x.   2 wagner wagner  4096 abr 27 23:18  url
+   #+end_example
+
+   Como vc pode ver, não tem nenhum dos arquivos citados e o emacs não
+   encontrou nada pra carregar durante a inicialização.
+
+
+
+   
+* fornecendo um arquivo de inicializacao para o emacs
+  Vou optar por criar um arquivo init.el no meu diretório ~/.emacs.d
+  
+  
+   #+NAME: criando init.el                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      touch ~/.emacs.d/init.el
+      echo '(message "Arquivo init.el carregado com sucesso!")' >> ~/.emacs.d/init.el
+      cat ~/.emacs.d/init.el
+   #+END_SRC
+
+   #+RESULTS: criando init.el
+   : 
+   : [wagner@nsi_pc_149_3 emacs-introduction]$ [wagner@nsi_pc_149_3 emacs-introduction]$ (message "Arquivo init.el carregado com sucesso!")
+   : (message "Arquivo init.el carregado com sucesso!")
+
+   Agora quando abrimos o nosso emacs, podemos ver que o emacs agora
+   carregou e rodou esse arquivo durante o processo de inicialização.
+   
+   
+
+   
+* Refs
+[fn:link] https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html

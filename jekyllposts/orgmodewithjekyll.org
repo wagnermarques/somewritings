@@ -1,0 +1,75 @@
+#+TITLE: PostTitleHere
+#+AUTHOR: Wagner
+#+JEKYLL_LAYOUT: home
+#+JEKYLL_POST_EXCERPT: PostExcerpt
+#+JEKYLL_CATEGORY: aulas
+#+JEKYLL_PERMALINK:/aulas/:title
+#+JEKYLL_DATE: {{ page.date }}
+#+JEKYLL_LAST_UPDATED_AT: 
+#+DATE: <2018-07-14 sáb>
+#+EMAIL: wagner@Unknown
+
+* Tema
+  Como fazer postagens no jekyll com org-mode
+
+* Objetivo
+  Mostrar como configurar o export do org-mode pra exportar so o
+  conteudo do body dos post de modo que esse conteudo possa ser
+  aproveitado pelo jekyll
+
+* Pre-requisitos
+  Conhecer emacs e org-mode
+  Conhecer como funciona hooks (add-hook e remove-hook) no emacs
+  Conhecer mecanismo de exportacao do org-mode
+  Conhecer jekyll
+  Conhecer como fazer um post no jekyll
+
+* Procedimento didatico
+  Seguir o passo a passo explicado, conforme abaixo
+
+** Inclusao do header matter
+   Vc deve colocar isso no inicio do seu arquivo .org
+   Esse conteudo sera o  front matter para o jekyll
+   #+BEGIN_EXAMPLE
+   #+STARTUP: showall indent
+#+STARTUP: hidestars
+#+BEGIN_HTML
+---
+layout: home
+title: titulo do post
+excerpt: trecho do post
+---
+#+END_HTML
+   #+END_EXAMPLE
+  
+** Funcao de exportacao do seu org file
+
+   #+BEGIN_SRC elisp
+   (defun fzl-org-publish-html-body-as-jekyll-post()
+      ""
+      (message "(defun fzl-org-publish-html-body-as-jekyll-post ()..."))
+
+   (add-hook 'org-export-before-parsing-hook 'fzl-org-publish-html-body-as-jekyll-post)   
+   #+END_SRC
+
+   #+RESULTS:
+   | fzl-org-publish-html-body-as-jekyll-post |
+
+* Referencias
+  https://orgmode.org/manual/Advanced-Export-Configuration.html
+  https://orgmode.org/manual/The-export-dispatcher.html
+  https://orgmode.org/manual/Export-settings.html#Export-settings
+  https://orgmode.org/manual/HTML-Export.html#HTML-Export
+  https://pt.wikipedia.org/wiki/GNU_Emacs
+  https://orgmode.org/
+[fn:frontmatter] https://jekyllrb.com/docs/front-matter/
+
+#+NAME: CONF ORG MODE EXPORTER
+#+BEGIN_SRC elisp :output both
+  (message "org-export-dispatch-use-expert-ui")
+#+END_SRC
+
+#+RESULTS: CONF ORG MODE EXPORTER
+: org-export-dispatch-use-expert-ui
+
+

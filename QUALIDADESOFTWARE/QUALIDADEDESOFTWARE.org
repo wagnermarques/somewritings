@@ -1,0 +1,28 @@
+#+Title: QUALIDADE DE SOFTWARE
+#+Subtitle:
+
+* Valores e Atitudes
+  Responsabilizar-se pela produção, utilização e divulgação de
+  informações.
+  Estimular a proatividade.
+  Desenvolver criticidade.
+  Incentivar comportamentos éticos.
+
+* Bases Tecnológicas
+  Qualidade de Software
+  Modelos de qualidade (CMMI, MPS.BR).
+  Testes de Software
+  Testes funcionais e não funcionais;
+  Níveis de abstração unidade, integração, sistema, entre outros.
+  Processo de teste
+  Plano de testes;
+  Casos de teste.
+  Ferramentas e execução de testesDesenvolvimento guiado por testes (TDD)
+
+* Aulas
+**  Conceituação sobre qualidade de software e testes
+**  Gradle introduction (gradle-introduction)
+**  Exemplos de testes (testes_de_software)
+*** Basicao com junit e gradle  
+  
+  

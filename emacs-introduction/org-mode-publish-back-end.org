@@ -1,0 +1,6 @@
+#+Title: org-mode publish backend
+#+Subtitle:
+
+* Criando um backend derivado
+      
+  #+INCLUDE: ~/.emacs.d/init.el :src elisp

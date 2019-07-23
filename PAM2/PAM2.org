@@ -1,0 +1,12 @@
+#+Title: PAM2 - Programação Mobile 2
+#+Subtitle:
+
+
+* Consumindo APIs e serviços web 
+  HTTP;
+  XML; 
+  JSON.Localização
+  mapasSensoresWidgetsNotificaçõesPermissõesInteração com outros apps
+  ConcorrênciaInteração com dispositivos sem fio
+
+
