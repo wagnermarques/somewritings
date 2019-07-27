@@ -1,3 +1,4 @@
+print N'-*-*-*-*-*-drop_database.sql-*-*-*-*-*-'
 use master
 go
 

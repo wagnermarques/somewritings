@@ -3,6 +3,10 @@ Etec-ProgramacaoDeComputadoresII/LojaDeInformaticaV1-EnviadaJeferson/
 Etec-ProgramacaoDeComputadoresII/PC2LojaDeInformatica
 Etec-TM-Cordova/demos
 
+**/**/*.md
+**/**/*.log
+**/**/*.xcf
+**/**/*sample*
 **/build
 **/*pdf
 **/target/*

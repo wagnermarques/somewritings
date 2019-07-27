@@ -1,0 +1,12 @@
+#+Title: Processos de Software
+#+Subtitle:
+
+#+LATEX_HEADER: \bibliographystyle{plain}
+#+LATEX_HEADER: \bibliography{../etc/biblio.bib}
+
+bibliography:../etc/bibliografiah.bib
+
+* Introdução e Histórico
+  Nos anos 40 até os 60, podemos dizer que as pessoas que desenvolviam
+  e utilizavam softwares foram os pioneiros na área cite:MatkovicAndTumbas.
+  

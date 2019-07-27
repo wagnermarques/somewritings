@@ -2,11 +2,78 @@
 #+Subtitle:
 
 
-* Consumindo APIs e serviços web 
-  HTTP;
-  XML; 
-  JSON.Localização
-  mapasSensoresWidgetsNotificaçõesPermissõesInteração com outros apps
-  ConcorrênciaInteração com dispositivos sem fio
+* Primeira Aula
+** Objetivo
+   Apresentar Temas A Serem Estudados
+   Iniciar Uma Revisão de PAM1, incluindo usar o git
+   
+** Temas
+*** Consumindo APIs e serviços web 
+    HTTP;
+    XML; 
+    JSON.Localização
+    mapasSensoresWidgetsNotificaçõesPermissõesInteração com outros apps
+    ConcorrênciaInteração com dispositivos sem fio
 
+***  Dispositivos móveis e o mercado:
+  - arquitetura de sistemas operacionais para dispositivos móveis
+
+  Configurando o ambiente de desenvolvimento 
+
+***  3. Programando aplicações para dispositivos móveis:
+   - componentes de aplicações;
+   - permissões de acesso;
+   - invocação e aplicação deleiaute;
+   - retorno de informações e passagem de parâmetros;
+   -autenticação
+
+***  Introdução à criação interfaces gráficas:
+   -  tratamento de eventos;
+   -  views e leiautes nativos
+
+***  Threads:
+   - modelo de execução aplicativo;
+   - handlers;
+  - tarefas assíncronas
+
+***  Trabalhando com eventos e broadcast
+***  Serviço de notificação, toasts e alarmes:
+   - criação, configuração e cancelamento de notificações;
+   - exibição de toasts;
+  - configuração e agendamento de alarmes
+
+***  Processamento em segundo plano com services:
+  - criação e execução de services;
+  - conexão a services existentes
+
+***  Localização com GPS e mapas:
+  - providers e localização atual do dispositivo;
+  - alerta de proximidade;
+  - geocoding e reverse geocoding
+  - utilização e configuração de mapas em aplicações;
+  - overlays em mapas
+
+***  .Armazenamento de dados:
+  - armazenamento de preferências do usuário e framework de preferências;
+  - arquivos na memória interna e externa;
+  - manipulação de dados
+
+***  Disponibilização de informações com content providers:
+  - uso de URLs para acesso a um content provider;
+  - criação de content providers e manipulação de dados
+
+***  Tópicos avançados interfaces gráficas:
+  - adapters nativos customizados;
+  - views baseadas adapters;
+  - dialogs
+
+***  Rede (sockets, Internet e web services):
+  - sockets TCP/IP e UDP/IP;
+  - requisições HTTP
+  - invocação de web services;
+  - formatos XML ou JSON
+
+***  Publicação de aplicações:
+  - assinatura digital da sua aplicação;
+  - preparação da aplicação para publicação.
 

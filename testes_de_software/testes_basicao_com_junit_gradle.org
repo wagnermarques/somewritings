@@ -1,0 +1,217 @@
+#+Title: JUnit com Gradle
+#+Subtitle: Básico
+
+* Configurando o seu ambiente para essa aula
+  
+  Faça o download do gradle em 
+  https://downloads.gradle.org/distributions/gradle-5.5-rc-4-bin.zip
+  
+  Descompacte em o gradle em algum diretório, eu descompactei o meu em
+  
+  /home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+
+  Agora crie a variável de ambiente GRADLE_HOME e configure o PATH da
+  sua máquina.
+
+  #+NAME: export env vars
+  #+BEGIN_SRC shell :results output :exports both
+     export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+     export PATH=$PATH:$GRADLE_HOME/bin     
+     gradle -v
+  #+END_SRC
+
+  #+RESULTS: export env vars
+  #+begin_example
+
+  ------------------------------------------------------------
+  Gradle 5.1.1
+  ------------------------------------------------------------
+
+  Build time:   2019-01-10 23:05:02 UTC
+  Revision:     3c9abb645fb83932c44e8610642393ad62116807
+
+  Kotlin DSL:   1.1.1
+  Kotlin:       1.3.11
+  Groovy:       2.5.4
+  Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+  JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+  OS:           Linux 5.1.18-200.fc29.x86_64 amd64
+
+  #+end_example
+
+
+* Vamos utilizar o projeto  
+
+* O JUnit 
+  https://junit.org/junit5/docs/current/user-guide/
+  
+**  O Junit5 é uma reunião de 3 subprojetos
+   
+*** JunitPlatform
+    O JunitPlaform são módulos mais fundamentais do junit5. São
+    módulos do engine de testes[fn:TestEngine]. Tem um console
+    lançador de teste, que permite lançar os testes por linha de
+    comando.  Então pelo console de lançamento de testes a gente pode
+    lançar os testes o JunitJupter e do JUnitVintage que a gente já
+    vai ver o que são...
+    
+*** JunitJupiter
+    Esse módulo provê um engige de teste do júpiter e as classes de
+    *programming model* e do *extension model*. Programming model é a
+    maneira como vc cria seus testes, claro que a gente vai ver isso
+    daquia pouco. E o extension model é a maneira como vc criar
+    exteções para o junit.
+
+*** JunitVintage
+    Prove o engine de testes compatíveis com o JUnit3 e o JUnit4
+  
+
+* Começando
+  Acredito que a forma mais fácil de começar é com o gradle ou com o
+  maven. Neste aula, vamos usar o gradle. No site do JUnit tem
+  projetos de exemplos pra começar[fn:samples].
+  
+  Então pra começar entre no repositório do projeto de exemplo e faça
+  um fork pra vc. Depois clone o projeto conforme abaixo. 
+
+   #+NAME: clonning the project
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      git clone https://github.com/wagnermarques/junit5-samples.git
+      export projdir=$(pwd)/junit5-samples/junit5-jupiter-starter-gradle
+      ls -l $projdir
+   #+END_SRC
+
+   #+RESULTS: clonning the project
+   #+begin_example
+
+   [wagner@Unknown testes_de_software]$ [wagner@Unknown testes_de_software]$ total 36
+   -rw-rw-r--. 1 wagner wagner  350 jul 22 20:50 build.gradle
+   -rw-rw-r--. 1 wagner wagner  425 jul 22 20:50 build-JITPACK.gradle
+   -rw-rw-r--. 1 wagner wagner  305 jul 22 20:50 build-SNAPSHOT.gradle
+   drwxrwxr-x. 3 wagner wagner 4096 jul 22 20:50 gradle
+   -rwxrwxr-x. 1 wagner wagner 5917 jul 22 20:50 gradlew
+   -rw-rw-r--. 1 wagner wagner 2842 jul 22 20:50 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  350 jul 22 20:50 README.md
+   drwxrwxr-x. 4 wagner wagner 4096 jul 22 20:50 src
+   #+end_example
+
+
+* Nossa primeira classe de teste
+  
+  Bom, não estranha não, a idéia a essa mesma, primeiro a gente pensa
+  no teste depois a gente escreve a classe que será testada.
+  
+  Dentro do contexto de uma calculadora, e considerando que teremos os
+  métodos relativos as operações básicas, adicionar, subtrair, dividir
+  e multiplicar, faz todo sentido que a gente escreva os testes para
+  essas operações.
+  
+  Vamos primeiro escrever o teste para o método adicionar...
+  
+
+  #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/junit5-samples/junit5-jupiter-starter-gradle/src/test/java/com/example/project/MyFirstJUnitJupiterTests.java :src java
+
+  Vamos compreender um pouco esse código.
+  O método addition está anotado com a anotação @Test o que significa
+  que é um caso de teste.
+  
+  assertEquals é um outro método importado estaticamente e que testa
+  de a o método o método add da calculadora, ao adicionar 1 e 1
+  retorna 2 mesmo. Se a calculadora retornar 2 o teste passa caso
+  contrário o teste falha.
+
+  Abaixo, segue a classe que está sendo testada...
+  
+  #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/junit5-samples/junit5-jupiter-starter-gradle/src/main/java/com/example/project/Calculator.java :src java
+
+
+* Examinando a classe de teste de exemplo do Junit
+  
+  #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/junit5-samples/junit5-jupiter-starter-gradle/src/test/java/com/example/project/MyFirstJUnitJupiterTests.java :src java
+
+* Ciclo de vida dos Métodos de Teste
+  Anotações....
+  @BeforeAll, @AfterAll, @BeforeEach, or @AfterEach.
+
+  #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/junit5-samples/junit5-jupiter-starter-gradle/src/test/java/com/example/project/StandardTests.java :src java
+
+
+* Rodando o teste que a gente escrever
+  
+  
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd  $projdir
+      ./gradlew test
+   #+END_SRC
+
+   #+RESULTS: 
+   : 
+   : [wagner@Unknown junit5-jupiter-starter-gradle]$ bash: gradlew: comando nÃ£o encontrado
+
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown junit5-jupiter-starter-gradle]$ ./gradlew test
+   > Task :compileJava UP-TO-DATE
+   > Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test FAILED
+
+com.example.project.StandardTests > succeedingTest() PASSED
+
+com.example.project.StandardTests > failingTest() FAILED
+    org.opentest4j.AssertionFailedError at StandardTests.java:33
+
+com.example.project.StandardTests > skippedTest() SKIPPED
+
+com.example.project.StandardTests > abortedTest() SKIPPED
+
+com.example.project.CalculatorTests > addsTwoNumbers() PASSED
+
+com.example.project.CalculatorTests > add(int, int, int)[1] PASSED
+
+com.example.project.CalculatorTests > add(int, int, int)[2] PASSED
+
+com.example.project.CalculatorTests > add(int, int, int)[3] PASSED
+
+com.example.project.CalculatorTests > add(int, int, int)[4] PASSED
+
+com.example.project.MyFirstJUnitJupiterTests > addition() PASSED
+
+10 tests completed, 1 failed, 2 skipped
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/junit5-samples/junit5-jupiter-starter-gradle/build/reports/tests/test/index.html
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 1s
+3 actionable tasks: 2 executed, 1 up-to-date
+[wagner@Unknown junit5-jupiter-starter-gradle]$ 
+   #+END_EXAMPLE
+   
+* Examinando a saída no relatório de saída de teste
+  
+  no diretório do projeto siga esse caminhoa pra abrir o index.html do
+  relatório de testes do projeto
+
+  [project dir]./build/reports/tests/test/index.html
+  
+
+* refs
+[fn:TestEngine] https://junit.org/junit5/docs/current/api/org/junit/platform/engine/TestEngine.html
+[fn:running-tests-console-launcher] https://junit.org/junit5/docs/current/user-guide/#running-tests-console-launcher
+[fn:samples] https://github.com/junit-team/junit5-samples.git
+  
