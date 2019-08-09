@@ -1,0 +1,104 @@
+#+Title: Firebase
+#+Subtitle:
+
+* Tema
+  Configurando Firebase em uma aplicação android
+* Objetivo
+  Demonstrar como configurar o firebase em um app android
+* Duração
+  1h
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Criar projeto no android studio
+   Conta no firebase
+   Comprenção bem básico sobre grandle.build file
+** Recursos
+   Android Studio
+   Conta no Firebase
+* Procedimento didatico
+  Seguir exposição e tutorial dos slides abaixo.
+
+ [[./imgs-config-firebase-project/fb1.png]]
+   [[./imgs-config-firebase-project/fb7.png]]
+   [[./imgs-config-firebase-project/fb14.png]]
+   [[./imgs-config-firebase-project/fb20.png]]
+  [[./imgs-config-firebase-project/fb26.png]]
+  [[./imgs-config-firebase-project/fb32.png]]
+  [[./imgs-config-firebase-project/fb38.png]]
+  [[./imgs-config-firebase-project/fb44.png]]
+
+    [[./imgs-config-firebase-project/fb2.png]]
+  [[./imgs-config-firebase-project/fb8.png]]
+   [[./imgs-config-firebase-project/fb15.png]]
+  [[./imgs-config-firebase-project/fb21.png]]
+  [[./imgs-config-firebase-project/fb27.png]]
+  [[./imgs-config-firebase-project/fb33.png]]
+  [[./imgs-config-firebase-project/fb39.png]]
+  [[./imgs-config-firebase-project/fb45.png]]
+  [[./imgs-config-firebase-project/fb3.png]]
+  [[./imgs-config-firebase-project/fb9.png]]
+  [[./imgs-config-firebase-project/fb16.png]]
+  [[./imgs-config-firebase-project/fb22.png]]
+  [[./imgs-config-firebase-project/fb28.png]]
+  [[./imgs-config-firebase-project/fb34.png]]
+  [[./imgs-config-firebase-project/fb40.png]]
+  [[./imgs-config-firebase-project/fb46.png]]
+  [[./imgs-config-firebase-project/fb4.png]]
+  [[./imgs-config-firebase-project/fb10.png]]
+  [[./imgs-config-firebase-project/fb17.png]]
+  [[./imgs-config-firebase-project/fb23.png]]
+  [[./imgs-config-firebase-project/fb29.png]]
+  [[./imgs-config-firebase-project/fb35.png]]
+  [[./imgs-config-firebase-project/fb41.png]]
+  [[./imgs-config-firebase-project/fb5.png]]
+  [[./imgs-config-firebase-project/fb12.png]]
+  [[./imgs-config-firebase-project/fb18.png]]
+  [[./imgs-config-firebase-project/fb24.png]]
+  [[./imgs-config-firebase-project/fb30.png]]
+  [[./imgs-config-firebase-project/fb36.png]]
+  [[./imgs-config-firebase-project/fb42.png]]
+  [[./imgs-config-firebase-project/fb6.png]]
+  [[./imgs-config-firebase-project/fb13.png]]
+  [[./imgs-config-firebase-project/fb19.png]]
+  [[./imgs-config-firebase-project/fb25.png]]
+  [[./imgs-config-firebase-project/fb31.png]]
+  [[./imgs-config-firebase-project/fb37.png]]
+  [[./imgs-config-firebase-project/fb43.png]]
+
+   
+
+* Exercicios e Atividades de Reflexão/Fixação
+* Avaliação
+* Referencias
+
+  
+* Ferramenta Keytool
+  
+   #+BEGIN_EXAMPLE
+   [wagner@nsipc163 FirebaseAuth]$ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+   keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+   Informe a senha da área de armazenamento de chaves:  android
+
+   Nome do alias: androiddebugkey
+   Data de criação: 05/01/2019
+   Tipo de entrada: PrivateKeyEntry
+   Comprimento da cadeia de certificados: 1
+   Certificado[1]:
+   Proprietário: C=US, O=Android, CN=Android Debug
+   Emissor: C=US, O=Android, CN=Android Debug
+   Número de série: 1
+   Válido de Sat Jan 05 22:49:36 BRST 2019 até Mon Dec 28 22:49:36 BRST 2048
+   Fingerprints do certificado:
+   MD5:  46:EB:75:AE:19:78:3A:3F:26:0F:A2:B2:9B:10:47:3C
+   SHA1: 69:8E:D2:AA:CE:81:BA:E2:BF:D2:7C:E2:FE:1E:38:E9:DB:6D:DC:3F
+   SHA256: 9B:9E:C6:48:5B:54:3D:50:44:F5:94:13:91:63:72:07:38:78:D2:B3:BF:F7:92:C5:6A:B8:67:FF:9A:4B:50:4A
+   Nome do algoritmo de assinatura: SHA1withRSA
+   Algoritmo de Chave Pública do Assunto: Chave RSA de 1024 bits
+   Versão: 1
+
+   Warning:
+   O armazenamento de chaves JKS usa um formato proprietário. É recomendada a migração para PKCS12, que é um formato de padrão industrial que usa "keytool -importkeystore -srckeystore /home/wagner/.android/debug.keystore -destkeystore /home/wagner/.android/debug.keystore -deststoretype pkcs12".
+   [wagner@nsipc163 FirebaseAuth]$ 
+   #+END_EXAMPLE
+   
+

@@ -24,8 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.postBody
 
 class MainActivity : AppCompatActivity() {
 
-    private lateFirebaseAuth ;
-    private FirebaseUser mFirebaseUser;
+    //private lateinit FirebaseAuth ;
+    //private FirebaseUser mFirebaseUser;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
