@@ -1,0 +1,31 @@
+#+Title: LoginAppJava (Widgets Android Views)
+#+Subtitle: Conhecendo e obtendo valores de Views (toasts)
+
+* Tema
+  LoginAppJava (Widgets Android Views)  
+* Objetivo
+  Conhecer Views do Android
+  Layouts básicos 
+  Acessar e Utilizar Valores das Views
+  Toasts
+
+* Duração
+  Primeiro bloco, aula expositiva
+  Segundo bloco, aula prática
+ 
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Utilizar Android Studio
+   Saber criar uma activity básica
+
+** Recursos
+   Android Studio
+   
+* Procedimento didatico
+  
+* Exercicios e Atividades de Reflexão/Fixação
+* Avaliação
+* Referencias
+
+
+

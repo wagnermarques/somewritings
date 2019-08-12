@@ -1,7 +1,6 @@
 #+Title: Samples Testadas
 #+Subtitle: Notas sobre as samples
 
-
 * estabelecendo working dir para os nossos samples
   
    #+NAME:  settings samples workdir                   
@@ -13,7 +12,6 @@
    #+RESULTS: settings samples workdir
 
 * googlesamples/android-ConstraintLayoutExamples
-
 ** Notas sobre o projeto
   https://github.com/googlesamples/android-ConstraintLayoutExamples
   No momento, a idéia a conhecer o projeto
