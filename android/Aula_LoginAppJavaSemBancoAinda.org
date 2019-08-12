@@ -134,7 +134,7 @@
     </intent-filter>
    #+END_SRC
    
-AndroidManifest.xml
+   
 * Avaliação
   Enviar via email wagner.marques3@etec.sp.gov.br o link do github do
   projeto
