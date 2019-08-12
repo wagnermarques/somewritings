@@ -109,15 +109,18 @@
 
     Onde fica esse arquivo? Vê aí logo abaixo...
 
-   #+NAME:                     
+   #+NAME: ls -l projetos/LoginAppJava/app/src/main
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      ls projetos/LoginAppJava/app/src/main
+      ls -l projetos/LoginAppJava/app/src/main
    #+END_SRC
 
-   #+RESULTS: 
+   #+RESULTS: ls -l projetos/LoginAppJava/app/src/main
    : 
-   : AndroidManifest.xml  java  res
+   : total 12
+   : -rw-rw-r--.  1 wagner wagner  720 ago 11 22:05 AndroidManifest.xml
+   : drwxrwxr-x.  3 wagner wagner 4096 ago 11 22:04 java
+   : drwxrwxr-x. 12 wagner wagner 4096 ago 11 22:04 res
 
    Segue também o conteúdo do AndroidManifest.xml do meu projeto
    
@@ -126,7 +129,8 @@
    Lembrando que o trecho abaixo serve pra fazer com que sua activity
    abra quando o seu usuário inicia a aplicação. 
    Tecnicamente falando, sua activity consegue responder a intent que 
-   #+BEGIN_SRC xml
+
+    #+BEGIN_SRC xml
     <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
