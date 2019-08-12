@@ -2,7 +2,7 @@
 #+Subtitle: Conhecendo e obtendo valores de Views (toasts)
 
 * Tema
-  LoginAppJava (Widgets Android Views)  
+  LoginAppJava (Widgets Android Views Básicas)  
 * Objetivo
   Conhecer Views do Android
   Layouts básicos 
@@ -15,17 +15,133 @@
  
 * Pré-Requisitos
 ** Conhecimentos Prévios
-   Utilizar Android Studio
-   Saber criar uma activity básica
+*** Utilizar Android Studio
+    Consultar Tem material das nossas últimas aulas
+*** Saber criar uma activity básica
+    Consultar Tem material das nossas últimas aulas
+*** java.util.HashMap
+    [[https://www.w3schools.com/java/java_hashmap.asp][w3schools]]
+    [[https://pt.stackoverflow.com/questions/8810/utilizando-um-hashmap][stackoverflow post]]    
+    O professor revisa isso com vcs na aula
 
 ** Recursos
    Android Studio
+   Url deste documento:
+   https://github.com/wagnermarques/somewritings/blob/rascunho/android/Aula_LoginAppJavaSemBancoAinda.org
+   Url do projeto LoginAppJava:
+   https://github.com/wagnermarques/somewritings/tree/rascunho/android/projetos/LoginAppJava
    
 * Procedimento didatico
   
-* Exercicios e Atividades de Reflexão/Fixação
-* Avaliação
-* Referencias
+  Aula expositiva e prática em laboratório  
+  
+  Nós vamos utilizar o projeto [[https://github.com/wagnermarques/somewritings/tree/rascunho/android/projetos/LoginAppJava][LoginAppJava]] para estudá-lo e depois
+  fazer o nosso próprio projeto.
+  
+  O projeto é uma activity que recebe usuário e senha e vê se confere
+  com os dados internos. Se tem o usuário e senha informado ele
+  retorna login com sucesso utilizando toast caso contrário, falha no
+  login.
 
+  Além disso ele mostra vários toast que mostram como pegamos os dados
+  dos widgets da activity.
+
+* Exercicios e Atividades de Reflexão/Fixação
+  Utilizar esses arquivos para fazer vc mesmo seu projeto.
+  Instalar no seu celular e mostrar para o professor
+
+    Serão apresentados vários arquivos que compôe a aplicação, fica
+    atento à localização deles no seu seu disco pra vc saber onde
+    encontrá-los depois. O Android Studio cria pra vc, mas as vezes
+    tem que fazer alguma alteração e vc tem que saber onde ele está.
+
+** Revisando o que é uma activity
+   Uma classe java e um xml
+   Nossa activity consiste nos seguintes arquivos:
+   
+   Eis nossa classe java...
+   #+NAME: ls projetos/LoginAppJava/app/src/main/java/eteczl/edu/br/loginappjava
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls projetos/LoginAppJava/app/src/main/java/eteczl/edu/br/loginappjava
+   #+END_SRC
+
+   #+RESULTS: ls projetos/LoginAppJava/app/src/main/java/eteczl/edu/br/loginappjava
+   : 
+   : MainActivity.java
+   
+   
+   #+INCLUDE: projetos/LoginAppJava/app/src/main/java/eteczl/edu/br/loginappjava/MainActivity.java :src java
+
+
+   E nosso xml
+   Essa pasta res é importante, e tem a ver com a classe R
+   Cada um dos diretórios tem sua importancia no projeto
+      #+NAME: ls projetos/LoginAppJava/app/src/main/res/
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l projetos/LoginAppJava/app/src/main/res/
+   #+END_SRC
+
+   #+RESULTS: ls projetos/LoginAppJava/app/src/main/res/
+   #+begin_example
+
+   total 40
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:05 drawable
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:05 drawable-v24
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:18 layout
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:05 mipmap-anydpi-v26
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 mipmap-hdpi
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 mipmap-mdpi
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 mipmap-xhdpi
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 mipmap-xxhdpi
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 mipmap-xxxhdpi
+   drwxrwxr-x. 2 wagner wagner 4096 ago 11 22:04 values
+   #+end_example
+
+
+   O que é importante na classe abaixo é conhecer como o android cria
+   uma reprensentação em xml da sua activity, os widgets e os layouts.
+   #+INCLUDE: projetos/LoginAppJava/app/src/main/res/layout/activity_main.xml :src xml
+
+
+*** Ela tem que estar registrada na tag aplication do arquivo AndroidManifest.xml
+
+    Onde fica esse arquivo? Vê aí logo abaixo...
+
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls projetos/LoginAppJava/app/src/main
+   #+END_SRC
+
+   #+RESULTS: 
+   : 
+   : AndroidManifest.xml  java  res
+
+   Segue também o conteúdo do AndroidManifest.xml do meu projeto
+   
+   #+INCLUDE:projetos/LoginAppJava/app/src/main/AndroidManifest.xml :src xml
+
+   Lembrando que o trecho abaixo serve pra fazer com que sua activity
+   abra quando o seu usuário inicia a aplicação. 
+   Tecnicamente falando, sua activity consegue responder a intent que 
+   #+BEGIN_SRC xml
+    <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+   #+END_SRC
+   
+AndroidManifest.xml
+* Avaliação
+  Enviar via email wagner.marques3@etec.sp.gov.br o link do github do
+  projeto
+  Mostrar o projeto funcionando no seu celular ou no emulador
+  Atividade individual para menção
+  
+* Referencias
+  
 
 
