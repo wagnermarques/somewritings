@@ -100,7 +100,7 @@
    #+end_example
 
 
-   O que é importante na classe abaixo é conhecer como o android cria
+   O que é importante no conteúdo do arquivo abaixo é conhecer como o android cria
    uma reprensentação em xml da sua activity, os widgets e os layouts.
    #+INCLUDE: projetos/LoginAppJava/app/src/main/res/layout/activity_main.xml :src xml
 

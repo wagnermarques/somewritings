@@ -4,7 +4,6 @@
 #+INCLUDE: android_setup_env.org
 
 
-
 * Notas Importantes
  adb shell am start -n
  "aulasdeandroid.eteczl.br/eteczl.edu.br.firebaseauth.MainActivity" -a
