@@ -5,8 +5,8 @@
 
 * Criando um projeto com o Android Studio
 
-* Criando um projeto sem o Android Studio
 
+* Criando um projeto sem o Android Studio
 ** Criar nosso primeiro projeto pela linha de comando
    https://developer.android.com/training/basics/firstapp/?hl=pt-br
    https://developer.android.com/training/basics/firstapp/creating-project
@@ -156,7 +156,7 @@
 
    
 * emulando o projeto
-
+  
 ** usando emulator
    https://developer.android.com/studio/run/emulator-commandline
    #+NAME: emulator -list-avds

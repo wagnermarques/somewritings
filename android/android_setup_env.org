@@ -1,10 +1,37 @@
-#+Title: Setting up Android Environment
+#+Title: Configurando o seu ambiente de Desenvolvimento Android
 
-* Configurando Ambiente para utilizar o sdk do android
-  https://developer.android.com/studio/command-line/  
+* Tema
+  Configurando ambiente de desenvolvimento android
+  
+* Objetivo
+  Apresentar os conceitos e requisitos básicos para configuração do
+  ambiente para desenvolvimento android
 
+* Duração
+  2 Blocos
+  
+* Pré-Requisitos
+** Conhecimentos Prévios
+   É necessário saber usar e definir variáveis de ambiente
+   Necessário saber como funciona a variável de ambiente path
+   Instalar o java
+   Comando básicos do seu sistema operacional
+** TODO Imagens de Configuração do Ambiente no Android Studio 
 
-** Variaveis de ambiente
+** Recursos
+   Android Studio
+
+* Procedimento didatico
+** Exposição e contextualização do professor
+   Neste momento o professor apresenta e contextualiza o assunto
+   
+** Apresentação do passo a passo de configuração do ambiente
+*** Download e Instalação da Ferramenta
+    O modo mais fácil é instalar o android studio e por ele configurar
+    os emuladores e o local do android sdk
+    https://developer.android.com/studio/?gclid=CjwKCAjw8NfrBRA7EiwAfiVJpVv9M940IfFf3qB2Ue7yug-0yzhRFrpfOzqrzY7TqtyNaUKA4_0p9RoCNskQAvD_BwE
+    
+*** Configuração das variáveis de ambiente
 *** Variaveis do local de Instalacao do SDK 
     ANDROID_HOME esta depreciado em favor de ANDROID_SDK_ROOT
     Ambas devem apontar pro local onde o sdk esta instalado
@@ -73,3 +100,18 @@
 
  
      
+
+  
+* Exercicios e Atividades de Reflexão/Fixação
+  Proposta de Atividade prática
+  
+* Avaliação
+  
+
+* Referencias
+  https://developer.android.com/studio/command-line/  
+
+* Material de Apoio
+  http://ds-forum.169107.n8.nabble.com/
+  
+
