@@ -25,3 +25,7 @@ Etec-TM-Cordova/demos
 **/**/*.org_archive
 *.rar
 android/samples/
+
+
+
+!./testes_de_software/selenium.html
