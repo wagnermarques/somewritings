@@ -1,0 +1,93 @@
+#+Title: Qualidade de Software em Android
+#+Subtitle:
+
+* gradle assembleDebug
+  Warns do gradle do comando assembleDebug
+  Veja a saída abaixo
+  
+#+BEGIN_EXAMPLE
+[wagner@nsipc163 ExampleLoginApp]$ ./gradlew assembleDebug
+:app:checkDebugClasspath
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild
+:app:compileDebugAidl NO-SOURCE
+:app:compileDebugRenderscript
+:app:checkDebugManifest
+:app:generateDebugBuildConfig
+:app:mainApkListPersistenceDebug
+:app:generateDebugResValues
+:app:generateDebugResources
+:app:mergeDebugResources
+:app:createDebugCompatibleScreenManifests
+:app:processDebugManifest
+:app:splitsDiscoveryTaskDebug
+:app:processDebugResources
+:app:compileDebugKotlin
+w: Runtime JAR files in the classpath should have the same version. These files were found in the classpath:
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.2.71/4ce93f539e2133f172f1167291a911f83400a5d0/kotlin-stdlib-jdk7-1.2.71.jar (version 1.2)
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.0/a134b0cfe9bb44f98b0b3e889cda07923eea9428/kotlin-stdlib-1.3.0.jar (version 1.3)
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.0/84a2e0288dc17cd64d692eb1e5e0de8cd5ff0846/kotlin-stdlib-common-1.3.0.jar (version 1.3)
+w: Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (37, 13): Variable 'bntListar' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (39, 13): Variable 'edCreated' is assigned but never accessed
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (70, 17): Variable 'button' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (74, 25): Variable 'uId' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (96, 17): Variable 'buttonListView' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (104, 17): Variable 'buttonListViewFromDb' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (21, 13): Variable 'select' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (84, 16): Parameter 'u' is never used
+w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (95, 16): Parameter 'u' is never used
+:app:prepareLintJar UP-TO-DATE
+:app:generateDebugSources
+:app:javaPreCompileDebug
+:app:compileDebugJavaWithJavac
+:app:compileDebugNdk NO-SOURCE
+:app:compileDebugSources
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithDexBuilderForDebug
+:app:transformDexArchiveWithExternalLibsDexMergerForDebug
+:app:transformDexArchiveWithDexMergerForDebug
+:app:mergeDebugJniLibFolders
+:app:transformNativeLibsWithMergeJniLibsForDebug
+:app:checkDebugLibraries
+:app:processDebugJavaRes NO-SOURCE
+:app:transformResourcesWithMergeJavaResForDebug
+:app:validateSigningDebug
+:app:packageDebug
+:app:assembleDebug
+
+BUILD SUCCESSFUL in 45s
+28 actionable tasks: 27 executed, 1 up-to-date
+[wagner@nsipc163 ExampleLoginApp]$ 
+#+END_EXAMPLE
+
+
+** Apontados problemas no código
+
+   #+BEGIN_EXAMPLE
+     w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (37, 13): Variable 'bntListar' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (39, 13): Variable 'edCreated' is assigned but never accessed
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (70, 17): Variable 'button' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (74, 25): Variable 'uId' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (96, 17): Variable 'buttonListView' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/ManterUsuarioActivity.kt: (104, 17): Variable 'buttonListViewFromDb' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (21, 13): Variable 'select' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (84, 16): Parameter 'u' is never used
+  w: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/AndroidStudioProjects/ExampleLoginApp/app/src/main/java/loginapp/example/fzlbpms/com/br/exampleloginapp/UsuarioRepository.kt: (95, 16): Parameter 'u' is never used
+
+  Problemas com versoes de jars no classpath
+
+   #+END_EXAMPLE
+
+** Apontados problemas no classpath
+   
+   #+BEGIN_EXAMPLE
+   w: Runtime JAR files in the classpath should have the same version. These files were found in the classpath:
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.2.71/4ce93f539e2133f172f1167291a911f83400a5d0/kotlin-stdlib-jdk7-1.2.71.jar (version 1.2)
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.0/a134b0cfe9bb44f98b0b3e889cda07923eea9428/kotlin-stdlib-1.3.0.jar (version 1.3)
+    /home/wagner/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.0/84a2e0288dc17cd64d692eb1e5e0de8cd5ff0846/kotlin-stdlib-common-1.3.0.jar (version 1.3)
+   w: Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath
+   #+END_EXAMPLE

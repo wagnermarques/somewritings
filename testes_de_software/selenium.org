@@ -1,0 +1,89 @@
+
+#+Title: Selenium
+#+Subtitle:
+
+* O que é o Selenium
+  Automação do navegador
+  Site o oficial: https://www.seleniumhq.org/
+  
+* Como utilizar
+  Como plugin do firefox ou crhome pra tornar em script os seus clicks no navegador e
+  depois executar esses clicks novamente. Neste caso estamos falando
+  do Selenium IDE https://www.seleniumhq.org/selenium-ide/
+
+  Agora vc quer usar uma linguagem de programação pra constrolar esses
+  clicks sobre uma aplicação web pra simular mesmo um usuário
+  utilizando a aplicação. Com uma linguagem de programação vc controla
+  esses clicks com mais poder, digamos assim... Nesse caso vc usará o
+  Selenium WebDriver https://www.seleniumhq.org/projects/webdriver/
+
+* Selenium IDE (Primeiro Teste)
+  Faça a instalação do plugin Selenium IDE
+  https://www.seleniumhq.org/selenium-ide/
+
+ 
+ 
+
+
+
+   #+NAME:                     
+   #+BEGIN_SRC html :session s1 :results output :exports both  
+       <!DOCTYPE html>
+<html>
+    <head>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div class="row">
+            <div class="span6 offset1">
+                <h1>Rendered PNG</h1>
+                
+                <button class="btn btn-primary">You Can't Press This</button>
+            </div>
+        </div>
+    </body>
+</html>
+   #+END_SRC
+
+   #+NAME:
+   #+BEGIN_EXPORT html
+         <!DOCTYPE html>
+<html>
+    <head>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div class="row">
+            <div class="span6 offset1">
+                <h3>Calculadora</h3>
+                Vlr1<br></br>
+                <input type="text" id="vlr1"></input><br></br>
+                Vlr1<br></br>
+                <input type="text" id="vlr2"></input><br></br>                
+                <button type="button" onclick="calcularErrado();calcularCorretamente();">Calcula</button><br></br>
+                Resultado errado:<br></br>
+                <span id="resultadoErrado"></span><br></br>
+                Resultado correto:<br></br>
+                <span id="resultadoCorreto"></span><br></br>
+            </div>
+        </div>
+        <script>
+        function calcularErrado(){
+          var vlr1 = document.getElementById("vlr1").value
+          var vlr2 = document.getElementById("vlr2").value
+          var soma = vlr1 + vlr2;          
+          document.getElementById('resultadoErrado').innerHTML = soma;
+        }
+        function calcularCorretamente(){
+          var vlr1 = document.getElementById("vlr1").value
+          var vlr2 = document.getElementById("vlr2").value
+          var soma = parseFloat(vlr1) + parseFloat(vlr2);
+          document.getElementById('resultadoCorreto').innerHTML = soma;
+        }
+
+        </script>
+    </body>
+</html>
+   #+END_EXPORT
+  
+
