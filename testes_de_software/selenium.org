@@ -2,8 +2,8 @@
 #+Title: Selenium
 #+Subtitle:
 
-* O que � o Selenium
-  Automa��o do navegador
+* O que é o Selenium
+  Automação do navegador
   Site o oficial: https://www.seleniumhq.org/
   
 * Como utilizar
@@ -11,21 +11,26 @@
   depois executar esses clicks novamente. Neste caso estamos falando
   do Selenium IDE https://www.seleniumhq.org/selenium-ide/
 
-  Agora vc quer usar uma linguagem de programa��o pra constrolar esses
-  clicks sobre uma aplica��o web pra simular mesmo um usu�rio
-  utilizando a aplica��o. Com uma linguagem de programa��o vc controla
-  esses clicks com mais poder, digamos assim... Nesse caso vc usar� o
+  Agora vc quer usar uma linguagem de programação pra constrolar esses
+  clicks sobre uma aplicação web pra simular mesmo um usuário
+  utilizando a aplicação. Com uma linguagem de programação vc controla
+  esses clicks com mais poder, digamos assim... Nesse caso vc usará o
   Selenium WebDriver https://www.seleniumhq.org/projects/webdriver/
 
 * Selenium IDE (Primeiro Teste)
-  Fa�a a instala��o do plugin Selenium IDE
+  Faça a instalação do plugin Selenium IDE
   https://www.seleniumhq.org/selenium-ide/
 
- 
- 
+  Para realizar nosso primeiro funcional teste caixa  preta
+  automatizado vamos utilizar esse html abaixo pra criar uma tela pra
+  gente poder trabalhar.
 
+  Crie um arquivo com esse código html e coloque ele em um
+  servidor. Não adianta querer dar clique duplo pra abrir no
+  navegador. Vc vai precisar de um servidor web. Pode fazer uso do
+  easyphp que temos aí no lab.
 
-
+  
    #+NAME:                     
    #+BEGIN_SRC html :session s1 :results output :exports both  
        <!DOCTYPE html>
@@ -44,6 +49,9 @@
     </body>
 </html>
    #+END_SRC
+
+   Abaixo, segue o resultado final, como deve ficar sua aplicação web
+   a ser testada.
 
    #+NAME:
    #+BEGIN_EXPORT html
@@ -87,3 +95,79 @@
    #+END_EXPORT
   
 
+   Agora siga os procedimentos apresentados nas imagens abaixo pra
+   realização do seu teste. 
+   As imagens mostram como abrir o Selenium IDE, criar um projeto de
+   testes. Depois mostra que vc ao interagir com a página da
+   aplicação, informando valores pra ela e clicando em calcular... o
+   Selenium IDE vai granvando e registrando cada click e cada valor
+   inputada no página. Essa gravação significa que o Selenium IDE vai
+   pode refazer todas as operações que vc fez, só que de forma
+   automatizada.
+
+   Segue as imagens...
+
+   Ahh só lembrando, no final dos testes não feche o Selenium IDE
+   antes de salvar o projeto.
+   
+
+   [[./imgs/seleniumide1.png]]
+
+   [[./imgs/seleniumide2.png]]
+
+   [[./imgs/seleniumide3.png]]
+
+  [[./imgs/seleniumide4.png]]
+
+  [[./imgs/seleniumide5.png]]
+
+  [[./imgs/seleniumide6.png]]
+
+  [[./imgs/seleniumide7.png]]
+
+  [[./imgs/seleniumide8.png]]
+
+  [[./imgs/seleniumide9.png]]
+
+  [[./imgs/seleniumide10.png]]
+
+  [[./imgs/seleniumide11.png]]
+
+  [[./imgs/seleniumide12.png]]
+
+  [[./imgs/seleniumide13.png]]
+
+  [[./imgs/seleniumide14.png]]
+
+  [[./imgs/seleniumide15.png]]
+
+  [[./imgs/seleniumide16.png]]
+
+
+  Pelas imagens vc percebeu que o selenium refaz o teste
+  automaticamente.
+  O assertText vc é quem escreve
+  
+  Antes de fechar, vc pode salvar o seu projeto pra rodar ele
+  novamente depois.
+  Pra isso faça conforme as imagens abaixo...
+
+[[./imgs/seleniumide16.png]]
+
+[[./imgs/seleniumide17.png]]
+
+[[./imgs/seleniumide18.png]]
+
+[[./imgs/seleniumide19.png]]
+
+[[./imgs/seleniumide20.png]]
+
+[[./imgs/seleniumide21.png]]
+
+[[./imgs/seleniumide22.png]]
+
+* Selenium WebDriver
+  
+
+
+  
