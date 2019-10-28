@@ -2,14 +2,14 @@
 title: Selenium
 author: wagner
 layout: home
-date: 2019-10-02
+date: 2019-10-03
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-10-02 qua 11:43 -->
+<!-- 2019-10-03 qui 19:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Selenium</title>
@@ -240,25 +240,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org258e16f">1. O que é o Selenium</a></li>
-<li><a href="#org55747de">2. Como utilizar</a></li>
-<li><a href="#org0a5d2be">3. Selenium IDE</a></li>
+<li><a href="#orgfa9e980">1. O que Ã© o Selenium</a></li>
+<li><a href="#orgcfb3427">2. Como utilizar</a></li>
+<li><a href="#org9870bb8">3. Selenium IDE (Primeiro Teste)</a></li>
+<li><a href="#orge43d4f6">4. Selenium WebDriver</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org258e16f" class="outline-2">
-<h2 id="org258e16f"><span class="section-number-2">1</span> O que é o Selenium</h2>
+<div id="outline-container-orgfa9e980" class="outline-2">
+<h2 id="orgfa9e980"><span class="section-number-2">1</span> O que Ã© o Selenium</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Automação do navegador
+AutomaÃ§Ã£o do navegador
 Site o oficial: <a href="https://www.seleniumhq.org/">https://www.seleniumhq.org/</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org55747de" class="outline-2">
-<h2 id="org55747de"><span class="section-number-2">2</span> Como utilizar</h2>
+<div id="outline-container-orgcfb3427" class="outline-2">
+<h2 id="orgcfb3427"><span class="section-number-2">2</span> Como utilizar</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Como plugin do firefox ou crhome pra tornar em script os seus clicks no navegador e
@@ -267,20 +268,39 @@ do Selenium IDE <a href="https://www.seleniumhq.org/selenium-ide/">https://www.s
 </p>
 
 <p>
-Agora vc quer usar uma linguagem de programação pra constrolar esses
-clicks sobre uma aplicação web pra simular mesmo um usuário
-utilizando a aplicação. Com uma linguagem de programação vc controla
-esses clicks com mais poder, digamos assim&#x2026; Nesse caso vc usará o
+Agora vc quer usar uma linguagem de programaÃ§Ã£o pra constrolar esses
+clicks sobre uma aplicaÃ§Ã£o web pra simular mesmo um usuÃ¡rio
+utilizando a aplicaÃ§Ã£o. Com uma linguagem de programaÃ§Ã£o vc controla
+esses clicks com mais poder, digamos assim&#x2026; Nesse caso vc usarÃ¡ o
 Selenium WebDriver <a href="https://www.seleniumhq.org/projects/webdriver/">https://www.seleniumhq.org/projects/webdriver/</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0a5d2be" class="outline-2">
-<h2 id="org0a5d2be"><span class="section-number-2">3</span> Selenium IDE</h2>
+<div id="outline-container-org9870bb8" class="outline-2">
+<h2 id="org9870bb8"><span class="section-number-2">3</span> Selenium IDE (Primeiro Teste)</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+FaÃ§a a instalaÃ§Ã£o do plugin Selenium IDE
+<a href="https://www.seleniumhq.org/selenium-ide/">https://www.seleniumhq.org/selenium-ide/</a>
+</p>
+
+<p>
+Para realizar nosso primeiro funcional teste caixa  preta
+automatizado vamos utilizar esse html abaixo pra criar uma tela pra
+gente poder trabalhar.
+</p>
+
+<p>
+Crie um arquivo com esse cÃ³digo html e coloque ele em um
+servidor. NÃ£o adianta querer dar clique duplo pra abrir no
+navegador. Vc vai precisar de um servidor web. Pode fazer uso do
+easyphp que temos aÃ­ no lab.
+</p>
+
+
 <div class="org-src-container">
-<pre class="src src-html" id="org697916a">       <span style="color: #ffa07a;">&lt;!DOCTYPE html&gt;</span>
+<pre class="src src-html" id="org652b2c4">       <span style="color: #ffa07a;">&lt;!DOCTYPE html&gt;</span>
 &lt;<span style="color: #87cefa;">html</span>&gt;
     &lt;<span style="color: #87cefa;">head</span>&gt;
         &lt;<span style="color: #87cefa;">link</span> <span style="color: #eedd82;">href</span>=<span style="color: #ffa07a;">"http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"</span> <span style="color: #eedd82;">rel</span>=<span style="color: #ffa07a;">"stylesheet"</span> <span style="color: #eedd82;">media</span>=<span style="color: #ffa07a;">"screen"</span>&gt;
@@ -297,6 +317,11 @@ Selenium WebDriver <a href="https://www.seleniumhq.org/projects/webdriver/">http
 &lt;/<span style="color: #87cefa;">html</span>&gt;
 </pre>
 </div>
+
+<p>
+Abaixo, segue o resultado final, como deve ficar sua aplicaÃ§Ã£o web
+a ser testada.
+</p>
 
          <!DOCTYPE html>
 <html>
@@ -335,12 +360,190 @@ Selenium WebDriver <a href="https://www.seleniumhq.org/projects/webdriver/">http
         </script>
     </body>
 </html>
+
+
+<p>
+Agora siga os procedimentos apresentados nas imagens abaixo pra
+realizaÃ§Ã£o do seu teste. 
+As imagens mostram como abrir o Selenium IDE, criar um projeto de
+testes. Depois mostra que vc ao interagir com a pÃ¡gina da
+aplicaÃ§Ã£o, informando valores pra ela e clicando em calcular&#x2026; o
+Selenium IDE vai granvando e registrando cada click e cada valor
+inputada no pÃ¡gina. Essa gravaÃ§Ã£o significa que o Selenium IDE vai
+pode refazer todas as operaÃ§Ãµes que vc fez, sÃ³ que de forma
+automatizada.
+</p>
+
+<p>
+Segue as imagens&#x2026;
+</p>
+
+<p>
+Ahh sÃ³ lembrando, no final dos testes nÃ£o feche o Selenium IDE
+antes de salvar o projeto.
+</p>
+
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide1.png" alt="seleniumide1.png" />
+</p>
 </div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide2.png" alt="seleniumide2.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide3.png" alt="seleniumide3.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide4.png" alt="seleniumide4.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide5.png" alt="seleniumide5.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide6.png" alt="seleniumide6.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide7.png" alt="seleniumide7.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide8.png" alt="seleniumide8.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide9.png" alt="seleniumide9.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide10.png" alt="seleniumide10.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide11.png" alt="seleniumide11.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide12.png" alt="seleniumide12.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide13.png" alt="seleniumide13.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide14.png" alt="seleniumide14.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide15.png" alt="seleniumide15.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide16.png" alt="seleniumide16.png" />
+</p>
+</div>
+
+
+<p>
+Pelas imagens vc percebeu que o selenium refaz o teste
+automaticamente.
+O assertText vc Ã© quem escreve
+</p>
+
+<p>
+Antes de fechar, vc pode salvar o seu projeto pra rodar ele
+novamente depois.
+Pra isso faÃ§a conforme as imagens abaixo&#x2026;
+</p>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide16.png" alt="seleniumide16.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide17.png" alt="seleniumide17.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide18.png" alt="seleniumide18.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide19.png" alt="seleniumide19.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide20.png" alt="seleniumide20.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide21.png" alt="seleniumide21.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./imgs/seleniumide22.png" alt="seleniumide22.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge43d4f6" class="outline-2">
+<h2 id="orge43d4f6"><span class="section-number-2">4</span> Selenium WebDriver</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: wagner</p>
-<p class="date">Created: 2019-10-02 qua 11:43</p>
+<p class="date">Created: 2019-10-03 qui 19:27</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

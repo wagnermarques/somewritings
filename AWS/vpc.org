@@ -1,0 +1,7 @@
+#+Title: VPC
+#+Subtitle:
+
+
+https://console.aws.amazon.com/vpc/home?region=us-east-1#vpcs:sort=VpcId
+https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html
+

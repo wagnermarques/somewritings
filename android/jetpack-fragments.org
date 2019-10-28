@@ -1,0 +1,68 @@
+#+Title: Jetpack Fragments
+#+Subtitle: Entendendo o básico e utilizando o básico
+
+* Tema
+  Jetpack fragments
+
+* Objetivo
+  Apresentar a tecnologia jetpack framents
+
+* Duração
+  2 Blocos de aula
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Vc deve saber utilizar o android studio
+   Utilizar comandos do gradle e do android sdk   
+   Os comandos do gradle que vc precisa saber são:
+   #+BEGIN_EXAMPLE
+     diretoriodoprojeto>gradlew installDebug
+     adb shell am start -n pacotedoprojeto\.NomeDaActivity
+   #+END_EXAMPLE
+   Você pode consultar o nome do pacote do projeto no androidManifest.xml e
+   também o nome da activity que vc vai querer abrir.
+   
+** Recursos
+   Android Studio
+   
+* Procedimento didatico
+  Exposição sobre framents e Atividade prática
+** Exposição sobre Fragments e Jetpack
+   Exposição sobre jetpack pelo professor
+** Atividade Prática   
+*** Fazendo as modificações no seu projeto pra ele ser um jetpack
+   Só precisa fazer isso se vc tiver usando o android studio 3.4, se
+   tiver usando o 3.5 não precisa.
+   
+   Dá pra simplificar esse processo de transformar o seu projeto em um
+   projeto jetpack apenas 
+   1) copiando o conteúdo dos meus dois arquivos build.gradle do meu projeto
+   2) copiando o conteúdo do meu gradle.properties
+  
+** Atividade Prática
+   
+* Exercicios e Atividades de Reflexão/Fixação
+  
+* Avaliação
+  
+* Referencias
+
+
+
+
+
+  
+
+  
+
+
+* temp
+  Antes de trabalhar com os arquivos build.gradle
+  Entra no gradle-wrapper.properties e muda a versão pra 5.6
+  
+
+* Refs
+  https://developer.android.com/guide/components/fragments?gclid=Cj0KCQjw5MLrBRClARIsAPG0WGx29qZ1V1_uET-UWRAqOTE06Bu_UJrDLZgshRCHv7-CvHa3FBxPF50aAqxREALw_wcB
+  https://developer.android.com/topic/libraries/architecture/lifecycle.html
+  https://tutorial.eyehunts.com/android/creating-using-fragments-example/
+  

@@ -1,0 +1,380 @@
+#+Title: Android Permissions Management
+#+Subtitle: 
+
+* Tema
+  Permissões no Android
+
+* Objetivo
+  Conhecer os fundamentos do sistema de permissões da plataforma android
+
+* Duração
+  2blocos
+
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Saber criar projeto android e classes
+
+** Recursos
+   Androi studio
+  
+* Procedimento didatico
+** Exposição do professor
+*** Referencias
+    https://developer.android.com/guide/topics/permissions/overview
+   
+*** Request Permission em tempo de execução   
+    Para Android 6.0 (API level 23) ou maior, e apps com
+    targetSdkVersion 23 ou maior, durante a instalação a plataforma do
+    android não avisa nada que o app vai precisar de permissão. 
+    Nesses casos vc que tem que fazer um código pra solictar a
+    permissão relativa a funcionalidade que o seu app vai usar no
+    dispositivo. E o usuário tem que conceder essa permissão,
+    obviamente.
+    Para dispositovos mais antigos, e targetASdk mais antigos essa
+    permissão deve ser concedia pelo usuário na hora da instalação e
+    não durante a executação do app (runtime).
+    
+    A imagem abaixo mostra como se parece o request de permissão para
+    o usuário.
+
+    O código que vc tem que fazer tem que fazer isso...
+
+    [[./imgs/andrPermissions/andrPerms18.png]]
+
+    Agora, olha pra imagem e pensa comigo...
+
+    Se u usuário clicar em "não me pergunte novamente" e ao mesmo
+    tempo "negar" a permissão... seu app ficará constatntemente sem
+    permissão e o seu usuário não vai lembrar que ele negou.. e
+    provavelmente seu usuário vai pensar "esse app não funciona..".
+
+    Mas tem mais... pensa comigo... mesmo que ele aceite dessa vez,
+    você nunca vai ter certeza qdo exatamente seu app terá permissão
+    de verdade pra usar o recurso do dispositivo.
+    
+    Em outras palavras: vc sempre tem que checar se seu app tem
+    permissão antes de usar o recurso do dispositivo...
+
+*** Estudando o AndrPermAPP1    
+    Este app é o exemplo mais simple que eu consegui fazer pra ajudar
+    a na compreensão do mecanismo...
+
+    Depois de entendermos esse código juntos, vc vai criar o o seu na
+    parte prática dessa aula...
+
+**** AndroidManifest.xml
+
+     Esse he um manifest mais simples possivel, tem so uma activity e
+     a informacao de que nossa app vai precisar de acessar a
+     localizacao do dispositivo do usuario.
+     
+     estamos falando desse trecho
+
+     #+BEGIN_EXAMPLE
+         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+     #+END_EXAMPLE
+    
+
+     Abaixo segue o arquivo AndroidManifest.xml inteiro.
+
+    #+BEGIN_SRC xml
+    <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.eteczl.andrpermapp1">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+
+#+END_SRC
+
+**** Codigo da nossa activity (que solicita as permissoes)
+     :PROPERTIES:
+     :ORDERED:  t
+     :END:
+     
+     Agora  segue a nossa ativiti inteira primeiro e depois a gente
+     vai estudar alguns trechos...
+
+     Então vale a pena dar fazer uma leitura mais global do código pra
+     gente entrar nos detalhes daqui a pouco...
+
+     #+BEGIN_SRC java
+     package br.eteczl.andrpermapp1;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import static android.Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    private final int ALL_PERMISSIONS_RESULT = 101;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        boolean ANTES_PermACCESS_COARSE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_COARSE_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_COARSE_LOCATION : "+ANTES_PermACCESS_COARSE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean ANTES_PermACCESS_FINE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_FINE_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_FINE_LOCATION : "+ANTES_PermACCESS_FINE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean ANTES_PermACCESS_BACKGROUND_LOCATION = this.checkPermissionIsGranted(this, ACCESS_BACKGROUND_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_BACKGROUND_LOCATION : "+ANTES_PermACCESS_BACKGROUND_LOCATION,Toast.LENGTH_SHORT).show();
+
+        askUserForPermission(ACCESS_COARSE_LOCATION);
+        askUserForPermission(ACCESS_FINE_LOCATION);
+        askUserForPermission(ACCESS_BACKGROUND_LOCATION);
+
+        boolean Depois_ANTES_PermACCESS_COARSE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_COARSE_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_COARSE_LOCATION : "+Depois_ANTES_PermACCESS_COARSE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean Depois_ANTES_PermACCESS_FINE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_FINE_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_FINE_LOCATION : "+Depois_ANTES_PermACCESS_FINE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean Depois_ANTES_PermACCESS_BACKGROUND_LOCATION = this.checkPermissionIsGranted(this, ACCESS_BACKGROUND_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_BACKGROUND_LOCATION : "+Depois_ANTES_PermACCESS_BACKGROUND_LOCATION,Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    //antes do lollipop a administracao das permissoes era na instalacao
+    //era install time e nao como hoje, no runtime time (tempo de execucao)
+    //por isso a gente precisa saber em qual plataforma android nosso software
+    //esta rodando
+    private static boolean platformIsAboveLollipop() {
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+    }
+
+
+
+    public boolean checkPermissionIsGranted(MainActivity mainActivity, String perm) {
+        //se for lollipo so o fato do app estar instalado
+        //significa que a permissao ja foi concedido caso contrario
+        //a instalacao nem ocorreria
+        //entao so faz sentido checar se a plat for
+        //above lollipop
+        if (platformIsAboveLollipop()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return (
+                        ContextCompat.checkSelfPermission(this,
+                                perm) == PackageManager.PERMISSION_GRANTED);
+            }
+        }
+        return true;
+    }
+
+
+
+    private void askUserForPermission(String perm){
+        //Vamos perguntar pro usuario apenas permissoes que
+        //ainda nao foram concedidas
+        if (!this.checkPermissionIsGranted(this, perm)) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    perm)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            } else {
+                // No explanation needed; request the permission
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                perm},
+                        ALL_PERMISSIONS_RESULT);
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            Toast.makeText(this, "Permission ACCESS_COARSE_LOCATION has already been granted" , Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+     #+END_SRC
+
+
+*****  Vamos estudar alguns detalhes desse código da nossa Activity?
+     
+****** Primeiro que tal entender esses imports?
+
+     #+BEGIN_SRC java
+     import static android.Manifest.permission.ACCESS_BACKGROUND_LOCATION;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
+     #+END_SRC
+
+****** e esse ALL_PERMISSIONS_RESULT?
+      e essa linha?
+      #+BEGIN_SRC java
+          private final int ALL_PERMISSIONS_RESULT = 101;
+      #+END_SRC
+
+     De cara pra perceber que tem a ver com essas..
+      #+BEGIN_SRC java
+                      ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                perm},
+                        ALL_PERMISSIONS_RESULT);
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+
+      #+END_SRC
+   
+****** metodo onCreate 
+
+       No metodo on create he onde tudo acontece
+
+       #+BEGIN_SRC java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+                
+        boolean ANTES_PermACCESS_COARSE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_COARSE_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_COARSE_LOCATION : "+ANTES_PermACCESS_COARSE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean ANTES_PermACCESS_FINE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_FINE_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_FINE_LOCATION : "+ANTES_PermACCESS_FINE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean ANTES_PermACCESS_BACKGROUND_LOCATION = this.checkPermissionIsGranted(this, ACCESS_BACKGROUND_LOCATION);
+        Toast.makeText(this,"ANTES_PermACCESS_BACKGROUND_LOCATION : "+ANTES_PermACCESS_BACKGROUND_LOCATION,Toast.LENGTH_SHORT).show();
+
+        askUserForPermission(ACCESS_COARSE_LOCATION);
+        askUserForPermission(ACCESS_FINE_LOCATION);
+        askUserForPermission(ACCESS_BACKGROUND_LOCATION);
+
+        boolean Depois_ANTES_PermACCESS_COARSE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_COARSE_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_COARSE_LOCATION : "+Depois_ANTES_PermACCESS_COARSE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean Depois_ANTES_PermACCESS_FINE_LOCATION = this.checkPermissionIsGranted(this, ACCESS_FINE_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_FINE_LOCATION : "+Depois_ANTES_PermACCESS_FINE_LOCATION,Toast.LENGTH_SHORT).show();
+
+        boolean Depois_ANTES_PermACCESS_BACKGROUND_LOCATION = this.checkPermissionIsGranted(this, ACCESS_BACKGROUND_LOCATION);
+        Toast.makeText(this,"Depois_ANTES_PermACCESS_BACKGROUND_LOCATION : "+Depois_ANTES_PermACCESS_BACKGROUND_LOCATION,Toast.LENGTH_SHORT).show();
+
+    }
+
+       #+END_SRC
+
+****** Demais metodos de apoio utilizados no oncreate
+       #+BEGIN_SRC java
+           //antes do lollipop a administracao das permissoes era na instalacao
+    //era install time e nao como hoje, no runtime time (tempo de execucao)
+    //por isso a gente precisa saber em qual plataforma android nosso software
+    //esta rodando
+    private static boolean platformIsAboveLollipop() {
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+    }
+
+
+
+    public boolean checkPermissionIsGranted(MainActivity mainActivity, String perm) {
+        //se for lollipo so o fato do app estar instalado
+        //significa que a permissao ja foi concedido caso contrario
+        //a instalacao nem ocorreria
+        //entao so faz sentido checar se a plat for
+        //above lollipop
+        if (platformIsAboveLollipop()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return (
+                        ContextCompat.checkSelfPermission(this,
+                                perm) == PackageManager.PERMISSION_GRANTED);
+            }
+        }
+        return true;
+    }
+
+
+
+    private void askUserForPermission(String perm){
+        //Vamos perguntar pro usuario apenas permissoes que
+        //ainda nao foram concedidas
+        if (!this.checkPermissionIsGranted(this, perm)) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    perm)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            } else {
+                // No explanation needed; request the permission
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
+                                perm},
+                        ALL_PERMISSIONS_RESULT);
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            Toast.makeText(this, "Permission ACCESS_COARSE_LOCATION has already been granted" , Toast.LENGTH_LONG).show();
+        }
+    }
+
+       #+END_SRC
+
+** Parte prática: Criação do projeto
+*** projeto1: Basicao De Como Solicitar Uma Permissao do Usuario
+    Crie um projeto normalmente com uma empty activity
+    Pode nomear o aplilcativo como br.edu.eteczl.pam2.androidpermissions
+    essa parte "br.edu.eteczl.pam2" vc poe como pactoe e essa
+    androidpermissions" vc poe como nome do projeto
+
+    
+
+
+* Exercicios e Atividades de Reflexão/Fixação
+* Avaliação
+* Referencias
+
+
+
+
+

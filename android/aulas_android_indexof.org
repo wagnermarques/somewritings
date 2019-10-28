@@ -1,0 +1,35 @@
+#+Title: Index Aulas sobre Android
+#+Subtitle: Organização das aulas
+
+* Já podem ser ministradas
+  file:Aula_LoginAppJavaSemBancoAinda.org
+  file:activity_chamando_outra.org
+  file:listviewexplanation.org
+  Aula dada em pam1
+  
+  file:jetpack.org
+  file:HelloWorldJetpack.org
+  file:PAM1RecycleView.org
+  file:jetpack-fragments.org
+  
+* Aulas em elaboração
+  file:android_setup_env.org
+  file:android_commands_basic.org
+  file:android-create-project.org
+  file:android_commands_intermediate.org
+  android-commands-advaced
+  android-notifications
+
+
+  file:android_messages_dictionary.org
+  file:PAMIGmaps.org
+  file:AppMap.org
+
+  file:firebase_android.org 
+  Ainda nao tem nada nesta aula
+
+  file:firebase_android_curso_udacity.org
+  muito antigo
+  
+* projeto da disciplina  
+  file:usando_git_para_trabalhar_no_nosso_projeto.org

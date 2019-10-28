@@ -1,0 +1,265 @@
+#+Title:
+#+Subtitle:
+
+* Preparando nosso ambiente pro nosso desenvolvimento    
+** configurando proxy (se for necessario)
+  
+   #+NAME: npm config list                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      npm config list
+   #+END_SRC
+
+   #+RESULTS: npm config list
+   #+begin_example
+
+   [wagner@localhost webpack]$ ; cli configs
+   metrics-registry = "https://registry.npmjs.org/"
+   scope = ""
+   user-agent = "npm/6.5.0 node/v10.16.0 linux x64"
+
+   ; userconfig /home/wagner/.npmrc
+   https-proxy = "http://cid2:cid2@192.168.0.2:3128/"
+   proxy = "http://cid2:cid2@192.168.0.2:3128/"
+
+   ; node bin location = /usr/bin/node
+   ; cwd = /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack
+   ; HOME = /home/wagner
+   ; "npm config ls -l" to show all defaults.
+   #+end_example
+  
+
+   #+NAME: npm config unset proxy
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      npm config delete proxy
+      npm config delete https-proxy
+      npm config list
+   #+END_SRC
+
+   #+RESULTS: npm config unset proxy
+   #+begin_example
+
+   [wagner@localhost webpack]$ [wagner@localhost webpack]$ ; cli configs
+   metrics-registry = "https://registry.npmjs.org/"
+   scope = ""
+   user-agent = "npm/6.5.0 node/v10.16.0 linux x64"
+
+   ; node bin location = /usr/bin/node
+   ; cwd = /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack
+   ; HOME = /home/wagner
+   ; "npm config ls -l" to show all defaults.
+   #+end_example
+
+* Iniciando projeto gettingstated
+
+** Criando o projeto
+   #+NAME: setup env
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export projdir=$(pwd)/projetos/gettingstarting
+      echo "projdir="$projdir
+   #+END_SRC
+
+   #+RESULTS: setup env
+   : 
+   : [wagner@localhost webpack]$ projdir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting
+
+
+** npm init
+   #+NAME: npm init -y
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      ls -l
+      npm init -y
+   #+END_SRC
+
+   #+RESULTS: npm init -y
+   #+begin_example
+
+   [wagner@localhost gettingstarting]$ total 0
+   Wrote to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/package.json:
+
+   {
+     "name": "gettingstarting",
+     "version": "1.0.0",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+       "test": "echo \"Error: no test specified\" && exit 1"
+     },
+     "keywords": [],
+     "author": "",
+     "license": "ISC"
+   }
+   #+end_example
+
+
+** Instalando o webpack   
+   #+NAME: install webpack      
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      npm install webpack --save-dev
+      npm install webpack-cli --save-dev
+      echo "### package.json mostrando webpack como dependencia de dev"
+      cat package.json
+   #+END_SRC
+
+   #+RESULTS: install webpack
+   #+begin_example
+
+   [wagner@localhost gettingstarting]$ npm WARN gettingstarting@1.0.0 No description
+   npm WARN gettingstarting@1.0.0 No repository field.
+   npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/fsevents):
+   npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+   + webpack@4.35.0
+   updated 1 package and audited 5236 packages in 3.717s
+   found 0 vulnerabilities
+
+   webpack-cli@3.3.4 postinstall /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli
+   node ./bin/opencollective.js
+
+
+
+                               Thanks for using webpack!
+                    Please consider donating to our Open Collective
+                           to help us maintain this package.
+
+
+
+                    Donate: https://opencollective.com/webpack/donate
+
+
+   npm WARN gettingstarting@1.0.0 No description
+   npm WARN gettingstarting@1.0.0 No repository field.
+   npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/fsevents):
+   npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+   + webpack-cli@3.3.4
+   updated 1 package and audited 5236 packages in 3.313s
+   found 0 vulnerabilities
+   ### package.json mostrando webpack como dependencia de dev
+   {
+     "name": "gettingstarting",
+     "version": "1.0.0",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+       "test": "echo \"Error: no test specified\" && exit 1"
+     },
+     "keywords": [],
+     "author": "",
+     "license": "ISC",
+     "devDependencies": {
+       "webpack": "^4.35.0",
+       "webpack-cli": "^3.3.4"
+     }
+   }
+   #+end_example
+
+   
+   #+NAME: project structure
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      mkdir src
+      mkdir dist      
+   #+END_SRC
+
+   #+RESULTS: project structure
+
+
+   
+* Conceitos Importantes
+** Webpack mode
+   O build vai se comportar diferente entre o modo production e
+   development
+   
+** Source Maps
+  devtool: 'source-map'
+  Como você iria debugar um código depois de criado o bundle? Depois
+  de criado o bundle o código está unido, comprimido etc..
+  A resposta são os source maps, que mapeia o código comprimido pro
+  código que você escreveu.
+  O Firefox sabe usar source maps por padrão, no chrome tem que
+  ativar.
+  Pra indicar pro navegador que o seu código está acompanhado de
+  source map, coloque um comentário, como esse abaixo, no final do seu código
+  otimizado.[fn:sourcemaps1]
+
+  //# sourceMappingURL=/path/to/script.js.map
+
+  Também dá pra informar que o seu código tem um source map via
+  protocolo HTTP enviando na sua resposta que envia o seu javascript a
+  seguinte linha de cabecalho:
+  
+  X-SourceMap: /path/to/script.js.map
+
+  Ainda sobre source maps, tem uma discussão interessante porque pode
+  ser influenciada pelo modo "production" ou "development" do webpack.[fn:sourcemaps3]
+
+  A artigo de blog de Robat Williams esclarece mais sobre as
+  configurações possíveis para criação dos sourcemaps [fn:sourcemaps2]
+  
+  No *modo development*, queremos:
+  Rebuilds Rápidos
+  
+  - Modo none: 
+    Não colocar no seu webpack.config.js devtool significa não usar sourcemaps.
+  - Modo eval: 
+    Esse modo só separa os arquivos, nomeia eles, e os
+    organiza de acordo com a estrutura de pastas do seu projeto.
+  - Modo cheap-eval-source-map
+    Aquele código que o webpack gera é removido
+    Passa a ser possível observar o output dos seus loaders e
+    transpilers
+    Também é bastantes rápido o build e rebuilds
+  - cheap-module-eval-source-map
+    Agora o source map traz o seu codigo fonte
+    O build não é tão rápido mas os rebuilds são
+  - eval-source-map
+    São adicionados ao seu código fonte mapealment em nível de coluna
+    (column-level mappings) o que permite vc fazer uso de breakpoints
+    em nível de instruções do seu código.
+    É a melhor opçao com builds lentos mas rebuilds rápidos. O debug,
+    neste caso, é ótimo.
+
+  No *modo production* queremos:
+  
+  Não disponibilizar o código fonte - confidencialidade.
+  Não disponibilizar downloads desenecessários - performance.
+  Stacktraces úteis - manutenibilidade
+
+  - Modo none: 
+    Não usar sourcemaps implica nada de stacktraces
+  - Modo source-map: 
+    Essa opção gera um arquivo separado com mapeamento completo ao seu
+    código fonte original e no código compilado é colocado aquele
+    comentário que diz pro nevegador o local onde ele carrega do
+    arquivo de source map.
+    Tem que restringir o acesso a esse arquivo pra proteger o seu código.
+  - Modo hidden-source-map
+    Gera tudo como no source-map mas não inclui o comentário que
+    permite o navegador carregar o source map.
+  - nosources-source-map
+    Neste caso vc consegue um stacktrace interessante do seu usuário
+    em caso de algum problema, mas o custo disso é que a estrutura de
+    diretório dos seu código fica exposta bem como o nome do seus
+    módulos.
+    O nome dos métodos e o seu código fonte em sí não são
+    disponibilizados e também não são utilizados no stacktrace o que
+    empobrece um pouco as qtde de informações do seu stacktrace.
+
+
+
+
+* refs
+[fn:webpack1] https://webpack.js.org/guides/getting-started/
+[fn:webpack2] https://webpack.js.org/concepts/
+
+[fn:sourcemaps1] https://blog.teamtreehouse.com/introduction-source-maps
+[fn:sourcemaps2]https://blog.scottlogic.com/2017/11/01/webpack-source-map-options-quick-guide.html
+[fn:sourcemaps3] https://stackoverflow.com/questions/48986641/webpack-4-sourcemaps

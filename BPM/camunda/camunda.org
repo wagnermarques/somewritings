@@ -1,0 +1,342 @@
+#+Title: Camunda Anots
+#+Subtitle:
+
+
+* Introducao e Apresentacao deste material
+  https://docs.camunda.org/get-started/quick-start/
+  
+
+* Download e Instalacao
+** Setup Environment 
+  #+NAME:  setup environment                   
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+     #starts code
+     
+     #export ESB_HOME=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/fuse/jboss-fuse-6.1.0.redhat-379
+     export ESB_HOME=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/talend/Runtime_ESBSE/container
+     export ESB_DEPLOY_DIR=$ESB_HOME/deploy
+     export ESB_CMD="$ESB_HOME/bin/client -r 7"
+     export bpmnRepoDir=/home/wagner/wagnerdocri@gmail.com3/bpmn-repository
+     export CAMUNDA_BPM_PLATFORM_HOME=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/servers/camunda_bpm
+     export CAMUNDA_BPM_MODELER_HOME=/home/wagner/wagnerdocri@gmail.com3/progsativos/camundamodeler/camunda-modeler-3.3.5-linux-x64
+     export diretorioDeProjetos=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/artifacts     
+     export PastaDeSolicitacaoDeClientes=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/file-repository/pastaDeSolicitacaoDeClientes
+  #+END_SRC
+
+  #+RESULTS: setup environment
+
+* Rodando o Camunda BPM Platform, Camunda Modeler e ESB (Fuse)
+** Rodando o camunda platform
+ 
+   O comando abaixo roda a plataforma camunda 
+   Sera aberta no navegador a seguinte url
+   http://localhost:8080/camunda/app/admin/default/#/login
+
+  #+NAME: $CAMUNDA_BPM_PLATFORM_HOME/start-camunda.sh
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+     #starts code
+     $CAMUNDA_BPM_PLATFORM_HOME/start-camunda.sh &
+
+     #use esse comando abaixo pra para o camunda
+     #$CAMUNDA_BPM_PLATFORM_HOME/shutdown-camunda.sh
+  #+END_SRC
+
+  #+RESULTS: $CAMUNDA_BPM_PLATFORM_HOME/start-camunda.sh
+  : 
+  : [1] 2640
+
+
+
+** Rodando o camunda modeler   
+   #+NAME: $CAMUNDA_BPM_MODELER_HOME/camunda-modeler                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code      
+      $CAMUNDA_BPM_MODELER_HOME/camunda-modeler &
+   #+END_SRC
+
+   #+RESULTS: $CAMUNDA_BPM_MODELER_HOME/camunda-modeler
+   : 
+   : [1] 4199
+
+
+
+** Rodando nosso ESB (Talend )
+
+   #+NAME: rodando esb
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $ESB_HOME && ./bin/start
+      #cd $ESB_HOME && ./bin/stop
+      #$ESB_CMD "feature:list | grep console"
+      #$ESB_CMD "feature:list | grep camel"
+      #$ESB_CMD "camel:context-list"
+      #$ESB_CMD "camel:endpoint-list"
+   #+END_SRC
+
+   #+RESULTS: rodando esb
+
+
+* Acesssando o Camunda BPM Platform, Camunda Modeler e ESB (Karaf)
+** Acessando nossas ferramentas instaladas
+   A ideia aqui e so acessar pra ver se esta tudo funcionando
+*** Acessando o camunda BPM
+
+    http://localhost:8080/camunda/app/admin/default/#/login
+
+    pra ver os logs do camunda, usar o comando abaixo...
+
+    tail -f /home/wagner/wagnerdocri@gmail.com3/progsativos/camunda/server/apache-tomcat-9.0.19/logs/catalina.out
+    
+    Usuario: Administrador
+
+    Senha: Administrador
+
+**** api rest
+     Da pra consultar a referencia da api rest aqui:https://docs.camunda.org/manual/7.5/reference/rest/
+
+***** Deployments
+
+      
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      echo "Qtos deployments?"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/deployment/count)
+      echo "----------------------------------------------------------------------"
+      echo "."
+      
+      echo "Fazer deploy"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/deployment/create)
+      echo "----------------------------------------------------------------------"
+      echo "."
+
+      
+   #+END_SRC
+
+   #+RESULTS: 
+   : 
+   : Qtos deployments?
+   : {"count":2}
+   : ----------------------------------------------------------------------
+   : .
+
+***** process definitions
+      
+
+      
+
+   #+NAME: process definitions rests                    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code      
+      echo "Qtde de processos instalados no engine"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/process-definition/count)
+
+      echo "Engine name"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/process-definition/count)
+      echo "----------------------------------------------------------------------"
+      echo "."
+
+      echo "Get Executions"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/execution)
+      echo "----------------------------------------------------------------------\n"
+
+      echo "Get Executions"
+      echo $(curl --fail --silent --show-error localhost:8080/engine-rest/execution)
+
+   #+END_SRC
+
+   #+RESULTS: process definitions rests
+   #+begin_example
+
+   Qtde de processos instalados no engine
+   {"count":2}
+   [wagner@nsipc163 camunda]$ Engine name
+   {"count":2}
+   ----------------------------------------------------------------------\n
+   [wagner@nsipc163 camunda]$ Get Executions
+   [{"id":"6184a0c3-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6184a0c3-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"62023563-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"62023563-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"62321e80-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"623c7edf-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"623c7edf-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6243aaff-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6243aaff-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6262cc3b-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null}]
+   ----------------------------------------------------------------------\n
+   [wagner@nsipc163 camunda]$ Get Executions
+   [{"id":"6184a0c3-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6184a0c3-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"62023563-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"62023563-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"62321e80-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6224158a-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"623c7edf-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"623c7edf-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6243aaff-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6243aaff-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null},{"id":"6262cc3b-f209-11e9-ae7a-7440bbfe2c2f","processInstanceId":"6258b9e5-f209-11e9-ae7a-7440bbfe2c2f","ended":false,"tenantId":null}]
+   #+end_example
+   
+
+   
+
+   
+   #+NAME:  see result                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat out.json
+   #+END_SRC
+
+   #+RESULTS: see result
+   : 
+   : out.json
+   
+*** Acessando o camunda Modeler
+*** Acesando o nosso esb 
+    Usando o webconsole do karaf
+
+    http://localhost:8181/system/console/bundles
+    
+    Usando webconsole no talend
+
+    https://localhost:9001/system/console/bundles
+    
+
+* Instalando (Deploy) os artefatos de software para rodar o processo
+
+** Instalando no esb dependencias necessarias pra rodar nossos servicos
+
+      #+NAME:  installnig component                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      #no talend nao precisa
+      #https://camel.apache.org/components/latest/jasypt.html
+      cd $ESB_CMD feature:install camel-jasypt
+   #+END_SRC
+
+
+** Instalando servicos no barramento de servicos
+   Agora que a gente ligou nossos servidores falta instalar ainda o que
+   vamos rodar neles. Por exemplo, falta instalar os processos e os
+   servicos no barramento de servicos.
+
+*** Instalando os webservices no nosso barramento de servicos
+    
+    Caso tenha algum servico no barramento, vamos remover todos pra
+    comecar do zero.
+
+    Remover os servicos do barramento significa apenas apagar os
+    artefatos na pasta deploy
+   #+NAME:  undeploy all                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      rm $ESB_HOME/deploy/*
+   #+END_SRC
+
+   #+RESULTS: undeploy all
+   : 
+   : rm: não foi possível remover '/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/talend/Runtime_ESBSE/container/deploy/*': No such file or directory
+
+
+    Fazendo deploy dos servicos
+
+   #+NAME: instalando servicos no barramento                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      #ls -l $diretorioDeProjetos
+      #cp -f $diretorioDeProjetos/UspTimerExample_CamelBlueprintCxt.xml $ESB_HOME/deploy
+      cp -f $diretorioDeProjetos/UspAgenciaViagens_CamelBLueprintCtx.xml $ESB_HOME/deploy
+      #cp -f $diretorioDeProjetos/cxf-blueprint-camel-example/target/cxf-blueprint-camel-example-1.0-SNAPSHOT.jar $ESB_HOME/deploy
+      
+
+      #cxf-blueprint-camel-example-1.0-SNAPSHOT.jar
+      #osgi:install -s mvn:com.capgemini.example/cxf-blueprint-camel-example/1.0-SNAPSHOT
+      
+   #+END_SRC
+
+   #+RESULTS: instalando servicos no barramento
+
+
+   Aqui nos simulamos a criacao o agente de viagens que recebeu o
+   cliente na agencia, preencheu um arquivo e salvou na pasta
+   especifica que sempre qdo um arquivo chega nessa pasta o processo
+   sera iniciado.
+   
+   #+NAME:  simula salvar arquivo de solicitacao na pastaDeSolicitacaoDeClientes                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+      echo "arquivo de solicitacao 1" > $PastaDeSolicitacaoDeClientes/ArqDeSol1.txt
+      ls -l $PastaDeSolicitacaoDeClientes
+   #+END_SRC
+
+   #+RESULTS: simula salvar arquivo de solicitacao na pastaDeSolicitacaoDeClientes
+   : 
+   : [wagner@nsi_pc_149_3 pastaDeSolicitacaoDeClientes]$ [wagner@nsi_pc_149_3 pastaDeSolicitacaoDeClientes]$ total 4
+   : -rw-rw-r--. 1 wagner wagner 25 out 24 09:37 ArqDeSol1.txt
+
+*** Conferindos se esta tudo pronto pra rodar o processo
+**** Conferindo karaf (nosso esb)
+     
+     verificando se nossos bundles estao instalados e ativos
+
+     #+NAME:Conferindos se esta tudo pronto pra rodar
+     #+BEGIN_SRC shell :session s1 :results output :exports both
+        #starts code
+        #$ESB_CMD "bundle:list"
+        #$ESB_CMD "camel:list-context"
+        $ESB_CMD "camel:context-stop CamelContextName--RecebeSolicitacaoDoCliente"
+     #+END_SRC
+
+     #+RESULTS: Conferindos se esta tudo pronto pra rodar
+     : 
+     : CAMUNDA_BPM_MODELER_HOME/camunda-modeler
+     : [wagner@Unknown apache-karaf-4.2.6]$ Logging in as karaf
+     : [31mCommand not found: [0m[31;1mcamel:list-context[0m
+
+
+
+*** rest operations
+**** rest with curl
+     
+   #+NAME:  curl
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      curl -v -H "Accept:application/json" http://localhost:8080/engine-rest/case-instance/count       
+      #curl --request GET -L -v  http://localhost:8080/engine-rest/case-instance/count
+   #+END_SRC
+
+   #+RESULTS: curl
+
+
+**** deploy
+   https://docs.camunda.org/manual/7.7/reference/rest/deployment/post-deployment/  
+   #+NAME:  deploy                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+   #+END_SRC
+
+*** urls references
+    
+**** P�gina de boas vindas que mostra as appps do camunda
+     localhost:8080/camunda-welcome/index.html
+
+**** app cockpit
+     localhost:8080/camunda/app/cockpit/
+
+
+**** Admin    
+     Pra entender melhor o app admin acesse:
+     https://docs.camunda.org/manual/7.11/webapps/admin/
+     
+     http://localhost:8080/camunda/app/admin/default/#/
+
+**** Login:      
+     http://localhost:8080/camunda/app/welcome/default/#!/login
+
+    
+
+
+*** Getting started
+    
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      mvn package
+
+   #+END_SRC
+
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+   #+END_SRC
+
+** Usando Camunda Modeler e rodando um processo e integrando ele com nossa logica de negocio
+   

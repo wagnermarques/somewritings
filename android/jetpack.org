@@ -1,0 +1,381 @@
+#+Title: Jetpack
+#+Subtitle: Entendendo o básico e utilizando o básico
+
+* Tema
+  Jetpack - Entendendo o básico e Usando o básico  
+
+* Objetivo
+  Apresentar as razões do porquê vale a pena usar jetpack
+  Apresentar o Jetpack e fazer uma aplicação básica
+  Demonstrar a diferença de um projeto que usa jetpack e que não usa  
+
+* Duração
+  2 Blocos de aula
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Vc deve saber utilizar o android studio
+   Utilizar comandos do gradle e do android sdk   
+   Os comandos do gradle que vc precisa saber são:
+   #+BEGIN_EXAMPLE
+     diretoriodoprojeto>gradlew installDebug
+     adb shell am start -n pacotedoprojeto\.NomeDaActivity
+   #+END_EXAMPLE
+   Você pode consultar o pacote do projeto no androidManifest.xml e
+   também o nome da activity que vc vai querer abrir.
+   
+** Recursos
+   Android Studio
+
+* Procedimento didatico
+  Exposição sobre o jetpack
+  Atividade prática
+** Exposição sobre o Jpack
+
+*** Princípios e Arquitetura Jetpack App
+**** Princípios arquiteturais mais comumns
+     Princípios arquiteturais são:
+   + Separação de responsabilidades
+     A UIs e fragmentos só deveriam conter código relativos a lógica
+     intrínseca da UI e da interação dela com o SO.
+     Isso vai simplificar e evitar problemas relativos ao cliclo de
+     vida das UIs.
+** Atividade Prática
+*** Criando um projeto Jetpack
+
+  O Android Studio versão 3.2.1 não cria seus projetos usando o
+  jetpack ainda. Então a gente tem que criar um projeto normalmente
+  mas configurar ele pra usar o jetpack na mão.
+  Vamos ver nessa sessão do material como fazer essa configuração.
+
+** Veja a versão do seu android studio   
+   [[./imgs/jetpackstarting/jp1.png]]
+   Se vc tem essa versão ou menor, tem que seguir esse tutorial.
+** Fazendo as modificações no seu projeto pra ele ser um jetpack
+*** primeiro crie um projeto com o android studio
+    Bom a idéia é fazer modificações nesse projeto pra que ele passe a
+    ser um projeto do jetpack.
+    A metodologia que vamos utilizar é ver quais as diferenças entre o
+    projeto sunflower e o nosso.
+    Esse projeto sunflower é um sample do google com boas práticas do
+    jetpack.
+    Vc pode encontrá-lo no link abaixo
+    
+    https://github.com/googlesamples/android-sunflower
+
+    Pra não virar um jogo dos 7 erros, a gente vai seguir essa página
+    do android developers sobre como fazer isso.
+
+    https://developer.android.com/jetpack/docs/getting-started
+        
+*** modifique ele com esse passo a passo    
+**** repositório das bibliotecas do jetpack
+    A documentação do jetpack nos diz que todos os componentes do Jetpack estão disponíveis no repositório
+    maven do google por isso vc precisa dele no seu build.gradle do
+    projeto 
+  
+  #+BEGIN_SRC 
+  allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+  }  
+  #+END_SRC
+
+  Então nossa tarefa é ver o nosso build.gradle e comparar com
+  build.gradle do sunflower.
+  
+  Vou facilitar as coisas pra vc... vou colocar aqui o link dos
+  arquivos do sunflower que vamos olhar. Nesse caso é do build.gradle
+
+  https://github.com/googlesamples/android-sunflower/blob/master/build.gradle
+
+  Realmente o build.gradle do sunflower tem esse trecho de código acima,
+  veja se o seu também tem, se não, faça a adequação.
+  
+
+**** Atualizando o gradlew  
+    
+  Pode ser que vc também veja esse erro da figura abaixo, dizendo que
+  pra usar o jetpack vc tem que trabalhar com o gradle versão mínima
+  5.5.1
+  Eu tomei esse erro também, veja na figura abaixo.
+
+  [[./imgs/jetpackstarting/minimumsuportedgradleversion.png]]
+  
+  Olhando na imagem é só seguir a orientação que o android studio tá
+  dizendo, ou seja, ajustar o gradle wraper.
+  Pra fazer esse ajuste, faça o seguinte...
+  Encontre a pasta gradle/wrapper ajuste o arquivo
+  gradle-wrapper.properties conforme a imagem abaixo.
+  
+  Que é igualzinho também no sunflower
+  https://github.com/googlesamples/android-sunflower/blob/master/gradle/wrapper/gradle-wrapper.properties
+  
+
+  Olhe a imagem abaixo e veja como ficou meu gradlew.properties
+  Perceba também que ao sincronizar o projeto o gradle 5.5.1 é
+  baixado.
+  
+  [[./imgs/jetpackstarting/ajustedogradlewrapperpro5.5.1.png]]
+
+  Esse gradle que está sendo baixado é o que vai ser utilizado pra
+  buildar o projeto. O interessante é que mesmo que vc tenha um gradle
+  na versão diferente, o projeto sempre vai usar esse que está sendo
+  baixado, desde que vc utilize também ao invés do comando gradle,
+  você rode o comando ./gradlew que está no diretório do projeto. 
+  Isso garante que o buid do seu projeto não dependa da versão do
+  gradle que o usuário tem instalado na máquina mas sim do wrapper do
+  gradle que no nosso caso está sendo a 5.1.1.
+  
+
+**** Adicionando componentes do jetpack
+
+     Agora a gente precisa ajustar as dependencias do nosso projeto
+  pra que ele faça uso das bibliotecas do jetpack.
+  
+  A sessão dependencies do projeto que eu criei no android studio (que
+  estou querendo transformar pra jetpcak) encontra-se abaixo
+
+  [[./imgs/jetpackstarting/buildgradle-sessao-dependencies.png]]
+
+
+  a sessão do build.gradle o sunflower vc pode ver no link
+
+  https://github.com/googlesamples/android-sunflower/blob/master/build.gradle
+
+  vc vai ver que o sunflower está usando as seguintes dependencias
+
+  #+BEGIN_EXAMPLE
+  dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+    }
+  #+END_EXAMPLE
+
+  Nossa tarefa é substituir as dependencias antigas por essas do
+  jetpack. o Resultado final é o seguinte...
+  
+  Perceba que essas configurações tá incluindo kotlin pra que a gente
+  possa programar tanto em java quanto em kotling.
+  Perceba também que as versões são variáveis que estão definidas no
+  bloco ext do mesmo arquivo build.gradle do sunflower. Veja a imagem
+  abaixo pra facilitar...
+
+  [[./imgs/jetpackstarting/variaveisquedefinemversoesdasdependencias.png]]
+
+  No gradle.build do módulo app também define essa dependencia do
+  plugin gradle do kotlin e aí vc também tem que ajustar com o nome
+  correto da variável definida como ext.kotlinVersion.
+  
+  A figura abaixo mostra o ajuste que fiz no build.gradle do meu
+  projeto com relação a versão do plugin do kotlin.
+  
+  [[./imgs/jetpackstarting/ajustenaversaodoplugindokotlingnomoduloapp.png]]
+  
+  Ainda não dá pra sincronizar o projeto porque ainda precisa fazer
+  mais modificações, vamos continuar...
+
+
+**** Continuando ajustes de dependencias do jetpack
+     
+     Perceba que no build.gradle do seu módulo app tá definido a api
+     antiga do android sobre a questão de compatibilidade.
+
+     #+BEGIN_EXAMPLE
+     implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+     #+END_EXAMPLE
+
+     já no build.gradle do módulo app do  sunflower
+     https://github.com/googlesamples/android-sunflower/blob/master/app/build.gradle
+     a api de compatibilidade é a nova. Começa com androix e não com
+     android.
+
+     #+BEGIN_EXAMPLE
+      implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+     #+END_EXAMPLE
+     
+     Então vamos mudar isso também... 
+     Antes, saiba que a documentação do jetpack do android também
+     sugere dependencias básicas pra trabalhar com activities que tem
+     a ver com ciclo de vida de objetos do android. Veja a baixo a
+     sugestão da documentação...
+     
+  #+BEGIN_EXAMPLE
+  dependencies {
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // Optional : Kotlin extension (https://d.android.com/kotlin/ktx)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    ...
+ }
+  #+END_EXAMPLE
+
+
+  Isso também está definido do build.gradle do módulo app do
+  sunflower.
+  Vou trazer pro nosso build.gradle essas dependencias e mostra na
+  figura abaixo como ficou...
+  
+  (### imagem figura dos minhas dependencias app/build.gradle)
+  
+  Olha com carinho a imagem acima e constate que as versões das
+  dependencias estão todas com variável do tipo
+  $rootProject.constraintLayoutVersion
+  
+
+  Essas mudanças nas dependencias implica em mudar nosso código
+  também. Talvez vc não tenha percebido ainda durante as aulas, mas
+  se vc mudar uma api o código de antes pode não ser compatível com a
+  api nova que vc colocou nas suas dependências.
+  É exatamente esse o caso da api do jetpack.
+  Estamos tirando a api antiga e colocando a nova e o código pra usar
+  a nova não é igual ao código que usa a antiga.
+  Por isso, de cara, já dá pra imaginar que temos que modificar o
+  pouco de código que temos no nosso projeto.
+  
+  Veja a diferença entre o código da activity que o androi criou com a
+  activity do sunflower...
+   
+  [[./imgs/jetpackstarting/codigodanossaactivitysemalteracoes.png]]
+
+  
+  Veja que na nossa activity a api que é importada é 
+  
+  #+BEGIN_EXAMPLE
+   import android.support.v7.app.AppCompatActivity
+   import android.os.Bundle
+  #+END_EXAMPLE
+
+  Já na activity do sunflower...
+  
+  #+BEGIN_EXAMPLE
+    import android.os.Bundle
+    import androidx.appcompat.app.AppCompatActivity
+  #+END_EXAMPLE
+
+  Veja que a mudança é no AppCompatActivity, vamos fazer essa
+  alteração na nossa activity...
+  
+  Veja como ficou a minha...
+  
+  [[./imgs/jetpackstarting/mudancanocodigodanossaactivity.png]]
+  
+  Por enquanto esses vermelhos no código são erros porque ainda não
+  sincronizamos o app. Vamos fazer isso então...
+
+  
+  
+
+
+
+  Bom, quais dependencias usar? Tem que dar uma estudada e conhecer o
+  Jetpack, mas por enquanto vou colocar algumas dependências que a gente vai
+  trabalhar em nossas aulas.
+  https://developer.android.com/jetpack/androidx/releases/lifecycle
+  https://developer.android.com/topic/libraries/architecture/workmanager
+  https://developer.android.com/topic/libraries/architecture/room
+  https://developer.android.com/guide/navigation/navigation-getting-started
+  https://developer.android.com/training/camerax
+  Vamos incluir só o componente lifeciclo pra iniciar
+  
+  Na url do lifecicle diz que precisamos destas dependencias...
+  Pra ver quais as versões mais recentes, consultar o link do
+  repositório do maven
+  https://mvnrepository.com/artifact/androidx.lifecycle
+  #+BEGIN_EXAMPLE
+  def lifecycle_version = "2.0.0"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // alternatively - just ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version" // For Kotlin use lifecycle-viewmodel-ktx
+    // alternatively - just LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // alternatively - Lifecycles only (no ViewModel or LiveData). Some UI
+    //     AndroidX libraries use this lightweight import for Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // For Kotlin use lifecycle-reactivestreams-ktx
+
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+}
+  #+END_EXAMPLE
+
+
+
+  Depois de configurar as dependencias do que vc vai usar no seu
+  projeto, a gente precisa mudar os namespaces das bibliotecas
+  https://developer.android.com/jetpack/androidx
+  Pra isso vc talvez precise consultar esse link abaixo:
+  https://developer.android.com/jetpack/androidx/migrate
+
+     
+** Atividade Prática
+
+*** Criando um projeto Jetpack (melhor opcao)
+    A melhor opção, por enquanto, pelo menos na minha opinião, é seguir
+    o exemplo do que o pessoal da google está fazendo no app sunflower.
+
+    https://github.com/googlesamples/android-sunflower
+
+    Então como tem que ser o seu build.gradle do projeto? Copia o build
+    gradle do sunflower...
+  
+    https://github.com/googlesamples/android-sunflower/blob/master/build.gradle
+
+    E o build.gradle do módulo app? Copia do sunflower de novo..
+  
+    https://github.com/googlesamples/android-sunflower/blob/master/app/build.gradle
+
+    Copia também o arquivo gradle.properties
+  
+    https://github.com/googlesamples/android-sunflower
+
+    Se o seu projeto não tiver, copia pro seu projeto os arquivos
+    .gitignore do sunflower
+
+    https://github.com/googlesamples/android-sunflower/blob/master/.gitignore
+
+    https://github.com/googlesamples/android-sunflower/blob/master/app/.gitignore
+
+  
+
+  
+
+
+* Exercicios e Atividades de Reflexão/Fixação
+  
+* Avaliação
+  
+* Referencias
+
+
+
+
+
+  
+
+  
+
+
+* temp
+  Antes de trabalhar com os arquivos build.gradle
+  Entra no gradle-wrapper.properties e muda a versão pra 5.6
+  
+
+* Refs
+  https://developer.android.com/jetpack/docs/getting-started/
+  https://developer.android.com/jetpack/docs/guide
+  https://github.com/googlesamples/android-sunflower
+  https://medium.com/androiddevelopers/introducing-android-sunflower-e421b43fe0c2
+  https://developers.google.com/maps/documentation/android-sdk/start
+  https://developers.google.com/maps/documentation/

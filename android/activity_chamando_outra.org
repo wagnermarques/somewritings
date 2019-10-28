@@ -1,0 +1,188 @@
+#+Title: Navegação Entre Activities
+#+Subtitle:
+
+* Tema
+  Navegação Entre Activities
+* Objetivo
+  Demostrar como fazer para a partir de uma activity abrir outra
+  activity, inclusive passando dados para outra activity.
+  Aproveitar a oportunidade para conhecer linear layout vertical e horizontal
+* Duração
+  2 Blocos
+* Pré-Requisitos
+** Conhecimentos Prévios
+   
+   Criar projeto
+   Criar activities
+   Rordar o projeto
+   Reconhecer a estrutura de um projeto android para recriá-lo em sua máquina
+** Recursos
+   Android Studio
+   git/Github
+   
+* Procedimento didatico
+  Reproduzir, sob a orientação do professor, o projeto que está nesse
+  link abaixo
+
+  https://github.com/wagnermarques/somewritings/tree/rascunho/android/projetos/GMAPS15
+
+** Pontos principais da aplicação para estudo
+   O ponto principal é vc reconhecer a estrutura de um projeto e poder
+   reproduzí-lo.
+   Vou dar uma ajuda no que será necessário para essa aula
+
+*** Estrutura básica de um projeto
+
+    #+BEGIN_EXAMPLE
+    [wagner@Unknown GMAPS15]$ ls -l
+total 40
+drwxrwxr-x. 5 wagner wagner 4096 ago 18 23:06 app
+-rw-rw-r--. 1 wagner wagner  546 ago 18 15:52 build.gradle
+-rw-rw-r--. 1 wagner wagner  888 ago 18 16:01 GMAPS15.iml
+drwxrwxr-x. 3 wagner wagner 4096 ago 18 15:52 gradle
+-rw-rw-r--. 1 wagner wagner  728 ago 18 15:59 gradle.properties
+-rwxrw-r--. 1 wagner wagner 5296 ago 18 15:52 gradlew
+-rw-rw-r--. 1 wagner wagner 2260 ago 18 15:52 gradlew.bat
+-rw-rw-r--. 1 wagner wagner  485 ago 18 15:52 local.properties
+-rw-rw-r--. 1 wagner wagner   15 ago 18 15:52 settings.gradle
+    #+END_EXAMPLE
+
+O diretório do projeto é o GMAPS15.
+Quando vc cria um projeto no android studio vc também está criando um
+diretório que vai conter todo o seu projeto.  Pra ver a estrutura de
+pastas do seu projeto é melhor entrar na view de projetos do android
+studio.
+Veja como fazer isso...
+
+*** View de "projeto" do Android Strudio
+
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/view_pastas_do_projeto1.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/view_pastas_do_projeto2.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/view_pastas_do_projeto3.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/view_pastas_do_projeto4.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/view_pastas_do_projeto5.png]]
+
+*** Diretório do módulo app
+
+   #+NAME: ls -l $(pwd)/projetos/GMAPS15/app
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l $(pwd)/projetos/GMAPS15/app
+   #+END_SRC
+
+   #+RESULTS: ls -l $(pwd)/projetos/GMAPS15/app
+   : 
+   : total 36
+   : -rw-rw-r--. 1 wagner wagner 16217 ago 18 23:06 app.iml
+   : drwxrwxr-x. 6 wagner wagner  4096 ago 18 16:15 build
+   : -rw-rw-r--. 1 wagner wagner  1003 ago 18 23:04 build.gradle
+   : drwxrwxr-x. 2 wagner wagner  4096 ago 18 15:52 libs
+   : -rw-rw-r--. 1 wagner wagner   751 ago 18 15:52 proguard-rules.pro
+   : drwxrwxr-x. 7 wagner wagner  4096 ago 18 15:53 src
+
+
+
+   É possível trabalhar com mais de um módulo, mas no geral a gente
+   usa mesmo um modulo app, como vc pode ver acima
+
+*** Diretórios "src" e onde ficam o código das activities
+
+    Quem diria que no diretório "src" estariam todos os sources hein? 
+    Pois é, o sources das nossas ativities também, só que o nome do
+    pacote da classe da activity representa a árvore de diretório onde
+    ela está. Se tiver dúvida sobre isso não leva a dúvida pra casa
+    não, pergunta pro professor.
+
+   #+NAME: ls -l $(pwd)/projetos/GMAPS15/app/src
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l $(pwd)/projetos/GMAPS15/app/src/main/java/eteczl/edu/br/gmaps15
+   #+END_SRC
+
+   #+RESULTS: ls -l $(pwd)/projetos/GMAPS15/app/src
+   : 
+   : total 20
+   : -rw-rw-r--. 1 wagner wagner 2723 ago 19 01:09 ActivityPrincipal.java
+   : -rw-rw-r--. 1 wagner wagner 2634 ago 19 00:00 MapsActivity.java
+   : -rw-rw-r--. 1 wagner wagner  373 ago 18 23:55 TelaLinearLayoutHorizontal.java
+   : -rw-rw-r--. 1 wagner wagner  369 ago 18 23:51 TelaLinearLayoutVertical.java
+   : -rw-rw-r--. 1 wagner wagner 1280 ago 19 01:03 TelaRecebeDados.java
+    
+   Então, esse projeto tem essas activities. Uma principal que terá
+   vários botões que vão servir pra abrir as demais activities.
+   
+   A Activity do mapa não funciona o mapa porque a gente ainda vai ter
+   essa aula.
+
+   Lembrando que essas activities terão seus repectivos layout xmls no
+   diretório res. O Nome da classe da activity tem semelhança com o
+   nome de seu arquivo de layout. Vê se dá pra perceber...
+   
+   #+NAME: ls -l $(pwd)/projetos/GMAPS15/app/src/main/res/layout
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l $(pwd)/projetos/GMAPS15/app/src/main/res/layout
+   #+END_SRC
+
+   #+RESULTS: ls -l $(pwd)/projetos/GMAPS15/app/src/main/res/layout
+   : 
+   : total 20
+   : -rw-rw-r--. 1 wagner wagner  424 ago 18 15:59 activity_maps.xml
+   : -rw-rw-r--. 1 wagner wagner 2509 ago 18 23:40 activity_principal.xml
+   : -rw-rw-r--. 1 wagner wagner 1604 ago 19 00:36 activity_tela_linear_layout_horizontal.xml
+   : -rw-rw-r--. 1 wagner wagner 1404 ago 19 00:36 activity_tela_linear_layout_vertical.xml
+   : -rw-rw-r--. 1 wagner wagner 1041 ago 19 00:37 activity_tela_recebe_dados.xml
+
+
+   *Sua tarefa é criar no seu projeto cada uma dessas activities*
+   Vou colocar a imagem delas pra vc ter uma idéia de como elas se
+   parecem...
+      
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/activity_principal.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/activity_linear_layout_vertical.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/activity_linear_layout_horizontal.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/activity_mapa.png]]
+   [[/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/imgs/GMAPS15/acitivity_que_recebe_dados.png]]
+
+   Claro que vc vai desenhar essas telas, mas tem que observar o
+   layout delas. O professor vai explicar cada um desses layouts em
+   sala de aula. 
+   Qdo vc desenhar as telas, dá uma conferida se o seu xml ficou
+   semelhante ao xml do projeto.
+   
+*** Intents como mensagens para outras activities
+   #+NAME: ls -l aasdfasdf
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      pwd
+   #+END_SRC
+
+   #+RESULTS: ls -l aasdfasdf
+   : 
+   : /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android
+    
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/GMAPS15/app/src/main/java/eteczl/edu/br/gmaps15/ActivityPrincipal.java :src java
+
+* Exercicios e Atividades de Reflexão/Fixação
+  Então, eu sei que recriar a aplicação já é uma atividade
+  interessante, desde que vc não copie e cole o código.
+  Mas vc vai ter que fazer algo novo. Na verdade não é novo, é só mais
+  do mesmo.
+  Vc vai criar os botoes "voltar" das outras activities que navega pra
+  activity principal. Pra isso vc vai usar a mesma estrutura de código
+  já apresentada e explicada pelo professor.
+  Além disso vc vai mostrar rodando no seu celular
+  E também enviar o link do github para o email do professor
+  wagner.marques3@etec.sp.gov.br
+  
+* Avaliação
+  Reproduzir este projeto no seu github
+  Enviar o link para o professor
+  Implementar um botão voltar em cada uma das activities
+  Lembrando que os projetos realizados em sala devem ser entregues e
+  contam como menção.
+* Referencias
+
+
+
+

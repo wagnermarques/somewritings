@@ -1,0 +1,111 @@
+#+Title: Map App
+#+Subtitle:
+
+* Tema
+  Google Maps com Android
+  
+* Objetivo
+  Apresentar a tecnologia, criação do projeto e algumas
+  funcionalidades da api
+
+* Duração
+  2Blocos
+
+* Pré-Requisitos  
+** Conhecimentos Prévios
+   Saber criar um projeto com Android Studio
+   Conhecer um pouco a estrutura de pastas e arquivos do projeto
+   
+** Recursos
+   + IDE
+     Android Studio 3.5
+     Se vc utilizar comandos gradle para build vc pode usar qualquer
+     IDE. Nós vimos isso na primeira aula. Os comandos básicos são 
+     .\gradlew installbleDebug
+     .adb shell am start -n pacotedoapp/.ClassNameDaMainActivity
+     
+   + Questão do jetpack
+     Se vc nao tiver usando o Android Studio 3.5 ou superior:
+     Se vc não tiver usando a 3.5 aí vc tem que conferir direitinho o código do build gradle e os imports de suas classes
+   
+   + Projeto completo
+     AndrStud35GmapsAPPWithPermission
+* Procedimento didatico
+** Exposição do professor
+   Explicação sobre a biblioteca androidx e a necessidade de observar o
+   gradle.build e os imports
+
+** Atividade Prática
+*** Criação do projeto
+
+    Crie um projeto, usando o Android Studio 3.5 e inclua no projeto
+    uma activity 
+    
+
+    [[./imgs/AndrStud35GmapsApp/AndrStudGmapsApp1.png]]
+
+    A vantagem de usar uma activity do google maps é que o android
+    studio já vai incluir a dependencia do google maps pra gente em
+    nosso build.gradle.
+    
+    Você vai precisar configurar a chave da api pro seu google maps
+    funcionar.
+    Siga esses passos que estão escritos nesse arquivo
+    Pra encontrar esse arquivo. Na explanação o professor explica isso
+    em portugues...
+
+    [[./imgs/AndrStud35GmapsApp/AndrStudGmapsApp2.png]]
+    Substituída sua chave então vc pode comecar a programar.
+
+*** Para quem precisa atualizar pra androidx (JetPack) 
+    Como a gente já fez em aulas anteriores.
+    Seus build.gradle precisam estar iguais aos meus pra que vc possa
+    usar jetpack (androidx) no seu projeto.
+
+    Confira se o seu gradle.properties do app tem essa configuração,
+    se não tiver, pode incluir
+
+    [[./imgs/AndrStud35GmapsApp/AndrStudGmapsApp3.png]]
+    
+    Depois compare os seus dois build.gradle do seu projeto com os
+    build gradles do meus pra deixar igualzinho.
+    Os meus vc pode pegar nesses links...
+    Neste caso específico ctrl-c ctrl-v tao liberados...
+    TODO
+
+    
+
+* Exercicios e Atividades de Reflexão/Fixação
+  
+* Avaliação
+* Referencias
+
+
+
+
+* Iniciando  
+  https://developers.google.com/maps/documentation/android-sdk/start
+  https://developers.google.com/maps/documentation/
+  
+* Install the Google Play services SDK
+
+  
+
+* Get API Key  
+  https://developers.google.com/maps/documentation/maps-static/get-api-key
+  Tem que ter uma api key pra cada projeto
+  Pra obter uma api key, ir pra página
+  https://developers.google.com/maps/documentation/maps-static/get-api-key
+  
+  [[./imgs/AppMap/appmap1.png]]
+  [[./imgs/AppMap/appmap2.png]]
+  [[./imgs/AppMap/appmap3.png]]
+  [[./imgs/AppMap/appmap4.png]]
+  [[./imgs/AppMap/appmap5.png]]
+  [[./imgs/AppMap/appmap6.png]]
+
+
+
+* Refs
+https://developers.google.com/maps/documentation/android-sdk/start
+https://gist.github.com/gSrikar/a880b01690eb437d4dd4d610db50e0a3

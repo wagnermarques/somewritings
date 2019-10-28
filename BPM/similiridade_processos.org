@@ -1,0 +1,130 @@
+#+Title: Estrutura do meu racioncínio pra avaliar as similaridades entre os modelos
+#+Subtitle:
+
+Olá professor,
+
+Os critérios que utilizei foram apenas dois
+Número de Elementos
+Simililaridade entre os caminhos
+Tamanho do processo
+
+Portanto, alguns elementos a mais em um processo com mais de 100
+elementos foi considerado bem menos impactante, em termos de
+desigualdade, que em processos pequenos.
+
+Essa análise estava fazendo sentido porque o path entre os processos
+que estavam sendo comparados eram semelhantes. No caso em que o path
+eram dissimilares, então, além do critério acima, os modelos foram
+considerados ainda mais dissimilares.
+
+
+Então com relação a pergunta que vc fez no email:
+*"Por exemplo (para um caso hipotético e bem simples): 
+se a única diferença entre um par de modelos era uma "atividade a
+mais" em um deles, enquanto que a única diferença entre outro par de
+modelos era um "tipo de gateway diferente"; nesse caso, você entendeu
+que o grau de diferença entre esses dois pares de modelos era o mesmo
+ou não?*
+O critério que utilizei a atividade a mais contaria como
+dissimilaridade enquanto que na segunda comparação, mesmo número de
+elementos, mas gatways diferentes, não foram pesados, desde que os
+caminho também fosses iguais.
+
+
+*Se você entendeu que não, qual dos casos você entendeu que gerou a
+maior diferença, ter uma "atividade a mais/menos" ou ter um "tipo de
+gateway diferente"?*
+Ésse foi o meu caso. Ter atividades a mais ou a menos foi mais
+significativo que um gatway diferente.
+
+Acredito que eu seria melhor ter considerado não só uma atividade a
+mais ou a menos como diferença, mas ter incluído como diferença a qtde
+de gatways diferentes. No final o número de diferenças seriam maiores
+do que as que identifiquei.
+
+*Ordene os itens abaixo considerando esse tipo de pensamento que você pode ter feito durante o experimento.*
+
+Quais itens abaixo deixam os pares de modelos de processo mais
+ diferentes?
+ "1" (maior potencial para diferenciar) / "7" (menor potencial para diferenciar)
+
+  1 subprocesso expandido a mais/menos
+  1 gateway a mais/menos
+  3 atividade a mais/menos
+  3 tipo de gateway diferente
+  3 evento a mais/menos
+  5 tipo do evento diferente
+  6 tipo da atividade diferente
+
+
+O fato de eu considerar 3 pro tipo de gatway diferente me fez perceber
+que eu teria que contá-los na minha análise uma diferença a ser somada
+com o número de diferenças encontradas relativa a atividades a mais ou
+a menos. Isso faria com que os modelos em minha análise fossem mais
+desiguais do que foram considerados.
+
+Posso responder de novo? Fazendo essa correção?
+
+Abaixo segue a estrutura do meu racioncínio. Contei como "Número de
+Elementos Diferentes" apanas quantidades de elementos. E coloquei um
+peso adicional de dissimilaridade quando os caminhos eram mais
+dissimilares.
+
+Considerando os critérios acima, ainda levando em conta os pesos, o
+número de diferenças entre os modelos considerados seria bem maior que
+os que considerei. 
+Uma reanálise dentro desse contexto iria tornar todos os escores
+apontados mais desiguais, ou seja, menores.
+
+Na coluna "resposta", quando tem duas, é porque a primeira resposta
+foi reajustada pra segunda. Ou seja, na primeira linha a minha
+primeira resposta foi 6, mas depois reavaliei pra 5.
+
+Posso fazer de novo utilizando esses critérios?
+
+https://forms.gle/DhXQKrF6DG2pHbNp6
+
+| processo      | N.Elems ModA | N.Elems ModB | N.Elems Difs | %DifNumElm    | %DifCaminhos                   | resposta |
+| Comparação 24 |           37 |           43 |           -6 | -0.13953488   |                                |       65 |
+| Comparação 4  |           17 |           17 |            0 | 0             |                                |       76 |
+| Comparação 33 |          118 |          114 |            4 | 0.035087719   |                                |       77 |
+| Comparação 20 |           39 |           39 |            0 | 0             |                                |       77 |
+| Comparação 6  |           15 |           15 |            0 | 0             |                                |       76 |
+| Comparação 9  |           15 |           15 |            0 | 0             |                                |       76 |
+| Comparação 37 |          122 |          120 |            2 | 0.016666667   |                                |       67 |
+| Comparação 14 |           24 |           24 |            0 | 0             |                                |       76 |
+| Comparação 30 |          115 |          116 |           -1 | -8.6206897e-3 |                                |       77 |
+| Comparação 32 |          111 |          106 |            5 | 0.047169811   |                                |       76 |
+| Comparação 12 |           16 |           18 |           -2 | -0.11111111   |                                |       65 |
+| Comparação 25 |           36 |           36 |            0 | 0             |                                |       76 |
+| Comparação 21 |           36 |           36 |            0 | 0             |                                |       76 |
+| Comparação 40 |          123 |          148 |          -25 | -0.16891892   |                                |        6 |
+| Comparação 39 |          121 |           47 |           74 | 1.5744681     | pouco similar                  |        2 |
+| Comparação 23 |           41 |           47 |           -6 | -0.12765957   | similar                        |        6 |
+| Comparação 27 |           36 |           41 |           -5 | -0.12195122   | simliar                        |        6 |
+| Comparação 7  |           15 |           14 |            1 | 0.071428571   | similar                        |        6 |
+| Comparação 29 |          110 |          112 |           -2 | -0.017857143  |                                |        7 |
+| Comparação 5  |           15 |           15 |            0 | 0             | mesmos processo                |       7* |
+| Comparação 18 |           38 |           39 |           -1 | -0.025641026  |                                |          |
+| Comparação 10 |           16 |           14 |            2 | 0.14285714    | similar                        |        6 |
+| Comparação 17 |           40 |           39 |            1 | 0.025641026   | igual (muda apenas um elemento |        7 |
+| Comparação 3  |           17 |           21 |           -4 | -0.19047619   | similar                        |        6 |
+| Comparação 31 |          112 |          106 |            6 | 0.056603774   | simliar                        |        6 |
+| Comparação 36 |          114 |          120 |           -6 | -0.05         | similar                        |        6 |
+| Comparação 16 |           24 |            9 |           15 | 1.6666667     | dissimilar                     |        2 |
+| Comparação 11 |           16 |           28 |          -12 | -0.42857143   | dissimilar                     |        3 |
+| Comparação 22 |           40 |           45 |           -5 | -0.11111111   | similar                        |        6 |
+| Comparação 15 |           24 |           36 |          -12 | -0.33333333   | dissimilar                     |        3 |
+| Comparação 2  |           17 |           20 |           -3 | -0.15         | similar                        |        4 |
+| Comparação 38 |          120 |          124 |           -4 | -0.032258065  | similar                        |        7 |
+| Comparação 35 |          116 |           88 |           28 | 0.31818182    | similar                        |        6 |
+| Comparação 8  |           15 |           23 |           -8 | -0.34782609   | dissimilar                     |        3 |
+| Comparação 19 |           37 |           38 |           -1 | -0.026315789  | similar                        |        5 |
+| Comparação 26 |           36 |           36 |            0 | 0             | bem similar                    |        6 |
+| Comparação 28 |           36 |           57 |          -21 | -0.36842105   | pouca similaridade             |        4 |
+| Comparação 34 |          116 |          118 |           -2 | -0.016949153  | simialar                       |        7 |
+| Comparação 1  |           17 |           17 |            0 | 0             | mesmo processo quase           |        7 |
+| Comparação 13 |           24 |           24 |            0 | 0             | similar                        |        6 |
+|               |              |              |              | 0/0           |                                |          |
+#+TBLFM: @2$4=$2-$3::@2$5=$4/$3::@3$4=$2-$3::@3$5=$4/$3::@4$4=$2-$3::@4$5=$4/$3::@5$4=$2-$3::@5$5=$4/$3::@6$4=$2-$3::@6$5=$4/$3::@7$4=$2-$3::@7$5=$4/$3::@8$4=$2-$3::@8$5=$4/$3::@9$4=$2-$3::@9$5=$4/$3::@10$4=$2-$3::@10$5=$4/$3::@11$4=$2-$3::@11$5=$4/$3::@12$4=$2-$3::@12$5=$4/$3::@13$4=$2-$3::@13$5=$4/$3::@14$4=$2-$3::@14$5=$4/$3::@15$4=$2-$3::@15$5=$4/$3::@16$4=$2-$3::@16$5=$4/$3::@17$4=$2-$3::@17$5=$4/$3::@18$4=$2-$3::@18$5=$4/$3::@19$4=$2-$3::@19$5=$4/$3::@20$4=$2-$3::@20$5=$4/$3::@21$4=$2-$3::@21$5=$4/$3::@22$4=$2-$3::@22$5=$4/$3::@23$4=$2-$3::@23$5=$4/$3::@24$4=$2-$3::@24$5=$4/$3::@25$4=$2-$3::@25$5=$4/$3::@26$4=$2-$3::@26$5=$4/$3::@27$4=$2-$3::@27$5=$4/$3::@28$4=$2-$3::@28$5=$4/$3::@29$4=$2-$3::@29$5=$4/$3::@30$4=$2-$3::@30$5=$4/$3::@31$4=$2-$3::@31$5=$4/$3::@32$4=$2-$3::@32$5=$4/$3::@33$4=$2-$3::@33$5=$4/$3::@34$4=$2-$3::@34$5=$4/$3::@35$4=$2-$3::@35$5=$4/$3::@36$4=$2-$3::@36$5=$4/$3::@37$4=$2-$3::@37$5=$4/$3::@38$4=$2-$3::@38$5=$4/$3::@39$4=$2-$3::@39$5=$4/$3::@40$4=$2-$3::@40$5=$4/$3::@41$4=$2-$3::@41$5=$4/$3::@42$5=$4/$3
+

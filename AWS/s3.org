@@ -1,0 +1,5 @@
+#+Title:S3 Como Usar
+#+Subtitle:
+
+ https://docs.aws.amazon.com/pt_br/AmazonS3/latest/dev/UsingObjects.html
+ https://s3.console.aws.amazon.com/s3/spotlight?region=us-east-1

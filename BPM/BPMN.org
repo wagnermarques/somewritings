@@ -1,0 +1,61 @@
+#+Title:
+#+Subtitle:
+
+
+https://www.omg.org/spec/BPMN/2.0/PDF
+
+* Escopo do BPMN
+  O objetivo principal é prover uma notação que seja facilmente
+  compreendida, desde o analista de negócio, passando pelo técnico de
+  implementação bem como por todos que sejam da área de negócios.p1
+  Dessa forma BPMN pode ser considerada como uma ponte, uma opção
+  comum de comunicação, entre as pessoas projetam (desenham) os
+  processos de negócios e as pessoas que os tornam em software
+  executáveis.p1
+
+  Permitir que xml executável, como WSBPEL, possar ser visualizado em
+  uma notação mais direcionada para a área de negócio.
+
+* A especificação  
+  É um amálgama das boas práticas comumente aceitas entre a comunidade
+  de modelagem com vistas a 
+  definição de uma *notação* e *semantica* de Diagramas de
+  Colaboração, Diagramas de Processos e Diagramas de Coreografia.
+  Nesse sentido padroniza *modelo de processo* e *notação* de processo
+  padronizando, portanto, a *comunicação de informações de processo*
+  para _pessoas da área de negócios_,_implementadores de processos_, _clientes_, _fornecedores_.
+
+  Outras notações que foram revisadas:
+  UML Activity Diagram, 
+  UML EDOC Business Processes, 
+  IDEF, 
+  ebXML BPSS, 
+  Activity-Decision Flow (ADF) Diagram, 
+  RosettaNet, 
+  LOVeM, and 
+  Event-Process Chains (EPCs)
+
+* Conformidade
+  A especificação define 4 yipos de conformidade:
+*** Process Modeling Conformance
+    Não requer Choreography Modeling Conformance e vice verda.
+*** Process Execution Conformance
+    
+*** BPEL Process Execution Conformance, and 
+*** Choreography Modeling Conformance. 
+  
+    Process Modeling Conformance type is NOT REQUIRED to support . Similarly, the implementation
+claiming Process Execution Conformance type is NOT REQUIRED to be
+conformant to the Process Modeling and Choreography
+Conformancetypes.The implementation claiming conformance to the
+Process Modeling Conformance type SHALL comply with all of the
+requirements set forth in Section 2.1. The implementation claiming
+conformance to the Process Execution Conformance type SHALL comply
+with all of the requirements set forth in Section 2.2. The
+implementation claiming conformance to the BPEL Process Execution
+Semantics Conformance type SHALL comply with all of the requirements
+set forth in Section 2.3.The implementation claiming conformance to
+the Choreography Conformance type SHALL comply with all of the
+requirements set forth in Section 2.4. The implementation is said to
+have BPMN Complete Conformance if it complies with all of the
+requirements stated in Sections 2.1, 2.2, 2.3, and 2.4.

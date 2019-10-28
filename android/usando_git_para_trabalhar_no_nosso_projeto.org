@@ -1,0 +1,469 @@
+#+Title: Usango Git Pra Trabalhar Projeto Android da Disciplina
+#+Subtitle: Projeto Borracharias Sustentaveis
+
+* (Re)Apresentando o projeto da nossa disciplina
+  Vou clonar, dar uma rodada no projeto no dispositivo, depois vamos
+  ver como a gente se faz o merge dos branches que vcst trabalharam.
+  Eu to fazendo esse trabalho de merge, mas depois vcs mesmos vão
+  fazer, depois da revisão do código pelo gerente de projeto.. que sou
+  eu :)
+
+* Clonando o projeto  
+
+   Vamos clonar nosso projeto
+   
+   #+NAME:  cloning project                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code      
+      export projdir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/borrachariasSustentaveis/BorrachariasSustentaveis
+      echo $projdir
+      #rm -rf $(pwd)/projetos/borrachariasSustentaveis
+      #git clone https://github.com/wagnermarques/borrachariasSustentaveis.git $(pwd)/projetos/borrachariasSustentaveis
+      ls -l $projdir
+   #+END_SRC
+
+   #+RESULTS: cloning project
+   #+begin_example
+
+   [wagner@Unknown android]$ [wagner@Unknown android]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/borrachariasSustentaveis/BorrachariasSustentaveis
+   [wagner@Unknown android]$ [wagner@Unknown android]$ total 36
+   drwxrwxr-x. 4 wagner wagner 4096 jul 30 15:22 app
+   -rw-rw-r--. 1 wagner wagner  546 jul 30 11:34 build.gradle
+   drwxrwxr-x. 3 wagner wagner 4096 jul 30 11:34 gradle
+   -rw-rw-r--. 1 wagner wagner  728 jul 30 11:34 gradle.properties
+   -rwxrwxr-x. 1 wagner wagner 5296 jul 30 11:34 gradlew
+   -rw-rw-r--. 1 wagner wagner 2260 jul 30 11:34 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  485 jul 30 15:18 local.properties
+   -rw-rw-r--. 1 wagner wagner   15 jul 30 11:34 settings.gradle
+   #+end_example
+
+
+   #+NAME: ls project
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      ls -l $projdir
+   #+END_SRC
+
+   #+RESULTS: ls project
+   #+begin_example
+
+   total 36
+   drwxrwxr-x. 4 wagner wagner 4096 jul 30 15:22 app
+   -rw-rw-r--. 1 wagner wagner  546 jul 30 11:34 build.gradle
+   drwxrwxr-x. 3 wagner wagner 4096 jul 30 11:34 gradle
+   -rw-rw-r--. 1 wagner wagner  728 jul 30 11:34 gradle.properties
+   -rwxrwxr-x. 1 wagner wagner 5296 jul 30 11:34 gradlew
+   -rw-rw-r--. 1 wagner wagner 2260 jul 30 11:34 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  485 jul 30 15:18 local.properties
+   -rw-rw-r--. 1 wagner wagner   15 jul 30 11:34 settings.gradle
+   #+end_example
+
+
+* Rodando o projeto no dispositivo
+
+   Colocando os comandos do android no PATH
+   #+NAME:  export env vars                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+      export ANDROID_SDK_ROOT=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk
+      export ANDROID_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin
+      echo $PATH
+   #+END_SRC
+
+   #+RESULTS: export env vars
+   : 
+   : [wagner@Unknown android]$ [wagner@Unknown android]$ [wagner@Unknown android]$ [wagner@Unknown android]$ /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/.rbenv/shims:/home/wagner/.rbenv/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile/bin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/platform-tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/tools/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/platform-tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/android/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
+
+
+   Verificando se temos um dispositivo pra rodar, no caso abaixo, já
+   conectei o meu celular c1ca8fb
+   #+NAME: adb devices
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      adb devices
+   #+END_SRC
+
+   #+RESULTS: adb devices
+   : 
+   : List of devices attached
+   : * daemon not running; starting now at tcp:5037
+   : * daemon started successfully
+   : c1ca8fb	device
+
+
+   Então agora é só rodar...
+   
+   #+NAME:gradlew assembleDebug                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      ls -l
+      ./gradlew assembleDebug
+   #+END_SRC
+
+   #+RESULTS: gradlew assembleDebug
+   #+begin_example
+
+   [wagner@Unknown BorrachariasSustentaveis]$ total 36
+   drwxrwxr-x. 4 wagner wagner 4096 jul 30 15:22 app
+   -rw-rw-r--. 1 wagner wagner  546 jul 30 11:34 build.gradle
+   drwxrwxr-x. 3 wagner wagner 4096 jul 30 11:34 gradle
+   -rw-rw-r--. 1 wagner wagner  728 jul 30 11:34 gradle.properties
+   -rwxrwxr-x. 1 wagner wagner 5296 jul 30 11:34 gradlew
+   -rw-rw-r--. 1 wagner wagner 2260 jul 30 11:34 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  485 jul 30 15:18 local.properties
+   -rw-rw-r--. 1 wagner wagner   15 jul 30 11:34 settings.gradle
+   Starting a Gradle Daemon (subsequent builds will be faster)
+   :app:checkDebugClasspath UP-TO-DATE
+   :app:preBuild UP-TO-DATE
+   :app:preDebugBuild UP-TO-DATE
+   :app:compileDebugAidl NO-SOURCE
+   :app:compileDebugRenderscript UP-TO-DATE
+   :app:checkDebugManifest UP-TO-DATE
+   :app:generateDebugBuildConfig UP-TO-DATE
+   :app:prepareLintJar UP-TO-DATE
+   :app:mainApkListPersistenceDebug UP-TO-DATE
+   :app:generateDebugResValues UP-TO-DATE
+   :app:generateDebugResources UP-TO-DATE
+   :app:mergeDebugResources UP-TO-DATE
+   :app:createDebugCompatibleScreenManifests UP-TO-DATE
+   :app:processDebugManifest UP-TO-DATE
+   :app:splitsDiscoveryTaskDebug UP-TO-DATE
+   :app:processDebugResources UP-TO-DATE
+   :app:generateDebugSources UP-TO-DATE
+   :app:javaPreCompileDebug UP-TO-DATE
+   :app:compileDebugJavaWithJavac UP-TO-DATE
+   :app:compileDebugNdk NO-SOURCE
+   :app:compileDebugSources UP-TO-DATE
+   :app:mergeDebugShaders UP-TO-DATE
+   :app:compileDebugShaders UP-TO-DATE
+   :app:generateDebugAssets UP-TO-DATE
+   :app:mergeDebugAssets UP-TO-DATE
+   :app:transformClassesWithDexBuilderForDebug UP-TO-DATE
+   :app:transformDexArchiveWithExternalLibsDexMergerForDebug UP-TO-DATE
+   :app:transformDexArchiveWithDexMergerForDebug UP-TO-DATE
+   :app:mergeDebugJniLibFolders UP-TO-DATE
+   :app:transformNativeLibsWithMergeJniLibsForDebug UP-TO-DATE
+   :app:checkDebugLibraries UP-TO-DATE
+   :app:processDebugJavaRes NO-SOURCE
+   :app:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+   :app:validateSigningDebug UP-TO-DATE
+   :app:packageDebug UP-TO-DATE
+   :app:assembleDebug UP-TO-DATE
+
+   BUILD SUCCESSFUL in 1m 17s
+   27 actionable tasks: 27 up-to-date
+   #+end_example
+
+   Mostrando que a apk foi criada
+   #+NAME:  ls build                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      ls -l app/build/outputs/apk/debug     
+   #+END_SRC
+
+   #+RESULTS: ls build
+   : 
+   : [wagner@Unknown BorrachariasSustentaveis]$ total 2196
+   : -rw-rw-r--. 1 wagner wagner 2242012 jul 30 15:22 app-debug.apk
+   : -rw-rw-r--. 1 wagner wagner     226 jul 30 15:22 output.json
+
+
+   Agora instalando a apk
+   
+   #+NAME:  apkinstall                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir
+      pwd
+      ./gradlew installDebug
+   #+END_SRC
+
+   #+RESULTS: apkinstall
+   #+begin_example
+
+   [wagner@Unknown BorrachariasSustentaveis]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/borrachariasSustentaveis/BorrachariasSustentaveis
+   :app:checkDebugClasspath UP-TO-DATE
+   :app:preBuild UP-TO-DATE
+   :app:preDebugBuild UP-TO-DATE
+   :app:compileDebugAidl NO-SOURCE
+   :app:compileDebugRenderscript UP-TO-DATE
+   :app:checkDebugManifest UP-TO-DATE
+   :app:generateDebugBuildConfig UP-TO-DATE
+   :app:prepareLintJar UP-TO-DATE
+   :app:mainApkListPersistenceDebug UP-TO-DATE
+   :app:generateDebugResValues UP-TO-DATE
+   :app:generateDebugResources UP-TO-DATE
+   :app:mergeDebugResources UP-TO-DATE
+   :app:createDebugCompatibleScreenManifests UP-TO-DATE
+   :app:processDebugManifest UP-TO-DATE
+   :app:splitsDiscoveryTaskDebug UP-TO-DATE
+   :app:processDebugResources UP-TO-DATE
+   :app:generateDebugSources UP-TO-DATE
+   :app:javaPreCompileDebug UP-TO-DATE
+   :app:compileDebugJavaWithJavac UP-TO-DATE
+   :app:mergeDebugShaders UP-TO-DATE
+   :app:compileDebugShaders UP-TO-DATE
+   :app:generateDebugAssets UP-TO-DATE
+   :app:mergeDebugAssets UP-TO-DATE
+   :app:transformClassesWithDexBuilderForDebug UP-TO-DATE
+   :app:transformDexArchiveWithExternalLibsDexMergerForDebug UP-TO-DATE
+   :app:transformDexArchiveWithDexMergerForDebug UP-TO-DATE
+   :app:compileDebugNdk NO-SOURCE
+   :app:mergeDebugJniLibFolders UP-TO-DATE
+   :app:transformNativeLibsWithMergeJniLibsForDebug UP-TO-DATE
+   :app:checkDebugLibraries UP-TO-DATE
+   :app:processDebugJavaRes NO-SOURCE
+   :app:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+   :app:validateSigningDebug UP-TO-DATE
+   :app:packageDebug UP-TO-DATE
+   :app:installDebug
+   06:44:06 V/ddms: execute: running am get-config
+   06:44:07 V/ddms: execute 'am get-config' on 'c1ca8fb' : EOF hit. Read: -1
+   06:44:07 V/ddms: execute: returning
+   Installing APK 'app-debug.apk' on 'Lenovo A6020l36 - 6.0.1' for app:debug
+   06:44:07 D/app-debug.apk: Uploading app-debug.apk onto device 'c1ca8fb'
+   06:44:07 D/Device: Uploading file onto device 'c1ca8fb'
+   06:44:07 D/ddms: Reading file permision of /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/borrachariasSustentaveis/BorrachariasSustentaveis/app/build/outputs/apk/debug/app-debug.apk as: rw-rw-r--
+   06:44:08 V/ddms: execute: running pm install -r -t "/data/local/tmp/app-debug.apk"
+   06:44:20 V/ddms: execute 'pm install -r -t "/data/local/tmp/app-debug.apk"' on 'c1ca8fb' : EOF hit. Read: -1
+   06:44:20 V/ddms: execute: returning
+   06:44:20 V/ddms: execute: running rm "/data/local/tmp/app-debug.apk"
+   06:44:20 V/ddms: execute 'rm "/data/local/tmp/app-debug.apk"' on 'c1ca8fb' : EOF hit. Read: -1
+   06:44:20 V/ddms: execute: returning
+   Installed on 1 device.
+
+   BUILD SUCCESSFUL in 17s
+   28 actionable tasks: 1 executed, 27 up-to-date
+   #+end_example
+
+
+   #+BEGIN_EXAMPLE
+   [wagner@nsipc163 BorrachariasSustentaveis]$ ./gradlew installDebug
+Starting a Gradle Daemon, 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+
+> Task :app:installDebug 
+04:31:48 V/ddms: execute: running am get-config
+04:31:49 V/ddms: execute 'am get-config' on 'c1ca8fb' : EOF hit. Read: -1
+04:31:49 V/ddms: execute: returning
+Installing APK 'app-debug.apk' on 'Lenovo A6020l36 - 6.0.1' for app:debug
+04:31:50 D/app-debug.apk: Uploading app-debug.apk onto device 'c1ca8fb'
+04:31:50 D/Device: Uploading file onto device 'c1ca8fb'
+04:31:50 D/ddms: Reading file permision of /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/projetos/borrachariasSustentaveis/BorrachariasSustentaveis/app/build/outputs/apk/debug/app-debug.apk as: rw-rw-r--
+04:31:50 V/ddms: execute: running pm install -r -t "/data/local/tmp/app-debug.apk"
+04:32:03 V/ddms: execute 'pm install -r -t "/data/local/tmp/app-debug.apk"' on 'c1ca8fb' : EOF hit. Read: -1
+04:32:03 V/ddms: execute: returning
+04:32:03 V/ddms: execute: running rm "/data/local/tmp/app-debug.apk"
+04:32:03 V/ddms: execute 'rm "/data/local/tmp/app-debug.apk"' on 'c1ca8fb' : EOF hit. Read: -1
+04:32:03 V/ddms: execute: returning
+Installed on 1 device.
+
+
+BUILD SUCCESSFUL in 1m 10s
+28 actionable tasks: 1 executed, 27 up-to-date
+[wagner@nsipc163 BorrachariasSustentaveis]$ 
+   #+END_EXAMPLE
+
+
+   Agora que o app está instalado no dispositivo vamos abrir a
+   activity
+   
+   #+NAME:adb shell am start -n
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      adb shell am start -n eteczl.edu.br.borrachariassustentaveis/.MainActivity
+   #+END_SRC
+
+   #+RESULTS: adb shell am start -n
+   : 
+   : Starting: Intent { cmp=eteczl.edu.br.borrachariassustentaveis/.MainActivity }
+
+   Vamos compreender esse comando...
+
+   O comando adb já é um velho conhecido nosso, mas qualquer dúvida
+   pode consultar esses links ou perguntar pro professor em sala de
+   aula
+   https://developer.android.com/studio/command-line/adb
+   
+   shell - significa que estamos entrando no shell do nosso
+   dispositivo
+  
+   am - significa Acitivity Manager (Gerenciador de Atividas)
+   Link pra ler mais sobre o am
+   https://developer.android.com/studio/command-line/adb.html?source=post_page---------------------------#am
+   https://developer.android.com/studio/command-line/adb.html?source=post_page---------------------------#especifica%C3%A7%C3%A3o-para-argumentos-de-intent
+
+   start -n sigifica que queremos "estartar" uma activity com o nome
+   -n "nomeDaActivity". O nome da activity tem que ser completo,
+   incluindo o nome do pacote.
+
+   Não lembre o nome do pacote?
+   Vc pode dar esse comando que vai mostrar todos os pacotes que estão
+   instalados no seu android
+
+   O comando abaixo solicita essa listagem e busca por pacotes que
+   tenham "etec"
+
+   #+NAME: adb shell pm list packages -f | grep etec
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      adb shell pm list packages -f | grep etec
+   #+END_SRC
+
+   #+RESULTS: 
+   #+begin_example
+
+   package:/data/app/br.edu.eteczl.camera-1/base.apk=br.edu.eteczl.camera
+   package:/data/app/eteczl.edu.br.borrachariassustentaveis-1/base.apk=eteczl.edu.br.borrachariassustentaveis
+   package:/data/app/aulasdeandroid.eteczl.br-1/base.apk=aulasdeandroid.eteczl.br
+   package:/data/app/br.edu.eteczl.geo1-2/base.apk=br.edu.eteczl.geo1
+   package:/data/app/eteczl.edu.br.simplelistviewproj-2/base.apk=eteczl.edu.br.simplelistviewproj
+   package:/data/app/br.edu.eteczl.cordovacomsqlite1-2/base.apk=br.edu.eteczl.cordovacomsqlite1
+   package:/data/app/eteczl.edu.br.exampleloginapp2-1/base.apk=eteczl.edu.br.exampleloginapp2
+   package:/data/app/br.edu.eteczl-1/base.apk=br.edu.eteczl
+   package:/data/app/etec.edu.br.firebasedatabase-2/base.apk=etec.edu.br.firebasedatabase
+   #+end_example
+
+
+   
+* Mesclando os branches
+
+   Quais são os branches que temos?
+
+*** Vendo quais branches temos    
+   #+NAME: git branch
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir/..
+      ls -l 
+      git branch
+   #+END_SRC
+
+   #+RESULTS: branches
+   : * master[m
+   : bash: starts: comando nÃ£o encontrado
+   : total 24
+   : drwxrwxr-x. 6 wagner wagner  4096 jul 30 15:21 BorrachariasSustentaveis
+   : -rw-rw-r--. 1 wagner wagner 11357 jul 30 11:34 LICENSE
+   : -rw-rw-r--. 1 wagner wagner   893 jul 30 11:34 README.md
+   : -rw-rw-r--. 1 wagner wagner    13 jul 30 11:34 text.txt
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown borrachariasSustentaveis]$ git branch -r
+  origin/1criartelas
+  origin/2modificaricones
+  origin/3configurarfirebase
+  origin/4criarclasseservico
+  origin/5criarclassevalidacaoinput
+  origin/6trocaricone
+  origin/7criartelascadastroborracharia
+  origin/HEAD -> origin/master
+  origin/configTravis
+  origin/master
+[wagner@Unknown borrachariasSustentaveis]$ 
+
+   #+END_EXAMPLE
+
+*** mesclando origin/6trocaricone
+    
+    Mesclando o branch no master
+    Pra isso vc tem que estar no master e depois dar o comando git
+    merge nomeDoBranch
+
+    Vamos fazer isso então...
+    Primeiro vc dá um git fetch
+    Faz o merge 
+    e por fim deleta o branch remoto
+    
+    
+   #+NAME:git merge origin/configTravis
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projdir/..
+      git fetch --all
+      git branch -a
+      #git merge origin/configTravis
+   #+END_SRC
+
+   #+RESULTS: git merge origin/configTravis
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown borrachariasSustentaveis]$ git fetch --all
+   Fetching origin
+
+   [wagner@Unknown borrachariasSustentaveis]$ git branch -a
+WARNING: terminal is not fully functional
+-  (press RETURN)
+* master
+  remotes/origin/1criartelas
+  remotes/origin/2modificaricones
+  remotes/origin/3configurarfirebase
+  remotes/origin/4criarclasseservico
+  remotes/origin/5criarclassevalidacaoinput
+  remotes/origin/6trocaricone
+  remotes/origin/7criartelascadastroborracharia
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/configTravis
+  remotes/origin/master
+
+
+  [wagner@Unknown borrachariasSustentaveis]$ git branch
+  WARNING: terminal is not fully functional
+  master
+
+  [wagner@Unknown borrachariasSustentaveis]$ git merge remotes/origin/configTravis
+  Already up to date.
+  [wagner@Unknown borrachariasSustentaveis]$ git merge origin/configTravis
+  Already up to date.
+  
+  [wagner@Unknown borrachariasSustentaveis]$ git push https://github.com/wagnermarques/borrachariasSustentaveis.git --delete configTravis
+  error: unable to delete 'configTravis': remote ref does not exist
+  error: failed to push some refs to 'https://github.com/wagnermarques/borrachariasSustentaveis.git'
+
+
+[wagner@Unknown borrachariasSustentaveis]$ git fetch --all --prune
+Fetching origin
+From https://github.com/wagnermarques/borrachariasSustentaveis
+ - [deleted]         (none)     -> origin/configTravis
+[wagner@Unknown borrachariasSustentaveis]$ git branch -a
+WARNING: terminal is not fully functional
+-  (press RETURN)
+* master
+  remotes/origin/1criartelas
+  remotes/origin/2modificaricones
+  remotes/origin/3configurarfirebase
+  remotes/origin/4criarclasseservico
+  remotes/origin/5criarclassevalidacaoinput
+  remotes/origin/6trocaricone
+  remotes/origin/7criartelascadastroborracharia
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+   #+END_EXAMPLE
+
+   fetch --all prune vai atualizar sua lista local de branches
+   remotos.
+   Perceba que depois que eu apaguei o branch configTravis que era
+   remoto, ele continuava aparecendo na minha listagem do git branch
+   -a de modo que pra que não aparecesse mais eu dei de novo git fetch
+   -all --prune pra então sim, não aparecer mais localmente.
+
+
+   Agora que fiz o merge do branch configTravis, vou rodar de novo no
+   cel pra ver se o meu master tá rodando no meu cel. Também tem que
+   observer o build do travis via ícone no nosso README.
+   
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown BorrachariasSustentaveis]$ ./gradlew installDebug
+   [wagner@Unknown BorrachariasSustentaveis]$ adb shell am start -n eteczl.edu.br.borrachariassustentaveis/.MainActivity
+   #+END_EXAMPLE
+   
+
+   
+   
+   
+
+   
+   

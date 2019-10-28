@@ -1,0 +1,169 @@
+#+Title: BPM
+#+Subtitle:
+
+
+* BPM Nomes Importantes
+  Tirado dos agradecimentos do Livro do Marlon DumasMelbourne et all
+  This book draws from the work of many of our colleagues in the BPM
+  field. Wewould like to thank 
+  Han van der Aa
+  Wil van der Aalst
+  Adriano Augusto
+  ThomasBaier
+  Saimir  Bala
+  Wasana  Bandara
+  Alistair  Barros, Anne Baumgraß, BoualemBenatallah, Jan vom Brocke, Cristina Cabanillas, Fabio Casati, Raffaele Conforti,Claudio Di Ciccio, Gero Decker, Remco Dijkman, Boudewijn van Dongen, DirkFahland, Avigdor Gal, Paul Harmon, Arthur ter Hofstede, Henrik Leopold, FabrizioMaria  Maggi,  Monika  Malinova, Fredrik  Milani,  Michael  zur  Muehlen, MarkusNüttgens, Fabian Pittke, Johannes Prescher, Artem Polyvyanyy, Manfred Reichert,Jan Recker, Stefanie Rinderle-Ma, Michael Rosemann, Stefan Schönig, MatthiasSchrepfer,  Priya  Seetharaman,  Sergey  Smirnov,  Andreas  Solti,  Lucinéia  HeloisaThom, Peter Trkman, Irene Vanderfeesten, Barbara Weber, Ingo Weber, MatthiasWeidlich, Mathias Weske, and J. Leon Zhao, who all provided constructive feedbackon drafts of  earlier versions of this  book or  inspired us  in  other ways  while  wewere writing it. Last but not least, we are grateful to the numerous instructors andstudents who reported errata in the first edition of the book and who made usefulsuggestions.  Our  thanks,  in  particular,  go  to  Ahmad  Alturki,  Anis  Charfi,  DaveChaterjee,  Manfred  Jeusfeld,  Worarat  Krathu,  Ann  Majchrzak,  Shane  Tomblin,Phoebe Tsai, Inge van de Weerd, and Chris Zimmer
+
+* Livro: fundamentals of BPM - 2a ed - Marlon et al
+  BPM como sendo a arte de supervisionar como o trabalho acontece em
+  uma organização com o objetivo de garantir resultados consistentes e
+  obter e obter vantagens competitiva ao aproveitar as oportunidades
+  de melhorias.p1
+
+* Disciplinas relacionadas p.7
+  BPM x TQM (Total Quality Management)
+
+** Caso da BuildIT
+   When *BuildIT site engineers need to rent a piece of equipment*
+   they *fill in a form* called  "Equipment Rental Request" 
+   and 
+   *send this request by email* to one of the clerks at the company's depot
+
+   The *clerk at the depot receives the request*
+   and, *after consulting the catalogs of the equipment suppliers*, 
+   *selects the most cost-effective equipment that complies with the request*.
+
+   Next, the *clerk checks theavailability of the selected equipment*
+   with the supplier via phone or email
+
+   _Sometimes the selected option is not available_. 
+   In these cases, _the clerk has to select an alternative piece
+   ofequipment_ 
+   and *check its availabilitywith the corresponding supplier*.
+
+
+   After  finding  a  suitable  and  available  piece  of  equipment,  
+   *the  clerk  adds  the  details  ofthe selected equipment to the
+   rental request*. 
+   *Each rental request has to be approved by aworks  engineer*,  who
+   also works  at  the depot. 
+
+   _In some cases_,  _the works  engineer  rejectsthe equipment rental
+request_. 
+   *Some rejections lead to the cancelation of the request*, i.e., noequipment is rented at all.
+
+
+   *Other rejections are resolved by replacing the selected
+equipmentwith another equipment-such as a cheaper piece of equipment
+or a more appropriate pieceof equipment for the job*. 
+In this latter case, the *clerk needs to lodge another availabilityrequest*.
+
+
+   *When  a  works  engineer  approves  a rental  request*,  
+   *the clerk  sends  a  confirmation  to thesupplier*. 
+   This confirmation includes a Purchase Order (PO) for renting the
+   *equipment. 
+   ThePO is produced by BuildIT's financial information system using
+   *information entered by the clerk. 
+   
+   *The clerk also records the equipment rental in a spreadsheet* that is used to monitorall ongoing equipment rentals.
+
+   *In the meantime, the site engineer may decide that the equipment is no longer needed*. 
+   *In this case, the engineer asks the clerk to cancel the request for renting the equipment*.
+
+   *In due time, the supplier  delivers  the rented equipment  to the
+construction  site*. 
+   *The site engineer then inspects the equipment*. 
+   /If everything is in order/, *the site engineer accepts the
+engagement* and the *equipment is put into use*. 
+   /In some cases/, *the equipment is sent backbecause it does not
+comply with the requirements* of the site engineer. 
+  
+   /In this case, the site engineer has to start the rental process all over again/.
+
+
+   /When the rental period expires/, 
+   *the supplier comes to pick up the equipment*. 
+   
+   /Sometimes,the site engineer asks for an extension of the rental
+period/ *by contacting the supplier viaemail or phone 1 to 2 days
+before pick-up*. 
+
+   *The supplier may accept or reject this request*. 
+
+   /A few days after the equipment is picked up/, 
+   *the equipment's supplier sends an invoice to theclerk by email*. 
+   
+   /At this point/, *the clerk asks the site engineer to confirm that the equipment was indeed rented for the period indicated in the invoice*. 
+
+   *The clerk also checks if the rental prices indicated in the
+invoice are in accordance with those in the PO*. 
+
+   /After these checks/, *the clerk forwards the invoice to the
+financial department*. 
+
+   *The financial department eventually pays the invoice*
+   
+   
+
+** Ingredientes de um Processo de Negócio
+***   Eventos,Tarefas,Pontos de Decisões, Atores,Organizações,Sistemas de Software
+**** Evento
+     Events correspond to things thathappen atomically, which means that
+     they have no duration p.3
+     The arrival of a piece equipment at a construction site is an event
+     This event may trigger the executionof a series of
+     activities. P.4 
+     For example, when a piece of equipment arrives, the siteengineer inspects it.
+     This inspection is an activity, in the sense that it takes time
+**** Atividade     
+     When an activity is rather simple and can be seen as one single
+     unit of work,P.4
+**** Pontos de Decisões     
+     In addition to events and activities, a typical process
+     includesdecision points, P.4
+     For example, as a result of the inspection, the site engineer may
+     decidethat the equipment should be returned or that the equipment
+     should be accepted
+**** Atores         
+     Atores podem ser Humanos
+     Sistemas de softwares atuando como se fossem humanos P4
+     O Ator envolvido no processo que consome o produto do processo é
+     chamado de cliente. P5 No caso do do aluguel de equipamento da
+     BuildIT é o engenheiro de obra. P5
+     
+**** Organizações
+     Um sistema de software pode atuar como se fosse uma organização P4
+**** Objetos Físicos     
+     Equipamentos, materiais, incluse documentos que podem ser de
+     papel ou eletrônicos ou simplesmente um registro eletrônicao por exemplo P.4
+     
+
+     
+     In this example, the customer is anemployee of  the organization
+     (internalcustomer). In  other processes, such  as anorder-to-cash
+     process, the customer is external to the organizationP6
+
+     #+CAPTION: Fonte: Marlon p.6
+     [[./imgs/marlon2ed-uml-process-ingredients.png]]
+     
+     With respect to the above process, consider the following
+     questions:1.  Who are the actors in this process?2.  Which actors
+     can be considered as customers in this process?3.  What value
+     does the process deliver to its customers?  What are the
+     possible outcomes of this process? P6
+
+     In light of the above, we define a business process asa collection of
+     inter-relatedevents, activities, and decision points that involve a
+     number of actors and objects,which  collectively lead  to  an
+     outcomethat is  of  value to  at  least  one customer.P6
+     
+     Armed with this definition of a business process, we define BPM
+     asa body ofmethods, techniques, and tools to identify, discover,
+     analyze, redesign, execute, andmonitor business processes in
+     order to optimize their performance. P6
+
+
+
+* bookmarks
+  https://bpmnmatrix.github.io/

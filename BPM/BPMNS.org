@@ -1,0 +1,14 @@
+#+Title: BPMS
+#+Subtitle:
+
+https://github.com/camunda/camunda-modeler
+https://www.infoq.com/news/2013/03/Camunda-Forks-Activiti/
+
+https://github.com/camunda/camunda-modeler
+https://camunda.com/learn/
+https://github.com/camunda
+https://github.com/camunda/camunda-archetypes
+https://github.com/camunda/camunda-archetypes
+https://github.com/camunda/camunda-archetypes
+https://camel.apache.org/
+https://devhub.io/sites

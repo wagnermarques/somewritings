@@ -1,0 +1,21 @@
+#+Title: AWS IAM
+#+Subtitle:
+
+
+https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/getting-started_create-admin-group.html
+
+* Criando um grupo de administradores e um usuário no IAM associado a conta root
+  1. Entre no IAM como usuario razi
+     https://console.aws.amazon.com/iam/. 
+  2. Na barra de navegação selecione "minha conta"
+     https://console.aws.amazon.com/billing/home?#/account
+     https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/getting-started_create-admin-group.html
+* Criando um grupo no IAM pela linha de comando
+
+* A conta root tem que criar um usuario IAM pro ousuario IAM pode logar
+  https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_create.html#id_users_create_console
+  
+
+* Fazer Login com Usuario IAM  
+  https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_sign-in.html
+  

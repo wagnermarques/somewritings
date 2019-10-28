@@ -1,0 +1,100 @@
+#+Title:
+#+Subtitle:
+
+* Conceitos
+** listas
+
+* Listas car e cdr
+  car retorna a cabeca da lista
+  cdr retorna o resto da lista menos a car
+  Nenhum dos métodos altera a lista
+  #+NAME: car
+  #+BEGIN_SRC elisp 
+  (car '(primeiroelem segundoelem tercelem))
+  #+END_SRC
+
+  #+RESULTS: car
+  : primeiroelem
+
+
+  #+BEGIN_SRC elisp
+    (cdr '(primeiroelem segundoelem tercelem)))
+  #+END_SRC
+
+  #+RESULTS:
+  | segundoelem | tercelem |
+
+
+
+* iterando em uma lista
+  https://www.cs.tut.fi/lintula/manual/elisp/emacs-lisp-intro-1.05/emacs-lisp-intro_12.html
+
+  #+NAME: iter list
+  #+BEGIN_SRC elisp  :results output
+  (setq animalsList '(giraffe gazelle lion tiger))
+
+  (defun print-elements-of-list (list)
+    "Print each element of LIST on a line of its own."
+    (while list
+       (print (car list))
+    (setq list (cdr list))))
+
+  (print-elements-of-list animalsList)
+
+  #+END_SRC
+
+  #+RESULTS: iter list
+  : 
+  : giraffe
+  : 
+  : gazelle
+  : 
+  : lion
+  : 
+  : tiger
+  
+
+
+* plist
+  https://stackoverflow.com/questions/5941397/print-keys-from-plist-based-on-values
+
+  #+NAME:loop plist keys
+  #+BEGIN_SRC elisp :results outputs 
+  (setq myList (list :a "hi" :b "no" :c "go"))
+
+  (defun print-elements-and-value-of-plist(aPlist)
+  (loop for (key value . rest) on aPlist
+   do (princ key)))
+  #+END_SRC
+
+  #+RESULTS: loop plist keys
+  : print-elements-and-value-of-plist
+
+  
+
+* Testa o tipo de parametro recebido na funcao
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Type-Predicates.html
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Predicates-for-Strings.html#Predicates-for-Strings
+
+  #+NAME: fn test param type
+  #+BEGIN_SRC elisp :results output
+  (let (
+  (umaString "umaString")
+  (umaStringNula nil))
+  
+  (print (concat "variavel umaString = " umaString))
+  (print (concat "variavel umaStringNula = " umaStringNula))
+  (stringp umaString)
+  
+  (print (string-or-null-p umaString))
+  (print (char-or-string-p umaString))
+  (print (string-or-null-p umaStringNula))
+  (print (object umaStringNula))
+  (print (char-or-string-p umaString))
+)
+  #+END_SRC
+
+
+
+
+

@@ -1,0 +1,31 @@
+#+Title: Bonitasoft notes
+#+Subtitle:
+
+* Anots
+** Form
+** {{taks}} object properties
+   
+   #+BEGIN_SRC javascript
+     {
+     "displayDescription":"",
+     "executedBy":"0",
+     "rootContainerId":"9001",
+     "assigned_date":"",
+     "displayName":"FormWeb",
+     "executedBySubstitute":"0",
+     "dueDate":"",
+     "description":"",
+     "type":"USER_TASK",
+     "priority":"normal",
+     "actorId":"1102",
+     "processId":"5474128313932438158",
+     "caseId":"9001",
+     "name":"FormWeb",
+     "reached_state_date":"2019-10-18 10:23:12.175",
+     "rootCaseId":"9001",
+     "id":"140006",
+     "state":"ready",
+     "parentCaseId":"9001",
+     "last_update_date":"2019-10-18 10:23:12.175",
+     "assigned_id":""}
+   #+END_SRC

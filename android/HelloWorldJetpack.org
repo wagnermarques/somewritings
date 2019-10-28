@@ -1,0 +1,53 @@
+#+Title:
+#+Subtitle:
+
+* Tema
+  Migrar para jetpack
+* Objetivo
+  Mostrar a diferença entre uma aplicação jetpack e nao jetpack
+* Justificativa
+  Saber transformar uma aplicação nao jetpack pra jetpack é importante
+  porque jetpack é a nova tecnologia que a google está utilizando.
+  Se vc tiver com o android studio 3.5 os seus projetos já são criados
+  usando jetpack, mas no nosso caso, que é o 3.4, não usa jetpack.
+
+  Qdo a gente for estudar google maps vamos precisar de jetpack, por
+  isso precisamos dessa aula.
+  Além disso, essa aula vai ser importante pra vcs conhecerem a
+  estrutura de um projeto android.
+
+* Duração
+  2Blocos
+
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+** Recursos
+   
+* Procedimento didatico
+  Criar uma aplicação não jetpack (é o caso do Android Studio 3.4)
+  Olhar esse material para transformá-la em jetpack
+  
+  [[./imgs/HelloJetpack/HelloJetpack1.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack2.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack3.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack4.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack5.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack6.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack7.png]]
+
+  [[./imgs/HelloJetpack/HelloJetpack8.png]]
+
+* Exercicios e Atividades de Reflexão/Fixação
+
+* Avaliação
+
+* Referencias
+
+
