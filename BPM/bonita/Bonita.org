@@ -10,32 +10,15 @@
       export host=localhost
       export port=15961
       export ctx=bonita
-      export JSESSIONID=FCB59F0A19313E83D32CD0508493CD57
-      export X_Bonita_API_Token=211e4d53-16a7-4e04-bd82-e4c0d8237e93
       export restapi=http://$host:$port/$ctx
+      echo $restapi
    #+END_SRC
 
    #+RESULTS: setup
-   
-   Compreendendo as opcoes do curl que vamos utilizar
-   
-   #+NAME: gorest-create-user
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      #curl -X POST -i http://$host:$port/$ctx/loginservice --data 'username: wagner password: 123 redirect: false '
-      curl -i -H "Accept:application/json" \
-              -H "Content-Type:application/json" \
-              -H "Authorization: Bearer YOUR-ACCESS-TOKEN" \ 
-              -X POST "https://gorest.co.in/public-api/users" \ 
-              -d '{"first_name":"Brian","last_name":"Ratke","gender":"male","email":"lew19@roberts.com","status":"active"}'
-   #+END_SRC
-
-   #+RESULTS: gorest-create-user
    : 
-   : [wagner@Unknown bonita]$ > > curl: (3) Host name ' ' contains bad letter
-   : bash: -X: comando não encontrado
-   : bash: -d: comando não encontrado
+   : [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ http://localhost:15961/bonita
 
+* anotacores sobre o curl
    from man curl:
     -i, --include
               Include the HTTP response headers in the output. The HTTP response headers can include things like server name, cookies, date of the document,  HTTP
@@ -44,7 +27,6 @@
               To view the request headers, consider the -v, --verbose option.
 
               See also -v, --verbose.
-
 
 * REST API
 ** Authentication
@@ -72,7 +54,7 @@
    #+end_example
 
 ** Identity
-*** /bonita/loginservice form   
+*** (logando no Bonita) /bonita/loginservice form   
    #+NAME: curl post authentication (2)
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
@@ -99,17 +81,17 @@
    Content-Length: 56
    } [56 bytes data]
    ,* upload completely sent off: 56 out of 56 bytes
-   100    56    0     0  100    56      0    278 --:--:-- --:--:-- --:--:--   277< HTTP/1.1 200 
+   100    56    0     0  100    56      0    275 --:--:-- --:--:-- --:--:--   274< HTTP/1.1 200 
    ,* Added cookie bonita.tenant="1" for domain localhost, path /bonita/, expire 0
    < Set-Cookie: bonita.tenant=1
-   ,* Added cookie JSESSIONID="DE4DDEB48824ECA5E473224307CDAE49" for domain localhost, path /, expire 0
-   < Set-Cookie: JSESSIONID=DE4DDEB48824ECA5E473224307CDAE49; Path=/; HttpOnly
-   ,* Added cookie X-Bonita-API-Token="57c69d50-c9b6-4382-9478-7d4773d0b5df" for domain localhost, path /, expire 0
-   < Set-Cookie: X-Bonita-API-Token=57c69d50-c9b6-4382-9478-7d4773d0b5df; Path=/
+   ,* Added cookie JSESSIONID="7B1266424BE6C078B6F655C45B6A0BCA" for domain localhost, path /, expire 0
+   < Set-Cookie: JSESSIONID=7B1266424BE6C078B6F655C45B6A0BCA; Path=/; HttpOnly
+   ,* Added cookie X-Bonita-API-Token="938afdbb-bbf0-492a-9c46-70861d732971" for domain localhost, path /, expire 0
+   < Set-Cookie: X-Bonita-API-Token=938afdbb-bbf0-492a-9c46-70861d732971; Path=/
    < Content-Length: 0
-   < Date: Mon, 28 Oct 2019 20:52:28 GMT
+   < Date: Tue, 29 Oct 2019 11:59:28 GMT
    < 
-   100    56    0     0  100    56      0    131 --:--:-- --:--:-- --:--:--   131
+   100    56    0     0  100    56      0    118 --:--:-- --:--:-- --:--:--   118
    0 to host localhost left intact
    Note: Unnecessary use of -X or --request, POST is already inferred.
    malformed
@@ -126,7 +108,6 @@
    #+END_SRC
 
 
-
 *** User,role,group,membership
    
     Listando usuarios cadastrados
@@ -136,16 +117,15 @@
       #starts code      
       #echo $restapi/API/identity/user
       #echo $(curl -i -H "Accept:application/json" -H "X-Bonita-API-Token: 211e4d53-16a7-4e04-bd82-e4c0d8237e93" --fail --silent --show-error $restapi/API/identity/group)
-      curl -b saved_cookies.txt -o users.json -X GET http://localhost:15961/bonita/API/identity/user?p=0&c=10&o=lastname%20ASC&f=enabled%3dtrue
+      curl -b saved_cookies.txt -o users.json -X GET http://localhost:15961/bonita/API/identity/user?p=0&c=10&o=lastname ASC&f=enabled=true
    #+END_SRC
 
    #+RESULTS: users.json
-   : [1]+  Concluído              curl -b saved_cookies.txt -o users.json -X GET http://localhost:15961/bonita/API/identity/user?p=0
-   : [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [1] 30645
-   : [2] 30646
-   : [3] 30647
+   : 
+   : [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [1] 4509
+   : [2] 4510
+   : [3] 4511
    : [2]-  Concluído              c=10
-   : org_babel_sh_eoe
 
    #+INCLUDE: users.json :src json
 
@@ -155,13 +135,16 @@
    #+NAME:  groups.json                   
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-            curl -b saved_cookies.txt -o groups.json -X GET http://localhost:15961/bonita/API/identity/group?p=0&c=10&o=displayName%20ASC                                                            
+            curl -b saved_cookies.txt -o groups.json -X GET http://localhost:15961/bonita/API/identity/group?p=0&c=10&o=displayName ASC
    #+END_SRC
 
    #+RESULTS: groups.json
-   : [1]+  Concluído              curl -b saved_cookies.txt -o groups.json -X GET http://localhost:15961/bonita/API/identity/role?p=0
-   : [1] 31038
-   : [2] 31039
+   : [1]-  Concluído              curl -b saved_cookies.txt -o users.json -X GET http://localhost:15961/bonita/API/identity/user?p=0
+   : [3]+  Fim da execução com status 127        o=lastname ASC
+   : [1] 4565
+   : [2] 4566
+   : bash: ASC: comando não encontrado
+   : [2]+  Concluído              c=10
 
       #+INCLUDE: groups.json :src json
 
@@ -171,13 +154,15 @@
    #+NAME:  roles.json                   
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      curl -b saved_cookies.txt -o roles.json -X GET http://localhost:15961/bonita/API/identity/role?p=0&c=10&o=displayName%20ASC
+      curl -b saved_cookies.txt -o roles.json -X GET http://localhost:15961/bonita/API/identity/role?p=0&c=10&o=displayName ASC
    #+END_SRC
 
    #+RESULTS: roles.json
-   : [1]+  Concluído              curl -b saved_cookies.txt -o roles.json -X GET http://localhost:15961/bonita/API/identity/membership?p=0
-   : [1] 31114
-   : [2] 31115
+   : [1]+  Concluído              curl -b saved_cookies.txt -o groups.json -X GET http://localhost:15961/bonita/API/identity/group?p=0
+   : [1] 4579
+   : [2] 4580
+   : bash: ASC: comando não encontrado
+   : [2]+  Concluído              c=10
 
    #+INCLUDE: roles.json :src json
 
@@ -189,14 +174,13 @@
    #+NAME: memberships
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      curl -b saved_cookies.txt -o membership.json -X GET http://localhost:15961/bonita/API/identity/membership?f[]=user_id:111
+      curl -b saved_cookies.txt -o membership.json -X GET http://localhost:15961/bonita/API/identity/membership?f=user_id=303&f=id_role=306&f=id_group=303
    #+END_SRC
 
    #+RESULTS: memberships
-   : 
-   : % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-   :                                  Dload  Upload   Total   Spent    Left  Speed
-   :   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   259    0   259    0     0   126k      0 --:--:-- --:--:-- --:--:--  126k
+   : [1]+  Concluído              curl -b saved_cookies.txt -o roles.json -X GET http://localhost:15961/bonita/API/identity/role?p=0
+   : [1] 4611
+   : [2] 4612
 
    #+INCLUDE: membership.json :src json
 
@@ -207,14 +191,14 @@
    #+NAME: list process definitions
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      curl -b saved_cookies.txt -o processInstaled.json -X GET --url "http://localhost:15961/bonita/API/bpm/process?p=0&c=10&o=displayName%20ASC&f=activationState%3dENABLED"
+      curl -b saved_cookies.txt -o processInstaled.json -X GET --url "http://localhost:15961/bonita/API/bpm/process?p=0&c=10&o=displayName ASC&f=activationState:ENABLED"
    #+END_SRC
 
    #+RESULTS: list process definitions
    : 
    : % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
    :                                  Dload  Upload   Total   Spent    Left  Speed
-   :   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   669    0   669    0     0   130k      0 --:--:-- --:--:-- --:--:--  130k
+   :   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2145  100  2145    0     0  11409      0 --:--:-- --:--:-- --:--:-- 11409
 
    #+INCLUDE: processInstaled.json :src json
 
