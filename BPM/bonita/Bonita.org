@@ -18,15 +18,6 @@
    : 
    : [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ http://localhost:15961/bonita
 
-* anotacores sobre o curl
-   from man curl:
-    -i, --include
-              Include the HTTP response headers in the output. The HTTP response headers can include things like server name, cookies, date of the document,  HTTP
-              version and more...
-
-              To view the request headers, consider the -v, --verbose option.
-
-              See also -v, --verbose.
 
 * REST API
 ** Authentication
@@ -65,8 +56,8 @@
 
    #+RESULTS: curl post authentication (2)
    #+begin_example
-
-   http://localhost:15961/bonita/loginservice
+   [1]+  Conclu√≠do              curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25
+   http://://loginservice
    Note: Unnecessary use of -X or --request, POST is already inferred.
    Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                     Dload  Upload   Total   Spent    Left  Speed
@@ -81,17 +72,17 @@
    Content-Length: 56
    } [56 bytes data]
    ,* upload completely sent off: 56 out of 56 bytes
-   100    56    0     0  100    56      0    275 --:--:-- --:--:-- --:--:--   274< HTTP/1.1 200 
+   < HTTP/1.1 200 
    ,* Added cookie bonita.tenant="1" for domain localhost, path /bonita/, expire 0
    < Set-Cookie: bonita.tenant=1
-   ,* Added cookie JSESSIONID="7B1266424BE6C078B6F655C45B6A0BCA" for domain localhost, path /, expire 0
-   < Set-Cookie: JSESSIONID=7B1266424BE6C078B6F655C45B6A0BCA; Path=/; HttpOnly
-   ,* Added cookie X-Bonita-API-Token="938afdbb-bbf0-492a-9c46-70861d732971" for domain localhost, path /, expire 0
-   < Set-Cookie: X-Bonita-API-Token=938afdbb-bbf0-492a-9c46-70861d732971; Path=/
+   ,* Added cookie JSESSIONID="EFBD5A1AFF3CB37DEE68C0E6F75645C5" for domain localhost, path /, expire 0
+   < Set-Cookie: JSESSIONID=EFBD5A1AFF3CB37DEE68C0E6F75645C5; Path=/; HttpOnly
+   ,* Added cookie X-Bonita-API-Token="5c8ca8ca-dcce-4835-81d7-c91fae8f23d3" for domain localhost, path /, expire 0
+   < Set-Cookie: X-Bonita-API-Token=5c8ca8ca-dcce-4835-81d7-c91fae8f23d3; Path=/
    < Content-Length: 0
-   < Date: Tue, 29 Oct 2019 11:59:28 GMT
+   < Date: Tue, 29 Oct 2019 14:55:46 GMT
    < 
-   100    56    0     0  100    56      0    118 --:--:-- --:--:-- --:--:--   118
+   100    56    0     0  100    56      0    296 --:--:-- --:--:-- --:--:--   296
    0 to host localhost left intact
    Note: Unnecessary use of -X or --request, POST is already inferred.
    malformed
@@ -184,50 +175,120 @@
 
    #+INCLUDE: membership.json :src json
 
-** Process
 
-   Listando os processos definidos/instalados
+** Process
+*** Listando os processos definidos/instalados
 
    #+NAME: list process definitions
    #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      curl -b saved_cookies.txt -o processInstaled.json -X GET --url "http://localhost:15961/bonita/API/bpm/process?p=0&c=10&o=displayName ASC&f=activationState:ENABLED"
+      #starts code      
+      curl -b saved_cookies.txt -X GET --url http://localhost:15961/bonita/API/bpm/process?p=0
    #+END_SRC
 
    #+RESULTS: list process definitions
-   : 
-   : % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-   :                                  Dload  Upload   Total   Spent    Left  Speed
-   :   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2145  100  2145    0     0  11409      0 --:--:-- --:--:-- --:--:-- 11409
 
    #+INCLUDE: processInstaled.json :src json
 
 
-   Listando cases
+*** Listando cases
    
    
    #+NAME: cases
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      
+      #curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id=303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
+      #curl -b saved_cookies.txt -o cases.json -X POST --url  http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id%3D303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
+      curl -b saved_cookies.txt -o cases.json -X POST --url   http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
    #+END_SRC
+
+   #+RESULTS: cases
+   #+begin_example
+
+   [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [1] 7662
+   [2] 7663
+   [3] 7664
+   [4] 7665
+   [5] 7666
+   [6] 7667
+   [7] 7668
+   [2]   Conclu√≠do              d=processDefinitionId
+   [3]   Conclu√≠do              d=started_by
+   [4]   Conclu√≠do              d=startedBySubstitute
+   [6]-  Conclu√≠do              n=failedFlowNodes
+   #+end_example
    
 
-   Instanciando um processo
+   #+INCLUDE: cases.json :src json
+
+*** Instanciando um case/processo
    
+    
+   #+NAME: cat saved_cookies.txtxs    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cat saved_cookies.txt
+   #+END_SRC
+
+   #+RESULTS: cat saved_cookies.txtxs
+   : [1]+  Conclu√≠do              curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25
+   : # Netscape HTTP Cookie File
+   : https://curl.haxx.se/docs/http-cookies.html
+   : This file was generated by libcurl! Edit at your own risk.
+   : 
+   : localhost	FALSE	/	FALSE	0	X-Bonita-API-Token	5c8ca8ca-dcce-4835-81d7-c91fae8f23d3
+   : HttpOnly_localhost	FALSE	/	FALSE	0	JSESSIONID	EFBD5A1AFF3CB37DEE68C0E6F75645C5
+   : localhost	FALSE	/bonita/	FALSE	0	bonita.tenant	1
+
    #+NAME:  instanciando um processo                   
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      curl -b saved_cookies.txt -X POST --url 'http://localhost:15961/bonita/API/bpm/case' \
-      --header 'Content-Type: application/json' \
-      --header 'X-Bonita-API-Token: 2f86dcab-9b54-45e6-8eb1-f82c2a2f8e25' \
-      -d '{"processDefinitionId":"6090246829515228480"}'    
+      curl -b saved_cookies.txt -X POST --url 'http://localhost:15961/bonita/API/bpm/case' --header 'Content-Type: application/json'  --header 'X-Bonita-API-Token: 5c8ca8ca-dcce-4835-81d7-c91fae8f23d3' -d '{"processDefinitionId":"5268062146612458577"}'
    #+END_SRC
+
+   #+RESULTS: instanciando um processo
 
 
    
 ** Taks
    
+
+** (Gerenciando Atores no processo) Como funciona a questao dos atores num processo
+*** ActorMember
+     https://documentation.bonitasoft.com/bonita/7.6/bpm-api
+     Um ator representa uma associaÁ„o entre ele e uma organization em
+     um processo.
+     Essa associaÁ„o podem ser classificadas como:
+     member_types = USER, GROUP, ROLE and MEMBERSHIP (role in a group). 
+     
+     E possivel associar um ator a um usuario especificando um role
+     e/ou um grupo ou mesmo um usuario especifico.
+
+     Vamos pesquisar os atores de um processo
+
+     Se È de um processo, vc tem que dizer qual
+     Pra fazer isso 5268062146612458577
+
+     problema: {"exception":"class org.bonitasoft.web.rest.server.framework.exception.APIFilterMandatoryException","message":"Filter process_id is mandatory","api":"bpm","resource":"actor","filterName":"process_id"}
+   #+NAME: serach actor in process                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      curl -b saved_cookies.txt -o actorsInProcess.json -X GET --url http://localhost:15961/bonita/API/bpm/actor?p=0&c=10&f=process_id=5268062146612458577&n=users&n=group&n=roles&n=memberships
+   #+END_SRC
+
+   #+RESULTS: serach actor in process
+   #+begin_example
+
+   [1] 6878
+   [2] 6879
+   [3] 6880
+   [4] 6881
+   [5] 6882
+   [6] 6883
+   [2]   Conclu√≠do              c=10
+   [3]   Conclu√≠do              f=process_id=5268062146612458577
+   [4]   Conclu√≠do              n=users
+   #+end_example
+
 
 * Anots
 ** Form
@@ -257,3 +318,12 @@
      "last_update_date":"2019-10-18 10:23:12.175",
      "assigned_id":""}
    #+END_SRC
+** anotacores sobre o curl
+   from man curl:
+    -i, --include
+              Include the HTTP response headers in the output. The HTTP response headers can include things like server name, cookies, date of the document,  HTTP
+              version and more...
+
+              To view the request headers, consider the -v, --verbose option.
+
+              See also -v, --verbose.
