@@ -1,0 +1,922 @@
+#+Title: Cucumber
+#+Subtitle: uma introducao
+
+
+* Conceito de BDD
+  https://pt.wikipedia.org/wiki/Behavior_Driven_Development
+  https://cucumber.io/training
+* Apresentacao da ferramenta 
+  https://cucumber.io/
+* Instalação
+  
+  Crie este projeto com maven
+
+  Rode esse comando na sua máquina para criar o seu projeto
+  Um diretório "MeuPrimeiroProjetoCucumber" será criado no mesmo
+  diretório em que vc deu esse comando. 
+  
+   #+NAME: mvn archetype:generate   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mvn archetype:generate                      \
+      "-DarchetypeGroupId=io.cucumber"           \
+      "-DarchetypeArtifactId=cucumber-archetype" \
+      "-DarchetypeVersion=4.2.6.1"               \
+      "-DgroupId=br.eteczl.tqs"                  \
+      "-DartifactId=MeuPrimeiroProjetoCucumber"               \
+      "-Dpackage=br.eteczl.tqs"                  \
+      "-Dversion=1.0.0-SNAPSHOT"                 \
+      "-DinteractiveMode=false"
+   #+END_SRC
+
+   #+RESULTS: 
+   #+begin_example
+
+   [wagner@Unknown MeuPrimeiroProjetoCucumber]$ [[1;34mINFO[m] Scanning for projects...
+   [[1;34mINFO[m]
+   --------------[m
+   [[1;34mINFO[m] [1mBuilding MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT[m
+   [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-java/4.2.6/cucumber-java-4.2.6.pom
+   Progress (1): 2.2/5.5 kBProgress (1): 5.0/5.5 kBProgress (1): 5.5 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-java/4.2.6/cucumber-java-4.2.6.pom (5.5 kB at 4.1 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-jvm/4.2.6/cucumber-jvm-4.2.6.pom
+   Progress (1): 2.2/17 kBProgress (1): 5.0/17 kBProgress (1): 7.8/17 kBProgress (1): 11/17 kB Progress (1): 13/17 kBProgress (1): 16/17 kBProgress (1): 17 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-jvm/4.2.6/cucumber-jvm-4.2.6.pom (17 kB at 37 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-core/4.2.6/cucumber-core-4.2.6.pom
+   Progress (1): 2.2/11 kBProgress (1): 5.0/11 kBProgress (1): 7.8/11 kBProgress (1): 11/11 kB Progress (1): 11 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-core/4.2.6/cucumber-core-4.2.6.pom (11 kB at 37 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-expressions/6.2.0/cucumber-expressions-6.2.0.pom
+   Progress (1): 1.9 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-expressions/6.2.0/cucumber-expressions-6.2.0.pom (1.9 kB at 6.4 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-junit/4.2.6/cucumber-junit-4.2.6.pom
+   Progress (1): 983 B                   Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-junit/4.2.6/cucumber-junit-4.2.6.pom (983 B at 2.9 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-java/4.2.6/cucumber-java-4.2.6.jar
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-core/4.2.6/cucumber-core-4.2.6.jar
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-junit/4.2.6/cucumber-junit-4.2.6.jar
+   Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-expressions/6.2.0/cucumber-expressions-6.2.0.jar
+   Progress (1): 2.2/309 kBProgress (1): 5.0/309 kBProgress (1): 7.7/309 kBProgress (1): 10/309 kB Progress (1): 13/309 kBProgress (1): 16/309 kBProgress (1): 19/309 kBProgress (1): 21/309 kBProgress (1): 24/309 kBProgress (1): 27/309 kBProgress (1): 30/309 kBProgress (1): 32/309 kBProgress (1): 36/309 kBProgress (1): 40/309 kBProgress (1): 45/309 kBProgress (1): 49/309 kBProgress (1): 53/309 kBProgress (1): 57/309 kBProgress (1): 61/309 kBProgress (1): 65/309 kBProgress (1): 69/309 kBProgress (1): 73/309 kBProgress (1): 77/309 kBProgress (1): 81/309 kBProgress (1): 85/309 kBProgress (1): 90/309 kBProgress (1): 94/309 kBProgress (1): 98/309 kBProgress (2): 98/309 kB | 2.2/33 kBProgress (2): 102/309 kB | 2.2/33 kBProgress (2): 102/309 kB | 5.0/33 kBProgress (3): 102/309 kB | 5.0/33 kB | 2.2/549 kBProgress (3): 106/309 kB | 5.0/33 kB | 2.2/549 kBProgress (3): 106/309 kB | 7.7/33 kB | 2.2/549 kBProgress (3): 106/309 kB | 10/33 kB | 2.2/549 kB Progress (3): 106/309 kB | 10/33 kB | 5.0/549 kBProgress (3): 106/309 kB | 10/33 kB | 7.7/549 kBProgress (4): 106/309 kB | 10/33 kB | 7.7/549 kB | 2.2/53 kBProgress (4): 110/309 kB | 10/33 kB | 7.7/549 kB | 2.2/53 kBProgress (4): 110/309 kB | 10/33 kB | 7.7/549 kB | 5.0/53 kBProgress (4): 110/309 kB | 10/33 kB | 10/549 kB | 5.0/53 kB Progress (4): 110/309 kB | 10/33 kB | 10/549 kB | 7.7/53 kBProgress (4): 110/309 kB | 10/33 kB | 10/549 kB | 10/53 kB Progress (4): 110/309 kB | 10/33 kB | 10/549 kB | 13/53 kBProgress (4): 114/309 kB | 10/33 kB | 10/549 kB | 13/53 kBProgress (4): 114/309 kB | 10/33 kB | 13/549 kB | 13/53 kBProgress (4): 114/309 kB | 10/33 kB | 16/549 kB | 13/53 kBProgress (4): 114/309 kB | 10/33 kB | 16/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 19/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 21/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 24/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 27/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 30/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 16/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 19/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 21/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 24/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 27/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 30/53 kBProgress (4): 114/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 118/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 122/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 126/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 131/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 135/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 139/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 143/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 10/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 13/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 16/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 19/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 21/33 kB | 32/549 kB | 32/53 kBProgress (4): 147/309 kB | 24/33 kB | 32/549 kB | 32/53 kBProgress (4): 151/309 kB | 24/33 kB | 32/549 kB | 32/53 kBProgress (4): 155/309 kB | 24/33 kB | 32/549 kB | 32/53 kBProgress (4): 159/309 kB | 24/33 kB | 32/549 kB | 32/53 kBProgress (4): 163/309 kB | 24/33 kB | 32/549 kB | 32/53 kBProgress (4): 163/309 kB | 27/33 kB | 32/549 kB | 32/53 kBProgress (4): 163/309 kB | 30/33 kB | 32/549 kB | 32/53 kBProgress (4): 163/309 kB | 32/33 kB | 32/549 kB | 32/53 kBProgress (4): 163/309 kB | 33 kB | 32/549 kB | 32/53 kB   Progress (4): 167/309 kB | 33 kB | 32/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 32/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 36/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 40/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 45/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 49/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 53/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 57/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 61/549 kB | 32/53 kBProgress (4): 171/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 176/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 180/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 184/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 188/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 192/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 196/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 200/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 204/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 208/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 212/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 217/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 221/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 225/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 229/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 233/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 237/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 241/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 245/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 249/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 253/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 258/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 262/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 266/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 270/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 274/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 278/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 282/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 286/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 290/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 294/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 298/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 303/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 307/309 kB | 33 kB | 65/549 kB | 32/53 kBProgress (4): 309 kB | 33 kB | 65/549 kB | 32/53 kB                                                       Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-java/4.2.6/cucumber-java-4.2.6.jar (309 kB at 310 kB/s)
+   Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-junit/4.2.6/cucumber-junit-4.2.6.jar (33 kB at 32 kB/s)
+   Progress (2): 69/549 kB | 32/53 kBProgress (2): 73/549 kB | 32/53 kBProgress (2): 77/549 kB | 32/53 kBProgress (2): 81/549 kB | 32/53 kBProgress (2): 85/549 kB | 32/53 kBProgress (2): 90/549 kB | 32/53 kBProgress (2): 94/549 kB | 32/53 kBProgress (2): 98/549 kB | 32/53 kBProgress (2): 102/549 kB | 32/53 kBProgress (2): 106/549 kB | 32/53 kBProgress (2): 110/549 kB | 32/53 kBProgress (2): 114/549 kB | 32/53 kBProgress (2): 118/549 kB | 32/53 kBProgress (2): 122/549 kB | 32/53 kBProgress (2): 126/549 kB | 32/53 kBProgress (2): 131/549 kB | 32/53 kBProgress (2): 135/549 kB | 32/53 kBProgress (2): 139/549 kB | 32/53 kBProgress (2): 143/549 kB | 32/53 kBProgress (2): 147/549 kB | 32/53 kBProgress (2): 151/549 kB | 32/53 kBProgress (2): 155/549 kB | 32/53 kBProgress (2): 159/549 kB | 32/53 kBProgress (2): 163/549 kB | 32/53 kBProgress (2): 167/549 kB | 32/53 kBProgress (2): 171/549 kB | 32/53 kBProgress (2): 176/549 kB | 32/53 kBProgress (2): 180/549 kB | 32/53 kBProgress (2): 184/549 kB | 32/53 kBProgress (2): 188/549 kB | 32/53 kBProgress (2): 192/549 kB | 32/53 kBProgress (2): 196/549 kB | 32/53 kBProgress (2): 200/549 kB | 32/53 kBProgress (2): 204/549 kB | 32/53 kBProgress (2): 208/549 kB | 32/53 kBProgress (2): 212/549 kB | 32/53 kBProgress (2): 217/549 kB | 32/53 kBProgress (2): 221/549 kB | 32/53 kBProgress (2): 225/549 kB | 32/53 kBProgress (2): 229/549 kB | 32/53 kBProgress (2): 233/549 kB | 32/53 kBProgress (2): 237/549 kB | 32/53 kBProgress (2): 241/549 kB | 32/53 kBProgress (2): 245/549 kB | 32/53 kBProgress (2): 249/549 kB | 32/53 kBProgress (2): 253/549 kB | 32/53 kBProgress (2): 258/549 kB | 32/53 kBProgress (2): 262/549 kB | 32/53 kBProgress (2): 266/549 kB | 32/53 kBProgress (2): 270/549 kB | 32/53 kBProgress (2): 274/549 kB | 32/53 kBProgress (2): 278/549 kB | 32/53 kBProgress (2): 282/549 kB | 32/53 kBProgress (2): 286/549 kB | 32/53 kBProgress (2): 290/549 kB | 32/53 kBProgress (2): 294/549 kB | 32/53 kBProgress (2): 298/549 kB | 32/53 kBProgress (2): 303/549 kB | 32/53 kBProgress (2): 307/549 kB | 32/53 kBProgress (2): 311/549 kB | 32/53 kBProgress (2): 315/549 kB | 32/53 kBProgress (2): 319/549 kB | 32/53 kBProgress (2): 323/549 kB | 32/53 kBProgress (2): 327/549 kB | 32/53 kBProgress (2): 331/549 kB | 32/53 kBProgress (2): 335/549 kB | 32/53 kBProgress (2): 339/549 kB | 32/53 kBProgress (2): 344/549 kB | 32/53 kBProgress (2): 348/549 kB | 32/53 kBProgress (2): 352/549 kB | 32/53 kBProgress (2): 356/549 kB | 32/53 kBProgress (2): 360/549 kB | 32/53 kBProgress (2): 364/549 kB | 32/53 kBProgress (2): 364/549 kB | 36/53 kBProgress (2): 364/549 kB | 40/53 kBProgress (2): 368/549 kB | 40/53 kBProgress (2): 368/549 kB | 45/53 kBProgress (2): 372/549 kB | 45/53 kBProgress (2): 372/549 kB | 49/53 kBProgress (2): 376/549 kB | 49/53 kBProgress (2): 380/549 kB | 49/53 kBProgress (2): 384/549 kB | 49/53 kBProgress (2): 389/549 kB | 49/53 kBProgress (2): 393/549 kB | 49/53 kBProgress (2): 397/549 kB | 49/53 kBProgress (2): 401/549 kB | 49/53 kBProgress (2): 405/549 kB | 49/53 kBProgress (2): 409/549 kB | 49/53 kBProgress (2): 413/549 kB | 49/53 kBProgress (2): 417/549 kB | 49/53 kBProgress (2): 421/549 kB | 49/53 kBProgress (2): 425/549 kB | 49/53 kBProgress (2): 425/549 kB | 53/53 kBProgress (2): 425/549 kB | 53 kB   Progress (2): 430/549 kB | 53 kBProgress (2): 434/549 kB | 53 kBProgress (2): 438/549 kB | 53 kBProgress (2): 442/549 kB | 53 kBProgress (2): 446/549 kB | 53 kBProgress (2): 450/549 kB | 53 kBProgress (2): 454/549 kB | 53 kBProgress (2): 458/549 kB | 53 kBProgress (2): 462/549 kB | 53 kBProgress (2): 466/549 kB | 53 kBProgress (2): 470/549 kB | 53 kBProgress (2): 475/549 kB | 53 kBProgress (2): 479/549 kB | 53 kBProgress (2): 483/549 kB | 53 kBProgress (2): 487/549 kB | 53 kBProgress (2): 491/549 kB | 53 kBProgress (2): 495/549 kB | 53 kBProgress (2): 499/549 kB | 53 kBProgress (2): 503/549 kB | 53 kBProgress (2): 507/549 kB | 53 kBProgress (2): 511/549 kB | 53 kBProgress (2): 516/549 kB | 53 kBProgress (2): 520/549 kB | 53 kBProgress (2): 524/549 kB | 53 kB                                Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-expressions/6.2.0/cucumber-expressions-6.2.0.jar (53 kB at 29 kB/s)
+   Progress (1): 528/549 kBProgress (1): 532/549 kBProgress (1): 536/549 kBProgress (1): 540/549 kBProgress (1): 544/549 kBProgress (1): 548/549 kBProgress (1): 549 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-core/4.2.6/cucumber-core-4.2.6.jar (549 kB at 262 kB/s)
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+   [[1;34mINFO[m] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.7.0:compile[m [1m(default-compile)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] No sources to compile
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+   [[1;34mINFO[m] Copying 1 resource
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.7.0:testCompile[m [1m(default-testCompile)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Changes detected - recompiling the module!
+   [[1;34mINFO[m] Compiling 2 source files to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/test-classes
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+   Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom
+   Progress (1): 2.2/2.4 kBProgress (1): 2.4 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom (2.4 kB at 7.7 kB/s)
+   Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar
+   Progress (1): 2.8/37 kBProgress (1): 5.5/37 kBProgress (1): 8.3/37 kBProgress (1): 11/37 kB Progress (1): 14/37 kBProgress (1): 16/37 kBProgress (1): 19/37 kBProgress (1): 22/37 kBProgress (1): 25/37 kBProgress (1): 27/37 kBProgress (1): 30/37 kBProgress (1): 33/37 kBProgress (1): 36/37 kBProgress (1): 37 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar (37 kB at 39 kB/s)
+
+   -------------------------------------------------------
+    T E S T S
+   -------------------------------------------------------
+   Running br.eteczl.tqs.RunCucumberTest
+   No features found at [classpath:br/eteczl/tqs]
+
+   0 Scenarios
+   0 Steps
+   0m0,097s
+
+   Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.299 sec
+
+   Results :
+
+   Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   [[1;34mINFO[m] Total time:  14.383 s
+   [[1;34mINFO[m] Finished at: 2019-10-31T18:27:08-03:00
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   #+end_example
+  
+* Adicionando código
+ 
+  Agora vamos criar umas classes de testes....
+  Não é nenhuma novidade pra vcs isso certo?
+  Lembra que vcs já criaram classes de testes junit? Pra testar os
+  métodos de uma calculadora?
+
+  Pois é agora vamos criar classes de testes de novo, só que dessa vez
+  a gente vai usar cucumber.
+
+ 
+  Se vc perceber bem, ao criar o projeto, o maven já criou uma classe
+  pra gente.... Vemos conhecê-la...
+
+
+  Primeiro vamos localizá-la né.. no nosso projeto...
+
+  Vamos observar as pastas do nosso projeto...
+
+  Dá uma olhadinha aqui em baixo nesses comandos...
+
+  a variável projDir aponta para o diretório onde eu criei o meu
+  projeto. 
+   #+NAME:conhecendo 
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export projDir=$(pwd)/MeuPrimeiroProjetoCucumber
+      echo $projDir
+      ls $projDir/src/test/java/br/eteczl/tqs
+   #+END_SRC
+
+
+   #+RESULTS: conhecendo
+   : 
+   : [wagner@Unknown testes_de_software]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber
+   : '#RunCucumberTest.java#'   RunCucumberTest.java   Stepdefs.java
+
+  
+   Pelo resultado do ls (mesmo que dir, no windows) dá pra perceber
+   que tem duas classes, uma que chama RunCucumberTest.java e outra
+   que chama  Stepdefs.java
+
+   
+   Segue abaixo o código dessas classes...
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/test/java/br/eteczl/tqs/RunCucumberTest.java :src java
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/test/java/br/eteczl/tqs/Stepdefs.java :src java
+   
+   
+   Então os nossos códigos, que vamos fazer depois, serão colocados
+   neste diretório. Não que seja obrigatório. Podemos criar diretórios
+   (pacotes) conforme nossa necessidade. Vou padronizar esse diretório
+   (pacote) só por simplicidade.
+
+   
+* Rodando nosso código
+  
+
+  
+   #+NAME: mvn test                 
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projDir
+      mvn test
+   #+END_SRC
+
+   #+RESULTS: mvn test
+   #+begin_example
+
+   [wagner@Unknown MeuPrimeiroProjetoCucumber]$ [[1;34mINFO[m] Scanning for projects...
+   [[1;34mINFO[m]
+   --------------[m
+   [[1;34mINFO[m] [1mBuilding MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT[m
+   [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+   [[1;34mINFO[m] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.7.0:compile[m [1m(default-compile)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] No sources to compile
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+   [[1;34mINFO[m] Copying 1 resource
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.7.0:testCompile[m [1m(default-testCompile)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Nothing to compile - all classes are up to date
+   [[1;34mINFO[m] 
+   [[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mMeuPrimeiroProjetoCucumber[0;1m ---[m
+   [[1;34mINFO[m] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+   -------------------------------------------------------
+    T E S T S
+   -------------------------------------------------------
+   Running br.eteczl.tqs.RunCucumberTest
+   No features found at [classpath:br/eteczl/tqs]
+
+   0 Scenarios
+   0 Steps
+   0m0,137s
+
+   Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.319 sec
+
+   Results :
+
+   Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   [[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   [[1;34mINFO[m] Total time:  1.596 s
+   [[1;34mINFO[m] Finished at: 2019-10-31T18:28:18-03:00
+   [[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+   #+end_example
+
+
+* Escrevento um cenário
+  
+  
+  crie um arquivo .feature no diretório resources e pacote
+   #+NAME: criando feature                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      cd $projDir
+      touch ./src/test/resources/br/eteczl/tqs/is_it_friday_yet.feature
+   #+END_SRC
+
+   #+RESULTS: criando feature
+
+
+   conteudo do arquivo
+
+   #+INCLUDE: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/test/resources/br/eteczl/tqs/is_it_friday_yet.feature :src java
+
+
+   A primeira linha comeca com a palavra chave "Feature" seguida pelo
+   nome da feature. Feature significa funcionalidade.
+
+    A segunda linha e um descritivo breve dessa funcionalidade que
+    sera testada, entao nao he um codigo executavel, he uma linha tipo
+    de documentacao...
+
+    A quarta linha: Scenario: Sunday is not Friday, diz respeito a um
+    cenario. Um cenario e um comportamento que o software que vc esta
+    testanto tem que ter.
+
+    As demais linhas comeca com a palavra chamve "Given", "When" e
+    "Then" que sao os passos relativos a concretizacao desse
+    cenario. Sao esses passos que o cucumber vai executar.
+
+
+* vendo o cenario reportar como undefined
+  
+  
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mvn test
+   #+END_SRC
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown MeuPrimeiroProjetoCucumber]$ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< br.eteczl.tqs:MeuPrimeiroProjetoCucumber >--------------
+[INFO] Building MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running br.eteczl.tqs.RunCucumberTest
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday        # br/eteczl/tqs/is_it_friday_yet.feature:4
+    Given today is Sunday              # null
+    When I ask whether it's Friday yet # null
+    Then I should be told "Nope"       # null
+
+Undefined scenarios:
+br/eteczl/tqs/is_it_friday_yet.feature:4 # Sunday isn't Friday
+
+1 Scenarios (1 undefined)
+3 Steps (3 undefined)
+0m0,129s
+
+
+You can implement missing steps with the snippets below:
+
+@Given("today is Sunday")
+public void today_is_Sunday() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@When("I ask whether it's Friday yet")
+public void i_ask_whether_it_s_Friday_yet() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@Then("I should be told {string}")
+public void i_should_be_told(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.319 sec
+
+Results :
+
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 3
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.773 s
+[INFO] Finished at: 2019-10-31T19:38:11-03:00
+[INFO] ------------------------------------------------------------------------
+[wagner@Unknown MeuPrimeiroProjetoCucumber]$ 
+   #+END_EXAMPLE
+
+
+   Atencao a esses trechos da saida do seu teste...
+   
+   #+BEGIN_EXAMPLE
+   Undefined scenarios:
+br/eteczl/tqs/is_it_friday_yet.feature:4 # Sunday isn't Friday
+
+1 Scenarios (1 undefined)
+3 Steps (3 undefined)
+0m0,129s
+
+   #+END_EXAMPLE
+
+
+   Veja que os passos ainda nao foram definidos
+
+* vendo o cenario reportar como "pending"
+  
+  Dando um mvn test de novo vc tera uma saida um pouco diferente....
+  
+  Olha com carinho essa saída....
+
+  #+BEGIN_EXAMPLE
+  [wagner@Unknown MeuPrimeiroProjetoCucumber]$ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< br.eteczl.tqs:MeuPrimeiroProjetoCucumber >--------------
+[INFO] Building MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running br.eteczl.tqs.RunCucumberTest
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday        # br/eteczl/tqs/is_it_friday_yet.feature:4
+    Given today is Sunday              # null
+    When I ask whether it's Friday yet # null
+    Then I should be told "Nope"       # null
+
+Undefined scenarios:
+br/eteczl/tqs/is_it_friday_yet.feature:4 # Sunday isn't Friday
+
+1 Scenarios (1 undefined)
+3 Steps (3 undefined)
+0m0,115s
+
+
+You can implement missing steps with the snippets below:
+
+@Given("today is Sunday")
+public void today_is_Sunday() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@When("I ask whether it's Friday yet")
+public void i_ask_whether_it_s_Friday_yet() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@Then("I should be told {string}")
+public void i_should_be_told(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.325 sec
+
+Results :
+
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 3
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.778 s
+[INFO] Finished at: 2019-10-31T19:40:49-03:00
+[INFO] ------------------------------------------------------------------------
+[wagner@Unknown MeuPrimeiroProjetoCucumber]$ 
+  #+END_EXAMPLE
+
+
+  compara com a primeira vez que vc deu um mvn test
+  Na primeira vez os cenarios estavam undefined, ou seja, nao
+  definidos.
+  Dessa segunda vez que vc rodou um mvn teste os passos do cenarios
+  estao definidos mas pendentes....
+
+  
+* implementando os steps
+  
+  Cada step he codigo mesmo, certo?
+ 
+  Qdo a gente rodou mvn test o cucumber ja disse pra gente, na saida
+  do cumento, como que a gente implementa esses passos...
+
+  duvida? 
+  Se tiver dificuldade pra entender essa frase abaixo, que o cucumber
+  apresentou na saida do mvn test, pode por no tradutor....
+  "You can implement missing steps with the snippets below:"
+  
+  
+  #+BEGIN_EXAMPLE
+  
+  You can implement missing steps with the snippets below:
+
+@Given("today is Sunday")
+public void today_is_Sunday() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@When("I ask whether it's Friday yet")
+public void i_ask_whether_it_s_Friday_yet() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+@Then("I should be told {string}")
+public void i_should_be_told(String string) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new cucumber.api.PendingException();
+}
+
+  #+END_EXAMPLE
+
+
+  É isso que eu vou fazer aqui nesse tutorial e vc tambem ai no seu
+  codigo...
+
+  Mas onde que a gente poe esse codigo que o cucumber ta sugerindo?
+  No stepdef...
+ 
+  Esse arquivo esta em 
+
+  MeuPrimeiroProjetoCucumber/src/test/java/br/eteczl/tqs/
+  
+  no momento o meu esta assim... o seu tambem deve estar igual ao meu
+  porque ao criar o projeto o archetype do maven cria um arquivo
+  simples automaticamente chamado Stepdefs.java...
+
+  #+BEGIN_SRC :src java
+  package br.eteczl.tqs;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import static org.junit.Assert.*;
+
+gpublic class Stepdefs {
+    
+}
+
+  #+END_SRC
+
+
+  Agora, a gente vai modificar conforme abaixo...
+  
+  #+BEGIN_SRC :src java
+  package br.eteczl.tqs;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import static org.junit.Assert.*;
+
+public class Stepdefs {
+
+    @Given("today is Sunday")
+    public void today_is_Sunday() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+    
+    @When("I ask whether it's Friday yet")
+    public void i_ask_whether_it_s_Friday_yet() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+    
+    @Then("I should be told {string}")
+    public void i_should_be_told(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new cucumber.api.PendingException();
+    }
+    
+}
+  #+END_SRC
+
+
+
+* vendo o cenario sob efeito do pending exception
+
+  Agora que tem codigo os steps do cenarios vao rodar de verdade, mas
+  se vc olhar pro codigo vc vai ver que todos eles estao lancando uma
+  execao "throw new cucumber.api.PendingException();"..
+
+  Apesar de a gente ter implementado os steds (os passos do cenario),
+  essa excao que he lancada muda, obviamente a saida do comando mvn
+  tests... vamos ver? 
+
+  De um mvn test de novo aí no seu projeto que eu dou no meu tb...
+  
+   #+NAME:  mvn test de novo                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mvn test
+   #+END_SRC
+
+   #+BEGIN_EXAMPLE
+   [wagner@Unknown MeuPrimeiroProjetoCucumber]$ mvn test
+
+[INFO] Scanning for projects...
+
+[INFO] 
+[INFO] --------------< br.eteczl.tqs:MeuPrimeiroProjetoCucumber >--------------
+[INFO] Building MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ MeuPrimeiroProjetoCucumber ---
+
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/test-classes
+
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running br.eteczl.tqs.RunCucumberTest
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday        # br/eteczl/tqs/is_it_friday_yet.feature:4
+    Given today is Sunday              # Stepdefs.today_is_Sunday()
+      cucumber.api.PendingException: TODO: implement me
+	at br.eteczl.tqs.Stepdefs.today_is_Sunday(Stepdefs.java:14)
+	at âœ½.today is Sunday(classpath:br/eteczl/tqs/is_it_friday_yet.feature:5)
+
+    When I ask whether it's Friday yet # Stepdefs.i_ask_whether_it_s_Friday_yet()
+    Then I should be told "Nope"       # Stepdefs.i_should_be_told(String)
+
+Pending scenarios:
+br/eteczl/tqs/is_it_friday_yet.feature:4 # Sunday isn't Friday
+
+1 Scenarios (1 pending)
+3 Steps (2 skipped, 1 pending)
+0m0,106s
+
+cucumber.api.PendingException: TODO: implement me
+	at br.eteczl.tqs.Stepdefs.today_is_Sunday(Stepdefs.java:14)
+	at âœ½.today is Sunday(classpath:br/eteczl/tqs/is_it_friday_yet.feature:5)
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.288 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.152 s
+[INFO] Finished at: 2019-10-31T20:14:11-03:00
+[INFO] ------------------------------------------------------------------------
+   #+END_EXAMPLE
+
+
+   
+* implementacao da classe que responde se he sexta feira
+  
+#+BEGIN_SRC :src java
+package br.eteczl.tqs;
+
+class IsItFriday {
+    static String isItFriday(String today) {
+        return null;
+    }
+}
+
+#+END_SRC
+
+  
+* Vendo os cenario falhar
+  To chamando de implementacao correta porque agora a gente nao mais
+  estaremos lancando PendingException e sim colocando o codigo que
+  realiza o teste de verdade...
+
+  #+BEGIN_SRC :src java
+package br.eteczl.tqs;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import static org.junit.Assert.*;
+
+public class Stepdefs {
+
+    private String today;
+    private String actualAnswer;
+    
+    @Given("today is Sunday")
+    public void today_is_Sunday() {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new cucumber.api.PendingException();
+         today = "Sunday";
+    }
+    
+    @When("I ask whether it's Friday yet")
+    public void i_ask_whether_it_s_Friday_yet() {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new cucumber.api.PendingException();
+        actualAnswer = IsItFriday.isItFriday(today);
+    }
+    
+    @Then("I should be told {string}")
+    public void i_should_be_told(String expectedAnswer      ) {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new cucumber.api.PendingException();
+         assertEquals(expectedAnswer, actualAnswer);
+    }
+    
+}  
+  #+END_SRC
+
+
+  
+   #+NAME:  mvn test pra ver teste falhar
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mvn test
+   #+END_SRC
+
+   
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      [wagner@Unknown MeuPrimeiroProjetoCucumber]$  mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< br.eteczl.tqs:MeuPrimeiroProjetoCucumber >--------------
+[INFO] Building MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running br.eteczl.tqs.RunCucumberTest
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday        # br/eteczl/tqs/is_it_friday_yet.feature:4
+    Given today is Sunday              # Stepdefs.today_is_Sunday()
+    When I ask whether it's Friday yet # Stepdefs.i_ask_whether_it_s_Friday_yet()
+    Then I should be told "Nope"       # Stepdefs.i_should_be_told(String)
+      java.lang.AssertionError: expected:<Nope> but was:<null>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at br.eteczl.tqs.Stepdefs.i_should_be_told(Stepdefs.java:32)
+	at âœ½.I should be told "Nope"(classpath:br/eteczl/tqs/is_it_friday_yet.feature:7)
+
+
+Failed scenarios:
+br/eteczl/tqs/is_it_friday_yet.feature:4 # Sunday isn't Friday
+
+1 Scenarios (1 failed)
+3 Steps (1 failed, 2 passed)
+0m0,101s
+
+java.lang.AssertionError: expected:<Nope> but was:<null>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at br.eteczl.tqs.Stepdefs.i_should_be_told(Stepdefs.java:32)
+	at âœ½.I should be told "Nope"(classpath:br/eteczl/tqs/is_it_friday_yet.feature:7)
+
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.302 sec <<< FAILURE!
+Sunday isn't Friday(Is it Friday yet?)  Time elapsed: 0.006 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<Nope> but was:<null>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at br.eteczl.tqs.Stepdefs.i_should_be_told(Stepdefs.java:32)
+	at âœ½.I should be told "Nope"(classpath:br/eteczl/tqs/is_it_friday_yet.feature:7)
+
+
+Results :
+
+Failed tests:   Sunday isn't Friday(Is it Friday yet?): expected:<Nope> but was:<null>
+
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.238 s
+[INFO] Finished at: 2019-10-31T20:32:07-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project MeuPrimeiroProjetoCucumber: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[wagner@Unknown MeuPrimeiroProjetoCucumber]$ 
+   #+END_SRC
+
+
+   
+
+* Vendo o teste passar
+  
+  Mude a classe abaixo 
+
+  #+BEGIN_SRC :src java
+package br.eteczl.tqs;
+
+class IsItFriday {
+    static String isItFriday(String today) {
+        return null;
+    }
+}
+
+#+END_SRC
+
+
+para o seguinte...
+
+
+#+BEGIN_SRC :src java
+package br.eteczl.tqs;
+
+class IsItFriday {
+    static String isItFriday(String today) {
+        return 'Nope'
+    }
+}
+
+#+END_SRC
+
+ai vc vai ver que o teste vai passar
+
+Veja a saída abaixo...
+
+
+   #+NAME:  mvn test passando     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      mvn test
+   #+END_SRC
+
+
+   
+   #+NAME: saida do teste passando
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      [wagner@Unknown MeuPrimeiroProjetoCucumber]$ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< br.eteczl.tqs:MeuPrimeiroProjetoCucumber >--------------
+[INFO] Building MeuPrimeiroProjetoCucumber 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ MeuPrimeiroProjetoCucumber ---
+[INFO] Surefire report directory: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/testes_de_software/MeuPrimeiroProjetoCucumber/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running br.eteczl.tqs.RunCucumberTest
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday        # br/eteczl/tqs/is_it_friday_yet.feature:4
+    Given today is Sunday              # Stepdefs.today_is_Sunday()
+    When I ask whether it's Friday yet # Stepdefs.i_ask_whether_it_s_Friday_yet()
+    Then I should be told "Nope"       # Stepdefs.i_should_be_told(String)
+
+1 Scenarios (1 passed)
+3 Steps (3 passed)
+0m0,101s
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.288 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.246 s
+[INFO] Finished at: 2019-10-31T20:37:39-03:00
+[INFO] ------------------------------------------------------------------------
+[wagner@Unknown MeuPrimeiroProjetoCucumber]$ 
+   #+END_SRC

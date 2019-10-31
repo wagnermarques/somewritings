@@ -1,0 +1,1 @@
+{"exception":"class org.bonitasoft.web.rest.server.framework.exception.APIFilterMandatoryException","message":"Filter process_id is mandatory","api":"bpm","resource":"actor","filterName":"process_id"}

@@ -1,12 +1,13 @@
 #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
 #+Title: Atividade TLBD3 - Loja de Informática (store procedures)
-* Introdução
-Em nossos procedimentos armazenados vamos sempre colocar o nome
-prefixado por proc_*, ou seja, proc_funcionalidade. Exemplos de nomes
-seriam, proc_fazbackupdobanco, proc_restaruabanco
 
-Isso é importante pra evitar conflito de nomes com storeprocedures
-nativas do sqlserver que tem seus nomes profixados com sp_*.[fn:create-procedure-transact-sql]
+* Introdução
+  Em nossos procedimentos armazenados vamos sempre colocar o nome
+  prefixado por proc_*, ou seja, proc_funcionalidade. Exemplos de nomes
+  seriam, proc_fazbackupdobanco, proc_restaruabanco
+
+  Isso é importante pra evitar conflito de nomes com storeprocedures
+  nativas do sqlserver que tem seus nomes profixados com sp_*.[fn:create-procedure-transact-sql]
 
 
 ** TODO Sintaxe da Stored Procedure [fn:create-procedure-transact-sql] 

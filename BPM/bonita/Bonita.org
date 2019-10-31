@@ -56,7 +56,8 @@
 
    #+RESULTS: curl post authentication (2)
    #+begin_example
-   [1]+  Concluído              curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25
+   [1]-  Concluído              curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25
+   [7]+  Concluído              p=0
    http://://loginservice
    Note: Unnecessary use of -X or --request, POST is already inferred.
    Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -73,16 +74,18 @@
    } [56 bytes data]
    ,* upload completely sent off: 56 out of 56 bytes
    < HTTP/1.1 200 
+   < Access-Control-Allow-Origin: *
+   < Access-Control-Expose-Headers: Access-Control-Allow-Origin,Access-Control-Allow-Credentials,X-Bonita-API-Token
    ,* Added cookie bonita.tenant="1" for domain localhost, path /bonita/, expire 0
    < Set-Cookie: bonita.tenant=1
-   ,* Added cookie JSESSIONID="EFBD5A1AFF3CB37DEE68C0E6F75645C5" for domain localhost, path /, expire 0
-   < Set-Cookie: JSESSIONID=EFBD5A1AFF3CB37DEE68C0E6F75645C5; Path=/; HttpOnly
-   ,* Added cookie X-Bonita-API-Token="5c8ca8ca-dcce-4835-81d7-c91fae8f23d3" for domain localhost, path /, expire 0
-   < Set-Cookie: X-Bonita-API-Token=5c8ca8ca-dcce-4835-81d7-c91fae8f23d3; Path=/
+   ,* Added cookie JSESSIONID="A5600EE848842350A423B87DA29AC771" for domain localhost, path /, expire 0
+   < Set-Cookie: JSESSIONID=A5600EE848842350A423B87DA29AC771; Path=/; HttpOnly
+   ,* Added cookie X-Bonita-API-Token="174a709c-3100-49e3-8bbc-59cdc5fad4b7" for domain localhost, path /, expire 0
+   < Set-Cookie: X-Bonita-API-Token=174a709c-3100-49e3-8bbc-59cdc5fad4b7; Path=/
    < Content-Length: 0
-   < Date: Tue, 29 Oct 2019 14:55:46 GMT
+   < Date: Wed, 30 Oct 2019 23:08:20 GMT
    < 
-   100    56    0     0  100    56      0    296 --:--:-- --:--:-- --:--:--   296
+   100    56    0     0  100    56      0    402 --:--:-- --:--:-- --:--:--   402
    0 to host localhost left intact
    Note: Unnecessary use of -X or --request, POST is already inferred.
    malformed
@@ -198,31 +201,33 @@
       #starts code
       #curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id=303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
       #curl -b saved_cookies.txt -o cases.json -X POST --url  http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id%3D303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
-      curl -b saved_cookies.txt -o cases.json -X POST --url   http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
+      curl -b saved_cookies.txt -o cases.json -X GET --url   k
+
    #+END_SRC
 
    #+RESULTS: cases
    #+begin_example
 
-   [wagner@Unknown bonita]$ [wagner@Unknown bonita]$ [1] 7662
-   [2] 7663
-   [3] 7664
-   [4] 7665
-   [5] 7666
-   [6] 7667
-   [7] 7668
+   [wagner@localhost bonita]$ [wagner@localhost bonita]$ [1] 5113
+   [2] 5114
+   [3] 5115
+   [4] 5116
+   [5] 5117
+   [6] 5118
+   [7] 5119
    [2]   Concluído              d=processDefinitionId
    [3]   Concluído              d=started_by
    [4]   Concluído              d=startedBySubstitute
+   [5]   Concluído              n=activeFlowNodes
    [6]-  Concluído              n=failedFlowNodes
    #+end_example
    
 
    #+INCLUDE: cases.json :src json
 
+
 *** Instanciando um case/processo
-   
-    
+       
    #+NAME: cat saved_cookies.txtxs    
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
@@ -242,10 +247,16 @@
    #+NAME:  instanciando um processo                   
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      curl -b saved_cookies.txt -X POST --url 'http://localhost:15961/bonita/API/bpm/case' --header 'Content-Type: application/json'  --header 'X-Bonita-API-Token: 5c8ca8ca-dcce-4835-81d7-c91fae8f23d3' -d '{"processDefinitionId":"5268062146612458577"}'
+      curl -b saved_cookies.txt -X POST --url 'http://191.163.134.43:15961/bonita/API/bpm/case' --header 'Content-Type: application/json'  --header 'X-Bonita-API-Token: 5c8ca8ca-dcce-4835-81d7-c91fae8f23d3' -d '{"processDefinitionId":"5268062146612458577"}'
    #+END_SRC
 
    #+RESULTS: instanciando um processo
+
+   pra estartar um processo remotamente tem que liberar a porta do
+   bonita pra receber conexoes tcp externas
+
+   firewall-cmd --zone=public --add-port=15961/tcp --permanent
+   sudo firewall-cmd --reload
 
 
    
@@ -289,6 +300,9 @@
    [4]   Concluído              n=users
    #+end_example
 
+
+* Camel Bonita
+  
 
 * Anots
 ** Form

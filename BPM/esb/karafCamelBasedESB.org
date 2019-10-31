@@ -1,0 +1,344 @@
+#+Title: Usando Karaf Camel Based ESB
+#+Subtitle: 
+
+* Apresentacao deste texto
+
+** setup   
+   #+NAME:setup
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      export ESB_HOME=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/servers/talend/Runtime_ESBSE/container
+      export ESB_DEPLOY_DIR=$ESB_HOME/deploy
+      export ESB_CMD="$ESB_HOME/bin/client -r 7"
+      export diretorioDeProjetos=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/artifacts     
+      export PastaDeSolicitacaoDeClientes=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/file-repository/pastaDeSolicitacaoDeClientes
+   #+END_SRC
+
+   #+RESULTS: setup
+
+* Inicializando o ESB
+  
+   #+NAME: inicializando o esb em modo servico                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      $ESB_HOME/bin/start
+   #+END_SRC
+* Visualizando logs do ESB
+  
+  Copiar e colar no seu prompt de comando ...
+  
+  
+   #+NAME: ver logs com tail -f 
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      tail -f /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/SIN5009NonBpmnEngineArtifacts/servers/talend/Runtime_ESBSE/container/log/tesb.log      
+   #+END_SRC
+
+* Abrindo o webconsole do esb
+  
+    Usando o webconsole do karaf
+
+    http://localhost:8181/system/console/bundles
+    
+    Usando webconsole no talend
+
+    https://localhost:9001/system/console/bundles
+
+    usuario:karaf
+    senha:karaf
+
+* Emitindo comandos no esb via linha de comando
+  Pra questoes qto a usuario e senha consute: https://www.satollo.net/talend-esb-karaf-console-client-tadmin-login-problems
+   #+NAME: comandos no esb via linha de comando
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      $ESB_CMD feature:list | grep camel
+   #+END_SRC
+
+   #+RESULTS: comandos no esb via linha de comando
+   #+begin_example
+
+   xml-specs-api                                   │ 2.9.0            │          │ Started     │ camel-2.23.1                      │
+   camel                                           │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-core                                      │ 2.23.1           │          │ Started     │ camel-2.23.1                      │
+   camel-catalog                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-blueprint                                 │ 2.23.1           │          │ Started     │ camel-2.23.1                      │
+   camel-spring                                    │ 2.23.1           │          │ Started     │ camel-2.23.1                      │
+   camel-scr                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ahc                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ahc-ws                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-amqp                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-apns                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-asn1                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-asterisk                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-atmosphere-websocket                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-atom                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-atomix                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-avro                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-aws                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-aws-xray                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-azure                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-bam                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-base64                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-bean-validator                            │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-beanio                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-beanstalk                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-barcode                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-bindy                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-boon                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-box                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-braintree                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cache                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-caffeine                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cassandraql                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-castor                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cdi                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-chronicle                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-chunk                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cm-sms                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cmis                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-coap                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cometd                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-consul                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-context                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-couchdb                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-couchbase                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-crypto                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-crypto-cms                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-csv                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-cxf                                       │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-digitalocean                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-disruptor                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-dns                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-docker                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-drill                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-dozer                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-dropbox                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ehcache                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-elsql                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-elasticsearch                             │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-elasticsearch5                            │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-elasticsearch-rest                        │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-etcd                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-eventadmin                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-exec                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-facebook                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-fastjson                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-fhir                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-flatpack                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-fop                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-freemarker                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ftp                                       │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-ganglia                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-geocoder                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-git                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-github                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-google-calendar                           │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-google-sheets                             │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-google-drive                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-google-mail                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-google-pubsub                             │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-grape                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-groovy                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-grpc                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-gson                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-guava-eventbus                            │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-guice                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hawtdb                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hazelcast                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hdfs                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hdfs2                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-headersmap                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hipchat                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hessian                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hl7                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-http                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-http4                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-hystrix                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ibatis                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ical                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-iec60870                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ignite                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-infinispan                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-influxdb                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-irc                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ironmq                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jackson                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jacksonxml                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jasypt                                    │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-jaxb                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jbpm                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jcache                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jclouds                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jcr                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jdbc                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jetty9                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jetty                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jgroups                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jibx                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jing                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jms                                       │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-jmx                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jolt                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-johnzon                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-josql                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jpa                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jsch                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-json-validator                            │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jsonpath                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jt400                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-juel                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-jxpath                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-kafka                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-kestrel                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-krati                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-kubernetes                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-kura                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ldap                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ldif                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-linkedin                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-leveldb                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-leveldb-java                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-lra                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-lucene                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-lumberjack                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-lzf                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mail                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-master                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-metrics                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-micrometer                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-milo                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mina                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mina2                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mllp                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mongodb                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mongodb3                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mongodb-gridfs                            │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mqtt                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-msv                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mustache                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mvel                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-mybatis                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-nagios                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-nats                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-netty                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-netty-http                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-netty4                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-netty4-http                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-nsq                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ognl                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-olingo2                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-olingo4                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-openshift                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-optaplanner                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-openstack                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-opentracing                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-paho                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-paxlogging                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-pdf                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-pgevent                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-printer                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-protobuf                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-pubnub                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-quartz                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-quartz2                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-quickfix                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-rabbitmq                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-reactive-streams                          │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-reactor                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-restlet                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-restlet-jackson                           │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-restlet-gson                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-rmi                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-routebox                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-rss                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-rx                                        │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-sap-netweaver                             │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-salesforce                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-saxon                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-scala                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-schematron                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-script-jruby                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-script-javascript                         │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-script-groovy                             │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-script                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-service                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-servicenow                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-servlet                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-servletlistener                           │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-shiro                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-sip                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-sjms                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-sjms2                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-slack                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-smpp                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-snakeyaml                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-snmp                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-soap                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-solr                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spark-rest                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-splunk                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spring-batch                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spring-ldap                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spring-redis                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spring-security                           │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-spring-ws                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-sql                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-ssh                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-stax                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-stream                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-stomp                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-string-template                           │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-swagger                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-swagger-java                              │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-syslog                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-tagsoup                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-tarfile                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-telegram                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-test                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-test-karaf                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-test-spring                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-thrift                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-tika                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-twilio                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-twitter                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-undertow                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-univocity-parsers                         │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-urlrewrite                                │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-vertx                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-velocity                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-weather                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-websocket                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-web3j                                     │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-wordpress                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xchange                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xmlbeans                                  │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xmljson                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xmlrpc                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xmlsecurity                               │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xmpp                                      │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-xstream                                   │ 2.23.1           │ x        │ Started     │ camel-2.23.1                      │
+   camel-yammer                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-yql                                       │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-zendesk                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-zipfile                                   │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-zipkin                                    │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-zookeeper                                 │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   camel-zookeeper-master                          │ 2.23.1           │          │ Uninstalled │ camel-2.23.1                      │
+   decanter-collector-jmx-camel                    │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter Camel JMX Collector
+   decanter-collector-camel                        │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter Camel Collector
+   decanter-appender-camel-core                    │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter Camel Appender core
+   decanter-appender-camel                         │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter Camel Appender
+   decanter-alerting-camel-core                    │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter alerting Camel alerter core
+   decanter-alerting-camel                         │ 2.2.0            │          │ Uninstalled │ karaf-decanter-2.2.0              │ Karaf Decanter alerting Camel alerter
+   activemq-camel                                  │ 5.15.9           │          │ Uninstalled │ activemq-5.15.9                   │
+   camel-talendjob                                 │ 7.2.1            │ x        │ Started     │ tesb-7.2.1                        │
+   #+end_example
+  
+   
+* Instalando 
+
+* Anotacoes
+  Ops4jPaxWarArchetype-1.0-SNAPSHOT.war
+  CamelArchetypeWebConsole
+  
