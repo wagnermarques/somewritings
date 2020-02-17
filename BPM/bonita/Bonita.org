@@ -195,14 +195,12 @@
 
 *** Listando cases
    
-   
    #+NAME: cases
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
       #curl -b saved_cookies.txt -o cases.json -X POST --url http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id=303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
       #curl -b saved_cookies.txt -o cases.json -X POST --url  http://localhost:15961/bonita/API/bpm/case?c=25&d=processDefinitionId&d=started_by&d=startedBySubstitute&f=user_id%3D303&n=activeFlowNodes&n=failedFlowNodes&p=0&s=
       curl -b saved_cookies.txt -o cases.json -X GET --url   k
-
    #+END_SRC
 
    #+RESULTS: cases
@@ -341,3 +339,4 @@
               To view the request headers, consider the -v, --verbose option.
 
               See also -v, --verbose.
+

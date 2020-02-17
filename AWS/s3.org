@@ -1,5 +1,136 @@
 #+Title:S3 Como Usar
 #+Subtitle:
 
- https://docs.aws.amazon.com/pt_br/AmazonS3/latest/dev/UsingObjects.html
- https://s3.console.aws.amazon.com/s3/spotlight?region=us-east-1
+* o que sao os buckets
+  https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html
+
+
+* criar um bucket
+  
+  
+   #+NAME:aws s3api create-bucket --bucket my-bucket --region us-east-1
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws s3api create-bucket --bucket wagner --region us-east-1
+   #+END_SRC
+
+   #+RESULTS: aws s3api create-bucket --bucket my-bucket --region us-east-1
+   : An error occurred (BucketAlreadyExists) when calling the CreateBucket operation: The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again.
+
+
+   se for usar outra regiao, fora da us-east-1 sera necessario usar
+   sempre  a opcao LocationConstraint
+
+   
+   #+NAME: aws s3api create-bucket --bucket my-bucket --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+       aws s3api create-bucket --bucket meuS3Bucket --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1
+   #+END_SRC
+
+
+* listar buckets
+  
+   #+NAME: aws s3api list-buckets --query "Buckets[].Name"
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws s3api list-buckets --query "Buckets[].Name"
+   #+END_SRC
+
+   #+RESULTS: aws s3api list-buckets --query "Buckets[].Name"
+   : br.com.fzlbpms	br.usp.sin5009	ipgg-curso-geronto
+   
+   
+   #+NAME:aws s3 ls (1)
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws s3 ls
+   #+END_SRC
+
+   #+RESULTS: aws s3 ls (1)
+   : 2019-10-13 19:06:58 br.com.fzlbpms
+   : 2019-10-29 15:02:05 br.usp.sin5009
+   : 2020-01-19 23:48:17 ipgg-curso-geronto
+
+
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      
+   #+END_SRC
+
+
+* ls pra visualizar conteudo dos buckets   
+  
+   #+NAME:aws s3 ls s3://br.usp.sin5009
+   #+BEGIN_SRC shell :session s1 :results output :exports both      
+      #aws s3 ls s3://tgsbucket --recursive
+      aws s3 ls s3://br.usp.sin5009 --recursive  --human-readable --summarize
+   #+END_SRC
+
+   #+RESULTS: aws s3 ls s3://br.usp.sin5009
+   : 
+   : 2019-10-29 15:04:01    0 Bytes trabalho/
+   : 2019-11-28 14:04:46    3.8 KiB trabalho/startprocess.html
+   : 
+   : Total Objects: 2
+   :    Total Size: 3.8 KiB
+
+
+* fazer upload de um arquivo
+  
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   contentDir=/run/media/wagner/845710c1-67c4-4f71-9ef8-6ca68869fae5/Documentos/Locais/IPGG/Comunicacao/CG2020/publicacaonosite/
+      site-eadbanner.jpg
+   #+END_SRC
+
+* fazer upload multipart de arquivo(s)
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html
+  https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html
+  
+  Qdo vc vai fazer um upload de um arquivo grande, faz muito sentido
+  fazer um multipart upload, ou seja, fazer o upload em partes e
+  obviamente poder gerenciar essas partes.
+
+  Um upload multi parte e um feito em tres partes: 
+  1) Vc inicializa um upload
+     O importante aqui e que vc recebe um id do upload que vc iniciou
+     e vc vai usar esse id pra qualquer necessidade posterior
+     referente a esse upload
+  2) Vc comeca o upload
+     Vc pode fazer upload de partes especificas do seu arquivo, de 1 a
+     10000. Cada parte uploadada a aws retorna uma Etag header na
+     resposta. Vc tem que salvar essa etag de cada parte porque
+     vc vai precisar delas pra finalizar o upload.
+  3) Vc termina o upload (qdo terminar o upload, e claro)
+     
+  E possivle listar uploads multi parte em progresso, obter uma
+  listagem das partes
+  
+  
+** criando um upload multipart  
+   Esse comando comeca um upload multipart de arquivo e retorna um id
+   que pode ser utilizado depois pra continuar ou para parar o upload
+   
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      
+   #+END_SRC
+  
+  
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   aws s3 cp myvideo.mp4 s3://mybucket/
+   #+END_SRC
+
+
+* refs
+  https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpcs.html
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/
+  https://docs.aws.amazon.com/pt_br/AmazonS3/latest/dev/UsingObjects.html
+  https://s3.console.aws.amazon.com/s3/spotlight?region=us-east-1
+  https://www.thegeekstuff.com/2019/04/aws-s3-cli-examples/
+  https://aws.amazon.com/pt/storagegateway/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/list-multipart-uploads.html
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html
+  https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html

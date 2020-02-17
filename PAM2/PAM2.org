@@ -1,6 +1,26 @@
 #+Title: PAM2 - Programação Mobile 2
 #+Subtitle:
 
+* Habilidades
+  1.1 Codificar aplicativos em tecnologia móvel.
+  1.2 Utilizar ambientes de desenvolvimento mobile.
+  1.3 Elaboraraplicativos  com  acesso a  banco  de dados.
+  1.4   Construir layoutde   aplicativos   dispositivos móveis.
+  1.5 Utilizar   recursos   avançados   do   dispositivo (smartphonese tablets).
+
+* Bases Teologicas
+  + Consumindo APIs e serviços web 
+    HTTP;
+    XML; 
+    JSON.
+  + Localização e mapas
+  + Sensores
+  + Widgets
+  + Notificações
+  + Permissões
+  + Interação com outros apps
+  + Concorrência
+  + Interação com dispositivos sem fio
 
 * Primeira Aula
 ** Objetivo

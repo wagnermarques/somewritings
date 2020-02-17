@@ -1,3 +1,13 @@
 #+Title: PAM1 - Programação Mobile 1
 #+Subtitle:
 
+1.1 Codificar aplicativos para dispositivos móveis.
+1.2 Utilizar ambientes de desenvolvimento de software mobile.
+1.3 Construir interfacegráfica para aplicativos mobile.
+1.4 Utilizar recursos de aparelhos celulares e tablets.
+
+Conceitos de dispositivos móveis e mercado
+Manipulação de banco de dados no dispositivo
+Desenvolvimento deLayoutdeAplicativoMobile
+
+

@@ -2,3 +2,12 @@
 #+Subtitle:
 
 
+* bookmarks
+** fargate
+  https://docs.aws.amazon.com/eks/latest/APIReference/API_ListFargateProfiles.html
+  https://docs.aws.amazon.com/cli/latest/reference/eks/list-fargate-profiles.html
+  
+  
+  https://github.com/kagarlickij/jenkins-builds-in-containers
+** ecs
+   https://github.com/nathanpeck/awesome-ecs

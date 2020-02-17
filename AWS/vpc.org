@@ -2,6 +2,49 @@
 #+Subtitle:
 
 
+* Criar VPC e Subnets
+  
+  https://docs.aws.amazon.com/vpc/latest/userguide/vpc-subnets-commands-example.html]
+  
+  #+NAME:aws ec2 create-vpc --cidr-block 10.0.0.0/16
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws ec2 create-vpc --cidr-block 10.0.0.0/16
+  #+END_SRC
+
+  #+RESULTS: aws ec2 create-vpc --cidr-block 10.0.0.0/16
+  : VPC	10.0.0.0/16	dopt-ddd638a7	default	False	062849178681	pending	vpc-0d6fc64ab72d9439f
+  : CIDRBLOCKASSOCIATIONSET	vpc-cidr-assoc-0aa70870092fc7a4b	10.0.0.0/16
+  : CIDRBLOCKSTATE	associated
+
+
+  
+   #+NAME: aws ec2 describe-vpcs    
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws ec2 describe-vpcs
+   #+END_SRC
+
+   #+RESULTS: aws ec2 describe-vpcs
+   : VPCS	10.0.0.0/16	dopt-ddd638a7	default	False	062849178681	available	vpc-0d6fc64ab72d9439f
+   : CIDRBLOCKASSOCIATIONSET	vpc-cidr-assoc-0aa70870092fc7a4b	10.0.0.0/16
+   : CIDRBLOCKSTATE	associated
+
+
+   Para descrever uma vpc espeficia
+
+   
+   #+NAME:                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      aws ec2 describe-vpcs --vpc-ids vpc-0d6fc64ab72d9439f
+   #+END_SRC
+
+   #+RESULTS: 
+   : VPCS	10.0.0.0/16	dopt-ddd638a7	default	False	062849178681	available	vpc-0d6fc64ab72d9439f
+   : CIDRBLOCKASSOCIATIONSET	vpc-cidr-assoc-0aa70870092fc7a4b	10.0.0.0/16
+   : CIDRBLOCKSTATE	associated
+
+
+The following example uses AWS CLI commands to create a nondefault VPC with an IPv4 CIDR block, and a public and private subnet in the VPC. After you've created the VPC and subnets, you can launch an instance in the public subnet and connect to it. To begin, you must first install and configure the AWS CLI. For more information, see 
+
 https://console.aws.amazon.com/vpc/home?region=us-east-1#vpcs:sort=VpcId
 https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html
 

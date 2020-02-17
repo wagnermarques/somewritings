@@ -1,21 +1,166 @@
-#+Title: devcc++ notes
+#+Title: Development with c/c++
 
-* Autotools [fn:emacs-autotools]
-  Se vc vir alguns arquivos do tipo configure, configure.ac,
-  Makefile.in, Makefile.am, aclocal.m4,... eles devem ter sido criado
-  pelo autotools.
-  O processo de ajustes necessários ao Makefile pra cada diferente
-  ambiente de compilação e execução gerou a necessidade de um script
-  ./configure que gerava o Makefile ajustado e então depois vinha o
-  make e depois o make install. Esse processo foi padronizado no GNU
-  por isso pode ser chamado de GNU Build System e gerou essa ferrameta
-  chamada autotools.[fn:AutotoolsIntroduction]
+* setup enviroment
+  https://clang.llvm.org/comparison.html
+  http://llvm.org/
+  http://llvm.org/docs/GettingStarted.html
+  
+  
+   #+NAME: setup env
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      sudo dnf install ninja-build
+   #+END_SRC
 
-* Por que usar autotools?[fn:Duret-Lutz-slides]
-  Uniformizar o build
-  Portabilidade
+** Compilando e Instalando o LLVM
+   https://llvm.org/docs/GettingStarted.html#requirements
 
-* basicao do build
+*** variaveis e diretorios de instalacao   
+   Variaveis de instalacao, criacao dos diretorios para instalacao do
+   llvm.
+   Não se trata de variaveis de ambiente e sim variaveis string para
+   efeitos dessa instalacao.
+   #+NAME: gcc version                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      FZL_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio
+
+      #This is the top level directory of the LLVM source tree.
+      #clone llvm within this SRC_ROOT dir
+      #git clone https://github.com/llvm/llvm-project.git
+      SRC_ROOT=$FZL_HOME/sources/cc++/llvm-project
+      
+      #This is the top level directory of the LLVM object tree
+      #(i.e. the tree where object files and compiled programs will be placed. 
+      #It can be the same as SRC_ROOT).
+      OBJ_ROOT=$SRC_ROOT            
+   #+END_SRC
+
+   #+RESULTS: gcc version
+   
+*** testando alguns pre requisitos
+    
+   #+NAME:  testando pre requisitos                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      #tem cmake disponivel?
+      whereis cmake
+      
+   #+END_SRC
+
+   #+RESULTS: testando pre requisitos
+   : 
+   : [wagner@Unknown devcc++]$ cmake: /usr/bin/cmake /usr/lib64/cmake /usr/share/cmake /usr/share/man/man1/cmake.1.gz
+
+*** Compilacao e instalacao do llvm a partir do codigo fonte
+   #+NAME: compilando o llvm                     
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+
+      DLLVM_ENABLE_PROJECTS=clang;libcxx;libcxxabi
+
+      # Compile with assertion checks enabled (default is Yes for Debug builds, No for all other build types).
+      DLLVM_ENABLE_ASSERTIONS=On
+
+      #Specify for directory the full pathname of where you want the LLVM tools and libraries to be installed (default /usr/local).
+      CMAKE_INSTALL_PREFIX=/usr/local
+
+      
+      
+      #Tells cmake what type of build you are trying to generate files for. 
+      #Valid options are Debug, Release, RelWithDebInfo, and MinSizeRel.      
+      #Default is Debug.
+      CMAKE_BUILD_TYPE=Debug
+      
+      #These builds are the default. 
+      #The build system will compile the tools and libraries unoptimized, with debugging information, and asserts enabled.
+      #Release
+
+      
+
+      #These builds are useful when debugging. 
+      #They generate optimized binaries with debug information. 
+      #CMakes default optimization level is -O2. 
+      #This can be configured by setting the CMAKE_CXX_FLAGS_RELWITHDEBINFO variable on the CMake command line.
+
+      function configure_llvm(){
+        cd $FZL_HOME/integrated/llvm
+        cmake -G "Ninja" -DCMAKE_INSTALL_PREFIX=/usr/local -DDLLVM_ENABLE_ASSERTIONS=on -DLLVM_INCLUDE_TESTS=Off  -DLLVM_INCLUDE_EXAMPLES=on -DLLVM_ENABLE_BACKTRACES=Off -DCMAKE_CXX_COMPILER=/usr/bin/c++  -DCMAKE_C_COMPILER=/usr/bin/cc ../../sources/cc++/llvm-project/llvm
+      }
+      function compile_llvm(){
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug $SRC_ROOT
+      }
+      configure_llvm
+      compile_llvm
+      cd $OBJ_ROOT
+      make -j3
+   #+END_SRC
+
+   #+RESULTS: compilando o llvm
+   #+begin_example
+   bash: libcxx: comando nÃ£o encontrado
+   bash: libcxxabi: comando nÃ£o encontrado
+   [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ [wagner@Unknown llvm-project]$ > > > [wagner@Unknown llvm-project]$ > > [wagner@Unknown llvm-project]$ CMake Error: Could not create named generator ninja
+
+   Generators
+   ,* Unix Makefiles               = Generates standard UNIX makefiles.
+     Ninja                        = Generates build.ninja files.
+     Watcom WMake                 = Generates Watcom WMake makefiles.
+     CodeBlocks - Ninja           = Generates CodeBlocks project files.
+     CodeBlocks - Unix Makefiles  = Generates CodeBlocks project files.
+     CodeLite - Ninja             = Generates CodeLite project files.
+     CodeLite - Unix Makefiles    = Generates CodeLite project files.
+     Sublime Text 2 - Ninja       = Generates Sublime Text 2 project files.
+     Sublime Text 2 - Unix Makefiles
+                                  = Generates Sublime Text 2 project files.
+     Kate - Ninja                 = Generates Kate project files.
+     Kate - Unix Makefiles        = Generates Kate project files.
+     Eclipse CDT4 - Ninja         = Generates Eclipse CDT 4.0 project files.
+     Eclipse CDT4 - Unix Makefiles= Generates Eclipse CDT 4.0 project files.
+
+   CMake Warning:
+     No source or binary directory provided.  Both will be assumed to be the
+     same as the current working directory, but note that this warning will
+     become a fatal error in future CMake releases.
+   CMake Error: The source directory "/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/sources/cc++/llvm-project" does not appear to contain CMakeLists.txt.
+   Specify --help for usage, or press the help button on the CMake GUI.
+   [wagner@Unknown llvm-project]$ make: *** Nenhum alvo indicado e nenhum arquivo make encontrado.  Pare.
+   #+end_example
+
+   Vamos precisar de um GCC instalado.
+
+
+   
+   #+NAME:  adfsa                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      #starts code
+      
+
+      ls -l $FZL_HOME/sources
+   #+END_SRC
+
+   #+RESULTS: adfsa
+   : 
+   : [wagner@localhost sources]$ [wagner@localhost sources]$ total 8
+   : drwxrwxr-x. 5 wagner wagner 4096 jun 22 00:06 app
+   : drwxrwxr-x. 8 wagner wagner 4096 jun 24 21:53 bpmnjs-modeler
+
+* autotools
+** Autotools [fn:emacs-autotools]
+   Se vc vir alguns arquivos do tipo configure, configure.ac,
+   Makefile.in, Makefile.am, aclocal.m4,... eles devem ter sido criado
+   pelo autotools.
+   O processo de ajustes necessários ao Makefile pra cada diferente
+   ambiente de compilação e execução gerou a necessidade de um script
+   ./configure que gerava o Makefile ajustado e então depois vinha o
+   make e depois o make install. Esse processo foi padronizado no GNU
+   por isso pode ser chamado de GNU Build System e gerou essa ferrameta
+   chamada autotools.[fn:AutotoolsIntroduction]
+
+** Por que usar autotools?[fn:Duret-Lutz-slides]
+   Uniformizar o build
+   Portabilidade
+
+** basicao do build
 ** ./configure
 *** ./configure e a detecção de settings do ambiente
     ./configure testa se o ambiente de build contem as funções, pacotes
@@ -54,7 +199,7 @@
     [[file:imgs/autotools-configure-template-files3.png]][fn:Duret-Lutz-slides]
 
 
-* Footnotes
+** Footnotes
 [fn:emacs-autotools] https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html
 [fn:Duret-Lutz-slides] https://www.lrde.epita.fr/~adl/dl/autotools.pdf
 [fn:AutotoolsIntroduction] https://www.gnu.org/software/automake/manual/html_node/GNU-Build-System.html#GNU-Build-System

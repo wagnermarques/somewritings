@@ -1,32 +1,11 @@
 #+TITLE: PostgreSql Notes
 
-* Orientações sobre esse material
-
-** Sobre comandos em que vc precisa ser root
-   O comando abaixo é era pra ser só um "sudo find / -name
-   pg_hba.conf"
-   Então porque tá um pouco mais mais complicado, conforme abaixo?
-
-   #+NAME sudo find / -name pg_hba.conf
-   #+BEGIN_SRC sh
-    echo $ROOT_PASSWORD | sudo -S find / -name pg_hba.conf
-    #+END_SRC
-
-    É que quando vc usa o sudo do jeito mais comum que utilizamos no
-    dia a dia, ou seja, em sua configuração basicona, ele pede a sua senha de
-    root. Como eu rodo esses comandos automaticamente com org-mode, na
-    hora de digitar esse texto, eu como eu colocaria a minha senha de
-    root aqui? Pra não precisar digitar eu coloquei minha senha como
-    uma variável de ambiente e passo ela com "echo $ROOT_PASSWORD |" e
-    preparo o sudo pra receber ela com a opção -S
-    Só isso. Ma pra vc usar o comando não precisa fazer tudo isso, só
-    dá um sudo cmd que tá tudo certo pra vc.
-
-
-
+* Apresentacao desse material  
+  Cada um tem seu jeito de usar o postgres, tem aqui algumas maneiras
+  de como eu utilizo.
 
 * Instalando o postgresql
-  Os passos pra fazer a instalação são:
+**  Os passos pra fazer a instalação são:
 
   1) Obtenção e Instalação dos binários
      Em geral a gente usa o gerenciador de pacotes ou builda pelo
@@ -56,9 +35,8 @@
     #+END_SRC
 
     #+RESULTS:
-    : /var/lib/pgsql/11/data/postgresql.conf
-    : /var/lib/docker/overlay2/316135cc69fc1ad652b86c9f7c6ca3762cc8aa622160e141c214cba4f4450f2b/diff/usr/lib/tmpfiles.d/postgresql.conf
-    : /home/wagner/wagnerdocri@gmail3/envs/env-dev/sources/Fedora-Dockerfiles/data-dir-for-postgresql/pgsql/postgresql.conf
+    : 
+    : postgresql.org#'   postgresql.org   script-sql.sql
  
    Encontre onde está o seu postgresql.conf e troca a linha 
     listen_addresses = 'localhost'
@@ -260,7 +238,6 @@
 
  postgres=# 
 
-
 ** listar roles
  postgres=# \du
                                     List of roles
@@ -273,6 +250,213 @@
 
 
 
+  
+* Habilitar conexao remota via tcp
+  Pra habilitar conexao via qualquer outra host via tcpip
+  entrar em  postgresql.conf e mudar para listen_addresses = '*' 
+  entrar em pg_hba.conf e edicionar...
+  host    all             all              0.0.0.0/0                       md5
+  host    all             all              ::/0                            md5
+
+
+* psql: exemplos
+** opcao -c pra enviar comandos
+   #+NAME:setup                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      export host=45.79.225.175
+      export user=postgres
+   #+END_SRC
+
+   #+RESULTS: setup
+
+  
+   #+NAME: psql -c '\x' -c 'SELECT * FROM foo;'
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+    psql -h $host -U $user -c "drop database dbteste"
+    psql -h $host -U $user -c '\x' -c 'create database dbteste'
+   #+END_SRC
+
+   #+RESULTS: psql -c '\x' -c 'SELECT * FROM foo;'
+   : DROP DATABASE
+   : ExibiÃƒÂ§ÃƒÂ£o expandida estÃƒÂ¡ habilitada.
+   : CREATE DATABASE
+
+** opcao -f pra passar um arquivo sql pra execucao
+   
+
+   Considere o arquivo script-sql.sql com o seguinte conteudo
+
+   #+INCLUDE: ./script-sql.sql :src sql
+
+   
+   #+NAME: psql -h $host -U $user -f script-sql.sql
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      psql -h $host -U $user -f script-sql.sql
+      psql -h $host -U $user -d testdb -c "select * from clientes"
+   #+END_SRC
+
+   #+RESULTS: psql -h $host -U $user -f script-sql.sql
+   #+begin_example
+   psql:script-sql.sql:1: ERROR:  syntax error at or near "dropt"
+   LINHA 1: dropt database testdb;
+            ^
+   CREATE DATABASE
+   psql (11.6, servidor 12.1 (Debian 12.1-1.pgdg100+1))
+   AVISO: psql versÃƒÂ£o 11, servidor versÃƒÂ£o 12.
+            Algumas funcionalidades do psql podem nÃƒÂ£o funcionar.
+   VocÃƒÂª estÃƒÂ¡ conectado agora ao banco de dados "testdb" como usuÃƒÂ¡rio "postgres".
+   CREATE TABLE
+   INSERT 0 4
+   nome    | tipodecliente |      emaildocliente      
+   -----------+---------------+--------------------------
+    Huguinho  | vip           | wagnerdocri@gmail.com
+    Zezinho   |               | 
+    Luizinho  | vip           | wagnermarques@usp.br
+    Luluzinha | vip           | denise.candria@gmail.com
+   (4 registros)
+   #+end_example
+
+   #+RESULTS: psql -h $host -U $user
+   : total 52
+   : postgresql.org#'
+   : -rwxrwxr-x. 1 wagner wagner 21115 jan 18 10:39  postgresql.org
+   : -rw-rw-r--  1 wagner wagner   467 jan 18 10:39  script-sql.sql
+
+* links
+** documentacao e tutoriais
+   https://www.postgresql.org/docs/12/index.html
+
+** cheat sheets
+  https://www.cheatography.com//squixy/cheat-sheets/postgresql-interactive-terminal-commands/pdf/
+
+
+* info
+pgsql -a 
+  -a
+       --echo-all
+           Print all nonempty input lines to standard output as they are read. (This does not apply to lines read interactively.) This is equivalent to setting
+           the variable ECHO to all.
+
+ -c command
+       --command=command
+           Specifies that psql is to execute the given command string, command. This option can be repeated and combined in any order with the -f option. When
+           either -c or -f is specified, psql does not read commands from standard input; instead it terminates after processing all the -c and -f options in
+           sequence.
+
+           command must be either a command string that is completely parsable by the server (i.e., it contains no psql-specific features), or a single backslash
+           command. Thus you cannot mix SQL and psql meta-commands within a -c option. To achieve that, you could use repeated -c options or pipe the string into
+           psql, for example:
+
+               psql -c '\x' -c 'SELECT * FROM foo;'
+
+           or
+
+               echo '\x \\ SELECT * FROM foo;' | psql
+
+           (\\ is the separator meta-command.)
+
+           Each SQL command string passed to -c is sent to the server as a single request. Because of this, the server executes it as a single transaction even if
+           the string contains multiple SQL commands, unless there are explicit BEGIN/COMMIT commands included in the string to divide it into multiple
+           transactions. (See Section 53.2.2.1 for more details about how the server handles multi-query strings.) Also, psql only prints the result of the last
+           SQL command in the string. This is different from the behavior when the same string is read from a file or fed to psql's standard input, because then
+           psql sends each SQL command separately.
+
+           Because of this behavior, putting more than one SQL command in a single -c string often has unexpected results. It's better to use repeated -c commands
+           or feed multiple commands to psql's standard input, either using echo as illustrated above, or via a shell here-document, for example:
+
+               psql <<EOF
+               \x
+               SELECT * FROM foo;
+               EOF
+
+ -d dbname
+       --dbname=dbname
+           Specifies the name of the database to connect to. This is equivalent to specifying dbname as the first non-option argument on the command line.
+
+           If this parameter contains an = sign or starts with a valid URI prefix (postgresql:// or postgres://), it is treated as a conninfo string. See
+           Section 34.1.1 for more information.
+
+       -e
+       --echo-queries
+           Copy all SQL commands sent to the server to standard output as well. This is equivalent to setting the variable ECHO to queries.
+
+
+ -f filename
+       --file=filename
+           Read commands from the file filename, rather than standard input. This option can be repeated and combined in any order with the -c option. When either
+           -c or -f is specified, psql does not read commands from standard input; instead it terminates after processing all the -c and -f options in sequence.
+           Except for that, this option is largely equivalent to the meta-command \i.
+
+           If filename is - (hyphen), then standard input is read until an EOF indication or \q meta-command. This can be used to intersperse interactive input
+           with input from files. Note however that Readline is not used in this case (much as if -n had been specified).
+
+           Using this option is subtly different from writing psql < filename. In general, both will do what you expect, but using -f enables some nice features
+           such as error messages with line numbers. There is also a slight chance that using this option will reduce the start-up overhead. On the other hand,
+           the variant using the shell's input redirection is (in theory) guaranteed to yield exactly the same output you would have received had you entered
+           everything by hand.
+
+  -F separator
+       --field-separator=separator
+           Use separator as the field separator for unaligned output. This is equivalent to \pset fieldsep or \f.
+
+ -l
+       --list
+           List all available databases, then exit. Other non-connection options are ignored. This is similar to the meta-command \list.
+
+           When this option is used, psql will connect to the database postgres, unless a different database is named on the command line (option -d or non-option
+           argument, possibly via a service entry, but not via an environment variable).
+
+       -L filename
+       --log-file=filename
+           Write all query output into file filename, in addition to the normal output destination.
+  -o filename
+       --output=filename
+           Put all query output into file filename. This is equivalent to the command \o.
+
+       -p port
+       --port=port
+           Specifies the TCP port or the local Unix-domain socket file extension on which the server is listening for connections. Defaults to the value of the
+           PGPORT environment variable or, if not set, to the port specified at compile time, usually 5432.
+
+
+  -v assignment
+       --set=assignment
+       --variable=assignment
+           Perform a variable assignment, like the \set meta-command. Note that you must separate name and value, if any, by an equal sign on the command line. To
+           unset a variable, leave off the equal sign. To set a variable with an empty value, use the equal sign but leave off the value. These assignments are
+           done during command line processing, so variables that reflect connection state will get overwritten later.
+
+
+   -V
+       --version
+           Print the psql version and exit.
+
+       -w
+       --no-password
+           Never issue a password prompt. If the server requires password authentication and a password is not available by other means such as a .pgpass file,
+           the connection attempt will fail. This option can be useful in batch jobs and scripts where no user is present to enter a password.
+  -W
+       --password
+           Force psql to prompt for a password before connecting to a database.
+
+           This option is never essential, since psql will automatically prompt for a password if the server demands password authentication. However, psql will
+           waste a connection attempt finding out that the server wants a password. In some cases it is worth typing -W to avoid the extra connection attempt.
+
+           Note that this option will remain set for the entire session, and so it affects uses of the meta-command \connect as well as the initial connection
+           attempt.
+
+-1
+       --single-transaction
+           This option can only be used in combination with one or more -c and/or -f options. It causes psql to issue a BEGIN command before the first such option
+           and a COMMIT command after the last one, thereby wrapping all the commands into a single transaction. This ensures that either all the commands
+           complete successfully, or no changes are applied.
+
+           If the commands themselves contain BEGIN, COMMIT, or ROLLBACK, this option will not have the desired effects. Also, if an individual command cannot be
+           executed inside a transaction block, specifying this option will cause the whole transaction to fail.
+
+
+
+
 * usando elephantsql
   
   #+NAME
@@ -280,6 +464,7 @@
     curl -u :xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx  https://api.elephantsql.com/api/backup?db=my-db
   #+END_SRC
  
+
 * Refs
 [ln:pgInstFedCent]  https://www.if-not-true-then-false.com/2012/install-postgresql-on-fedora-centos-red-hat-rhel/
 [ln:pgDocsHbaConf] https://www.postgresql.org/docs/10/auth-pg-hba-conf.html

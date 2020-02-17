@@ -16,9 +16,20 @@
    Saber criar projeto android e classes
 
 ** Recursos
-   Androi studio
+*** Androi studio
+    Versao 3.5 ou maior
+*** Projeto Completo    
+    Url do projeto completo para consulta do código: https://github.com/wagnermarques/somewritings/tree/rascunho/android/projetos/AndrPermApp1
   
 * Procedimento didatico
+  Pessoal, a idéia é que o professor faça uma exposição inicial sobre
+  a importancia de saber gerenciar as permissões em seu app e também
+  criar uma aplicação o mais simples possível pra por os conceitos em prática.
+
+  A gente vai trabalhar com a permissão de location, ou seja, o sensor
+  do dispositivo que identifica a localização do dispositivo.
+
+  
 ** Exposição do professor
 *** Referencias
     https://developer.android.com/guide/topics/permissions/overview
@@ -31,7 +42,7 @@
     permissão relativa a funcionalidade que o seu app vai usar no
     dispositivo. E o usuário tem que conceder essa permissão,
     obviamente.
-    Para dispositovos mais antigos, e targetASdk mais antigos essa
+    Para dispositivos mais antigos, e targetASdk mais antigos essa
     permissão deve ser concedia pelo usuário na hora da instalação e
     não durante a executação do app (runtime).
     

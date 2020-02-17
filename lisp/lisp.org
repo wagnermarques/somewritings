@@ -1,13 +1,18 @@
 #+Title:
 #+Subtitle:
 
+* Sobre lisp
+  [fn:wikipedia]
+
 * Conceitos
+  
 ** listas
 
 * Listas car e cdr
   car retorna a cabeca da lista
   cdr retorna o resto da lista menos a car
   Nenhum dos métodos altera a lista
+
   #+NAME: car
   #+BEGIN_SRC elisp 
   (car '(primeiroelem segundoelem tercelem))
@@ -23,8 +28,6 @@
 
   #+RESULTS:
   | segundoelem | tercelem |
-
-
 
 * iterando em uma lista
   https://www.cs.tut.fi/lintula/manual/elisp/emacs-lisp-intro-1.05/emacs-lisp-intro_12.html
@@ -53,6 +56,54 @@
   : 
   : tiger
   
+* iterando em uma lista com mapcar, mapc, mapconcat, and mapcan,
+  http://lee-mac.com/mapcarlambda.html  
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Mapping-Functions.html
+
+** mapc
+  
+  #+NAME: (mapcar 'car '((a b) (c d) (e f)))
+  #+BEGIN_SRC elisp :session s1 :results output :exports both
+      (setq minhaLista '((a b) (c d) (e f)))
+      (defun minhaFuncQueRecebeUmItem(x)
+        (print x))
+      (mapc 'minhaFuncQueRecebeUmItem minhaLista)
+      (print "-----------")
+      (mapc (lambda(x) (print x)) package-archives)
+
+      
+   #+END_SRC
+
+   #+RESULTS: (mapcar 'car '((a b) (c d) (e f)))
+   #+begin_example
+
+   (a b)
+
+   (c d)
+
+   (e f)
+
+   "-----------"
+
+   ("gnu" . "https://elpa.gnu.org/packages/")
+   #+end_example
+
+   
+
+
+
+
+
+
+
+
+  #+NAME mapcar
+  #+BEGIN_SRC elisp
+  
+  #+END_SRC
+
+  #+RESULTS:
+  : asdfasdf
 
 
 * plist
@@ -98,3 +149,16 @@
 
 
 
+* diretorios e arquivos
+  http://ergoemacs.org/emacs/modernization_elisp_copy_dir.html
+  https://www.gnu.org/software/emacs/manual/html_node/elisp/Directory-Names.html
+
+  
+   #+NAME: elispXXX         
+   #+BEGIN_SRC elisp :session s1 :results output :exports both
+      ;;starts code
+      
+   #+END_SRC
+
+* refs
+[fn:wikipedia] https://pt.wikipedia.org/wiki/Lisp

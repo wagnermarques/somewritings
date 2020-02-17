@@ -1,7 +1,6 @@
 #+Title: Comandos do android
 
 
-
 * Apresentacao deste texto pra Aula de Hoje
   A gente vai fazer de novo o listview.
   Na verdade vários de vcs fizeram na aula passada, mas a maioria não.
