@@ -1,0 +1,288 @@
+#+Title:
+#+Subtitle
+
+
+* Temas
+  Existe algo sobre classificacao relativa a  "complexidade
+  tecnológica a estabelecimento de saúde"
+  ftp://ftp.saude.sp.gov.br/ftpsessp/bibliote/informe_eletronico/2019/iels.maio.19/Iels102/U_PT-MS-SAS-639_280519.pdf
+  Tem a ver com transplante de orgaos
+  
+* CROSS
+  
+  portal cross
+  ?
+** Treinamento CROSS
+*** quinta feira   
+    jpateste 123123
+    
+    Atualização de cadastro e agendamento
+    Agendamento / Agenda
+    Dica pra pesquisar paciente: 3 primeiras letras do nome, dta nasc,
+    3 prim letras do nome da mae
+
+    O homozinho no nome significa cadastro desatualizado a mais de um ano
+    O comentário vermielhino no código é cadastro incompleto
+    Não abreviar nomes no cadastro
+    Sexo indeterminado não tem a ver com lgbt e sim qdo o nome é
+    unisex e não se está na presença do paciente e na hora do cadastro
+    não dá pra saber se é homem ou mulher e então sim , nesse caso
+    seleciona-se sexo indeterminado
+
+    Raça/cor - se for indígina tem que dizer qual é a tribo (etnia) o
+    sobre nome dele é a etnia.
+
+    Sexo e data de nascimento não é permitido mudar sem agendamento
+    porque tem agendamenteto que dependendo sexo e por isso não dá pra
+    mudar. Idade também. cadastros@cross.com pra resolver esses
+    problemas.
+
+    Telefone porque tem dois asterísdow
+    É que tem ter no mínimo um telefone pra completar o cadastro.
+    Celular pe importante por causa dos sms 
+    O paciente recebe sms com 8 dias
+    Agendamento no bolsão não funciona sms
+    As vezes oa pessoa vem só com o sms e sem o pedido o paciente não
+    é atendido
+
+    Não trabalhar com o email é melhor porque eles receberem a
+    filipeta por email não substitui o papel do agendamento e o pedido
+    do médido e o paciente vai achar que tem o direito de ser atendido
+    só com o email. O email é enviado 4 dias antes.
+
+    Na hora de confirmar dados com o paciente solicita o dado de novo
+    e não diz pra ele confirmar porque eles confirmam tudo
+    indiscriminadamente.
+
+    aba seleção
+    
+    No histórico de prontuários qualquer usuário pode cancelar dentro
+    no prazo acima de 48 horas da consulta. Se for consulta interna
+    tem os fluxos internos mas dá pra cancelar até com menos. Se foi
+    marcado por outra unidade é melhor que as outra unidade cancele
+    neste caso orienta-se o paciente e fornece-se os recursos (como
+    tel) pra ele fazer isso.
+
+
+*** lista de espera CDR
+    Pra colocar na lista de espera precisa do cid o médico tem que
+    colocar o cid no encaminhamento
+    Além do cid era bom se tivesse escrito se o paciente primeiro
+    tiver que fazer um exame pra depois a consulta. Isso é porque qdo
+    for agendada a consulta, se não tiver nenhuma observação sobre o
+    exame, o paciente vai pra consulta sem o exame.
+    CDR campo origem é qdo queremos indicar qual médico encaminhou e
+    não quer dizer que estamos colocando na lista de demanda desse
+    médico
+    Agenda programada (questões internas que tem previsao de agenda)
+    Atualização pendente (não conseguiu-se leigar pra atualizar o
+    cadastro)
+    Documentação pendente é p/ pacientes que perderam a guia de
+    encaminhamento
+    Aguardando para agendamento
+    TIpo de consulta é importante, se poe Primeira Consulta a agenda
+    interna nem aparece
+    Pra colocar na lista de espera o cadastro tem que estart
+    atualizado e completo
+    
+    *HISTÓRICO Essas opções cancelam o agendamento e tiram ele da fila*
+    Agendado em outro procedimento
+    Agendamento extra
+    Paciente Desistiu do agendamento
+    Inserção errada
+    Óbito
+    Realizado ou agendado em outra unidade
+    Telefone Inexistente
+    Telefone não pertence ao paciente
+    Recado (por um bug, cancela o agendamento, não usar essa opção)
+
+    *HISTÓRICO (Essas cancelam o agendamento mas o paciente parmanece*
+    na fila)
+    Paciente não pode comparecer na data agendada
+    Aguardando exames ou consulta
+    
+
+    HISTORICAO (Essas podem ocorrer ate tres vezes, sai da fila e
+    cancela o agendamento)
+    Telefone nao atende
+    Telefone ocupado
+
+
+* (Treinamento cross) apresentacao dos modulos
+  -Pre hospitalar (samu.. usa pra ver qual o pa mais proimo
+  -Reg Urgencias
+  Casos em que o pciente está na upa por exemplo
+  -Regulacao de leitos
+   conhecer a tx de ocupacao do hospital
+  -Regulacao ambulatorias
+   Agendar consultas exames e cirsugias eletivas (agendadas)
+   0800 agendar ua consulta 
+   mulheres de peiso pode agendar mamogra sem pedido médido 0800
+   rede hebe camargo (pode ser fortemente suspeito)
+   
+* login
+   japteste
+   senha 123123
+   
+   jateste
+   456456
+
+   
+* Configurar uma agenda de exame
+  1. Manutenção profissional
+     É onde a gente cadastra quem será o médico responsávle pelo exame
+     Se for uma audiometria o responsável é o fono, por exemplo
+     No caso do Rx quem realiza é o tecnico mas o responsável é um
+     médico
+     Em caso de responsabilidade não médica tem que mandar uma email
+     para cross o contato é cadastros@cross.org.br isso é pra que a
+     gente consiga encontrar o profisisonal na cross
+
+  2. Consulta tabela SES
+     Esse menu serve pra gente consultar o grupo do exame pra que eu
+     possa continuar criando a minha a agenda. É que os exames são
+     agrupados em grupos. Grupo de cota significa 
+  3. Manutenção grupo de cota
+     É o que minha unidade realiza
+     É onde vamos mostrar para o portal quais os exames são ofertados
+     pelo IPGG independente dos profissionais.
+     Existe por exemplo Rx constrastado que tem um tempo maior pra ser
+     realizado, e não dá pra por isso num grupo de raiox simples. 
+     PADRÃO DE NOME
+     Nome do grupo em maiúscula - 
+     
+     
+  4. Manutenção equipamento
+     É onde vamos dividir mais algumas ocoisas. Quem será o médico
+     reponsáveil
+     Quem é o responsável por qual tipo de exames
+     Por exemplo , tem médico que faz ultrasson de artigulação e
+     outros que não fazem.. é aqui que a gente diz quem faz o que...
+     No equipamento além de juntar as informações é onde a gente vai
+     definir "*intervalo de pacientes*". Nem sempre cada paciente vai
+     levar o mesmo tempo pra 
+      	
+     Tempo de realização (Minutos)* é o intervalo entre pacientes
+     
+	
+  5. Manutenção/Agenda/Exame *Ações Mensais*
+     Todos os anteriores é feito
+     Esse passo 5 é feito mensalmente em cima da estrutura que foi
+     criada até o passo 4
+     Defini-se aqui 
+     data
+     período
+     dias e horparios da semana
+     sexo
+     
+     Nome da agenda
+     AUDIOMETRIA - EX - DOMINGOS NAPOLI - 08/2019
+
+  6. Relatório Pacientes / Executante
+     Serve pra conferir a qtde de pacientes por dia da semana
+     é o único relatório que mostra o intervalo exato que foi colocado
+     No relatório de agenda diária, qdo poe o interfaco de 15 min não
+     é mostrado direito. A gente vê o horário que saí para o paciente
+     que é arredondado em 10min
+
+
+  7. Agendamento / horários
+     Não é um passo obrigatório, tudo vai depender da situação
+     Faz de conta que o médico avisou com antecedencia, no momento que
+     ese está criando a agenda, aqui eu posso fazer a exclusão do
+     horário que não haerá atendimento. Iy i girparui exuste iy deve
+     ser excluído, não é pra usar o botão bloquear horario porque
+     assij os externos vão ver o horário de vaga recebido mas não vão
+     conseguir agendar. Pra repor os horários excluídos tem que criar
+     uma nova agenda
+  8. Manutenção / Agenda / Exame
+     Estamos retornando ao esse passo apenas pra fazer o desbloqueio
+     da agenda
+     
+  9. Manutenção / Distribuição de cotas
+     Direcionamos aqui a vaga pra ela ser recebida pela rede.
+     Todas as vagas de exames sempre devem ser distribuídas para
+     reserva técnica porque o grupo de regulação vai pegar uma parte
+     distribuir pra drs e pras drs regionais
+     
+  10. Relatório / Cota não distribuída
+      Esse rel é importante pra conferir se será que eu distribuí? eu
+      deixei de distribuir alguma coisa? Vaga parada no IPGG é
+      pendencia da unidade... Vaga parada no IPGG pe problema nosso. A
+      vafa pode ficar parada no drs, por exemplo... Vagas paradas no
+      nível de distribuição não vai pra bolsão.
+
+      Exercícios (mesmo profissional: Dr Nelson Yatsuda CRM 49193
+      cardio(wagner) - holter(wagner)
+      dermato(paula) - mapa(Paula)
+      ortopedia(Ligia) - cintilografia(Ligia)
+      otorrinoIvone - marcia cirgia geral ecocargiograma
+      evanir cirurgia vascular - densitometria
+     
+HOLTER - NELSON - EXTERNO - SET/19 - M - WAGNER
+
+     Agenda para o mes de setembro
+     Médico vai atender 
+
+     seg as 13:00 10 pacientes
+     terça as 7:00 5 pacientes e 14:00 5 pacientes
+     quinta 8:00h 5 pacientes e 15:00h 5 pacientes
+     sexta 13:00h 10 pacientes
+     Intervalo entre os pacientes 10min
+     Limite de peso 120kg, ambos os sexos
+     Avisou que dia 10 ele não vai atender de manha
+     Distribuição de cotas 100% reserva técnica
+
+     
+     
+     
+   
+
+ANCIOMETRIA 	Diagnóstico em Especialidades 	Otorrinolaringologia / Fonoaudiologia 	tic 		
+211020044 	HOLTER 24 HORAS (3 CANAIS) 	Diagnóstico em Especialidades
+
+* Configurar uma agenda de consulta
+  
+  1. Manutenção / profissional
+ 
+
+  2. Manutenção / Agenda / Consulta
+     Na consulta a gente pode colocar também o CID
+     
+  3. Relatório / Paciente / Executante
+     É onde eu vou conferir se minha  agenda está correta
+
+  4. Agendamento / horários
+    É onde vamos excluir os dias que o médico não vai atender
+
+  5. Manutenção / Agenda / Consulta
+     Estamos voltamos a esse passo pra fazer o desbloquei da agenda
+     
+  6. Manutenção / Distribuição de Cota
+     Detalhe importante aqui. No exame a gente pode criar dois grupos
+     de cota , interno e externo. Nas consultas não dá pra fazer isso
+     ou seja tem que fazer as cotas todas juntas. É na distribuição
+     de cota que vai separar o que é interno e externo.
+
+  7. Relatório cota não distribuída
+     É a onde eu vejo se esqueci de ofertar alguma coisa /
+* CROSS Inf filipeta CADASTRO/inf USUARIO
+* CROSS transferencia de paciente
+  1. Ver se tem que criar uma agenda de reposição
+     Se tiver transferindo de um trimeste pro outro tem que criar uma
+     agenda de reposição
+  2.   Agenda de reposição dentro do mesmo mes tudo bem, mas se for pro
+     outro mes tem que comunicar a gesseli pr causa das cotas
+  3. Contactar o paciente sobre a transferencia do paciente
+  4. Excluir horários livres. Os horários em aberto tem que ser
+     excluídos pra não entrar paciente neste dia que o médico não vai
+     vir e estamos transferindo agenda
+    
+É possível realizar transferencia com a agenda de rposiçao bloqueada e
+depois que transferiu desbloqueia a agenda
+
+Relatorio/Configuração/Histórico de agendamento
+Data de modificação
+* Cadastro feriado
+* Bloqueio de profissional
+* Cadastro informação usuario

@@ -1,0 +1,29 @@
+#+Title: ATitle
+#+Subtitle:
+#+EXPORT_FILE_NAME: filename2.html
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+
+* Exemplos atuais de inovacao
+
+** EHR  : Social Determinants of Health Limited by Low EHR Interoperability
+   https://ehrintelligence.com/news/social-determinants-of-health-limited-by-low-ehr-interoperability?eid=CXTEL000000249793&elqCampaignId=13627&utm_source=nl&utm_medium=email&utm_campaign=newsletter&elqTrackId=674ff16221f4484480ed84b9ed62cebf&elq=009392bdd53643bd8ff51daa4aa5a4db&elqaid=14319&elqat=1&elqCampaignId=13627
+   
+** IA
+*** Amazon Adds Drug Information to its mHealth Platform for Alexa
+    https://mhealthintelligence.com/news/amazon-adds-drug-information-to-its-mhealth-platform-for-alexa?eid=CXTEL000000249793&elqCampaignId=13627&utm_source=nl&utm_medium=email&utm_campaign=newsletter&elqTrackId=ff127069235f49fc837ed09bad565b0a&elq=009392bdd53643bd8ff51daa4aa5a4db&elqaid=14319&elqat=1&elqCampaignId=13627
+
+** Robot Uses Deep Learning, Ultrasound Imaging to Draw Blood
+   https://healthitanalytics.com/news/robot-uses-deep-learning-ultrasound-imaging-to-draw-blood?eid=CXTEL000000249793&elqCampaignId=13627&utm_source=nl&utm_medium=email&utm_campaign=newsletter&elqTrackId=fe81a88a0ba34691af2d5f991f00b4c2&elq=009392bdd53643bd8ff51daa4aa5a4db&elqaid=14319&elqat=1&elqCampaignId=13627
+
+** Analise de Dados Moderna em saude
+   eBook: Data Innovators in Healthcare
+   https://ehrintelligence.com/resources/white-papers/ebook-data-innovators-in-healthcare?eid=CXTEL000000249793&elqCampaignId=13627&utm_source=nl&utm_medium=email&utm_campaign=newsletter&elqTrackId=22f075221c264ea99425e87607178530&elq=009392bdd53643bd8ff51daa4aa5a4db&elqaid=14319&elqat=1&elqCampaignId=13627
+
+* Congressos
+  2020 World Medical Innovation Forum
+  https://www.eventbrite.com/e/2020-world-medical-innovation-forum-registration-59741572652?aff=Xtelligent?utm_source=nl&utm_medium=email&utm_campaign=newsletter&eid=CXTEL000000249793
+
+* Artigos
+** DESIGN ERGONÔMICO DE CADEIRAS DE BANHO: DIRETRIZES DE PROJETO FUNDAMENTADAS EM EXPERIÊNCIA DE USUÁRIOS
+   https://www.researchgate.net/publication/316911573_DESIGN_ERGONOMICO_DE_CADEIRAS_DE_BANHO_DIRETRIZES_DE_PROJETO_FUNDAMENTADAS_EM_EXPERIENCIA_DE_USUARIOS/link/591858a5aca27200fe52ec44/download

@@ -1,0 +1,27 @@
+#+Title: ATitle
+#+Subtitle:
+#+EXPORT_FILE_NAME: filename2.html
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+
+
+* Conceitos básicos relacionados ao processo de Inovação Tecnológica
+* Transferência de tecnologia e propriedade intelectual em saúde
+* Apresentar o cenário nacional da ciência tecnologia e inovação em saúde
+* Aspectos gerais da lei de inovação e papel dos NITs
+* Passo a passo o desenvolvimento de produto - da bancada à prateleira.
+
+
+* Avaliação
+** Avaliação continuada - discussões do grupo e resposta a questões.
+** Trabalho: Discussão, em grupo, dos conceitos aprendidos no curso diante da apresentação de caso: Filme: Decisões Extremas.
+** Prova 10 questões múltiplas.
+** Nota será dada pela média das duas atividades - prova e filme.
+
+
+* high-value care
+  https://revcycleintelligence.com/news/5-key-ways-to-ensure-hospital-compliance-program-consistency?utm_source=nl&utm_medium=email&utm_campaign=newsletter&eid=CXTEL000000249793
+  https://revcycleintelligence.com/news/advanced-primary-care-promotes-value-based-care?eid=CXTEL000000249793&elqCampaignId=13345&utm_source=nl&utm_medium=email&utm_campaign=newsletter&elqTrackId=092f7fd1e2db476ab0342f418ecc2c38&elq=0471ef877162476ea88158f44ff3dce4&elqaid=14025&elqat=1&elqCampaignId=13345
+
+ 
+

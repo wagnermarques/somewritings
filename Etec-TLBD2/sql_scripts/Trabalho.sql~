@@ -1,0 +1,122 @@
+use master
+GO
+
+drop database CLINICA;
+GO
+
+create database CLINICA;
+GO
+
+use CLINICA;
+
+create table ambulatorios(
+nroa	integer,
+andar	numeric(3) not null,
+capacidade	smallint,
+primary key (nroa)
+)
+
+create table medicos(
+codm	 integer,
+nome	varchar(40) not null,
+idade	smallint not null,
+especialidade	char(20) not null,
+CPF		numeric(11) unique,
+cidade	varchar(30),
+nroa	integer,
+primary key (codm),
+foreign key (nroa) references ambulatorios 
+)
+
+create table pacientes(
+codp	integer,
+nome	varchar(40) not null,
+idade	smallint not null,
+cidade	char(30),
+CPF		Numeric(11) unique,
+doenca	varchar(40) not null,
+primary key	(codp),
+)
+
+create table funcionarios(
+codf	integer,
+nome	varchar(40) not null,
+idade	smallint not null,
+CPf		numeric(11) unique,
+cidade	varchar(30),
+salario	numeric(10),
+cargo	varchar(20),
+primary key	(codf)
+)
+
+create table consultas(
+codc	integer,
+codm	integer,
+codp	integer,
+data	date,
+hora	time,
+primary key	(codc),
+foreign key	(codm) references medicos,
+foreign key	(codp) references pacientes
+)
+
+alter table funcionarios 
+add nroa integer
+
+create unique index indPac_CPF  ON medicos (CPF) 
+create unique index indPac_doenca ON pacientes (doenca)
+
+drop index indPac_doenca ON pacientes
+
+alter table funcionarios drop column cargo
+alter table funcionarios drop column nroa
+
+insert into ambulatorios values (1, 1, 30);
+insert into ambulatorios values (2, 1, 50);
+insert into ambulatorios values (3, 2, 40);
+insert into ambulatorios values (4, 2, 25);
+insert into ambulatorios values (5, 2, 55);
+
+insert into medicos 
+(codm, nome, idade, especialidade, CPF, cidade, nroa)
+values (1, 'joao', 40, 'ortopedia', 10000100000, 'Florianopolis', 1);
+insert into medicos values (2, 'Maria', 42, 'traumatologia', 10000110000, 'Blumenau', 2);
+insert into medicos values (3, 'Pedro', 51, 'pediatria', 11000100000, 'São josé', 2);
+insert into medicos values (4, 'Carlos', 28, 'ortopedista', 11000110000, 'Joinvile', 3);
+insert into medicos values (5, 'Marcia', 33, 'neurologia', 11000111000, 'Biguacu', 3);
+
+insert into pacientes
+(codp, nome, idade, cidade, CPF, doenca)
+values (1,'Ana', 20,'Florianopolis', 20000200000, 'gripe');
+insert into pacientes values (2, 'Paulo', 24, 'Palhoca', 2000220000, 'fratura');
+insert into pacientes values (3, 'Lucia', 30, 'Biguacu', 22000200000, 'tendinite');
+insert into pacientes values (4, 'Carlos', 28, 'Joinville', 11000110000, 'sarampo');
+
+insert into funcionarios
+(codf, nome, idade, CPf, cidade, salario)
+values (1, 'Rita', 32, 20000100000, 'Sao Jose', 1200);
+insert into funcionarios values (2, 'Maria', 55, 30000110000, 'Palhoca', 1220);
+insert into funcionarios values (3, 'Caio', 45, 41000100000, 'Florianopolis', 1100);
+insert into funcionarios values (4, 'Carlos', 44, 51000110000, 'Florianopolis', 1200);
+insert into funcionarios values (5, 'Paula', 33, 61000111000, 'Florianopolis', 2500);    
+
+insert into consultas 
+(codc, codm, codp, data, hora)
+values ( 1, 1, 1, 12/06/2006, '14:00');
+
+select *
+from ambulatorios;
+select *
+from medicos;
+select *
+from pacientes;
+select *
+from funcionarios;
+select *
+from consultas;
+
+
+
+
+
+

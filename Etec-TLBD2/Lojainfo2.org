@@ -2,130 +2,222 @@
 #+Title: Atividade 1 - Loja de Informática
 
 * Introdução
-  Olá pessoal, dê uma olhada, por favor, aí na imagem pra compreender
-  a atividade, ok?
-  [[file:LojaInfo.png]]
+  Olá pessoal, esse material é para orientar nossas aulas baseadas no
+  contexto do domínio loja de software, onde tem um cadastro de
+  clientes e realiza vendas para esse cliente onde as vendas são
+  registradas e os produtos vendidos para cada cliente também são
+  registrados.
 
-* preparando o ambiente :noexport:
+  Durate esse texto você vai ver trechos de codigo em separado e vai
+  ir integrando esses trechos de codigo em um unico script que vai
+  fazer tudo.
+
+  O script cria um banco do zero, cria as tabelas, estabelece o
+  relacionamento entre as tabelas, insere daddos e faz algumas
+  queries.
+
+  Essa e uma primeira faze dos nossos estudos. Depois a gente vai
+  aprender mais sobre transactions, triggers, procedures etc...
+
+  Mas ainda na primeira faze a gente vai responder com algumas queries
+  as seguintes perguntas. Anota elas porque a gente vai responde-las
+  no final dessa apostila.
+
+  a) Qual o nome dos clientes que realizaram compras?
+  b) Qual o nome dos clientes que NAO realizaram compras?
+  c) Quais produtos foram os mais vendidos?
+  e) Quais produtos nao foram vendidos?
+  f) Qual o dispendio total que a loja deixou de receber com os
+  descontos fornecidos. Lembrar que alguns descontos nao foram dados
+  no total da venda, mas sim em cada itens especificos. Ve se vc
+  consegue perceber isso nos inserts. O cliente Denis Rich obteve
+  varios descontos em produtos pelo fato de ele ter comprado itens em
+  quantidade maior para revende-los.
+
+* preparando o ambiente
 ** Instalação do mssqlserver no linux
+   Acho que vcs já fizeram a instalação do sqlserver express na
+   máquina de vocês, ou então usem o sqlserver dos nossos laboratórios
+   mesmo.
+
+   No meu caso, como estou usando o linux, eu uso instalai um
+   container do sqlserver usando o docker e envio o meu sql pra rodar
+   através do comando sqlcmd. Vou mostrar isso pra vcs antes de
+   começar...
+
+   Quem estiver usando linux pode seguir esse roteiro que vai dar
+   certo, lembrando que tem que instalar o docker primeiro.
+
 *** Fazendo pull da imagem do mssqlserver
-    Primeiro você deve fazer o pull da imagem container
-    Claro que pra usar o comando docker vc precisa instalar ele
+    Primeiro você deve fazer o pull da imagem container. Claro que pra usar o comando docker vc precisa instalar ele
     também. No meu caso estou usando a versão indicada abaixo. 
     Tem muitos tutorials sobre como instalar o docker no google.
+
     #+name: docker version
     #+begin_src sh  :eval exports  :results output replace  :exports both
     docker --version
     #+end_src
 
-    #+RESULTS:
-    : Docker version 1.12.6, build ae7d637/1.12.6
+    #+RESULTS: docker version
+    : Docker version 19.03.7, build 7141c199a2
 
 
     Com o docker funcionando, você pode fazer o pull da imagem do
     mssqlserver
+
+    
     #+name: docker pull mssqlserver
     #+begin_src sh  :results output replace  :exports both
     docker pull microsoft/mssql-server-linux:latest
     #+end_src
 
-    #+RESULTS:
+    #+RESULTS: docker pull mssqlserver
     #+begin_example
     latest: Pulling from microsoft/mssql-server-linux
-    f6fa9a861b90: Already exists
-    da7318603015: Already exists
-    6a8bd10c9278: Already exists
-    d5a40291440f: Already exists
-    bbdd8a83c0f1: Already exists
-    3a52205d40a6: Already exists
-    6192691706e8: Already exists
-    1a658a9035fb: Already exists
-    827975ce0c02: Already exists
-    ea7199b7fbb6: Already exists
-    Digest: sha256:ff4bd7961f6c788d980953ae4edbb7cfc7e604dfe2b702fc26548080254c522a
-    Status: Image is up to date for microsoft/mssql-server-linux:latest
+    59ab41dd721a: Already exists
+    57da90bec92c: Already exists
+    06fe57530625: Already exists
+    5a6315cba1ff: Already exists
+    739f58768b3f: Already exists
+    0b751601bca3: Pulling fs layer
+    bcf04a22644a: Pulling fs layer
+    6b5009e4f470: Pulling fs layer
+    a9dca2f6722a: Pulling fs layer
+    a9dca2f6722a: Waiting
+    0b751601bca3: Verifying Checksum
+    0b751601bca3: Download complete
+    0b751601bca3: Pull complete
+    a9dca2f6722a: Verifying Checksum
+    a9dca2f6722a: Download complete
+    bcf04a22644a: Verifying Checksum
+    bcf04a22644a: Download complete
+    bcf04a22644a: Pull complete
+    6b5009e4f470: Verifying Checksum
+    6b5009e4f470: Download complete
+    6b5009e4f470: Pull complete
+    a9dca2f6722a: Pull complete
+    Digest: sha256:9b700672670bb3db4b212e8aef841ca79eb2fce7d5975a5ce35b7129a9b90ec0
+    Status: Downloaded newer image for microsoft/mssql-server-linux:latest
+    docker.io/microsoft/mssql-server-linux:latest
     #+end_example
 
+    Lembrando que se vc ja tenha feito o pull desse container, agora a
+    imagem do container ja foi baixada na sua maquina entao, neste
+    caso, seria só rodar a imagem mesmo. No próximo topico a gente faz isso.
+
+
 *** rodando o mssqllserver
-   Agora você tem que rodar o container, e depois, checar se o seu container está rodando
+
+   Agora você já fez o pull da imagem do container, tem que roda-lo, e depois, checar se o seu
+   container está rodando.
+   
+   Se vc acabou de fazer o pull e é a primeira vez que vc vai rodar o
+   seu container, rode o comando abaixo. Mas se vc já rodou uma vez e
+   vai rodar novamente, entao esse container só está parado mas já
+   existe. um docker ps -a vai mostrar isso. Neste caso você nao vai
+   dar um docker run como abaixo, mas um docker start. 
+
   #+name docker ps
   #+begin_src sh
   docker ps
   #+end_src
 
-  #+RESULTS:
-  : CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
-  Aqui a gente roda nosso container pra obter uma instancia do
-  mssqlserver rodando. Repare que o sqlserver tera a disposicao o
+  Aqui a gente roda nosso container pela primeira vez usando o docker
+  run. Caso vc já tenha rodado o container, aí pula esse comando aqui
+  e vai para o próximo, que é o docker start. 
+  Mas voltando ao assunto de rodar o nosso container pela primeira
+  vez. Esse comando abaixo, que é um docker run, faz isso, e o
+  resultado é uma instancia do  mssqlserver rodando. Repare que o sqlserver tera a disposicao o
   diretorio /sql_scripts onde esta nossos scripts que vamos rodar.
+
   #+name docker run mssqlserver
   #+begin_src sh
-    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno#123' -p 1433:1433 -d microsoft/mssql-server-linux && docker logs mssql-server  
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno123' -p 1433:1433 -d microsoft/mssql-server-linux  && docker logs sqlserver  
   #+end_src
 
   #+RESULTS:
-  : 48726b8c1f1bf8698f80524e25f9006e67ce720dafcc2fe613884f527b3cf1d1
+
+  Este comando abaixo, he um docker start. Você roda esse comando ao
+  inves do docker run caso vc ja tenha rodado o container
+  anteriormente com o docker run. Se você ja rodou anteriormente a
+  instancia do container ja existe e esta apenas parada, por isso que
+  um docker start já estarta o container perfeitamente.
+  
+  Pra confirmar que vc já tem a instancia criada e só um docker start
+  já subiria o seu container, dá um docker ps -a e se a sua instancia
+  for mostrada, então, obviamente, ela já existe, e nesse caso é só
+  dar um docker start conforme abaixo.
+
+  #+name docker start sqlserver
+  #+begin_src sh
+    docker start sqlserver &
+  #+end_src
+
+  #+RESULTS:
+  : sqlserver
 
   
+  Depois de dar um docker run ou docker start, pra confirmar que a
+  instacia do seu sqlserver já esta pronta pra receber conexoes, masta
+  dar um docker ps
+
+  
+   #+NAME:  docker ps  pra ver a instancia                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      docker ps
+   #+END_SRC
+
+   #+RESULTS: docker ps  pra ver a instancia
+   : 
+   : CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                    NAMES
+   : 1433/tcp   sqlserver
+
+
+*** com o container rodando, confirmar diretorio /sql_scripts
+
   Será que nosso container tem mesmo um diretório /sql_scripts?
   Tem que ter né, porque é lá que estarão nossos script que vamos
   rodar. Vamos conferir se tem mesmo então... Pra isso é só dar um ls
   no container.
+  O comando abaixo entra dentro do container e lista o conteudo da
+  pasta /sql_scripts
+
   #+name docker verifica pasta sql_script 
   #+begin_src sh
-    docker exec sqlserver ls
+    docker exec sqlserver ls /sql_scripts
   #+end_src
 
   #+RESULTS:
-  | bin         |
-  | boot        |
-  | core        |
-  | dev         |
-  | etc         |
-  | home        |
-  | install.sh  |
-  | lib         |
-  | lib64       |
-  | media       |
-  | mnt         |
-  | opt         |
-  | proc        |
-  | root        |
-  | run         |
-  | sbin        |
-  | sql_scripts |
-  | srv         |
-  | sys         |
-  | tmp         |
-  | usr         |
-  | var         |
-  
+  | Exec_sp_databases.sql                  |
+  | LojaInfo_create_table.sql              |
+  | Trabalho.sql                           |
+  | Trabalho.sql~                          |
+  | aula_funcoes.sql                       |
+  | aula_funcoes2.sql                      |
+  | aula_funcoes_old.sql                   |
+  | aula_triggers.sql                      |
+  | aula_update_e_delete.sql               |
+  | create_constraints_tests.sql           |
+  | create_contraints.sql                  |
+  | create_database.sql                    |
+  | create_tables.sql                      |
+  | create_tables_tests.sql                |
+  | drop_database.sql                      |
+  | inserts.sql                            |
+  | lojainfo_script.sql                    |
+  | lojainfo_sqlserver_storeprocedures.sql |
+  | select_agregacoes.sql                  |
+  | select_vendas_por_cada_cliente.sql     |
+
+
   Então pela saída acima tá comprovado que nossa pastinha de scripts
-  tá... 
+  tá com nossos scripts.
 
+* te apresentando o comando sqlcmd
+  Esse comando, abaixo, é só pra demostrar que nosso container sqlserver está
+  funcionando e também pra demonstrar como utilizar o comando sqlcmd.
 
-  Agora você pode dar uma conferida se a porta 1433 está aberta. Pra
-  isso você pode usar o nmap. Tem que instala-lo.
-  #+name checando porta 1433
-  #+begin_src sh  :eval exports  :results output replace  :exports both
-  nmap 172.17.0.1
-  #+end_src
-
-  #+RESULTS:
-  : 
-  : Starting Nmap 7.40 ( https://nmap.org ) at 2018-02-10 11:42 -02
-  : Nmap scan report for 172.17.0.1
-  : Host is up (0.00042s latency).
-  : Not shown: 999 closed ports
-  : PORT     STATE SERVICE
-  : 1433/tcp open  ms-sql-s
-  : 
-  : Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
-
-* o comando sqlcmd
-   Esse comando, abaixo, é só pra demostrar que nosso container sqlserver está
-   funcionando e também pra demonstrar como utilizar o comando sqlcmd.
   #+name: sqlcmd
   #+begin_src sh :results output replace  :exports both
   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd
@@ -134,7 +226,7 @@
   #+RESULTS: sqlcmd
   #+begin_example
   Microsoft (R) SQL Server Command Line Tool
-  Version 13.1.0007.0 Linux
+  Version 17.2.0000.1 Linux
   Copyright (c) 2012 Microsoft. All rights reserved.
 
   usage: sqlcmd            [-U login id]          [-P password]
@@ -162,8 +254,9 @@
     [-x disable variable substitution]
     [-? show syntax summary]
   #+end_example
-  
+
 * dropando o banco pra quando quizer comecar do zero
+
   Conforme a gente tem feito em sala de aula, a gente quer sempre que
   o nosso script drope o banco e começe sempre do zero.
   Segue abaixo a parte do script que serve simplesmente pra dropar o banco.
@@ -172,18 +265,536 @@
   #+INCLUDE: ./sql_scripts/aula_funcoes.sql  :src sql  :lines "-5"
 
 * Criacao do Banco de dados
-  #+Name: create database
-  #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "6-10"
 
-  Rode Exec sp_databases pra confirmar que o banco foi criado
+  O script abaixo cria o banco de dados naquele esquema que a gente já
+  conhece em sala de aula, de dropar e criar do zero...
+
+  #+Name: create database
+  #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql :lines "1-11"
+
+
+  Essa deve ser a primeira parte do codigo do seu script, que, por
+  enquanto, só cria o banco. Depois a gente vai continuar escrevendo o
+  script pra criar as tabelas etc...
+
+  Se vc tiver usando no windows pode fazer do jeito que vc tá
+  acostumado na aula mesmo, usando o SQL Server Management Studio. Mas
+  se vc tiver no linux, usando docker como eu, vc pode rodar esse
+  comando que dá no mesmo...
+
+  
+   #+NAME: create database
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: create database
+   : Changed database context to 'master'.
+   : Changed database context to 'lojainfo'.
+
+   No resultado vc já pode perceber que o use lojainfo funcionou já
+   que a mensagem "Changed database context to 'lojainfo' foi
+   apresentada. Isso quer dizer que o nosso banco foi criado mesmo.
+
+   Lembre-se que se vc rodar pela primeira vez o drop vai dizer que
+   não dropou porque o banco ainda não tinha sido criado
+   anteriormente. 
 
 * Criando as as tabelas
-  Eis aqueles create tables basicoes
-  #+INCLUDE: ./sql_scripts/create_tables.sql  :only-contents t :src sql 
 
-* Testando se as tabelas foram criadas mesmo
-  #+INCLUDE: ./sql_scripts/create_tables_tests.sql  :only-contents t :src sql 
+  Bom, na continuidade do nosso script, a gente coloca nossos create tables...
 
+  #+Name: create tables
+  #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql :lines "1-49"
+
+  Novamente, pra rodar, aquele mesmo esquema....
+
+   #+NAME: create tables
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: create tables
+   : Changed database context to 'master'.
+   : Changed database context to 'lojainfo'.
+
+   Só que agora a gente quer ver as nossas tabelas criadas certo?
+   
+   #+NAME:  show tables                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd  -S localhost -U SA -P Aluno123 -q "Select TABLE_NAME from lojainfo.INFORMATION_SCHEMA.TABLES";
+   #+END_SRC
+
+   #+RESULTS: show tables
+   #+begin_example
+   TABLE_NAME                                                                                                                      
+   --------------------------------------------------------------------------------------------------------------------------------
+   tb_clientes                                                                                                                     
+   tb_hardware                                                                                                                     
+   tb_vendas                                                                                                                       
+   tb_vendas_itens                                                                                                                 
+
+   (4 rows affected)
+
+   Sqlcmd: Warning: The last operation was terminated because the user pressed CTRL+C.
+   #+end_example
+
+* Inserindo registros
+  A gente vai inserir registros no cadastro de clientes de produtos e
+  também registros das vendas realizadas para esses clientes.
+
+** Inserindo clientes e produtos
+  No cadastro de produtos vamos inserir alguns para serem
+  vendidos. Nem todos serão vendidos pra que nossas consultas sejam
+  mais legais.. 
+  
+  O codigo dos inserts sao esses abaixo... 
+
+  Alguns clientes que me parecem bastante especiais...
+
+  E alguns produtos que serao vendidos pra eles...
+  
+  #+Name: inserindo registros de produtos e clientes
+  #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql :lines "49-66"
+
+  
+  Mas esses inserts acima devem ser inseridos no seu script, segue o
+  script inteiro como está ficando...
+
+  #+Name: inserindo registros de produtos e clientes (script inteiro)
+  #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql :lines "0-66"
+
+
+   #+NAME:  insert hardwares                   
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: insert hardwares
+   #+begin_example
+   Changed database context to 'master'.
+   Changed database context to 'lojainfo'.
+
+   (5 rows affected)
+
+   (5 rows affected)
+
+   (2 rows affected)
+
+   (5 rows affected)
+
+   (5 rows affected)
+   #+end_example
+
+   Pra visualizar os registros inseridos a gente faz um select
+   simples...
+
+
+   #+NAME: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "select * from select * from tb_hardware"
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_hardware"
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "select * from select * from tb_hardware"
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   id_hardware descricao                                          preco_unit           qtde_atual  qtde_minima img                                                                                                                                                                                                                                                             
+   ----------- -------------------------------------------------- -------------------- ----------- ----------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+             1 gabinete                                                             61         100          10 NULL                                                                                                                                                                                                                                                            
+             2 processador                                                         301         100          10 NULL                                                                                                                                                                                                                                                            
+             3 placa m?e                                                           101         100          10 NULL                                                                                                                                                                                                                                                            
+             4 Dico R?gido                                                          81         100          10 NULL                                                                                                                                                                                                                                                            
+             5 Monitor                                                             300         100          10 NULL                                                                                                                                                                                                                                                            
+
+   (5 rows affected)
+
+   Sqlcmd: Warning: The last operation was terminated because the user pressed CTRL+C.
+   #+end_example
+
+   #+NAME:   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "select * from tb_clientes"
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_clientes"
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "select * from tb_clientes"
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   id_cliente  nome                                               endereco                                                                                             idade       sexo fone            email                                                                 
+   ----------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- ----------- ---- --------------- ----------------------------------------------------------------------
+             1 Ada Lovelace                                       Ada Address                                                                                                   20 f    11-99999-9999   hug@dom.com                                                           
+             2 Linuz Torvalds                                     Linus Address                                                                                                 50 m    11-99999-9999   zez@dom.com                                                           
+             3 Richard Stallman                                   Stallman Address                                                                                              60 m    11-99999-9999   lui@dom.com                                                           
+             4 Denis Ritchie                                      Denis Ritchie Address                                                                                         30 m    11-99999-9999   mon@dom.com                                                           
+             5 Ken Thompson                                       Ken Thompson Address                                                                                          40 m    11-99999-9999   lulu@dom.com                                                          
+
+   (5 rows affected)
+
+   Sqlcmd: Warning: The last operation was terminated because the user pressed CTRL+C.
+   #+end_example
+
+** Inserindo registro das vendas realizadas
+   
+   Vamos inserir registros acerca das vendas realizadas pelos nossos
+   clientes. A Ada he a cliente que gasta mais, ela fez 3 compras e
+   varios produtos em cada compra.
+
+   
+   O trecho do nosso script que faz o insert dessas vendas he esse
+   aqui abaixo...
+   #+NAME: script lojainfo_script.sql com (trecho do insert das vendas)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "66-74"
+
+   Agora, segue de novo o script com esse trecho incluido...
+   E assim que seu script tem que estar "nessas alturas do campeonato.."
+   #+NAME: script lojainfo_script.sql com (script inteiro com insert das vendas incluidos)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "0-74"
+
+      
+   #+NAME:  /sql_scripts/lojainfo_script.sql com insert das vendas
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+    docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: /sql_scripts/lojainfo_script.sql com insert das vendas
+   #+begin_example
+   Changed database context to 'master'.
+   Changed database context to 'lojainfo'.
+
+   (5 rows affected)
+
+   (6 rows affected)
+
+   (8 rows affected)
+   Msg 102, Level 15, State 1, Server 0c359760462a, Line 23
+   Incorrect syntax near '7'.
+   #+end_example
+      
+   #+NAME:  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas"
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   id_venda    id_cliente  dataDaVda        desconto
+   ----------- ----------- ---------------- --------
+             1           1       2020-03-01     NULL
+             2           1       2020-03-02     NULL
+             3           1       2020-03-03      .05
+             4           1       2020-03-04      .20
+             5           1       2018-03-05      .10
+
+   (5 rows affected)
+
+   Sqlcmd: Warning: The last operation was terminated because the user pressed CTRL+C.
+   #+end_example
+
+   Bom, entao, acima estao os registros das vendas inseridos.
+   Perceba que nao temos o valor de cada venda. Isso pode ser obtido
+   consultado quais produtos foram registrados nessa venda e por qual
+   preco eles foram vendidos, levando em consideracao, e claro, o
+   desconto que he aplicado para o total da venda.
+
+   Mas a gente ainda nao inseriu na tabela tb_vendas_itens quais foram
+   o produtos para cada venda, entao vamos fazer isso...
+
+   Lembrando que por enquanto nao estamos nos preocupando com
+   transacoes ainda, isso fica pra uma proxima apostila. O professor
+   pode explicar pra vc que seria muito obvio que o registro das
+   vendas e dos produtos devem ser realizados atomicamente, dentro de
+   uma transacao. Mas pra manter as coisas simples, por enquanto, nao
+   vamos entrar nessa questao. Mas o prof pode te esclarecer melhor.
+
+** Inserindo registro dos itens vendidos em cada venda
+   Conforme eu havia dito, uma venda significa que itens foram
+   vendidos, mas pra cada venda ainda nao dissemos quais itens...
+   Vamos fazer isso agora...
+
+   #+NAME: script lojainfo_script.sql com (trecho do insert das vendas)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "78-1034"
+
+   Agora, segue de novo o script com esse trecho incluido...
+   E assim que seu script tem que estar "nessas alturas do campeonato.."
+   #+NAME: script lojainfo_script.sql com (script inteiro com insert das vendas incluidos)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "00-74"
+
+      
+   #+NAME:  /sql_scripts/lojainfo_script.sql com insert das vendas
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+    docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: /sql_scripts/lojainfo_script.sql com insert das vendas
+   #+begin_example
+   Changed database context to 'master'.
+   Changed database context to 'lojainfo'.
+
+   (5 rows affected)
+
+   (5 rows affected)
+
+   (5 rows affected)
+
+   (5 rows affected)
+
+   (5 rows affected)
+   #+end_example
+      
+   #+NAME:  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas"
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -q "use lojainfo; select * from tb_vendas
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   id_venda    id_cliente  dataDaVda        desconto
+   ----------- ----------- ---------------- --------
+             1           1       2020-03-01     NULL
+             2           1       2020-03-02     NULL
+             3           1       2020-03-03      .05
+             4           1       2020-03-04      .20
+             5           1       2018-03-05      .10
+
+   (5 rows affected)
+
+   Sqlcmd: Warning: The last operation was terminated because the user pressed CTRL+C.
+   #+end_example
+
+   Bom, entao, acima estao os registros das vendas inseridos.
+   Perceba que nao temos o valor de cada venda. Isso pode ser obtido
+   consultado quais produtos foram registrados nessa venda e por qual
+   preco eles foram vendidos, levando em consideracao, e claro, o
+   desconto que he aplicado para o total da venda.
+
+   Mas a gente ainda nao inseriu na tabela tb_vendas_itens quais foram
+   o produtos para cada venda, entao vamos fazer isso...
+
+   Lembrando que por enquanto nao estamos nos preocupando com
+   transacoes ainda, isso fica pra uma proxima apostila. O professor
+   pode explicar pra vc que seria muito obvio que o registro das
+   vendas e dos produtos devem ser realizados atomicamente, dentro de
+   uma transacao. Mas pra manter as coisas simples, por enquanto, nao
+   vamos entrar nessa questao. Mas o prof pode te esclarecer melhor.
+
+* Inserindo os itens vendidos em cada venda
+  Como nao existe uma venda sem itens, vamos inserir no banco quais
+  itens foram vendidos em cada venda.
+  Lembrando que a questão das transactions será vista num outro
+  momento do nosso estudo.
+
+   #+NAME: script lojainfo_script.sql com (trecho do insert das dos itens das respectivas vendas)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "78-103"
+
+   Veja o script inteiro, como esta ficando...
+   #+NAME: script lojainfo_script.sql com (script inteiro com insert dos itens para respectivas vendas incluidos)
+   #+INCLUDE: ./sql_scripts/lojainfo_script.sql :only-contents t :src sql  :lines "00-74"
+
+      
+   #+NAME: lojainfo_script.sql
+   #+BEGIN_SRC shell :session s1 :results output :exports code
+    docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/lojainfo_script.sql
+   #+END_SRC
+
+   #+RESULTS: lojainfo_script.sql
+   #+begin_example
+   Changed database context to 'master'.
+   Changed database context to 'lojainfo'.
+   ->-> insert into tb_clientes values...
+
+   (5 rows affected)
+   ->-> insert into tb_hardware...
+
+   (6 rows affected)
+   ->-> insert into tb_vendas...
+
+   (8 rows affected)
+   ->-> insert into tb_vendas_itens...
+
+   (20 rows affected)
+   #+end_example
+
+* Algumas queries para analise dos dados
+** a) Qual o nome dos clientes que realizaram compras?
+   
+   #+NAME: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/a-nome-cli-que-fizeram-compras.sql
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/a-nome-cli-que-fizeram-compras.sql
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/a-nome-cli-que-fizeram-compras.sql
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   .
+   .
+   .
+   ###### CONSULTA select c.id_cliente, c.nome from tb_clientes as c
+   esses sao os clientes que cadastrados
+   -----------------------------------------------
+   id_cliente  nome                                              
+   ----------- --------------------------------------------------
+             1 Ada Lovelace                                      
+             2 Linuz Torvalds                                    
+             3 Richard Stallman                                  
+             4 Denis Ritchie                                     
+             5 Ken Thompson                                      
+
+   (5 rows affected)
+   .
+   .
+   .
+   ###### CONSULTA select v.id_cliente from tb_vendas as v
+   essas sao as vendas realizadas para cada cliente
+   -----------------------------------------------
+   id_cliente 
+   -----------
+             1
+             1
+             1
+             1
+             2
+             2
+             3
+             4
+
+   (8 rows affected)
+   .
+   .
+   .
+   ###### CONSULTA clientes que realizaram compra
+   esses sao os clientes que realizaram compras
+   perceba que o cliente 5, Ken Thompson nao esta listado
+   -----------------------------------------------
+   id_clienteFromTbCliente id_clienteFromTbVendas nome                                              
+   ----------------------- ---------------------- --------------------------------------------------
+                         1                      1 Ada Lovelace                                      
+                         1                      1 Ada Lovelace                                      
+                         1                      1 Ada Lovelace                                      
+                         1                      1 Ada Lovelace                                      
+                         2                      2 Linuz Torvalds                                    
+                         2                      2 Linuz Torvalds                                    
+                         3                      3 Richard Stallman                                  
+                         4                      4 Denis Ritchie                                     
+
+   (8 rows affected)
+   #+end_example
+   
+   #+INCLUDE: ./sql_scripts/a-nome-cli-que-fizeram-compras.sql :src sql
+
+   
+** b) Qual o nome dos clientes que NAO realizaram compras?
+
+   #+NAME: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/b-nome-cli-que-naofizeram-compras.sql
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/b-nome-cli-que-naofizeram-compras.sql
+   #+END_SRC
+
+   #+RESULTS: docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/b-nome-cli-que-naofizeram-compras.sql
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   .
+   .
+   .
+   ###### CONSULTA select c.id_cliente, c.nome from tb_clientes as c
+   Apenas o cliente 5 Ken Thompson nao comprou nada
+   -----------------------------------------------
+   nome                                              
+   --------------------------------------------------
+   Ken Thompson                                      
+
+   (1 rows affected)
+   #+end_example
+
+   
+** c) Listar nome dos produtos e qtde de itens vendidas de cada um em ordem descrescente
+   #+NAME: c-quais-produtos-foram-os-mais-vendidos.sql
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/c-quais-produtos-foram-os-mais-vendidos.sql
+   #+END_SRC
+
+   #+RESULTS: c-quais-produtos-foram-os-mais-vendidos.sql
+   #+begin_example
+   Changed database context to 'lojainfo'.
+   .
+   .
+   .
+   ###### CONSULTA: select * from tb_vendas_itens
+   Acho que podemos comecar perguntando quais foram os produtos vendidos...
+    eis abaixo os produtos vendidos
+   -----------------------------------------------
+   id_item     id_venda    id_hardware qtde_item   pco_vda   
+   ----------- ----------- ----------- ----------- ----------
+             1           1           1           1      60.50
+             2           1           3           1     100.50
+             3           1           2           1     300.50
+             4           2           4           1      80.90
+             5           3           5           1     300.20
+             6           4           1           2     300.20
+             7           4           5           2     300.20
+             8           4           2           2     300.50
+             9           4           3           2     100.50
+            10           4           4           2      80.90
+            11           5           3           1     100.50
+            12           5           2           1     300.50
+            13           6           1           1      60.50
+            14           6           4           1      80.90
+            15           6           5           1     300.20
+            16           7           2          10     100.00
+            17           7           3          10     180.00
+            18           7           1          10      20.00
+            19           7           4          10     100.00
+            20           7           5          10     100.00
+
+   (20 rows affected)
+   .
+   .
+   .
+   ###### CONSULTA: select id_hardware, sum(qtde_item) as qtdeVendida from tb_vendas_itens as i group by id_hardware order by qtdeVendida
+   vc viu que tem a coluna qtde_item que contem a qtde q foi vendida do item
+   essa he uma informacao que interessa, o problema he que o mesmo item aparece muitas vezes
+   entao vamos agrupar os itens repetidos somando a qtede_itens
+   he isso que vc ve nessa query abaixo
+   -----------------------------------------------
+   id_hardware qtdeVendida
+   ----------- -----------
+             1          14
+             2          14
+             3          14
+             4          14
+             5          14
+
+   (5 rows affected)
+   .
+   .
+   .
+   ###### CONSULTA: select * from tb_vendas_itens
+   Bom, agora queremos o nome e nao o id de cada item
+   Vamos fazer um join com a tabela de cadastro de prodtos
+   Primeiro vamos pegar uma versao do join sem o group by pra facilitar a compreensao
+   Depois a gente poe de novo o group by
+   print N
+   id_hardware descricao                                          qtdeVendida
+   ----------- -------------------------------------------------- -----------
+             1 gabinete                                                    14
+             2 processador                                                 14
+             3 placa m?e                                                   14
+             4 Disco R?gido                                                14
+             5 Monitor                                                     14
+
+   (5 rows affected)
+   #+end_example
+
+** e) Quais produtos nao foram vendidos?
+   
+** f) Qual o dispendio total que a loja deixou de receber com os descontos fornecidos. 
+   Lembrar que alguns descontos nao foram dados
+   no total da venda, mas sim em cada itens especificos. Ve se vc
+   consegue perceber isso nos inserts. O cliente Denis Rich obteve
+   varios descontos em produtos pelo fato de ele ter comprado itens em
+   quantidade maior para revende-los.
+
+   
 * Basicão de variáveis
   #+Name: basicao de variaveis
   #+INCLUDE: ./sql_scripts/aula_funcoes.sql :only-contents t :src sql :lines "24-35"
@@ -386,4 +997,11 @@
   Msg 102, Level 15, State 1, Server 39dbf20408b6, Procedure OBTER_CLIENTES_QUE_NAO_COMPRARAM_NADA, Line 2
   Incorrect syntax near '*'.
   #+end_example
+
+
+
+* Assuntos para aproxima abordagem 
+problema 1 - a insercao do registro da venda tem que ser atomica com
+os itens da respectiva venda o que existe uma transaction
+
 
