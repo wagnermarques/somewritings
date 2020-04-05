@@ -1,0 +1,6 @@
+#+Title:
+#+Subtitle:
+
+
+https://aws.amazon.com/pt/ec2/pricing/
+https://calculator.s3.amazonaws.com/index.html

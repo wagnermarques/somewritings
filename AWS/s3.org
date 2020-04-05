@@ -6,8 +6,7 @@
 
 
 * criar um bucket
-  
-  
+    
    #+NAME:aws s3api create-bucket --bucket my-bucket --region us-east-1
    #+BEGIN_SRC shell :session s1 :results output :exports both
       aws s3api create-bucket --bucket wagner --region us-east-1
@@ -35,18 +34,27 @@
    #+END_SRC
 
    #+RESULTS: aws s3api list-buckets --query "Buckets[].Name"
-   : br.com.fzlbpms	br.usp.sin5009	ipgg-curso-geronto
+   : [
+   :     "br.com.fzlbpms",
+   :     "br.usp.sin5009",
+   :     "ipgg-curso-geronto",
+   :     "www.planosdeaulas.com.br"
+   : ]
    
    
    #+NAME:aws s3 ls (1)
    #+BEGIN_SRC shell :session s1 :results output :exports both
+      echo "[s3 ls]"
       aws s3 ls
+      echo "[s3 ls www.planosdeaulas.com.br]"
+      aws s3 ls www.planosdeaulas.com.br
    #+END_SRC
 
    #+RESULTS: aws s3 ls (1)
-   : 2019-10-13 19:06:58 br.com.fzlbpms
-   : 2019-10-29 15:02:05 br.usp.sin5009
-   : 2020-01-19 23:48:17 ipgg-curso-geronto
+   : 2019-10-13 18:06:58 br.com.fzlbpms
+   : 2019-10-29 14:02:05 br.usp.sin5009
+   : 2020-01-19 21:48:17 ipgg-curso-geronto
+   : 2020-04-04 17:20:33 www.planosdeaulas.com.br
 
 
    
@@ -75,11 +83,17 @@
 
 * fazer upload de um arquivo
   
-   #+NAME:                     
+   #+NAME: aws s3 sync s3://tgsbucket/backup $DirComOsPlanosDeAulas
    #+BEGIN_SRC shell :session s1 :results output :exports both
-   contentDir=/run/media/wagner/845710c1-67c4-4f71-9ef8-6ca68869fae5/Documentos/Locais/IPGG/Comunicacao/CG2020/publicacaonosite/
-      site-eadbanner.jpg
+   DirComOsPlanosDeAulas=/home/wagner/envs/env-dev/sources/somewritings/var/publishing-directory/planosdeaulas
+   bucketName=www.planosdeaulas.com.br
+   echo "aws s3 sync s3://$bucketName $DirComOsPlanosDeAulas"
+   aws s3 sync s3://$bucketName $DirComOsPlanosDeAulas
    #+END_SRC
+
+   #+RESULTS: aws s3 sync s3://tgsbucket/backup $DirComOsPlanosDeAulas
+   : 
+   : [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ aws s3 sync s3://www.planosdeaulas.com.br /home/wagner/envs/env-dev/sources/somewritings/var/publishing-directory/planosdeaulas
 
 * fazer upload multipart de arquivo(s)
   https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html
@@ -120,6 +134,41 @@
    #+BEGIN_SRC shell :session s1 :results output :exports both
    aws s3 cp myvideo.mp4 s3://mybucket/
    #+END_SRC
+
+
+* sites estaticos com s3
+  https://docs.aws.amazon.com/AmazonS3/latest/user-guide/access-points.html
+  https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-vpc
+
+* mais exemplos
+ 
+   #+NAME:mais exemplos
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+   DirComOsPlanosDeAulas=/home/wagner/envs/env-dev/sources/somewritings/var/publishing-directory/planosdeaulas
+   bucketName=www.planosdeaulas.com.br
+   export AwsAccountId=AKIAQ5IQ2LQ46IV2TBGC
+   #revisar as permissoes do buckets antes de usar os comandos
+
+   #echo "s3 ls s3://$bucketName"
+   #aws s3 ls s3://$bucketName
+   #echo "aws s3 ls s3://$bucketName --recursive  --human-readable --summarize"
+   #aws s3 ls s3://$bucketName --recursive  --human-readable --summarize
+   #echo "aws s3 website s3://tgsbucket/ --index-document index.html --error-document error.html"
+   
+   
+   #echo "aws s3control create-access-point --name wwwplanosdeaulas --account-id $AwsAccountId --bucket $$bucketName --region us-east-1"
+   #aws s3 website s3://$bucketName --index-document index.html --error-document erro.html
+   #aws s3control create-access-point --name wwwplanosdeaulas --account-id $AwsAccountId --bucket $$bucketName --region us-east-1
+   
+
+   #aws iam list-users
+   #+END_SRC
+
+   #+RESULTS: mais exemplos
+   : 
+   : [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ aws s3control create-access-point --name wwwplanosdeaulas --account-id AKIAQ5IQ2LQ46IV2TBGC --bucket 27174bucketName --region us-east-1
+   : [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ 
+   : An error occurred (AccessDenied) when calling the CreateAccessPoint operation: Access Denied
 
 
 * refs

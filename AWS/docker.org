@@ -1,0 +1,11 @@
+#+Title:
+#+Subtitle:
+
+* refs
+  https://aws.amazon.com/pt/docker/
+  https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
+  https://aws.amazon.com/pt/getting-started/tutorials/deploy-docker-containers/
+  https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html
+  https://console.aws.amazon.com/ecs/home?region=us-east-1#/clusters
+  
+  

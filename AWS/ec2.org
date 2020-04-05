@@ -1,0 +1,10 @@
+#+Title:
+#+Subtitle:
+
+* refs
+  https://www.thegeekstuff.com/2016/04/aws-ec2-cli-examples/
+  https://www.thegeekstuff.com/2017/07/aws-ec2-cli-userdata/
+  https://www.thegeekstuff.com/2017/02/aws-ec2-pem-to-ppk-putty/
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
+  https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Home:
+  https://aws.amazon.com/pt/getting-started/tutorials/deploy-docker-containers/
