@@ -1,18 +1,12 @@
-#+Title: Planos de Aulas Header
+#+Title: Planos de Aulas
 #+Subtitle:
 #+LANGUAGE: pt-BR
 #+EXCLUDE_TAGS: noexport
+#+HTML_DOCTYPE: html5
 
-* Sessao 1
-  adfasfd
+* PamI
+  [[./pamI/poad1.org][poad1]]
+* PamII
+* PW3
+* BD3
 
-* Sessao 2
-  asfdasdf
-
-
-
-
-* Sesso 3
-  saf
-  asfsdf
-  dzdc

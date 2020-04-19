@@ -1,13 +1,25 @@
 #+Title: Sqlite
 https://www.sqlite.org/serverless.html
 
-* A questão de não ser um servidor 
-  qdo é servidor vc tem um processo que intermedia o seu programa que
-  acessa o banco e o banco propriamente dito.
-  No caso so sqlite, o processo do seu aplicativo acessa o banco e é o
-  seu processo mesmo que escreve no arquivo de banco de dados sqlite
-  no disco.
 
-  Dos que bancos que funcionam desse jeito o sqlite é o único que
-  permite vários processos acessarem o banco ao mesmo tempo.
+* command examples
+  sqlite3 /home/wagner/fzlbpms/data/sqlite/ctaspgar.db
+  rm /home/wagner/fzlbpms/data/sqlite/ctaspgar.db
+  sqlite3 /home/wagner/fzlbpms/data/sqlite/ctaspgar.db < /home/wagner/fzlbpms/workspaces/sqlite/ctasapagar/dbsetup.sql
+  sqlite3 /home/wagner/fzlbpms/data/sqlite/ctaspgar.db < /home/wagner/fzlbpms/workspaces/sqlite/ctasapagar/inserts.sql
+* .commands
+  .schema
+  .dump
+  .quit
 
+* PRAGMA 
+  PRAGMA foreign_keys; (retona 0 qdo OFF e 1 qdo ON)
+  PRAGMA foreign_keys = ON;
+  PRAGMA foreign_keys = OFF;
+
+* Notas  
+** rowid
+   he tipo um autoincrement, qdo uma col ja he primary key ela ja he
+   tambem rowid e portanto auto incrementada
+
+* 

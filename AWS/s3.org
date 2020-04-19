@@ -95,6 +95,7 @@
    : 
    : [36m[[m[34mwagner@Unknown[m [32mAWS[m[36m][m $ aws s3 sync s3://www.planosdeaulas.com.br /home/wagner/envs/env-dev/sources/somewritings/var/publishing-directory/planosdeaulas
 
+
 * fazer upload multipart de arquivo(s)
   https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html
   https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html
@@ -139,6 +140,10 @@
 * sites estaticos com s3
   https://docs.aws.amazon.com/AmazonS3/latest/user-guide/access-points.html
   https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-vpc
+
+
+* criar folder em um bucket
+  
 
 * mais exemplos
  

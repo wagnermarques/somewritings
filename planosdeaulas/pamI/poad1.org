@@ -1,0 +1,26 @@
+#+Title: Plano de Orientação para aprendizagem a Distância -  POAD
+#+Subtitle: 
+#+HTML_DOCTYPE: html5
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+
+* Periodo  (Quinzena): 23/03/2020  até  06/04/2020
+  + Aulas às segundas (primeiro bloco)
+  + Aulas às quintas (primeiro bloco)
+
+* Atividades Propostas
+  + Avaliação Diagnóstica
+  + Instalação do ambiente de desenvolvimento
+  + Atividades de Revisão do Conteúdo sobre integrando notificações ao app e utilização de widgets
+  + Exercício Prático
+
+* Metodologias
+  + Ambientação da Plataforma Teams
+  + Postagem de conteúdo de Revisão no teams
+  + Inserção da atividade de  exercício prático
+
+* Instrumentos de Avaliação
+  + Avaliação Diagnóstica Forms
+  + Participação no forum
+  + Envio de Link do Código no Github
+

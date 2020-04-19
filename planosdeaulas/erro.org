@@ -1,1 +1,8 @@
-Pagina nao encontrada!!!
+#+Title: Pagina Nao Encontrada
+#+Subtitle:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+HTML_DOCTYPE: html5
+
+Página nao encontrada
+
