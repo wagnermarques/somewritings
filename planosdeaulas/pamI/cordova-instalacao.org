@@ -1,0 +1,127 @@
+#+TITLE: Instalacao do Apache Cordova
+#+SUBTITLE: TheSubTitle
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: Copenhagen [height=20pt]
+#+BEAMER_FRAME_LEVEL: 1
+
+#+BEAMER_HEADER: \subtitle{Document subtitle}
+#+BEAMER_HEADER: \institute[INST]{Etec Zona Leste\\\url{https://eteczonaleste.com.br/}}
+#+BEAMER_HEADER: \titlegraphic{\includegraphics[height=1.5cm]{InstLogo}}
+#+BEAMER_HEADER: \author{\texorpdfstring{Prof Wagner França\newline\url{wagner.marques3@etec.sp.gov.br}}{Prof Wagner Franca}} % BAD ORDER XXX
+
+* Instlacao do nodejs
+  #+Beamer: \framesubtitle{(Necessario antes de instalar o Cordova de fato)}
+
+** no windows
+
+#+CAPTION: Site do Nodejs
+#+attr_html:
+#+ATTR_HTML: :width 600px :alt altStr :title titleStr :align center
+#+attr_latex: :width 150px
+#+ATTR_ORG: :width 100px
+[[file:./imgs/cordova-install-f1-site-nodejs.png]]
+
+  A imagem acima he do [[https://nodejs.org/en/][site do nodejs]]. Vc precisa entrar nesse
+  site, fazer o download pro seu sistema operacional e instala-lo. No
+  windows he next next. Caso vc esteja usando linux, use os comandos
+  abaixo:
+  
+** no linux fedora
+
+#+NAME:fedora
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  sudo dnf install nodejs
+#+END_SRC
+
+** no Centos e RedHat likes Os...
+#+NAME:Centos e RedHat likes Os...
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  sudo yum install nodejs
+#+END_SRC
+
+
+
+** no Debian, Ubuntu, Mint e derivados do Debian
+
+#+NAME:Centos e RedHat likes Os...
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  sudo apt-get install nodejs
+#+END_SRC
+  
+* Instalacao do cordova
+  A instalacao do cordova e igual em todos os sistemas operacionais
+
+  Usar o npm do nodejs conforme abaixo
+
+  
+#+NAME:npm install cordova
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  npm install -g cordova
+#+END_SRC
+
+
+* Verificar se o cordova esta funcionando
+  
+** Criar um projeto do cordova
+  
+#+NAME: cordova create Proj1DeNovo
+#+BEGIN_SRC shell :session s1 :results output :exports code :eval no
+  cordova create Proj1DeNovo
+  cd Proj1DeNovo
+#+END_SRC
+
+   Da um dir (windows) ou um ls(linux) pra ver os arquivos do seu novo projeto.
+
+** Estrutura do Projeto
+
+*** config.xml
+    Arq xml de  configuracoa do projeto
+*** platforms
+    Vamos trabalhar so com a plataforma android
+*** plugins
+    Local dos  plugins do seu projeto, como camera etc
+*** www
+    Aqui fica os arquivos html, javascript e css do seu projeto
+
+** Rodando o seu projeto
+*** No Browser    
+#+NAME:cordova platform add browser
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  cd Proj1DeNovo #entra no diretorio do seu projeto
+  cordova platform add browser
+  coreova run browser
+#+END_SRC
+*** No emulador do android
+    Depois a gente ve isso... 
+*** No Dispositivo
+#+NAME:cordova platform add android
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  cd Proj1DeNovo #entra no diretorio do seu projeto
+  cordova platform add android
+  adb devices #tem que por o adb no path do OS
+  coreova run android
+#+END_SRC
+    
+     

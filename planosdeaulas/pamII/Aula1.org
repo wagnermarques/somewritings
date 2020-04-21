@@ -1,0 +1,48 @@
+#+TITLE: (PAM II) Aula 1 
+#+SUBTITLE: TheSubTitle
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME: 
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: Rochester [height=20pt]
+#+BEAMER_FRAME_LEVEL: 2
+
+
+
+* ORIENTACOES GERAIS
+  Saudacoes
+  Como serao nossas aulas
+  Presenca
+  Ambiente de desenvolvimento
+  participacao no forum
+  como serao as entregas das atividades github
+** Saudacoeos
+  Olá pessoal, que bom estarmos de volta a ativa. Agora, num contexto
+  bem diferente. Por isso precisamos dar o nosso melhor. Ok?
+** Como serao nossas aulas
+
+** Presenca
+  
+* Assuntos dessa quinzena
+  Ambientacao
+  Revisao sql 
+  Avaliacao Diagnostica
+  mapas georeferenciamento
+

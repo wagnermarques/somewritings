@@ -1,0 +1,80 @@
+#+TITLE:  Orientacoes Gerais
+#+SUBTITLE: 
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: Copenhagen [height=20pt]
+#+BEAMER_FRAME_LEVEL: 1
+
+#+BEAMER_HEADER: \subtitle{Disciplinas PAMI, PAMII, BD3 e PW3}
+#+BEAMER_HEADER: \institute[INST]{Etec Zona Leste\\url{https://eteczonaleste.com.br/}}
+#+BEAMER_HEADER: \titlegraphic{\includegraphics[height=1.5cm]{InstLogo}}
+#+BEAMER_HEADER: \author{\texorpdfstring{Prof Wagner França\newline\url{wagner.marques3@etec.sp.gov.br}}{Prof Wagner Franca}} % BAD ORDER XXX
+
+* ORIENTACOES GERAIS
+
+* Como serao nossas aulas?
+   As aulas serao no mesmo horario das aulas presenciais. Vou inicar
+   uma live pra apresentar o material escrito pra vcs e orientar sobre
+   suas atividades.
+
+* Presenca
+   A presenca de vcs nao sera por participacao na aula e sim com base
+   na entrega das atividades. 
+
+*  Metodologia Comum as para PAMI PAM2 PW3 BD3
+   Trabalharemos com atividades teoricas e praticas. Vc pode escolher
+   quais atividades prefere trabalhar entre essas duas opcoes. Isso
+   deve-se ao fato de que talvez alguns de vcs nao tenham computador
+   ou possibilidade de realizar as tarefas praticas. Qdo voltarmos as
+   aulas presencias esses alunos terao a oportunidade de realizar as
+   tarefas praticas sem prejuizo em relacao ao conteudo e aquisicao
+   das habilidades.
+
+   Aos alunos que tiverem a oportunidade de realizar as atividades
+   praticas, devido ao fato de que estarao exercitanto a parte teorica
+   com a pratica estarao automaticamente dispensados das atividades
+   teoricas.
+
+   Nao havera diferenciacao em relacao a mencao entre uma escolha e
+   outra.
+
+   A maneira como sera entregue as atividades sera explicada na
+   propria oferta da atividade.
+
+** Onde vc vai realizar suas tarefas?
+    As tarefas teoricas vc pode fazer do seu celular mesmo. Só as
+    tarefas teoricas ja valem os pontos que vc precisa para presenca e
+    para as disciplinas. Qdo voltarmos as aulas presenciais vc pode
+    usar o computador da etec pra realizar as terefas praticas.
+
+    Para os alunos que quizerem realizar as tarefas praticas em casa,
+    sera necessario um compudator, isso nao tem jeito. Mas tem um
+    facilitador. 
+    Vc vai precisar de computador. Na aula 1 de cada disciplina a
+    gente vai conversar sobre isso.
+    
+
+   No material de cada disciplina havera as orientacoes sobre
+   isso. Mas da pra adiantar que as teoricas vc podera fazer de seu
+   celular mesmo.

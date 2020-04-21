@@ -1,3 +1,4 @@
+
 #+Title: Planos de Aulas
 #+Subtitle:
 #+LANGUAGE: pt-BR
@@ -5,8 +6,16 @@
 #+HTML_DOCTYPE: html5
 
 * PamI
-  [[./pamI/poad1.org][poad1]]
+  [[./pamI/Aula1.org][Aula1]]
+
 * PamII
+  [[./pamII/Aula1.org][Aula1]]
+
 * PW3
+  [[./pw3/Aula1.org][Aula1]]
+
 * BD3
+  [[./BD3/OrientacoesGerais.org][Aula1]]
+
+
 

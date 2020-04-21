@@ -1,0 +1,85 @@
+#+TITLE:(PAMI) Aula 1
+#+SUBTITLE: Orientacoes Gerais e Revisao
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: Rochester [height=20pt]
+#+BEAMER_FRAME_LEVEL: 2
+
+* ORIENTACOES GERAIS
+
+  [[../OrientacoesGerais.pdf][Acesse aqui OrientacoesGerais em pdf]]
+
+  [[../OrientacoesGerais.org][Acesse aqui OrientacoesGerais em html]]
+
+* Saudacoeos
+  Ola pessoal, que bom estarmos de volta a ativa. Agora, num contexto
+  bem diferente. Por isso precisamos dar o nosso melhor. Ok?
+
+* Como serao nossas aulas
+   As aulas serao no mesmo horario das aulas presenciais. Vou inicar
+   uma live pra apresentar o material escrito pra vcs e orientar sobre
+   suas atividades.
+
+* Metodologia de Trabalho desta disciplina  
+  O mesmo que esta nas orientacoes gerais
+
+** Onde vc vai realizar suas tarefas?
+    As tarefas teoricas vc pode fazer do seu celular mesmo. Só as
+    tarefas teoricas ja valem os pontos que vc precisa para presenca e
+    para as disciplinas. Qdo voltarmos as aulas presenciais vc pode
+    usar o computador da etec pra realizar as terafas praticas.
+
+    Para os alunos que quizerem realizar as tarefas praticas em casa,
+    sera necessario um compudator. Daqui a pouco a gente fala sobre isso.
+    
+* Conteudos dessa quinzena
+** Ambientacao
+
+    Vamos ver um pouco sobre como usar o teams
+
+** Revisando (Instalacao do Cordova)
+    [[./cordova-instalacao.org][Instalacao do cordova (html)]]
+
+    [[./cordova-instalacao.pdf][Instalacao do cordova (pdf)]]
+
+    Video demonstrando a instalacao
+
+** Revisando (Estrutura do projeto Cordova)
+   Explicacoes mais detalhadas sobre a estrutura do projeto mobile do
+   cordova pode ser encontrado em
+   https://github.com/wagnermarques/aulas_de_cordova/
+
+   Lembra que a gente estudou esse material em sala de aula?
+
+   Gostaria que vcs estudassem novamente esse material. Vou expor esse
+   material novamente nas nossas lives.
+
+   Vou deixar uma atividade teorica que vai ser um formulario sobre a
+estrutura do projeto, entao he importante estudar ele. 
+
+   Considerando que estamos fazendo ainda uma revisao, vou chamar essa
+   atividade teorica de avaliacao dignostica.
+
+** Jquery Mobile
+   Assim que eu preparar esse material eu disponibilizo na plataforma
+   pra vs...
+
+
