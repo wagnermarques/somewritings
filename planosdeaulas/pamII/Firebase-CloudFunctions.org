@@ -1,0 +1,220 @@
+
+#+TITLE: TheTitleHere
+#+SUBTITLE: TheSubTitle
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+
+* Funcoes de Primeiro Plano e de Segundo Plano
+  + Primeiro Plano 
+    Voce que vai disparar/chamar sua funcao atraves de uma requisao
+    get, po exemplo
+
+  + Segundo Plano
+    Sua funcao vai funcionar como listener de eventos do seu servidor
+    firebase. Ela vai ser executada nao por voce mas pelo firabase.
+
+* Instale o firebase tools e inicialize um projeto
+  [[./Firebase-cli.org][Tutorial inicar um projeto com firebase-tools]]
+
+
+* Importar modulos do Fb Functions e inicializar o app
+  
+  Depois que de criar o seu projeto com firebase init vc tera uma
+  estrutura de projeto como essa abaixo.
+
+  Veja que temos uma pasta que chama functions. Sugestivo heinn...
+
+  
+#+NAME:   ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject
+#+END_SRC
+
+#+RESULTS: asdfasdf
+: total 112
+: -rw-rw-r--.   1 wagner wagner   714 abr 23 23:13 firebase.json
+: -rw-rw-r--.   1 wagner wagner    44 abr 23 23:06 firestore.indexes.json
+: -rw-rw-r--.   1 wagner wagner   687 abr 23 23:06 firestore.rules
+: drwxrwxr-x.   3 wagner wagner  4096 abr 23 23:08 functions
+: drwxrwxr-x. 197 wagner wagner  4096 abr 24 00:59 node_modules
+: -rw-rw-r--.   1 wagner wagner 83653 abr 24 00:59 package-lock.json
+: drwxrwxr-x.   2 wagner wagner  4096 abr 23 23:09 public
+: -rw-rw-r--.   1 wagner wagner   138 abr 23 23:09 storage.rules
+
+Que a gente ver o que tem dentro dessa pasta functions?
+
+
+#+NAME: ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
+#+END_SRC
+
+#+RESULTS: ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
+: total 136
+: -rw-rw-r--.   1 wagner wagner    303 abr 23 23:07 index.js
+: drwxrwxr-x. 295 wagner wagner  12288 abr 23 23:08 node_modules
+: -rw-rw-r--.   1 wagner wagner    615 abr 23 23:07 package.json
+: -rw-rw-r--.   1 wagner wagner 118539 abr 23 23:08 package-lock.json
+
+
+Dentro da pasta functions, se vc perceber bem, tem um arquivo
+package.json que he indentifica um projeto do nodejs e tem ate um
+diretorio node_modules que tambem indica que esse projeto tem
+dependencias.
+
+Bom entao ja da pra perceber que essa pasta pode ser considerada um
+projeto em si mesma.
+
+E sera nesse arquivo index.js que vamos criar nossa funcao pra depois
+enviar ela pro firabase funcions.
+
+* Escrevendo nossa funcao
+  
+  Como haviamos combinado na sessao anterior, vamo escrever nossa
+  funcao no index.js.
+
+  O mais simples que podemos fazer aqui he um hello world, inclusive
+  que ja vem sugerido no proprio arquivo durante a criacao do projeto,
+  ou seja durante o firebase-init.
+
+  So descomentei a funcao hello world o nosso arquivo ficou assim...
+
+  Preocupe-se, nesse momento, so com a primeira funcao. A segunda
+  funcao depois a gente fala sobre ela... A unica diferenca he que ela
+  recebe um parametro so isso.. mas a gente vai falar sobre ela na
+  ultima sessao desse material.
+  
+  #+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+
+* Fazendo o deploy da nossa funcao  
+  
+  Pra enviar a funcao para o servidor do firebase basta usar o
+  seguinte comando, estando na pasta do projeto.
+
+  
+#+NAME:firebase deploy --only functions
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  firebase deploy --only functions
+#+END_SRC
+
+  Mas espera espera so um pq... vc nao deu o comando ainda ne..? se
+  deu tudo bem... mas olha essa imagem abaixo... ela vai nos mostrar
+  que no console do firebase, clicando do lado esquerdo na sessao
+  functions, o console me mostra que eu nao tenho nenhuma funcao no
+  projeto...
+  
+  
+#+NAME:
+#+CAPTION: Mostra que nao foi realizado nenhum deploy de funcao
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction0-antesDoDeploy.png]]
+
+
+Bom se vc nao rodou o comando que faz o deploy roda agora, se ja tinha
+rodado antes, saiba que seu console sem nenhuma funcao estava como
+este da figura acima.
+
+Veja na imagem abaixo o resultado do comando de deploy da nossa funcao
+
+
+#+NAME:fbCloudFunction1-comandoDeDeploy.png
+#+CAPTION: Saida do comando firebase deploy --only functions
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction1-comandoDeDeploy.png]]
+
+
+E agora nosso console mostra a funcao que voi enviada pra la..
+
+
+#+NAME:fbCloudFunction2-fbConsoleMostraFuncaoEnviada.png
+#+CAPTION: Console Mostra funcao enviada
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction2-fbConsoleMostraFuncaoEnviada.png]]
+
+
+* Fazendo uma chamada a nossa funcao
+  
+  A nossa funcao ganhou uma url pra ser acessada via http
+  request. Abaixo vc ve que o console mostra essa url pra vc...
+
+#+NAME:fbCloudFunction3-fbConsoleMostraFuncaoEnviada.png
+#+CAPTION: Mostra url de chamada da funcao
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction3-fbConsoleMostraFuncaoEnviada.png]]
+
+
+Entao copie essa url no seu navegador e envia a requisicao pra rodar a
+funcao.
+
+#+NAME:fbCloudFunction5-ResultadoDaChamadaDaFuncao.png
+#+CAPTION: Resultado da chamada da funcao
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction5-ResultadoDaChamadaDaFuncao.png]]
+
+
+* Preparando a funcao pra receber parametros na url
+
+  Nosso arquivo index he o mesmo, so que agora o foco he na nossa
+  segunda funcao...
+
+  Vou fazer o deploy de novo rodando firebase deploy --only function e
+  vou executar a funcao passando parametro
+  #+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+
+  
+#+NAME:fbCloudFunction6-saidaDoDeploy2DaFunctions.png
+#+CAPTION: Saida do firebase deploy --only functions com funcao nova
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction6-saidaDoDeploy2DaFunctions.png]]
+
+Na imagem abaixo foi realizada a chamada para essa segunda funcao que
+espera receber um parametro. Perceba bem na url que eu passei o
+parametro apos o "?" da url. O valor do parametro foi coletado na
+query e utilizado na resposta.
+
+#+NAME:fbCloudFunction7-resultadoDaChamadaComParametros.png
+#+CAPTION: Resultado Chamada Com Parametro
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/fbCloudFunction7-resultadoDaChamadaComParametros.png]]
+
+
+
+
+* What is the difference between Cloud Functions and Firebase Functions?[fn:GooFunctionsProducts]
+
+* refs
+[fn:fbfunctionsdoc] https://firebase.google.com/docs/functions/
+[fn:GooFunctionsProducts] https://stackoverflow.com/questions/42854865/what-is-the-difference-between-cloud-functions-and-firebase-functions

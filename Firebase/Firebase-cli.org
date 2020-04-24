@@ -1,0 +1,291 @@
+#+TITLE: Firebase Cli
+#+SUBTITLE: TheSubTitle
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+
+
+* Tema
+  Firebase por linha de comando
+* Justificativa e Objetivos
+  É comum as pessoas usarem click click nas telinhas para relizarem
+  seus trabalhos. Isso tem suas vantagens, mas no mercado de trabalho
+  o pessoal de ti usa bastante linhas de comando e por isso vale muito
+  a pena aprender e se habituar a trabalhar desse jeito.
+* Duração
+  Duas aulas
+* Pré-Requisitos
+  Vai fazer muito mais sentido o efeito e as funcionalidades da linha
+  de comando se vc ja estudou o firebase e tambem ja o utilizou usando
+  a interface grafica.  Isso porque nesse aula nao vamos trabalhar
+  conceitos do firebase. 
+
+** Conhecimentos Prévios
+   Alem do basico de firebase, sera necessario algumas habilidades
+   relativas a utilizacao do prompt de comandos. Os comandos basicos
+   serao necessarios
+
+ 
+** Recursos
+   Nodejs 8.13.0 ou posterior instalado [fn:docfirebaseadmin]
+
+   Pra ver qual a versao do node vc ta usando pode usar esses comandos abaixo
+#+NAME: node e npm -v
+#+BEGIN_SRC sh :session s1
+  node -v
+  npm -v
+#+END_SRC
+
+#+RESULTS: node e npm -v
+| v12.16.1 |
+|   6.13.4 |
+
+
+* Procedimento didatico
+  Aula expositiva e laboratorio tipo mao na massa
+
+  
+* Exercicioos e Atividades de Reflexão/Fixação
+  
+
+* Avaliação
+  Saida dos comandos abaixo especificados
+
+* Instalando o Firebase Tool
+  Vamos isntalar o cliente do firebase.[fn:fbtools]
+  
+#+NAME:npm install -g firebase-tools
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  sudo npm install -g firebase-tools
+#+END_SRC
+ 
+  Apos executar essa instalacao, vc vai ter disponivel na sua maquina
+  o comando firebase. Na sequencia, Vamos explorar um pouco esse
+  comando pra ter uma ideia do que a gente pode fazer com ele.
+
+  Voce ja poderia utilizar normalmente o firebase-tools mas vale a
+  pena atualizar ele antes com o comando abaixo
+
+#+NAME:npm install firebase-functions@latest firebase-admin@latest --sav
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  npm install firebase-functions@latest firebase-admin@latest --save
+  sudo npm install -g firebase-tools
+#+END_SRC
+
+* Explorando os comandos disponiveis
+
+
+  Abaixo, de o comando *firebase -h* 
+
+  Pela saida da pra ver que a gente pode fazer um monte de coisa
+  interessante.
+
+  
+#+NAME: firebase -h
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  firebase -h
+#+END_SRC
+
+#+RESULTS: firebase -h
+#+begin_example
+Usage: firebase [options] [command]
+
+Options:
+  -V, --version                                             output the version number
+the Firebase project to use for this command
+  -j, --json                                                output JSON instead of text, also triggers non-interactive mode
+supply an auth token for this command
+  --non-interactive                                         error out of the command instead of waiting for prompts
+  -i, --interactive                                         force prompts to be displayed
+  --debug                                                   print verbose debug output and keep a debug log file
+  -h, --help                                                output usage information
+
+Commands:
+upload a distribution
+  apps:create [options] [platform] [displayName]            create a new Firebase app. [platform] can be IOS, ANDROID or WEB (case insensitive).
+  apps:list [platform]                                      list the registered apps of a Firebase project. Optionally filter apps by [platform]: IOS, ANDROID or WEB (case insensitive)
+  apps:sdkconfig [options] [platform] [appId]               print the Google Services config of a Firebase app. [platform] can be IOS, ANDROID or WEB (case insensitive)
+  auth:export [options] [dataFile]                          Export accounts from your Firebase project into a data file
+  auth:import [options] [dataFile]                          import users into your Firebase project from a data file(.csv or .json)
+fetch and print JSON data at the specified path
+create a realtime database instance
+  database:instances:list                                   list realtime database instances
+  database:profile [options]                                profile the Realtime Database and generate a usage report
+[infile]                   add a new JSON object to a list of data in your Firebase
+remove data from your Firebase at the specified path
+[infile]                    store JSON data at the specified path via STDIN, arg, or file
+read the realtime database setting at path
+<value>            set the realtime database setting at path.
+[infile]                 update some of the keys for the defined path in your Firebase
+  deploy [options]                                          deploy code and assets to your Firebase project
+start the local Firebase emulators, run a test script, then shut down the emulators
+export data from running emulators
+  emulators:start [options]                                 start the local Firebase emulators
+  experimental:functions:shell [options]                    launch full Node shell with emulated functions. (Alias for `firebase functions:shell.)
+  ext                                                       display information on how to use ext commands and extensions installed to your project
+configure an existing extension instance
+display information about an extension by name (extensionName@x.y.z for a specific version)
+root] is provided;
+  ext:list                                                  list all the extensions that are installed in your Firebase project
+uninstall an extension that is installed in your Firebase project by instance ID
+update an existing extension instance to the latest version
+  firestore:delete [options] [path]                         Delete data from Cloud Firestore.
+  firestore:indexes [options]                               List indexes in your project's Cloud Firestore database.
+  functions:config:clone [options]                          clone environment config from another project
+  functions:config:get [path]                               fetch environment config stored at the given path
+  functions:config:set [values...]                          set environment config with key=value syntax
+  functions:config:unset [keys...]                          unset environment config at the specified path(s)
+  functions:delete [options] [filters...]                   delete one or more Cloud Functions by name or group name.
+  functions:log [options]                                   read logs from deployed functions
+  functions:shell [options]                                 launch full Node shell with emulated functions
+  help [command]                                            display help information
+  hosting:disable [options]                                 stop serving web traffic to your Firebase Hosting site
+  init [feature]                                            setup a Firebase project in the current directory
+  login [options]                                           log the CLI into Firebase
+  login:ci [options]                                        generate an access token for use in non-interactive environments
+  logout                                                    log the CLI out of Firebase
+  open [link]                                               quickly open a browser to relevant project resources
+  projects:addfirebase [projectId]                          add Firebase resources to a Google Cloud Platform project
+  projects:create [options] [projectId]                     creates a new Google Cloud Platform project, then adds Firebase resources to the project
+  projects:list                                             list all Firebase projects you have access to
+  serve [options]                                           start a local server for your static assets
+  setup:emulators:database                                  downloads the database emulator
+  setup:emulators:firestore                                 downloads the firestore emulator
+  setup:emulators:pubsub                                    downloads the pubsub emulator
+  target [type]                                             display configured deploy targets for the current project
+<name> <resources...>                 apply a deploy target to a resource
+<target>                              clear all resources from a named resource target
+<resource>                           remove a resource target
+  use [options] [alias_or_project_id]                       set an active Firebase project for your working directory
+#+end_example
+
+#+RESULTS: firebase list
+: [1m[31mError:[39m[22m [1mlist[22m is not a Firebase command
+
+
+** Logando Listando projetos
+  
+   A gente vai logar primeiro e depois dar uns comando pra gerenciar
+   nossos projetos. Esse comando vai abrir uma pagina do seu navegador
+   pra vc fazer o login e o prompt de comando fica esperando vc
+   terminar de logar usando o navegador. Qdo vc terminar de logar o
+   processo firebase login vai detectar que vc terminou de logar
+   entende que vc esta logado e termina.
+
+#+NAME: firebase login
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  firebase login
+#+END_SRC
+
+
+   
+#+NAME:firebase projects:list
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  firebase projects:list
+#+END_SRC
+
+
+
+#+NAME: firebase_projects_list_output
+#+CAPTION: Saida do comando firebase projects:list
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_projects_list_output.png]]
+
+
+* criando um projeto
+  Criei pela interface grafica. O nome que eu escolhi para o meu
+  projeto foi msgapp. Mas da pra criar um projeto tambem atraves do
+  comando firebase init que a gente vai ver na sequencia.
+  
+
+* Criando um projeto com firebase init  
+
+  Selecionando as funcoes que nosso projeto ira utilizar
+#+NAME: select fb functions
+#+CAPTION: Selecionar Funcoes do Firebase
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_init_project_which_firebase_functions.png]]
+
+
+
+#+NAME:project setup
+#+CAPTION: Selecionar ou Criar Projeto
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_init_project_setup.png]]
+
+
+#+NAME:firebase_init_project_setup3.png
+#+CAPTION: firebase init unique project id msgsproject
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_init_project_setup3.png]]
+
+#+NAME:firebase_init_project_setup4.png
+#+CAPTION: firebase init rodando
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_init_project_setup4.png]]
+
+
+#+NAME:firebase_init_project_setup5.png
+#+CAPTION: firebase init finalizado
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase_init_project_setup5.png]]
+
+
+
+#+NAME:figX
+#+CAPTION: figX
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/XXX]]
+
+
+   
+
+#+NAME:
+#+CAPTION: 
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/]]
+
+
+
+* Referencias
+[fn:docfirebaseadmin] https://firebase.google.com/docs/admin/setup (acessado em 23/04/2020)
+[fn:fbtools] https://github.com/firebase/firebase-tools 
+[fn:fbcli] https://firebase.google.com/docs/cli/
+
+
+
+
+

@@ -1,0 +1,20 @@
+#+Title: ATitle
+#+Subtitle:
+#+EXPORT_FILE_NAME: filename2.html
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+
+* Firestore
+  https://firebase.google.com/docs/firestore?authuser=0
+
+* Firestore ou Realdatabase?
+  https://firebase.google.com/docs/firestore/rtdb-vs-firestore?authuser=0
+
+* dados offline
+  https://firebase.google.com/docs/firestore/manage-data/enable-offline?authuser=0
+  
+  "Para Android e iOS, a permanência off-line está ativada por padrão. Para desativar a permanência, defina a opção PersistenceEnabled como false.
+  Para a Web, a permanência off-line está desativada por padrão. Para
+  ativar a permanência, chame o método enablePersistence.
+  O cache do Cloud Firestore não é esvaziado automaticamente entre as sessões."
+
