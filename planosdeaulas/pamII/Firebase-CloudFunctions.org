@@ -1,5 +1,4 @@
-
-#+TITLE: TheTitleHere
+#+TITLE: Cloud Functions com Firebase
 #+SUBTITLE: TheSubTitle
 #+DESCRIPTION:
 #+KEYWORDS:

@@ -1,4 +1,3 @@
-
 #+TITLE: Laravel Instalacao (Fedora)
 #+SUBTITLE: TheSubTitle
 #+DESCRIPTION:
@@ -29,6 +28,60 @@
 sudo dnf install 
 #+END_SRC
 
+* Preparando o ambiente de dev[fn:larSiteInst]
+  Conforme documentacao do site oficial[fn:larSiteInst] do laravel,
+  pra tudo funcionar a gente tem que preparar o nosso ambiente de
+  desenvolvimento.
+
+* Passo a passo da preparacao do ambiente windows:
+  + Instalacao do php
+  + Instalacao dos modulos necessarios para o php
+  
+  
+    PHP >= 7.2.5
+    BCMath PHP Extension
+    Ctype PHP Extension
+    Fileinfo PHP extension
+    JSON PHP Extension
+    Mbstring PHP Extension
+    OpenSSL PHP Extension
+    PDO PHP Extension
+    Tokenizer PHP Extension
+    XML PHP Extension
+
+
+  
+  
+  
+   Installation
+        Server Requirements
+        Installing Laravel
+        Configuration
+    Web Server Configuration
+        Directory Configuration
+        Pretty URLs
+
+
+* Passo a passo de preparacao do ambiente linux fedora
+  
+  sudo dnf install php php-common
+
+  sudo dnf install php-mysqlnd php-xml php-json php-gd php-mbstring
+
+  php -v
+  PHP 7.3.16 (cli) (built: Mar 17 2020 10:18:38) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.3.16, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.3.16, Copyright (c) 1999-2018, by Zend Technologies
+
+
+
+  (Se for ser acessado por outra maquina)
+  sudo firewall-cmd -permanent -add-service=http
+  sudo firewall-cmd -permanent -add-service=https
+  sudo systemctl reload firewalld
 
 * refs
-  https://tecadmin.net/install-laravel-on-fedora/
+[fn:tech] https://tecadmin.net/install-lamp-on-fedora/
+[fn:larOnFed] https://tecadmin.net/install-laravel-on-fedora/
+[fn:larSiteInst] https://laravel.com/docs/7.x/installation

@@ -1,0 +1,224 @@
+#+TITLE: Cloud Function que envia email
+#+SUBTITLE: Funcao javascript que envia email
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+
+* Objetivo e Justificativa
+  Vamos utilizar o que aprendemos com cloud functions pra criar uma
+  funcaozinha javascript que envia email pra gente.
+  
+  Enviar email e uma funcionalidade bastante comum em aplicacoes de
+  tcc ou aplicacoes comerciais. O mercado utiliza bastante o email no
+  processo de comunicacao software-usuario.
+
+* Dependencias
+  Vamos precisar de duas dependencias, a biblioteca
+  nodemailer[fn:nodemailersite] e da biblioteca cors[fn:corssite].
+  
+
+  Agora presta atencao num detalhe... 
+  
+  Se vc leu de boa aquele material sobre firebase cli onde a gente usa
+  o fitebase init vc talvez va lembrar que a gente deu uma olhada no
+  diretorio functions e que ele era um projeto em si mesmo.. Se vc nao
+  lembrar disso vc pode acreditar em mim...
+
+  Sabe porque to dizendo isso, porque vc vai instalar essas
+  dependencias la naquele diretorio functions
+
+  Ve se da pre entender isso aqui no comando abaixo...
+  
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd diretorio/Do/Seu/projeto/functions
+  npm install nodemailer cors
+#+END_SRC
+
+
+#+NAME:mailCloudFunction1.png
+#+CAPTION: Instalacao das depencias nodemailer e cors
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction1.png]]
+
+
+* editando functions/index.js
+  No final da nossa licao anterior nosso index.js estava desse
+  jeito...
+
+  
+#+NAME:mailCloudFunction2.png
+#+CAPTION: Estado Inicial do nosso index.js
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction2.png]]
+
+** importando as dependencias pro nosso codigo
+   
+   vamos incluir esse trecho de codigo no nosso index.js
+
+
+#+NAME:imp deps
+#+BEGIN_SRC javascript 
+  const functions = require('firebase-functions');
+  const admin = require('firebase-admin');
+  const nodemailer = require('nodemailer');
+  const cors = require('cors')({origin: true});
+  admin.initializeApp();
+#+END_SRC
+
+
+** configuracao do servidor que vai enviar o email de fato
+   
+#+NAME: sender config
+#+BEGIN_SRC javascript
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'wagnerdocri@gmail.com', //aqui vc coloca o seu
+        pass: 's3cret' //coloca o sua senha (so no seu codigo)
+        //GENTE  \o/  PELO AMOR DE DEUS!!!
+        //NAO VAO COMITAR A SENHA DE VCS NO GIT HUB        
+    }
+});
+#+END_SRC
+
+
+** trecho da funcao que faz o envio
+  
+#+NAME:sendmail func
+#+BEGIN_SRC javascript 
+exports.sendMail = functions.https.onRequest((req, res) => {
+    cors(req, res, () => {
+      
+        // getting dest email by query string
+        const dest = req.query.dest;
+        const assunto = req.query.assunto
+
+        const mailOptions = {
+            from: 'Nome do seu sitema <wagnerdocri@gmail.com>',
+            to: dest,
+            subject: assunto,
+            html: `<p style="font-size: 16px;">Corpo do email</p>
+                <br />
+            ` // Cuidado com as aspas simple heinn...
+        };
+  
+        // returning result
+        return transporter.sendMail(mailOptions, (erro, info) => {
+            if(erro){
+                return res.send(erro.toString());
+            }
+            return res.send('Sended');
+        });
+    });    
+});
+#+END_SRC
+
+
+O resultado final do nosso index fica conforme abaixo...
+
+#+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+
+
+
+* fazendo o deploy da funcao
+  
+  
+  
+#+NAME:mailCloudFunction3.png
+#+CAPTION: deploy da funcao
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction3.png]]
+
+* Vendo a funcao instalada no servidor do google
+
+  
+#+NAME:mailCloudFunction4.png
+#+CAPTION: Funcao Instalada no Google
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction4.png]]
+
+* Fazendo a chamada da funcao
+
+  
+#+NAME:mailCloudFunction5.png
+#+CAPTION: Email enviado com sucesso
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction5.png]]
+
+
+* confirmacao do email chegando
+
+  
+#+NAME:mailCloudFunction8.png
+#+CAPTION: Email chagou na caixa de entrada
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction8.png]]
+
+
+* Troubleshooting (Resolvendo problemas)
+
+  O gmail tem muitas restricoes de seguranca. Comigo eu levei varias
+  vezes esse erro...
+
+
+  
+#+NAME:mailCloudFunction6.png
+#+CAPTION: Erro possivel
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction6.png]]
+
+
+So consegui resolver qdo permiti aplicativos menos seguros[fn:lessSecureApps] (eu ja
+tinha isso configurado na minha conta) e fazendo o unlok de capcha.
+
+
+#+NAME:mailCloudFunction7.png
+#+CAPTION: Unlock do capcha no gmail
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/mailCloudFunction7.png]]
+
+
+* refs
+[fn:fonte] https://medium.com/@edigleyssonsilva/cloud-functions-for-firebase-sending-e-mail-1f2631d1022e
+[fn:nodemailersite] https://nodemailer.com
+[fn:corssite] https://www.npmjs.com/package/cors
+[fn:nodemailerwithgmail] https://nodemailer.com/usage/using-gmail/
+https://accounts.google.com/b/0/displayunlockcaptcha
+[fn:gooUnlokCaptcha] https://accounts.google.com/b/0/displayunlockcaptcha
+[fn:gooTroubleshoot] https://support.google.com/mail/answer/7126229?visit_id=637233122260797024-210508064&rd=2#cantsignin
+[fn:lessSecureApps] https://myaccount.google.com/lesssecureapps

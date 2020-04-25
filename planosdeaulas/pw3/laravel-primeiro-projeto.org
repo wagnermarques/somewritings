@@ -1,0 +1,134 @@
+#+TITLE: Primeiro Projeto com Laravel
+#+SUBTITLE: Uma introducao mais praticaplp
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+* Apresentacao do material
+  Ola pessoal, este material nos ajudara a criar nosso primeiro
+  projeto com Laravel. O professor vai falar um pouco sobre frameworks
+  mvc antes de vcs realizarem essa tarefa.
+
+
+* Playlist sugestions
+  https://www.youtube.com/watch?v=azrw0l8uP5c&list=PLInBAd9OZCzylabwvLeJIa9gxbS7MmzNY
+  
+
+* Primeiro Projeto no windows com xamp portavel
+
+[[./imgs/larOnWin1-xamp-install.png]]
+
+[[./imgs/larOnWin2-xamp-install.png]]
+[[./imgs/larOnWin3-xamp-install.png]]
+[[./imgs/larOnWin4-xamp-install.png]]
+[[./imgs/larOnWin5-xamp-install.png]]
+[[./imgs/larOnWin6-xamp-install.png]]
+[[./imgs/larOnWin7-xamp-install.png]]
+[[./imgs/larOnWin8-xamp-install.png]]
+[[./imgs/larOnWin9-xamp-install.png]]
+[[./imgs/larOnWin10-xamp-install.png]]
+[[./imgs/larOnWin11-xamp-install.png]]
+[[./imgs/larOnWin12-xamp-install.png]]
+[[./imgs/larOnWin13-xamp-install.png]]
+[[./imgs/larOnWin14-xamp-install.png]]
+[[./imgs/larOnWin15-xamp-install.png]]
+[[./imgs/larOnWin16-xamp-install.png]]
+[[./imgs/larOnWin17-xamp-install.png]]
+[[./imgs/larOnWin18-xamp-install.png]]
+[[./imgs/larOnWin19-xamp-install.png]]
+[[./imgs/larOnWin20-xamp-install.png]]
+[[./imgs/larOnWin21-xamp-install.png]]
+[[./imgs/larOnWin22-xamp-install.png]]
+[[./imgs/larOnWin23-xamp-install.png]]
+[[./imgs/larOnWin24-xamp-install.png]]
+[[./imgs/larOnWin25-xamp-install.png]]
+[[./imgs/larOnWin26-xamp-install.png]]
+[[./imgs/larOnWin27-xamp-install.png]]
+[[./imgs/larOnWin28-xamp-install.png]]
+[[./imgs/larOnWin30-xamp-install.png]]
+[[./imgs/larOnWin31-xamp-install.png]]
+[[./imgs/larOnWin32-xamp-install.png]]
+[[./imgs/larOnWin33-xamp-install.png]]
+[[./imgs/larOnWin34-xamp-install.png]]
+[[./imgs/larOnWin35-xamp-install.png]]
+[[./imgs/larOnWin36-xamp-install.png]]
+[[./imgs/larOnWin37-xamp-install.png]]
+[[./imgs/larOnWin38-xamp-install.png]]
+[[./imgs/larOnWin39-xamp-install.png]]
+[[./imgs/larOnWin40-xamp-install.png]]
+[[./imgs/larOnWin41-xamp-install.png]]
+[[./imgs/larOnWin42-xamp-install.png]]
+[[./imgs/larOnWin43-xamp-install.png]]
+[[./imgs/larOnWin44-xamp-install.png]]
+[[./imgs/larOnWin45-xamp-install.png]]
+[[./imgs/larOnWin46-xamp-install.png]]
+[[./imgs/larOnWin47-xamp-install.png]]
+
+	
+* Primeiro projeto no fedora
+
+
+sudo dnf install php-cli
+
+sudo dnf install composer
+
+sudo dnf install phpunit composer
+
+sudo dnf install php-mysqli
+
+sudo dnf install php php-common php-cli php-pdo php-mbstring php-zip php-xml php-cli php-json
+
+
+
+sudo dnf install mariadb-server
+
+sudo systemctl enable mariadb
+
+sudo systemctl start mariadb
+
+sudo mysql_secure_installation
+
+
+
+sudo systemctl enable httpd
+
+sudo systemctl status httpd
+
+sudo systemctl start httpd
+
+
+composer global require "laravel/installer"
+
+echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc
+
+laravel new example
+
+php artisan serve
+
+
+* Refs
+[fn:devmedia]  https://www.devmedia.com.br/laravel-tutorial/33173
+[fn:devmedia2] https://www.devmedia.com.br/laravel-criando-um-hello-world/40676
+[fn:laravelSite] https://laravel.com/
+[fn:fedphpinst] https://developer.fedoraproject.org/tech/languages/php/php-installation.html]
+[fn:fedlaravel] https://developer.fedoraproject.org/start/sw/web-app/laravel5.html
+[fn:playlistSugestion1] https://www.youtube.com/watch?v=azrw0l8uP5c&list=PLInBAd9OZCzylabwvLeJIa9gxbS7MmzNY
+[fn:laraOnFed2] https://www.osradar.com/install-laravel-5-on-fedora-29/

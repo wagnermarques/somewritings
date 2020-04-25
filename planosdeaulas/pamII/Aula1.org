@@ -1,5 +1,5 @@
 #+TITLE: (PAM II) Aula 1 
-#+SUBTITLE: TheSubTitle
+#+SUBTITLE: 
 #+DESCRIPTION:
 #+KEYWORDS:
 #+EXPORT_FILE_NAME: 
@@ -25,24 +25,40 @@
 #+BEAMER_FRAME_LEVEL: 2
 
 
-
 * ORIENTACOES GERAIS
-  Saudacoes
-  Como serao nossas aulas
-  Presenca
-  Ambiente de desenvolvimento
-  participacao no forum
-  como serao as entregas das atividades github
-** Saudacoeos
-  Olá pessoal, que bom estarmos de volta a ativa. Agora, num contexto
-  bem diferente. Por isso precisamos dar o nosso melhor. Ok?
-** Como serao nossas aulas
 
-** Presenca
+  [[./../OrientacoesGerais.org][acesse em html]]
+
+  [[./../OrientacoesGerais.pdf][acesse em pdf]]
+
+** Saudacoeos
+  Ola pessoal, que bom estarmos de volta a ativa. Agora, num contexto
+  bem diferente. Por isso precisamos dar o nosso melhor. Ok?
+
   
 * Assuntos dessa quinzena
-  Ambientacao
-  Revisao sql 
-  Avaliacao Diagnostica
-  mapas georeferenciamento
+** Ambientacao
+** Revisao de firebase
+   Vamos rever as funcionalidades do firebase para gente poder fazer
+   uma atividade mais teorica atraves de um questionario na sessao
+   tarefas. Quem for fazer a parte pratica nao precisa fazer o
+   questionario. Mas quem nao for fazer a parte pratica precisa fazer
+   o questionario. 
+** Revisao de Google Cloud Funcions
+   A gente ja trabalhou isso em sala de aula, lembram? Nao tem
+   problema a gente vai trabalhar de novo. Pra aqueles que puderem e
+   quizerem fazer a parte pratica seguem dois tutoriais que vou
+   apresentar durante as aulas. Esse tutoriais eu ja tinha passado pra
+   vcs em forma de video. So que agora eu dividi ele em duas partes,
+   conforme abaixo.
+
+
+   [[./Firebase-cli.org][Parte da instalacao do cliente firebase (em html)]] 
+
+   [[./Firebase-cli.pdf][Parte da instalacao do cliente firebase (em pdf)]]
+
+
+   [[./Firebase-CloudFunctions.org][Parte do Cloud Functions (em html)]] 
+
+   [[./Firebase-CloudFunctions.pdf][Parte do Cloud Functions (em pdf)]]
 

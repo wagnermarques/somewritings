@@ -1,4 +1,5 @@
-#+TITLE: Laravel Introducao
+
+#+TITLE: TheTitleHere
 #+SUBTITLE: TheSubTitle
 #+DESCRIPTION:
 #+KEYWORDS:
@@ -22,8 +23,11 @@
 
 #+LaTeX_CLASS_OPTIONS: [bigger]
 
-* Instalar esses modulos
-OpenSSL PHP, PDO PHP, Mbstring PHP, Tokenizer.
+* Nota
+  Esse material esta ainda em construcao
+
+* No fedora[fn:fedDevsMobileInst]
+sudo dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686
 
 * Refs
-[fn:devmedia] https://www.devmedia.com.br/laravel-tutorial/33173
+[fn:fedDevsMobileInst] https://developer.fedoraproject.org/start/sw/mobile-app/mobile-installation.html

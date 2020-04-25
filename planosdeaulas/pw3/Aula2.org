@@ -1,4 +1,5 @@
-#+TITLE: Laravel Introducao
+
+#+TITLE: TheTitleHere
 #+SUBTITLE: TheSubTitle
 #+DESCRIPTION:
 #+KEYWORDS:
@@ -22,8 +23,12 @@
 
 #+LaTeX_CLASS_OPTIONS: [bigger]
 
-* Instalar esses modulos
-OpenSSL PHP, PDO PHP, Mbstring PHP, Tokenizer.
+* Frameworks MVC (Opinionated Ones)
 
-* Refs
-[fn:devmedia] https://www.devmedia.com.br/laravel-tutorial/33173
+* Laravel
+
+* Primeiro projeto Laravel
+
+  [[./laravel-primeiro-projeto.org][ acesse em html ]]
+
+  [[./laravel-primeiro-projeto.pdf][ acesse em pdf ]]

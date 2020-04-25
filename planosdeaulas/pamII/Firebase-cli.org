@@ -24,13 +24,16 @@
 
 * Tema
   Firebase por linha de comando
+
 * Justificativa e Objetivos
   É comum as pessoas usarem click click nas telinhas para relizarem
   seus trabalhos. Isso tem suas vantagens, mas no mercado de trabalho
   o pessoal de ti usa bastante linhas de comando e por isso vale muito
   a pena aprender e se habituar a trabalhar desse jeito.
+
 * Duração
   Duas aulas
+
 * Pré-Requisitos
   Vai fazer muito mais sentido o efeito e as funcionalidades da linha
   de comando se vc ja estudou o firebase e tambem ja o utilizou usando
@@ -66,8 +69,20 @@
   
 
 * Avaliação
-  Saida dos comandos abaixo especificados
+  Avaliacao teorica pra quem nao tiver ou quizer fazer a parte pratica
+  agora e sim quando a gente voltar para o laboratorio. e Avaliacao
+  pratica pra quem tiver condicoes de ralizar as atividades.
 
+  Nao ha diferenca nas mencoes visto que todos terao a mesma
+  oportunidade mais tarde para desenvolver todas as habilidades e
+  competencias no laboratorio da etec.
+
+  A avaliacao pratica consiste em enviar o link das funcoes em um
+  arquivo texto, pode ser da url do github do projeto que contenha
+  funcoes tambem ja que a gente ja tinha feito isso em sala de aula.
+
+  A avaliacao teorica consiste no questionario a ser preenchido na
+  sessao tarefas do teams.
 * Instalando o Firebase Tool
   Vamos isntalar o cliente do firebase.[fn:fbtools]
   
@@ -88,6 +103,7 @@
   npm install firebase-functions@latest firebase-admin@latest --save
   sudo npm install -g firebase-tools
 #+END_SRC
+
 
 * Explorando os comandos disponiveis
 
@@ -252,6 +268,7 @@ update an existing extension instance to the latest version
 [[./imgs/firebase_init_project_setup4.png]]
 
 
+
 #+NAME:firebase_init_project_setup5.png
 #+CAPTION: firebase init finalizado
 #+attr_ORG: :width 500px
@@ -259,26 +276,275 @@ update an existing extension instance to the latest version
 #+attr_latex: :width 500px
 [[./imgs/firebase_init_project_setup5.png]]
 
+* Resolvendo o erro de Resource Location
+  Esse erro ocoreu porque o firebase init nao perguntou pra gente em
+  que local a gente vai usar o firestore. Em que local significa, em
+  que datacenter do google. O google tem datacenters espalhados pelo
+  mundo e nossos dados tem que ficar em algum deles concorda?
 
+  Por enquanto so sei estabelecer o local indo na interface grafica,
+  ou seja, no console do firebase.
 
-#+NAME:figX
-#+CAPTION: figX
+  Entao veja essa sequencia de imagens onde eu crio um datastore no
+  console do firebase e escolho datacenters aqui no sudeste da america
+  do sul. Os dados ficarao portanto em datacenters do google
+  localizados em sao paulo.
+
+  Essa sequencia de imagens mostra que depois que eu termino de criar
+  um datastore e estabelecer o local, eu vou rodar o firebase init
+  novamente (no mesmo diretorio em que vc ja rodou o firebase init a
+  primeira vez em pessoal... :))  afinal estamos falando de um mesmo
+  projeto que precisa ser corrigido esse problema de localizacao
+
+  Lembrando que por equanto a infra estrutura da google nao fornece a
+  funcionalidade de trocar de local futuramente.
+
+  Entao vamos la....
+
+#+NAME:firestore1.png
+#+CAPTION: Console do Firebase na Sessao Database
 #+attr_ORG: :width 500px
 #+attr_html: :width 500px
 #+attr_latex: :width 500px
-[[./imgs/XXX]]
+[[./imgs/firestore1.png]]
 
+
+
+#+NAME:firestore1-modo-de-producao.png
+#+CAPTION: Conhecendo a opcao "Producao"
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore1-modo-de-producao.png]]
+
+
+
+
+#+NAME:firestore1-modo-de-teste.png
+#+CAPTION: Conhecendo a opcao teste
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore1-modo-de-teste.png]]
 
    
 
-#+NAME:
-#+CAPTION: 
+#+NAME:firestore1-optando-por-modo-teste.png
+#+CAPTION: Optando pela opcao teste
 #+attr_ORG: :width 500px
 #+attr_html: :width 500px
 #+attr_latex: :width 500px
-[[./imgs/]]
+[[./imgs/firestore1-optando-por-modo-teste.png]]
 
 
+#+NAME:firestore2-escolhendo-regiao-sp.png
+#+CAPTION: Escolhendo a regiao
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore2-escolhendo-regiao-sp.png]]
+
+
+
+#+NAME:firestore2-next.png
+#+CAPTION: Avancando
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore2-next.png]]
+
+
+
+#+NAME:firestore3-waiting-firestore-sendo-criado.png
+#+CAPTION: Aguardando finalizar
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore3-waiting-firestore-sendo-criado.png]]
+
+
+
+#+NAME:firestore4-firestore-criado-com-sucesso.png
+#+CAPTION: Firestore Criado Com Sucesso
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firestore4-firestore-criado-com-sucesso.png]]
+
+Apos criado o nosso firestore a gente vai rodar o firebase init de
+novo no mesmo diretorio do em que rodamos ele a primeira vez...
+
+
+
+#+NAME:firebase-init1-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 1
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init1-again-after-firestore-criated-with-gui.png]]
+
+
+#+NAME:firebase-init2-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 2
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init2-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init3-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 3
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init3-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init4-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 4
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init4-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init5-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 5
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init5-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init6-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 6
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init6-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init7-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 7
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init7-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init8-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 8
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init8-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init9-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 9
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init9-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init10-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 10
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init10-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init11-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 11
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init11-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init12-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 12
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init12-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init13-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 13
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init13-again-after-firestore-criated-with-gui.png]]
+
+
+#+NAME:firebase-init14-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 14
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init14-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init15-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 15
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init15-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init16-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 16
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init16-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init17-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 17
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init17-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init18-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 18
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init18-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init19-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 19
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init19-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init20-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 20
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init20-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init21-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 21
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init21-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init22-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 22
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init22-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init23-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 23
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init23-again-after-firestore-criated-with-gui.png]]
+
+#+NAME:firebase-init24-again-after-firestore-criated-with-gui.png
+#+CAPTION: comando firebase init 24
+#+attr_ORG: :width 500px
+#+attr_html: :width 500px
+#+attr_latex: :width 500px
+[[./imgs/firebase-init24-again-after-firestore-criated-with-gui.png]]
 
 * Referencias
 [fn:docfirebaseadmin] https://firebase.google.com/docs/admin/setup (acessado em 23/04/2020)
