@@ -24,41 +24,22 @@
 #+BEAMER_THEME: Rochester [height=20pt]
 #+BEAMER_FRAME_LEVEL: 2
 
-
-
 * ORIENTACOES GERAIS
-  Saudacoes
-  Como serao nossas aulas
-  Presenca
-  Ambiente de desenvolvimento
-  participacao no forum
-  como serao as entregas das atividades github
-** Saudacoeos
-  Olá pessoal, que bom estarmos de volta a ativa. Agora, num contexto
+
+  [[../OrientacoesGerais.pdf][Acesse aqui OrientacoesGerais em pdf]]
+
+  [[../OrientacoesGerais.org][Acesse aqui OrientacoesGerais em html]]
+
+* Saudacoes
+  Ola pessoal, que bom estarmos de volta a ativa. Agora, num contexto
   bem diferente. Por isso precisamos dar o nosso melhor. Ok?
-** Como serao nossas aulas
 
-** Presenca
-  
 * Assuntos dessa quinzena
-  Ambientacao
-  Revisao sql 
-  Avaliacao Diagnostica
-  mapas georeferenciamento
-
-
-
-Metodologias*
-
-Ambientação da Plataforma Teams
-
-Postagem de conteúdo de Revisão no teams sobre Integração de sistemas com serviços para a Web: Requisições assíncronas, AJAX, Consumindo APIs
-públicas
-Integração de sistemas com serviços para a Web:Criação e exposição de APIs com Web services Sem
-manutenção de estado (REST) Com manutenção de
-estado (WSDL/SOAP) Padrões de transferência de
-informações XML JSON
-
-Inserção da atividade de  exercício prático
-
+** Ambientacao
+   Vamos ver como funciona o teams
+    
+** Revisao
+   
+   Consumindo json e criando um questionario (aquele teste de empresa
+   que trabalhamos juntos em sala de aula, lembram?)
 

@@ -2,29 +2,366 @@
 #+TITLE: Gradle Introdução
 #+SUBTITLE: intermediario
 
+* Tema
+  Introducao ao gradle
+
+* Justificativa e Objetivos
+  Objetivo ter um primeiro contato com a ferramenta de build gradle.
+
+  E importante estudar o gradle pelos seguintes motivos:
+  + O mercado utiliza
+
+  + A gente usa o gradle nas aulas de android
+
+  + Facilita nosso trabalho e melhora muito nossa produtividade
+  
+* Duração
+  2 Aulas
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+   Compreender o conceito de ferramentas de build. O Professor pode
+   introduzir o assunto nessa propria aula se for necessario.
+
+   Conceito de variaveis de ambiente. O professor, se houver tempo
+   pode fazer essa introducao tambem.
+
+   Ferramenta de versionamento de codigo git
+
+   Nesta aula a gente cria um arquivo  .gitignore entao pra entender
+   tudo e bom saber pra que serve esse arquivo
+** Recursos
+   Jdk do java instalado na sua maquina
+
+* Procedimento didatico
+  Aula expositiva e em laboratorio
+
+* Exercicios e Atividades de Reflexão/Fixação
+  Realizacao deste laboratorio
+
+* Avaliação
+  Envie o link do seu repositorio de codigo para avaliacao do professor
+
 * Introdução
   
-
 * Instalação do Gradle e Conf do Path  
-  
-  Faça o download do gradle em 
-  https://downloads.gradle.org/distributions/gradle-5.5-rc-4-bin.zip
-  
-  Descompacte em o gradle em algum diretório, eu descompactei o meu em
-  
-  /home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
 
-  Agora crie a variável de ambiente GRADLE_HOME e configure o PATH da
-  sua máquina.
+** Download do gradle
+   
+   Nesta url vc consegue ver quais seria a versao mais recente 
+   https://gradle.org/releases/
 
+   Entao vc clica no link binary only, eu vou fazer o download nesse
+   link
+
+   https://gradle.org/next-steps/?version=6.3&format=bin
+
+   Eu estou fazendo esse download no diretorio abaixo, da minha
+   maquina:
+
+   /home/wagner/fzlbpms/fzlStudio/integrated/build/
+
+   Vc pode escolher qualquer diretorio que vc tenha permissao de escrita.
+
+** Descompactando 
+   
+   
+#+NAME:unzip gradle-6.3-bin.zip
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd /home/wagner/fzlbpms/fzlStudio/integrated/build/
+  unzip gradle-6.3-bin.zip
+#+END_SRC
+
+#+RESULTS: unzip gradle-6.3-bin.zip
+#+begin_example
+
+[36m[[m[34mwagner@cri4514[m [32mbuild[m[36m][m $ Archive:  gradle-6.3-bin.zip
+   creating: gradle-6.3/
+  inflating: gradle-6.3/README       
+  inflating: gradle-6.3/LICENSE      
+  inflating: gradle-6.3/NOTICE       
+   creating: gradle-6.3/init.d/
+  inflating: gradle-6.3/init.d/readme.txt  
+   creating: gradle-6.3/bin/
+  inflating: gradle-6.3/bin/gradle   
+  inflating: gradle-6.3/bin/gradle.bat  
+   creating: gradle-6.3/lib/
+  inflating: gradle-6.3/lib/gradle-api-metadata-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-launcher-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-runtime-api-info-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-kotlin-dsl-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-build-events-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-tooling-api-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-wrapper-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-installation-beacon-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-bootstrap-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-core-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-file-collections-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-model-groovy-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-execution-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-model-core-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-build-cache-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-core-api-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-persistent-cache-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-worker-processes-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-logging-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-jvm-services-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-process-services-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-resources-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-messaging-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-native-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-base-services-groovy-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-base-services-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-build-option-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-cli-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-kotlin-dsl-tooling-models-6.3.jar  
+  inflating: gradle-6.3/lib/kotlin-compiler-embeddable-1.3.70-patched-for-gradle-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-docs-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-build-cache-packaging-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-snapshots-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-build-cache-base-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-files-6.3.jar  
+  inflating: gradle-6.3/lib/groovy-all-1.3-2.5.10.jar  
+  inflating: gradle-6.3/lib/jul-to-slf4j-1.7.28.jar  
+  inflating: gradle-6.3/lib/log4j-over-slf4j-1.7.28.jar  
+  inflating: gradle-6.3/lib/jcl-over-slf4j-1.7.28.jar  
+  inflating: gradle-6.3/lib/slf4j-api-1.7.28.jar  
+  inflating: gradle-6.3/lib/gradle-hashing-6.3.jar  
+  inflating: gradle-6.3/lib/gradle-normalization-java-6.3.jar  
+  inflating: gradle-6.3/lib/guava-27.1-android.jar  
+  inflating: gradle-6.3/lib/commons-io-2.6.jar  
+  inflating: gradle-6.3/lib/commons-lang-2.6.jar  
+  inflating: gradle-6.3/lib/asm-commons-7.3.1.jar  
+  inflating: gradle-6.3/lib/asm-analysis-7.3.1.jar  
+  inflating: gradle-6.3/lib/asm-tree-7.3.1.jar  
+  inflating: gradle-6.3/lib/asm-7.3.1.jar  
+  inflating: gradle-6.3/lib/ant-1.10.7.jar  
+  inflating: gradle-6.3/lib/kotlin-stdlib-jdk8-1.3.70.jar  
+  inflating: gradle-6.3/lib/javax.inject-1.jar  
+  inflating: gradle-6.3/lib/kotlin-scripting-common-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-scripting-jvm-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-scripting-jvm-host-embeddable-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-scripting-compiler-embeddable-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-scripting-compiler-impl-embeddable-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-sam-with-receiver-compiler-plugin-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlinx-metadata-jvm-0.1.0.jar  
+  inflating: gradle-6.3/lib/commons-compress-1.19.jar  
+  inflating: gradle-6.3/lib/fastutil-8.3.0-min.jar  
+  inflating: gradle-6.3/lib/jansi-1.18.jar  
+  inflating: gradle-6.3/lib/gradle-base-annotations-6.3.jar  
+  inflating: gradle-6.3/lib/jsr305-3.0.2.jar  
+  inflating: gradle-6.3/lib/kryo-2.24.0.jar  
+  inflating: gradle-6.3/lib/native-platform-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/objenesis-2.6.jar  
+  inflating: gradle-6.3/lib/trove4j-1.0.20181211.jar  
+  inflating: gradle-6.3/lib/xml-apis-1.4.01.jar  
+  inflating: gradle-6.3/lib/kotlin-reflect-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-stdlib-jdk7-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-stdlib-1.3.70.jar  
+  inflating: gradle-6.3/lib/annotations-13.0.jar  
+  inflating: gradle-6.3/lib/ant-launcher-1.10.7.jar  
+  inflating: gradle-6.3/lib/minlog-1.2.jar  
+  inflating: gradle-6.3/lib/kotlin-script-runtime-1.3.70.jar  
+  inflating: gradle-6.3/lib/kotlin-daemon-embeddable-1.3.70.jar  
+  inflating: gradle-6.3/lib/failureaccess-1.0.1.jar  
+  inflating: gradle-6.3/lib/kotlin-stdlib-common-1.3.70.jar  
+  inflating: gradle-6.3/lib/native-platform-freebsd-amd64-libcpp-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-aarch64-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-amd64-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-osx-amd64-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-windows-amd64-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-windows-amd64-min-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-windows-i386-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-windows-i386-min-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-aarch64-ncurses5-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-aarch64-ncurses6-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-amd64-ncurses5-0.22-milestone-1.jar  
+  inflating: gradle-6.3/lib/native-platform-linux-amd64-ncurses6-0.22-milestone-1.jar  
+   creating: gradle-6.3/lib/plugins/
+  inflating: gradle-6.3/lib/plugins/gradle-antlr-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-code-quality-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-signing-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-tooling-native-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-ide-native-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-testing-native-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-language-native-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-kotlin-dsl-provider-plugins-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-plugin-development-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-maven-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-ide-play-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-ide-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-scala-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-ear-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-platform-play-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-javascript-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-ivy-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-jacoco-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-build-init-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-kotlin-dsl-tooling-builders-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-plugins-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-test-kit-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-language-groovy-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-language-scala-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-testing-junit-platform-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-tooling-api-builders-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-testing-jvm-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-language-java-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-instant-execution-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-language-jvm-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-platform-jvm-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-platform-native-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-diagnostics-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-testing-base-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-reporting-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-publish-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-platform-base-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-version-control-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-dependency-management-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-composite-builds-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-plugin-use-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-resources-s3-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-resources-gcs-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-build-cache-http-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-security-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-resources-http-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-resources-sftp-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-build-profile-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/gradle-workers-6.3.jar  
+  inflating: gradle-6.3/lib/plugins/org.eclipse.jgit-5.5.0.201909110433-r.jar  
+  inflating: gradle-6.3/lib/plugins/wagon-http-3.0.0.jar  
+  inflating: gradle-6.3/lib/plugins/wagon-http-shared-3.0.0.jar  
+  inflating: gradle-6.3/lib/plugins/google-api-services-storage-v1-rev136-1.25.0.jar  
+  inflating: gradle-6.3/lib/plugins/google-api-client-1.25.0.jar  
+  inflating: gradle-6.3/lib/plugins/asm-util-7.3.1.jar  
+  inflating: gradle-6.3/lib/plugins/ivy-2.3.0.jar  
+  inflating: gradle-6.3/lib/plugins/maven-compat-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-core-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/pmaven-common-0.8-20100325.jar  
+  inflating: gradle-6.3/lib/plugins/pmaven-groovy-0.8-20100325.jar  
+  inflating: gradle-6.3/lib/plugins/wagon-file-3.0.0.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-container-default-1.7.1.jar  
+  inflating: gradle-6.3/lib/plugins/aether-connector-wagon-1.13.1.jar  
+  inflating: gradle-6.3/lib/plugins/rhino-1.7.10.jar  
+  inflating: gradle-6.3/lib/plugins/gson-2.8.5.jar  
+  inflating: gradle-6.3/lib/plugins/simple-4.1.21.jar  
+  inflating: gradle-6.3/lib/plugins/jatl-0.2.3.jar  
+  inflating: gradle-6.3/lib/plugins/maven-plugin-api-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/testng-6.3.1.jar  
+  inflating: gradle-6.3/lib/plugins/snakeyaml-1.17.jar  
+  inflating: gradle-6.3/lib/plugins/dd-plist-1.21.jar  
+  inflating: gradle-6.3/lib/plugins/junit-4.12.jar  
+  inflating: gradle-6.3/lib/plugins/bsh-2.0b6.jar  
+  inflating: gradle-6.3/lib/plugins/junit-platform-launcher-1.3.1.jar  
+  inflating: gradle-6.3/lib/plugins/aws-java-sdk-s3-1.11.633.jar  
+  inflating: gradle-6.3/lib/plugins/aws-java-sdk-kms-1.11.633.jar  
+  inflating: gradle-6.3/lib/plugins/aws-java-sdk-core-1.11.633.jar  
+  inflating: gradle-6.3/lib/plugins/google-oauth-client-1.25.0.jar  
+  inflating: gradle-6.3/lib/plugins/google-http-client-jackson2-1.25.0.jar  
+  inflating: gradle-6.3/lib/plugins/google-http-client-1.25.0.jar  
+  inflating: gradle-6.3/lib/plugins/httpclient-4.5.10.jar  
+  inflating: gradle-6.3/lib/plugins/jcifs-1.3.17.jar  
+  inflating: gradle-6.3/lib/plugins/nekohtml-1.9.22.jar  
+  inflating: gradle-6.3/lib/plugins/xercesImpl-2.12.0.jar  
+  inflating: gradle-6.3/lib/plugins/jsch-0.1.55.jar  
+  inflating: gradle-6.3/lib/plugins/jaxb-impl-2.3.2.jar  
+  inflating: gradle-6.3/lib/plugins/jmespath-java-1.11.633.jar  
+  inflating: gradle-6.3/lib/plugins/jackson-databind-2.10.2.jar  
+  inflating: gradle-6.3/lib/plugins/jackson-core-2.10.2.jar  
+  inflating: gradle-6.3/lib/plugins/jackson-annotations-2.10.2.jar  
+  inflating: gradle-6.3/lib/plugins/joda-time-2.10.4.jar  
+  inflating: gradle-6.3/lib/plugins/bcpg-jdk15on-1.64.jar  
+  inflating: gradle-6.3/lib/plugins/bcpkix-jdk15on-1.61.jar  
+  inflating: gradle-6.3/lib/plugins/bcprov-jdk15on-1.64.jar  
+  inflating: gradle-6.3/lib/plugins/commons-codec-1.13.jar  
+  inflating: gradle-6.3/lib/plugins/maven-aether-provider-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/aether-impl-1.13.1.jar  
+  inflating: gradle-6.3/lib/plugins/aether-util-1.13.1.jar  
+  inflating: gradle-6.3/lib/plugins/aether-spi-1.13.1.jar  
+  inflating: gradle-6.3/lib/plugins/aether-api-1.13.1.jar  
+  inflating: gradle-6.3/lib/plugins/hamcrest-core-1.3.jar  
+  inflating: gradle-6.3/lib/plugins/httpcore-4.4.12.jar  
+  inflating: gradle-6.3/lib/plugins/jcommander-1.72.jar  
+  inflating: gradle-6.3/lib/plugins/jzlib-1.1.3.jar  
+  inflating: gradle-6.3/lib/plugins/maven-artifact-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-model-builder-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-model-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-repository-metadata-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-settings-builder-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/maven-settings-3.0.4.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-sec-dispatcher-1.3.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-cipher-1.7.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-classworlds-2.5.1.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-component-annotations-1.5.5.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-interpolation-1.14.jar  
+  inflating: gradle-6.3/lib/plugins/wagon-provider-api-3.0.0.jar  
+  inflating: gradle-6.3/lib/plugins/plexus-utils-3.1.0.jar  
+  inflating: gradle-6.3/lib/plugins/xbean-reflect-3.7.jar  
+  inflating: gradle-6.3/lib/plugins/ion-java-1.0.2.jar  
+  inflating: gradle-6.3/lib/plugins/junit-platform-engine-1.3.1.jar  
+  inflating: gradle-6.3/lib/plugins/junit-platform-commons-1.3.1.jar  
+  inflating: gradle-6.3/lib/plugins/apiguardian-api-1.0.0.jar  
+  inflating: gradle-6.3/lib/plugins/opentest4j-1.1.1.jar
+#+end_example
+
+
+** Setando a variaval de ambiente
+   
+   Apos a descompactacao a gente agora tem esse diretorio indicado
+   abaixo onde se encontra nosso gradle.
+
+   A partir de agora, vamos chamar esse diretorio de GRADLE_HOME, ou
+   seja, casa do gradle. Faz sentido ne...
+
+#+NAME: ls -l /home/wagner/fzlbpms/fzlStudio/integrated/build/
+#+BEGIN_SRC shell :session s1 :results output :exports both
+
+  ls -l /home/wagner/fzlbpms/fzlStudio/integrated/build/gradle-6.3
+
+#+END_SRC
+
+#+RESULTS: ls -l /home/wagner/fzlbpms/fzlStudio/integrated/build/
+#+begin_example
+total 280380
+drwxrwxrwx. 6 wagner wagner      4096 jul 10  2018 apache-ant-1.10.5
+-rwxrwxrwx. 1 wagner wagner   9061269 fev 15  2019 apache-ant-1.10.5-bin.zip
+drwxrwxrwx. 6 wagner wagner      4096 jan  8  2019 apache-maven-3.6.0
+drwxrwxrwx. 7 wagner wagner      4096 fev  2  2019 gradle-5.1.1
+drwxrwxrwx. 6 wagner wagner      4096 jan 31  1980 gradle-5.4
+-rwxrwxrwx. 1 wagner wagner  87106040 abr 26  2019 gradle-5.4-bin.zip
+-rwxrwxrwx. 1 wagner wagner  89152568 jul 21  2019 gradle-5.5-rc-4-bin.zip
+drwxr-xr-x. 5 wagner wagner      4096 fev  1  1980 gradle-6.3
+-rw-rw-r--. 1 wagner wagner 101755602 abr 27 16:50 gradle-6.3-bin.zip
+#+end_example
+
+   
+  Entao vamos setar nossa variavel de ambiente e depois colocar o
+  diretorio bin do gradle no path do nosso sistema operacional. O
+  coamndo gradle -v mostra a versao do gradle que acabamos de
+  instalar. Se o comando gralde -v mostrar a versao a instalacao esta
+  correta.
+
+  Na sequencia a gente mostra como setar a variavel de ambiente no
+  window. 
+
+  Lembrando que no windows, para essa variavel de ambiente ser
+  permanente pra vc he necessario entrar no painel de controle,
+  sistema, avancado e configurar a variavel de ambiente la. Nao tem um
+  passo a passo disso nesse material aqui, por enquanto. Ja no linux,
+  e so colocar esse comando em algum arquivo do tipo
+  .bash_profile. Tambem nao vamos entrar em detalhes sobre isso. O que
+  vc precisa saber he que tanto no windows como no linux, usando esses
+  comandos que estamos mostrando, vc tem que roda-los toda vez que
+  precisar do gradle.
+
+   
   #+NAME: export env vars
   #+BEGIN_SRC shell :results output :exports both
-     export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+     export GRADLE_HOME=/home/wagner/fzlbpms/fzlStudio/integrated/build/gradle-6.3
      export PATH=$PATH:$GRADLE_HOME/bin     
      gradle -v
   #+END_SRC
 
-  #+RESULTS:
+  #+RESULTS: export env vars
   #+begin_example
 
   ------------------------------------------------------------
@@ -38,11 +375,17 @@
   Kotlin:       1.3.11
   Groovy:       2.5.4
   Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
-  JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
-  OS:           Linux 5.1.18-200.fc29.x86_64 amd64
+  JVM:          1.8.0_201 (Oracle Corporation 25.201-b09)
+  OS:           Linux 5.6.6-200.fc31.x86_64 amd64
 
   #+end_example
 
+  Esses comandos no windows seria...
+
+
+  set GRADLE_HOME=/home/wagner/fzlbpms/fzlStudio/integrated/build/gradle-6.3
+
+  set PATH=%PATH%;%GRADLE_HOME%\bin
 
 * Criação de um projeto java básico
   https://guides.gradle.org/building-java-applications/
@@ -51,49 +394,79 @@
   dá o comando gradle init + parametros.
   Esse "init" é um plugin do gradle[gradleCodsInitPlugin]
   
+  
+  Eu vou criar meu projeto, pra esse laboratorio DENTRO da seguinte pasta que esta na
+  minha maquina:
+  /home/wagner/envs/env-dev/sources/estudandoalgoritmos/
+
+  Obviamente vc pode escolher qualquer pasta da sua maquina que vc
+  quizer. Mas mesmo que o caminho DA PASTA DO SEU NOVO
+  PROJETO nao seja tao longo quanto o meu, acho que vale muito a pena a gente chamar essa
+  pasta de GRADLE_PROJETC_DIR, q q vc acha?
+
+  Pois e, he isso que eu vou fazer aqui nesse comando abaixo. So
+  isso... Se vc tiver no windows usa comando set e ta tudo certo.
+
+
+ #+NAME: export GRADLE_PROJECT_DIR=/home/wagner/envs/env-dev/sources/estudandoalgoritmos/gradle_project
+ #+BEGIN_SRC shell :session s1 :results output :exports code
+      export GRADLE_PROJECT_DIR=/home/wagner/envs/env-dev/sources/estudandoalgoritmos/gradle_project
+ #+END_SRC
+
+ #+RESULTS: export GRADLE_PROJECT_DIR=/home/wagner/envs/env-dev/sources/estudandoalgoritmos/gradle_project
+
+
+ Bom, vamos la entao... criar nosso projeto DENTRO na nossa pasta GRADLE_PROJECT_DIR
+ 
+
    #+NAME: criac proj java                    
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      export GRADLE_PROJECTS_DIR=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/                                 
-      mkdir -p $GRADLE_PROJECTS_DIR
       
-      cd $GRADLE_PROJECTS_DIR
-      rm -rf demojavaproj
-      mkdir demojavaproj && cd demojavaproj
-      echo 1 | gradle init --type java-application \
-                  --project-name demojavaproject \
-                  --package br.com.exemplo \
+      mkdir -p $GRADLE_PROJECT_DIR
+      
+      cd $GRADLE_PROJECT_DIR
+       echo 1 | gradle init --type java-application \
+                  --project-name algoritmos \
+                  --package br.com.fzlbpms.algoritmos \
                   --test-framework junit #\
                   #-Dhttp.proxyHost=192.168.0.2 -Dhttp.proxyPort=3128 -Dhttp.proxyUser=cid2 -Dhttp.proxyPort=cid2                  
       pwd
       ls -la
    #+END_SRC
 
-   #+RESULTS:
+   #+RESULTS: criac proj java
    #+begin_example
 
-   [wagner@Unknown demojavaproj]$ [wagner@Unknown demojavaproj]$ [wagner@Unknown demojavaproj]$ [wagner@Unknown projetos]$ [wagner@Unknown projetos]$ [wagner@Unknown demojavaproj]$ > > > Starting a Gradle Daemon (subsequent builds will be faster)
-   Task :wrapper
+   [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ > > > > Task :wrapper
    Task :init
 
-   BUILD SUCCESSFUL in 3s
+   BUILD SUCCESSFUL in 0s
    2 actionable tasks: 2 executed
-   [wagner@Unknown demojavaproj]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj
+   [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ /home/wagner/envs/env-dev/sources/estudandoalgoritmos/gradle_project
    total 44
-   drwxrwxr-x. 5 wagner wagner 4096 jul 21 21:05 .
-   drwxrwxr-x. 4 wagner wagner 4096 jul 21 21:05 ..
-   -rw-rw-r--. 1 wagner wagner  949 jul 21 21:05 build.gradle
-   -rw-rw-r--. 1 wagner wagner  103 jul 21 21:05 .gitignore
-   drwxrwxr-x. 4 wagner wagner 4096 jul 21 21:05 .gradle
-   drwxrwxr-x. 3 wagner wagner 4096 jul 21 21:05 gradle
-   -rwxrwxr-x. 1 wagner wagner 5305 jul 21 21:05 gradlew
-   -rw-rw-r--. 1 wagner wagner 2269 jul 21 21:05 gradlew.bat
-   -rw-rw-r--. 1 wagner wagner  363 jul 21 21:05 settings.gradle
-   drwxrwxr-x. 4 wagner wagner 4096 jul 21 21:05 src
+   drwxrwxr-x. 5 wagner wagner 4096 abr 27 17:29 .
+   drwxrwxrwx. 4 wagner wagner 4096 abr 27 17:29 ..
+   -rw-rw-r--. 1 wagner wagner  960 abr 27 17:29 build.gradle
+   -rw-rw-r--. 1 wagner wagner  103 abr 27 17:29 .gitignore
+   drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 .gradle
+   drwxrwxr-x. 3 wagner wagner 4096 abr 27 17:29 gradle
+   -rwxrwxr-x. 1 wagner wagner 5305 abr 27 17:29 gradlew
+   -rw-rw-r--. 1 wagner wagner 2269 abr 27 17:29 gradlew.bat
+   -rw-rw-r--. 1 wagner wagner  358 abr 27 17:29 settings.gradle
+   drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 src
    #+end_example
+
+
 
    Nos comandos acima, o mais importante foi gradle init que pode ser
    dado também com o gradle --task :init
+
+
+   Considerando entao que essa pasta GRADLE_PROJECT_DIR agora he um
+   projeto do gradle vamos ver o que tem dentro dela? Se ela he um
+   projeto, ela deve ter uma estrutura de projeto dentro dela. Vamos
+   examinar isso na proxmima sessao...
 
 
 * Conhecendo a estrutura do nosso projeto   
@@ -145,11 +518,41 @@ mainClassName = 'br.com.exemplo.App'
 
    Se o seu projeto não tiver um, pode criar.
    O professore vai explicar em sala sobre esse arquivo.
+   
+   Eu to no linux, mas no windows vc pode abrir um notepad normalmente
+   e salvar um arquivo que por enquanto fica vazio mesmo com o nome
+   .gitignore. Uma sugestao pro seu nome de arquivo ser honrado pelo
+   windows he colocar o nome dele entre aspas ".gitignore" antes de
+   clicar em salvar.
 
+   
+   
+#+NAME:  > $GRADLE_PROJECT_DIR/.gitignore
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  > $GRADLE_PROJECT_DIR/.gitignore
+  ls -la $GRADLE_PROJECT_DIR
+#+END_SRC
 
+#+RESULTS: > $GRADLE_PROJECT_DIR/.gitignore
+#+begin_example
 
+total 40
+drwxrwxr-x. 5 wagner wagner 4096 abr 27 17:29 .
+drwxrwxrwx. 4 wagner wagner 4096 abr 27 17:29 ..
+-rw-rw-r--. 1 wagner wagner  960 abr 27 17:29 build.gradle
+-rw-rw-r--. 1 wagner wagner    0 abr 27 17:33 .gitignore
+drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 .gradle
+drwxrwxr-x. 3 wagner wagner 4096 abr 27 17:29 gradle
+-rwxrwxr-x. 1 wagner wagner 5305 abr 27 17:29 gradlew
+-rw-rw-r--. 1 wagner wagner 2269 abr 27 17:29 gradlew.bat
+-rw-rw-r--. 1 wagner wagner  358 abr 27 17:29 settings.gradle
+drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 src
+#+end_example
+
+Confirme acima que o arquivo .gitignore foi criado e agora faz parte
+do nosso projeto.
+    
 ** O diretório .gradle
-
 
 ** O diretório  gradle
 
@@ -161,6 +564,7 @@ mainClassName = 'br.com.exemplo.App'
      Um shellscript pra usar o o comando gradlew (gradle wrapper) no
      linux
 
+     
 ** O arquivo gradlew.bat 
 
      Arquivo de lote pra usar o comando gradlew (gradle wrapper) no
@@ -170,8 +574,7 @@ mainClassName = 'br.com.exemplo.App'
 ** settings.gradle
    
    Esse é o arquivo que a gente mais vai utilizar durante as aulas
-   #+include: /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/settings.gradle  :src groovy
-
+   he nele que a gente configura as dependencias do nosso projeto
 
 ** src
 
@@ -180,12 +583,8 @@ mainClassName = 'br.com.exemplo.App'
 ** src/main/java/br/com/exemplo/App.java
    codigo java (src/main/java/br/com/exemplo/App.java)
 
-   #+include: ~/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/src/main/java/br/com/exemplo/App.java :src java
-   
 ** src/test/java/br/com/exemplo/AppTest.java
    codigo java (src/test/java/br/com/exemplo/AppTest.java)
-   #+include: ~/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/src/test/java/br/com/exemplo/AppTest.java :src java
-
 
 * Buildando e Executando o projeto
 
@@ -207,25 +606,56 @@ mainClassName = 'br.com.exemplo.App'
    #+NAME: arquivo properties                    
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      #cd $GRADLE_PROJECTS_DIR/demojavaproj
-      #echo "org.gradle.daemon=true" > gradle.properties
-      #echo "org.gradle.parallel=true" >> gradle.properties
+      cd $GRADLE_PROJECT_DIR
+      echo "org.gradle.daemon=true" > gradle.properties
+      echo "org.gradle.parallel=true" >> gradle.properties
    #+END_SRC
+
+   #+RESULTS: arquivo properties
 
    #+RESULTS:
 
+   
   
    #+NAME: buildando o projeto                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj && ./gradlew build
+      cd $GRADLE_PROJECT_DIR
+      ./gradlew build
    #+END_SRC
+
+   #+RESULTS: buildando o projeto
+   #+begin_example
+
+   [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ Downloading https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+
+   Exception in thread "main" java.io.IOException: Unable to tunnel through proxy. Proxy returns "HTTP/1.1 407 Proxy Authentication Required"
+           at sun.net.www.protocol.http.HttpURLConnection.doTunneling(HttpURLConnection.java:2142)
+           at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:183)
+           at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1564)
+           at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
+           at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
+           at org.gradle.wrapper.Download.downloadInternal(Download.java:67)
+           at org.gradle.wrapper.Download.download(Download.java:52)
+   1.call(Install.java:62)
+   1.call(Install.java:48)
+           at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
+           at org.gradle.wrapper.Install.createDist(Install.java:48)
+           at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:107)
+           at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:62)
+   #+end_example
+
+
+
+
+
+
 
 
    #+NAME: gradle tasks
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj && ./gradlew tasks
+      cd $GRADLE_PROJECT_DIR && ./gradlew tasks
    #+END_SRC
 
 
@@ -267,6 +697,8 @@ BUILD SUCCESSFUL in 4s
    #+END_EXAMPLE
 
    
+
+
    Mas a gente faz o build pra que mesmo? A resposta é: pra obter o
    nosso projeto como um pacote, ou seja, um arquivo só que pode ser
    utilizado. A maioria das pessoas já pensa num arquivo .exe mas o
@@ -290,35 +722,21 @@ BUILD SUCCESSFUL in 4s
    #+NAME: avaliando build1                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj
+      cd $GRADLE_PROJECT_DIR
       ls -l 
-      ls -l build
-      ls -l build/distributions
    #+END_SRC
 
-   #+RESULTS:
-   #+begin_example
+   #+RESULTS: avaliando build1
+   : 
+   : [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ total 32
+   : -rw-rw-r--. 1 wagner wagner  960 abr 27 17:29 build.gradle
+   : drwxrwxr-x. 3 wagner wagner 4096 abr 27 17:29 gradle
+   : -rw-rw-r--. 1 wagner wagner   48 abr 27 17:37 gradle.properties
+   : -rwxrwxr-x. 1 wagner wagner 5305 abr 27 17:29 gradlew
+   : -rw-rw-r--. 1 wagner wagner 2269 abr 27 17:29 gradlew.bat
+   : -rw-rw-r--. 1 wagner wagner  358 abr 27 17:29 settings.gradle
+   : drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 src
 
-   [wagner@Unknown demojavaproj]$ total 32
-   drwxrwxr-x. 9 wagner wagner 4096 fev  3 14:21 build
-   -rw-rw-r--. 1 wagner wagner  949 fev  3 14:16 build.gradle
-   drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:16 gradle
-   -rwxrwxr-x. 1 wagner wagner 5305 fev  3 14:16 gradlew
-   -rw-rw-r--. 1 wagner wagner 2269 fev  3 14:16 gradlew.bat
-   -rw-rw-r--. 1 wagner wagner  363 fev  3 14:16 settings.gradle
-   drwxrwxr-x. 4 wagner wagner 4096 fev  3 14:16 src
-   total 28
-   drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 classes
-   drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 distributions
-   drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 libs
-   drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 reports
-   drwxrwxr-x. 2 wagner wagner 4096 fev  3 14:21 scripts
-   drwxrwxr-x. 3 wagner wagner 4096 fev  3 14:21 test-results
-   drwxrwxr-x. 5 wagner wagner 4096 fev  3 14:21 tmp
-   total 5488
-   -rw-rw-r--. 1 wagner wagner 3000320 fev  3 14:21 demojavaproject.tar
-   -rw-rw-r--. 1 wagner wagner 2615429 fev  3 14:21 demojavaproject.zip
-   #+end_example
 
    Acima a gente vê o resultado do nosso build. É um diretório chamado
    build que dentro dele tem as compilação das classes java dentre

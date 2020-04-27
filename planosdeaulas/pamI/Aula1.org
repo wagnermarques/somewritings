@@ -33,10 +33,12 @@
   Ola pessoal, que bom estarmos de volta a ativa. Agora, num contexto
   bem diferente. Por isso precisamos dar o nosso melhor. Ok?
 
+
 * Como serao nossas aulas
    As aulas serao no mesmo horario das aulas presenciais. Vou inicar
    uma live pra apresentar o material escrito pra vcs e orientar sobre
    suas atividades.
+
 
 * Metodologia de Trabalho desta disciplina  
   O mesmo que esta nas orientacoes gerais
@@ -50,7 +52,9 @@
     Para os alunos que quizerem realizar as tarefas praticas em casa,
     sera necessario um compudator. Daqui a pouco a gente fala sobre isso.
     
+
 * Conteudos dessa quinzena
+
 ** Ambientacao
 
     Vamos ver um pouco sobre como usar o teams
@@ -61,6 +65,7 @@
     [[./cordova-instalacao.pdf][Instalacao do cordova (pdf)]]
 
     Video demonstrando a instalacao
+
 
 ** Revisando (Estrutura do projeto Cordova)
    Explicacoes mais detalhadas sobre a estrutura do projeto mobile do
@@ -78,8 +83,18 @@ estrutura do projeto, entao he importante estudar ele.
    Considerando que estamos fazendo ainda uma revisao, vou chamar essa
    atividade teorica de avaliacao dignostica.
 
+** Revisando a explicacao do codigo basicao do cordova
+   Esse video abaixo e aquele que a gente viu em sala de
+   aula. Coloquei ele aqui de novo pra ajudar na revisao. Reforco meus
+   pedidos de desculpa pelo audio. Como o video esta no teams vc
+   precisa logar pra fazer download dele e assistir, ou assisitir
+   direto no teams.
+   
+   [[https://etecspgov.sharepoint.com/sites/msteams_eeac96/Material%20de%20Aula/Aula1/aula-cordova-explicando-codigo-camera.mkv][videoexplicando codigo daquele projetinho da camera]]
+
 ** Jquery Mobile
    Assim que eu preparar esse material eu disponibilizo na plataforma
    pra vs...
 
 
+   Vamos ver isso na aula 2, aguardem :))

@@ -1,5 +1,5 @@
 #+TITLE: Primeiro Projeto com Laravel
-#+SUBTITLE: Uma introducao mais praticaplp
+#+SUBTITLE: Uma introducao mais pratica
 #+DESCRIPTION:
 #+KEYWORDS:
 #+EXPORT_FILE_NAME:

@@ -1,5 +1,5 @@
 #+TITLE: Cloud Function que envia email
-#+SUBTITLE: Funcao javascript que envia email
+#+SUBTITLE: funcao javascript que envia email
 #+DESCRIPTION:
 #+KEYWORDS:
 #+EXPORT_FILE_NAME:
@@ -21,6 +21,8 @@
 #+OPTIONS: H:2 toc:t
 
 #+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
 
 * Objetivo e Justificativa
   Vamos utilizar o que aprendemos com cloud functions pra criar uma

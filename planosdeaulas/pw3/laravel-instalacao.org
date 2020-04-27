@@ -75,7 +75,6 @@ Zend Engine v3.3.16, Copyright (c) 1998-2018 Zend Technologies
     with Zend OPcache v7.3.16, Copyright (c) 1999-2018, by Zend Technologies
 
 
-
   (Se for ser acessado por outra maquina)
   sudo firewall-cmd -permanent -add-service=http
   sudo firewall-cmd -permanent -add-service=https
