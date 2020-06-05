@@ -1,0 +1,427 @@
+#+TITLE: Laravel e Heroku
+#+SUBTITLE: Compreendendo nosso projeto
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+* Tema
+  Compreendendo nosso projeto
+
+  
+* Justificativa e Objetivos
+  A gente precisa conhecer um pouco do projeto que foi criado pra
+  gente pelo composer. 
+
+  Tem muitos conceitos envolvidos no projeto como um todo. Foi criado
+  muitos arquivos e muitas pastas... por isso antes de comecar a
+  programar de verdade, a gente precisa ter uma compreensao basica do
+  que he essencial.
+  
+  Essa he a ideia dessa aula... 
+ 
+
+* Duracao
+  Uma aula
+
+
+* Pre-Requisitos
+** Conhecimentos Previos
+   Um pouquinho da compreensao de dependencias do nodejs
+   
+** Recursos
+
+
+* Procedimento didatico
+  Exposicao dialogada do material e realizacao dos procedimentos do material
+  
+  O arquivo exatamente conforme foi criado aqui pode ser encontrado no
+  github[fn:githubprojetocriado] no link na sessao de referencia. Ele
+  vai ficar inalterado no branch "criacaodoprojeto". Enquanto isso a
+  evolucao do projeto vai continuar no branch master.
+
+* Exercicios e Atividades de Reflexão/Fixação
+  
+
+* Avaliação
+  
+
+* Apresentando a estrutura do nosso projeto
+  
+#+NAME: tree proj
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  pwd
+#+END_SRC
+
+#+RESULTS: tree proj
+: /home/wagner/envs/env-dev/sources/somewritings/planosdeaulas/BD3
+
+
+eu to usando comandos pra mostrar os arquivos e pastas, as vc pode
+visualizar pelas pastas do windows normalmente...
+
+#+NAME:cd /home/wagner/envs/env-dev
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd /home/wagner/envs/env-dev/sources/backupsys
+  ls -l
+#+END_SRC
+
+#+RESULTS: cd /home/wagner/envs/env-dev
+#+begin_example
+
+total 276
+drwxrwxr-x.  6 wagner wagner   4096 abr 15 07:46 app
+-rwxr-xr-x.  1 wagner wagner   1686 abr 15 07:46 artisan
+drwxrwxr-x.  3 wagner wagner   4096 abr 15 07:46 bootstrap
+-rw-rw-r--.  1 wagner wagner   1586 abr 15 07:46 composer.json
+-rw-rw-r--.  1 wagner wagner 208590 mai 18 07:10 composer.lock
+drwxrwxr-x.  2 wagner wagner   4096 abr 15 07:46 config
+drwxrwxr-x.  5 wagner wagner   4096 abr 15 07:46 database
+-rw-rw-r--.  1 wagner wagner   1013 abr 15 07:46 package.json
+-rw-rw-r--.  1 wagner wagner   1197 abr 15 07:46 phpunit.xml
+drwxrwxr-x.  2 wagner wagner   4096 abr 15 07:46 public
+-rw-rw-r--.  1 wagner wagner   4497 abr 15 07:46 README.md
+drwxrwxr-x.  6 wagner wagner   4096 abr 15 07:46 resources
+drwxrwxr-x.  2 wagner wagner   4096 abr 15 07:46 routes
+-rw-rw-r--.  1 wagner wagner    563 abr 15 07:46 server.php
+drwxrwxr-x.  5 wagner wagner   4096 abr 15 07:46 storage
+drwxrwxr-x.  4 wagner wagner   4096 abr 15 07:46 tests
+drwxrwxr-x. 44 wagner wagner   4096 mai 18 07:10 vendor
+-rw-rw-r--.  1 wagner wagner    538 abr 15 07:46 webpack.mix.js
+#+end_example
+
+Nosso projeto tem muitos diretorios e arquivos...
+
+Vamos conversar um pouco sobre eles 
+
+
+* Configuracoes do Projeto[fn:laravel]
+** Diretorio Public
+   Configurando o diretorio public como sendo o diretorio root que o
+   browser do seu usuario vai receber.
+
+   O index.php do public vai sera o front controller das requisicoes
+   http
+
+   Vc nao vai ficar editando arquivos aqui nesse diretorio, embora
+   seja esse diretorio que seja acessado pelo seu usuario. Acho q vc
+   deve estar se perguntando... meu se eu nao vou editar codigo aqui o
+   usuario vai receber o que entao? 
+
+   Vc vai editar o codigo em outros diretorios e via comandos de build
+   o conteudo que o usuario vai receber vai ser geradao a partir do
+   codigo que vc vai editar em outros diretorios da aplicacao, mais
+   especificamente o diretorio resources...
+
+   A gente vai codificar arquivos na pasta app e na pasta resources
+
+   .env he um arquivo de configuracao de ambiente. Vc nao vai incluir
+   .env no .gitignore pra nao subir isso pro seu git ja que a
+   configuracao de ambiente de um desenvolvedor pode nao ser a mesma
+   de outro.
+
+
+** Diretorio Config .env e appkey
+
+   Todos os arquivos de configuracao estao na pasta config, que
+   surpresa hein fala a verdade...
+
+   Nem tanto... tem algumas configuracoes tambem no arquivo .env na
+   raiz do projeto
+
+   lembrando que no arquivo .env tem a configura APP_KEY. Qdo a gente
+   cria nossa aplicacao com o composer o composer ja coloca essa key
+   pra gente. Ela serve pra fazer funcionar a sessao com ssl. Se vc
+   nao souber o que eu isso o prof te explica.. .tem o google
+   tambem ne...
+
+   Nas ocasioes em que vc tiver que modificar configuracoes vc deve
+   usar o comando 
+
+   php artisan down
+
+   pra colocar a aplicacao no modo manutencao...
+
+   depois que vc editar a configuracao que vc queria, vc volta a
+   aplicacao para o estado normal
+
+   php artisan up
+
+   
+
+* Conceitos importantes pra entender o projeto laravel
+** Rotas
+   pensa nas rotas como sendo as "pastas" que o seu usuario usa
+   durante a navegacao na sua aplicacao.
+  
+
+   https://seuprojeto/
+
+   Essa rota acima e a rota raiz "/"
+
+
+   https://seuprojeto/admin/
+
+   Essa rota e a /admin
+
+   https://seuprojeto/admin/usuariodaaplicacao
+
+   Essa rota he a /admin/usuariosdaacplicaco
+
+   
+   E assim por diante...
+
+   No laravel a gente pode responder com uma funcao php a cada acesso
+   em cada rota...
+
+   tipo esse exemplo abaixo...
+   
+
+   #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
+   
+
+   Ve se faz sentido pra vc esse trecho de codigo, se nao fizer,
+   pergunta pro professor pra ele esclarecer pra vc :)) ...
+
+   
+** Model
+
+   Lembra dos diagramas de classe? Pois he sao as classes de dominio
+   da sua aplicacao. As classes de model ficam no diretorio app
+
+   path.../backupsys/app
+
+#+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/User.php :src php :lines "1-"
+
+** Midleware
+   Vc pode definir um middleware e dizer pro laravel fazer com que
+   cada request passe por ele antes de tudo... ou passe por ele depois
+   de todos os processamentos...
+
+   O comando abaixo e a maneir aque vc tem pra criar um middleware
+   
+   php artisan make:middleware <middleware-name>
+
+   Vou criar um middleare que verifica se o usuario que ta fazendo o
+   request e admin e ser... a ideia e que a gente pode fazer essa
+   verificacao pras areas do site que so o admin pode acessar...
+   
+#+NAME:php artisan make:middleware isAdminMiddleware
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  [wagner@compras6 backupsys] $ php artisan make:middleware isAdminMiddleware
+  Middleware created successfully.
+#+END_SRC
+
+Pra ver o nosso middleware e tambe outros que ja foram criados
+durentae a criacao do nosso projeto vce pode acessar a pasta
+seuprojeto/app/Http/Middleware
+
+
+#+NAME: ls -l app/Http/Middleware
+#+BEGIN_SRC shell :session s1 :results output :exports both
+   cd /home/wagner/envs/env-dev/sources/backupsys
+   ls -l app/Http/Middleware
+#+END_SRC
+
+#+RESULTS: ls -l app/Http/Middleware
+#+begin_example
+
+total 32
+-rw-rw-r--. 1 wagner wagner 469 abr 15 07:46 Authenticate.php
+-rw-rw-r--. 1 wagner wagner 335 abr 15 07:46 CheckForMaintenanceMode.php
+-rw-rw-r--. 1 wagner wagner 294 abr 15 07:46 EncryptCookies.php
+-rw-rw-r--. 1 wagner wagner 337 mai 18 15:30 isAdminMiddleware.php
+-rw-rw-r--. 1 wagner wagner 582 abr 15 07:46 RedirectIfAuthenticated.php
+-rw-rw-r--. 1 wagner wagner 340 abr 15 07:46 TrimStrings.php
+-rw-rw-r--. 1 wagner wagner 436 abr 15 07:46 TrustProxies.php
+-rw-rw-r--. 1 wagner wagner 307 abr 15 07:46 VerifyCsrfToken.php
+#+end_example
+
+#+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/Http/Middleware/isAdminMiddleware.php :src php :lines "1-"
+
+
+
+** Controller
+
+   https://laravel.com/docs/7.x/controllers
+
+   php artisan make:controller <controller-name> --plain
+   
+   Route::get('base URI','controller@method');
+
+** Request
+   
+   https://laravel.com/docs/7.x/requests
+
+   E importante vc entender o que he um request e um response...
+
+   request acontece quando o seu usuario da um enter pra acessar sua
+   pagina, o navegador faze esse request pra sua aplicacao...
+
+   O response e quando sua aplicacao processa o request e envia o
+   resultado pro navegador do seu usuario...
+
+** View
+   
+   https://laravel.com/docs/7.x/views
+
+   as view he o V do MVC que a gente costuma conversar em sala de aula
+
+   no laravel elas ficam em pathDoSeuProjeto/resources/views
+
+   Sao as paginas html da sua aplicacao... 
+
+** Urls
+
+   https://laravel.com/docs/7.x/urls
+
+   as urls sao os caminhos para as rotas da sua aplicacao.. 
+
+** Session
+
+   https://laravel.com/docs/7.x/session
+
+   Session 
+
+* Rodando o projeto na sua maquina
+   
+   php artisan serve
+
+   O ideal e a gente ir desenvolvendo aqui na nossa maquina e enviar
+   pro heroku depois que a gente tiver feito nossa programacao
+
+   Agora veja que intrigante...
+  
+   seu projeto tem um arquivo package.json
+
+   quem usa node sabe que esse arquivo fazer parte de projetos do
+   node. E que o Laravel usa dependencias do node pra gerar o conteudo
+   da pasta public entao vc tem que pelo menos dar um package install
+   pra ele instalar as dependencias.
+
+   Qdo vc tiver programando entao parte de front end, de um comando 
+
+   npm run watch
+
+   pra que tudo que vc fizer ja seja processado, construido e enviado
+   para o public.
+
+   Detalhes do que eu to falando pode ser encontrado em
+   https://laravel.com/docs/7.x/mix
+
+   Mas obviamente nao precisa aprender tudo de uma vez, a ideia e que
+   a gente tenha uma visao geral primeiro de tudo e se aprofunde nos
+   assuntos conforme a necesssidade certo?
+
+
+* Entendendo um pouco do codigo que foi gerado durante a criacao do projeto
+
+** Rotas Web
+  Vale a pena entender primeiro o arquivo projeto/routes/web.php
+
+  #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
+
+  o que o usuario ve quando acessa nosso projeto pelo navegador na
+  raiz do projeto "/" essa funcao retorna o que o usuario vai
+  ver... no nosso caso, ta dizendo que o suario vai ver a view
+  'welcome'. Mas onde esta essa view? porque ela chama welcome? ser he
+  uma view ela e um arquivo html? ou php? 
+
+  Bom vamos ver...
+
+  Bom se o que esta sendo retornado he uma view, tem um diretorio view
+  la dentro do diretorio resource... e nao coincidentemente tem um tem
+  um arquivo de view la com o nome de welcome... so nome nao e
+  examtamente welcome.. e welcome.blalde...
+
+  pois he o laravel usa so o primeiro nome... esse blade e a solucao
+  de template que o laravel usa... dqui a pouco a gente entende ele...
+
+  mas por enqaunto basta vc entender que esse arquivo e uma view que
+  vai ser retornada pelo nome welcome conforme foi utiilizado no
+  arquivo routes
+
+  view('welcome');
+
+
+* Codigo da View
+
+  vamos conhecer o codigo dessa view...
+
+  #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/resources/views/welcome.blade.php :src html :lines "1-"
+
+
+  A unica coisa que vc tem que perceber, e o professor pode te ajudar,
+  que nesse html tem codigos php dentro... por exemplo...
+
+
+#+NAME:<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+#+BEGIN_SRC html :session s1 :results output :exports both
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+#+END_SRC
+
+
+#+NAME:   @if (Route::has('login'))
+#+BEGIN_SRC php :session s1 :results output :exports code
+    @if (Route::has('login'))
+#+END_SRC
+
+
+#+NAME:  @auth <a href="{{ url('/home') }}">Home</a>
+#+BEGIN_SRC php :session s1 :results output :exports code
+    @auth
+                        <a href="{{ url('/home') }}">Home</a>  
+#+END_SRC
+
+Pra compreender essa sintaxe um pouco diferente tem que entender
+blade...
+
+nao precisa parar pra estudar isso agora.. mas se tiver curiosidade
+pode ver esse video...
+
+https://www.youtube.com/watch?reload=9&v=RRcFlF1Ekp8
+
+https://laravel.com/docs/7.x/blade
+
+{{-- comentario --}}
+{{ codigo blade }}
+
+@php comeca um bloco php
+
+@endphp termina um bloco php
+
+dentro do codigo php vale tudo sobre php
+
+@if ()
+@endif
+
+@unless()
+
+@endunless
+
+
+
+
+* Referencias
+[fn:laravel] https://laravel.com/docs/7.x
+[fn:githubprojetocriado] https://github.com/wagnermarques/backupsys/tree/criacaodoprojeto
+
+

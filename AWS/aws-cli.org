@@ -52,6 +52,16 @@
    : 
    : aws-cli/1.18.36 Python/3.7.6 Linux/5.5.13-200.fc31.x86_64 botocore/1.15.36
 
+   
+  [wagner@Unknown ansible] $ aws configure list
+      Name                    Value             Type    Location
+      ----                    -----             ----    --------
+   profile                <not set>             None    None
+access_key     ****************KIXP              env    
+secret_key     ****************31BF              env    
+    region                <not set>             None    None
+[wagner@Unknown ansible] $ 
+
 
 * So atualizando caso ja tenha intalado  
   rode pip3 list  --outdated pra ver se esta desatualizado, se tiver

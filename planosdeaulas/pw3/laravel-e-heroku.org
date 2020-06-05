@@ -1,0 +1,346 @@
+#+TITLE: LARAVEL COM HEROKU
+#+SUBTITLE: Fazendo o deploy da nossa aplicacao no Heroku
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+#+NAME:npm install -g heroku
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  npm install -g heroku
+#+END_SRC
+
+
+
+#+NAME:heroku -v
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku -v
+#+END_SRC
+
+
+#+NAME: composer create-project laravel/laravel --prefer-dist hello_laravel_heroku
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  cd /home/wagner/
+  composer create-project laravel/laravel --prefer-dist hello_laravel_heroku  
+#+END_SRC
+
+Neste momento temos o comando do heroku instalado e o nosso projeto do
+laravel criado pelo composer.
+
+
+#+NAME:heroku login -i
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku login -i
+#+END_SRC
+
+
+
+
+
+#+NAME: git init
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  cd diretorioDoProjeto
+  git init
+  git add .
+  git commit -m "novo projeto laravel"
+#+END_SRC
+
+#+NAME: heroku apps:create example
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku apps:create NOME_DO_SEU_APP (tipo meuapplaravel)
+#+END_SRC
+
+
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+  git add .
+  git commit -am "Procfile added"
+#+END_SRC
+
+
+
+Setting a Laravel encryption key
+
+#+NAME: php artisan key:generate --show
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  #Dentro do diretorio do projeto
+  php artisan key:generate --show
+  heroku config:set APP_KEY=...
+#+END_SRC
+
+
+
+#+NAME: git push heroku master
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  git push heroku master
+  heroku open    
+#+END_SRC
+
+
+
+
+https://devcenter.heroku.com/articles/getting-started-with-laravel
+
+https://devcenter.heroku.com/articles/heroku-cli
+
+https://www.heroku.com/ 
+
+
+https://devcenter.heroku.com/articles/using-the-cli
+
+
+
+* refs
+  
+
+
+
+[wagner@compras6 hello_laravel_heroku] $ heroku apps:create --help
+creates a new app
+
+USAGE
+  $ heroku apps:create [APP]
+
+ARGUMENTS
+  APP  name of app to create
+
+OPTIONS
+  -b, --buildpack=buildpack  buildpack url to use for this app
+  -n, --no-remote            do not create a git remote
+  -r, --remote=remote        the git remote to create, default "heroku"
+  -s, --stack=stack          the stack to create the app on
+  -t, --team=team            team to use
+  --addons=addons            comma-delimited list of addons to install
+  --json                     output in json format
+  --region=region            specify region for the app to run in
+  --space=space              the private space to create the app in
+  --ssh-git                  use SSH git protocol for local git remote
+
+EXAMPLES
+  $ heroku apps:create
+  Creating app... done, stack is heroku-18
+  https://floating-dragon-42.heroku.com/ | https://git.heroku.com/floating-dragon-42.git
+
+  # or just
+  $ heroku create
+
+  # use a heroku.yml manifest file
+  $ heroku apps:create --manifest
+
+  # specify a buildpack
+  $ heroku apps:create --buildpack https://github.com/some/buildpack.git
+
+  # specify a name
+  $ heroku apps:create example
+
+  # create a staging app
+  $ heroku apps:create example-staging --remote staging
+
+  # create an app in the eu region
+  $ heroku apps:create --region eu
+
+[wagner@compras6 hello_laravel_heroku] $ 
+
+
+
+
+
+list your apps
+
+USAGE
+  $ heroku apps
+
+OPTIONS
+  -A, --all          include apps in all teams
+  -p, --personal     list apps in personal account when a default team is set
+  -s, --space=space  filter by space
+  -t, --team=team    team to use
+  --json             output in json format
+
+EXAMPLES
+  $ heroku apps
+  === My Apps
+  example
+  example2
+
+  === Collaborated Apps
+  theirapp   other@owner.name
+
+
+heroku apps:create [APP]
+
+creates a new app
+
+USAGE
+  $ heroku apps:create [APP]
+
+ARGUMENTS
+  APP  name of app to create
+
+OPTIONS
+  -b, --buildpack=buildpack  buildpack url to use for this app
+  -n, --no-remote            do not create a git remote
+  -r, --remote=remote        the git remote to create, default "heroku"
+  -s, --stack=stack          the stack to create the app on
+  -t, --team=team            team to use
+  --addons=addons            comma-delimited list of addons to install
+  --json                     output in json format
+  --region=region            specify region for the app to run in
+  --space=space              the private space to create the app in
+  --ssh-git                  use SSH git protocol for local git remote
+
+EXAMPLES
+  $ heroku apps:create
+  Creating app... done, stack is heroku-18
+  https://floating-dragon-42.heroku.com/ |
+  https://git.heroku.com/floating-dragon-42.git
+
+  # or just
+  $ heroku create
+
+  # use a heroku.yml manifest file
+  $ heroku apps:create --manifest
+
+  # specify a buildpack
+  $ heroku apps:create --buildpack https://github.com/some/buildpack.git
+
+  # specify a name
+  $ heroku apps:create example
+
+  # create a staging app
+  $ heroku apps:create example-staging --remote staging
+
+  # create an app in the eu region
+  $ heroku apps:create --region eu
+
+heroku apps:destroy
+
+permanently destroy an app
+
+USAGE
+  $ heroku apps:destroy
+
+OPTIONS
+  -a, --app=app          app to run command against
+  -c, --confirm=confirm
+  -r, --remote=remote    git remote of app to use
+
+DESCRIPTION
+  This will also destroy all add-ons on the app.
+
+heroku apps:errors
+
+view app errors
+
+USAGE
+  $ heroku apps:errors
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -r, --remote=remote  git remote of app to use
+  --dyno               show only dyno errors
+  --hours=hours        number of hours to look back (default 24)
+  --json               output in json format
+  --router             show only router errors
+
+heroku apps:favorites
+
+list favorited apps
+
+USAGE
+  $ heroku apps:favorites
+
+OPTIONS
+  --json  output in json format
+
+heroku apps:favorites:add
+
+favorites an app
+
+USAGE
+  $ heroku apps:favorites:add
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -r, --remote=remote  git remote of app to use
+
+heroku apps:favorites:remove
+
+unfavorites an app
+
+USAGE
+  $ heroku apps:favorites:remove
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -r, --remote=remote  git remote of app to use
+
+heroku apps:info
+
+show detailed app information
+
+USAGE
+  $ heroku apps:info
+
+OPTIONS
+  -a, --app=app        app to run command against
+  -j, --json
+  -r, --remote=remote  git remote of app to use
+  -s, --shell          output more shell friendly key/value pairs
+
+DESCRIPTION
+  $ heroku apps:info
+  === example
+  Git URL:   https://git.heroku.com/example.git
+  Repo Size: 5M
+  ...
+
+  $ heroku apps:info --shell
+  git_url=https://git.heroku.com/example.git
+  repo_size=5000000
+  ...
+
+heroku apps:join
+
+add yourself to a team app
+
+USAGE
+  $ heroku apps:join
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -r, --remote=remote  git remote of app to use
+
+heroku apps:leave
+
+remove yourself from a team app
+
+USAGE
+  $ heroku apps:leave
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -r, --remote=remote  git remote of app to use
+
+

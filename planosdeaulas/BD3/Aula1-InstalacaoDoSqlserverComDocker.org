@@ -1,0 +1,433 @@
+#+TITLE: Instalacao do Sqlserver
+#+SUBTITLE: No linux usando docker
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+* Tema
+  Instalacao do Sqlserver no linux com docker
+* Justificativa e Objetivos
+  Pra gente usar o sqlserver, precisamos instalar ele. Em geral o
+  professor disponibiliza alternativas como um sqlserver na nuvem ou
+  no laboratorio, mas e muito importante que o aluno tenha seu proprio
+  ambiente tambem porque isso aumenta a produtividade do aluno e poe o
+  aluno em contato tambem com situacoes que ele so vai vivenciar
+  durante a instalacao do sqlserver.
+
+  Este material vai contribuir com alunos que utiliza linux com docker instalado.
+* Duração
+  1 Aula
+
+* Pré-Requisitos
+** Conhecimentos Prévios
+   entender o que he um container (o prof pode te dizer isso de boa)
+
+
+   Basicao de comandos linux
+  
+   Docker instalado
+
+   Internet
+
+   Utilizacao anteior do virtualbox ou vmwareplayer pode ajudar porque
+   apesar de container nao ser uma maquina virtual da pra fazer uma
+   analogia entre eles, em especial qdo a gente configura um volume no
+   nosso container já que isso tem a mesma funcinonalidade da pasta
+   compartilhada do vitualbox...
+** Recursos
+   docker --version
+
+   vscode instalado
+
+* Procedimento didatico
+  Exposicao dialogada deste material 
+
+* Exercicioos e Atividades de Reflexão/Fixação
+  Execucao desse material
+
+* Avaliação
+  Print do container rodando
+
+* Agradecimentos
+  Ao aluno Gustavo do 3 modulo pela ajuda na configuracao da conexao
+  usando o vscode
+
+* Introducao
+  A gente vai instalar o sqlserver e conectar nele com o vscode
+
+* Fazendo pull da imagem do mssqlserver
+  Primeiro você deve fazer o pull da imagem do container. Claro que pra usar o comando docker vc precisa instalar ele
+  também. No meu caso estou usando a versão indicada abaixo. 
+  Tem muitos tutorials sobre como instalar o docker no google.
+
+    #+name: docker version
+    #+begin_src sh  :eval exports  :results output replace  :exports both
+    docker --version
+    #+end_src
+
+    #+RESULTS: docker version
+    : Docker version 19.03.7, build 7141c199a2
+
+    Com o docker funcionando, você pode fazer o pull da imagem do
+    mssqlserver
+    
+    #+name: docker pull mssqlserver
+    #+begin_src sh  :results output replace  :exports both
+    docker pull microsoft/mssql-server-linux:latest
+    #+end_src
+
+    #+RESULTS: docker pull mssqlserver
+    #+begin_example
+    latest: Pulling from microsoft/mssql-server-linux
+    59ab41dd721a: Already exists
+    57da90bec92c: Already exists
+    06fe57530625: Already exists
+    5a6315cba1ff: Already exists
+    739f58768b3f: Already exists
+    0b751601bca3: Pulling fs layer
+    bcf04a22644a: Pulling fs layer
+    6b5009e4f470: Pulling fs layer
+    a9dca2f6722a: Pulling fs layer
+    a9dca2f6722a: Waiting
+    0b751601bca3: Verifying Checksum
+    0b751601bca3: Download complete
+    0b751601bca3: Pull complete
+    a9dca2f6722a: Verifying Checksum
+    a9dca2f6722a: Download complete
+    bcf04a22644a: Verifying Checksum
+    bcf04a22644a: Download complete
+    bcf04a22644a: Pull complete
+    6b5009e4f470: Verifying Checksum
+    6b5009e4f470: Download complete
+    6b5009e4f470: Pull complete
+    a9dca2f6722a: Pull complete
+    Digest: sha256:9b700672670bb3db4b212e8aef841ca79eb2fce7d5975a5ce35b7129a9b90ec0
+    Status: Downloaded newer image for microsoft/mssql-server-linux:latest
+    docker.io/microsoft/mssql-server-linux:latest
+    #+end_example
+
+    Lembrando que se vc ja tenha feito o pull desse container, agora a
+    imagem do container ja foi baixada na sua maquina entao, neste
+    caso, seria só rodar a imagem mesmo. No próximo topico a gente faz isso.
+
+
+* Rodando nosso container com sqlserver
+
+   Agora você já fez o pull da imagem do container, tem que roda-lo, e depois, checar se o seu
+   container está rodando.
+
+   Esse comando abaixo, docker ps -a mostra que nosso container com o
+   sqlserver ainda nao ta rodando nem foi rodado nenhuma vez ainda.
+
+  #+name docker ps
+  #+begin_src sh
+  docker ps -a
+  #+end_src
+
+  Aqui a gente roda nosso container pela primeira vez usando o docker
+  run. Caso vc já tenha rodado o container, aí pula esse comando aqui
+  e vai para o próximo, que é o docker start. 
+
+  Mas voltando ao assunto de rodar o nosso container pela primeira
+  vez. Esse comando abaixo, que é um docker run, faz isso, e o
+  resultado é uma instancia do  mssqlserver rodando. Repare que o sqlserver tera a disposicao o
+  diretorio /sql_scripts onde esta nossos scripts que vamos rodar.
+
+  Esse diretorio /sql_scripts vai estar dentro do seu container,
+  espelhando uma pasta da sua maquina que vc vai criar pra colocar
+  seus scripts sql.
+
+  Isso mesmo, vc vai criar uma pasta, que pode chamar sql_scripts pra
+  que seus scripts fiquem la dentro e o comando docker run vai
+  espelhar esse diretorio da sua maquina em no diretorio /sql_scripts dentro do
+  container.
+
+  
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  mkdir -p /home/$USER/sql_scripts
+#+END_SRC
+
+
+  #+name: docker run mssqlserver
+  #+begin_src sh
+    cd /home/$USER/sql_scripts
+    docker run --name sqlserver -v $(pwd)/sql_scripts/:/sql_scripts -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Aluno123#' -p 1433:1433 -d microsoft/mssql-server-linux
+  #+end_src
+
+  Este comando abaixo, he um docker start. Você roda esse comando ao
+  inves do docker run caso vc ja tenha rodado o container
+  anteriormente com o docker run. Se você ja rodou anteriormente a
+  instancia do container significa que ela ja existe e esta apenas parada, por isso que
+  um docker start já estarta o container perfeitamente.
+  
+  Pra confirmar que vc já tem a instancia criada e só um docker start
+  já subiria o seu container, dá um docker ps -a e se a sua instancia
+  for mostrada, então, obviamente, ela já existe, e nesse caso é só
+  dar um docker start conforme abaixo.
+
+  #+name docker start sqlserver
+  #+begin_src sh
+    docker start sqlserver &
+  #+end_src
+
+  #+RESULTS:
+
+  
+  Depois de dar um docker run ou docker start, pra confirmar que a
+  instacia do seu sqlserver ainda nao esta pronta pra conexoes
+  externas, so conexoes que venha de dentro do container. Entenda
+  conexoes externas como a conexao que a gente vai fazer usando
+  vscode, por exemplo, e conexoes internas quando a gente entra dentro
+  do prompt de comando do container e roda o sqlcmd. 
+
+  No momento ja da pra ver nossa instancia de container rodando...
+  
+   #+NAME:  docker ps  pra ver a instancia                   
+   #+BEGIN_SRC shell :session s1 :results output :exports both
+      docker ps
+   #+END_SRC
+
+   #+RESULTS: docker ps  pra ver a instancia
+   : 
+   : CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                    NAMES
+   : 1433/tcp   sqlserver
+
+* Conhecendo o basico do nosso container sqlserver e a pasta compartilhada sql_scripts
+  Imagine nosso container sqlserver como sendo uma maquina linux que
+  tem dentro dela um sqlserver rodando.
+  
+  A gente pode entrar dentro do nosso container e rodar comandos de
+  dentro dela.
+
+  Vamos dar uns comandinhos basicos pra gente ver isso funcionando e
+  depois a gente da outros comandos mais interessantes e relacionados
+  ao sqlserver.
+
+  O comando abaixo da um comando ls -l
+
+  Pra entender como o comando abaixo entra dentro do container e roda
+  o comando ls -l considere o seguinte:
+
+  A parte do comando "docker exec -it" usa o docker exec pra executar
+  o comando dentro do container e o -it sigifica que a saida do
+  comando vai voltar pra gente no mesmo prompt de comando que estamos
+  utilizando pra rodar o comando.
+
+  docker exec -ti sqlserver
+
+  Essa parte "sqlserver" indica qual o container que o docker vai
+  entrar pra executar o comando...
+
+  e ls -l e o comando a ser executado...
+
+#+NAME: docker exec -it sqlserver ls -l
+#+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec -it sqlserver ls -l
+#+END_SRC
+
+#+RESULTS: docker exec -it sqlserver ls -l
+#+begin_example
+total 76
+drwxr-xr-x.   1 root root 4096 Mar 26 23:21 bin
+drwxr-xr-x.   2 root root 4096 Apr 24  2018 boot
+drwxr-xr-x.   5 root root  340 May 16 21:33 dev
+drwxr-xr-x.   1 root root 4096 May 16 21:33 etc
+drwxr-xr-x.   2 root root 4096 Apr 24  2018 home
+drwxrwxr-x.   1 root root 4096 Mar 26 23:17 lib
+drwxr-xr-x.   2 root root 4096 Jun 12  2019 lib64
+drwxr-xr-x.   2 root root 4096 Jun 12  2019 media
+drwxr-xr-x.   2 root root 4096 Jun 12  2019 mnt
+drwxrwxr-x.   1 root root 4096 Mar 26 23:22 opt
+dr-xr-xr-x. 285 root root    0 May 16 21:33 proc
+drwx------.   2 root root 4096 Jun 12  2019 root
+drwxr-xr-x.   1 root root 4096 Nov 24 00:27 run
+drwxr-xr-x.   1 root root 4096 Mar 26 23:22 sbin
+drwxrwxr-x.   2 1000 1000 4096 May 16 21:20 sql_scripts
+drwxr-xr-x.   2 root root 4096 Jun 12  2019 srv
+dr-xr-xr-x.  13 root root    0 May 15 21:27 sys
+drwxrwxrwt.   1 root root 4096 Mar 26 23:22 tmp
+drwxrwxr-x.   1 root root 4096 Mar 26 23:15 usr
+drwxr-xr-x.   1 root root 4096 Mar 26 23:20 var
+#+end_example
+
+Olhando na saida do nosso script, veja que na raiz do container tem
+tambem uma pasta chamada sql_scripts.
+
+Se vc ta lendo direitinho esse material vc vai lembrar que apesar de
+essa pasta estar dentro do seu container, na verdade ela he uma pasta
+da sua propria maquina. Se vc por um arquivo dentro dessa pasta da sua
+maquina esse arquivo estara tambem dentro da pasta /sql_scripts do
+container.
+
+Vc pode ate ver o que esta dentro dessa pasta...
+
+#+NAME: docker exec -it sqlserver ls -l /sql_scripts
+#+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec -it sqlserver ls -l /sql_scripts
+#+END_SRC
+
+#+RESULTS: docker exec -it sqlserver ls -l /sql_scripts
+: total 4
+: -rw-rw-r--. 1 1000 1000 232 May 16 21:20 allow_remote_connection.sql
+
+Hummm
+
+Tem um arquivo la dentro...
+
+De cara ja da pra ver que faz sentido o fato de que nos vamos colar
+nossos scripts sql dentro dessa pasta porque ja tem ate um la
+dentro...
+
+Tem no meu, no seu ainda nao tem.. vc tem que cria-lo.
+
+Vou mostrar o conteudo dele aqui pra vc e vc vai criar um arquivo
+iguazinho a ele e salva-lo nessa pasta porque a gente vai rodar esse
+script daqui a pouco no nosso sqlserver que esta rodando dentro desse
+nossocontainer...
+
+
+#+NAME: docker exec -it sqlserver cat /sql_scripts/allow_remote_connection.sql
+#+BEGIN_SRC shell :session s1 :results output :exports both
+   docker exec -it sqlserver cat /sql_scripts/allow_remote_connection.sql
+#+END_SRC
+
+#+RESULTS: docker exec -it sqlserver cat /sql_scripts/allow_remote_connection.sql
+: -- https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-remote-access-server-configuration-option?view=sql-server-ver15
+: EXEC sys.sp_configure N'remote access', N'1'
+: GO
+:   
+: RECONFIGURE WITH OVERRIDE
+: GO
+
+ vou colocar esse script aqui pra vc mais facil de ler...
+
+ #+INCLUDE: ./sql_scripts/allow_remote_connection.sql :src sql
+
+ Entao sua tarefa e criar esse arquivo sql se salva-lo na pasta
+ compartilhada com o container sql_scripts.
+
+ Se tiver alguma duvida aqui avisa o professor, essa estapa e
+ fundamental pra conectar remtamente com o seu sqlserver. Mais
+ especificamente falando, se se esse arquivo nao estiver aqui pra
+ gente rodar ele daqui a pouco no nosso sqlserver nao vamos conseguir
+ conectar usando o vscode.
+
+ Alias, agradecimentos ao aluno Gustavo do 3 por mostrar como faze
+ essa conexao com o vscode. :))
+
+
+* Usando sqlcmd pra rodar o script allow_remote_connection.sql
+  Esse comando, abaixo, é só pra demostrar que nosso container sqlserver está
+  funcionando e também pra demonstrar como utilizar o comando sqlcmd.
+
+  #+name: sqlcmd
+  #+begin_src sh :results output replace  :exports both
+  docker exec sqlserver /opt/mssql-tools/bin/sqlcmd
+  #+end_src
+
+  #+RESULTS: sqlcmd
+  #+begin_example
+  Microsoft (R) SQL Server Command Line Tool
+  Version 17.2.0000.1 Linux
+  Copyright (c) 2012 Microsoft. All rights reserved.
+
+  usage: sqlcmd            [-U login id]          [-P password]
+    [-S server or Dsn if -D is provided] 
+    [-H hostname]          [-E trusted connection]
+    [-N Encrypt Connection][-C Trust Server Certificate]
+    [-d use database name] [-l login timeout]     [-t query timeout]
+    [-h headers]           [-s colseparator]      [-w screen width]
+    [-a packetsize]        [-e echo input]        [-I Enable Quoted Identifiers]
+    [-c cmdend]
+    [-q "cmdline query"]   [-Q "cmdline query" and exit]
+    [-m errorlevel]        [-V severitylevel]     [-W remove trailing spaces]
+    [-u unicode output]    [-r[0|1] msgs to stderr]
+    [-i inputfile]         [-o outputfile]
+    [-k[1|2] remove[replace] control characters]
+    [-y variable length type display width]
+    [-Y fixed length type display width]
+    [-p[1] print statistics[colon format]]
+    [-R use client regional setting]
+    [-K application intent]
+    [-M multisubnet failover]
+    [-b On error batch abort]
+    [-D Dsn flag, indicate -S is Dsn] 
+    [-X[1] disable commands, startup script, environment variables [and exit]]
+    [-x disable variable substitution]
+    [-? show syntax summary]
+  #+end_example
+
+  Entao, agora vamos rodar nosso script
+
+  Guarde esse esquema de rodar os script porque vc pode rodar os
+  outros seus scripts que estiverem dentro da sua pasta sql_script
+  desse mesmo jeito. Quem nao for usar o vscode vai poder usar esse
+  metodo...
+
+  #+name: docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/allow_remote_connection.sql
+  #+begin_src sh :results output replace  :exports both
+  docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/allow_remote_connection.sql
+  #+end_src
+
+  #+RESULTS: docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Aluno123 -i /sql_scripts/allow_remote_connection.sql
+
+* Conectando com o vscode  
+  Vamos conectar usando o vscode.  Pra isso a gente vai instalar
+  primeiro um pluging especifico pra isso e ai depois vamos conectar
+  de verdade..
+
+** Instalando o plugin
+
+[[file:./imgs/vscode_sqlserver1.png]]
+file:./imgs/vscode_sqlserver2.png
+file:./imgs/vscode_sqlserver3.png
+file:./imgs/vscode_sqlserver4.png
+file:./imgs/vscode_sqlserver5.png
+file:./imgs/vscode_sqlserver6.png
+
+** Conectando
+file:./imgs/vscode_sqlserver7.png
+
+[[file:./imgs/vscode_sqlserver_container_connection1.png]]
+[[file:./imgs/vscode_sqlserver_container_connection2.png]]
+[[file:./imgs/vscode_sqlserver_container_connection3.png]]
+[[file:./imgs/vscode_sqlserver_container_connection4.png]]
+[[file:./imgs/vscode_sqlserver_container_connection5.png]]
+[[file:./imgs/vscode_sqlserver_container_connection6.png]]
+[[file:./imgs/vscode_sqlserver_container_connection7.png]]
+[[file:./imgs/vscode_sqlserver_container_connection8.png]]
+[[file:./imgs/vscode_sqlserver_container_connection9.png]]
+[[file:./imgs/vscode_sqlserver_container_connection10.png]]
+[[file:./imgs/vscode_sqlserver_container_connection11.png]]
+[[file:./imgs/vscode_sqlserver_container_connection12.png]]
+
+
+
+
+
+  
+
+* Referencias
+
+

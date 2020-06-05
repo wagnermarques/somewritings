@@ -4,20 +4,85 @@
 #+EXCLUDE_TAGS: noexport
 #+HTML_DOCTYPE: html5
 
-* PamI
-  [[./pamI/Aula1.org][Aula1]]
+* Apresentação
 
-* PamII
+* PAMI
+
+
+  Nessa aula temos algumas orientacoes gerais e ambientacao no teams
+
+  [[./pamI/Aula1.org][Aula1- Orientacoes Gerais]]
+  
+  
+
+  Aqui a gente vai criar uma tela de login, lembrando como executa um
+  aplicativo mobile do cordova no nosso navegador. 
+
+  [[./pamI/tela_de_login_com_cordova.org][Aula - Tela de Login com Cordova]]
+
+
+  
+* PAMII
   [[./pamII/Aula1.org][Aula1]]
 
 
 * PW3
-  [[./pw3/Aula1.org][Aula1]]
 
-  [[./pw3/Aula2.org][Aula2]]
+  [[./pw3/Aula1.org][Aula1 - Orientacoes Gerais]]
+
+  [[./pw3/Aula2.org][Aula2 - Amb e Primeiro Projeto Laravel]] 
+
+  [[./pw3/laravel-e-heroku.org][Aula3 - Projeto Laravel no Heroku]]
+
+  [[./pw3/laravel-e-heroku2.org][Aula4 - Entendendo o primeiro projeto Laravel]]
+  
+  [[./pw3/laravel-e-heroku3-PersistindoUsuario.org][Aula4 - Persistindo Usuarios]]
+
+* Sites
+  
+  https://arcane-castle-14315.herokuapp.com/
+
+  https://meuapplaravel.herokuapp.com/
+
+  https://projetolaravel2.herokuapp.com/
+
+  https://projetoum.herokuapp.com/
+
+  https://my-f-project.herokuapp.com/
+
 
 * BD3
-  [[./BD3/OrientacoesGerais.org][Aula1]]
+
+  Nossas aulas estao nos links abaixo.
+
+
+  [[./BD3/OrientacoesGerais.org][Aula1 - Orientacoes Gerais]]
+
+  Essa Aula1 tem algumas orientacoes gerais apenas...
+
+  As proximas aulas sao pra gente poder ter um banco pra
+  trabalhar. 
+
+  [[./BD3/Aula1-InstalacaoDoSqlserverComDocker.org][Aula1 - Inst Sqlserver Linux e Docker]]
+  
+  Nessa aula a gente instala o sqlserver no linux usando docker. 
+
+
+  [[./BD3/UsandoBancoDoHeroku.org][Aula1 - Usando Bco Dados do Heroku]]
+
+  Nessa aula a gente aprende a usar o banco de dados da nuvem do  heroku
+
+
+  As proximas aulas servem pra gente criar nosso script sql pra gente
+  ter um dominio pra gente trabalhar e aplicar os conceitos. 
+
+  [[./BD3/Aula1-LojaInfo.org][Aula1 - LojaInfo (em html)]]
+  
+  [[./BD3/Aula1-LojaInfo.pdf][Aula1 - LojaInfo (em pdf)]]
+
+  Nessa aula a gente revisa implementacao de banco de dados,
+  integridade referencial e estabelece um dominio pra gente trabalhar
+  depois com triggers, stored procedures etc...
 
 
 

@@ -1,0 +1,472 @@
+#+TITLE: Usando Banco de Dados na Nuvem do Heroku
+#+SUBTITLE: Introducao
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+* Tema
+  Usando Banco de dados do Heroku
+
+* Justificativa e Objetivos
+  Que o mercado utiliza nuvem e indiscutivel e so por isso ja faz
+  sentido a gente utililizar nuvem nas aulas do curso tecnico. 
+
+  A nuvem do heroku e bastante popular no mercado e prove um banco de
+  dados opensource bastante popular tambem.
+
+  Alem disso a instalacao de muitos servidores de varias disciplinas e
+  varios assuntos na maquina local do aluno nao e uma boa pratica e em
+  geral resulta em um ambiente super lento e desmotivador.
+
+  Por esses motivos e outros e muito importante encontrar-mos
+  alternativas em solucoes de nuvem e, para efeitos dessa disciplina,
+  estamos interessados em utilizar o banco de dados da nuvem do heroku.
+
+* Duracao
+  1 Aula
+
+* Pre-Requisitos
+** Conhecimentos Previos
+   Basicao sobre o que he o heroku (O prof pode te explicar)
+
+   
+** Recursos
+   Cliente do heroku instalado na sua maquina[fn:herokucli]
+
+   Se precisar fazer a instalacao[fn:herokucliInst], consulte os links na referencia
+   desse material ou peca ajuda do professor.
+
+* Procedimento didatico
+  Exposicao dialogada e contextualizacao e apoio aos alunos durante a
+  execucao dos procedimentos descritos neste material
+
+* Exercicioos e Atividades de Reflexão/Fixação
+  Execucao desse material e posterior utilizacao em outros apps
+
+* Avaliação
+  Por enquanto nenhuma
+
+* Introducao
+  Parece um pouco novo esse assunto, essa aula, mas se vc ler com
+  carinho, com calma e sem ansiedade vc vai fazer de boa... eu tb vou
+  fazer o meu melhor aqui pra que tudo faca sentido pra vc... Mas vc
+  sabe que e so perguntar no forum[fn:forumnosso] do nosso curso ou pro professor
+  mesmo. Vc so fica sozinho se vc nao se cumunicar...
+
+  Neste aula vamos usar o banco de dados postgresql provido
+  gratuitamente pelo heroku.
+
+  Vc precisa de um APP la no heroku e neste app a gente diz pro
+  heroku que usaremos um banco de dados.
+
+  Como a gente cria um app no heroku? Faca o seguinte...
+  
+
+  
+#+NAME:heroku apps:create backupsys
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku apps:create backupsys
+#+END_SRC
+
+Pra saber se vc criou seu app direitinho vc pode consultar os seus
+apps que vc tem no heroku como o comando abaixo...
+
+
+#+NAME:heroku apps
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku apps
+#+END_SRC
+
+#+RESULTS: heroku apps
+#+begin_example
+[2m=== [22m[1m[36mwagnerdocri@gmail.com[39m Apps[22m
+afternoon-earth-39122
+backupsys
+checkexames
+desolate-brushlands-63827
+hello3-laravel
+heroku-postgres-2fbcc39b
+heroku-postgres-a744e88e
+murmuring-fortress-41004
+planosdeaulas
+projetoeteczl
+pw3-laravel
+salty-reef-03497
+tranquil-depths-78728
+
+[2m=== [22m[1mCollaborated Apps[22m
+engsoftware2018  bjorgejorge85@gmail.com
+#+end_example
+
+Pela saida abaixo da pra ver que eu tenho varios apps la no heroku
+inclusive esse backupsys que criamos agora... Pra vc, se for a
+primeira fez que vc ta fazendo, vai aparecer so esse app mesmo...
+
+Pra apagar algum app que vc nao vai usar mais, he so usar o comando
+heroku app:destroy nomedoapp
+
+
+#+NAME:heroku app:destroy desolate-brushlands-63827
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku apps:destroy desolate-brushlands-63827 --confirm desolate-brushlands-63827
+#+END_SRC
+
+
+Bom, agora que vc tem um app na nuvem do heroku, e agora vamos
+adicionar o acesso ao banco de dados.
+
+Pra isso, basta executar o seguinte comando.
+
+
+#+NAME: heroku addons:create heroku-postgresql:hobby-dev
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku addons:create --app backupsys heroku-postgresql:hobby-dev
+#+END_SRC
+
+
+Adicionamos acesso ao banco de dados, mas isso ta meio misterioso
+ainda, onde que a gente pode ver alguma eviencia disso?
+
+Boa pergunta...
+
+De esse comando que vc vai perceber que o nosso app tem acesso a um
+banco
+
+
+#+NAME:heroku config --app backupsys
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku config --app backupsys
+#+END_SRC
+
+#+RESULTS: heroku config --app backupsys
+: [2m=== [22m[1mbackupsys Config Vars[22m
+: [34m[32mDATABASE_URL[34m[39m: postgres://oxqhncielwegia:8fb6586ca8cc5e3159c15c5ed2a0c32305c4939c22484e1084ed940d9cd55baf@ec2-52-44-55-63.compute-1.amazonaws.com:5432/ddkm16esktl7p5
+
+
+Podemos obter mais informacoes sobre nosso banco...
+
+#+NAME: heroku pg:info --app backupsys
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  heroku pg:info --app backupsys
+#+END_SRC
+
+#+RESULTS: heroku pg:info --app backupsys
+#+begin_example
+[2m=== [22m[1m[32mDATABASE_URL[39m[22m
+Plan:                  Hobby-dev
+Status:                Available
+Connections:           0/20
+PG Version:            12.2
+Created:               2020-05-17 16:19 UTC
+Data Size:             7.9 MB
+Tables:                0
+Rows:                  0/10000 (In compliance)
+Fork/Follow:           Unsupported
+Rollback:              Unsupported
+Continuous Protection: Off
+Add-on:                [33mpostgresql-fluffy-96271[39m
+#+end_example
+
+
+Ja ta tudo ok pra usar o banco na nossa aplicacao, nos vamos ver como
+fazer daqui a pouco. Mas uma curiosidade: vc percebeu que o banco de
+dados e na verdade um addon do heroku. Tipo algo como um plugin de
+acesso a banco de dados... Vc pode ter outros addons no seu projeto,
+obviamente tem varios bastantes interessantes e disponiveis. Pra vc
+ver quais addons estao adicionados no seu projeto, de o seguinte
+comando...
+
+
+#+NAME: heroku addons --app backupsys
+#+BEGIN_SRC shell :session s1 :results output :exports code
+[wagner@Unknown BD3] $ heroku addons --app backupsys
+
+Add-on                                       Plan       Price  State  
+
+heroku-postgresql (postgresql-fluffy-96271)  hobby-dev  free   created
+ as DATABASE
+
+The table above shows add-ons and the attachments to the current app (backupsys) or other apps.
+
+#+END_SRC
+
+
+* Acessando nosso banco
+
+Pra acessar o postgresql a gente vai precisar instalar o cliente do
+postgresql em nossa maquina. No site do heroku, mostra como a gente
+faz essa instalacao[fn:herokupg1] 
+
+no meu linux fedora eu dou um dnf install postgresql, em outros linux
+baseados em debian vc pode usar um sudo apt-get install postgresql ou
+consulte o como fazer se sua distribuicao usar outro gerenciador de
+pacotes.
+
+Como a maioria do pessoal usa windows, tem uma url[fn:forumnosso] especifica pra
+isso. E so fazer o download e dar next next.
+
+o que vc precisa e do comando psql, e com ele que a gente vai
+interagir com nosso banco de dados.
+
+Veja como esta na minha maquina
+
+
+#+NAME:psql --version
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  psql --version
+#+END_SRC
+
+#+RESULTS: psql --version
+: psql (PostgreSQL) 11.7
+
+
+Bom agora a gente quer conectar no nosso banco no heroku, pra isso a
+gente vai indicar nosso banco ao psql atraves de uma variabel de
+ambiente. Se vc tiver no windows vc pode user o comando set no linux o
+comando export. Veja esses comandos abaixo.
+
+
+#+NAME: export DATABASE_URL=postgres://oxqhncielwegia:8fb6586ca8cc5e3159c15c5ed2a0c32305c4939c22484e1084ed940d9cd55baf@ec2-52-44-55-63.compute-1.amazonaws.com:5432/ddkm16esktl7p5
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  export DATABASE_URL=postgres://oxqhncielwegia:8fb6586ca8cc5e3159c15c5ed2a0c32305c4939c22484e1084ed940d9cd55baf@ec2-52-44-55-63.compute-1.amazonaws.com:5432/ddkm16esktl7p5
+#+END_SRC
+
+
+No seu windows troque comando export por set
+
+Lembrando que a variavel de ambiente vai valer para o seu terminal que
+vc esta usando, nao vale pra outros.
+
+Bom agora e so conectar mesmo...
+
+
+
+#+NAME:heroku pg:psql
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  [wagner@Unknown ~] $ heroku pg:psql --app backupsys
+--> Connecting to postgresql-fluffy-96271
+psql (11.7, servidor 12.2 (Ubuntu 12.2-2.pgdg16.04+1))
+AVISO: psql versão 11, servidor versão 12.
+         Algumas funcionalidades do psql podem não funcionar.
+conexão SSL (protocolo: TLSv1.2, cifra: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compressão: desabilitado)
+Digite "help" para ajuda.
+
+backupsys::DATABASE=> 
+
+
+[wagner@Unknown BD3] $ heroku pg:psql --app backupsys
+--> Connecting to postgresql-fluffy-96271
+psql (11.7, servidor 12.2 (Ubuntu 12.2-2.pgdg16.04+1))
+AVISO: psql versão 11, servidor versão 12.
+         Algumas funcionalidades do psql podem não funcionar.
+conexão SSL (protocolo: TLSv1.2, cifra: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compressão: desabilitado)
+Digite "help" para ajuda.
+
+backupsys::DATABASE=> \c ddkm16esktl7p5
+psql (11.7, servidor 12.2 (Ubuntu 12.2-2.pgdg16.04+1))
+AVISO: psql versão 11, servidor versão 12.
+         Algumas funcionalidades do psql podem não funcionar.
+conexão SSL (protocolo: TLSv1.2, cifra: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compressão: desabilitado)
+Você está conectado agora ao banco de dados "ddkm16esktl7p5" como usuário "oxqhncielwegia".
+backupsys::DATABASE=> 
+
+#+END_SRC
+
+A url do datbase tem esse formato:
+
+postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
+
+Entao, os dados do nosso banco de dados sao os seguintes....
+
+*Servidor do nosso banco*:ec2-52-44-55-63.compute-1.amazonaws.com:5432
+*Nome do nosso banco*: ddkm16esktl7p5
+*Usuario*:oxqhncielwegia
+*Senha*:8fb6586ca8cc5e3159c15c5ed2a0c32305c4939c22484e1084ed940d9cd55baf
+
+
+Ja estamos conectados, agora podemos usar nosso banco...
+
+* Usando o banco de dados com psql
+
+Conectado no banco vc pode dar um "\d" sem as aspas pra ver se vc tem
+alguma tabela criada... a gente sabe que nao tem ne... he so pra confirmar...
+
+#+NAME:backupsys::DATABASE=> \d backupsys::DATABASE=> 
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  backupsys::DATABASE=> \d
+  Did not find any relations.
+  backupsys::DATABASE=> 
+#+END_SRC
+
+
+  
+Bom vamos criar nossa primeira tabela entao ne... o basicao de sql que
+a gente sa sabe, vamos la...
+
+Vou criar entao uma tabela com nome tbl_teste1 com o seguinte codigo
+sql
+
+
+#+NAME: sql code create table tbl_teste1(id integer primary key, col1 varchar(10));
+#+BEGIN_SRC sql :session s1 :results output :exports code
+  create table tbl_teste1(id integer primary key, col1 varchar(10));
+#+END_SRC
+
+
+So que vou digitar isso na linha de comando do psql conectado...
+
+
+#+NAME: create table tbl_teste1(id integer primary key, col1 varchar(10));
+#+BEGIN_SRC sql :session s1 :results output :exports both
+  backupsys::DATABASE=> create table tbl_teste1(id integer primary key, col1 varchar(10));
+CREATE TABLE
+backupsys::DATABASE=> \d
+               Lista de relações
+ Esquema |    Nome    |  Tipo  |      Dono      
+---------+------------+--------+----------------
+ public  | tbl_teste1 | tabela | oxqhncielwegia
+(1 registro)
+
+backupsys::DATABASE=> 
+
+#+END_SRC
+
+
+Veja que deu um "\d" de novo pra listas as tabelas do banco e a nossa
+ta aparecendo la... de agora em diante e so ir dando os comandos sql
+na linha de comando normalmente pra inserir e pra dar select...
+
+So que vcs sabem que a gente costuma usar em bando de dados digitar
+nossos scripts sql em um arquivo sql que em geral a gente acaba
+commitando e tudo... entao como a gente utilizaria um arquivo de
+script nessa situacao aqui? vamos ver...
+
+* usando nossos scripts sql
+  
+Bom, eu escrevi um script sql basicao tambem, que cria uma tabela...
+
+
+#+INCLUDE: ./sql_pgscripts/scriptdeteste.sql :src sql
+
+Vou usar o "\i caminhoProMeuScript.sql" pra rodar meu script...
+
+
+#+NAME:backupsys::DATABASE=> \i /home/wagner/envs/env-dev/sources/somewritings/planosdeaulas/BD3/sql_pgscripts/scriptdeteste.sql 
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  backupsys::DATABASE=> \i /home/wagner/envs/env-dev/sources/somewritings/planosdeaulas/BD3/sql_pgscripts/scriptdeteste.sql 
+CREATE TABLE
+backupsys::DATABASE=> \d
+               Lista de relações
+ Esquema |    Nome    |  Tipo  |      Dono      
+---------+------------+--------+----------------
+ public  | tbl_teste1 | tabela | oxqhncielwegia
+ public  | test2      | tabela | oxqhncielwegia
+(2 registros)
+
+backupsys::DATABASE=> 
+
+#+END_SRC
+
+
+* Desconectando
+
+pra desconectar use um "\q"
+
+* veja tambem
+
+pra conhecer outros comandos use "\h"
+
+* conectando usando o netbeans
+
+[[file:./imgs/nb_heroku_pg_conn1.png]]
+[[file:./imgs/nb_heroku_pg_conn2.png]]
+[[file:./imgs/nb_heroku_pg_conn3.png]]
+[[file:./imgs/nb_heroku_pg_conn4.png]]
+[[file:./imgs/nb_heroku_pg_conn5.png]]
+[[file:./imgs/nb_heroku_pg_conn6.png]]
+[[file:./imgs/nb_heroku_pg_conn7.png]]
+[[file:./imgs/nb_heroku_pg_conn8.png]]
+[[file:./imgs/nb_heroku_pg_conn9.png]]
+[[file:./imgs/nb_heroku_pg_conn10.png]]
+[[file:./imgs/nb_heroku_pg_conn11.png]]
+[[file:./imgs/nb_heroku_pg_conn12.png]]
+[[file:./imgs/nb_heroku_pg_conn13.png]]
+[[file:./imgs/nb_heroku_pg_conn14.png]]
+[[file:./imgs/nb_heroku_pg_conn15.png]]
+[[file:./imgs/nb_heroku_pg_conn16.png]]
+[[file:./imgs/nb_heroku_pg_conn16.png]]
+[[file:./imgs/nb_heroku_pg_conn17.png]]
+[[file:./imgs/nb_heroku_pg_conn18.png]]
+[[file:./imgs/nb_heroku_pg_conn19.png]]
+[[file:./imgs/nb_heroku_pg_conn20.png]]
+[[file:./imgs/nb_heroku_pg_conn21.png]]
+
+* conectando usando o vscode
+
+Instalacao do plugin
+
+file:./imgs/vscode_heroku_pg_conn1.png
+file:./imgs/vscode_heroku_pg_conn2.png
+file:./imgs/vscode_heroku_pg_conn3.png
+
+Usando o plugin pra conectar
+
+file:./imgs/vscode_heroku_pg_conn14.png
+file:./imgs/vscode_heroku_pg_conn15.png
+file:./imgs/vscode_heroku_pg_conn16.png
+file:./imgs/vscode_heroku_pg_conn17.png
+file:./imgs/vscode_heroku_pg_conn18.png
+file:./imgs/vscode_heroku_pg_conn19.png
+file:./imgs/vscode_heroku_pg_conn20.png
+file:./imgs/vscode_heroku_pg_conn21.png
+file:./imgs/vscode_heroku_pg_conn22.png
+file:./imgs/vscode_heroku_pg_conn23.png
+file:./imgs/vscode_heroku_pg_conn24.png
+file:./imgs/vscode_heroku_pg_conn25.png
+file:./imgs/vscode_heroku_pg_conn26.png
+file:./imgs/vscode_heroku_pg_conn27.png
+file:./imgs/vscode_heroku_pg_conn28.png
+file:./imgs/vscode_heroku_pg_conn29.png
+file:./imgs/vscode_heroku_pg_conn30.png
+file:./imgs/vscode_heroku_pg_conn31.png
+file:./imgs/vscode_heroku_pg_conn32.png
+file:./imgs/vscode_heroku_pg_conn33.png
+
+
+
+
+Como eu nao uso o vscode eu nao tenho um material mais especifico
+sobre como usar o vscode depois de conectar, mas ja e um comeco pro
+pessoal que usa.
+
+
+
+* Referencias
+[fn:herokupg]  https://www.heroku.com/postgres
+[fn:herokupg1] https://devcenter.heroku.com/articles/heroku-postgresql
+[fn:herokucli] https://devcenter.heroku.com/articles/heroku-cli
+[fn:herokucliInst] https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+[fn:forumnosso] http://ds-eteczl.209235.n8.nabble.com/
+[fn:forumnosso] https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+[fn:pgUrlConn] https://stackoverflow.com/questions/3582552/postgresql-connection-url#20722229
+[fn:vccodeConn] https://www.ilovefreesoftware.com/22/programming/how-to-connect-to-postgresql-database-vs-code.html

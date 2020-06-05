@@ -1,2 +1,5 @@
 curl
 curl é uma ferramenta importantíssima pra execução de scripts
+
+
+https://us-central1-msgsproject.cloudfunctions.net/sendMail?dest=wagner.marques3@etec.sp.gov.br&assunto=teste

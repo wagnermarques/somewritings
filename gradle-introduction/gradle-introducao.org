@@ -45,7 +45,6 @@
 * Introdução
   
 * Instalação do Gradle e Conf do Path  
-
 ** Download do gradle
    
    Nesta url vc consegue ver quais seria a versao mais recente 
@@ -64,7 +63,6 @@
    Vc pode escolher qualquer diretorio que vc tenha permissao de escrita.
 
 ** Descompactando 
-   
    
 #+NAME:unzip gradle-6.3-bin.zip
 #+BEGIN_SRC shell :session s1 :results output :exports both
@@ -387,6 +385,7 @@ drwxr-xr-x. 5 wagner wagner      4096 fev  1  1980 gradle-6.3
 
   set PATH=%PATH%;%GRADLE_HOME%\bin
 
+
 * Criação de um projeto java básico
   https://guides.gradle.org/building-java-applications/
 
@@ -475,7 +474,6 @@ drwxr-xr-x. 5 wagner wagner      4096 fev  1  1980 gradle-6.3
   que serve cada um arquivo e diretório, o professor vai ler com vcs em sala de aula e
   explicar cada um desses arquivos.
   
-
 ** O arquivo build.gradle
 
      #+BEGIN_src groovy
@@ -552,7 +550,9 @@ drwxrwxr-x. 4 wagner wagner 4096 abr 27 17:29 src
 Confirme acima que o arquivo .gitignore foi criado e agora faz parte
 do nosso projeto.
     
+
 ** O diretório .gradle
+
 
 ** O diretório  gradle
 
@@ -576,15 +576,19 @@ do nosso projeto.
    Esse é o arquivo que a gente mais vai utilizar durante as aulas
    he nele que a gente configura as dependencias do nosso projeto
 
+
 ** src
 
    Diretório dos nossos códigos
      
+
 ** src/main/java/br/com/exemplo/App.java
    codigo java (src/main/java/br/com/exemplo/App.java)
 
+
 ** src/test/java/br/com/exemplo/AppTest.java
    codigo java (src/test/java/br/com/exemplo/AppTest.java)
+
 
 * Buildando e Executando o projeto
 
@@ -613,9 +617,7 @@ do nosso projeto.
 
    #+RESULTS: arquivo properties
 
-   #+RESULTS:
-
-   
+  
   
    #+NAME: buildando o projeto                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
@@ -624,79 +626,30 @@ do nosso projeto.
       ./gradlew build
    #+END_SRC
 
-   #+RESULTS: buildando o projeto
-   #+begin_example
 
-   [36m[[m[34mwagner@cri4514[m [32mgradle_project[m[36m][m $ Downloading https://services.gradle.org/distributions/gradle-5.1.1-bin.zip
+   [wagner@Unknown gradle_project] $ ./gradlew build
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :startScripts UP-TO-DATE
+> Task :distTar UP-TO-DATE
+> Task :distZip UP-TO-DATE
+> Task :assemble UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test UP-TO-DATE
+> Task :check UP-TO-DATE
+> Task :build UP-TO-DATE
 
-   Exception in thread "main" java.io.IOException: Unable to tunnel through proxy. Proxy returns "HTTP/1.1 407 Proxy Authentication Required"
-           at sun.net.www.protocol.http.HttpURLConnection.doTunneling(HttpURLConnection.java:2142)
-           at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:183)
-           at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1564)
-           at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1492)
-           at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:263)
-           at org.gradle.wrapper.Download.downloadInternal(Download.java:67)
-           at org.gradle.wrapper.Download.download(Download.java:52)
-   1.call(Install.java:62)
-   1.call(Install.java:48)
-           at org.gradle.wrapper.ExclusiveFileAccessManager.access(ExclusiveFileAccessManager.java:69)
-           at org.gradle.wrapper.Install.createDist(Install.java:48)
-           at org.gradle.wrapper.WrapperExecutor.execute(WrapperExecutor.java:107)
-           at org.gradle.wrapper.GradleWrapperMain.main(GradleWrapperMain.java:62)
-   #+end_example
-
-
+BUILD SUCCESSFUL in 6s
+7 actionable tasks: 7 up-to-date
+[wagner@Unknown gradle_project] $ 
 
 
 
-
-
-
-   #+NAME: gradle tasks
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $GRADLE_PROJECT_DIR && ./gradlew tasks
-   #+END_SRC
-
-
-   #+BEGIN_EXAMPLE
-   [wagner@Unknown gradle-introduction]$ gradle -v
-
-------------------------------------------------------------
-Gradle 5.1.1
-------------------------------------------------------------
-
-Build time:   2019-01-10 23:05:02 UTC
-Revision:     3c9abb645fb83932c44e8610642393ad62116807
-
-Kotlin DSL:   1.1.1
-Kotlin:       1.3.11
-Groovy:       2.5.4
-Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
-JVM:          1.8.0_201 (Oracle Corporation 25.201-b09)
-OS:           Linux 4.20.5-200.fc29.x86_64 amd64
-
-[wagner@Unknown gradle-introduction]$ gradle build
-Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
-
-> Task :buildEnvironment
-
-------------------------------------------------------------
-Root project
-------------------------------------------------------------
-
-classpath
-No dependencies
-
-A web-based, searchable dependency report is available by adding the --scan option.
-
-BUILD SUCCESSFUL in 4s
-1 actionable task: 1 executed
-[wagner@Unknown gradle-introduction]$ 
-
-   #+END_EXAMPLE
-
-   
+O que que esse comando build fez? Vamos ver...
 
 
    Mas a gente faz o build pra que mesmo? A resposta é: pra obter o
@@ -751,90 +704,70 @@ BUILD SUCCESSFUL in 4s
    #+NAME:  build1 Descompact
    #+BEGIN_SRC sh :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj/build/distributions            
-      unzip demojavaproject.zip 2>&1
-      cd demojavaproject
+      cd $GRADLE_PROJECT_DIR/build/distributions
+      unzip algoritmos.zip
+      cd algoritmos
       ls -l
-      ls -l bin
-      cd bin
-      pwd
-      cd ..
-      ls -l lib
+      #ls -l bin
+      #cd bin
+      #pwd
+      #cd ..
+      #ls -l lib
    #+END_SRC
-
-   #+RESULTS:
-   #+begin_example
-
-   [wagner@Unknown distributions]$ Archive:  demojavaproject.zip
-      creating: demojavaproject/
-      creating: demojavaproject/lib/
-     inflating: demojavaproject/lib/demojavaproject.jar  
-     inflating: demojavaproject/lib/guava-26.0-jre.jar  
-     inflating: demojavaproject/lib/jsr305-3.0.2.jar  
-     inflating: demojavaproject/lib/checker-qual-2.5.2.jar  
-     inflating: demojavaproject/lib/error_prone_annotations-2.1.3.jar  
-     inflating: demojavaproject/lib/j2objc-annotations-1.1.jar  
-     inflating: demojavaproject/lib/animal-sniffer-annotations-1.14.jar  
-      creating: demojavaproject/bin/
-     inflating: demojavaproject/bin/demojavaproject  
-     inflating: demojavaproject/bin/demojavaproject.bat
-   [wagner@Unknown demojavaproject]$ total 8
-   drwxr-xr-x. 2 wagner wagner 4096 fev  3 15:22 bin
-   drwxr-xr-x. 2 wagner wagner 4096 fev  3 15:22 lib
-   total 12
-   -rwxr-xr-x. 1 wagner wagner 5504 fev  3 15:22 demojavaproject
-   -rwxr-xr-x. 1 wagner wagner 2496 fev  3 15:22 demojavaproject.bat
-   [wagner@Unknown bin]$ /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/build/distributions/demojavaproject/bin
-   [wagner@Unknown demojavaproject]$ total 2928
-   -rw-rw-r--. 1 wagner wagner    3482 jan  5 22:51 animal-sniffer-annotations-1.14.jar
-   -rw-rw-r--. 1 wagner wagner  193322 fev  3 13:10 checker-qual-2.5.2.jar
-   -rw-rw-r--. 1 wagner wagner    1064 fev  3 15:22 demojavaproject.jar
-   -rw-rw-r--. 1 wagner wagner   13704 fev  3 13:10 error_prone_annotations-2.1.3.jar
-   -rw-rw-r--. 1 wagner wagner 2740721 fev  3 13:10 guava-26.0-jre.jar
-   -rw-rw-r--. 1 wagner wagner    8764 jan  5 22:51 j2objc-annotations-1.1.jar
-   -rw-rw-r--. 1 wagner wagner   19936 fev  3 13:10 jsr305-3.0.2.jar
-   #+end_example
 
 
    Pessoal, vamos lá compreender nosso build...
+
    Unzipei o projeto que gerou uma pasta do proje com o diretório bin
    e o diretório lib
+
    O diretório bin tem dois arquivos um bat e ouhtro pra executar no
    linux.
-   A pasta lib tem alguns jars de que nosso projeto depende e muito
-   interessante tem o demojavaproject.jar
+
+   A pasta lib tem os jars que sao as dependencias do projeto.
+
    Cada um deles, obviamente, tem sua razão de estar alí. Não vou
    entrar em cada um mas vou passar uns links...
 
    + jsr305-3.0.2.jar
 
      Disponibiliza anotações para qualidade de código
+
      https://www.infoq.com/news/2008/06/jsr-305-update
+
      https://www.youtube.com/watch?v=J2fgb8nWUo8
      
+
    + animal-sniffer-annotations-1.14.jar
 
      Útil qdo vc tem código de uma versão do java que precisa rodar em
      uma versão diferente que sem o animal-siffer seria incompatível.
+
      https://www.baeldung.com/maven-animal-sniffer
+
 
    + checker-qual-2.5.2.jar
 
      Ferramenta de qualidade de código
+
      https://checkerframework.org/manual/#installation
      
-   + demojavaproject.jar
+
+   + algoritmos.jar
+
      Esse é o jar do nosso projeto. Infelizmente o gradle não
      configurou ele pra ser um executável, conforme demostra o código
      abaixo.
-     Entretanto, o gradle te dá maneiras que, a meu veu, eles acham
+
+     Entretanto, o gradle te dá maneiras que, a meu ver, eles acham
      que é mais prática pra executar o seu projeto que são os arquivos
      executáveis que a gente já viu anteriormente neste texto.
+
    #+NAME: run jar                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj/build/distributions/demojavaproject/lib
-      java -jar demojavaproject.jar
+      cd $GRADLE_PROJECT_DIR/build/distributions/algoritmos/lib
+      java -jar algoritmos.jar
    #+END_SRC
 
    #+RESULTS:
@@ -842,20 +775,28 @@ BUILD SUCCESSFUL in 4s
    : [wagner@Unknown lib]$ nenhum atributo de manifesto principal em demojavaproject.jar
 
    + error_prone_annotations-2.1.3.jar
+
      Análise estática do código pra melhora da qualidade. Tem um
      exemplo fácil de entendem em https://github.com/google/error-prone
 
 
+
    + guava-26.0-jre.jar
+
      Esse jar é uma biblioteca do criada pela google pra facilitar
      algumas tarefas em java com collections etc.
+
      Esse link abaixo mostra como se configura ela no seu projeto    
+
      https://github.com/google/guava/wiki/UseGuavaInYourBuild
 
      
    + j2objc-annotations-1.1.jar
+
      Esse é o site do projeto desse jar:
+
      https://developers.google.com/j2objc/
+
      A utilidade desse jar é transformar código java em código
      objective-C atraves de seus comandos. Como a gente não vai
      desenvolver pra IOS não vamos usar essa biblioteca na prática.
@@ -878,8 +819,8 @@ BUILD SUCCESSFUL in 4s
    #+NAME: exec prog                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj/build/distributions/demojavaproject/bin
-      ./demojavaproject
+      cd $GRADLE_PROJECT_DIR/build/distributions/algoritmos/bin
+      ./algoritmos
    #+END_SRC
 
    #+RESULTS:
@@ -897,7 +838,7 @@ BUILD SUCCESSFUL in 4s
    #+NAME: rod teste                  
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      cd $GRADLE_PROJECTS_DIR/demojavaproj
+      cd $GRADLE_PROJECT_DIR
       ./gradlew test
    #+END_SRC
    
@@ -927,7 +868,7 @@ BUILD SUCCESSFUL in 0s
    #+NAME: test reports                   
    #+BEGIN_SRC shell :session s1 :results output :exports both
       #starts code
-      firefox /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/gradle-introduction/projetos/demojavaproj/build/reports/tests/test/index.html
+      firefox /home/wagner/envs/env-dev/sources/somewritings/gradle-introduction/projetos/algoritmos/build/reports/tests/test/index.html
    #+END_SRC
 
    #+RESULTS: test reports
