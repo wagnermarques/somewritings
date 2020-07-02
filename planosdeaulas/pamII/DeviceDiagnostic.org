@@ -1,0 +1,155 @@
+#+TITLE: Device Diagnostic
+#+SUBTITLE: 
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+
+* Tema
+  Device Diagnostic
+
+* Justificativa e Objetivos
+  Diagnosticar os detalhes do device que o seu app esta rodando e
+  muito importante porque isso pode afetar o funcionamento do app.
+
+* Duracao
+  2 aulas
+
+* Pre-Requisitos
+** Conhecimentos Previos
+   Aulas previas de Cordova
+
+** Recursos
+   Algums site importantes[fn:npmDiaPlug] [fn:githubDiaPlug]
+
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+  exposicao do professor  e laboratorio pratico
+
+* Exercicioos e Atividades de Reflexao/Fixacao
+  Vamos completar alguns diagnosticos nao contemplados neste lab
+
+* Avaliacao
+  link do github do projeto
+
+* Introducao
+  Vamos instalar um plugin que diagnostica eventos do nosso
+  dispositivo movel. 
+  
+  Esse plugin tem uma caracteristica diferente dos demais porque ele e
+  composto de varios modulos que vc pode instar separadamente.
+
+  Por exemplo, se o seu app precisa detectar se o bluetouth do
+  dispositivo esta habilitado, vc pode instalar o modulo de
+  bluetouth. Se o seu app precisa saber se ele tem permissao para
+  tocar um som, ou saber se ele esta bloqueado para mostrar
+  notificacoes para o usuario... neste caso vc poderia instalar o
+  modulo "notifications".
+
+  
+  A gente vai ver isso com detalhes daqui a pouco...
+
+  Lembrando que como o plugin foi feito pra detectar eventos do
+  device, ele nao vai ser util no plataforma browser[fn:aliyyun]
+
+
+* Instalando o plugin
+
+  A gente vai instalar os modulos LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE"
+
+  Pra isso, temos que dizer de alguma maneira que sao esses modulos
+que queremos... Vamos fazer isso editando o config.xml
+
+
+
+
+#+NAME: config.xml preferences
+#+BEGIN_SRC xml :session s1 :results output :exports code
+  <preference name="cordova.plugins.diagnostic.modules"
+                value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" /> 
+#+END_SRC
+
+No final nosso config.xml tem que ficar conforme abaixo...
+
+
+#+NAME:config.xml final
+#+BEGIN_SRC xml :session s1 :results output :exports code
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>HelloCordova</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <preference name="cordova.plugins.diagnostic.modules"
+                value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
+
+#+END_SRC
+
+
+
+#+NAME:cordova plugin add cordova.plugins.diagnostic
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cordova plugin add cordova.plugins.diagnostic
+#+END_SRC
+
+
+
+
+
+* Detectando se ha permissao para detectar deslocamento do disposito
+  
+
+
+* Referencias
+[fn:npmDiaPlug] https://www.npmjs.com/package/cordova.plugins.diagnostic
+[fn:githubDiaPlug] https://github.com/dpa99c/cordova-diagnostic-plugin
+[fn:aliyyun] https://developer.aliyun.com/mirror/npm/package/cordova.plugins.diagnostic
+
+
+
+
+
+
