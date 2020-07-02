@@ -1,14 +1,16 @@
-#+Title: Cordova Lista de Contatos
+#+Title: Acessando os contatos do dispositivo com Cordova
 
 
 * Tema
-  Acessando lista de contatos com cordova
+  Acessando os contatos do dispositivo com Cordova
+
 * Objetivo
   Compreender o mecanismo de acesso a lista de contato utilizando
   cordova plugin
 
 * Duração
-  2Blocos
+  Duas aulas
+
 
 * Pré-Requisitos
 ** Conhecimentos Prévios
@@ -21,10 +23,10 @@
    #+BEGIN_SRC shell :session s1 :results output :exports both
       cordova plugin add org.apache.cordova.contacts
    #+END_SRC
-
+   
 
 * Procedimento didatico
-** Explanação Introdutória do professora
+** Explanacao Introdutoria do professor
 ** Parte Prática
 *** Criação do projeto
     Crie o seu projeto
@@ -303,21 +305,24 @@
     Observe que pra lidar com o contato selecionado as funções fazem
     uso da variável global...
 
+
 * Exercicios e Atividades de Reflexão/Fixação
-  Mostrar para o professor a aplicação rodando no seu celular 
-  Enviar o link do seu git hub com o seu código...
+  Enviar link do codigo da parte pratica
+
 
 * Avaliação
   Será avaliado
-  Cumprimento de prazo
-  sua assiduidade na tarefa
-  sua capacidade de colaboração com os demais colegas para chegar ao
-  resultado final solicitado no exercício.
 
+  Cumprimento de prazo
+
+  sua assiduidade na tarefa
+
+  sua capacidade de colaboração com os demais colegas para chegar ao
+
+  resultado final solicitado no exercício
 
 * Referencias
   https://github.com/apache/cordova-plugin-contacts
-
 
 
 * Plugin cordova-plugin-contacts
@@ -434,6 +439,7 @@
       #starts code
       cordova run android
    #+END_SRC
+
 
 
 * referencias
