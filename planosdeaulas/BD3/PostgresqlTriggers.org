@@ -1,0 +1,229 @@
+#+TITLE: functions com postgresql
+#+SUBTITLE: TheSubTitle
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+* Tema
+  functions com postgresql
+
+
+* Justificativa e Objetivos
+ 
+  Comprender functions e fundamental para utilizacao de trigers e
+  procedures e para racionalizar o codigo de manipulacao dos dados no
+  sgbd
+
+
+* Duracao
+  2 aulas
+
+
+* Pre-Requisitos
+** Conhecimentos Previos
+   Declaracao de variaveis sql
+
+   Blocos de codigo sql
+
+** Recursos
+   Postgresql instalado
+      
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+
+
+* Procedimento didatico
+  Exposicao do professor e laboratorio pratico
+
+
+* Exercicioos e Atividades de Reflexao/Fixacao
+  ralizacao do laboratorio e aplicacao dos conceitos
+
+
+* Avaliacao
+  link dos script do Lab funcionando
+
+
+* Introducao
+  
+  Nos vamos usar esse modelo de dados abaixo...
+
+  #+INCLUDE: ./sql_pgscripts/dominio_saude_tables.sql :src sql :lines "1-"
+
+
+* Entendendo nosso modelo
+
+  Pessoal, gostaria que vcs vissem que temos pacientes masculinos e
+  femininos. Uma consulta pode ser de uma especialidade ginecologia ou
+  urologia. Nao pode aconteder de uma consulta ginecologia para um
+  homen nem de urologia para uma mulher.
+
+  No momento, do jeito que esta, uma consulta pode ser marcada errada,
+  e vamos criar funcoes e triggers pra resolver isso.
+
+
+* veja o problema acontecer...
+
+ipgg=# \dt 
+             List of relations
+ Schema |      Name      | Type  |  Owner   
+--------+----------------+-------+----------
+ public | consultas      | table | postgres
+ public | especialidades | table | postgres
+ public | obitos         | table | postgres
+ public | pacientes      | table | postgres
+ public | profissionais  | table | postgres
+(5 rows)
+
+ipgg=# select * from especialidades;
+ id |     nome      |         insertedat         
+----+---------------+----------------------------
+  1 | urologista    | 2020-07-03 10:49:30.047896
+  2 | ginecologista | 2020-07-03 10:49:30.047896
+  3 | clinica geral | 2020-07-03 10:49:30.047896
+(3 rows)
+
+
+ipgg=# select * from profissionais;
+ id |      nome      |         insertedat         
+----+----------------+----------------------------
+  1 | DrFeelGoodUro  | 2020-07-03 10:49:30.068635
+  2 | DrJekyllGineco | 2020-07-03 10:49:30.068635
+  3 | DrRay          | 2020-07-03 10:49:30.068635
+(3 rows)
+
+
+ipgg=# select * from pacientes;
+ id |      nome      | sexo | obito 
+----+----------------+------+-------
+  1 | Ada Lovelace   | f    | f
+  2 | Donald Knuth   | m    | f
+  3 | Grace Hopper   | f    | f
+  4 | Dennis Ritchie | m    | f
+(4 rows)
+
+
+ipgg=# select * from consultas;
+ id | especialidade_id | pac_id | profiss_id |         insertedat         
+----+------------------+--------+------------+----------------------------
+  1 |                1 |      1 |          1 | 2020-07-03 10:49:30.089271
+(1 row)
+
+ipgg=# 
+  
+
+* listando triggers
+
+ipgg=# SELECT * FROM pg_trigger;
+ tgrelid |            tgname            | tgfoid | tgtype | tgenabled | tgisinternal | tgconstrrelid | tgconstrindid | tgconstraint | tgdeferrable | tginitdeferred | tgnargs | tgattr | tgargs | tgqual | tgoldtable | tgnewtable 
+---------+------------------------------+--------+--------+-----------+--------------+---------------+---------------+--------------+--------------+----------------+---------+--------+--------+--------+------------+------------
+   16718 | RI_ConstraintTrigger_a_16747 |   1654 |      9 | O         | t            |         16727 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16718 | RI_ConstraintTrigger_a_16748 |   1655 |     17 | O         | t            |         16727 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16749 |   1644 |      5 | O         | t            |         16718 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16750 |   1645 |     17 | O         | t            |         16718 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16709 | RI_ConstraintTrigger_a_16752 |   1654 |      9 | O         | t            |         16727 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16709 | RI_ConstraintTrigger_a_16753 |   1655 |     17 | O         | t            |         16727 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16754 |   1644 |      5 | O         | t            |         16709 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16755 |   1645 |     17 | O         | t            |         16709 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+(8 rows)
+
+ipgg=# 
+  
+
+pra listar triggers em relacao a uma tabela especifica, usar o
+pg_class.oid
+
+SELECT tgname FROM pg_trigger, pg_class WHERE tgrelid=pg_class.oid AND relname='consultas';
+
+
+* criando uma trigger pra resolver
+
+  #+INCLUDE: ./sql_pgscripts/dominio_saude_trigers.sql :src sql :lines "1-"
+    
+
+* listando de nova as trigers pra ver a nossa criada
+
+ipgg=# select * from pg_trigger;
+ tgrelid |            tgname            | tgfoid | tgtype | tgenabled | tgisinternal | tgconstrrelid | tgconstrindid | tgconstraint | tgdeferrable | tginitdeferred | tgnargs | tgattr | tgargs | tgqual | tgoldtable | tgnewtable 
+---------+------------------------------+--------+--------+-----------+--------------+---------------+---------------+--------------+--------------+----------------+---------+--------+--------+--------+------------+------------
+   16718 | RI_ConstraintTrigger_a_16747 |   1654 |      9 | O         | t            |         16727 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16718 | RI_ConstraintTrigger_a_16748 |   1655 |     17 | O         | t            |         16727 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16749 |   1644 |      5 | O         | t            |         16718 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16750 |   1645 |     17 | O         | t            |         16718 |         16723 |        16746 | f            | f              |       0 |        | \x     |        |            | 
+   16709 | RI_ConstraintTrigger_a_16752 |   1654 |      9 | O         | t            |         16727 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16709 | RI_ConstraintTrigger_a_16753 |   1655 |     17 | O         | t            |         16727 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16754 |   1644 |      5 | O         | t            |         16709 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | RI_ConstraintTrigger_c_16755 |   1645 |     17 | O         | t            |         16709 |         16714 |        16751 | f            | f              |       0 |        | \x     |        |            | 
+   16727 | validadadosconsulta          |  16757 |     23 | O         | f            |             0 |             0 |            0 | f            | f              |       0 |        | \x     |        |            | 
+(9 rows)
+
+ipgg=# 
+
+
+ipgg=# SELECT tgname FROM pg_trigger, pg_class WHERE tgrelid=pg_class.oid AND relname='consultas';
+            tgname            
+------------------------------
+ RI_ConstraintTrigger_c_16749
+ RI_ConstraintTrigger_c_16750
+ RI_ConstraintTrigger_c_16754
+ RI_ConstraintTrigger_c_16755
+ validadadosconsulta
+(5 rows)
+
+ipgg=# 
+
+
+* caso vc queira dropar a sua trigger
+
+
+ipgg=# DROP TRIGGER validadadosconsulta on consultas;
+DROP TRIGGER
+ipgg=# 
+
+
+ipgg=# SELECT tgname FROM pg_trigger, pg_class WHERE tgrelid=pg_class.oid AND relname='consultas';
+            tgname            
+------------------------------
+ RI_ConstraintTrigger_c_16749
+ RI_ConstraintTrigger_c_16750
+ RI_ConstraintTrigger_c_16754
+ RI_ConstraintTrigger_c_16755
+(4 rows)
+
+
+* rodando a nossa triger
+  
+  
+
+* Referencias
+https://www.postgresql.org/docs/9.2/plpgsql-trigger.html
+
+https://www.postgresql.org/docs/9.1/plpgsql-declarations.html
+
+https://www.postgresql.org/docs/9.1/plpgsql-declarations.html
+
+https://www.postgresql.org/docs/9.1/sql-selectinto.html
+
+https://www.postgresql.org/message-id/20040714131447.85185.qmail%40web41415.mail.yahoo.com
