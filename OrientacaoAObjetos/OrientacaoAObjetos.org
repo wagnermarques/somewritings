@@ -1,0 +1,132 @@
+#+TITLE: Conceitos sobre Orientacao a Objetos
+#+SUBTITLE: 
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_THEME: Copenhagen [height=20pt]
+#+BEAMER_FRAME_LEVEL: 1
+
+#+BEAMER_HEADER: \subtitle{Disciplinas PAMI, PAMII, BD3 e PW3}
+#+BEAMER_HEADER: \institute[INST]{Etec Zona Leste\\url{https://eteczonaleste.com.br/}}
+#+BEAMER_HEADER: \titlegraphic{\includegraphics[height=1.5cm]{InstLogo}}
+#+BEAMER_HEADER: \author{\texorpdfstring{Prof Wagner França\newline\url{wagner.marques3@etec.sp.gov.br}}{Prof Wagner Franca}} % BAD ORDER XXX
+
+* Tema
+  Conceitos sobre Orientacao a Objetos
+
+* Justificativa e Objetivos
+  Atualmente e imprescindivel conhecer os conceitos sobre orientacao a
+  objetos pois sao a base das boas praticas e do funcionamento de
+  varios frameworks, bibliotecas e linguagens de programacao.
+
+* Duracao
+  1 Aula
+
+* Pre-Requisitos
+  Basico de qualquer linguagem de programacao em particular javascript
+  porque vamos utiliza-la nesta aula.
+
+** Conhecimentos Previos
+   Sintaxe basica da linguagem javascript
+
+** Recursos
+   Navegador 
+   
+   Editor de texto
+  
+
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+
+* Procedimento didatico
+  Aula expositiva e pratica
+  
+  Demonstracao dos conceitos na pratica
+
+* Exercicioos e Atividades de Reflexao/Fixacao
+  Entrega do codigo solicitado pelo professor (link do github)
+
+* Avaliacao
+  Completudo do projeto em relacao ao solicitado pelo professor
+  
+  Cumprimento de prazo
+
+
+
+
+* Introducao
+  A proposta desse material e aprensentar conceitos relevantes sobre OO
+  que vamos utilizar no nosso curso de modo pratico.
+
+  Para tanto vamos utilizar javascript porque e uma linguagem simples
+  e tambem porque vamos utiliza-la bastante mais para frente...
+
+  Nao vamos usar closures pra manter simples.. nao vamo usar closures
+  em nossas atividades... 
+
+
+* Instanciando objetos
+
+#+INCLUDE: ./PessoaObjLiteral.js :src js :lines "1-"
+
+Essa maneira de criar objetos e javascript e  conhecido como
+"literal"... outras linguagens nem sempre funciona assim.. em
+orientacao a objetos o metodo de criar instancias e utilizando
+construtor...
+
+Javascript tambem da pra criar instancias de objetos usando
+construtor... confira abaixo...
+
+#+INCLUDE: ./PessoaFuncAsConstructor.js :src js :lines "x-y"
+
+A partir de ES6, tambem conhecida como ECMAScript2015, javascript
+tambem tem a palavra chave class pra criar instancias[fn:w3schoolClasses]...
+
+vamos ver como funciona...
+
+#+INCLUDE: ./PessoaClass.js :src js :lines "1-"
+
+
+* Heranca e encapsulamento
+
+#+INCLUDE: ./ProfessorObjLiteral.js :src js :lines "1-"
+
+#+INCLUDE: ./ProfessorFuncAsContructor.js :src js :lines "1-"
+
+#+INCLUDE: ./ProfessorClass.js :src js :lines "1-"
+
+
+* Referencias
+[fn:MDNObjBuilding] https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_building_practice
+[fn:DevDrivClass] https://www.developerdrive.com/javascript-getters-setters/
+[fn:jsInfoClass] https://javascript.info/class
+[fn:w3schoolClasses] https://www.w3schools.com/Js/js_classes.asp
+[fn:MDNClasses] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+[fn:MDNClasses] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class
+[fn:MDNPrivFields] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
+[fn:MDNObjs] https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript/Objetos
+[fn:MSNOO] https://developer.mozilla.org/pt-PT/docs/Javascript_orientado_a_objetos
+[fn:MDNObjects] https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript/Objetos  
+[fn:ytJsOO] https://www.youtube.com/watch?v=7ZxYJw9ebaM
