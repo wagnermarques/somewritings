@@ -1,0 +1,185 @@
+#+TITLE: Relato De Experiência: 
+#+SUBTITLE: Metodologia para aulas remotas
+#+DESCRIPTION:
+#+KEYWORDS:
+#+EXPORT_FILE_NAME:
+#+LANGUAGE: pt-BR
+#+EXCLUDE_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+AUTHOR:    wagner
+#+EMAIL:     wagner.marques3@etec.sp.gov.br
+#+DATE:
+
+
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+
+#+LINK_UP:
+#+LINK_HOME:
+
+#+OPTIONS: H:2 toc:t
+
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+
+
+
+* Problema do estudo
+  O que está causando o problema ou a necessidade do contexto?
+  Por que é importante solucionar ou melhorar esse problema?
+  Com que sujeitos poderiam contar para a solução ou melhoramento desse problema?
+
+  Resistencia dos docentes e dos alunos que eram presenciais
+
+
+Relevar o cenario espefico mesclado remoto e presencial posterior
+
+
+* Objetivos Gerais
+  
+
+* Objetivos Epecíficos
+
+
+* Revisão de Literatura
+
+Como aprendemos: A pirâmide da aprendizagem
+emocionar para aprender
+
+
+Tecnologia na educacao
+
+** Tecnologias na Educação: Panorama Atual
+   Os avancos da
+   O potencial das teconolgias
+   A aprendizagem dos sujeitos: Alunos e Professores em um aprendizado
+   mais significativo
+   
+   Condicoes apropriadas para o processo de ensino e de aprendizagem
+
+
+   Algumas ferramentas
+
+   https://eduproducts.withgoogle.com/
+   
+** Prototipos  e mvp
+   Falar sobre prototipos e mvp
+
+** Fatores Relevantes que dificultam
+   Rosa2013 indiferenca e a rejeicao ligadas a inseguranca
+   receito dos docentes de serem substitutidos por maquinas ou mais
+   aptos
+   
+   
+** Fatores Relevantes para o exito
+maciel machado e lima 2017
+informacoes em tempo real
+e fontes confiaveis precisa saber
+aborver informacoes mais relevantes
+esquemas pra melhor compreensao (metodologias masi colaborativas
+medicao de professores)
+
+formacao docente 
+
+
+circulo virtuoso Pero 2020 5 elemntos basicos
+1idenficacao dos modelos pedagogicos que sera implantado x ferram
+tecno equipamentos e infra estruturas apropriadas
+3formacao docente
+4criacao de um sistema apropriado de assessoramento tecnologico e
+5pedagogico do professor
+monitoramento/avaliacoes + incentivos para os docentes
+
+
+** monitoramento do aprendizado
+    Aprendizagem colaborativa no cotidiano escolar;
+    Estratégias de negociação e o estabelecimento de parcerias com os alunos;
+    Criação de espaços colaborativos de construção de aprendizagens.
+
+
+
+
+utilizar nao so para o preparo mas pra aula
+
+
+
+o que avaliar?
+    Aprendizagem colaborativa no cotidiano escolar;
+    Estratégias de negociação e o estabelecimento de parcerias com os alunos;
+    Criação de espaços colaborativos de construção de aprendizagens.
+
+
+
+* Metodologia
+** Principios
+   Pratica mais humanizada possivel 
+   Metodoloogia Ativda
+   Orietada a projeto
+
+
+** Conteudo - alto estima
+   Auto estima, justificar a complexidade
+   Altamente voltado ao mercado de trabalho
+   Tecnologias de ponta
+   
+   Primeiro semestre criou-se o mvp
+   Segundo semestre = produtividade
+   
+** Aulas intressantes
+   Linguagem dialogica
+   Gravacao das videoaulas
+   Gerenciar a complexidade
+
+** Medindo o Engajamento dos estudantes
+   Qtde de acessos a plataforma
+   Finalizacao das tarefas propsotas
+   Entregas das tarefas antes do prazo
+   Acesso efetivo aos materiais da aula
+   Interacao na plataforma atraves de foruns e chata
+
+   
+   
+** cuidados
+   com auttenticidade Direitos autoriais
+   sobrecargas de conteudo
+   Estrategias passivas
+   feedbacks fracos
+   conteudos pouco dialogicos
+   gerenciar a complexidade
+
+** Estrategias Motivacionais
+   metodologias ativias
+   Alunos explorarem suas dinamicas
+   Deixarque escolham temas
+   feedback sobre as aulas
+   ferramenta de cooperacao - forum pra atender fora de horario das
+   aulas
+   Ensino "Mao na massa atraves de producoes orientadas" (HandsOn)
+   
+** Mix de ferrramentas e recursos   
+   
+
+* Registro de observacoes
+
+  o ambiente da maquina do aluno e fundamental mas dificil e nao tem o
+  resulado de algo rapido e funcional que vai motivalo
+
+  <2020-10-05 seg> *colaboracao* Aluna disse que os ALuno A e B ajudavam mas que
+  chegaram a perguntar se ela era lezada... 
+  
+  
+
+
+* Limitacoes do trabalho e oportunidades de novos trabalhos
+  Gamificacao nao utilizada
+  Trabalho em grupo
+  
+
+* Resultados Obtidos
+
+
+
+
+   
+   

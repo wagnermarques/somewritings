@@ -1,0 +1,9 @@
+#+TITLE: PWA NOTES
+
+* Refs
+  https://www.smashingmagazine.com/2019/06/pwa-webpack-workbox/
+  https://github.com/webpack/webpack-pwa
+  https://medium.com/@onejohi/introducing-geolocation-in-your-pwas-65713faba51a
+  https://medium.com/@eduardotorresdev/configura%C3%A7%C3%A3o-de-um-projeto-react-com-typescript-babel-e-sass-do-zero-254f2ee6a4aa
+  https://vaadin.com/learn/tutorials/learn-pwa/production-pwa-webpack-setup
+  

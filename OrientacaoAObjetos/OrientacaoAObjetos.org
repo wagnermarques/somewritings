@@ -118,7 +118,6 @@ vamos ver como funciona...
 #+INCLUDE: ./ProfessorClass.js :src js :lines "1-"
 
 
-* Referencias
 [fn:MDNObjBuilding] https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_building_practice
 [fn:DevDrivClass] https://www.developerdrive.com/javascript-getters-setters/
 [fn:jsInfoClass] https://javascript.info/class

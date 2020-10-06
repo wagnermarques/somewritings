@@ -1,0 +1,6 @@
+* o que sao branches e pra que servem
+* criando um branch
+* branches locais e branches remotos
+* checkout de um branch remoto
+* merge branch
+

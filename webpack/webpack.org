@@ -1,5 +1,6 @@
-#+Title:
-#+Subtitle:
+#+Title: webpack
+#+Subtitle: anotacoes
+#+PROPERTY: HEADER-ARGS :dir /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos
 
 * Preparando nosso ambiente pro nosso desenvolvimento    
 ** configurando proxy (se for necessario)
@@ -51,133 +52,227 @@
    ; "npm config ls -l" to show all defaults.
    #+end_example
 
-* Iniciando projeto gettingstated
 
-** Criando o projeto
-   #+NAME: setup env
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      export projdir=$(pwd)/projetos/gettingstarting
-      echo "projdir="$projdir
-   #+END_SRC
+* Criando um projeto e Instalando webpack[fn:webpackInstall]
+  A instalacao do webpack pode ser realizada especificamente para o
+  seu projeto. Portanto, primeiro crie uma pasta para o seu projeto,
+  de um npm init e depois sim vc instala o webpack para o seu projeto.
 
-   #+RESULTS: setup env
-   : 
-   : [wagner@localhost webpack]$ projdir=/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting
+  Entao o processo fica assim...
 
+  Primeiro criamos o projeto
+  
+#+NAME: webpackinstallation
+#+BEGIN_SRC shell :session s1 :results output :exports code
+  mkdir -p  ./projetos/gettingstarting
+  cd ./projetos/gettingstarting
+  npm init
+#+END_SRC
 
-** npm init
-   #+NAME: npm init -y
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $projdir
-      ls -l
-      npm init -y
-   #+END_SRC
+salvamos o caminho do diretorio do projeto na variavel projDir pra
+facilitar a gente entrar no diretorio toda vez que tivermos que
+digitar um comando no projeto.
 
-   #+RESULTS: npm init -y
-   #+begin_example
+#+NAME:export projdir
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  export projDir=$(pwd)/projetos/gettingstarting
+  echo $projDir
+#+END_SRC
 
-   [wagner@localhost gettingstarting]$ total 0
-   Wrote to /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/package.json:
-
-   {
-     "name": "gettingstarting",
-     "version": "1.0.0",
-     "description": "",
-     "main": "index.js",
-     "scripts": {
-       "test": "echo \"Error: no test specified\" && exit 1"
-     },
-     "keywords": [],
-     "author": "",
-     "license": "ISC"
-   }
-   #+end_example
-
-
-** Instalando o webpack   
-   #+NAME: install webpack      
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $projdir
-      npm install webpack --save-dev
-      npm install webpack-cli --save-dev
-      echo "### package.json mostrando webpack como dependencia de dev"
-      cat package.json
-   #+END_SRC
-
-   #+RESULTS: install webpack
-   #+begin_example
-
-   [wagner@localhost gettingstarting]$ npm WARN gettingstarting@1.0.0 No description
-   npm WARN gettingstarting@1.0.0 No repository field.
-   npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/fsevents):
-   npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
-
-   + webpack@4.35.0
-   updated 1 package and audited 5236 packages in 3.717s
-   found 0 vulnerabilities
-
-   webpack-cli@3.3.4 postinstall /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli
-   node ./bin/opencollective.js
+#+RESULTS: export projdir
+: 
+: /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting
 
 
 
-                               Thanks for using webpack!
-                    Please consider donating to our Open Collective
-                           to help us maintain this package.
+#+NAME:webpackinstallation
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir 
+  npm init -y
+  npm install --save-dev webpack
+  npm install --save-dev webpack-cli
+#+END_SRC
+
+#+RESULTS: webpackinstallation
+#+begin_example
+
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 will break on node v14+. Upgrade to chokidar 3 with 15x less dependencies.
+npm WARN deprecated fsevents@1.2.13: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+npm WARN notsup Unsupported engine for watchpack-chokidar2@2.0.0: wanted: {"node":"<8.10.0"} (current: {"node":"12.16.3","npm":"6.14.4"})
+npm WARN notsup Not compatible with your version of node/npm: watchpack-chokidar2@2.0.0
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.1.2 (node_modules/chokidar/node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.2.7 (node_modules/watchpack-chokidar2/node_modules/chokidar/node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+npm WARN gettingstarting@1.0.0 No description
+npm WARN gettingstarting@1.0.0 No repository field.
+
++ webpack@4.44.1
+updated 1 package and audited 417 packages in 21.178s
+
+1 package is looking for funding
+  run `npm fund` for details
+
+found 251 vulnerabilities (188 low, 63 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+npm WARN gettingstarting@1.0.0 No description
+npm WARN gettingstarting@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.3 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/watchpack-chokidar2/node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ webpack-cli@3.3.12
+added 7 packages from 13 contributors, removed 23 packages, updated 16 packages and audited 401 packages in 16.7s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 251 vulnerabilities (188 low, 63 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+#+end_example
 
 
+* Primeiro build do projeto com webpack
 
-                    Donate: https://opencollective.com/webpack/donate
+  o comando pra rodar o webpack das seguintes formas possiveis:
 
+  ./node_modules/.bin/webpack --config webpack.config.js
 
-   npm WARN gettingstarting@1.0.0 No description
-   npm WARN gettingstarting@1.0.0 No repository field.
-   npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/fsevents):
-   npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+  ou 
 
-   + webpack-cli@3.3.4
-   updated 1 package and audited 5236 packages in 3.313s
-   found 0 vulnerabilities
-   ### package.json mostrando webpack como dependencia de dev
-   {
-     "name": "gettingstarting",
-     "version": "1.0.0",
-     "description": "",
-     "main": "index.js",
-     "scripts": {
-       "test": "echo \"Error: no test specified\" && exit 1"
-     },
-     "keywords": [],
-     "author": "",
-     "license": "ISC",
-     "devDependencies": {
-       "webpack": "^4.35.0",
-       "webpack-cli": "^3.3.4"
-     }
-   }
-   #+end_example
+  npx
 
-   
-   #+NAME: project structure
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      cd $projdir
-      mkdir src
-      mkdir dist      
-   #+END_SRC
+  ou ainda se vc instalar o webpack globalmente na sua maquina, ai da
+  pra rodar direto
 
-   #+RESULTS: project structure
+  npm install --global webpack
+
+  
+  ou npx webpack --config webpack.config.js
+
+  
+  Mas a gente nao vai rodar isso na mao toda hora nao...
+
+  a gente vai colocar esse comando na propriedade script do arquivo
+  package json, conforme abaixo...
 
 
-   
-* Conceitos Importantes
+  
+#+NAME:
+#+BEGIN_SRC js :session s1 :results output :exports code
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack --config webpack.config.js"
+    },
+  
+#+END_SRC
+
+apos fazer isso pra rodar esse comando e buidar nosso projeto a gente
+pode fazer somente o seguinte...
+
+
+npm run build
+
+vamos ver se funciona...
+nao esquece de entrar na pasta do seu projeto, nao funciona em
+qualquer pasta...
+
+#+NAME: rodando npm run build
+#+BEGIN_SRC shell :session s1 :results output :exports both
+npm run build
+#+END_SRC
+
+Essa e a saida... radar rodou mas ta faltando o webpack.config.js
+
+#+NAME: npm run build sem o webpack.config.js
+#+begin_example
+gettingstarted@1.0.0 build /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting
+webpack --config webpack.config.js
+
+/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+Error: Cannot find module '/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/webpack.config.js'
+Require stack:
+- /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js
+- /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js
+- /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack/bin/webpack.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:957:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:840:27)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at require (/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at WEBPACK_OPTIONS (/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+)
+    at module.exports (/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/yargs/yargs.js:576:18)
+    at /run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js:49:8
+(/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Module.require (internal/modules/cjs/loader.js:1019:19)
+    at require (internal/modules/cjs/helpers.js:77:18)
+(/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack/bin/webpack.js:156:2)
+    at Module._compile (internal/modules/cjs/loader.js:1133:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1153:10)
+    at Module.load (internal/modules/cjs/loader.js:977:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:877:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:74:12)
+    at internal/main/run_main_module.js:18:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/utils/convert-argv.js',
+    '/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack-cli/bin/cli.js',
+    '/run/media/wagner/hdext1Twgn/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/webpack/projetos/gettingstarting/node_modules/webpack/bin/webpack.js'
+  ]
+}
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! gettingstarted@1.0.0 build: `webpack --config webpack.config.js`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the gettingstarted@1.0.0 build script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/wagner/.npm/_logs/2020-08-29T13_50_21_676Z-debug.log
+#+end_example
+
+
+* Scaffolding (Inicializando) um projeto bem generico[fn:wpSiteScaffolding]
+  
+instale o webpack-cli
+
+
+#+NAME:instale o webpack-cli
+#+BEGIN_SRC shell :session s1 :results output :exports both
+npm 
+#+END_SRC
+
+
+#+NAME:gerandoscaffolding
+#+BEGIN_SRC shell :session s1 :results output :exports both
+   npx webpack-cli init .
+#+END_SRC
+
+#+RESULTS: gerandoscaffolding
+: bash: webpack-cli: comando nÃ£o encontrado
+
+
+* Conceitos Importantes para esta momento
 ** Webpack mode
    O build vai se comportar diferente entre o modo production e
    development
    
+** 
+
+* Conceitos Importantes para esta momento
 ** Source Maps
   devtool: 'source-map'
   Como você iria debugar um código depois de criado o bundle? Depois
@@ -263,3 +358,5 @@
 [fn:sourcemaps1] https://blog.teamtreehouse.com/introduction-source-maps
 [fn:sourcemaps2]https://blog.scottlogic.com/2017/11/01/webpack-source-map-options-quick-guide.html
 [fn:sourcemaps3] https://stackoverflow.com/questions/48986641/webpack-4-sourcemaps
+[fn:webpackInstall] https://webpack.js.org/guides/installation/#local-installation
+[fn:wpSiteScaffolding] https://webpack.js.org/guides/scaffolding/

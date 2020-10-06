@@ -4,6 +4,7 @@
 * Tema
   Introdução ao Git e Github
 
+
 * Porquê esse tema é importante
   Você deveria usar o git porque o mercado usa e existem muitos bons
   motivos pra isso. Se eu fosse você eu iria querer saber quais motivos
@@ -1154,11 +1155,13 @@ figura abaixo.
    modificações fiz ontem. 
    git diff
 
+
 * Quais arquivos eu já tinha até um certo commit específico?
    git diff-tree --no-commit-id --name-only -r <ommit-ish>
 
 
 * Quem modificou esses arquivos?
+
 
 * Quais modificações foram feitas num arquivo específico?
 

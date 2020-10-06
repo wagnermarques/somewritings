@@ -1,40 +1,33 @@
 #+Title: Emacs org-mode
 * Apresentação
   Sobre o org-mode... 
-* Links
-** Externos[fn:External-links]
-   [[ http://www.astro.uva.nl/~dominik ]] para um site externo
-   [[doi:10.1000/182]] 
+* Date e Time
+** Inserindo uma data (timestamp) no documento
+   C-c ! (org-time-stamp-inactive) Insere um timestamp que nao gera uma
+   entrada na agenda do org-mode
+   [2017-01-18 Qua]
+
+** Inserindo uma data do calendário
+   C-c <
+   <2017-01-19 Qui>
+
+** Timer
+    C-c C-x . [Inicia timer]
+    C-c C-x . [de novo pra inserir vlr do timer]
+    pode fazer isso várias vezes
+    C-c C-x - [Depois que já usou o timer, isso o desliga]
    
-* Inserindo uma data (timestamp) no documento
-  C-c ! (org-time-stamp-inactive) Insere um timestamp que nao gera uma
-  entrada na agenda do org-mode
-  [2017-01-18 Qua]
-
-* Inserindo uma data do calendário
-  C-c <
-  <2017-01-19 Qui>
-
-  
-
-* Navegar nas sessões
+* Navegacao
    C-c p (Navega pra sessão anterior)
    C-c n (Navega pra próxima sessão)
-
-* Abrindo e Fechando sessoes do documento
-   O mais comum é alternar abrir e fechar com tab
-   As vezes a sessão está extensa, com muitos parágrafos, códigos
-   etc... Você quer fechar a sessão mas com tab não dá porque você
-   teria que ir até o início da sessão pra poder posicionar o cursos
-   pra então dar o tab e fechar a a sessão do dumento. Você queria
-   fechar a sessão do documento de qualquer parte que o curso estiver
-   dentreo dela... é fácil S-<tab>
-
-* Timer
-   C-c C-x . [Inicia timer]
-   C-c C-x . [de novo pra inserir vlr do timer]
-   pode fazer isso várias vezes
-   C-c C-x - [Depois que já usou o timer, isso o desliga]
+** Abrindo e Fechando sessoes do documento
+    O mais comum é alternar abrir e fechar com tab
+    As vezes a sessão está extensa, com muitos parágrafos, códigos
+    etc... Você quer fechar a sessão mas com tab não dá porque você
+    teria que ir até o início da sessão pra poder posicionar o cursos
+    pra então dar o tab e fechar a a sessão do dumento. Você queria
+    fechar a sessão do documento de qualquer parte que o curso estiver
+    dentreo dela... é fácil S-<tab>
 
 * Links
 ** Links Externos
@@ -65,7 +58,35 @@
    [[http:www.google.com][site do google]]
    Um clike simples do mouse abre o link no navegador.
 
+* Propriedades
+** global
+   no inicio do documento da pra colocar uma propriedade global que vai
+   valer, por exemplo, para todos os blocos de codigos...
 
+  #+PROPERTY: HEADER-ARGS :dir ~/org/tmp
+
+  :dir vai valer como header arg pra todos os blocos
+
+  Tambem da pra subscrever essas propos nas sessoes com 
+
+  https://emacs.stackexchange.com/questions/27179/orgmode-set-global-babel-parameters
+
+  #+EXAMPLE
+  :PROPERTIES:
+  :header-args: :session *R* :cache yes :results output graphics :exports both :tangle yes
+  :END:
+  #+END_EXAMPLE
+
+* LATEX
+** LATEX BLOCKS
+   https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-LaTeX.html
+   #+begin_export latex
+   
+   #+end_export
+** LATEX_HEADER
+#+begin_example
+
+#+end_example
 * Babel (Block Code Vars)
 ** Introduçao
 ** pre requisitos
@@ -467,3 +488,6 @@ O valor "output" significa...
 
 * foootnotes
 [fn:[fn:External-links] https://orgmode.org/manual/External-links.html
+[fn:External-links][[ http://www.astro.uva.nl/~dominik ]
+
+   

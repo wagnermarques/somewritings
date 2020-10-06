@@ -1,0 +1,6 @@
+#+Title: PWA Com Heroku
+
+* Refs
+[fn:HerPwaWebApp] https://blog.heroku.com/how-to-make-progressive-web-app
+[fn:HerPwa] https://blog.heroku.com/tags/pwa
+[fn:mdnManifest] https://developer.mozilla.org/en-US/docs/Web/Manifest
