@@ -22,33 +22,65 @@
 
 #+LaTeX_CLASS_OPTIONS: [bigger]
 #+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
-
+#+BIBLIOGRAPHY: refs bibtex
 
 
 * Problema do estudo
-  O que está causando o problema ou a necessidade do contexto?
-  Por que é importante solucionar ou melhorar esse problema?
-  Com que sujeitos poderiam contar para a solução ou melhoramento desse problema?
-
-  Resistencia dos docentes e dos alunos que eram presenciais
-
-
-Relevar o cenario espefico mesclado remoto e presencial posterior
+  A necessidade das aulas remotas durante a pandemia do COVID19 pos à
+  prova a práticas pedagógicas bem como a decisão do aluno em
+  continuar seu aprendizado num contexto remoto já que havia se
+  matriculado num curso presencial.
+  Esse problema tornou-se, na verdade, uma oportunidade histórica de
+  repensar todo o processo de ensino e de aprendizagem num contexto
+  onde a mediação por meios tecnológicos não é simplesmente uma opção
+  mas uma necessidade premente.
+  Obviamente é nesse processo de repensar, de resignificar  que este
+  relato de experiência procura contribuir democratizando a
+  experiência.
+  
 
 
 * Objetivos Gerais
-  
+  + Relatar os pontos relevantes da experiência das aulas remotas neste contexto de pandemia.
+
 
 * Objetivos Epecíficos
+  + Levantar apontamentos da literatura sobre Aulas Remotas e contexto
+  educacional em tempo de pandemia
+  A revisão de literatura é importante para esclarecer e nortear os
+  'pontos importantes do relato e também para averiguar se o que se
+  observou na prática, durante a experiência, está de acordo ou não
+  com que que se aponta na literatura.
 
+  + Relatar a experiência das aulas remotas à luz da literatura
+    considerando os temas estudados no curso de capacitação do CPS.
+    Fazer o relato da experiência utilizando comparando, quando
+    possível com a literatura e também utilizando os coteúdos
+    estudados no curso de capacitação da CPS.
+    
+  + Levantar hipóteses relevantes para estudos posteriores
+    Os relatos de experiência tem uma qualidade nata de levantar
+    hipóteses para estudos posteriores e com uma metodologia que possa
+    ser capaz de fazer inferências estatísticas ou ao menos que possa
+    estudar os temas levantados em uma população mais relevante.
+
+ + Apresentar quais foram as solucoes para as barreiras pedagogicas
+   enfrentadas.
+
+ + Explícitar as diferenças marcantes da prática pedagógica no
+   contexto presencial e remoto, em especial as que ofereceram alguma
+   barreira ao processo de ensino e de aprendizagem
+
+  + Limitações do trabalho
+  
 
 * Revisão de Literatura
 
-Como aprendemos: A pirâmide da aprendizagem
-emocionar para aprender
+  Como aprendemos: A pirâmide da aprendizagem
+  emocionar para aprender
 
 
-Tecnologia na educacao
+  Tecnologia na educacao
 
 ** Tecnologias na Educação: Panorama Atual
    Os avancos da
@@ -62,6 +94,24 @@ Tecnologia na educacao
    Algumas ferramentas
 
    https://eduproducts.withgoogle.com/
+
+** Tecnoloigas na Educacao: Mediação pedagogica no Panorama Atual
+   zanatta2015mediaccao
+
+** O professor no contexto atual
+(ROSA 2013) dificuldades mais frequentes dos docentes são: falta de domínio das tecnologias; número de aulas e
+quantidade de conteúdo a ser trabalho e receio por parte dos
+professores de não corresponder às expectativas dos alunos;  precisar vencer o receio de usar
+as tecnologias em seu trabalho docente;assumir a responsabilidade desta ruptura
+paradigmática a partir da mudança do próprio comportamento. 
+
+
+"Portanto, conclui-se que o professor precisa vencer o receio de usar as tecnologias em
+seu trabalho docente e terá que ser responsável por esta ruptura paradigmática a partir da
+mudança do próprio comportamento. Pois, somente mediante esta mudança as dificuldades
+aqui apresentadas e muitas outras que possam surgir serão superadas permitindo a utilização
+dos potenciais educativos das TIC."(ROSA 2013)
+
    
 ** Prototipos  e mvp
    Falar sobre prototipos e mvp
@@ -111,25 +161,61 @@ o que avaliar?
 
 
 
+
+
+
 * Metodologia
-** Principios
-   Pratica mais humanizada possivel 
-   Metodoloogia Ativda
-   Orietada a projeto
 
+** Principios básicos aplicados durante a experiência
+   Este trabalho buscou sempre observar e cumprir com os seguintes princípios:
 
-** Conteudo - alto estima
-   Auto estima, justificar a complexidade
-   Altamente voltado ao mercado de trabalho
-   Tecnologias de ponta
-   
-   Primeiro semestre criou-se o mvp
-   Segundo semestre = produtividade
-   
-** Aulas intressantes
-   Linguagem dialogica
-   Gravacao das videoaulas
-   Gerenciar a complexidade
+   + Pratica mais humanizada possivel 
+     A tentativa consciente de trabalhar a empatia, a escuta e
+     acolhimento das ansiedades dos alunos por meio de uma atitude
+     sempre positiva diante das difuldades enfrentadas tanto pelos
+     alunos como pelo docente.
+
+   + Metodoloogia de ensino ativa e orientada a projetos
+     A idéia não foi de aplicar uma metodologia específica, mas
+     garantir o protagonismo do aluno com base na prática do ensino
+     baseado em projetos o que é muito comum nas aulas de
+     Desenvolvimento de Software
+
+   + Auto estima dos alunos
+     A auto estima saudável diante dos conteúdos, que geralmente são
+     complexos por natureza, constitui-se critério constante de
+     observação direta.
+     Apesar da complexidade do assunto "auto-estima" vale ressaltar os
+     aspectos específicos que foram observados, quais sejam: a) Aluno
+     acha que não vai conseguir fazer o exercicio. b) Aluno que tem
+     timidez em perguntar ou disponibilizar a tela do seu computador
+     para o professor analisar e resolver a dificuldade do aluno no
+     ambiente dele. c) Aluno nao participa porque acha que nao
+     consegue acompanhar os demais. e) Aluno diz que vai fazer a
+     atividade depois porque esta com difiduldade. f) Garantir que o
+     aluno saiba que o que ele está aprendendo são competências e
+     habilidades que um profissional do mercado utiliza no dia  a dia
+     de trabalho objetivando que o aluno se sinta valorizado com isso.
+
+  + Aulas Interessantes
+    Não é fácil concorrer com tudo que há de interessante na
+    internet. Dar uma boa aula é vencer essa concorrência.
+    Para tanto, buscou-se incessantemente empregar uma linguagem
+    dialogica, Gravacao das videoaulas bem como fazer o gerenciamento
+    da complexidade dos conteúdos.
+
+De maneira geral, pode-se citar também que houve cuidado com a
+   auttenticidade dos materiais para não infrigir direitos autoriais,
+   cuidado para não incorrer em sobrecargas de conteudo aos alunos,
+   não incorrer em estrategias passivas de ensino.
+
+Para evitar a necessidade de submissão a comite de ética não foi
+  colhido dados dos alunos de modo que o relato de experiência segue o
+  ponto de vista do docente apenas. Isso não quer dizer que não houve
+  feedbacks dos alunos já que a prática docente não existe sem
+  isso. Apenas não foram utilizados como dados do relato e sim a
+  impressão do docente.
+
 
 ** Medindo o Engajamento dos estudantes
    Qtde de acessos a plataforma
@@ -137,17 +223,8 @@ o que avaliar?
    Entregas das tarefas antes do prazo
    Acesso efetivo aos materiais da aula
    Interacao na plataforma atraves de foruns e chata
-
    
    
-** cuidados
-   com auttenticidade Direitos autoriais
-   sobrecargas de conteudo
-   Estrategias passivas
-   feedbacks fracos
-   conteudos pouco dialogicos
-   gerenciar a complexidade
-
 ** Estrategias Motivacionais
    metodologias ativias
    Alunos explorarem suas dinamicas
@@ -158,17 +235,10 @@ o que avaliar?
    Ensino "Mao na massa atraves de producoes orientadas" (HandsOn)
    
 ** Mix de ferrramentas e recursos   
-   
+   Para aulas remotas foi utilizado microsoft teams
 
-* Registro de observacoes
-
-  o ambiente da maquina do aluno e fundamental mas dificil e nao tem o
-  resulado de algo rapido e funcional que vai motivalo
-
-  <2020-10-05 seg> *colaboracao* Aluna disse que os ALuno A e B ajudavam mas que
-  chegaram a perguntar se ela era lezada... 
-  
-  
+** Relato em temas
+   O relato foi dividido em temas especificos relevantes para o contexto.
 
 
 * Limitacoes do trabalho e oportunidades de novos trabalhos
@@ -176,7 +246,154 @@ o que avaliar?
   Trabalho em grupo
   
 
-* Resultados Obtidos
+* Relato da experiencia
+  O relato da experiencia esta subdividido em a) contexto; b)relato em temas
+  si c) sintese dos pontos relevantes.
+
+** O Contexto
+   As aulas remotas foram ministrados atraves do microsoft teams de
+   maneira sempre sincrona através do recurso de lives.
+
+   O aluno não ficava com falta caso não participasse da atividade
+   sincrona (live) desde que fizesse a entrega da atividade prática
+   quinzenal.
+
+   Dessa maneira, alguns alunos optaram por aulas assíncronas
+   consumindo as aulas gravadas e demais recursos didáticos disponibilizados.
+
+   Os componentes ministrados durante este relato de experiência foram de desenvolvimento de aplicativos mobile (PAMI e PAMII),
+   programação web avancaça (PW3) e banco de dados avançado (BD3).
+
+
+
+** O Relato
+
+*** O desafio de preparar o ambiente de desenvolvimento
+    Uma das diferenças vivenciadas no contexto de aulas remotas em
+    relação as aulas presenciais e que configuraram um grande barreira
+    à produtividade do processo de ensino e de aprendizagem foi a
+    necessidade de configurar o ambiente de desenvolvimento de
+    software no computador do aluno.
+    Nas aulas presenciais, em laboratório da escola, nao havia essa
+    necessidade porque as configuracoes eram feitas previamente e o
+    aluno fazia sua prática num ambiente previamente conhecido do
+    professor.
+    Durante as aulas remotas foi necessario configurar o compatutador
+    de cada aluno, obviamente inserindo todo esse conteudo na
+    ministracao das aulas.
+    Portanto, condigurar um sdk do android na máquina do aluno implica
+    em habilidades que muitos deles nao chegaram a ver no curso como
+    configurar uma variavel de ambiente no sistema operacional,
+    reconfigurar a variável de ambiente "path" para que os comandos do
+    android funcionem.
+    A maior barreira enfrentada nesse contexto é que quando o docente
+    precisa de uma atividade curta e que apresente um software ou algo
+    que funcione na tela pra motivar o aluno, isso nao ocorre quando a
+    atividade é de configuração. Dá trabalho e o aluno não tem o
+    prazer de ver algo funcionado depois da tarefa. Quando se
+    apresenta o que passou a funcionar com a configuracao, muitas
+    vezes ainda nao he o que o aluno entregaria para o cliente, por
+    exemplo.
+    Essa barreira teve que ser contornada em uma das turmas que
+    atualmente tem 6 alunos apenas e que têm dificuldades com os
+    conteúdos. Nesse caso, para contornar o problema da necessidade de
+    configuração do ambiente optou-se por trabalhar os temas relativos
+    ao desenvolvimento mobile como geolocalização entre outros fazendo
+    uso de uma nova tecnologia conhecida como PWA ou progressive web
+    applications. Neste caso o docente ainda nao era fluente na
+    tecnologia nem tinha aulas preparadas e foi necessario elaborar os
+    planos de aulas do zero para contornar esse problema específico
+    desta turma específica e mante-los motivados para conseguir
+    leva-los a conclusão do curso sem prejuízo às bases tecnológicas
+    do componente.
+    Vale lembrar que o método tradicional de abrir o android studio e
+    programar para mobile é impraticável em máquinas modestas de modo
+    que toda essa tarefa de configuraçao foi imprescindível para
+    utilizar o sdk do android apenas por linha de comando e viabilizar
+    as aulas.
+
+*** Ritmo do aluno
+    Observou-se que os alunos apresentaram ritmos diferentes de aquisicao
+    das competencias e habilidades, como de costume
+    acontece. Entretanto, a experiência do docente sugere haver uma
+    relação do ritmo mais dinâmico de alunos estar associado a sua
+    maior habilidade em utilizar os meios tecnológicos para obter a informação de que precisa para
+    transpor as barreiras no processo de aprendizagem. Parece óbvio
+    dizer isso, mas para alunos do curso de desenvolvimento de
+    sistemas em geral todos tem essa habilidade, mas algums se
+    destacam por fazer melhor uso dos conceitos para fazer suas
+    perguntas ao google e obter melhores respostas e portanto serem
+    mais proeficientes em relação ao seu processo de aprendizagem.
+    Os alunos que não apresentaram essa mesma habilidades com os
+    recursos tecnológicos demostraram maior dependência do professor em
+    ações de tutoria durante as atividades práticas e, considerando a
+    pouca escalabilidade da ação direta do professor frente aos diversos
+    intrumentos tecnológicos disponíveis, a consequencia é o ritmo mais
+    lento da aquisição das competências e habilidades.
+    Sendo assim é salutar testar essa hipótese num estudo mais
+    significativo de que o ritmo de aquisição dependende das habilidades
+    do aluno de utilizar tencnologias como mediadoras do seu procesos de
+    aprendizagem. Interessante também seria averiguar como se dá essa
+    medicação.
+    Para contornar a necessidade de viabilizar um canal de comunicação
+    via tecnologia que pudesse acudir o aluno no momento de sua dúvida
+    utilizou-se do fórum de discussao exclusivo para essas
+    turmas. Dessa forma o aluno poderia postar sua duvida e o docente
+    frequentaria o forum fora do horario de suas aulas para monitorar
+    a existencia de duvida e acudir no com a informarmacao certa no
+    momento certo. Todo o procesos de comunicação via forum pode ser
+    consultado na seguinte url http://ds-eteczl.209235.n8.nabble.com/
+    
+*** Colaboração
+    A literatura resslta bastante a importancia da scoes colaborativas
+    e também da necessidade de trabalhar esse atitude durante as
+    aulas. 
+    Uma alternativa que já tinha dado certo presencialmente, mas
+    remotamente não surtiu o mesmo efeito, foi a de liberar de alguma
+    avaliação ou tarefa o aluno que ajudasse ao seu colega de
+    turma. Obviamente o aluno que está ensinando está também
+    aprendendo e já está portanto avaliado já que o professor monitora
+    essa ação. Presencialmente, sempre deu certo, mas nesse relato de
+    experiência não deu e demonstrou-se uma barreira na verdade, ao
+    processo de aprendizado. 
+    Houve relatos de que o aluno que estava ajudando acabava exigindo
+    pressa do aluno que estava sendo ajudado e talvez o que estava
+    ocorrendo era que presencialmente esse aluno ajudador não tinha
+    outras possibilidades como nas aulas remotas de ir fazer outras
+    coisas na internet, por exemplo. Provavelmente essa possibilidade
+    de ir fazer outras coisas na internet, o que pode ser jogar algum
+    jogo de que ele gosta, por exemplo, pra ser bem plausível, o aluno
+    viu o um custo muito alto de tempo perdido ajudando o colega
+    desapercebido de que isso ensinar é uma das melhores formas de
+    aprender. As tentativas de conscientização com frazes como
+    "ninguém pode dizer que sabe realmente alguma coisa sem antes ter
+    tido que ensinar essa coisa" não surtiram efeito, pelo menos dessa
+    vez.
+    Entretanto, a alternativa de colaboração do fórum foi um grande
+    sucesso, pois que frequentemente as responstas fornecidas são de
+    alunos e não do professor diretamente. Isso pode ser confirmado
+    diretamento na url do forum http://ds-eteczl.209235.n8.nabble.com/
+
+*** o forum
+
+*** a disponbilizacao dos materials didaticos
+   
+
+
+    
+
+
+*** O processo colaborativo
+    
+  o ambiente da maquina do aluno e fundamental mas dificil e nao tem o
+  resulado de algo rapido e funcional que vai motivalo
+
+  <2020-10-05 seg> *colaboracao* Aluna disse que os ALuno A e B ajudavam mas que
+  chegaram a perguntar se ela era lezada... 
+
+  
+
+* Consideracoes Finais
 
 
 
