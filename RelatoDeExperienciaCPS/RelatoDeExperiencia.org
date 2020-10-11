@@ -330,6 +330,19 @@ Para evitar a necessidade de submissão a comite de ética não foi
      Por uma questão específica relatada na sequencia ainda não
      consegui utilizar, mas está aqui porque houve a tentativa.
 
+   + Emacs
+     Durante esse período de pandemia o emacs foi importante para
+     agilizar o processo de praparo dos materiais porque ele é um
+     editor de texto onde você escreve o texto nele e exporta tanto
+     em forma de site, como em pdf ou word. Além disso para
+     professores de desenvolvimento de sistemas tem ainda a vantagem
+     de que o professor escreve um trecho de código no meio do texto
+     do material que está preparando e não precisa sair do texto para
+     executar esse trecho de código. Então ele executa o trecho do
+     código no texto mesmo e o resultado do trecho executado é
+     inserido no texto pelo próprio emacs. Assim a elaboração de
+     materiais didáticos na área de TI fica muito mais rápidos e dinâmicos.
+
 ** Relato em temas
    O relato foi dividido em temas especificos relevantes para o contexto.
 
