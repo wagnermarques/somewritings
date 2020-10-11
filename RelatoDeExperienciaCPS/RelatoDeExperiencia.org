@@ -24,104 +24,169 @@
 #+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
 #+BIBLIOGRAPHY: refs bibtex
 
+* Resumo
 
-* Problema do estudo
-  A necessidade das aulas remotas durante a pandemia do COVID19 pos à
-  prova a práticas pedagógicas bem como a decisão do aluno em
-  continuar seu aprendizado num contexto remoto já que havia se
-  matriculado num curso presencial.
-  Esse problema tornou-se, na verdade, uma oportunidade histórica de
-  repensar todo o processo de ensino e de aprendizagem num contexto
-  onde a mediação por meios tecnológicos não é simplesmente uma opção
-  mas uma necessidade premente.
-  Obviamente é nesse processo de repensar, de resignificar  que este
-  relato de experiência procura contribuir democratizando a
-  experiência.
+* Apresentação do trabalho
+  Este texto é um Relato de Experiência elaborado para atender as
+  exigências de conclusão do curso Metodologias para Aulas Remotas do
+  Centro Paula Souza.
+  Um Relato de Experiência é uma modalidade de artigo científico, mas
+  considerando que a organização do curso solicitou para este trabalho
+  final a utilização de uma linguagem dialógica, não estranhe por
+  favor, porque a partir de agora este Relato de Experíência tera essa
+  característica pouco comum nesta modalidade de trabalho. 
+  Você encontrará vários relatos de experiências em anais de
+  congressos científicos mas eles utilizam uma linguagem de artigo
+  científico mesmo... esse, não. Esse relato de experiência é para
+  fins específicos e por isso tem essa essa linguagem... Dialógica.
+  O único momento que essa linguagem dialógica pega leve, é duarnte a
+  revisão de literatura, por questões meio que óbvias. Mas nos demais
+  atende-se a solicitação salutar dessa linguagem que melhora o
+  relacionamento entre o texto e você prazado leitor :)
+
+
+* Intodução
+  A epidemia de COVID19 teve início mais ou menos em março desse ano e
+  durante este período em que nós professores do Centro passamos a
+  ministrar aulas remotas, passamos também a fezê-lo sob o contexto
+  desse curso auto instrucional sobre Métodologias para aulas Remotas.
+  O curso influênciou bastante as ações pedagógicas conforme relatado
+  neste texto sendo extremamente oportunino visto que a experiência
+  anterior era no contexto presencial.
   
-
+* Problema e justificativa
+  Dentro desse contexto inédito para nós professores e alunos, cabe
+  lembrar que Nobre e Célia (2018) citando Vieira (2011) afirmam que "ensinar e estudar a distância não são
+  tarefas fáceis, é necessário professor e aluno se readequarem a esse
+  novo cenário." Já não era tarefa fácil para os que já trabalhavam
+  dentro desse contexto, imagina para os professores e alunos "pegos
+  de surpresa" e que não haviam nem mesmo pensado em ensinar e
+  trabalhar remotamente?
+  A necessidade das aulas remotas durante a pandemia do COVID19 colocou à
+  prova não só nosas práticas pedagógicas, mas colocou à prova também a manutenção da decisão do aluno em
+  continuar seu seu processo de aprendizado num contexto
+  inexperadamente remoto.
+  Dar continuidade a ao processo de ensino e de aprendizagem neste
+  contexto é um problema que mais do que nunca precisa ser estudado,
+  repensado. Sendo assim este é o problema estudado por esse
+  Experiência bem como é o motivo pelo qual se justifica.
 
 * Objetivos Gerais
-  + Relatar os pontos relevantes da experiência das aulas remotas neste contexto de pandemia.
-
+  De maneira geral, o objetivo geral é o de relatar os pontos
+  relevantes da experiência das aulas remotas neste contexto de
+  pandemia á luz da literatura e dos conteúdos estudados no curso
+  Metodologias para aulas remotas do CPS.
 
 * Objetivos Epecíficos
-  + Levantar apontamentos da literatura sobre Aulas Remotas e contexto
-  educacional em tempo de pandemia
-  A revisão de literatura é importante para esclarecer e nortear os
+  Dentro do objetivo geral, os objetivos específicos podem ser
+  elencados conforme abaixo.
+
+  + Levantar apontamentos relevante da literatura sobre Aulas Remotas e contexto
+    educacional em tempo de pandemia
+    A revisão de literatura é importante para esclarecer e nortear os
   'pontos importantes do relato e também para averiguar se o que se
   observou na prática, durante a experiência, está de acordo ou não
-  com que que se aponta na literatura.
+  com que que se aponta na literatura. Não estava muito claro se era
+  realmente necessárias essa revisão para o trabalho final do curso,
+  mas a modalidade de estudos conhecida como Relato de Experiência em
+  geral consideram isso muito importante. Não só por isso essa revisão simples
+  foi realizada mas também porque nós professores estamos sempre lendo
+  né... então nada mais interessante que compartilhar também esse
+  conteúdo já que ele influênciou também a experiência além do curso.
 
-  + Relatar a experiência das aulas remotas à luz da literatura
+  + Relatar a experiência das aulas remotas à luz da literatura e do
+    conteúdo do curso auto instrucional de metodlogia para aulas remota
     considerando os temas estudados no curso de capacitação do CPS.
-    Fazer o relato da experiência utilizando comparando, quando
-    possível com a literatura e também utilizando os coteúdos
-    estudados no curso de capacitação da CPS.
+
+ + Apresentar quais foram as solucoes para as barreiras pedagogicas
+   enfrentadas. Pode ter certeza que várias barreiras foram
+   transpostas.. contine lendo pra saber como muitas delas foram
+   contornadas.. não perca...
+
+ + Explícitar as diferenças marcantes  da prática pedagógica no
+   contexto presencial e remoto, em especial as que ofereceram alguma
+   barreira ao processo de ensino e de aprendizagem
     
   + Levantar hipóteses relevantes para estudos posteriores
     Os relatos de experiência tem uma qualidade nata de levantar
     hipóteses para estudos posteriores e com uma metodologia que possa
     ser capaz de fazer inferências estatísticas ou ao menos que possa
     estudar os temas levantados em uma população mais relevante.
+    Será que esta será a última epidemia? Mesmo que seja, o que
+    particularmente não acho provável, no futuro pessoas irão ler os
+    estudos que estamos fazendo agora e o levantamente de hipóteses
+    darão dicas valiosas com certeza sobre o que eles devem considerar
+    em estudos posteriores. 
 
- + Apresentar quais foram as solucoes para as barreiras pedagogicas
-   enfrentadas.
-
- + Explícitar as diferenças marcantes da prática pedagógica no
-   contexto presencial e remoto, em especial as que ofereceram alguma
-   barreira ao processo de ensino e de aprendizagem
 
   + Limitações do trabalho
+    Pode ter certeza que nós proessores refletimos sobre nossa prática
+    profisisonal e a vontade era de fazer isso intensamente nesse
+    trabalho. Não deu pra fazer bem legal era o desejo original. Por
+    isso este trabalho tem limitações que foram relatadas também para
+    que outros possam pensar nelas e de repente se preparar melhor e
+    fazer um trabalho mais completo e até mais relevante.
   
-
 * Revisão de Literatura
-
-  Como aprendemos: A pirâmide da aprendizagem
-  emocionar para aprender
-
-
-  Tecnologia na educacao
+  Ensinar e aprender remotamente não é só um desafio, conforme aponta
+  Nobre e Célia (2018) citando Vieira (2011), mas os estudos nesse
+  sentido podem ser considerados incipientes. Autores afirmam que o ensido à distância ainda é um campo de estudo que carece de contribuições da
+  ciência. Por exemplo, Nobre e Araújo (2018), afirmam que a utilização  de
+  recursos audiovisuais instantâneos que oferecem a possibilidade de feedback, que é um dos recursos mais
+  imediatos para ensino em plataformas virtuais, ainda está em processo de
+  estudo e implementação.
+  Além disso muitos outros assuntos não diretamente pedagógicos
+  perpassam a prática de aulas remotas. O curso Metodologia
+  de Aulas Remotas do Centro Paula Souza organizou os assuntos da
+  seguinte maneira: Módulo de Direitos Autorais, Aulas Interessantes,
+  Linguagem Dialógica, Questões Reflexivas, Relação Afetiva, Gravação
+  de Vídeo Aulas, Ambientação do POAD, Construção de Exercícios,
+  Tutoria e Feedback, Mediação e Discussões, Critérios de Participação
+  e Avaliação de Atividades.
+  Além desses assuntos do curso, que não serão revisados nesta revisão
+  de literatura porque o conteúdo já está no curso, outros assuntos
+  que influênciaram a prática pedagógica durante leituras
+  independentes são citadas aqui para ajudar a compreender o relato da
+  prática das aulas remotas.
 
 ** Tecnologias na Educação: Panorama Atual
-   Os avancos da
-   O potencial das teconolgias
-   A aprendizagem dos sujeitos: Alunos e Professores em um aprendizado
-   mais significativo
+   Os avancos da Tecnologias é evidente. É fácil também perceber
+   também que cada vez mais essas tecnologias são utilizadas para
+   apoiar o processo de ensino e de aprendizagem.
+   A questão a ser considerada dentro desse panorama é a eficácia, a eficiência e os
+   métodos de utilização dessas tecnologias.
+   Nobre e Célia (2018) citando Vieira (2011), citando NUNES; BESSA,
+   2017 apresentam a pirâmide de aprendizagem de William Glasser que
+   apresenta o seguinte:
+   aprendemos 10% quando lemos
+   aprendemos 20% quando ouvimos
+   aprendemos 30%% quando observamos
+   aprendemos 50% quando vemos e ouvimos
+   aprendemos 70% quando discutimos com os outros
+   aprendemos 80% quando fazemos 
+   aprendemos 90% quando ensinamos aos outros
+   Apesar desse conteúdo ser aprensentado como pirâmide autores
+   afirmam que originalmente a idéia dos autores não era
+   necessariamente uma escala mas mesmo assim dá pra entender que
+   algumas metodologias são mais eficientes que outras.
    
-   Condicoes apropriadas para o processo de ensino e de aprendizagem
-
-
-   Algumas ferramentas
-
-   https://eduproducts.withgoogle.com/
-
-** Tecnoloigas na Educacao: Mediação pedagogica no Panorama Atual
-   zanatta2015mediaccao
-
-** O professor no contexto atual
-(ROSA 2013) dificuldades mais frequentes dos docentes são: falta de domínio das tecnologias; número de aulas e
-quantidade de conteúdo a ser trabalho e receio por parte dos
-professores de não corresponder às expectativas dos alunos;  precisar vencer o receio de usar
-as tecnologias em seu trabalho docente;assumir a responsabilidade desta ruptura
-paradigmática a partir da mudança do próprio comportamento. 
-
-
-"Portanto, conclui-se que o professor precisa vencer o receio de usar as tecnologias em
-seu trabalho docente e terá que ser responsável por esta ruptura paradigmática a partir da
-mudança do próprio comportamento. Pois, somente mediante esta mudança as dificuldades
-aqui apresentadas e muitas outras que possam surgir serão superadas permitindo a utilização
-dos potenciais educativos das TIC."(ROSA 2013)
-
-   
-** Prototipos  e mvp
-   Falar sobre prototipos e mvp
+** O professor no contexto de aulas remotas
+   (ROSA 2013) dificuldades mais frequentes dos docentes são: falta de domínio das tecnologias; número de aulas e
+   quantidade de conteúdo a ser trabalho e receio por parte dos
+   professores de não corresponder às expectativas dos alunos;  precisar vencer o receio de usar
+   as tecnologias em seu trabalho docente;assumir a responsabilidade desta ruptura
+   paradigmática a partir da mudança do próprio comportamento. 
+   "Portanto, conclui-se que o professor precisa vencer o receio de usar as tecnologias em
+   seu trabalho docente e terá que ser responsável por esta ruptura paradigmática a partir da
+   mudança do próprio comportamento. Pois, somente mediante esta mudança as dificuldades
+   aqui apresentadas e muitas outras que possam surgir serão superadas permitindo a utilização
+   dos potenciais educativos das TIC."(ROSA 2013)
 
 ** Fatores Relevantes que dificultam
    Rosa2013 indiferenca e a rejeicao ligadas a inseguranca
    receito dos docentes de serem substitutidos por maquinas ou mais
    aptos
-   
-   
+      
 ** Fatores Relevantes para o exito
 maciel machado e lima 2017
 informacoes em tempo real
@@ -162,10 +227,7 @@ o que avaliar?
 
 
 
-
-
 * Metodologia
-
 ** Principios básicos aplicados durante a experiência
    Este trabalho buscou sempre observar e cumprir com os seguintes princípios:
 
@@ -216,14 +278,12 @@ Para evitar a necessidade de submissão a comite de ética não foi
   isso. Apenas não foram utilizados como dados do relato e sim a
   impressão do docente.
 
-
 ** Medindo o Engajamento dos estudantes
    Qtde de acessos a plataforma
    Finalizacao das tarefas propsotas
    Entregas das tarefas antes do prazo
    Acesso efetivo aos materiais da aula
    Interacao na plataforma atraves de foruns e chata
-   
    
 ** Estrategias Motivacionais
    metodologias ativias
@@ -235,46 +295,214 @@ Para evitar a necessidade de submissão a comite de ética não foi
    Ensino "Mao na massa atraves de producoes orientadas" (HandsOn)
    
 ** Mix de ferrramentas e recursos   
-   Para aulas remotas foi utilizado microsoft teams
+   Aqui vou apenas citar os recursos, no relato eu explico melhor como
+   o porque de cada um deles que em geral, foi para transpor alguma
+   barreira no processo pedagógico.
+
+   + Para aulas remotas foi utilizado microsoft teams
+   + Ferramenta s3 da nuvem aws da amazon     
+     http://www.planosdeaulas.com.br.s3-website-us-east-1.amazonaws.com/
+     
+   + Banco de dados na nuvem do heroku
+     heroku.com
+     Foi utilizado o posgresql
+
+   + Nuvem do heroku
+     heroku.com
+     Utilizado para hospedagem da aplicação e do banco de dados
+   
+   + Forum Nabble
+     http://ds-eteczl.209235.n8.nabble.com/
+     Utilizado como ferramenta colaborativa entre os alunos e também
+     como uma maneira de atender o aluno foram do horário específico
+     das aulas.
+
+   + Github
+     github.com
+     O github foi muito utilizado já que os alunos podiam enviar
+     apenas o link do código. O github ajuda muitíssimo porque
+     facilita a continuação de um código por várias aulas.
+
+   + Git
+     Com o git o aluno interage tanto com o github como com a nuvem do heroku.
+   
+   + Azure 
+     Por uma questão específica relatada na sequencia ainda não
+     consegui utilizar, mas está aqui porque houve a tentativa.
 
 ** Relato em temas
    O relato foi dividido em temas especificos relevantes para o contexto.
-
-
-* Limitacoes do trabalho e oportunidades de novos trabalhos
-  Gamificacao nao utilizada
-  Trabalho em grupo
-  
 
 * Relato da experiencia
   O relato da experiencia esta subdividido em a) contexto; b)relato em temas
   si c) sintese dos pontos relevantes.
 
 ** O Contexto
+   O contexto desse relato, nós que trabalhamos no Centro Pauza Souza
+   conhecemos bem. São professores acostumados a dar aulas presencias
+   que passaram a ministrar aulas remotas. Mas não só isso... Essas
+   aulas remotas são ministradas para alunos que de matricularam para
+   terem aulas presenciais. Tanto o professor como o aluno foram
+   "pegos de surpresa" pelo contexto da pandamia.
+   Como se já não fosse complexo isso, a gente sabe que toda a gestão
+   escolar e pedagógica tem sua importancia no processo ensino
+   aprendizagem e foram "pegos de surpresa também". 
+   Para os professores do Curso de Desenvolvimento de Sistemas em que
+   este trabalho está inserido, o uso da tecnologia não é de maneira
+   nenhuma uma barreira, mas pros alunos é sim porque eles não tem uma
+   fluência nas tecnologias.
+   Um dos problemas frequentes em todos os cursos de Tecnologias é a
+   evasão. Obviamente o contexto inédito da pandemia catalizou, ou
+   seja, aceleou, esse processo.Infelizente nosso terceiro médulo do
+   técnico onde as aulas foram ministradas encontra-se no momento com
+   uns 8 alunos. O terceiro módulo começou com essa quantidade de
+   alunos e graças a Deus mantém-se, acredito que por causa das
+   metodologias de aulas remotas utilizadas. 
+   Todo o relato de experiência se dá no contexto de ministração de 3
+   disciplinas para esses alunos que são Programação Mobile II
+   (PAMII), Banco de dados III (BDII) e Programação Web III (PWII).
+   O Segundo módulo está mais ou menos com 20 alunos, e a disciplina
+   ministrada pra eles é Programação Mobile I.
    As aulas remotas foram ministrados atraves do microsoft teams de
-   maneira sempre sincrona através do recurso de lives.
-
+   maneira sempre sincrona através do recurso de lives. A ferramenta
+   atendeu perfeitamente as necessidades.
    O aluno não ficava com falta caso não participasse da atividade
    sincrona (live) desde que fizesse a entrega da atividade prática
    quinzenal.
-
    Dessa maneira, alguns alunos optaram por aulas assíncronas
    consumindo as aulas gravadas e demais recursos didáticos disponibilizados.
 
-   Os componentes ministrados durante este relato de experiência foram de desenvolvimento de aplicativos mobile (PAMI e PAMII),
-   programação web avancaça (PW3) e banco de dados avançado (BD3).
-
-
-
 ** O Relato
+*** Influência dos Módulos do Curso  
+**** Direitos Autorais
+     Isso não foi uma problema porque o material utilizado foi criado
+ especificamente para esse contexto por mim mesmo com as devidas
+ citações. Todos os softwares utilizados foram opensources de acordo
+ com as licenças. 
+**** Linguagem Dialógica
+     A linguagem dialógica foi largamente empregada conforme pode ser
+     contatado nos materiais preparados para as aulas.
+     http://www.planosdeaulas.com.br.s3-website-us-east-1.amazonaws.com/
+     https://github.com/wagnermarques/aulas_de_cordova
+     Dentre outros...
 
-*** O desafio de preparar o ambiente de desenvolvimento
+**** Aulas Interessantes
+     A estratégia de aula invertida foi bastante positiva. Primeiro eu
+  fiz uma demonstração do que ia acontecer no final da atividade da
+  qula. Pra fazer essa demonstração eu gravei um vídeo, coloquei no
+  youtube e passei o link para o pessoal. O vídeo pode ser acessam em
+  https://www.youtube.com/watch?v=7hP-7z62gqA onde eu explico na livre
+  o vídeo e so entao a gente comecava o passo a passo pra chegar no
+  resultado. Essa estratégia foi muito positiva porque os alunos
+  sabiam o resultado que precisavam chegar de modo que depois puderam
+  compreender como cada passo contribuia para tanto.
+
+**** Questões Reflexivas
+     Na área de desenvolvimento de sistemas não tive muitas
+oportunidades de trabalhar a reflexão a opinião.. mas dá pra citar
+pelo uma das oportunidades em que fizemos isso pra decidir qual
+tecnologia mobile iriamos estudar.
+     Então apresentei para os alunos a tencologia PWA que é
+basicamente uma webpage que pode ser instalada no celular e depois
+disspo funciona como uma app de celular. Expliquiei que é uma
+tecnologia nova e que apresentava algumas vantagens interessantes e
+coloquei eles para pensar e se expressarem com base nas tecnologias
+que já havíamos estudado. 
+      No fina da reflexão percebemos que poderíamos trabalhar as
+competências e as habilidades previstar usando essa tecnologia que é
+consideravelmente mais simples que as tradicionais.
+      Essa participação dos alunos aumentou o comprometimendo deles a
+medida que eles participaram desse momemtno. Em contrapartida eu não
+tinha nenhuma aula preparada utilizando essa tecnologia e por isso e
+foi necessário "fazer ao vivo" em algumas situações.
+
+
+**** Relação Afetiva
+     A empatia e o tratamento humanizado e o acolhimento foi
+fundamental para trabalhar com alunos com baixo desempenho e para
+conscientizar os alunos mais avançados sobre a necessidade de toda a
+turma estar em passos semelhantes com relação ao conteúdos da
+disciplinas.
+
+
+**** Gravação de vídeo aulas
+     Para manter o conteúdo das aulas gravadas mais interessantes, a
+  estratégia foi gravar principalmente as aulas expositivas e práticas
+  que aprensentavam conteúdos. As aulas de dúvidas e aulas em que eu
+  orientava alunos específicos com a tela deles compartilhadas não foi
+  gravada porque haveria muitas aulas com assuntos repetidos e isso
+  poderia confundir os alunos que preferiram fazer o curso de uma
+  forma mais asíncrona. 
+
+**** Ambientação do POAD
+     Nossos POADS foram ambientados no sistema NSA porque é o sistema
+     que utilizamos também para menções e a secretaria já esta
+     integrada com relação ao acompanhamento das chamdas e dos conselhos.
+     
+**** Construção de Exercícios
+     Nas aulas de desenvolvimento de sistemas o aprendizado é por
+  projetos e a estratégia foi de trabalhar o mesmo projeto tanto em
+  programação web III onde utilizamos o framework php laravel na nuvem
+  do heroku e no mesmo projeto o banco de dados é trabalhado na
+  disciplina bando de dados 3 de modo que o banco de dados também
+  estava instalado na nuvem do heroku.
+  O andamento do projeto configura as entregas e os exercícios. Essa
+  estratégia está dentro do contexto das metodologias ativas onde o
+  aluno é o protagonista do seu aprendizado. Isso acontece inclusive
+  durante os momentos em que eu precisava dar apoio técnico aos alunos
+  para resolução de erros no projetos deles. Nesse caso eu ajudava ele
+  a preceber o erro e passava os caminhos pra eles resolverem o erro.
+
+**** Tutoria e Feedback
+     Tutoria e feedback aconteceu muito síncrona e
+assíncronamente. Nas aulas quando o aluno não conseguia chegar no
+resultado o método era sempre de ele compartilhar a tela dele e eu ver
+o erro na máquina dele e levâ-lo à compreensão e solução do
+problema. Já assincronamente essa tutoria aconteceu pelos forum e
+ocasionamente pelo chat do teams.
+
+**** Mediação e Discussões
+     Em desenvolvimento de sistemas as discussões são basicamente
+     quando cmoparamos tecnologias e suas funcionalidades mas depois
+     que decidimos qual tecnologia e assuntos há houve pouca atividade
+     em que mediei discussões.
+
+**** Critérios de Participação
+     Considerei as entregas das tarefas e a participação na
+     live. Excepcionalmente não considerei ajuda que um aluno dava a
+     outro nas aulas sincronas porque remotamente não consegui fazer
+     dar certo.
+
+**** Avaliação de Atividades.
+     A menção foi basicamente baseada no prazo de entrega e na
+     completeza da entrega. Os projetos, de maneira geral
+     funcionam. Alguns exemplos de sites que os alunos colocaram no ar
+     na nuvem do heroku podem ser acessados nos links abaixo:
+     
+     
+
+     https://arcane-castle-14315.herokuapp.com/
+     
+     https://meuapplaravel.herokuapp.com/
+     
+     https://projetolaravel2.herokuapp.com/
+     
+     https://projetoum.herokuapp.com/
+     
+     https://my-f-project.herokuapp.com/
+
+
+     Lembrando que alguns podem estar fora do ar porque todos eles
+     estão registrados na conta que eles criaram na nuvem do heroku e
+     eventualmente podem vir a apagar os projetos no furuto.
+
+*** O desafio de preparar o ambiente de desenvolvimento    
     Uma das diferenças vivenciadas no contexto de aulas remotas em
-    relação as aulas presenciais e que configuraram um grande barreira
+    relação as aulas presenciais e que configuraram uma grande barreira
     à produtividade do processo de ensino e de aprendizagem foi a
     necessidade de configurar o ambiente de desenvolvimento de
-    software no computador do aluno.
-    Nas aulas presenciais, em laboratório da escola, nao havia essa
+    software no computador dos alunos.
+    Nas aulas presenciais, em laboratórios da escola, não havia essa
     necessidade porque as configuracoes eram feitas previamente e o
     aluno fazia sua prática num ambiente previamente conhecido do
     professor.
@@ -312,7 +540,7 @@ Para evitar a necessidade de submissão a comite de ética não foi
     utilizar o sdk do android apenas por linha de comando e viabilizar
     as aulas.
 
-*** Ritmo do aluno
+*** O Ritmo de aprendizado aluno
     Observou-se que os alunos apresentaram ritmos diferentes de aquisicao
     das competencias e habilidades, como de costume
     acontece. Entretanto, a experiência do docente sugere haver uma
@@ -343,10 +571,25 @@ Para evitar a necessidade de submissão a comite de ética não foi
     a existencia de duvida e acudir no com a informarmacao certa no
     momento certo. Todo o procesos de comunicação via forum pode ser
     consultado na seguinte url http://ds-eteczl.209235.n8.nabble.com/
+    Alunos mais avançados optaram por aulas assíncronas
+    aparentemente por dois motivos. O primeiro é o de ele assiste à
+    gravação entende o assunto e entrega a tarefa. Na gravação o aluno
+    pode avançar ou retroceder o vídeo acelearar a velocudade a
+    velocidade e realizar a tarefa sem participar das aulas
+    síncronas. Outro motivo é que o cuidado com alunos com baixo
+    rendimento nesse cenário foi redobrado e a atenção a esse aluno
+    entedia o aluno mais avançado. No laboratório funcionama mais a
+    colaboração entre eles mas online não deu certo. O aluno com baixo
+    rendimento em geral também tem baixo auto estima com relação ao
+    conteúdo e não aceita muito bem frazes do tipo "cê tá lezado é?"
+    nos casos em que o aluno que ajuda acha que o que ele tá falando é
+    tão óbvio mas o que está sendo ajudado não entende facilmente. O
+    professor não comete jamais esse tipo de erro, obviamente, e aí
+    fica mais tempo com esse aluno e o aluno avançao fica entediado.
     
-*** Colaboração
-    A literatura resslta bastante a importancia da scoes colaborativas
-    e também da necessidade de trabalhar esse atitude durante as
+*** Colaboração entre os alunos
+    A literatura ressalta bastante a importancia da ações colaborativas
+    e também da necessidade de trabalhar essa atitude durante as
     aulas. 
     Uma alternativa que já tinha dado certo presencialmente, mas
     remotamente não surtiu o mesmo efeito, foi a de liberar de alguma
@@ -374,14 +617,21 @@ Para evitar a necessidade de submissão a comite de ética não foi
     alunos e não do professor diretamente. Isso pode ser confirmado
     diretamento na url do forum http://ds-eteczl.209235.n8.nabble.com/
 
-*** o forum
-
-*** a disponbilizacao dos materials didaticos
-   
-
-
+*** Emprego da Ferramenta tecnologia: forum
+    Na url http://ds-eteczl.209235.n8.nabble.com/ é possível consultar
+    como foi o emprego da utilização de forum de discussao.
     
-
+*** Emprego da Ferramenta tecnolgica: AWS S3 para a disponbilizacao dos materials didaticos
+    Apesar do teams prover suporte a postagem dos material de aula,
+    houve a necessidade de melhorar a experiência do aluno ao acesso
+    ao material. No teams o aluno tinha que logar e fazer vários
+    clique até chegar ao material e quando ele estava no celular ainda
+    poderia não abrir corretamente pdfs motivo pelo qual tinhamos que
+    colocar o link do pdf na aba de postagems da equipe.
+    Sendo assim foi desenvolvido um  site com o material das aulas e
+    instalada e disponibilizado na nuvem da amazon aws utilizando o
+    produto de nuvem s3. Com esse site, apenas com um clique o aluno
+    já está diante do material inclusive ajustado para mobile. 
 
 *** O processo colaborativo
     
@@ -391,12 +641,77 @@ Para evitar a necessidade de submissão a comite de ética não foi
   <2020-10-05 seg> *colaboracao* Aluna disse que os ALuno A e B ajudavam mas que
   chegaram a perguntar se ela era lezada... 
 
-  
+*** O Caso da Azure
+    No início das aulas remotas tentou-se utilizar o banco de dados da
+    Azure. Infelizmente errei algumas configurações o que acarretou
+    num custo por volta de 13 mil reais. Felizmente entrei em contato
+    com o suporte da azure e com a ajuda do pessoal de TI do Centro
+    Paula Souza (Ruben Pimenta, Emerson e Renato) foi possível
+    demonstrar para a Azure que as ações tinham cunho exclusivamente
+    pedagógicos e assim o problema foi resolvido.
+    Considerando a utilização de ferramentas de nuvem são ainda mais
+    cruciais para o sucesso das ações pedagógicas e também para estar
+    no mercado de TI, passar a utilizar a Azure novamente está ainda
+    nos meus planos e estou buscando capacitação para tal.
+
+    intensão para o futuro
 
 * Consideracoes Finais
+  Por incrível que pareça senti falta da lousa em vários momentos. Na
+  lousa eu tinha a oportunidade de detectar uma necessidade na sala de
+  aula e criar um exercício muito específico, colocar na lousa e por a
+  data da entrega. Durante as aulas remotas, se eu tivesse o recurso
+  da mesa eletrônica, que faz o papel da lousa, acredito que eu
+  poderia fazer o mesmo, mas senti que não consegui fazer isso durante
+  as aulas remotas. Mesmo que eu pensasse em um exercício ou
+  explicação bastante específica para um momento específico da turma,
+  se eu precisasse preparar um material online pra próxima aula já não
+  teria o mesmo efeito porque o time do momento já se teria perdido.
+
+  Com relação a carga de trabalho do professor, achei que, pelo menos
+  e desevolvimento de sistemas, o trabalho teve que ser duplicado pelo
+  menos. Isso porque não bastou criar o material, foi necessário criar
+  o ambiente de desenvolvimento de software no computador dos
+  alunos. Mesmo usando a núvem, o que mitigou um pouco, ainda assim
+  houve a necessidade de configurar algumas ferrametnas de
+  desenvolvimento de sistemas no computador de cada aluno pra que ele
+  pudesse programar de fato e ver o software rodando na máquina
+  dele. Quando estávamos no laboratório da escola as máquinas já
+  estavam préconfiguradas e obivamente as aulas já estavam preparadas
+  para aquela configuração, para aquele sistema operacionao  e esse
+  ambiente homogêncio não foi uma realidade remotamente.
+
+  Com relação a aquisição das habilidades e competências,
+  impressionamente não houve nenhum comprometimento porque quando o
+  aluno usa o computador dele esse ambiente é mais acessível pra ele
+  do que os computadores da escola e isso foi um diferencial
+  importante pra aproximar o aluno do ambiente de desenvolvimento
+  dele. Na verdade o aluno passou a ter um aprendizado melhor sobre o
+  ambiente de desenvolvimento na prática já que presencialmente a
+  gente não precisava instalar e configurar isso e o assunto era
+  abordado mais superficialmente.
+
+
+  
 
 
 
+* Limitacoes do trabalho e oportunidades de novos trabalhos
+  Esse estudo não colheu dados e impressões dos alunos para evitar a
+  necessidade de aprovação em comitê de ética de modo que apenas a
+  impressão do professor foram fonte para o relato. Uma pena.
 
-   
-   
+  Gamificacao nao utilizada
+  Trabalho em grupo
+  O processo de avasão, apresentado no contexto do relato, não foi estudado sistematicamente, apenas com
+  impressores do docente
+     
+* Refs   
+  NEUROCIÊNCIA: MEMÓRIA E APRENDIZAGEM 1
+Guilherme Corrêa Schultz 2 , Gustavo Corrêa Schultz 3 , Selmira Schwede Bruttner 4
+
+
+
+RECURSOS AUDIOVISUAIS INSTANTÂNEOS NA EDUCAÇÃO A DISTÂNCIA: UMA REFLEXÃO SOBRE AS POTENCIALIDADES PEDAGÓGICASArtur Nobre 1, Célia Maria de Araújo2
+
+prototipacao e mvps
