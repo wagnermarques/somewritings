@@ -4,6 +4,8 @@
 * Adicionando um submodule
   git submodule add https://github.com/spotify/dockerfile-mode.git
 
+  git submodule add --help
+
 * Atualizando o seu repositorio local com o repositorio remoto
   Vamos supor que você fez um clone de um repositorio há algum tempo.
   Então você trabalhou nele, comitou e deu um push pro repositório remoto

@@ -1,0 +1,30 @@
+#+Title: Session Attributes
+
+* Introducao
+  :PROPERTIES:
+  :CATEGORY: orgmode
+  :COLUMNS:  %25ITEM %1PRIORITY %10TAGS
+  :END:
+  
+** o que e o orgmode
+** porque utilizar
+*** quais funcionalidades sao as mais utilizadas
+
+|             |                            |                                                             |   |
+| C-c C-x d   | org-insert-drawer          | insere um drawer[fn:2]                                      |   |
+|             | org-insert-property-drawer |                                                             |   |
+| C-c C-x p   |                            | Permite vc escolher entre varias propriedades pre definidas |   |
+| C-c C-x C-c |                            | Liga a visao de coluna                                      |   |
+| q           |                            | desliga a visao de coluna                                   |   |
+|             |                            |                                                             |   |
+
+* Properties 
+  https://orgmode.org/manual/Property-Syntax.html#Property-Syntax
+  
+
+
+* Refs
+[fn:1]  https://orgmode.org/manual/index.html
+[fn:2]  https://orgmode.org/manual/Drawers.html#Drawers
+http://ehneilsen.net/notebook/orgExamples/org-examples.html
+https://alphaalgorithms.github.io/2019/05/22/emacs-properties-and-columns/

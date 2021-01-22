@@ -1,6 +1,33 @@
 * o que sao branches e pra que servem
 * criando um branch
-* branches locais e branches remotos
+* conceituando branches locais e branches remotos
+
+* list branches
+** listando branches locais
+   git branch -v
+** listando branches remotos
+   git branch -r
+   
+   se voce olhar la no seu repositorio remoto, tipo o github, por
+   exemplo, pode ser que vc veja mais branches la do que apareceram
+   pra vc com o comando git branch -r
+
+   caso isso aconteca, pra ver todos os branches de verdade vc vai
+   precisar dar um git fetch
+
+   Entao, na minha opiniao, vale a pena ja dar um git fetch logo e
+   depois um git branch -r
+
+* deletando branch
+** deletando branch local
+   git branch <nomeDoBranch>
+** deletando branch remoto
+   [wagner@notedell fzlbpms]$ git push origin --delete structuringfzlbpms 
+   Password for 'https://wagnermarques@git.code.sf.net': 
+   remote: <Repository /git/p/fzlbpms/code.git> refresh queued.
+   To https://git.code.sf.net/p/fzlbpms/code
+   - [deleted]         structuringfzlbpms
+
 * checkout de um branch remoto
 * merge branch
 

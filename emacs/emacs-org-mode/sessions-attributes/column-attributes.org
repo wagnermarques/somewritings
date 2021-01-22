@@ -1,0 +1,10 @@
+#+Title: Column Attributes
+* Introducao
+
+** Top node for columns view
+   :PROPERTIES:
+   :COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
+   :END:
+
+* Refs
+  https://orgmode.org/worg/org-tutorials/org-column-view-tutorial.html

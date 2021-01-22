@@ -1,0 +1,26 @@
+#+Title: Thunderbird email client
+
+* profile
+** ao atualizar para o Thunderbird 68[fn:1][fn:2]
+   Ao atualizar sera criado um profile novo durante a atualizacao o
+que significa que vc nao vai mais ver seus emails que ja tinham sido
+feito o download.
+
+   Portanto vc vai ter que voltar pro seu profile que vc ja estava usando.
+
+
+   Clicar nos tres tracinhos em cima a direita (menu hamburger)
+
+   Ir na opcao Help depois Troubleshout Information
+
+   Depois que abrir, clicar em about profiel
+
+   Clicar em Set as Default profile no seu profile antigo, se nao
+   lembrar qual era experimentar cada um pra ver qual
+
+
+
+
+* Refs
+[fn:1] https://support.mozilla.org/en-US/kb/dedicated-profile-thunderbird-installation
+[fn:2] https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-thunderbird-profiles
