@@ -1,0 +1,14 @@
+#+Title: PWA Device Orientation
+
+
+
+#+NAME:export diretorioDoProjeto=
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  export diretorioDoProjeto=/run/media/wagner/073c8e64-c4da-49d4-bdfc-221d9ad29e36/sources/
+  ls $diretorioDoProjeto
+#+END_SRC
+
+
+* Refs
+[fn:1] https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
+[fn:2] https://www.w3.org/TR/screen-orientation/

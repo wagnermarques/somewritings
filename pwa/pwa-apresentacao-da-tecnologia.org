@@ -1,0 +1,102 @@
+#+Title: PWA - Apresentacao da Tecnologia
+
+* Tema
+  Apresentacao da Tecnologia PWA
+
+* Justificativa e Objetivos
+  Uma das mais novas tecnologias mobile do mercado sao as Progressive
+  Web Applications e pelo fato de ser uma tencologia relevante vamos
+  conhece-la nesta aula de uma maneira mais geral.
+
+* Duracao
+  1 Aula
+  
+* Pre-Requisitos
+** Conhecimentos Previos   
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+  Exposicao Dialogado do professor
+  
+* Exercicioos e Atividades de Reflexao/Fixacao
+  
+  
+* Avaliacao
+  Print das aplicacoes pwa instaladas na maquina e no celular
+  
+
+* Apresentacao da aula
+  Vamos ver uma introducao
+
+  Vamos ver um exemplo e demonstracao de apps pwa e mostrar eles
+  funcionando como pwa
+
+  Depois vamos ver os requisitos para um site ser considerado um pwa
+
+  Depois vamos ver as possibilidades que um app pwa pode fornecer
+
+  
+
+* Introducao
+  Como eu ia dizendo na justificativa dessa aula, pwa e uma tecnologia
+  relevante e muito utilizada por grandes players do mercado de ti
+  como facebook, twitter e outros...
+
+  Nos vamos conhecer essa tecnologia... uma boa ideia, so pra ajudar
+  na introducao do assunto, seria vc assistir a esse video do
+  youtubehttps://www.youtube.com/watch?v=UeMkXvmk68Q...
+
+  Em resumo, pwa permite que seu site web seja instalavel no celular,
+  de modo que quando o usuario entrar no seu site pelo icone de
+  instalacao o android vai reconhecer a tecnologia pwa do seu site e
+  vai abrir o site utilizando toda uma experiencia mobile, ou seja, o
+  seu usuario nao vai ver o browser como se estivesse acessando uma
+  pagina de internet o usuario vai ver uma janela do seu app.
+
+  De fato, ao instalar o site no celular do seu usuario o crhome
+  realmente cria um webapk que e um apk que vai dar ao seu site um
+  status de aplicativo mesmo, sendo listando entre os aplicativos,
+  podendo ser instalado e desinstalado etc... Essa experiencia de
+  aplicativo e diferente de vc adicionar um atalho para entrar no site
+  na tela inicial do seu usuario... 
+
+  O pwa pode cachear recursos do seu site pra que quando o usuario,
+  apois instalar o seu site pwa, ou seja, baixar paginas, script,
+  imagens e demais recursos pra que mesmo sem internet ele tenha uma
+  experiencia de app e caso precise da internet pra alguma coisa vc
+  avisa ele que ele esta sem mas da pra fazer muita coisa sem a
+  internet.
+
+  Alem disso a palabra "progresseive" da sigla pwa significa que vai
+  funcionar o que o browser do seu usuario der suporte, caso nao haja
+  suporte e possivel prover uma funcionalidade diferenciada pra ele.
+  
+
+* Exemplos de pwa e demonstracao[fn:2]
+
+** Demonstracao no desktop
+
+   Se vc entrar nesse site https://mdn.github.io/pwa-examples/a2hs
+   usando o chrome ou firefox recente, no chrome e melhor, ao mesmo
+   por enquanto faca conforme os prints abaixo
+
+   Faca o mesmo com https://mdn.github.io/pwa-examples/js13kpwa/
+
+** Demonstracao no celular
+   
+
+* Requisitos de uma app pwa
+
+* Funcionalidades possiveis de um pwa
+
+
+* Referencias
+[fn:1] https://www.youtube.com/watch?v=UeMkXvmk68Q
+[fn:2] https://mdn.github.io/pwa-examples/
+
+https://www.youtube.com/watch?v=DfFlBWCQjzA
+
+

@@ -1,5 +1,37 @@
 #+Title: PWA Com Heroku
 
+* Tema
+  Subindo um html basico no heroku e transformando ele num pwa
+
+* Justificativa e Objetivos
+  A tecnologia PWA tem sido utilizada para criar aplicacoes para
+  mobile por empresas como facebook, twitter e muitos outras sendo
+  portanto, uma das tecnologias mobile mais novas do mercado.
+
+  Espera-se que vc ja saiba o que e pwa, se nao for o seu caso
+  consulte esse material que apresenta a tecnologia e porque ele esta
+  sendo muito utilizada no mercado mobile.
+
+  
+
+  
+
+* Duracao
+* Pre-Requisitos
+** Conhecimentos Previos
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+* Exercicioos e Atividades de Reflexao/Fixacao
+* Avaliacao
+* Referencias
+
+
+
+
 * Refs
 [fn:HerPwaWebApp] https://blog.heroku.com/how-to-make-progressive-web-app
 [fn:HerPwa] https://blog.heroku.com/tags/pwa
