@@ -24,7 +24,7 @@
 #+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
 
 * Tema
-  Compreendendo nosso projeto
+  Compreendendo nosso projeto recém criado
 
   
 * Justificativa e Objetivos
@@ -80,8 +80,8 @@ visualizar pelas pastas do windows normalmente...
 
 #+NAME:cd /home/wagner/envs/env-dev
 #+BEGIN_SRC shell :session s1 :results output :exports both
-  cd /home/wagner/envs/env-dev/sources/backupsys
-  ls -l
+  #cd /home/wagner/envs/env-dev/sources/backupsys
+  #ls -l
 #+END_SRC
 
 #+RESULTS: cd /home/wagner/envs/env-dev
@@ -195,7 +195,7 @@ Vamos conversar um pouco sobre eles
    tipo esse exemplo abaixo...
    
 
-   #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
+   INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
    
 
    Ve se faz sentido pra vc esse trecho de codigo, se nao fizer,
@@ -209,7 +209,7 @@ Vamos conversar um pouco sobre eles
 
    path.../backupsys/app
 
-#+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/User.php :src php :lines "1-"
+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/User.php :src php :lines "1-"
 
 ** Midleware
    Vc pode definir um middleware e dizer pro laravel fazer com que
@@ -237,8 +237,8 @@ seuprojeto/app/Http/Middleware
 
 #+NAME: ls -l app/Http/Middleware
 #+BEGIN_SRC shell :session s1 :results output :exports both
-   cd /home/wagner/envs/env-dev/sources/backupsys
-   ls -l app/Http/Middleware
+   #cd /home/wagner/envs/env-dev/sources/backupsys
+   #ls -l app/Http/Middleware
 #+END_SRC
 
 #+RESULTS: ls -l app/Http/Middleware
@@ -255,7 +255,7 @@ total 32
 -rw-rw-r--. 1 wagner wagner 307 abr 15 07:46 VerifyCsrfToken.php
 #+end_example
 
-#+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/Http/Middleware/isAdminMiddleware.php :src php :lines "1-"
+ INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/app/Http/Middleware/isAdminMiddleware.php :src php :lines "1-"
 
 
 
@@ -337,7 +337,7 @@ total 32
 ** Rotas Web
   Vale a pena entender primeiro o arquivo projeto/routes/web.php
 
-  #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
+  INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/routes/web.php :src php :lines "15-18"
 
   o que o usuario ve quando acessa nosso projeto pelo navegador na
   raiz do projeto "/" essa funcao retorna o que o usuario vai
@@ -366,7 +366,7 @@ total 32
 
   vamos conhecer o codigo dessa view...
 
-  #+INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/resources/views/welcome.blade.php :src html :lines "1-"
+  INCLUDE: /home/wagner/envs/env-dev/sources/backupsys/resources/views/welcome.blade.php :src html :lines "1-"
 
 
   A unica coisa que vc tem que perceber, e o professor pode te ajudar,

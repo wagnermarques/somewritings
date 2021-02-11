@@ -141,14 +141,13 @@ exports.sendMail = functions.https.onRequest((req, res) => {
 
 O resultado final do nosso index fica conforme abaixo...
 
-#+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+/home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
 
 
 
 * fazendo o deploy da funcao
   
-  
-  
+   
 #+NAME:mailCloudFunction3.png
 #+CAPTION: deploy da funcao
 #+attr_ORG: :width 500px

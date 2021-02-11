@@ -151,7 +151,7 @@
    #+BEGIN_SRC shell :session s1 :results output :exports both
    DirComOsPlanosDeAulas=/home/wagner/envs/env-dev/sources/somewritings/var/publishing-directory/planosdeaulas
    bucketName=www.planosdeaulas.com.br
-   export AwsAccountId=AKIAQ5IQ2LQ46IV2TBGC
+   export AwsAccountId=...
    #revisar as permissoes do buckets antes de usar os comandos
 
    #echo "s3 ls s3://$bucketName"

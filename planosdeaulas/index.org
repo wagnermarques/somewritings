@@ -5,6 +5,11 @@
 #+HTML_DOCTYPE: html5
 
 * Apresentação
+  
+  Estes planos de aulas tem um proposito especifico para aulas remotas nessa ocasiao de pandemia.
+
+  Este material pressupoe o acompanhamento do professor.
+
 
 * PAMI
 
@@ -37,6 +42,7 @@
   [[./pw3/laravel-e-heroku2.org][Aula4 - Entendendo o primeiro projeto Laravel]]
   
   [[./pw3/laravel-e-heroku3-PersistindoUsuario.org][Aula4 - Persistindo Usuarios]]
+
 
 * Sites
   

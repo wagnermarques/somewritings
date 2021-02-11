@@ -373,7 +373,7 @@ Vou usar o "\i caminhoProMeuScript.sql" pra rodar meu script...
 
 #+NAME:backupsys::DATABASE=> \i /home/wagner/envs/env-dev/sources/somewritings/planosdeaulas/BD3/sql_pgscripts/scriptdeteste.sql 
 #+BEGIN_SRC shell :session s1 :results output :exports both
-  backupsys::DATABASE=> \i /home/wagner/envs/env-dev/sources/somewritings/planosdeaulas/BD3/sql_pgscripts/scriptdeteste.sql 
+  backupsys::DATABASE=> \i /home/wagner/fzlbpms/submodules/somewritings/planosdeaulas/BD3/sql_pgscripts/scriptdeteste.sql 
 CREATE TABLE
 backupsys::DATABASE=> \d
                Lista de relações

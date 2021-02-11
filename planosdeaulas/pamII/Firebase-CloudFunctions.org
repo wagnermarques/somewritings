@@ -45,7 +45,7 @@
   
 #+NAME:   ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject
 #+BEGIN_SRC shell :session s1 :results output :exports both
-  ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject
+  #ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject
 #+END_SRC
 
 #+RESULTS: asdfasdf
@@ -64,7 +64,7 @@ Que a gente ver o que tem dentro dessa pasta functions?
 
 #+NAME: ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
 #+BEGIN_SRC shell :session s1 :results output :exports both
-  ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
+  #ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
 #+END_SRC
 
 #+RESULTS: ls -l /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions
@@ -102,7 +102,7 @@ enviar ela pro firabase funcions.
   recebe um parametro so isso.. mas a gente vai falar sobre ela na
   ultima sessao desse material.
   
-  #+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+  /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
 
 * Fazendo o deploy da nossa funcao  
   
@@ -187,7 +187,8 @@ funcao.
 
   Vou fazer o deploy de novo rodando firebase deploy --only function e
   vou executar a funcao passando parametro
-  #+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
+ 
+INCLUDE: /home/wagner/fzlbpms/fzlCloud/firebase_msgsproject/functions/index.js :src javascript
 
   
 #+NAME:fbCloudFunction6-saidaDoDeploy2DaFunctions.png
