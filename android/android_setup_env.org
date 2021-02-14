@@ -17,7 +17,7 @@
    Instalar o java
    Comando básicos do seu sistema operacional
 ** TODO Imagens de Configuração do Ambiente no Android Studio 
-
+   
 ** Recursos
    Android Studio
 
@@ -25,82 +25,140 @@
 ** Exposição e contextualização do professor
    Neste momento o professor apresenta e contextualiza o assunto
    
-** Apresentação do passo a passo de configuração do ambiente
-*** Download e Instalação da Ferramenta
-    O modo mais fácil é instalar o android studio e por ele configurar
-    os emuladores e o local do android sdk
-    https://developer.android.com/studio/?gclid=CjwKCAjw8NfrBRA7EiwAfiVJpVv9M940IfFf3qB2Ue7yug-0yzhRFrpfOzqrzY7TqtyNaUKA4_0p9RoCNskQAvD_BwE
+* Apresentação do passo a passo de configuração do ambiente
+** Download e Instalação da Ferramenta
+   O modo mais fácil é instalar o android studio e por ele configurar
+   os emuladores e o local do android sdk
+   https://developer.android.com/studio/?gclid=CjwKCAjw8NfrBRA7EiwAfiVJpVv9M940IfFf3qB2Ue7yug-0yzhRFrpfOzqrzY7TqtyNaUKA4_0p9RoCNskQAvD_BwE
     
-*** Configuração das variáveis de ambiente
-*** Variaveis do local de Instalacao do SDK 
-    ANDROID_HOME esta depreciado em favor de ANDROID_SDK_ROOT
-    Ambas devem apontar pro local onde o sdk esta instalado
+** Configuração das variáveis de ambiente
+** Variaveis do local de Instalacao do SDK 
+   ANDROID_HOME esta depreciado em favor de ANDROID_SDK_ROOT
+   Ambas devem apontar pro local onde o sdk esta instalado
 
-*** Utilizando as variaveis de ambiente para configurar nosso path
+** Utilizando as variaveis de ambiente para configurar nosso path
     
-   #+NAME:  export env vars                   
-   #+BEGIN_SRC shell :session s1 :results output :exports both
-      #starts code
-      export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
-      export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk 
-      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
-      echo $PATH
-   #+END_SRC
+  #+NAME:  export env vars                   
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+     #starts code
+     export GRADLE_HOME=/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1
+     export ANDROID_SDK_ROOT=/home/wagner/PROGSATIVOS/androidSdk 
+     export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$GRADLE_HOME/bin      
+     echo $PATH
+  #+END_SRC
 
-   #+RESULTS: export env vars
-   : 
-   : [wagner@Unknown android]$ /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/.rbenv/shims:/home/wagner/.rbenv/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile/bin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
+  #+RESULTS: export env vars
+  : 
+  : [wagner@Unknown android]$ /home/wagner/.local/bin:/home/wagner/bin:/usr/libexec/python3-sphinx:/home/wagner/.local/bin:/home/wagner/bin:/home/wagner/.rbenv/shims:/home/wagner/.rbenv/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/domadmin/fedora-multimedia-box:/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/emacsinitfile/bin:/home/wagner/PROGSATIVOS/jdk1.8.0_191/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-maven-3.6.0/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/apache-ant-1.10.5/bin:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/PROGSATIVOS/androidSdk/tools/bin:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/sqlite-tools-linux-x86-3260000:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/hsqldb/bin:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/db/squirrelsql-3.9.0-standard:/home/wagner/PROGSATIVOS/androidSdk/platform-tools:/home/wagner/PROGSATIVOS/androidSdk/emulator:/home/wagner/PROGSATIVOS/androidSdk/tools:/home/wagner/wagnerdocri@gmail.com3/fzlbpms/fzlStudio/integrated/build/gradle-5.1.1/bin
 
-     Após configurar essas variávies no seu path já dá pra utilizar
-     comandos que a gente precisa... Depois a gente vai conversar
-     sobre cada um deles....
+    Após configurar essas variávies no seu path já dá pra utilizar
+    comandos que a gente precisa... Depois a gente vai conversar
+    sobre cada um deles....
          
 
-*** Testando se os comandos do android sdk estao no nosso path
+** Testando se os comandos do android sdk estao no nosso path
     
-    Os comandos abaixo testam se o nosso sdk do android esta no nosso path
+   Os comandos abaixo testam se o nosso sdk do android esta no nosso path
     
-     #+NAME: test adv devices
-     #+BEGIN_SRC shell :session s1 :results output :exports both
-         #starts code        
-         echo "-------------------"
-         adb version
-         sdkmanager version
-         emulator -version
-         echo "-------------------"
-         gradle -v
-     #+END_SRC
+    #+NAME: test adv devices
+    #+BEGIN_SRC shell :session s1 :results output :exports both
+        #starts code        
+        echo "-------------------"
+        adb version
+        sdkmanager version
+        emulator -version
+        echo "-------------------"
+        gradle -v
+    #+END_SRC
 
-     #+RESULTS: test adv devices
-     #+begin_example
+    #+RESULTS: test adv devices
+    #+begin_example
 
-     -------------------
-     Android Debug Bridge version 1.0.40
-     Version 28.0.2-5303910
-     Installed as /home/wagner/PROGSATIVOS/androidSdk/platform-tools/adb
-     Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...                                                                                         Warning: File /home/wagner/.android/repositories.cfg could not be loaded.
-     Fetch remote repository...         [==                                     ] 6% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...                                                                                              Warning: Failed to find package version
-     Computing updates...              [wagner@Unknown android]$ [139678363559744]:ERROR:android/android-emu/android/qt/qt_setup.cpp:28:Qt library not found at ../emulator/lib64/qt/lib
-     Could not launch '/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/../emulator/qemu/linux-x86_64/qemu-system-i386': No such file or directory
-     -------------------
-     ------------------------------------------------------------
-     Gradle 5.1.1
-     ------------------------------------------------------------
+    -------------------
+    Android Debug Bridge version 1.0.40
+    Version 28.0.2-5303910
+    Installed as /home/wagner/PROGSATIVOS/androidSdk/platform-tools/adb
+    Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...                                                                                         Warning: File /home/wagner/.android/repositories.cfg could not be loaded.
+    Fetch remote repository...         [==                                     ] 6% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...                                                                                              Warning: Failed to find package version
+    Computing updates...              [wagner@Unknown android]$ [139678363559744]:ERROR:android/android-emu/android/qt/qt_setup.cpp:28:Qt library not found at ../emulator/lib64/qt/lib
+    Could not launch '/home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/somewritings/android/../emulator/qemu/linux-x86_64/qemu-system-i386': No such file or directory
+    -------------------
+    ------------------------------------------------------------
+    Gradle 5.1.1
+    ------------------------------------------------------------
 
-     Build time:   2019-01-10 23:05:02 UTC
-     Revision:     3c9abb645fb83932c44e8610642393ad62116807
+    Build time:   2019-01-10 23:05:02 UTC
+    Revision:     3c9abb645fb83932c44e8610642393ad62116807
 
-     Kotlin DSL:   1.1.1
-     Kotlin:       1.3.11
-     Groovy:       2.5.4
-     Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
-     JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
-     OS:           Linux 5.1.18-200.fc29.x86_64 amd64
-     #+end_example
+    Kotlin DSL:   1.1.1
+    Kotlin:       1.3.11
+    Groovy:       2.5.4
+    Ant:          Apache Ant(TM) version 1.9.13 compiled on July 10 2018
+    JVM:          1.8.0_191 (Oracle Corporation 25.191-b12)
+    OS:           Linux 5.1.18-200.fc29.x86_64 amd64
+    #+end_example
 
  
-     
+* testando adb devices     
+  
+  conecte seu dispositivo com um cabo usb
+  
+  Ative o modo desenvolvedor
 
+  Nas opcoes do modo desenvolvedor, ative depuracao via usb
+
+  o adb devices vai ver se o seu device foi detectado
+#+NAME:adb devices
+#+BEGIN_SRC shell :session s1 :results output :exports both
+[wagner@wagner-Insp153567 patrimob3]$ adb devices
+List of devices attached
+192.168.3.43:5555	device
+
+#+END_SRC
+
+
+se foi belza tudo funcionou, senao, da uma conferida no seu cabo
+
+peca ajuda do professor
+
+** adb via wifi
+
+   se o seu adb devices funcionou via usb, sabia que da pra fazer ele
+   funcionar via wifi tambem facilmente
+
+   1) descubra o ip do seu dispositivo na sua lan wifi
+
+   
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  adb tcpip 5555
+  adb connect IpDoSeuDispositivo:5555
+#+END_SRC
+
+  agora so tirar o seu cabo e ver que o seu adb funciona normalmente
+  via wifi..
+
+
+agora, perceba o seguinte, se vc tirar o cabo usb e dar um adb
+devices, vai aparecer um device que e o seu dispositivo via wifi. Mas
+se vc, depois de configurar esse acesso via wifi, tambem esperar o o
+usb vai acontecer que o usb devices vai mostrar dois dispostivios
+conforme abaixo
+
+
+#+NAME:adb devices dois dispositivos
+#+BEGIN_SRC shell :session s1 :results output :exports both
+[wagner@wagner-Insp153567 patrimob3]$ adb devices
+List of devices attached
+LMX525LVFQTS5DYHVW	device
+192.168.3.43:5555	device
+
+#+END_SRC
+
+
+      mas e o mesmo dispostivio mas o acesso a ele agora pode ocorrer
+      via wifi ou cabo
+  
   
 * Exercicios e Atividades de Reflexão/Fixação
   Proposta de Atividade prática

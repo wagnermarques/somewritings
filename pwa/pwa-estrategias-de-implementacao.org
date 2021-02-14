@@ -1,0 +1,238 @@
+#+Title: PWA - Estrategias de Implementacao
+
+* Tema
+  PWA - Estrategias de Implementacao
+
+* Justificativa e Objetivos
+  Quase tudo na vida e um trade-off
+
+  Tem muitos recursos em pwa que e legal mas tem que usar com
+  moderacao
+
+  Por isso precisamos de estrategias pra usar os recuros no momento
+  correto pra que o nosso usuario goste da experiencia de usar nosso pwa
+* Duracao
+  1 aula
+  
+* Pre-Requisitos
+** Conhecimentos Previos
+   Conceitos de pwa tem que estar claro
+   veja essas aulas primeiro:
+   
+   [[./pwa-apresentacao-da-tecnologia.org][Apresentacao da tecnologia PWA]]
+
+   [[./pwa_project1.org][Criando um pwa mais simples possivel]]
+ 
+** Recursos
+   cliente do heroku instaladao
+   
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+
+* Procedimento didatico
+  Exposicao dialogada
+  
+* Exercicioos e Atividades de Reflexao/Fixacao
+  Uma boa conversa sobre o assunto e que precisamos pra "cair a
+  ficha", conhecem essa expressao antiga?
+
+* TODO Avaliacao
+  Ainda nao temos uma avaliacao pra essa aula
+
+  A ideia e propor situacoes onde a gente possa se posicionar sobre a
+  utilizacao dos recursos do pwa
+
+
+* Intorducao
+  Quase tudo na vida e um trade-off
+
+  Tem muitos recursos em pwa que e legal mas tem que usar com
+  moderacao
+
+  Por isso precisamos de estrategias pra usar os recuros no momento
+  correto pra que o nosso usuario goste da experiencia de usar nosso pwa
+
+
+* Questoes Relevantes para Estrategia de Implementacao[fn:3]
+** TODO webapk vs Atalho para pagina inicial[fn:3]
+   Ao instalar o pwa, o chrome cria uma apk, quando o pwa tem os requisitos pra isso, mas
+   outros navegadors so criam um icone de atalho na tela inicial
+   
+   webapk tem implicacoes que a gente tem que levar em consideracao
+
+** controlar o momento de propor a instalacao do seu pwa[fn:3]
+   Muitas vezes o usuario ta acessando seu site querendo ter uma
+   experiencia so de site mesmo e propor "instalar o site" pode soar
+   estranho pra ele num primeiro momento.
+
+   Os navegadores mostram essa janela de proposicao pra instalar em
+   momentos que a gente nao controle entao uma maneira de fazer esse
+   controle e o seguinte...
+
+   
+#+NAME:window.addEventListener('beforeinstallprompt', function(event) {
+#+BEGIN_SRC js :session s1 :results output :exports code
+// global variable for the event object
+var installPromptEvent;
+window.addEventListener('beforeinstallprompt', function(event) {
+      event.preventDefault();
+      installPromptEvent = event;
+});  
+#+END_SRC
+
+    a gente pode colocar alguma condicao que a gente acha melhor pra
+    liberar a proposicao... neste caso esse codigo pode ser muito
+    util...
+
+    
+#+NAME:function callInstallPrompt() {
+#+BEGIN_SRC js :session s1 :results output :exports code
+function callInstallPrompt() {
+          // We can't fire the dialog before preventing default browser dialog
+    if (installPromptEvent !== undefined) {
+          installPromptEvent.prompt();
+    }
+}
+#+END_SRC
+
+** TODO Compartilhar conteudos web share api[fn:1]
+   :PROPERTIES:
+   :EXPORT_AUTHOR: wagnerdocri@gmail.com
+   :EXPORT_OPTIONS: exportOptionsInteressante
+   :HTML_CONTAINER_CLASS: l2session
+   :STYLE:    asdf
+   :TODO: prover exemplos ou link para os exemplos
+   :END:
+   
+   Existe uma api web conhecida como web share api[fn:2],[fn:3]  
+   
+   O que e legal nessa api e que no celular vc consegue usar aquele
+   recurso, aquela telinha, de compartilhamento nativo do sistema
+   operacional. 
+
+   A dica aqui e que quando vc estiver com sua pwa no modo fullscreen
+   o usuario pode nao ter onde clicar pra fazer esse compartilhamento,
+   nesse caso faca o seguinte...
+
+   
+#+NAME:function share() {
+    var text = 'Add text to share with the URL';
+#+BEGIN_SRC js :session s1 :results output :exports code
+function share() {
+    var text = 'Add text to share with the URL';
+    if ('share' in navigator) {
+        navigator.share({
+            title: document.title,
+            text: text,
+            url: location.href,
+        })
+    } else {
+        // Here we use the WhatsApp API as fallback; remember to encode yourtext for URI
+        location.href = 'https://api.whatsapp.com/send?text=' +encodeURIComponent(text + ' - ') + location.href
+    }  
+#+END_SRC
+
+** TODO Analytics
+   :PROPERTIES:
+   :EXPORT_AUTHOR: wagnerdocri@gmail.com
+   :TODO: Exemplos ou link para exemplos
+   :END:
+   
+   Bom, se vc ja tem um pwa legal que as pessoas estao usando, ou
+   ainda vai ter, pensa o seguinte comigo: como eu vou saber quantas
+   pessoas instalaram meu pwa? Quais sessoes da minha pwa sao as mais
+   visitadas?
+
+   Vc precisa de usar uma ferramenta de analytics pra isso...
+
+   segue abaixo alguns eventos que vc vai querer detectar com o seu
+   analytics...
+   
+
+
+#+NAME: pwa events for analytics
+#+BEGIN_SRC js :session s1 :results output :exports code
+window.addEventListener('appinstalled', function(event) {
+     // Track event: The app was installed (banner or manual installation)
+});
+window.addEventListener('beforeinstallprompt', function(event) {
+     // Track event: The web app banner has appeared
+     event.userChoice.then(function(result) {
+           if (result.outcome === 'accepted') {
+                // Track event: The web app banner was accepted
+           } else {
+                // Track event: The web app banner was dismissed
+           }
+     });
+});  
+#+END_SRC
+
+** TODO Compatibilidade com IOS   
+   :PROPERTIES:
+   :TAGS: pwa;ios
+   :TODO: explicar o assunto, exemplo pratico
+   :END:
+   Nao manjo muito de ios, como nao vamos trabalhar com ios em sala de
+   aula deixo a url pra vcs darem uma lida[fn:1]
+
+** Sincronizacao de dados em background
+   
+   Bom, como a gente viu antes sobre serviceworks, eles podem
+   continuar rodando mesmo depois que seu usuario fecha a aba do seu
+   site entao da pra fazer algo em segundo plano ainda e sincronizar
+   dados pode ser algo muito importante dependendo do seu pwa.
+
+   E importante vc saber que existe essa api de sincronizacao em
+   backgroud[fn:4],[fn:5],[fn:6],[fn:7]. A ideia dessa api e que ao
+   inves de vc ter que dizer para o usuario, no momento em que ele
+   tenta fechar a sua aba, "pera um pq que eu ainda estou enviando
+   dados para o servidor... nao saia agora!!!"... com essa api vc
+   deixa ele sair de boa e faz em segundo plano.[fn:4]. O evento
+   "onbeforeunload" e onde vc detecta que o seu usuario esta saindo e
+   ai vc pode tomar a acao usando a api de sincronizacao em background
+   de boa...
+
+
+   
+   
+   
+
+   Um codigo basicao pra fazer isso e o seguinte...
+
+   
+#+NAME:navigator.serviceWorker.ready.then(function(reg) {
+#+BEGIN_SRC js :session s1 :results output :exports code
+navigator.serviceWorker.ready.then(function(reg) {
+   reg.sync.register('myTag')
+});  
+#+END_SRC
+
+** WebView de Dispositivos em geral nao instam sua aplicacao pwa[fn:1]
+   :PROPERTIES:
+   :EXPORT_AUTHOR: wagnerdocri@gmail.com
+   :TODO: exemplo pratico
+   :END:
+   
+   Se o seu usuario esta usando o app do facebook e clica num link que
+   ele recebeu e esse link e o link da sua aplicacao pwa, o que sera
+   aberto para o usuario nao e o navegador chrome e sim um
+   webview. Esse webview nao tem os recursos de um navegador que da
+   suporte para sua pwa como a instalacao, por exemplo.
+
+   Entao, obviamente, vc tem que detectar, na sua aplicacao, se ela
+   esta numa webview pra ter o cuidado de nao perguntar, por exemplo,
+   se o usuario quer instalar sua pwa porque nao vai funcionar e o
+   culpado da ma experiencia do usuario ser sua ne...
+
+   
+
+* Referencias
+[fn:1] https://firt.dev/pwa-secrets/#01.-webapk-vs-android-shortcut
+[fn:2] https://w3c.github.io/web-share/
+[fn:3] https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
+[fn:4] https://developers.google.com/web/updates/2015/12/background-sync
+[fn:5] https://developers.google.com/web/tools/workbox/modules/workbox-background-sync
+[fn:6] https://developer.mozilla.org/en-US/docs/Web/API/Web_Periodic_Background_Synchronization_API
+[fn:7] https://www.caniuse.com/background-sync

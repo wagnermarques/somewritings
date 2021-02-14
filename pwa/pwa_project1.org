@@ -1,0 +1,684 @@
+#+Title: Primeiro PWA
+* Tema
+  Primeiro PWA
+
+* Justificativa e Objetivos
+  Depois de conhecer os conceitos e a tecnologia pwa agora  gente
+  precisa comecar a fazer um.
+
+  A ideia a comecar com um pwa mais simples possivel
+
+  O objetivo e por no ar na nuvem do heroku um html o mais basico
+  possivel com um javascript que cria um service worker e um
+  manifest.json.
+
+* Duracao
+  2 aulas
+
+* Pre-Requisitos
+** Conhecimentos Previos
+   Visao geral da tecnologia pwa   ([[./pwa-apresentacao-da-tecnologia.org][Apresentacao da Tecnologia PWA]])
+   
+   Conhecimentos basicos sobre heroku
+
+   Conhecimentos basicos de git e github
+
+** Recursos
+   Cliente do heroku instalado
+
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+
+* Procedimento didatico
+  exposicao dialogada pelo prof
+
+  Atividade pratica
+
+* Introducao
+  Pessoal, nesta aula, vamos criar nosso primeiro pwa. A ideia e fazer
+  da maneira mais simples possivel.
+* Criando o projeto  
+
+  Primeiro vamos criar um diretorio onde todos os *artefatos de
+  software do nosso projeto* (todos os arquivos que compoe nosso projeto) vai ser criado.
+
+** Criando uma pasta pro nosso projeto
+  Eu vou chamar esse projeto de projDir tudo bem?
+
+  Esse diretorio pode estar em qualquer lugar da sua maquina, mas nao
+  use espaco ou caracteres especiais no caminho desse diretorio porque
+  isso e pra usuario final rsrsr...
+
+  Veja abaixo onde vai ficar minha pasta, a sua pode ser onde vc
+  quizer desde que vc tenha permissao pra criar arquivos na pasta...
+
+#+NAME:/home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  export projDir=/home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
+  mkdir $projDir
+  
+#+END_SRC
+
+** Inicializando nosso diretorio como repositorio local
+   Vcs sabem que pra trabalhar com heroku nosso diretorio tem que ser
+   um repositorio do git ne? Por exemplo, pra gente enviar o nosso
+   projeto pro heroku, por exemplo, temos que dar um git push...
+
+   Entao e isso que vamos fazer agora, nosso projeto vai virar um
+   repositorio local do git.
+   
+#+NAME:git init
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git init
+#+END_SRC
+
+#+RESULTS: git init
+#+begin_example
+
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+Initialized empty Git repository in /home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1/.git/
+#+end_example
+
+** Preparando pro nosso projeto ser reconhecido pelo heroku
+   
+Preparar nosso projeto pra rodar no heroku nao tem nada a ver com pwa,
+mas como nosso projeto vai rodar no heroku, entao temos que fazer isso
+certo?
+
+Agora que eu criei o diretorio e ele e um repositorio local do git,
+vamos comecar a criar o nosso projeto..
+
+Vamos comecar criando o arquivo Procfile, que vc sabe que o heroku vai
+exigir isso de vc ne...
+
+Nosso Procfile vai ser usado pelo heroku pra subir um apache com php
+habilitado pra isso...
+
+entao vamos criar nosso Procfile... Se vc nao compreender o comando
+abaixo, nao ligue pra isso, saiba apenas que vc tem que criar esse
+arquivo texto que chama Profile (sem extensao) na pasta do seu
+projeto.. blz?
+
+
+#+NAME:touch Procfile
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+#+END_SRC
+
+#+RESULTS: touch Procfile
+: 
+: /home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
+
+Esse comando acima criou meu arquivo texto com nome Procfile com o
+seguinte conteudo...
+
+Lembrando que se vc tiver no windows o echo funciona mas insere as
+aspas no Procfile e vc tem que tirar as aspas na mao.. Lembrando
+tambem que se vc tiver usando powershell esse echo nao funciona
+direito porque a insercao acaba sendo algo binario e isso fica
+estranho e o heroku nao consegue parsear o Procfile.
+
+Abaixo o comando ls mostra que o Profile foi criado. Se vc tiver no
+windows ao inves de ls vc vai dar um dir. 
+#+NAME: cat procfile
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir
+  ls -l
+#+END_SRC
+
+#+RESULTS: cat procfile
+: 
+:  total 4
+: -rw-r--r-- 1 wagner wagner 43 fev 13 22:32 Procfile
+
+
+O heroku vai exigir de vc tambem o arquivo composer.json. E exigencia
+do heroku mas pro nosso projeto a gente nao usa porque nenhuma
+dependencia do php sera necessaria pro nosso primeiro pwa.
+
+Entao crie um arquivo composer.json com esse conteudo abaixo e salve
+na nossa pasta do projeto...
+
+
+#+NAME:composer.json
+#+BEGIN_SRC js :session s1 :results output :exports code
+{
+  "require" : {
+  },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
+}
+  
+#+END_SRC
+
+
+
+O comando ls abaixo mostra que neste momento tenho os dois arquivos
+criados o Procfile e o composer.json
+
+
+
+#+NAME: ls2
+#+BEGIN_SRC shell :session s1 :results output :exports both
+ cd $projDir
+ ls -l
+#+END_SRC
+
+#+RESULTS: ls2
+: 
+:  total 8
+: -rw-r--r-- 1 wagner wagner 87 fev 13 22:46 composer.json
+: -rw-r--r-- 1 wagner wagner 43 fev 13 22:32 Procfile
+
+
+
+Por ultimo lembre que nosso procfile preve um diretorio public no
+nosso projeto onde ficara os html imagens etc.. e esse diretorio que o
+heroku ira servir via apache pro nosso usuario...
+
+O comando abaixo mostra que o nosso diretorio public e criado e eu dou
+de novo um ls pra vcs verem como esta nossodiretorio do nosso projeto
+nesse momento...
+
+#+NAME:mkdir public
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir
+  mkdir public
+  ls -l
+#+END_SRC
+
+#+RESULTS: mkdir public
+: 
+: [wagner@wagner-Insp153567 projeto1 total 12
+: -rw-r--r-- 1 wagner wagner   87 fev 13 22:46 composer.json
+: -rw-r--r-- 1 wagner wagner   43 fev 13 22:32 Procfile
+: drwxr-xr-x 2 wagner wagner 4096 fev 13 22:49 public
+
+Nosso projeto web tipo php minimo ta preparado pro heroku entender ele
+mas nao temos ainda um index.php e um index.html no diretorio
+public. Vamos fazer isso entao..
+
+** Comecando o pwa
+   E dentro do diretorio public que nosso pwa acontece, isso porque o
+   pwa e so html e javascript...
+
+   Poderiamos criar so um index.html e o javascript, mas como nosso
+   projeto do heroku e um projeto php o heroku vai fornecer para o
+   usuario o index.php entao a gente vai criar o index.php e o
+   index.php vai carregar o index.html.
+
+*** crie o index.php
+    
+Crie o arquivo index.php na pasta public com o conteudo abaixo...
+
+
+#+NAME:index.php
+#+BEGIN_SRC php :session s1 :results output :exports code
+  <?php include_once("index.html");
+#+END_SRC
+
+
+#+NAME:ls3
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+ls ./public
+#+END_SRC
+
+#+RESULTS: ls3
+: 
+: index.php
+
+*** criando nosso index.html
+
+ crie o arquivo index.html com o conteudo abaixo e salve ele na pasta
+ public
+
+ 
+#+NAME:index.html
+#+BEGIN_SRC html :session s1 :results output :exports both
+<!DOCTYPE html>
+<html>
+
+  <head>    
+    <title>Aprend PWA</title>
+    <link rel="manifest" href="/manifest.json?v=8">
+    <script src="./js/main.js" defer></script>
+  </head>
+
+  <body>
+
+    <h1>Aprend PWA (HOME)</h1>
+    
+    <p>
+      <a href="deviceorientation.html">Aprend PWA-Device
+        Orientation</a></p>
+
+    <img src="./dog.svg" alt="dogImg"></img>
+    
+  </body>
+</html> 
+
+#+END_SRC
+
+Fala serio.. nao poderia ser um html mais simples hein...
+
+So tem dois detalhes com vc nao pode deixar passar desapercebido...
+
+  + tab link para o arquivo manifest
+    No head desse html temos um link do relacionamento do tipo
+    "manifest"
+    
+    Nao sei se vc vai lembrar, mas esse manifest ja e um arquivo
+    relativo a tecnologia pwa. A funcao dele foi falada na aula de
+    aprensentacao do pwa, mas se vc esqueceu, tranquilo, pergunta pro
+    prof...
+
+    Claro que esse arquivo manifest.json tem que existir ne.. daqui a
+    pouco vamos criar ele. Lembrando que o nome do arquivo ser
+    manifest.json nao e obrigatorio. O que e obrigatorio para o pwa e
+    que o link seja rel=manifest.
+
+  + tag script que carrega nosso javascript
+    Essa tag script so carrega nosso javascript.. nosso arquivo
+    javascript chama main mas poderia ter qualquer outro nome... o
+    nome nao e relevante pra pwa e sim o que o script faz.
+
+    Neste caso, qdo vc for dar uma olhada nesse escript vc vai ver que
+    ele vai registrar e ativar nosso serviceworker.
+
+  + outra coisa que nosso html faz e carregar uma imagem a dog.svg
+    Por causa disso nos vamos ter que prover essa imagem tambem na
+    pasta public
+
+** Criando o main.js, o manifest.json, dog.svg e cat.svg
+
+   Vc vai criar esses arquivos e colocar eles todos no public, ok?
+
+   Segue o conteudo o main.js
+   
+   Se vc ta seguindo aqui nosso passo a passo sem ansiedade vc vai ver
+   com calma esse conteudo do main.js e seria muito muito da hora se
+   vc percebesse o seguinte....
+
+   O conteudo comeca com um if, depois tem um console... e depois tem
+   uma a seguinte linha "navigator.serviceWorker.register('/service-worker-minimum-to-intall-pwa.js')"
+
+   Percebeu que esse linha ta registrando um serviceworker e esse
+   service worker e um outro arquivo javascript?
+
+   Entao deixa essa "bola quicando" que a gente pega ela daqui a
+   pouquinho pra criar esse arquivo...
+   
+#+NAME:main.js
+#+BEGIN_SRC js :session s1 :results output :exports code
+if ('serviceWorker' in navigator) {
+    console.log("main.js => Vamos registrar o service worker!!!");
+    navigator.serviceWorker.register('/service-worker-minimum-to-intall-pwa.js')
+        .then(registration => {
+            console.log("main.js => Service Worker Registrado com Sucesso");
+            console.dir(registration);
+        })
+        .catch(error => {
+            console.log("main.js => Erro ao registrar Service Worker");
+            console.dir(error);
+        });
+}
+
+#+END_SRC
+
+Segue o conteudo o arquivo manifest.json
+
+#+NAME:manifest.json
+#+BEGIN_SRC js :session s1 :results output :exports code
+  {
+    "name": "AprendendoPWA",
+    "short_name": "AprendPWA",
+    "description": "WEB APP para aprender PWA (Disciplina PAMII).",
+    "display": "fullscreen",
+    "start_url":"index.html",    
+    "scope": "/",
+    
+    "icons": [
+        {
+            "src": "icon/app-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon/app-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }]
+}
+
+#+END_SRC
+
+Agora crie tb as imagens... vc pode pega-las no proprio site que esta
+online usando botao direito na imagem e dando um "salvar imagem
+como"... https://aprendendopwa.herokuapp.com/
+
+*Perceba que a imagem do cachorro e do gato esta no diretorio public os icones apontados no manifest esto no diretorio icon dentro do public.*
+
+Abaixo segue toda a estrutura do nosso projeto...
+
+
+#+NAME:tree estrutura do projeto
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+tree
+#+END_SRC
+
+#+RESULTS: tree estrutura do projeto
+#+begin_example
+ .
+ composer.json
+ Procfile
+ public
+     cat.svg
+     dog.svg
+     icon
+         app-icon-192x192.png
+          app-icon-512x512.png
+     index.html
+     index.php
+     js
+        main.js
+     manifest.json
+
+3 directories, 10 files
+#+end_example
+
+
+** Criando o arquivo service-worker-minimum-to-intall-pwa
+   Sabe aquela "bola quicando" esperando a gente criar o arquivo
+   arquivo service-worker-minimum-to-intall-pwa.js?
+
+   Esse arquive deve ter o seguinte conteudo...
+
+   *Esse arquivo deve estar no diretorio public*.
+
+#+NAME: arquivo service-worker-minimum-to-intall-pwa
+#+BEGIN_SRC js :session s1 :results output :exports code
+  self.addEventListener('install', event => {
+    console.log('sw ./ => installing...');
+
+    // cache a cat SVG
+    event.waitUntil(
+        caches.open('static-v1').then(cache => cache.add('/cat.svg'))
+    );
+    
+    console.log("sw ./ =>  install event detected e cat.svg cacheado!!!");
+    
+});
+
+
+self.addEventListener('activate', event => {
+    console.log('sw ./ => Evento activate ocorreu, agora pronto pra interceptar fetches');
+});
+
+
+self.addEventListener('fetch', event => {
+    console.log("sw ./ => Detectei um evento fetch para o recurso abaixo:");
+    console.log("sw ./ => "+event.request.url);
+    
+    const url = new URL(event.request.url);
+    
+    // serve the cat SVG from the cache if the request is
+    // same-origin and the path is '/dog.svg'
+    if (url.origin == location.origin && url.pathname == '/dog.svg') {
+        event. respondWith(caches.match('/cat.svg'));
+    }
+});
+
+#+END_SRC
+
+** Enviando tudo para o heroku
+   Bom, temos tudo que precisamos pro nosso projeto pwa inicial
+   simplizao...
+
+   Agora a gente quer enviar tudo pro heroku certo?
+
+   Pra isso o heroku tem que ter um projeto criado la... la no site do
+   heroku... Entao o *passo1 pra enviar nosso projeto pro heroku e criar o projeto no heroku que possa receber nosso conteudo*
+   
+   O *passo2 pra enviar nosso projeto pro heroku e dar um git add .  nos arquivos que criamos, comitar e dar git push*
+   
+
+   Entao vamos fazer isso..
+
+   
+#+NAME:heroku create pwaproj1
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+heroku create pwaproj1
+#+END_SRC
+
+#+RESULTS: heroku create pwaproj1
+: 
+: Creating  pwaproj1... done
+: https://pwaproj1.herokuapp.com/ https://git.heroku.com/pwaproj1.git
+
+
+#+NAME:git add .
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git add .
+#+END_SRC
+
+#+RESULTS: git add .
+
+
+
+#+NAME:git status
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git status
+#+END_SRC
+
+#+RESULTS: git status
+#+begin_example
+
+ On branch master
+
+No commits yet
+
+Changes to be committed:
+..." to unstage)
+	new file:   Procfile
+	new file:   composer.json
+	new file:   public/cat.svg
+	new file:   public/dog.svg
+	new file:   public/icon/app-icon-192x192.png
+	new file:   public/icon/app-icon-512x512.png
+	new file:   public/index.html
+	new file:   public/index.php
+	new file:   public/js/main.js
+	new file:   public/manifest.json
+	new file:   public/service-worker-minimum-to-intall-pwa.js
+#+end_example
+
+
+
+#+NAME:git commit -am "Arquivos necessarios para proj1 pwa"
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git commit -am "Arquivos necessarios para proj1 pwa"
+#+END_SRC
+
+#+RESULTS: git commit -am "Arquivos necessarios para proj1 pwa"
+#+begin_example
+
+ [master (root-commit) f043e7d] Arquivos necessarios para proj1 pwa
+ 11 files changed, 103 insertions(+)
+ create mode 100644 Procfile
+ create mode 100644 composer.json
+ create mode 100644 public/cat.svg
+ create mode 100644 public/dog.svg
+ create mode 100644 public/icon/app-icon-192x192.png
+ create mode 100644 public/icon/app-icon-512x512.png
+ create mode 100644 public/index.html
+ create mode 100755 public/index.php
+ create mode 100644 public/js/main.js
+ create mode 100644 public/manifest.json
+ create mode 100644 public/service-worker-minimum-to-intall-pwa.js
+#+end_example
+
+
+
+#+NAME:git push heroku master
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git push heroku master
+#+END_SRC
+
+#+RESULTS: git push heroku master
+#+begin_example
+
+[00m Enumerating objects: 16, done.
+(1/16)Counting objects:  12% (2/16)Counting objects:  18% (3/16)Counting objects:  25% (4/16)Counting objects:  31% (5/16)Counting objects:  37% (6/16)Counting objects:  43% (7/16)Counting objects:  50% (8/16)Counting objects:  56% (9/16)Counting objects:  62% (10/16)Counting objects:  68% (11/16)Counting objects:  75% (12/16)Counting objects:  81% (13/16)Counting objects:  87% (14/16)Counting objects:  93% (15/16)Counting objects: 100% (16/16)Counting objects: 100% (16/16), done.
+Delta compression using up to 4 threads
+(1/13)Compressing objects:  15% (2/13)Compressing objects:  23% (3/13)Compressing objects:  30% (4/13)Compressing objects:  38% (5/13)Compressing objects:  46% (6/13)Compressing objects:  53% (7/13)Compressing objects:  61% (8/13)Compressing objects:  69% (9/13)Compressing objects:  76% (10/13)Compressing objects:  84% (11/13)Compressing objects:  92% (12/13)Compressing objects: 100% (13/13)Compressing objects: 100% (13/13), done.
+(1/16)Writing objects:  12% (2/16)Writing objects:  18% (3/16)Writing objects:  25% (4/16)Writing objects:  31% (5/16)Writing objects:  37% (6/16)Writing objects:  43% (7/16)Writing objects:  50% (8/16)Writing objects:  56% (9/16)Writing objects:  62% (10/16)Writing objects:  68% (11/16)Writing objects:  75% (12/16)Writing objects:  81% (13/16)Writing objects:  87% (14/16)Writing objects:  93% (15/16)Writing objects: 100% (16/16)Writing objects: 100% (16/16), 138.61 KiB | 6.03 MiB/s, done.
+Total 16 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: Compressing source files... done.        
+remote: Building source:        
+remote:
+Building on the Heroku-20 stack
+PHP app detected
+Bootstrapping...
+Installing platform packages...        
+remote:        [1;33mNOTICE:[0m No runtime required in composer.lock; using PHP ^7.0.0 | ^8.0.0
+remote:        - apache (2.4.46)        
+remote:        - nginx (1.18.0)        
+remote:        - php (8.0.2)        
+remote:        - composer (1.10.20)
+Installing dependencies...        
+remote:        Composer version 1.10.20 2021-01-27 15:41:06        
+remote:        Loading composer repositories with package information        
+remote:        Updating dependencies        
+remote:        Writing lock file        
+remote:        Generating optimized autoload files
+Preparing runtime environment...
+Checking for additional extensions to install...
+Discovering process types
+web        
+remote:
+Compressing...        
+remote:        Done: 15.1M
+Launching...        
+remote:        Released v3        
+remote:        https://pwaproj1.herokuapp.com/ deployed to Heroku        
+remote: 
+remote: Verifying deploy... done.        
+To https://git.heroku.com/pwaproj1.git
+master
+#+end_example
+
+
+* Testando manualmente nosso pwa
+  Agora a ideia a acessar https://pwaproj1.herokuapp.com/ do seu
+  dispositivo movel instalar a aplicacao e testar o seu
+  funcionamento...
+
+
+* Exercicioos e Atividades de Reflexao/Fixacao
+  link do seu projeto no github
+  
+  Bom, pra enviar o link do seu projeto no github vc precisar fazer
+  push pra la, certo?
+
+  Pra isso vc tem que ter um repositorio criado no github pra isso,
+  certo?
+
+  Entao criar um repositorio entao, eu vou chamar o meu de pwaproj1 e
+  vou dar push pra ele mas vc pode dar outro nome se quizer...
+
+ 
+  Com o repositorio pwaproj1 criado eu preciso pegar a url dele...
+
+  Veja abaixo como ficou minha criacao do repositorio no github...
+
+  [[./imgs/projeto1/repositorio-pwaproj1-criado.png]]
+
+  Agora sim temos um lugar no github pra dar push nos nossos
+  arquivos...
+
+  So que nosso repositorio local ainda nao sabe que criamos esse
+  repositorio remoto? A gente tem que avisar nosso repositorio local
+  de que tambem podemos dar push nele pro github...
+
+  vamos fazer isso fazenso do seguinte... copiando a url do
+  repositorio do github adicionando essa url como um repositorio
+  remoto no nosso repositorio local... confundiu um pouco ne? mas e so
+  dar esses comando abaixo que da certo...
+
+  
+#+NAME:git add remote https://github.com/wagnermarques/pwaproj1.git
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git remote add origin https://github.com/wagnermarques/pwaproj1.git
+#+END_SRC
+
+#+RESULTS: git add remote https://github.com/wagnermarques/pwaproj1.git
+
+
+pode ver abaixo que agora temos esse repositorio remoto tambem pra
+poder dar push, no caso do github
+
+
+#+NAME:git remote -v
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git remote -v
+#+END_SRC
+
+#+RESULTS: git remote -v
+: 
+: heroku	https://git.heroku.com/pwaproj1.git (fetch)
+: heroku	https://git.heroku.com/pwaproj1.git (push)
+: origin	https://github.com/wagnermarques/pwaproj1.git (fetch)
+: origin	https://github.com/wagnermarques/pwaproj1.git (push)
+
+Agora sim, vc pode dar push pro github
+
+
+#+NAME:git push
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git push origin master
+#+END_SRC
+
+
+Abaixo esta o print dos arquivos do projeto upados pro github...
+
+[[./imgs/projeto1/repositorio-pwaproj1-arqs-upados.png]]
+
+Lembrando que este repositorio foi criado apenas para essa aula
+especifica e eu vou apagar ele assim que eu terminar esse
+material. Entao esse vcs nao vao encontrar esse repositorio la, caso
+queiram visualizar os arquivos do projeto, tem um repositorio que eu
+nao apago que e o aprendendopwa.
+
+Ate mais pessoal, bons estudos..
+
+* Avaliacao
+  + Cumprimento de prazo
+  + Completeza do trabalh
+  + Cumunicacao com prof e com os colegas
+  + Colaboracao com demais colegas
+  
+* Referencias
+
+

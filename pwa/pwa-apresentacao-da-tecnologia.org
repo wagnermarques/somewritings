@@ -1,5 +1,4 @@
 #+Title: PWA - Apresentacao da Tecnologia
-
 * Tema
   Apresentacao da Tecnologia PWA
 
@@ -12,21 +11,23 @@
   1 Aula
   
 * Pre-Requisitos
-** Conhecimentos Previos   
+** Conhecimentos Previos      
+   Conhecimentos basicos sobre tecnologias de desenvolvimento front ends web
 ** Recursos
 ** Recomendacoes
    Leia de boa, sem ansiedade...
    Nao deixe de perguntar pro prof qdo tiver duvidas ok?
    Visite os links da referencia pra conhece-los, pelo menos
 * Procedimento didatico
-  Exposicao Dialogado do professor
+  Exposicao Dialogada do professor
   
 * Exercicioos e Atividades de Reflexao/Fixacao
-  
-  
+  video interessante: https://www.youtube.com/watch?v=UeMkXvmk68Q
+  Encontrar algumas pwas interessantes instalar elas e experimentar
+  como funciona a tecnologia
+
 * Avaliacao
-  Print das aplicacoes pwa instaladas na maquina e no celular
-  
+  Print das aplicacoes pwa instaladas na maquina e no celular  
 
 * Apresentacao da aula
   Vamos ver uma introducao
@@ -37,8 +38,7 @@
   Depois vamos ver os requisitos para um site ser considerado um pwa
 
   Depois vamos ver as possibilidades que um app pwa pode fornecer
-
-  
+ 
 
 * Introducao
   Como eu ia dizendo na justificativa dessa aula, pwa e uma tecnologia
@@ -75,20 +75,52 @@
   suporte e possivel prover uma funcionalidade diferenciada pra ele.
   
 
+* pwa features[fn:3]
+** modo offline
+** nao requer update
+** carregamento isntantaneo da tela 
+   Depois que o usuario instala o app os serviceworkers podem carregar
+   a os recursos visuais todos cacheados para o usuario isso e muito
+   rapido
+** Consome menos espaco de armazenamento
+** seguranca via https
+** facil compartilhamento nas redes sociais
+   
+
 * Exemplos de pwa e demonstracao[fn:2]
 
 ** Demonstracao no desktop
-
+   
    Se vc entrar nesse site https://mdn.github.io/pwa-examples/a2hs
    usando o chrome ou firefox recente, no chrome e melhor, ao mesmo
    por enquanto faca conforme os prints abaixo
+   
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-1.png]]
+   
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-1.png]]
+   [[
+   ./imgs/a2hs-1.png]]
 
    Faca o mesmo com https://mdn.github.io/pwa-examples/js13kpwa/
 
+
 ** Demonstracao no celular
    
+ 
+
 
 * Requisitos de uma app pwa
+
 
 * Funcionalidades possiveis de um pwa
 
@@ -96,7 +128,8 @@
 * Referencias
 [fn:1] https://www.youtube.com/watch?v=UeMkXvmk68Q
 [fn:2] https://mdn.github.io/pwa-examples/
-
+[fn:3] https://bagisto.com/en/laravel-ecommerce-pwa/
+[fn:3] https://firt.dev/pwa-secrets/#01.-webapk-vs-android-shortcut
 https://www.youtube.com/watch?v=DfFlBWCQjzA
 
 
