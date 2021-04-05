@@ -3,8 +3,7 @@
 
 
 * Temas
-  Existe algo sobre classificacao relativa a  "complexidade
-  tecnológica a estabelecimento de saúde"
+  Existe algo sobre classificacao relativa a  "complexidade tecnológica a estabelecimento de saúde"
   ftp://ftp.saude.sp.gov.br/ftpsessp/bibliote/informe_eletronico/2019/iels.maio.19/Iels102/U_PT-MS-SAS-639_280519.pdf
   Tem a ver com transplante de orgaos
   
@@ -14,7 +13,6 @@
   ?
 ** Treinamento CROSS
 *** quinta feira   
-    jpateste 123123
     
     Atualização de cadastro e agendamento
     Agendamento / Agenda

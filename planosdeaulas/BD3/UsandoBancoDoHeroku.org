@@ -57,17 +57,18 @@
    desse material ou peca ajuda do professor.
 
 * Procedimento didatico
-  Exposicao dialogada e contextualizacao e apoio aos alunos durante a
-  execucao dos procedimentos descritos neste material
+  + Exposicao dialogada do professor
+  + Demonstracao pratica do professor
+  + Atividade pratica com apoio do professor
 
 * Exercicioos e Atividades de Reflexão/Fixação
-  Execucao desse material e posterior utilizacao em outros apps
+  Implementacao de um banco de dados usando postgresql no heroku
 
 * Avaliação
   Por enquanto nenhuma
 
 * Introducao
-  Parece um pouco novo esse assunto, essa aula, mas se vc ler com
+  Parece um pouco dificil esse assunto, essa aula, mas se vc ler com
   carinho, com calma e sem ansiedade vc vai fazer de boa... eu tb vou
   fazer o meu melhor aqui pra que tudo faca sentido pra vc... Mas vc
   sabe que e so perguntar no forum[fn:forumnosso] do nosso curso ou pro professor

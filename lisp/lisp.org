@@ -8,6 +8,144 @@
   
 ** listas
 
+
+* values ou objetivos ou instancia de objetos
+  Todos os valores ou objetos tem um tipo associado.
+
+** Tipos Lisp[fn:2]
+   
+#+NAME: lisp types
+#+BEGIN_SRC elisp :session s1 :results output :exports both
+(setq x 10)
+(setq y 34.567)
+(setq ch nil)
+(setq n 123.78)
+(setq bg 11.0e+4)
+;(setq r 124/2)
+
+
+(message "(print (type-of x))")
+(print (type-of x))
+
+(message "(print (type-of y))")
+(print (type-of y))
+
+(message "(print (type-of ch))")
+(print (type-of ch))
+
+(message "(print (type-of n))")
+(print (type-of n))
+
+(message "(print (type-of bg))")
+(print (type-of bg))
+
+(type-of [ d 5 (2 a)])
+
+;(message "(print (type-of r))")
+;(print (type-of r))
+
+;(print r)
+#+END_SRC
+
+#+RESULTS: lisp types
+#+begin_example
+
+integer
+
+float
+
+symbol
+
+float
+
+float
+#+end_example
+
+
+** Tipos Emacs[fn:3]
+Buffer Type	  	The basic object of editing
+Marker Type	  	A position in a buffer
+Window Type	  	Buffers are displayed in windows
+Frame Type	  	Windows subdivide frames
+Terminal Type	  	A terminal device displays frames
+Window Configuration Type	  	Recording the way a frame is subdivided
+Frame Configuration Type	  	Recording the status of all frames
+Process Type	  	A subprocess of Emacs running on the underlying OS
+Thread Type	  	A thread of Emacs Lisp execution
+Mutex Type	  	An exclusive lock for thread synchronization
+Condition Variable Type	  	Condition variable for thread synchronization
+Stream Type	  	Receive or send characters
+Keymap Type	  	What function a keystroke invokes
+Overlay Type	  	How an overlay is represented
+Font Type	  	Fonts for displaying text
+   
+* form e evaluation
+  A gente chama de "form" qualquer objeto lisp que possa ser avaliado (evaluated)
+* operadores de iguadade[fn:4]
+  eq testa se dois parametros sao os mesmos objetos
+ eql testa se os dois parametros sao mesmo objetos ou mesmo numero
+ equal testa se os dois parametros sao equivalentes
+ (= 1 1.0)
+
+ (= 1 1 1
+
+1 1 1) 
+#+NAME: asdfg
+#+BEGIN_SRC elisp :session s1 :results output :exports both
+?A
+(char-equal ?A 65)
+#+END_SRC
+
+#+RESULTS: asdfg
+
+* types predicate[fn:5]
+  Estamos falando de um metodo de checagem de tipos especifico pra
+  cada tipo.
+  
+  Pra testar se e uma sequence
+
+  (sequencep "asdfg")
+  (sequencep "")
+  (sequencep '(1 2 3))
+
+* sequences[fn:6]
+  Strings, listas e arrays sao consideradas sequencias
+  
+  (sequencep "asdfg")
+
+  (sequencep "")
+
+  (sequencep '(1 2 3))
+
+  (length '(1 2 3))
+
+  pra pegar um elemento da sequencia
+
+* Strings
+  (make-string 5 ?@)
+  
+  (string ?H ?E ?L ?L ?O)
+
+  (stringp "Test")
+
+(string-or-null-p "test")
+
+(string-or-null-p 1)
+
+(string-or-null-p nil)
+
+
+(char-or-string-p "asdf")
+
+(arrayp "Array?")
+
+(listp "Listp?")
+
+
+
+
+  
+  
 * Listas car e cdr
   car retorna a cabeca da lista
   cdr retorna o resto da lista menos a car
@@ -160,5 +298,11 @@
       
    #+END_SRC
 
+
 * refs
-[fn:wikipedia] https://pt.wikipedia.org/wiki/Lisp
+[fn:1] https://pt.wikipedia.org/wiki/Lisp
+[fn:2] https://www.gnu.org/software/emacs/manual/html_node/elisp/Programming-Types
+[fn:3] https://www.gnu.org/software/emacs/manual/html_node/elisp/Editing-Types.html
+[fn:4] https://www.gnu.org/software/emacs/manual/html_node/elisp/Equality-Predicates.html
+[fn:5] https://www.gnu.org/software/emacs/manual/html_node/elisp/Type-Predicates.html
+[fn:6] https://www.gnu.org/software/emacs/manual/html_node/elisp/Sequences-Arrays-Vectors.html

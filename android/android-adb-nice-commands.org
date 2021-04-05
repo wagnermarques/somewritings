@@ -1,0 +1,40 @@
+#+Title: ADB - Comandos Legais
+
+* Tema
+  ADB - Comandos Legais
+    
+* Justificativa e Objetivos
+  Um dos comandos mais importantes para compreender e usar o sistema
+  operacional android e o adb.
+
+  Para se acostumar com a utilizacao dos comandos, nada melhor do que
+  fazer algumas coisas legais com ele.
+
+  Esta aula tem o objetivo de fazer as seguintes coisas legais:
+
+  + Capturar a tela do seu dispositivo
+  + Fazer uma gravacao da sua tela
+  + upar arquivos para o seu dispostivo
+  + trazer arquivos do seu dispositivo para o sua maquina
+  + listas arquivos do seu dispositvo
+  + listar todos os aplicativos instalados no seu dispostivo
+  + instalar e desinstalar aplicativos 
+  + fazer backup do seu dispostivo
+  + reiniciar seu dispositivo
+  + reiniciar o seu dispositivo em modo recovery
+  
+
+* Duracao
+* Pre-Requisitos
+** Conhecimentos Previos
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+* Exercicioos e Atividades de Reflexao/Fixacao
+* Avaliacao
+* Referencias
+[fn:1] https://techwiser.com/list-adb-commands/
+

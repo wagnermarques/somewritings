@@ -1,0 +1,23 @@
+#+Title: Notas sobre Emacs
+
+
+* 
+
+* Hash Tables[fn:1]
+  
+
+#+NAME: elispXXX
+#+BEGIN_SRC elisp :session s1 :results output :exports both
+
+#+END_SRC
+
+
+* Viceos sobre modules do emacs
+  Sao tantos modules....
+
+  Precisa experimenta-los pra conhece-los...
+
+  
+
+* refs
+[fn:1] https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Hash.html

@@ -85,7 +85,6 @@
 	
 * Primeiro projeto no fedora
 
-
 sudo dnf install php-cli
 
 sudo dnf install composer
