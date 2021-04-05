@@ -18,7 +18,6 @@ android/projetos/borrachariasSustentaveis
 **/*.zip
 **/.git
 **/*.html
-**/*.png
 **/*.odt
 **/*.dvi
 **/*.tex
