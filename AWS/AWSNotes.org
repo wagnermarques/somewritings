@@ -1,13 +1,96 @@
 #+Title: AWS Notes
 #+Subtitle:
 
-
+* AWS Certificate Manager
+  https://aws.amazon.com/pt/certificate-manager/?c=sc&sec=srv
+  https://aws.amazon.com/pt/certificate-manager/faqs/
+  https://docs.aws.amazon.com/acm/latest/userguide/gs.html
+  
+* Call for Actions
+** Tutorial: Host a WordPress blog on Amazon Linux 2
+   https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hosting-wordpress.html
+** Executar uma máquina virtual Linux (LightSail)
+   https://aws.amazon.com/pt/getting-started/hands-on/launch-a-virtual-machine/
+   
 * bookmarks
+
+  https://docs.aws.amazon.com/pt_br/awsaccountbilling/latest/aboutv2/using-ppslong.html
+  
+** DevOps
+*** Implantação azul/verde na AWS
+    https://aws.amazon.com/pt/quickstart/architecture/blue-green-deployment/
+*** AWS CodeCommit
+    https://aws.amazon.com/pt/codecommit/
+*** AWS CodeDeploy
+    https://aws.amazon.com/pt/codedeploy/features/
+    https://aws.amazon.com/pt/codedeploy/
+*** AWS CodePipeline
+    https://aws.amazon.com/pt/codepipeline/features/
+    
+** Amazon CloudFront
+   https://aws.amazon.com/pt/cloudfront/?nc2=type_a
+   https://aws.amazon.com/pt/getting-started/hands-on/deliver-content-faster/
+   
+** AWS Direct Connect
+   https://aws.amazon.com/pt/directconnect/
+  
+** Amazon ElastiCache
+   https://aws.amazon.com/pt/elasticache/
+  
+** BANCO DE DADOS (EDS DynamoDB)
+   https://aws.amazon.com/pt/products/databases/?nc2=h_ql_prod_db
+*** EDS   
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.MySQL.CommonDBATasks.html
+    https://www.allthingsdistributed.com/2018/06/purpose-built-databases-in-aws.html
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.SQLServer.html
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.RestoringFromSnapshot.html
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/TUT_WebAppWithRDS.html
+    https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html
+*** DynamoDB
+    https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html
+   
+*** EDS Lab
+    https://www.youtube.com/watch?v=K8gSaS_E4JM
+  
+** Amazon API Gateway
+   https://aws.amazon.com/pt/api-gateway/
+   https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html
+   
+** Amazon Kinesis
+   https://aws.amazon.com/pt/kinesis/
+  
 ** fargate
   https://docs.aws.amazon.com/eks/latest/APIReference/API_ListFargateProfiles.html
   https://docs.aws.amazon.com/cli/latest/reference/eks/list-fargate-profiles.html
   
-  
-  https://github.com/kagarlickij/jenkins-builds-in-containers
+
+** beanstalk
+   https://aws.amazon.com/pt/elasticbeanstalk/
+
 ** ecs
    https://github.com/nathanpeck/awesome-ecs
+
+** backups
+*** AWS Storage Gateway
+    https://aws.amazon.com/pt/storagegateway/?whats-new-cards.sort-by=item.additionalFields.postDateTime&whats-new-cards.sort-order=desc
+
+
+** Kafka on aws
+   https://aws.amazon.com/pt/blogs/big-data/best-practices-for-running-apache-kafka-on-aws/
+   https://aws.amazon.com/pt/msk/what-is-kafka/
+   https://dzone.com/articles/evaluating-message-brokers-kafka-vs-kinesis-vs-sqs
+   https://stackshare.io/stackups/amazon-sqs-vs-kafka
+   
+** load tests
+   http://curl-loader.sourceforge.net/
+   https://httpd.apache.org/docs/2.4/programs/ab.html
+   https://www.tutorialspoint.com/apache_bench/apache_bench_overview.htm
+   https://www.tutorialspoint.com/apache_bench/apache_bench_quick_guide.htm
+   https://www.tecmint.com/load-testing-web-servers-with-siege-benchmarking-tool/
+   https://github.com/JoeDog/siege
+   https://www.joedog.org/siege-home/
+   
+* diversos
+  https://github.com/kagarlickij/jenkins-builds-in-containers
+

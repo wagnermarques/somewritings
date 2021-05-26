@@ -24,13 +24,16 @@
 
 * Tema
   Firebase por linha de comando
+
 * Justificativa e Objetivos
   É comum as pessoas usarem click click nas telinhas para relizarem
   seus trabalhos. Isso tem suas vantagens, mas no mercado de trabalho
   o pessoal de ti usa bastante linhas de comando e por isso vale muito
   a pena aprender e se habituar a trabalhar desse jeito.
+
 * Duração
   Duas aulas
+
 * Pré-Requisitos
   Vai fazer muito mais sentido o efeito e as funcionalidades da linha
   de comando se vc ja estudou o firebase e tambem ja o utilizou usando
@@ -69,7 +72,7 @@
   Saida dos comandos abaixo especificados
 
 * Instalando o Firebase Tool
-  Vamos isntalar o cliente do firebase.[fn:fbtools]
+  Vamos instalar o cliente do firebase.[fn:fbtools]
   
 #+NAME:npm install -g firebase-tools
 #+BEGIN_SRC shell :session s1 :results output :exports code
