@@ -1,0 +1,55 @@
+#+Title: CloudWatch
+
+
+* lab
+
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-2810-14-02.png]]
+
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-14-02.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-15-12.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-15-27.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-15-36.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-16-18.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-17-01.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-19-22.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-20-15.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-20-43.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-21-07.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-21-47.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-22-02.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-28-11.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-28-47.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-29-03.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-29-21.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-29-53.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-30-10.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-31-24.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-31-36.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-31-57.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-32-07.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-35-35.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-43-17.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-43-31.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-45-32.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-45-45.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-46-03.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-46-40.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-46-48.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-47-18.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-47-33.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-47-51.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-48-11.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-49-08.png]]
+[[./imgs/CloudWatch-RestartInstance/Captura de tela de 2021-05-28 10-49-18.png]]
+
+
+
+
+* References
+https://aws.amazon.com/pt/premiumsupport/knowledge-center/automatic-recovery-ec2-cloudwatch/
+https://aws.amazon.com/pt/blogs/aws/new-amazon-cloudwatch-action-reboot-ec2-instance/
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
+https://translate.google.com.br/?sl=en&tl=pt&text=https%3A%2F%2Fdocs.aws.amazon.com%2FAWSEC2%2Flatest%2FUserGuide%2Fusing-cloudwatch.html&op=translate
+

@@ -1,0 +1,145 @@
+#+Title: EFS - Elastic Filesystem Service
+
+* Tema
+  EFS - Elastic Filesystem Service
+  
+* Justificativa e Objetivos
+  A AWS conta com mais de 100 serviços diferentes e a gente precisa
+  ser aprensentado aos serviços que a gente vai usar.
+
+  Com certeza usaremos o ESF - Elastic Filesystem Service.
+
+  
+  
+* Duracao
+  Aula
+  
+* Pre-Requisitos  
+** Conhecimentos Previos
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+* Exercicioos e Atividades de Reflexao/Fixacao
+  nenhum por enquanto
+* Avaliacao
+  nenhuma por enquanto
+
+* O que e  ESF?
+
+  O nome ja diz ne... o que e um filesystem? Um sistema de
+arquivos?
+
+Todo disco rigido onde a gente salva nossos arquivos tem um sistema de
+arquivos, seja fat, ntfs, ext3, ext4, brrf etc...
+
+Entao o que a AWS criou foi um disco rigido com um local onde nos
+podemos armazenas arquivos e esse local, obviamente, tem um sistema de
+arquivos.
+
+Mas esse local de armazenamento da AWS, como se fosse um disco que a gente
+adiciona à nossa maquia, tem varias vantagens muitissimo
+interessnate...
+
+
+Imagina o seguinte, o tamanho desse disco aumenta conforme vc vai
+   armazenando arquivos ate petabytes sem interromper nenhuma
+   aplicacao.
+   
+   Vc cria um EFS facilmente via AWS COnsole evitando muita
+    complexidade. Tem muita gente que nao connhece os comandos pra
+    fazer isso em uma maquina linux, por exemplo. Ate em uma maquina
+    windows e facil acrescentar discos mas e aumentar o tamanho deles?
+
+    
+   O ESF suporta  Network File System version 4 (NFSv4.1 and NFSv4.0)
+   e pode ser utilziada em EC2, Lamda ao mesmo tempo.
+
+   Entao e um local perfeito como recursos de arquivos que devem ser
+   acessados de varias manerias e tecnologicas.
+
+   Vc vai pagar so pelo que armazena e pela velocidade (throughput
+   values) acesso aos
+   dados que vc congigura par ao seu EFS. Pra compreender melhor esses
+   custos, acesse [[https://aws.amazon.com/efs/pricing][Amazon EFS Pricing]].
+
+
+
+    + *Standard storage classes*
+      Tipo de EFS ideal para acessos infrequentes, da pra configurar resliencia
+      multizona, alta disponibilidade e durabilidade
+
+    + *One Zone storage classes*
+      ESF em uma unica zona de disponibilidade
+
+    Claro que cada serviço tem muitas configuracoes de acordo com
+    inumeros casos de usos. Por enquanto pra nos o basico basta, mas
+    para mais  detalhes veja [[https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html][Managing EFS storage classes]]
+
+    Mais de uma EC2 instance podem acessar o mesmo EFS.
+
+    ESF permite acesso semantico ao arquivos,consistencia e locking
+    Acesso ao arquivos através de uma interface  Portable Operating System
+
+* Laboratorio: Criando nosso primeiro EFS[fn:1]
+  Vamos criar um EFS onezone infrequent access
+
+  [[./imgs/EFS/Captura de tela de 2021-05-24 13-51-18.png]]
+
+[[./imgs/EFS/Captura de tela de 2021-05-24 13-54-32.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 13-54-43.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-04-35.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-07-02.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-07-54.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-08-57.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-10-02.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 14-10-20.png]]
+
+Agora que criamos nosso EFS vamos preparar nossa instance pra monta-lo
+
+
+
+#+NAME:sudo apt install nfs-kernel-system
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+sudo apt install nfs-kernel-system
+#+END_SRC
+
+
+
+
+
+* curiosidade  
+  Nos montamos um fileshare nfs4 proveniente do EFS, mas nos podemos
+  tambem compartilhar um diretorio nosso... pra isso faca o seguinte..
+
+  
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+mkdir dirToSharePath
+sudo chown nobody:nogroup /mnt/sharedfolder
+ sudo chmod 755 dirToSharePath
+
+#+END_SRC
+
+
+no arquivo /etc/exports
+
+/mnt/sharedfolder subnetIP/24(rw,sync,no_subtree_check)
+  
+* Referencias
+
+
+  
+
+* Refs
+[fn:1] https://docs.aws.amazon.com/efs/latest/ug/getting-started.html
+https://aws.amazon.com/pt/what-is-cloud-file-storage/
+https://docs.aws.amazon.com/pt_br/efs/latest/ug/storage-classes.html
+https://docs.aws.amazon.com/pt_br/efs/latest/ug/lifecycle-management-efs.html
+https://docs.aws.amazon.com/pt_br/efs/latest/ug/gs-step-two-create-efs-resources.html
+https://vitux.com/debian_nfs_server/
+https://www.linuxtechi.com/install-nfs-server-on-debian-10-buster/
+https://linuxconfig.org/how-to-set-up-a-nfs-server-on-debian-10-buster
