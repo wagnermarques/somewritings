@@ -1,0 +1,15 @@
+#+Title: Laravel8 Midlewares
+
+php artisan create:midleware ageCheck
+
+Apos a criacao do midleware tem que registrar ele em 
+
+app/Http/Midleware/Kernel.php
+
+como um item do array protegido $middleware
+
+Ai vc volta no middleware que vc criou e usa a funcao handle... se vc
+colocar um echo txt esse txt vai aparer na pagina
+
+na funcao handle da pra colocar alguma logia e redirecionar o usuario
+dependendo dessa logica

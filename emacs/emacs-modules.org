@@ -1,0 +1,20 @@
+#+Title: Pacotes de customizacao do Emacs
+
+* Introducao
+  Sao tantos modules....
+
+  Precisa experimenta-los pra conhece-los...
+
+** Modules
+*** Clientes Html
+**** emacs-web
+     https://github.com/nicferrier/emacs-web
+**** emacs programming languages
+***** php
+      https://github.com/emacs-php
+      https://prajwalaa.wordpress.com/2009/03/19/using-emacs-to-edit-php-files/
+      
+* References  
+* Bookmark
+  https://onehack.us/t/awesome-emacs-massive-resources-collection/172080
+

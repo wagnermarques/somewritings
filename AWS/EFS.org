@@ -1,7 +1,7 @@
-#+Title: EFS - Elastic Filesystem Service
+#+Title: Conhecendo o EFS - Elastic Filesystem Service
 
 * Tema
-  EFS - Elastic Filesystem Service
+  Conhecendo o EFS - Elastic Filesystem Service
   
 * Justificativa e Objetivos
   A AWS conta com mais de 100 serviços diferentes e a gente precisa
@@ -9,21 +9,27 @@
 
   Com certeza usaremos o ESF - Elastic Filesystem Service.
 
-  
-  
+
 * Duracao
-  Aula
+  1 Aula
   
 * Pre-Requisitos  
 ** Conhecimentos Previos
+   Familiaridade com o Console da AWS
 ** Recursos
+   Uma instancia ec2 rodando 
 ** Recomendacoes
    Leia de boa, sem ansiedade...
    Nao deixe de perguntar pro prof qdo tiver duvidas ok?
    Visite os links da referencia pra conhece-los, pelo menos
+
 * Procedimento didatico
+  Exposicao do professor
+
 * Exercicioos e Atividades de Reflexao/Fixacao
   nenhum por enquanto
+  Fazer o labatorio na isntancia do aluno
+
 * Avaliacao
   nenhuma por enquanto
 
@@ -83,10 +89,12 @@ Imagina o seguinte, o tamanho desse disco aumenta conforme vc vai
     ESF permite acesso semantico ao arquivos,consistencia e locking
     Acesso ao arquivos através de uma interface  Portable Operating System
 
+
 * Laboratorio: Criando nosso primeiro EFS[fn:1]
+
   Vamos criar um EFS onezone infrequent access
 
-  [[./imgs/EFS/Captura de tela de 2021-05-24 13-51-18.png]]
+[[./imgs/EFS/Captura de tela de 2021-05-24 13-51-18.png]]
 
 [[./imgs/EFS/Captura de tela de 2021-05-24 13-54-32.png]]
 [[./imgs/EFS/Captura de tela de 2021-05-24 13-54-43.png]]
@@ -100,11 +108,34 @@ Imagina o seguinte, o tamanho desse disco aumenta conforme vc vai
 Agora que criamos nosso EFS vamos preparar nossa instance pra monta-lo
 
 
+* Laboratorio: Montando EFS em nossas instancias
 
+  A gente pode montar nosso efs em várias instancias. No momento so
+  temos uma, entao vamos fazer o procedimento pra essa isntancia que
+  temos que para as demais vai ser a mesma coisa...
+
+** instalando o nfs-kernel-system
+  Se vc tiver usando uma instancia AMI da amazon mesmo e so usar o
+  comando abaixo
 #+NAME:sudo apt install nfs-kernel-system
 #+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
 sudo apt install nfs-kernel-system
 #+END_SRC
+
+mas como estamos usando um debian...
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+sudo apt-get update
+sudo apt-get install -y git binutils make
+git clone https://github.com/aws/efs-utils
+cd efs-utils
+make deb
+sudo apt-get install -y ./build/amazon-efs-utils*deb
+#+END_SRC
+
+eis a referencia sobre isso
+https://forums.aws.amazon.com/thread.jspa?threadID=281370
 
 
 
@@ -143,3 +174,4 @@ https://docs.aws.amazon.com/pt_br/efs/latest/ug/gs-step-two-create-efs-resources
 https://vitux.com/debian_nfs_server/
 https://www.linuxtechi.com/install-nfs-server-on-debian-10-buster/
 https://linuxconfig.org/how-to-set-up-a-nfs-server-on-debian-10-buster
+https://aws.amazon.com/pt/about-aws/whats-new/2019/10/amazon-efs-supports-aws-privatelink/

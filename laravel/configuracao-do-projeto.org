@@ -1,0 +1,6 @@
+#+Title: Configuracao do Projeto Laravel
+
+
+
+* Referencias
+[fn:doc] https://laravel.com/docs/8.x/configuration

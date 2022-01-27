@@ -1,0 +1,33 @@
+#+Title: Laravel8 Html Forms
+
+faz o request de envio de dados do form apontar para um metodo do
+controler
+
+O metodo do controller deve receber como parametro um objeto Request
+metodo(Request $req)
+
+*return $req->input();*  retornar de volta todos os dados em no
+ formato json
+
+* Validando o Form no lado do servidor
+ 
+$req->validade([
+  'attrName'=>'required',| max:10
+  'attrName2'=>'required' | min:5
+]);
+
+no form vc pode por {{ $errors}} pra mostrar os erros de validacao
+
+por exemplo,
+
+@if ( $errors->any() )
+  @foreach( $errors->all() as $err )
+     <li>$err</li>
+  @endforeach
+@endif
+
+Isso mostra os erros tipo em cima do form, por exemplo
+
+mas se vc quizer tambem mostrar do lado do campo do form, poe essa
+sintaxe em baixo dele 
+<span style="color:red">@error('attrName'){{$message}}@enderror</span>

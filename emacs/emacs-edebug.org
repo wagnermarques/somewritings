@@ -1,0 +1,51 @@
+#+Title: Edebug
+
+* Instrumenting
+M-x edebug-defun  ‘C-u C-M-x’
+
+* Setting breakpoints
+b
+g execute ate o break pont
+q sai do edebug
+
+‘S’
+     Stop: don’t execute any more of the program, but wait for more
+     Edebug commands (‘edebug-stop’).
+‘<SPC>’
+     Step: stop at the next stop point encountered (‘edebug-step-mode’).
+
+‘n’
+     Next: stop at the next stop point encountered after an expression
+     (‘edebug-next-mode’).  Also see ‘edebug-forward-sexp’ in *note
+     Jumping::.
+
+‘t’
+     Trace: pause (normally one second) at each Edebug stop point
+     (‘edebug-trace-mode’).
+
+‘T’
+     Rapid trace: update the display at each stop point, but don’t
+     actually pause (‘edebug-Trace-fast-mode’).
+
+‘g’
+     Go: run until the next breakpoint (‘edebug-go-mode’).  *Note
+     Breakpoints::.
+
+‘c’
+     Continue: pause one second at each breakpoint, and then continue
+     (‘edebug-continue-mode’).
+
+‘C’
+     Rapid continue: move point to each breakpoint, but don’t pause
+     (‘edebug-Continue-fast-mode’).
+
+‘G’
+     Go non-stop: ignore breakpoints (‘edebug-Go-nonstop-mode’).  You
+     can still stop the program by typing ‘S’, or any editing command.
+
+
+* Refs
+https://www.emacswiki.org/emacs/SourceLevelDebugger#Edebug
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Instrumenting.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Using-Edebug.html
+https://www.gnu.org/software/emacs/manual/html_node/elisp/Debugging.html

@@ -1,0 +1,6 @@
+#+Title: Install orgmode
+
+
+
+* Ref
+http://doc.norang.ca/org-mode.html#GettingOrgModeWithGit

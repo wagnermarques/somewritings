@@ -1,0 +1,11 @@
+#+Title: install emacs from sources
+
+* on suse linux leap 15
+
+
+
+sudo zypper install make gcc automake autoconf libtool aclocal wget
+sudo zypper si -d emacs
+
+* refs
+https://dev.to/veer66/install-emacs-272-on-opensuse-leap-153-from-a-source-tarball-3220

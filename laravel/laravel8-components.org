@@ -1,0 +1,27 @@
+#+Title: Laravel8 components
+
+* criando e renderizando o componente 
+ *php artisan make:component header*
+
+isso cria no *resources/view/components* o arquivo blade da view
+e cria no *app/view/components* o arquivo php para o back end do
+componente
+
+Pra inserir o componente em uma view qualquer 
+
+ <x-NomeDoComponente>
+
+No caso do componente header, ficaria <x-header>
+
+Isso basta pra renderizar todo html do componente na pagina...
+
+* pra passar dados para o componente...
+  
+  <x-header dados="asdf">
+ essa variavel dados sera passada no construtor do componente que esta
+ em app/view/components e ai atribuindo esse dado a um atributo global
+ do component da pra usar esse atributo no componente do modo
+ usuario...
+
+ <h1>{{ nomeDoAtribuToQueContemDados }}</h1>
+

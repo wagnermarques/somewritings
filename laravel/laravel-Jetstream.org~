@@ -1,0 +1,1326 @@
+#+Title: Laravel Jetstream
+
+#+NAME: parseShellAnsiColorCharacters
+#+BEGIN_SRC elisp :session s1 :var data=""  :results output raplace :exports none
+   (print (ansi-color-apply data))
+#+END_SRC
+
+#+RESULTS: parseShellAnsiColorCharacters
+: 
+: ""
+
+* Introducao
+  Jetsream e um scafold do laravel para gerenciamento de usuarios da
+  aplicacao para laravel 8.[fn:2]
+
+  O jetstream nao trabalha sozinho, tem a opcao de usa-lo com
+  livewire[fn:3] ou com inertiajs[fn:4].
+
+  As funcionalidades que vc ganha sao[fn:5]...
+
+  + login
+  + registro de usuario
+  + verificacao por email
+  + autenticacao por dois fatores
+  + gerenciamento da session
+  + Suporte a API  Laravel Sanctum
+  + Suporte opcional gerencia de equipes
+  
+
+  Por traz do jetstream vc vai encontrar o Fortify[fn:12] sao os codigos que
+  vao prover essas funcionalidades[fn:7]. A gente vai ver isso depois
+  que a gente fazer a instalacao do jetstream. O que e legal no
+  Fortify e que ele prove essas funcionalidades independente de
+  interface grafica... tipo quem precisar dessas funcionaldades pode
+  fazer suas proprias interfaces graficas e usar Fortify tambem como backend...
+
+    
+
+* Pre requisito
+php instalado, versao 7.3 ou maior
+composer instalado tambem
+Pra nao ter nenhum problema, atualize o composer tambem com o comando abaixo
+
+#+NAME:clear-cache self-update update --ignore-platform-reqs
+#+BEGIN_SRC sh :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+composer clear-cache
+composer self-update
+composer update --ignore-platform-reqs
+#+END_SRC
+
+No meu caso, pra funcionar tive que descomentar a linha
+"extension=iconv" no php.ini entao faz isso ja antes de comecar ou caso de algum problema lembra dessa informacao tambem
+
+
+* Instalacao do jetstream[fn:13]
+
+  Va ate o diretorio do seu projeto e de o seguinte comando
+
+  Abaixo estou dizendo que projDir apontara para o diretorio onde esta
+  o meu projeto, entao quando neste material vc vir cd $projDir e que
+  estou entrando no diretorio onde esta o meu projeto laravel blz?
+
+#+NAME:projDir definition
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+  export projDir=/home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial
+  echo $projDir
+#+END_SRC
+
+#+RESULTS: projDir
+: 
+: /home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial
+
+Ah.. lembrando que eu to entrando em um projeto que eu não trabalhei nada nele ainda mas que ja esta criado. 
+Caso vc nao tenha um projeto do laravel ainda vc pode usar o comando "composer create-project laravel/laravel NomeDoSeuprojeto --prefer-dist" pra cria-lo.
+
+Entao, conforme combinado, vou entrar no diretorio do meu projeto e vou
+dar o comando que vai fazer a instalacao do jetstream.. 
+
+#+NAME:composer require laravel/jetstream
+#+BEGIN_SRC sh :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+composer require laravel/jetstream
+#+END_SRC
+
+#+RESULTS: composer
+#+begin_example
+
+#("
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+Using version ^2.4 for laravel/jetstream
+./composer.json has been updated
+Running composer update laravel/jetstream
+Loading composer repositories with package information
+Updating dependencies
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+=8.0.0 -> your php version (7.4.6) does not satisfy that requirement.
+satisfiable by psr/log[2.0.0].
+    - laravel/framework is locked to version v8.72.0 and an update of this package was not requested.
+
+You can also try re-running composer require with an explicit version constraint, e.g. \"composer require laravel/jetstream:*\" to figure out if any version is installable, or \"composer require laravel/jetstream:^2.1\" if you know which you need.
+
+Installation failed, reverting ./composer.json and ./composer.lock to their original content." 281 285 (font-lock-face (foreground-color . "green3")) 290 307 (font-lock-face (foreground-color . "green3")) 308 340 (font-lock-face (foreground-color . "green3")) 341 382 (font-lock-face (foreground-color . "green3")) 383 437 (font-lock-face (foreground-color . "green3")) 438 459 (font-lock-face (foreground-color . "green3")) 460 534 (font-lock-face ((background-color . "red3") (foreground-color . "gray90"))) 997 1090 (font-lock-face ((background-color . "red3") (foreground-color . "gray90"))))
+#+end_example
+
+Isso instala o jetstream como uma dependencia no nosso projeto, mas a gente ainda nao usou ele... 
+
+Abaixo a gente vai usar ele de verdade pra criar os artefatos que são todas as pecas de software pra criar nossa gestao de usuarios da nossa aplicacao.
+
+Pecas de software? Ehh as interfaces graficas, as rotas do fortify e fazer tudo funcionar....
+
+Se vc  manja de vue pode trocar livewire abaixo por "inertia" e ai vc vai se sentir mais "em casa"
+
+#+NAME:php artisan jetstream:install livewire --teams
+#+BEGIN_SRC sh :session s1 :results output :exports both  :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan jetstream:install livewire --teams
+#+END_SRC
+
+
+#+RESULTS: php artisan jetstream:install livewire --teams
+#+begin_example
+
+#("
+ Migration created successfully!
+./composer.json has been updated
+Running composer update livewire/livewire laravel/sanctum
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 2 installs, 0 updates, 0 removals
+  - Locking laravel/sanctum (v2.9.0)
+  - Locking livewire/livewire (v2.3.17)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 2 installs, 0 updates, 0 removals
+  - Downloading laravel/sanctum (v2.9.0)
+  - Downloading livewire/livewire (v2.3.17)
+---------------------------]   0%
+-------------]  50%
+- Installing laravel/sanctum (v2.9.0): Extracting archive
+  - Installing livewire/livewire (v2.3.17): Extracting archive
+---------------------------]   0%
+
+Generating optimized autoload files
+Illuminate\\Foundation\\ComposerScripts::postAutoloadDump
+@php artisan package:discover --ansi
+Discovered Package: facade/ignition
+Discovered Package: fideloper/proxy
+Discovered Package: fruitcake/laravel-cors
+Discovered Package: jenssegers/agent
+Discovered Package: laravel/fortify
+Discovered Package: laravel/jetstream
+Discovered Package: laravel/sail
+Discovered Package: laravel/sanctum
+Discovered Package: laravel/tinker
+Discovered Package: livewire/livewire
+Discovered Package: nesbot/carbon
+Discovered Package: nunomaduro/collision
+Package manifest generated successfully.
+76 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+Copied Directory [/vendor/laravel/sanctum/database/migrations] To [/database/migrations]
+Copied File [/vendor/laravel/sanctum/config/sanctum.php] To [/config/sanctum.php]
+Publishing complete.
+
+Livewire scaffolding installed successfully.
+Please execute \"npm install && npm run dev\" to build your as#sets." 2 33 (font-lock-face (foreground-color . "green3")) 914 929 (font-lock-face (foreground-color . "green3")) 950 965 (font-lock-face (foreground-color . "green3")) 986 1008 (font-lock-face (foreground-color . "green3")) 1029 1045 (font-lock-face (foreground-color . "green3")) 1066 1081 (font-lock-face (foreground-color . "green3")) 1102 1119 (font-lock-face (foreground-color . "green3")) 1140 1152 (font-lock-face (foreground-color . "green3")) 1173 1188 (font-lock-face (foreground-color . "green3")) 1209 1223 (font-lock-face (foreground-color . "green3")) 1244 1261 (font-lock-face (foreground-color . "green3")) 1282 1295 (font-lock-face (foreground-color . "green3")) 1316 1336 (font-lock-face (foreground-color . "green3")) 1337 1377 (font-lock-face (foreground-color . "green3")) 1672 1716 (font-lock-face (foreground-color . "green3")) 1717 1782 (font-lock-face (foreground-color . "yellow3")))
+#+end_example
+
+
+Depois de fazer isso a gente usar o npm install pro node instalar as dependencias javascript.. .lembra que foram criadas view que dependem desses javascripts
+
+#+NAME:npm install pos jetstream install
+#+BEGIN_SRC sh :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+npm install
+#+END_SRC
+
+#+RESULTS: npm
+#+begin_example
+
+"
+
+@ dev /home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial
+npm run development
+@ development /home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial
+mix
+)  
+ 
+
+[1A[1A[1A[1A[G
+) compilation 
+ InferAsyncModulesPlugin
+
+
+
+[0J
+                         
+   Laravel Mix v6.0.39   
+                         
+
+✔ Compiled Successfully in 1247ms
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─────────┐
+│                                                                                                                   File │ Size    │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┤
+│                                                                                                             /js/app.js │ 607 KiB │
+│                                                                                                            css/app.css │ 1 bytes │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
+[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[G
+✔ Mix
+  Compiled successfully in 1.28s
+
+                         
+   Laravel Mix v6.0.39   
+                         
+
+✔ Compiled Successfully in 1247ms
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─────────┐
+│                                                                                                                   File │ Size    │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┤
+│                                                                                                             /js/app.js │ 607 KiB │
+│                                                                                                            css/app.css │ 1 bytes │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
+[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[1A[G
+✔ Mix
+  Compiled successfully in 1.28s
+
+   Laravel Mix v6.0.39   
+                         
+
+✔ Compiled Successfully in 1247ms
+┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬─────────┐
+│                                                                                                                   File │ Size    │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┤
+│                                                                                                             /js/app.js │ 607 KiB │
+│                                                                                                            css/app.css │ 1 bytes │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┘
+webpack compiled successfully"
+#+end_example
+
+#+RESULTS: npm install pos jetstream install
+#+begin_example
+
+"
+ npm WARN deprecated @types/browserslist@4.15.0: This is a stub types definition. browserslist provides its own type definitions, so you do not need this installed.
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 will break on node v14+. Upgrade to chokidar 3 with 15x less dependencies.
+npm WARN deprecated fsevents@1.2.13: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+deprecated
+deprecated
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.2.7 (node_modules/@types/browser-sync/node_modules/chokidar/node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {\"os\":\"darwin\",\"arch\":\"any\"} (current: {\"os\":\"linux\",\"arch\":\"x64\"})
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.3.1 (node_modules/chokidar/node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {\"os\":\"darwin\",\"arch\":\"any\"} (current: {\"os\":\"linux\",\"arch\":\"x64\"})
+
+added 1190 packages from 529 contributors and audited 1194 packages in 68.305s
+
+90 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities"
+#+end_example
+
+Agora que o node tem os javascripts o npm run dev usa o webpack do laravel pra jogar isso la na pasta public
+
+
+#+NAME:npm run dev pos jetstream install
+#+BEGIN_SRC sh :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+npm run dev
+#+END_SRC
+
+#+RESULTS: npm run dev pos jetstream install
+#+begin_example
+
+#("
+
+@ dev /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/laravel-projects/patrimobl8
+npm run development
+@ development /home/wagner/wagnerdocri@gmail.com3/envs/env-dev/sources/laravel-projects/patrimobl8
+mix
+[webpack.Progress] 0%
+[webpack.Progress] 1% setup initialize
+[webpack.Progress] 1% setup initialize
+[webpack.Progress] 2% setup before run
+[webpack.Progress] 2% setup before run NodeEnvironmentPlugin
+[webpack.Progress] 2% setup before run
+[webpack.Progress] 3% setup run
+[webpack.Progress] 3% setup run webpack-cli
+[webpack.Progress] 3% setup run
+[webpack.Progress] 4% setup normal module factory
+[webpack.Progress] 4% setup normal module factory
+[webpack.Progress] 5% setup context module factory
+[webpack.Progress] 5% setup context module factory
+[webpack.Progress] 6% setup before compile
+[webpack.Progress] 6% setup before compile ProgressPlugin
+[webpack.Progress] 6% setup before compile
+[webpack.Progress] 7% setup compile
+[webpack.Progress] 7% setup compile ExternalsPlugin
+[webpack.Progress] 7% setup compile
+[webpack.Progress] 8% setup compilation
+[webpack.Progress] 8% setup compilation mini-css-extract-plugin
+[webpack.Progress] 8% setup compilation ArrayPushCallbackChunkFormatPlugin
+[webpack.Progress] 8% setup compilation JsonpChunkLoadingPlugin
+[webpack.Progress] 8% setup compilation StartupChunkDependenciesPlugin
+[webpack.Progress] 8% setup compilation ImportScriptsChunkLoadingPlugin
+[webpack.Progress] 8% setup compilation FetchCompileWasmPlugin
+[webpack.Progress] 8% setup compilation FetchCompileAsyncWasmPlugin
+[webpack.Progress] 8% setup compilation WorkerPlugin
+[webpack.Progress] 8% setup compilation SplitChunksPlugin
+[webpack.Progress] 8% setup compilation ResolverCachePlugin
+[webpack.Progress] 8% setup compilation
+[webpack.Progress] 9% setup compilation
+[webpack.Progress] 9% setup compilation ProgressPlugin
+[webpack.Progress] 9% setup compilation DefinePlugin
+[webpack.Progress] 9% setup compilation ProvidePlugin
+[webpack.Progress] 9% setup compilation ChunkPrefetchPreloadPlugin
+[webpack.Progress] 9% setup compilation ModuleInfoHeaderPlugin
+[webpack.Progress] 9% setup compilation JavascriptModulesPlugin
+[webpack.Progress] 9% setup compilation JsonModulesPlugin
+[webpack.Progress] 9% setup compilation AssetModulesPlugin
+[webpack.Progress] 9% setup compilation EntryPlugin
+[webpack.Progress] 9% setup compilation EntryPlugin
+[webpack.Progress] 9% setup compilation RuntimePlugin
+[webpack.Progress] 9% setup compilation InferAsyncModulesPlugin
+[webpack.Progress] 9% setup compilation DataUriPlugin
+[webpack.Progress] 9% setup compilation FileUriPlugin
+[webpack.Progress] 9% setup compilation CompatibilityPlugin
+[webpack.Progress] 9% setup compilation HarmonyModulesPlugin
+[webpack.Progress] 9% setup compilation AMDPlugin
+[webpack.Progress] 9% setup compilation RequireJsStuffPlugin
+[webpack.Progress] 9% setup compilation CommonJsPlugin
+[webpack.Progress] 99% cache store build dependencies
+[webpack.Progress] 99% cache begin idle
+[webpack.Progress] 99% cache begin idle
+[webpack.Progress] 100%
+[webpack.Progress] 99% cache shutdown
+[webpack.Progress] 99% cache shutdown
+[webpack.Progress] 100% 
+
+
+
+   ╭───────────────────────────────────────────────────────────────╮
+   │                                                               │
+   │      New major version of npm available! 6.14.11 → 7.5.4      │
+   │   Changelog: https://github.com/npm/cli/releases/tag/v7.5.4   │
+   │               Run npm install -g npm to update!               │
+   │                                                               │
+   ╰───────────────────────────────────────────────────────────────╯
+" 12487 12685 (font-lock-face (foreground-color . "yellow3")) 12689 12692 (font-lock-face (foreground-color . "yellow3")) 12755 12758 (font-lock-face (foreground-color . "yellow3")) 12762 12765 (font-lock-face (foreground-color . "yellow3")) 12775 12780 (font-lock-face (foreground-color . "red3")) 12807 12814 (font-lock-face (foreground-color . "red3")) 12819 12824 (font-lock-face (foreground-color . "green3")) 12830 12833 (font-lock-face (foreground-color . "yellow3")) 12837 12840 (font-lock-face (foreground-color . "yellow3")) 12843 12853 (font-lock-face (foreground-color . "yellow3")) 12854 12900 (font-lock-face (foreground-color . "cyan3")) 12903 12906 (font-lock-face (foreground-color . "yellow3")) 12910 12913 (font-lock-face (foreground-color . "yellow3")) 12932 12950 (font-lock-face (foreground-color . "green3")) 12976 12979 (font-lock-face (foreground-color . "yellow3")) 12983 12986 (font-lock-face (foreground-color . "yellow3")) 13049 13052 (font-lock-face (foreground-color . "yellow3")) 13053 13251 (font-lock-face (foreground-color . "yellow3")))
+#+end_example
+
+
+Bom, considerando que o jetstream vai registrar usuarios etc o acesso
+ao banco de dados sera necessario, certo?
+
+Entao a gente precisa criar as tabelas, e o laravel permite fazer isso
+apenas com o comando php artisan migrate.
+
+Entao entre no .env e configure o acesso ao banco de dados pro migrate poder funcionar, se vc ainda nao sabe fazer isso pergunte ao prof.
+
+Vamos dar o comando, conforme abaixo... Essa primeira vez que a gente
+vai dar esse comando vai dar um erro porque, como a gente vai usar o
+postgresql, precisamos habilitar o driver no php.ini. Entao se vc
+tomar esse erro que eu to tomando abaixo, vc ja sabe que tem que
+descomentar a linha "extension=pgsql", se vc tiver no windows a linha
+sera algo como "extension=pgsql.dll".
+
+Entao vamos ver eu tomando o erro e depois eu vou dar o mesmo comando
+de novo....
+
+#+NAME:php artisan migrate post jetstream install
+#+BEGIN_SRC sh :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan migrate
+#+END_SRC
+
+#+RESULTS: php
+#+begin_example
+
+"
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial/vendor/psr/log/src/LoggerInterface.php on line 30
+PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home/administrador/mnt/pen/sources/laravel-projects/comunidadeeducacaoespecial/vendor/psr/log/src/LoggerInterface.php on line 30
+PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0"
+#+end_example
+
+
+
+
+
+Bom, agora que fiz a alteracao no meu php.ini (no meu caso estou
+alterando /etc/php/php.ini) no caso de vcs a gente vai ter que ver
+caso a caso onde o arquivo esta... A gente ve issso durante a aula,
+blz?
+
+Agora vou dar o comando de novo... Vamos ver o que acontece?
+
+#+NAME:tentativa2 php artisan migrate post jetstream install
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan migrate
+#+END_SRC
+
+A saida do comando eu perdi mas o o erro que eu tomei aqui dessa vez
+foi, pelo menos a primeira linha...
+
+
+*PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql'*
+
+
+Deu mais um problema, mas o legal é que o problema anterior ja foi
+resolvido, estamos andando pra frente....
+
+Vamos ver qual foi o problema entao... 
+
+A mensagem de erro esta sendo bem clara com a gente dizendo que o
+problema e PHP Warning:  PHP Startup: Unable to load dynamic library
+'pdo_pgsql' que traduzindo quer dizer que o php nao conseguiu carregar
+uma biblioteca dinamica chamada pdo_pgsql...
+
+No link https://www.php.net/manual/en/pgsql.installation.php tem
+instrucoes pra resolver isso... No meu caso, como estou no linux,
+tenho que instalar esse driver...
+
+Como estou usando o manjaro, minha instalacao ficou conforme
+abaixo... mas a gente vai resolvendo isso caso a casao nos nossos
+windows ou outras distribuicoes que vcs estiverem usando...
+
+
+#+NAME: Instalacao do php-pgsql no manjaro
+#+BEGIN_SRC shell :session s1 :results output :exports both
+[wagner@wagner-Insp153567 ~]$ sudo pacman -S php-pgsql
+[sudo] senha para wagner: 
+resolvendo dependências...
+procurando pacotes conflitantes...
+
+Pacotes (1) php-pgsql-8.0.2-1
+
+Tamanho total download:   0,06 MiB
+Tamanho total instalado:  0,18 MiB
+
+:: Continuar a instalação? [S/n] S
+:: Obtendo pacotes...
+ php-pgsql-8.0.2-1-x86_64                              58,0 KiB   542 KiB/s 00:00 [##############################################] 100%
+(1/1) verificando chaves no chaveiro                                              [##############################################] 100%
+(1/1) verificando integridade do pacote                                           [##############################################] 100%
+(1/1) carregando arquivos do pacote                                               [##############################################] 100%
+(1/1) verificando conflitos de arquivos                                           [##############################################] 100%
+(1/1) verificando espaço em disco disponível                                      [##############################################] 100%
+:: Processando alterações do pacote...
+(1/1) instalando php-pgsql                                                        [##############################################] 100%
+:: Executando hooks pós-transação...
+(1/1) Arming ConditionNeedsUpdate...
+[wagner@wagner-Insp153567 ~]$ 
+#+END_SRC
+
+Entao vamos dar um migrate de novo...
+
+#+NAME:tentativa3 php artisan migrate post jetstream install
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan migrate
+#+END_SRC
+
+
+#+RESULTS: tentativa3 php artisan migrate post jetstream install
+#+begin_example
+
+#("
+ 
+   Illuminate\\Database\\QueryException 
+
+  SQLSTATE[08006] [7] could not connect to server: Connection refused
+	Is the server running on host \"127.0.0.1\" and accepting
+	TCP/IP connections on port 5432? (SQL: select * from information_schema.tables where table_schema = public and table_name = migrations and table_type = 'BASE TABLE')
+
+  at vendor/laravel/framework/src/Illuminate/Database/Connection.php:678
+    674â         // If an exception occurs when attempting to run a query, we'll format the error
+    675â         // message to include the bindings with SQL, which will make this exception a
+    676â         // lot more helpful to the developer instead of just the database's errors.
+e) {
+  â 678â             throw new QueryException(
+query, $this->prepareBindings($bindings), $e
+    680â             );
+    681â         }
+    682â 
+
+      +33 vendor frames 
+  34  artisan:37
+      Illuminate\\Foundation\\Console\\Kernel::handle()" 5 41 (font-lock-face (bold (background-color . "red3"))) 43 336 (font-lock-face bold) 343 406 (font-lock-face (foreground-color . "green3")) 407 410 (font-lock-face (foreground-color . "green3")) 422 430 (font-lock-face (bold (foreground-color . "magenta3"))) 430 510 (font-lock-face italic) 522 607 (font-lock-face italic) 619 702 (font-lock-face italic) 704 707 (font-lock-face (bold (foreground-color . "magenta3"))) 708 714 (font-lock-face (bold (foreground-color . "red3"))) 714 717 (font-lock-face (bold italic)) 721 743 (font-lock-face (bold (foreground-color . "magenta3"))) 743 757 (font-lock-face bold) 757 758 (font-lock-face (bold (foreground-color . "magenta3"))) 764 766 (font-lock-face (bold (foreground-color . "magenta3"))) 766 771 (font-lock-face bold) 771 773 (font-lock-face (bold (foreground-color . "magenta3"))) 773 788 (font-lock-face bold) 788 789 (font-lock-face (bold (foreground-color . "magenta3"))) 789 798 (font-lock-face bold) 798 801 (font-lock-face (bold (foreground-color . "magenta3"))) 801 803 (font-lock-face bold) 815 827 (font-lock-face bold) 827 829 (font-lock-face (bold (foreground-color . "magenta3"))) 841 850 (font-lock-face (bold (foreground-color . "magenta3"))) 870 888 (font-lock-face nil) 891 895 (font-lock-face (foreground-color . "yellow3")) 895 902 (font-lock-face bold) 903 905 (font-lock-face bold) 908 958 (font-lock-face (foreground-color . "gray90")))
+#+end_example
+
+
+Bom pela saida acima percebemos que o migrate ainda nao aconteceu de
+verdade, mas conseguimos resolver o problema do carregamento do
+driver. Esse problema aconteceu porque meu banco de dados estava
+desligado, entao liguei ele agora e vou dar o migrate de novo...
+
+
+#+NAME:tentativa4 php artisan migrate post jetstream install
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan migrate
+#+END_SRC
+
+#+RESULTS: tentativa4 php artisan migrate post jetstream install
+#+begin_example
+
+#("
+ 
+   Illuminate\\Database\\QueryException 
+
+  SQLSTATE[08006] [7] FATAL:  database \"companydb\" does not exist (SQL: select * from information_schema.tables where table_schema = public and table_name = migrations and table_type = 'BASE TABLE')
+
+  at vendor/laravel/framework/src/Illuminate/Database/Connection.php:678
+    674â         // If an exception occurs when attempting to run a query, we'll format the error
+    675â         // message to include the bindings with SQL, which will make this exception a
+    676â         // lot more helpful to the developer instead of just the database's errors.
+e) {
+  â 678â             throw new QueryException(
+query, $this->prepareBindings($bindings), $e
+    680â             );
+    681â         }
+    682â 
+
+      +33 vendor frames 
+  34  artisan:37
+      Illuminate\\Foundation\\Console\\Kernel::handle()" 5 41 (font-lock-face (bold (background-color . "red3"))) 43 241 (font-lock-face bold) 248 311 (font-lock-face (foreground-color . "green3")) 312 315 (font-lock-face (foreground-color . "green3")) 327 335 (font-lock-face (bold (foreground-color . "magenta3"))) 335 415 (font-lock-face italic) 427 512 (font-lock-face italic) 524 607 (font-lock-face italic) 609 612 (font-lock-face (bold (foreground-color . "magenta3"))) 613 619 (font-lock-face (bold (foreground-color . "red3"))) 619 622 (font-lock-face (bold italic)) 626 648 (font-lock-face (bold (foreground-color . "magenta3"))) 648 662 (font-lock-face bold) 662 663 (font-lock-face (bold (foreground-color . "magenta3"))) 669 671 (font-lock-face (bold (foreground-color . "magenta3"))) 671 676 (font-lock-face bold) 676 678 (font-lock-face (bold (foreground-color . "magenta3"))) 678 693 (font-lock-face bold) 693 694 (font-lock-face (bold (foreground-color . "magenta3"))) 694 703 (font-lock-face bold) 703 706 (font-lock-face (bold (foreground-color . "magenta3"))) 706 708 (font-lock-face bold) 720 732 (font-lock-face bold) 732 734 (font-lock-face (bold (foreground-color . "magenta3"))) 746 755 (font-lock-face (bold (foreground-color . "magenta3"))) 775 793 (font-lock-face nil) 796 800 (font-lock-face (foreground-color . "yellow3")) 800 807 (font-lock-face bold) 808 810 (font-lock-face bold) 813 863 (font-lock-face (foreground-color . "gray90")))
+#+end_example
+
+Olhando a saida agora percebemos que conseguimos nos comunicar com o
+banco tanto e que o banco que esta dizendo pra gente que o banco
+"companydb" nao existe... Esse banco "companydb" foi configurado no
+meu .env 
+
+Esse arquivo .env e onde a gente faz algumas configuracoes que vao
+funcionar pro nosso computador apenas. Eu configurei nesse arquivo que
+vou conecar no banco postgresql local cujo nome do banco e
+"companydb".
+
+Veja o trecho do meu .env que diz isso pro nosso projeto laravel...
+
+
+#+NAME: cat do meu .env parte do banco
+#+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir
+  cat .env | grep ^DB_
+#+END_SRC
+
+#+RESULTS: cat do meu .env parte do banco
+: 
+: DB_CONNECTION=pgsql
+: DB_HOST=127.0.0.1
+: DB_PORT=5432
+: DB_DATABASE=companydb
+: DB_USERNAME=postgres
+: DB_PASSWORD=admin123
+
+Entao acima esta a configuracao de acesso ao nosso banco de dados
+usando .env 
+
+Caso vc tenha curiosidade, eu eu espero que sim, abre o .env do seu
+projeto e da uma olhada quanta coisa legal que podemos configurar no
+nosso projeto...
+
+Lembrando que o .env so serve pra configurar o que acontece no
+ambiente do desenvolvedor, ou seja, so pra sua maquina. Isso acontece
+porque o .env nao entra nos seus commits e por isso ele nao vai rolar
+quando a gente enviar nosso projeto pro heroku. Quando a gente for
+enviar pro heroku a gente vai configurar o acesso ao banco usando o
+arquivo ./config/app.php. Mas a gente nao vai fazer isso agora porque
+o objetivo desse aula e so demonstrar como instala o jetstream. Entao
+a gente instala na nossa maquina local mesmo e depois a gente ve como
+envia pro heroku, ok?
+
+
+Bom, entao, continuando, vamos criar esse banco entao ne...
+
+Entao nossa tarefa agora e criar esse banco de dados e vc pode fazer
+isso do jeito que vc achar melhor... o jeito mais facil na minha
+opiniao e o comandinho abaixo... Isso a gente vai ver tambem nas aulas
+de banco de dados...
+
+
+
+#+NAME: psql -U postgres -h 127.0.0.1 -W -c "create database companydb;"
+#+BEGIN_SRC shell :session s1 :results output :exports both
+psql -U postgres -h 127.0.0.1 -W -c "create database companydb;"
+Password: 
+CREATE DATABASE
+[wagner@wagner-Insp153567 ~]$ 
+
+#+END_SRC
+
+
+
+#+NAME:mostrando que agora nosso banco companydb ja existe
+#+BEGIN_SRC shell :session s1 :results output :exports both
+[wagner@wagner-Insp153567 ~]$ psql -U postgres -h 127.0.0.1 -W -c "\l"
+Password: 
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ companydb | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ defaultdb | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(5 rows)
+
+[wagner@wagner-Insp153567 ~]$ 
+
+#+END_SRC
+
+
+Entao, com nosso banco criado, vamos dar nosso migrate.. acho que
+agora vai hein...
+
+
+
+#+NAME:tentativa5 php artisan migrate post jetstream install
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan migrate
+#+END_SRC
+
+#+RESULTS: tentativa5 php artisan migrate post jetstream install
+#+begin_example
+
+#("
+ Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (276.74ms)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (214.69ms)
+Migrating: 2014_10_12_200000_add_two_factor_columns_to_users_table
+Migrated:  2014_10_12_200000_add_two_factor_columns_to_users_table (23.17ms)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (271.30ms)
+Migrating: 2019_12_14_000001_create_personal_access_tokens_table
+Migrated:  2019_12_14_000001_create_personal_access_tokens_table (337.23ms)
+Migrating: 2020_05_21_100000_create_teams_table
+Migrated:  2020_05_21_100000_create_teams_table (168.03ms)
+Migrating: 2020_05_21_200000_create_team_user_table
+Migrated:  2020_05_21_200000_create_team_user_table (168.05ms)
+Migrating: 2020_05_21_300000_create_team_invitations_table
+Migrated:  2020_05_21_300000_create_team_invitations_table (326.27ms)
+Migrating: 2021_02_14_065322_create_sessions_table
+Migrated:  2021_02_14_065322_create_sessions_table (337.59ms)" 2 39 (font-lock-face (foreground-color . "green3")) 40 50 (font-lock-face (foreground-color . "yellow3")) 88 97 (font-lock-face (foreground-color . "green3")) 147 157 (font-lock-face (foreground-color . "yellow3")) 205 214 (font-lock-face (foreground-color . "green3")) 274 284 (font-lock-face (foreground-color . "yellow3")) 341 350 (font-lock-face (foreground-color . "green3")) 418 428 (font-lock-face (foreground-color . "yellow3")) 472 481 (font-lock-face (foreground-color . "green3")) 537 547 (font-lock-face (foreground-color . "yellow3")) 602 611 (font-lock-face (foreground-color . "green3")) 678 688 (font-lock-face (foreground-color . "yellow3")) 726 735 (font-lock-face (foreground-color . "green3")) 785 795 (font-lock-face (foreground-color . "yellow3")) 837 846 (font-lock-face (foreground-color . "green3")) 900 910 (font-lock-face (foreground-color . "yellow3")) 959 968 (font-lock-face (foreground-color . "green3")) 1029 1039 (font-lock-face (foreground-color . "yellow3")) 1080 1089 (font-lock-face (foreground-color . "green3")))
+#+end_example
+
+Opa... agora o migrate foi hein...
+
+Olha que sao varios creates... 
+
+Sao as tabelas que estao sendo criadas..
+
+* Dando uma olhada no Resultado da Instalacao
+
+  Olha em cima do lado direito da welcome view da suas aplicacao que
+  vc vai ver o link "login" e o link "register"... Por esses links ja
+  da pra comecar a experimentar.
+
+  Mesmo assim, nos vamos ver o resultado da instalacao tanto acessando
+  as view como tambem olhando alguns artefatos de software (arquivos)
+  criados dentro da estrutura da nossa aplicacao...
+
+  Entao vamos dividir a resultado da nossa instalacao em
+  + Visualizar o que mudou em nosso projeto
+    Neste caso a gente vai ver tudo que foi criado em termos de
+    artefato de softwares, tipo, quais arquivos foram criados no nosso
+    projeto pra prover as funcionalidades, quais rotas, etc...
+
+  + Usar as interfaces graficas pra experimentar as funcionalidades
+    Nessa segunda parte nos vamos abrir as views e vamos tambem usar
+    as funcionalidades como um usuario mesmo...
+** Visualizando o que mudou em nosso projeto apos a instalacao
+*** Rotas   
+    Algumas rotas foram criadas na nossa aplicacao, vamos ve-las...
+
+    
+#+NAME:php artisan route:list pos instalacao do jetstream
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+cd $projDir
+php artisan route:list
+#+END_SRC
+
+#+RESULTS: php artisan route:list pos instalacao do jetstream
+#+begin_example
+
+#("
+ +--------+----------+----------------------------------+---------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------+
+| Domain | Method   | URI                              | Name                            | Action                                                                          | Middleware                                                |
++--------+----------+----------------------------------+---------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------+
+|        | GET|HEAD | /                                |                                 | Closure                                                                         | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | api/user                         |                                 | Closure                                                                         | App\\Http\\Middleware\\Authenticate:sanctum                  |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\ThrottleRequests:api        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | PUT      | current-team                     | current-team.update             | Laravel\\Jetstream\\Http\\Controllers\\CurrentTeamController@update                 | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        | GET|HEAD | dashboard                        | dashboard                       | Closure                                                                         | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate:sanctum                  |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        | GET|HEAD | forgot-password                  | password.request                | Laravel\\Fortify\\Http\\Controllers\\PasswordResetLinkController@create             | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | forgot-password                  | password.email                  | Laravel\\Fortify\\Http\\Controllers\\PasswordResetLinkController@store              | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | GET|HEAD | livewire/livewire.js             |                                 | Livewire\\Controllers\\LivewireJavaScriptAssets@source                            |                                                           |
+|        | GET|HEAD | livewire/livewire.js.map         |                                 | Livewire\\Controllers\\LivewireJavaScriptAssets@maps                              |                                                           |
+|        | POST     | livewire/message/{name}          | livewire.message                | Livewire\\Controllers\\HttpConnectionHandler                                      | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | livewire/preview-file/{filename} | livewire.preview-file           | Livewire\\Controllers\\FilePreviewHandler@handle                                  | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | POST     | livewire/upload-file             | livewire.upload-file            | Livewire\\Controllers\\FileUploadHandler@handle                                   | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\ThrottleRequests:60,1       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | login                            | login                           | Laravel\\Fortify\\Http\\Controllers\\AuthenticatedSessionController@create          | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | login                            |                                 | Laravel\\Fortify\\Http\\Controllers\\AuthenticatedSessionController@store           | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\ThrottleRequests:login      |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | logout                           | logout                          | Laravel\\Fortify\\Http\\Controllers\\AuthenticatedSessionController@destroy         | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | register                         | register                        | Laravel\\Fortify\\Http\\Controllers\\RegisteredUserController@create                | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | register                         |                                 | Laravel\\Fortify\\Http\\Controllers\\RegisteredUserController@store                 | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | reset-password                   | password.update                 | Laravel\\Fortify\\Http\\Controllers\\NewPasswordController@store                    | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | GET|HEAD | reset-password/{token}           | password.reset                  | Laravel\\Fortify\\Http\\Controllers\\NewPasswordController@create                   | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | GET|HEAD | sanctum/csrf-cookie              |                                 | Laravel\\Sanctum\\Http\\Controllers\\CsrfCookieController@show                      | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | team-invitations/{invitation}    | team-invitations.accept         | Laravel\\Jetstream\\Http\\Controllers\\TeamInvitationController@accept              | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\ValidateSignature           |
+|        | GET|HEAD | teams/create                     | teams.create                    | Laravel\\Jetstream\\Http\\Controllers\\Livewire\\TeamController@create               | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        | GET|HEAD | teams/{team}                     | teams.show                      | Laravel\\Jetstream\\Http\\Controllers\\Livewire\\TeamController@show                 | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        | GET|HEAD | two-factor-challenge             | two-factor.login                | Laravel\\Fortify\\Http\\Controllers\\TwoFactorAuthenticatedSessionController@create | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | POST     | two-factor-challenge             |                                 | Laravel\\Fortify\\Http\\Controllers\\TwoFactorAuthenticatedSessionController@store  | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\ThrottleRequests:two-factor |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\RedirectIfAuthenticated               |
+|        | GET|HEAD | user/confirm-password            | password.confirm                | Laravel\\Fortify\\Http\\Controllers\\ConfirmablePasswordController@show             | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | POST     | user/confirm-password            |                                 | Laravel\\Fortify\\Http\\Controllers\\ConfirmablePasswordController@store            | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | user/confirmed-password-status   | password.confirmation           | Laravel\\Fortify\\Http\\Controllers\\ConfirmedPasswordStatusController@show         | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | PUT      | user/password                    | user-password.update            | Laravel\\Fortify\\Http\\Controllers\\PasswordController@update                      | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | GET|HEAD | user/profile                     | profile.show                    | Laravel\\Jetstream\\Http\\Controllers\\Livewire\\UserProfileController@show          | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\EnsureEmailIsVerified          |
+|        | PUT      | user/profile-information         | user-profile-information.update | Laravel\\Fortify\\Http\\Controllers\\ProfileInformationController@update            | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        | POST     | user/two-factor-authentication   |                                 | Laravel\\Fortify\\Http\\Controllers\\TwoFactorAuthenticationController@store        | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\RequirePassword                |
+|        | DELETE   | user/two-factor-authentication   |                                 | Laravel\\Fortify\\Http\\Controllers\\TwoFactorAuthenticationController@destroy      | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\RequirePassword                |
+|        | GET|HEAD | user/two-factor-qr-code          |                                 | Laravel\\Fortify\\Http\\Controllers\\TwoFactorQrCodeController@show                 | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\RequirePassword                |
+|        | GET|HEAD | user/two-factor-recovery-codes   |                                 | Laravel\\Fortify\\Http\\Controllers\\RecoveryCodeController@index                   | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\RequirePassword                |
+|        | POST     | user/two-factor-recovery-codes   |                                 | Laravel\\Fortify\\Http\\Controllers\\RecoveryCodeController@store                   | App\\Http\\Middleware\\EncryptCookies                        |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse   |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Session\\Middleware\\StartSession                |
+|        |          |                                  |                                 |                                                                                 | Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession     |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\View\\Middleware\\ShareErrorsFromSession         |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\VerifyCsrfToken                       |
+|        |          |                                  |                                 |                                                                                 | App\\Http\\Middleware\\Authenticate                          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Routing\\Middleware\\SubstituteBindings          |
+|        |          |                                  |                                 |                                                                                 | Illuminate\\Auth\\Middleware\\RequirePassword                |
++--------+----------+----------------------------------+---------------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------+" 236 244 (font-lock-face (foreground-color . "green3")) 245 255 (font-lock-face (foreground-color . "green3")) 256 290 (font-lock-face (foreground-color . "green3")) 291 324 (font-lock-face (foreground-color . "green3")) 325 406 (font-lock-face (foreground-color . "green3")) 407 466 (font-lock-face (foreground-color . "green3")))
+#+end_example
+
+Se vc olhar direitinho vc vai ver que as rotas estao muito
+relacionadas com as funcionalidades e as views necessarias para as
+funcionalidades... Por exemplo, vc percebeu algumas rotas
+interessantes? Veja abaixo algumas que eu consegui ver...
+
+Olhando na coluna URI vc vai ver que tem uma uri chamada
+dashboard. Seguindo na mesma linha, na coluna Name vc confere que o
+nome da rota e dashboard mesmo... A acao e "Closure"... Esse closure
+quer dizer que nao e um controller que atende a requisicao na URI mas
+uma simples funcao... o fato de ele nao ter nome ela recebe o nome de
+closure. Isso quer dizer que vc pode ir na sua aplicacao e acessar a
+rota dashboard.. Veja abaixo eu fazendo isso na minha aplicacao...
+
+[[./imgs/laravel-jetstream/1-route-dashboard.png]]
+
+Bom a gente tentou acessar a view dashborad, mas pra isso acontecer a
+gente teria que logar primeiro, por isso que essa tela de login e apresentada...
+
+Na tabela acima vc vai ver que tem a URI tambem /login
+
+Se o usuario nao tiver logado ainda, a uri login vai mostrar a mesma
+tela de login que a gente viu acima qdo acessamos a a URI dashboard.
+
+[[./imgs/laravel-jetstream/1-route-login.png]]
+
+Da vontade de logar ja ne... mas tem que registrar um usuario
+antes... pra isso olha de novo la na tabela de rotas e vc vai ver que
+vai ter uma rota com a URI register... Eis abaixo o print do acesso dessa
+rota..
+
+[[./imgs/laravel-jetstream/2-route-register.png]]
+
+
+
+*** Conferindo as views que a instalacao do jetstream criou
+
+  Pra prover pra gente as funcionalidades de login etc... a instalacao
+  do jetstream criou varios views pra gente... vamos dar uma olhada?
+
+  Essas views de que estamos falando foram criadas no diretorio resources/views/auth
+
+  #+NAME:listing jetbreans views created
+  #+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  cd $projDir
+  ls -l ./resources/views/auth
+  #+END_SRC
+
+  #+RESULTS: listing jetbreans views created
+  #+begin_example
+
+  "
+   total 28
+  -rw-r--r-- 1 wagner wagner  981 fev 14 03:53 confirm-password.blade.php
+  -rw-r--r-- 1 wagner wagner 1224 fev 14 03:53 forgot-password.blade.php
+  -rw-r--r-- 1 wagner wagner 1819 fev 14 03:53 login.blade.php
+  -rw-r--r-- 1 wagner wagner 2834 fev 14 03:53 register.blade.php
+  -rw-r--r-- 1 wagner wagner 1484 fev 14 03:53 reset-password.blade.php
+  -rw-r--r-- 1 wagner wagner 2720 fev 14 03:53 two-factor-challenge.blade.php
+  -rw-r--r-- 1 wagner wagner 1422 fev 14 03:53 verify-email.blade.php"
+  #+end_example
+
+
+*** Conferindos os arqs de backend que dao suporte as views do jetstream
+  
+  #+NAME:listing jetbreans backends que dao suporte views
+  #+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  cd $projDir
+  ls -l ./app/Actions/Fortify
+  #+END_SRC
+
+  #+RESULTS: listing jetbreans backends que dao suporte views
+  : 
+  : "
+  :  total 20
+  : -rw-r--r-- 1 wagner wagner 1631 fev 14 03:53 CreateNewUser.php
+  : -rw-r--r-- 1 wagner wagner  331 fev 14 03:53 PasswordValidationRules.php
+  : -rw-r--r-- 1 wagner wagner  693 fev 14 03:53 ResetUserPassword.php
+  : -rw-r--r-- 1 wagner wagner 1092 fev 14 03:53 UpdateUserPassword.php
+  : -rw-r--r-- 1 wagner wagner 1712 fev 14 03:53 UpdateUserProfileInformation.php"
+
+
+*** Habilitando ou Desabilitando funcionalidades do jetstream[fn:6]
+  
+    Pra habilitar uo desabilitar funcionalidades no jetstream vc vai
+    alterar o arquivo config/fortify.php
+
+    vamos dar uma olhada nesse arquivo no nosso projeto?
+
+  
+  #+NAME:cat ./config/fortify.php
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir
+  cat ./config/fortify.php
+  #+END_SRC
+
+  #+RESULTS: cat ./config/fortify.php
+  #+begin_example
+
+  [00m <?php
+
+  use App\Providers\RouteServiceProvider;
+  use Laravel\Fortify\Features;
+
+  return [
+
+      /*
+      |--------------------------------------------------------------------------
+      | Fortify Guard
+      |--------------------------------------------------------------------------
+      |
+      | Here you may specify which authentication guard Fortify will use while
+      | authenticating users. This value should correspond with one of your
+      | guards that is already present in your "auth" configuration file.
+      |
+      ,*/
+  'web',
+
+      /*
+      |--------------------------------------------------------------------------
+      | Fortify Password Broker
+      |--------------------------------------------------------------------------
+      |
+      | Here you may specify which password broker Fortify can use when a user
+      | is resetting their password. This configured value should match one
+      | of your password brokers setup in your "auth" configuration file.
+      |
+      ,*/
+  'users',
+
+      /*
+      |--------------------------------------------------------------------------
+      | Username / Email
+      |--------------------------------------------------------------------------
+      |
+      | This value defines which model attribute should be considered as your
+      | application's "username" field. Typically, this might be the email
+      | address of the users but you are free to change this value here.
+      |
+      | Out of the box, Fortify expects forgot password and reset password
+      | requests to have a field named 'email'. If the application uses
+      | another name for the field you may define it below as needed.
+      |
+      ,*/
+  'email',
+  'email',
+
+      /*
+      |--------------------------------------------------------------------------
+      | Home Path
+      |--------------------------------------------------------------------------
+      |
+      | Here you may configure the path where users will get redirected during
+      | authentication or password reset when the operations are successful
+      | and the user is authenticated. You are free to change this value.
+      |
+      ,*/
+  RouteServiceProvider::HOME,
+
+      /*
+      |--------------------------------------------------------------------------
+      | Fortify Routes Prefix / Subdomain
+      |--------------------------------------------------------------------------
+      |
+      | Here you may specify which prefix Fortify will assign to all the routes
+      | that it registers with the application. If necessary, you may change
+      | subdomain under which all of the Fortify routes will be available.
+      |
+      ,*/
+  '',
+  null,
+
+      /*
+      |--------------------------------------------------------------------------
+      | Fortify Routes Middleware
+      |--------------------------------------------------------------------------
+      |
+      | Here you may specify which middleware Fortify will assign to the routes
+      | that it registers with the application. If necessary, you may change
+      | these middleware but typically this provided default is preferred.
+      |
+      ,*/
+  ['web'],
+
+      /*
+      |--------------------------------------------------------------------------
+      | Rate Limiting
+      |--------------------------------------------------------------------------
+      |
+      | By default, Fortify will throttle logins to five requests per minute for
+      | every email and IP address combination. However, if you would like to
+      | specify a custom rate limiter to call then you may specify it here.
+      |
+      ,*/
+  [
+  'login',
+  'two-factor',
+      ],
+
+      /*
+      |--------------------------------------------------------------------------
+      | Register View Routes
+      |--------------------------------------------------------------------------
+      |
+      | Here you may specify if the routes returning views should be disabled as
+      | you may not need them when building your own application. This may be
+      | especially true if you're writing a custom single-page application.
+      |
+      ,*/
+  true,
+
+      /*
+      |--------------------------------------------------------------------------
+      | Features
+      |--------------------------------------------------------------------------
+      |
+      | Some of the Fortify features are optional. You may disable the features
+      | by removing them from this array. You're free to only remove some of
+      | these features or you can even remove all of these if you need to.
+      |
+      ,*/
+  [
+          Features::registration(),
+          Features::resetPasswords(),
+          // Features::emailVerification(),
+          Features::updateProfileInformation(),
+          Features::updatePasswords(),
+          Features::twoFactorAuthentication([
+  true,
+          ]),
+      ],
+
+  ];
+  #+end_example
+
+
+  Uma olhadinha com calma pra matar a curiosidade e legal...
+
+  Percebe-se que a ultima sessao trata-se das features...
+
+  Outro arquivo que trata da configuracao do jetstream e o
+  config/jetstream.php. Por exemplo, e possivel desabilitar a imagem do
+  perfil do usuario usando esse arquivom[fn:6]. Claro que vamos querer dar uma
+  olhada basica nele tb... vamos la...
+
+
+  #+NAME:cat config/jetstream.php
+  #+BEGIN_SRC shell :session s1 :results output :exports both
+  cd $projDir
+  cat config/jetstream.php
+  #+END_SRC
+
+  #+RESULTS: cat config/jetstream.php
+  #+begin_example
+
+  [00m <?php
+
+  use Laravel\Jetstream\Features;
+
+  return [
+
+      /*
+      |--------------------------------------------------------------------------
+      | Jetstream Stack
+      |--------------------------------------------------------------------------
+      |
+      | This configuration value informs Jetstream which "stack" you will be
+      | using for your application. In general, this value is set for you
+      | during installation and will not need to be changed after that.
+      |
+      ,*/
+  'livewire',
+
+      /*
+       |--------------------------------------------------------------------------
+       | Jetstream Route Middleware
+       |--------------------------------------------------------------------------
+       |
+       | Here you may specify which middleware Jetstream will assign to the routes
+       | that it registers with the application. When necessary, you may modify
+       | these middleware; however, this default value is usually sufficient.
+       |
+       ,*/
+  ['web'],
+
+      /*
+      |--------------------------------------------------------------------------
+      | Features
+      |--------------------------------------------------------------------------
+      |
+      | Some of Jetstream's features are optional. You may disable the features
+      | by removing them from this array. You're free to only remove some of
+      | these features or you can even remove all of these if you need to.
+      |
+      ,*/
+  [
+          // Features::termsAndPrivacyPolicy(),
+          // Features::profilePhotos(),
+          // Features::api(),
+  true]),
+          Features::accountDeletion(),
+      ],
+
+      /*
+      |--------------------------------------------------------------------------
+      | Profile Photo Disk
+      |--------------------------------------------------------------------------
+      |
+      | This configuration value determines the default disk that will be used
+      | when storing profile photos for your application's users. Typically
+      | this will be the "public" disk but you may adjust this if needed.
+      |
+      ,*/
+  'public',
+
+  ];
+  #+end_example
+
+
+
+*** Gerenciamento de Equipes (Jetstream Teams)
+  
+    Lembra que pra fazer a instalacao do jetstream a gente usou esse
+    comando: "php artisan jetstream:install livewire --teams"?
+
+    Pois e... esse atributo --teams habilitou essa gerencia de equipes.
+
+  
+
+
+
+
+
+
+
+* references
+[fn:1] https://jetstream.laravel.com/2.x/introduction.html
+[fn:2] https://laravel.com/docs/8.x/releases
+[fn:3] https://laravel-livewire.com/
+[fn:4] https://inertiajs.com/
+[fn:5] https://programmingfields.com/laravel-8-jetstream-create-auth-with-livewire/
+[fn:6] https://devdojo.com/bobbyiliev/what-is-laravel-jetstream-and-how-to-get-started
+[fn:7] https://jetstream.laravel.com/2.x/concept-overview.html
+[fn:8] https://www.schoolofnet.com/curso/php/laravel/conhecendo-laravel-jetstream/
+[fn:9] https://github.com/laravel/jetstream
+[fn:10] https://www.youtube.com/watch?v=BZFavPxP2xc
+[fn:11] https://www.youtube.com/watch?v=DP_cnfX_Cws
+[fn:12] https://laravel.com/docs/8.x/fortify
+[fn:13] https://jetstream.laravel.com/2.x/installation.html

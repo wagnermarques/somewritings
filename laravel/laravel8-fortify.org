@@ -1,0 +1,405 @@
+#+Title: Laravel8 Fortify
+
+* Apresentacao do Fortify[fn:1]
+O fortify e um componente do laravel que serve pra vc trabalhar com autenticacao na sua aplicacao
+Qdo vc usa o jetstream, o jetstream faz uso desse componente
+
+* Instalacao do Fortify
+
+** Primeiro vamos criar um projeto do laravel
+
+#+NAME: creating learnfortify project
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+cd /home/administrador/mnt/pen/sources/laravel-projects/
+composer create-project laravel/laravel learnfortify --prefer-dist
+export projDir=/home/administrador/mnt/pen/sources/laravel-projects/learnfortify
+
+echo $projDir
+#+END_SRC
+
+#+RESULTS: creating
+#+begin_example
+
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+[32mCreating a "laravel/laravel" project at "./learnfortify"[39m
+[32mInstalling laravel/laravel (v8.6.8)[39m
+  - Installing [32mlaravel/laravel[39m ([33mv8.6.8[39m): Extracting archive
+[32mCreated project in /home/administrador/mnt/pen/sources/laravel-projects/learnfortify[39m
+@php -r "file_exists('.env') || copy('.env.example', '.env');"
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[32mLock file operations: 110 installs, 0 updates, 0 removals[39m
+  - Locking [32masm89/stack-cors[39m ([33mv2.0.3[39m)
+  - Locking [32mbrick/math[39m ([33m0.9.3[39m)
+  - Locking [32mdflydev/dot-access-data[39m ([33mv3.0.1[39m)
+  - Locking [32mdoctrine/inflector[39m ([33m2.0.4[39m)
+  - Locking [32mdoctrine/instantiator[39m ([33m1.4.0[39m)
+  - Locking [32mdoctrine/lexer[39m ([33m1.2.1[39m)
+  - Locking [32mdragonmantank/cron-expression[39m ([33mv3.1.0[39m)
+  - Locking [32megulias/email-validator[39m ([33m2.1.25[39m)
+  - Locking [32mfacade/flare-client-php[39m ([33m1.9.1[39m)
+  - Locking [32mfacade/ignition[39m ([33m2.17.2[39m)
+  - Locking [32mfacade/ignition-contracts[39m ([33m1.0.2[39m)
+  - Locking [32mfakerphp/faker[39m ([33mv1.16.0[39m)
+  - Locking [32mfilp/whoops[39m ([33m2.14.4[39m)
+  - Locking [32mfruitcake/laravel-cors[39m ([33mv2.0.4[39m)
+  - Locking [32mgraham-campbell/result-type[39m ([33mv1.0.4[39m)
+  - Locking [32mguzzlehttp/guzzle[39m ([33m7.4.0[39m)
+  - Locking [32mguzzlehttp/promises[39m ([33m1.5.1[39m)
+  - Locking [32mguzzlehttp/psr7[39m ([33m2.1.0[39m)
+  - Locking [32mhamcrest/hamcrest-php[39m ([33mv2.0.1[39m)
+  - Locking [32mlaravel/framework[39m ([33mv8.73.2[39m)
+  - Locking [32mlaravel/sail[39m ([33mv1.12.8[39m)
+  - Locking [32mlaravel/sanctum[39m ([33mv2.12.2[39m)
+  - Locking [32mlaravel/serializable-closure[39m ([33mv1.0.4[39m)
+  - Locking [32mlaravel/tinker[39m ([33mv2.6.2[39m)
+  - Locking [32mleague/commonmark[39m ([33m2.0.2[39m)
+  - Locking [32mleague/config[39m ([33mv1.1.1[39m)
+  - Locking [32mleague/flysystem[39m ([33m1.1.8[39m)
+  - Locking [32mleague/mime-type-detection[39m ([33m1.9.0[39m)
+  - Locking [32mmockery/mockery[39m ([33m1.4.4[39m)
+  - Locking [32mmonolog/monolog[39m ([33m2.3.5[39m)
+  - Locking [32mmyclabs/deep-copy[39m ([33m1.10.2[39m)
+  - Locking [32mnesbot/carbon[39m ([33m2.54.0[39m)
+  - Locking [32mnette/schema[39m ([33mv1.2.2[39m)
+  - Locking [32mnette/utils[39m ([33mv3.2.6[39m)
+  - Locking [32mnikic/php-parser[39m ([33mv4.13.1[39m)
+  - Locking [32mnunomaduro/collision[39m ([33mv5.10.0[39m)
+  - Locking [32mopis/closure[39m ([33m3.6.2[39m)
+  - Locking [32mphar-io/manifest[39m ([33m2.0.3[39m)
+  - Locking [32mphar-io/version[39m ([33m3.1.0[39m)
+  - Locking [32mphpdocumentor/reflection-common[39m ([33m2.2.0[39m)
+  - Locking [32mphpdocumentor/reflection-docblock[39m ([33m5.3.0[39m)
+  - Locking [32mphpdocumentor/type-resolver[39m ([33m1.5.1[39m)
+  - Locking [32mphpoption/phpoption[39m ([33m1.8.0[39m)
+  - Locking [32mphpspec/prophecy[39m ([33m1.14.0[39m)
+  - Locking [32mphpunit/php-code-coverage[39m ([33m9.2.9[39m)
+  - Locking [32mphpunit/php-file-iterator[39m ([33m3.0.5[39m)
+  - Locking [32mphpunit/php-invoker[39m ([33m3.1.1[39m)
+  - Locking [32mphpunit/php-text-template[39m ([33m2.0.4[39m)
+  - Locking [32mphpunit/php-timer[39m ([33m5.0.3[39m)
+  - Locking [32mphpunit/phpunit[39m ([33m9.5.10[39m)
+  - Locking [32mpsr/container[39m ([33m1.1.2[39m)
+  - Locking [32mpsr/event-dispatcher[39m ([33m1.0.0[39m)
+  - Locking [32mpsr/http-client[39m ([33m1.0.1[39m)
+  - Locking [32mpsr/http-factory[39m ([33m1.0.1[39m)
+  - Locking [32mpsr/http-message[39m ([33m1.0.1[39m)
+  - Locking [32mpsr/log[39m ([33m1.1.4[39m)
+  - Locking [32mpsr/simple-cache[39m ([33m1.0.1[39m)
+  - Locking [32mpsy/psysh[39m ([33mv0.10.11[39m)
+  - Locking [32mralouphie/getallheaders[39m ([33m3.0.3[39m)
+  - Locking [32mramsey/collection[39m ([33m1.2.2[39m)
+  - Locking [32mramsey/uuid[39m ([33m4.2.3[39m)
+  - Locking [32msebastian/cli-parser[39m ([33m1.0.1[39m)
+  - Locking [32msebastian/code-unit[39m ([33m1.0.8[39m)
+  - Locking [32msebastian/code-unit-reverse-lookup[39m ([33m2.0.3[39m)
+  - Locking [32msebastian/comparator[39m ([33m4.0.6[39m)
+  - Locking [32msebastian/complexity[39m ([33m2.0.2[39m)
+  - Locking [32msebastian/diff[39m ([33m4.0.4[39m)
+  - Locking [32msebastian/environment[39m ([33m5.1.3[39m)
+  - Locking [32msebastian/exporter[39m ([33m4.0.4[39m)
+  - Locking [32msebastian/global-state[39m ([33m5.0.3[39m)
+  - Locking [32msebastian/lines-of-code[39m ([33m1.0.3[39m)
+  - Locking [32msebastian/object-enumerator[39m ([33m4.0.4[39m)
+  - Locking [32msebastian/object-reflector[39m ([33m2.0.4[39m)
+  - Locking [32msebastian/recursion-context[39m ([33m4.0.4[39m)
+  - Locking [32msebastian/resource-operations[39m ([33m3.0.3[39m)
+  - Locking [32msebastian/type[39m ([33m2.3.4[39m)
+  - Locking [32msebastian/version[39m ([33m3.0.2[39m)
+  - Locking [32mswiftmailer/swiftmailer[39m ([33mv6.3.0[39m)
+  - Locking [32msymfony/console[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/css-selector[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/deprecation-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32msymfony/error-handler[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/event-dispatcher[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/event-dispatcher-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32msymfony/finder[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/http-foundation[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/http-kernel[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/mime[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/polyfill-ctype[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-iconv[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-intl-grapheme[39m ([33mv1.23.1[39m)
+  - Locking [32msymfony/polyfill-intl-idn[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-intl-normalizer[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-mbstring[39m ([33mv1.23.1[39m)
+  - Locking [32msymfony/polyfill-php72[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-php73[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/polyfill-php80[39m ([33mv1.23.1[39m)
+  - Locking [32msymfony/polyfill-php81[39m ([33mv1.23.0[39m)
+  - Locking [32msymfony/process[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/routing[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/service-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32msymfony/string[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/translation[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/translation-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32msymfony/var-dumper[39m ([33mv5.4.0[39m)
+  - Locking [32mtheseer/tokenizer[39m ([33m1.2.1[39m)
+  - Locking [32mtijsverkoyen/css-to-inline-styles[39m ([33m2.2.3[39m)
+  - Locking [32mvlucas/phpdotenv[39m ([33mv5.4.0[39m)
+  - Locking [32mvoku/portable-ascii[39m ([33m1.5.6[39m)
+  - Locking [32mwebmozart/assert[39m ([33m1.10.0[39m)
+[32mWriting lock file[39m
+[32mInstalling dependencies from lock file (including require-dev)[39m
+[32mPackage operations: 110 installs, 0 updates, 0 removals[39m
+  - Downloading [32msymfony/var-dumper[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/string[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/console[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/css-selector[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/routing[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/process[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/mime[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/http-foundation[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/event-dispatcher[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/error-handler[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/http-kernel[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/finder[39m ([33mv5.4.0[39m)
+  - Downloading [32msymfony/translation[39m ([33mv5.4.0[39m)
+  - Downloading [32mleague/flysystem[39m ([33m1.1.8[39m)
+  - Downloading [32mfacade/ignition[39m ([33m2.17.2[39m)
+  - Downloading [32mlaravel/sail[39m ([33mv1.12.8[39m)
+---------------------------]   0%[2K  2/16 [===>------------------------]  12%[2K  3/16 [=====>----------------------]  18%[2K  6/16 [==========>-----------------]  37%[2K  7/16 [============>---------------]  43%[2K  8/16 [==============>-------------]  50%[2K 10/16 [=================>----------]  62%[2K 11/16 [===================>--------]  68%[2K 13/16 [======================>-----]  81%[2K 14/16 [========================>---]  87%[2K 16/16 [============================] 100%[2K  - Installing [32mdoctrine/inflector[39m ([33m2.0.4[39m): Extracting archive
+  - Installing [32mdoctrine/lexer[39m ([33m1.2.1[39m): Extracting archive
+  - Installing [32msymfony/polyfill-ctype[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32mwebmozart/assert[39m ([33m1.10.0[39m): Extracting archive
+  - Installing [32mdragonmantank/cron-expression[39m ([33mv3.1.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-php80[39m ([33mv1.23.1[39m): Extracting archive
+  - Installing [32msymfony/polyfill-mbstring[39m ([33mv1.23.1[39m): Extracting archive
+  - Installing [32msymfony/var-dumper[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-intl-normalizer[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-intl-grapheme[39m ([33mv1.23.1[39m): Extracting archive
+  - Installing [32msymfony/string[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/deprecation-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32mpsr/container[39m ([33m1.1.2[39m): Extracting archive
+  - Installing [32msymfony/service-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-php73[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32msymfony/console[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32mpsr/log[39m ([33m1.1.4[39m): Extracting archive
+  - Installing [32mmonolog/monolog[39m ([33m2.3.5[39m): Extracting archive
+  - Installing [32mvoku/portable-ascii[39m ([33m1.5.6[39m): Extracting archive
+  - Installing [32mphpoption/phpoption[39m ([33m1.8.0[39m): Extracting archive
+  - Installing [32mgraham-campbell/result-type[39m ([33mv1.0.4[39m): Extracting archive
+  - Installing [32mvlucas/phpdotenv[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/css-selector[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32mtijsverkoyen/css-to-inline-styles[39m ([33m2.2.3[39m): Extracting archive
+  - Installing [32msymfony/routing[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/process[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-php72[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-intl-idn[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32msymfony/mime[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/http-foundation[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32mpsr/event-dispatcher[39m ([33m1.0.0[39m): Extracting archive
+  - Installing [32msymfony/event-dispatcher-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32msymfony/event-dispatcher[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/error-handler[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/http-kernel[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/finder[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-iconv[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32megulias/email-validator[39m ([33m2.1.25[39m): Extracting archive
+  - Installing [32mswiftmailer/swiftmailer[39m ([33mv6.3.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-php81[39m ([33mv1.23.0[39m): Extracting archive
+  - Installing [32mramsey/collection[39m ([33m1.2.2[39m): Extracting archive
+  - Installing [32mbrick/math[39m ([33m0.9.3[39m): Extracting archive
+  - Installing [32mramsey/uuid[39m ([33m4.2.3[39m): Extracting archive
+  - Installing [32mpsr/simple-cache[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mopis/closure[39m ([33m3.6.2[39m): Extracting archive
+  - Installing [32msymfony/translation-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32msymfony/translation[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32mnesbot/carbon[39m ([33m2.54.0[39m): Extracting archive
+  - Installing [32mleague/mime-type-detection[39m ([33m1.9.0[39m): Extracting archive
+  - Installing [32mleague/flysystem[39m ([33m1.1.8[39m): Extracting archive
+  - Installing [32mnette/utils[39m ([33mv3.2.6[39m): Extracting archive
+  - Installing [32mnette/schema[39m ([33mv1.2.2[39m): Extracting archive
+  - Installing [32mdflydev/dot-access-data[39m ([33mv3.0.1[39m): Extracting archive
+  - Installing [32mleague/config[39m ([33mv1.1.1[39m): Extracting archive
+  - Installing [32mleague/commonmark[39m ([33m2.0.2[39m): Extracting archive
+  - Installing [32mlaravel/serializable-closure[39m ([33mv1.0.4[39m): Extracting archive
+  - Installing [32mlaravel/framework[39m ([33mv8.73.2[39m): Extracting archive
+  - Installing [32mfacade/ignition-contracts[39m ([33m1.0.2[39m): Extracting archive
+  - Installing [32mfacade/flare-client-php[39m ([33m1.9.1[39m): Extracting archive
+  - Installing [32mfacade/ignition[39m ([33m2.17.2[39m): Extracting archive
+  - Installing [32mfakerphp/faker[39m ([33mv1.16.0[39m): Extracting archive
+  - Installing [32masm89/stack-cors[39m ([33mv2.0.3[39m): Extracting archive
+  - Installing [32mfruitcake/laravel-cors[39m ([33mv2.0.4[39m): Extracting archive
+  - Installing [32mpsr/http-message[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mpsr/http-client[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mralouphie/getallheaders[39m ([33m3.0.3[39m): Extracting archive
+  - Installing [32mpsr/http-factory[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mguzzlehttp/psr7[39m ([33m2.1.0[39m): Extracting archive
+  - Installing [32mguzzlehttp/promises[39m ([33m1.5.1[39m): Extracting archive
+  - Installing [32mguzzlehttp/guzzle[39m ([33m7.4.0[39m): Extracting archive
+  - Installing [32mlaravel/sail[39m ([33mv1.12.8[39m): Extracting archive
+  - Installing [32mlaravel/sanctum[39m ([33mv2.12.2[39m): Extracting archive
+  - Installing [32mnikic/php-parser[39m ([33mv4.13.1[39m): Extracting archive
+  - Installing [32mpsy/psysh[39m ([33mv0.10.11[39m): Extracting archive
+  - Installing [32mlaravel/tinker[39m ([33mv2.6.2[39m): Extracting archive
+  - Installing [32mhamcrest/hamcrest-php[39m ([33mv2.0.1[39m): Extracting archive
+  - Installing [32mmockery/mockery[39m ([33m1.4.4[39m): Extracting archive
+  - Installing [32mfilp/whoops[39m ([33m2.14.4[39m): Extracting archive
+  - Installing [32mnunomaduro/collision[39m ([33mv5.10.0[39m): Extracting archive
+  - Installing [32mphpdocumentor/reflection-common[39m ([33m2.2.0[39m): Extracting archive
+  - Installing [32mphpdocumentor/type-resolver[39m ([33m1.5.1[39m): Extracting archive
+  - Installing [32mphpdocumentor/reflection-docblock[39m ([33m5.3.0[39m): Extracting archive
+  - Installing [32msebastian/version[39m ([33m3.0.2[39m): Extracting archive
+  - Installing [32msebastian/type[39m ([33m2.3.4[39m): Extracting archive
+  - Installing [32msebastian/resource-operations[39m ([33m3.0.3[39m): Extracting archive
+  - Installing [32msebastian/recursion-context[39m ([33m4.0.4[39m): Extracting archive
+  - Installing [32msebastian/object-reflector[39m ([33m2.0.4[39m): Extracting archive
+  - Installing [32msebastian/object-enumerator[39m ([33m4.0.4[39m): Extracting archive
+  - Installing [32msebastian/global-state[39m ([33m5.0.3[39m): Extracting archive
+  - Installing [32msebastian/exporter[39m ([33m4.0.4[39m): Extracting archive
+  - Installing [32msebastian/environment[39m ([33m5.1.3[39m): Extracting archive
+  - Installing [32msebastian/diff[39m ([33m4.0.4[39m): Extracting archive
+  - Installing [32msebastian/comparator[39m ([33m4.0.6[39m): Extracting archive
+  - Installing [32msebastian/code-unit[39m ([33m1.0.8[39m): Extracting archive
+  - Installing [32msebastian/cli-parser[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mphpunit/php-timer[39m ([33m5.0.3[39m): Extracting archive
+  - Installing [32mphpunit/php-text-template[39m ([33m2.0.4[39m): Extracting archive
+  - Installing [32mphpunit/php-invoker[39m ([33m3.1.1[39m): Extracting archive
+  - Installing [32mphpunit/php-file-iterator[39m ([33m3.0.5[39m): Extracting archive
+  - Installing [32mtheseer/tokenizer[39m ([33m1.2.1[39m): Extracting archive
+  - Installing [32msebastian/lines-of-code[39m ([33m1.0.3[39m): Extracting archive
+  - Installing [32msebastian/complexity[39m ([33m2.0.2[39m): Extracting archive
+  - Installing [32msebastian/code-unit-reverse-lookup[39m ([33m2.0.3[39m): Extracting archive
+  - Installing [32mphpunit/php-code-coverage[39m ([33m9.2.9[39m): Extracting archive
+  - Installing [32mdoctrine/instantiator[39m ([33m1.4.0[39m): Extracting archive
+  - Installing [32mphpspec/prophecy[39m ([33m1.14.0[39m): Extracting archive
+  - Installing [32mphar-io/version[39m ([33m3.1.0[39m): Extracting archive
+  - Installing [32mphar-io/manifest[39m ([33m2.0.3[39m): Extracting archive
+  - Installing [32mmyclabs/deep-copy[39m ([33m1.10.2[39m): Extracting archive
+  - Installing [32mphpunit/phpunit[39m ([33m9.5.10[39m): Extracting archive
+---------------------------]   0%[2K  10/110 [==>-------------------------]   9%[2K  20/110 [=====>----------------------]  18%[2K  30/110 [=======>--------------------]  27%[2K  40/110 [==========>-----------------]  36%[2K  48/110 [============>---------------]  43%[2K  49/110 [============>---------------]  44%[2K  50/110 [============>---------------]  45%[2K  56/110 [==============>-------------]  50%[2K  59/110 [===============>------------]  53%[2K  60/110 [===============>------------]  54%[2K  65/110 [================>-----------]  59%[2K  66/110 [================>-----------]  60%[2K  70/110 [=================>----------]  63%[2K  75/110 [===================>--------]  68%[2K  76/110 [===================>--------]  69%[2K  80/110 [====================>-------]  72%[2K  85/110 [=====================>------]  77%[2K  90/110 [======================>-----]  81%[2K  95/110 [========================>---]  86%[2K  96/110 [========================>---]  87%[2K 100/110 [=========================>--]  90%[2K 104/110 [==========================>-]  94%[2K 106/110 [==========================>-]  96%[2K 110/110 [============================] 100%[2K 110/110 [============================] 100%[2K[32m87 package suggestions were added by new dependencies, use `composer suggest` to see details.[39m
+[30;43mPackage swiftmailer/swiftmailer is abandoned, you should avoid using it. Use symfony/mailer instead.[39;49m
+[32mGenerating optimized autoload files[39m
+Illuminate\Foundation\ComposerScripts::postAutoloadDump
+@php artisan package:discover --ansi
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+Discovered Package: [32mfacade/ignition[39m
+Discovered Package: [32mfruitcake/laravel-cors[39m
+Discovered Package: [32mlaravel/sail[39m
+Discovered Package: [32mlaravel/sanctum[39m
+Discovered Package: [32mlaravel/tinker[39m
+Discovered Package: [32mnesbot/carbon[39m
+Discovered Package: [32mnunomaduro/collision[39m
+[32mPackage manifest generated successfully.[39m
+[32m77 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+@php artisan vendor:publish --tag=laravel-assets --ansi
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+[33mNo publishable resources for tag [laravel-assets].[39m
+[32mPublishing complete.[39m
+@php artisan key:generate --ansi
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+[32mApplication key set successfully.[39m
+/home/administrador/mnt/pen/sources/laravel-projects/learnfortify
+#+end_example
+
+
+
+
+** Agora vamos adicionar a dependencia do fortify no nosso projeto
+
+#+NAME: composer require laravel/fortify
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+cd $projdir
+composer require laravel/fortify
+#+End_SRC
+
+#+RESULTS: composer
+#+begin_example
+
+PHP Warning:  Module 'curl' already loaded in Unknown on line 0
+PHP Warning:  Module 'mbstring' already loaded in Unknown on line 0
+PHP Warning:  Module 'pdo_mysql' already loaded in Unknown on line 0
+PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+Using version [32m^1.8[39m for [32mlaravel/fortify[39m
+[32m./composer.json has been created[39m
+[32mRunning composer update laravel/fortify[39m
+[32mLoading composer repositories with package information[39m
+[32mUpdating dependencies[39m
+[32mLock file operations: 19 installs, 0 updates, 0 removals[39m
+  - Locking [32mbacon/bacon-qr-code[39m ([33m2.0.4[39m)
+  - Locking [32mdasprid/enum[39m ([33m1.0.3[39m)
+  - Locking [32mdoctrine/inflector[39m ([33m2.0.4[39m)
+  - Locking [32milluminate/collections[39m ([33mv8.73.2[39m)
+  - Locking [32milluminate/contracts[39m ([33mv8.73.2[39m)
+  - Locking [32milluminate/macroable[39m ([33mv8.73.2[39m)
+  - Locking [32milluminate/support[39m ([33mv8.73.2[39m)
+  - Locking [32mlaravel/fortify[39m ([33mv1.8.4[39m)
+  - Locking [32mnesbot/carbon[39m ([33m2.54.0[39m)
+  - Locking [32mparagonie/constant_time_encoding[39m ([33mv2.4.0[39m)
+  - Locking [32mpragmarx/google2fa[39m ([33m8.0.0[39m)
+  - Locking [32mpsr/container[39m ([33m1.1.2[39m)
+  - Locking [32mpsr/simple-cache[39m ([33m1.0.1[39m)
+  - Locking [32msymfony/deprecation-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32msymfony/polyfill-mbstring[39m ([33mv1.23.1[39m)
+  - Locking [32msymfony/polyfill-php80[39m ([33mv1.23.1[39m)
+  - Locking [32msymfony/translation[39m ([33mv5.4.0[39m)
+  - Locking [32msymfony/translation-contracts[39m ([33mv2.5.0[39m)
+  - Locking [32mvoku/portable-ascii[39m ([33m1.5.6[39m)
+[32mWriting lock file[39m
+[32mInstalling dependencies from lock file (including require-dev)[39m
+[32mPackage operations: 19 installs, 0 updates, 0 removals[39m
+  - Downloading [32milluminate/macroable[39m ([33mv8.73.2[39m)
+  - Downloading [32milluminate/contracts[39m ([33mv8.73.2[39m)
+  - Downloading [32milluminate/collections[39m ([33mv8.73.2[39m)
+  - Downloading [32milluminate/support[39m ([33mv8.73.2[39m)
+---------------------------]   0%[2K 1/4 [=======>--------------------]  25%[2K 2/4 [==============>-------------]  50%[2K 3/4 [=====================>------]  75%[2K 4/4 [============================] 100%[2K  - Installing [32mdasprid/enum[39m ([33m1.0.3[39m): Extracting archive
+  - Installing [32mdoctrine/inflector[39m ([33m2.0.4[39m): Extracting archive
+  - Installing [32milluminate/macroable[39m ([33mv8.73.2[39m): Extracting archive
+  - Installing [32mpsr/simple-cache[39m ([33m1.0.1[39m): Extracting archive
+  - Installing [32mpsr/container[39m ([33m1.1.2[39m): Extracting archive
+  - Installing [32milluminate/contracts[39m ([33mv8.73.2[39m): Extracting archive
+  - Installing [32milluminate/collections[39m ([33mv8.73.2[39m): Extracting archive
+  - Installing [32mparagonie/constant_time_encoding[39m ([33mv2.4.0[39m): Extracting archive
+  - Installing [32mpragmarx/google2fa[39m ([33m8.0.0[39m): Extracting archive
+  - Installing [32mvoku/portable-ascii[39m ([33m1.5.6[39m): Extracting archive
+  - Installing [32msymfony/translation-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32msymfony/polyfill-php80[39m ([33mv1.23.1[39m): Extracting archive
+  - Installing [32msymfony/polyfill-mbstring[39m ([33mv1.23.1[39m): Extracting archive
+  - Installing [32msymfony/deprecation-contracts[39m ([33mv2.5.0[39m): Extracting archive
+  - Installing [32msymfony/translation[39m ([33mv5.4.0[39m): Extracting archive
+  - Installing [32mnesbot/carbon[39m ([33m2.54.0[39m): Extracting archive
+  - Installing [32milluminate/support[39m ([33mv8.73.2[39m): Extracting archive
+  - Installing [32mbacon/bacon-qr-code[39m ([33m2.0.4[39m): Extracting archive
+  - Installing [32mlaravel/fortify[39m ([33mv1.8.4[39m): Extracting archive
+---------------------------]   0%[2K  8/19 [===========>----------------]  42%[2K 17/19 [=========================>--]  89%[2K 19/19 [============================] 100%[2K[32m12 package suggestions were added by new dependencies, use `composer suggest` to see details.[39m
+[32mGenerating autoload files[39m
+[32m8 packages you are using are looking for funding.[39m
+[32mUse the `composer fund` command to find out more![39m
+#+end_example
+
+
+Agora a gente vai trazer trazer uma copia das actions do fortify pro nosso app/actions
+
+Antes de dar esse comando veja que nao temos, no momento, nem o directorio actions dentro do diretorio app
+
+Pergunta pro prof o que é actions[fn:2] do laravel...
+
+#+NAME: composer require laravel/fortify
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+#+End_SRC
+
+
+
+
+* Refs
+[fn:1] https://laravel.com/docs/8.x/fortify#laravel-fortify-and-laravel-sanctum
+[fn:2] https://laravelactions.com/

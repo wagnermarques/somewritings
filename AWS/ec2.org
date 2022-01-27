@@ -8,3 +8,5 @@
   https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html
   https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#Home:
   https://aws.amazon.com/pt/getting-started/tutorials/deploy-docker-containers/
+https://aws.amazon.com/pt/ec2/instance-types/
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html

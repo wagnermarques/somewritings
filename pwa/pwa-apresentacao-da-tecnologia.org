@@ -1,23 +1,25 @@
 #+Title: PWA - Apresentacao da Tecnologia
+
 * Tema
   Apresentacao da Tecnologia PWA
 
 * Justificativa e Objetivos
-  Uma das mais novas tecnologias mobile do mercado sao as Progressive
-  Web Applications e pelo fato de ser uma tencologia relevante vamos
-  conhece-la nesta aula de uma maneira mais geral.
+  Uma das mais novas tecnologias mobile do mercado é a *Progressive Web Applications (PWA)* e pelo fato de ser uma tencologia muitíssimo importante vamos
+  conhece-la nesta aula de uma maneira mais geral pra depois por a mao na massa.
 
 * Duracao
   1 Aula
   
 * Pre-Requisitos
-** Conhecimentos Previos      
+** Conhecimentos Previos
    Conhecimentos basicos sobre tecnologias de desenvolvimento front ends web
 ** Recursos
+   
 ** Recomendacoes
-   Leia de boa, sem ansiedade...
+   Leia de boa, sem ansiedade...   
    Nao deixe de perguntar pro prof qdo tiver duvidas ok?
    Visite os links da referencia pra conhece-los, pelo menos
+
 * Procedimento didatico
   Exposicao Dialogada do professor
   
@@ -30,10 +32,12 @@
   Print das aplicacoes pwa instaladas na maquina e no celular  
 
 * Apresentacao da aula
-  Vamos ver uma introducao
 
-  Vamos ver um exemplo e demonstracao de apps pwa e mostrar eles
-  funcionando como pwa
+  Introducao sobre PWA
+
+  Exemplos de PWA mostrados ao vivo (no Cel e no PC)
+
+  
 
   Depois vamos ver os requisitos para um site ser considerado um pwa
 
@@ -45,7 +49,7 @@
   relevante e muito utilizada por grandes players do mercado de ti
   como facebook, twitter e outros...
 
-  Nos vamos conhecer essa tecnologia... uma boa ideia, so pra ajudar
+  Nesta aula noś vamos conhecer essa tecnologia... uma boa ideia, só pra ajudar
   na introducao do assunto, seria vc assistir a esse video do
   youtubehttps://www.youtube.com/watch?v=UeMkXvmk68Q...
 
@@ -75,10 +79,10 @@
   suporte e possivel prover uma funcionalidade diferenciada pra ele.
   
 
-* pwa features[fn:3]
+* pwa features[fn:3]  
 ** modo offline
 ** nao requer update
-** carregamento isntantaneo da tela 
+** carregamento instantaneo da tela 
    Depois que o usuario instala o app os serviceworkers podem carregar
    a os recursos visuais todos cacheados para o usuario isso e muito
    rapido
@@ -92,32 +96,39 @@
 ** Demonstracao no desktop
    
    Se vc entrar nesse site https://mdn.github.io/pwa-examples/a2hs
-   usando o chrome ou firefox recente, no chrome e melhor, ao mesmo
+   usando o chrome ou firefox recente, no chrome é melhor, ao mesmo
    por enquanto faca conforme os prints abaixo
+
+   [[./imgs/a2hs-1.png]]
+
+   [[./imgs/a2hs-2.png]]
    
-   [[./imgs/a2hs-1.png]]
-
-   [[./imgs/a2hs-1.png]]
+   [[./imgs/a2hs-3.png]]
    
-   [[./imgs/a2hs-1.png]]
+   [[./imgs/a2hs-4.png]]
 
-   [[./imgs/a2hs-1.png]]
+   [[./imgs/a2hs-5.png]]
 
-   [[./imgs/a2hs-1.png]]
+   [[./imgs/a2hs-6.png]]
 
-   [[./imgs/a2hs-1.png]]
+   [[./imgs/a2hs-7.png]]
+   
+   [[./imgs/a2hs-8.png]]
 
-   [[./imgs/a2hs-1.png]]
-   [[
-   ./imgs/a2hs-1.png]]
+    Faca o mesmo com o site do twitter...
 
-   Faca o mesmo com https://mdn.github.io/pwa-examples/js13kpwa/
+   [[./imgs/twitter-1.png]]
 
+   [[./imgs/twitter-2.png]]
 
+   [[./imgs/twitter-3.png]]
+
+   [[./imgs/twitter-4.png]]
+
+   [[./imgs/twitter-5.png]]
+
+   procure exemplos de pwa na
 ** Demonstracao no celular
-   
- 
-
 
 * Requisitos de uma app pwa
 

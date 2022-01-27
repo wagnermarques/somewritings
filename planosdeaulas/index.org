@@ -1,38 +1,21 @@
 #+Title: Planos de Aulas
-#+Subtitle:
-#+LANGUAGE: pt-BR
-#+EXCLUDE_TAGS: noexport
-#+HTML_DOCTYPE: html5
 
-* Apresentação
-  
+* Apresentação  
   Estes planos de aulas tem um proposito especifico para aulas remotas nessa ocasiao de pandemia.
-
   Este material pressupoe o acompanhamento do professor.
-
-
-
-  
-  
 * PAMI
 
-
   Nessa aula temos algumas orientacoes gerais e ambientacao no teams
-
   [[./pamI/Aula1.org][Aula1- Orientacoes Gerais]]
   
-  
-
   Aqui a gente vai criar uma tela de login, lembrando como executa um
   aplicativo mobile do cordova no nosso navegador. 
 
   [[./pamI/tela_de_login_com_cordova.org][Aula - Tela de Login com Cordova]]
-
-
   
 * PAMII
+** asdfasdf
   [[./pamII/Aula1.org][Aula1]]
-
 
 * PW3
 
@@ -94,4 +77,69 @@
   depois com triggers, stored procedures etc...
 
 
+
+
+
+https://devtalk.blender.org/t/blender-on-mobile-devices/14610/2
+
+https://www.youtube.com/watch?v=U8RzsJfh3Gc
+
+https://www.blendernation.com/2012/06/26/blenderplayer-for-android/
+
+
+
+#+name: directories
+#+begin_src shell :results replace
+  echo asdfasdf
+#+end_src
+
+
+begin_src emacs-lisp name: blkname :var x=1 :session s1 :results replace :exports both :cache no :noweb no :tangle teste.el :shebang "#!/bin/bash"
+
+#+NAME: uhuuhuhuhuh
+#+begin_src emacs-lisp :tangle /path/to/your/file.el :mkdirp yes
+(require 'org-tangle)
+(message "asdfasdf")
+#+end_src
+
+#+RESULTS: uhuuhuhuhuh
+: asdfasdf
+
+
+
+#+NAME: jijijij
+#+begin_src shell :var x=1 :session s1 :results output :exports both :tangle ./tanglefilename.sh :shebang "#!/bin/bash" :mkdirp yes :tangle-mode (identity #o755)
+MINHAVARIAVEL=UHUHUH
+echo $MINHAVARIAVEL
+#+end_src
+
+#+RESULTS: jijijij
+: x='1'[?2004l
+: [?2004hMINHAVARIAVEL=UHUHUH[?2004l
+: [?2004hecho $MINHAVARIAVEL[?2004l
+: UHUHUH
+
+
+
+
+
+
+
+
+#+begin_src sh dir "/sudo::/home/administrador" :tangle "./erererer.sh" :mkdirp yes
+echo asdfasdfasdfasdf
+#+end_src
+
+#+RESULTS:
+: asdfasdfasdfasdf
+
+
+
+#+begin_src shell :tangle yes :mkdirp yes
+VARIAVEL=huhuhuh
+echo $VARIAVEL
+#+end_src
+
+#+RESULTS:
+: huhuhuh
 

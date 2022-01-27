@@ -10,7 +10,7 @@
   1) Obten��o e Instala��o dos bin�rios
      Em geral a gente usa o gerenciador de pacotes ou builda pelo
      codigo fonte. 
-  2) Inicializar o diret�rio de armazenamento initdb
+  2) Inicializar o diret�rio de armazenamento initdb     
   3) Configurar a porta e as interfaces que o servi�o vai ouvir (postgresql.conf)
   4) Configurar as permiss�es de acesso (arquivo pg_hba.conf)
   5) Iniciar o servi�o
@@ -22,7 +22,36 @@
    O m�todo mais pr�tico no linux � utilizar o gerenciador de pacotes
 
 ** Iniciar diretorio de armazenamento com initdb
-   
+administrador@localhost:~/sources/exemplojetstream> mkdir -p /home/administrador/data/psql
+administrador@localhost:~/sources/exemplojetstream> initdb /home/administrador/data/psql/
+Os arquivos deste sistema de banco de dados pertencerão ao usuário "administrador".
+Esse usuário deve ser o dono do processo do servidor também.
+
+O agrupamento de banco de dados será inicializado com configuração regional "pt_BR.UTF-8".
+A codificação padrão do banco de dados foi definida para "UTF8".
+A configuração de busca textual padrão será definida como "portuguese".
+
+Verificações de páginas de dados estão desabilitadas.
+
+alterando permissões no diretório existente /home/administrador/data/psql ... ok
+criando subdiretórios ... ok
+selecionando implementação de memória compartilhada dinâmica ... posix
+selecionando max_connections padrão ... 100
+selecionando shared_buffers padrão ... 128MB
+selecionando fuso horário padrão ... America/Sao_Paulo
+criando arquivos de configuração ... ok
+executando script de inicialização ... ok
+executando pós-inicialização ... ok
+sincronizando dados no disco ... ok
+
+initdb: aviso: habilitando autenticação "trust" para conexões locais
+Você pode mudá-lo editando o pg_hba.conf ou utilizando a opção -A, ou
+--auth-local e --auth-host, na próxima vez que você executar o initdb.
+
+Sucesso. Você pode iniciar o servidor de banco de dados utilizando:
+
+wpg_ctl -D start /home/administrador/data/psql/ -w -l arquivolog
+
 ** Configurar a porta e as interfaces de rede (postgresql.conf)
 
     Vc pode encontrar o seu postgresql.conf com o seguinte comando

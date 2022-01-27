@@ -1,0 +1,23 @@
+#+Title: Laravel Language
+
+* Primeiro o Basicao
+Vc quer trocar as msgs de ingles pra portugues
+
+** (passo1) alterar config/app.php
+
+#+BEGIN_EXAMPLE
+'timezone' => 'America/Sao_Paulo',
+#+END_EXAMPLE
+
+Depois modifique a linha 83
+#+BEGIN_EXAMPLE
+'locale' => 'pt-BR',
+#+END_EXAMPLE
+
+** (passo2) cria uma copia do dir resources/lang/en
+So cria uma copia do diretorio resources/lang/en e nomeia sua copia pra pt-BR
+
+* Refs
+[fn:0] https://laravel.com/docs/8.x/localization
+[fn:1] https://awesomeopensource.com/project/lucascudo/laravel-pt-BR-localization
+[fn:2] https://pt.stackoverflow.com/questions/286520/como-traduzir-o-laravel

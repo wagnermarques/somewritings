@@ -1,0 +1,8 @@
+#+Title: org agenda
+
+* todo files
+Podemos ter varios arquivos de taks links (todo tasks)
+
+
+* Refs
+https://orgmode.org/manual/Agenda-Views.html

@@ -1,6 +1,9 @@
 #+SETUPFILE: ../etc/org_mode_SETUPFILE.org
 #+TITLE: INTRODUÇÃO AO GIT
-
+https://docs.microsoft.com/en-us/learn/modules/create-git-project/
+https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/
+https://docs.microsoft.com/en-us/learn/browse/?products=github
+https://docs.microsoft.com/en-us/learn/browse/?roles=k-12-educator
 * Tema
   Introdução ao Git e Github
 

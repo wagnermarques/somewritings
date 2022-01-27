@@ -1,0 +1,16 @@
+#+Title: Easy Templates
+
+* "<e"
+
+#+BEGIN_SRC 
+
+#+END_SRC
+
+#+BEGIN_HTML
+
+#+END_HTML
+
+
+* refs
+[fn:1] https://blog.aaronbieber.com/2016/11/23/creating-org-mode-structure-templates.html
+[fn:2] https://orgmode.org/manual/Structure-Templates.html

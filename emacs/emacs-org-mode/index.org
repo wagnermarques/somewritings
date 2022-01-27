@@ -1,30 +1,162 @@
-#+Title: Session Attributes
+#+Title: orgmode
 
 * Introducao
+
+* orgmode
   :PROPERTIES:
   :CATEGORY: orgmode
   :COLUMNS:  %25ITEM %1PRIORITY %10TAGS
+  :ARCHIVE:  teste
+  :ORDERED:  t
   :END:  
-** o que e o orgmode
-** porque utilizar
-*** quais funcionalidades sao as mais utilizadas
+:LOGBOOK:
+CLOCK: [2021-10-13 qua 11:01]--[2021-10-13 qua 11:06] =>  0:05
+:END:
+* sessions trees
+(usar * colocado a esquerda pra criar a tree e subtrees com **)
+* funcoes e atalhos importantes
+*** C-c C-x d (org-insert-drawer)
+insere um drawer[fn:2]                                                                                         
+*** C-c C-x p (org-insert-property-drawer)[fn:3]
+insere uma propriedade dentro de um PROPERTIES drawer, caso o cursor ja esteja dentro de um drawer cria so a proriedade mesmo
 
-|             |                            |                                                             |   |
-| C-c C-x d   | org-insert-drawer          | insere um drawer[fn:2]                                      |   |
-|             | org-insert-property-drawer |                                                             |   |
-| C-c C-x p   |                            | Permite vc escolher entre varias propriedades pre definidas |   |
-| C-c C-x C-c |                            | Liga a visao de coluna                                      |   |
-| q           |                            | desliga a visao de coluna                                   |   |
-|             |                            |                                                             |   |
+*** C-c C-x C-c ()
+Liga a visao colunar das sessoes
+q pra sair 
+
+#+Name: CTASPGAR
+|   |   |
+|   |   |
+
+* org-clock
+https://orgmode.org/manual/Clocking-commands.html
+C-c C-x C-i (org-clock-in)
+C-c C-x C-o (org-clock-out)
+
+
+* todos (confs basicas)
+https://orgmode.org/worg/org-configs/org-customization-guide.html
+#+TAGS: home(h) work(w) @computer(c) @phone(p) errants(e)
+* org tables
+** Basico de orgtables
+** table formulas
+** sqlite integration
+https://www.sqlite.org/draft/datatype3.html
+
+#+BEGIN_SRC shell
+sqlite /home/wagner/mnt/pen/fzlbpms/data/orgmode-sqlite-dbs/ctaspgar.db
+#+END_SRC
+
+#+begin_src sqlite :db /home/wagner/mnt/pen/fzlbpms/data/orgmode-sqlite-dbs/ :var orgtable=ctaspgar :colnames yes
+  create database CTASPGAR
+  drop table if exists ctaspagar;
+  create table ctaspagar(conta text, vcto date, vlr real);
+  .mode csv ctaspagar
+  .import $orgtable ctaspagar
+  select * from ctaspagar;
+#+end_src
+
+
+* imagens no orgmode
+https://orgmode.org/worg/org-tutorials/images-and-xhtml-export.html
+* babel (code block) (Bloco de codigos)[fn:babel]
+** code block basico com elisp
+** code block outras linguagens
+#+Name: A
+| ca | cb |
+| a  | b  |
+|    |    |
+#+begin_src sqlite :db /home/wagner/mnt/pen/fzlbpms/data/orgmode-sqlite-dbs/ctaspgar.db :var orgtable=A :colnames yes
+drop table if exists A;
+create table A(val1 int, val2 int);
+.mode csv A
+.import $orgtable A
+select * from a;
+#+end_src
+
+#+RESULTS:
+| val1 | val2 |
+|------+------|
+| a    | b    |
+|      |      |
+
+***  C-c ' (org-edit-src-code)
+https://d12frosted.io/posts/2017-07-30-block-templates-in-org-mode.html
+
+
+
+* exporting (org-insert-structure-template)
+https://orgmode.org/manual/Structure-Templates.html
+
+** C-c C-e # (org-export-dispatch) 
+https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
+
+
+**** python code
+
+#+NAME PYTHONCODE1
+#+begin_src python
+def foo(x):
+  if x>0:
+    return x+1
+
+  else:
+    return x-1
+
+return foo(5)
+#+end_src
+
+#+RESULTS:
+: 6
+
+abre um buffer pra vc editar o codigo
+
+#+begin_src python
+a="asdfasdf"
+print(a)
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_src sh :shebang "#!/bin/bash"
+echo "asdf"
+#+end_src
+
+#+begin_src elisp
+  (message (org-version))
+#+end_src
+
+#+RESULTS:
+: 8.2.10
 
 
 * Properties 
-  https://orgmode.org/manual/Property-Syntax.html#Property-Syntax
+
+#+BEGIN_SRC bash :dir /wagner@127.0.0.1:
+  pwd
+  echo $USER
+  hostname -I
+#+END_SRC
   
-
-
 * Refs
 [fn:1]  https://orgmode.org/manual/index.html
 [fn:2]  https://orgmode.org/manual/Drawers.html#Drawers
+[fn:3]  https://orgmode.org/manual/Property-Syntax.html#Property-Syntax
+[fn:babel] https://orgmode.org/worg/org-contrib/babel/intro.html
 http://ehneilsen.net/notebook/orgExamples/org-examples.html
 https://alphaalgorithms.github.io/2019/05/22/emacs-properties-and-columns/
+https://orgmode.org/worg/org-tutorials/multitarget-tables.html
+https://emacs.stackexchange.com/questions/48017/how-to-copy-org-table-to-postgresql-database
+
+** Publishing
+https://www.reddit.com/r/emacs/comments/eozyyv/exporting_orgmode_to_beautiful_websites/
+https://www.reddit.com/r/emacs/comments/3zpx7p/need_help_customizing_org_publish_for_jekyll/
+https://deic-web.uab.cat/~iblanes/beamer_gallery/index_by_theme.html
+https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html#fn.3
+
+
+https://orgmode.org/manual/Adding-Export-Back_002dends.html
+https://orgmode.org/worg/dev/org-export-reference.html
+https://gileschamberlin.wordpress.com/2020/02/25/writing-a-new-org-mode-exporter-back-end/
+https://orgmode.org/manual/Advanced-Export-Configuration.html

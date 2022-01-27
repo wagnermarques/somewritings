@@ -1,0 +1,11 @@
+#+Title: HTTP Client
+
+Num controller importa "use Illuminate\Support\Facades\Http;"
+
+depois *return Http::get("url");* supordo que essa url retorna um json
+o metodo do controller vai buscar esse json e retorna-lo tambem.
+
+Algo interessante seria fazer
+
+*collection = Http::get("url");*
+*return view('viewname',['collection'=>$collection]);*

@@ -1,0 +1,589 @@
+#+Title: Push API com Firebase Cloud Message
+
+* Introducao
+
+Com Push API que permite você usar um servidor pra enviar mensagem pro seu usuario. Existem vários servidores, nós vamos usar o Firebase Cloud Message. Ja deixo a recomendacao de não colocar cartão de crédito quando você for criar sua conta.
+
+Pra enviar uma mensagem pro usuario da sua aplicacao, dá pra usar o SDK Admin[fn:1] do Firebase ou dos protocolos do servidor FCM -  Firebase Cloud Message[fn:2] ou também o Editor de Notificações[fn:3] A gente vai ver isso nessa aula.
+
+Lembrando que esse material foi elaborado para ser apresentado por um professor e é simplesmente material de aula.
+
+O objetivo da aula é criar uma aplicação com firebase auth, firebase firestrore e firebase cloud message. A parte nova aqui dessa aula é o cloud message.
+* Pre requisito pra essa aula
+Usar git e github
+Saber fazer o deploy no heroku
+Conhecer basicao de pwa
+Conhecer firebase auth e firebase firestore
+
+* Requisitos
++ Suporte do navegador[fn:5]
++ https[fn:6]
+- cliente do heroku, do firebase
+
+* Resumo do passo a passo do que vamos fazer
+1. criar um pwa basico e hostpedar no heroku
+2. Criar um projeto no console do firebase   
+3. Configurar firebase no projeto (Firebase Auth, Firestore e CloudMessage)
+4. Testar se o Firebase Auth e Firestore estao funcionando ok
+5. 
+1. Configure o Firebase e o FCM no seu app de acordo com as instruções de instalação da sua plataforma.
+2. Desenvolver seu app cliente
+   2.1 Adicione o gerenciamento de mensagens
+   2.2 Adicione a lógica de assinatura de tópicos ou outros recursos opcionais ao app cliente
+   2.3 Durante o desenvolvimento, você pode enviar facilmente mensagens de usar Editor do Notificações para confirmar se as mensagens estao chegando
+3. Desenvolver seu app server
+   3.1 Decida se quer usar o SDK Admin do Firebase ou um dos protocolos do servidor para criar a lógica de envio:
+   3.2 Lógica de autenticação
+   3.2 Criar solicitações de envio, lidar com respostas e assim por diante.
+
+* criando um projeto pwa/php básico e hospedando no heroku (branch _1criaprojeto)
+** crie uma pasta pro seu projeto e coloque nessa pasta os seguintes arquivos...
+
+#+begin_src js name: procfile  :exports both :tangle ./PushAPI/pwapushapi/Procfile  :mkdirp yes
+web: vendor/bin/heroku-php-apache2 web/
+#+end_src
+
+#+begin_src  js name: composer.json  :exports both :tangle ./PushAPI/pwapushapi/composer.json  :mkdirp yes
+{
+  "require" : {
+  },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
+}
+#+end_src
+
+#+begin_src html name: index.html :exports both 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pushapi</title>
+    <link rel="manifest" href="/manifest.json"></link>
+    <script src="/js/main.js"></script>
+    <script src="/js/fbConfig.js"></script>
+    <script src="/js/fbInit.js" type="module"></script> 
+  </head>
+  <body>
+     <h1>API de Notificacao</h1>
+    </body>
+</html>
+#+end_src
+
+#+begin_src  js name: main.js  :results replace  :exports code 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker-push-notification.js')
+        .then(function(registration) {
+            alert('Registration successful, scope is:', registration.scope);
+        })
+        .catch(function(error) {
+            alert('Service worker registration failed, error:', error);
+        });
+}
+#+end_src
+
+#+begin_src  js name:service-worker-push-notification.js :exports both
+self.addEventListener('install', event => {
+    console.log('sw ./ => installing...');
+});
+
+self.addEventListener('activate', event => {
+    console.log('sw ./ => Evento activate ocorreu, agora pronto pra interceptar fetches');
+});
+
+self.addEventListener('fetch', event => {
+    console.log("sw ./ => Detectei um evento fetch para o recurso abaixo:");
+    console.log("sw ./ => "+event.request.url);
+});
+#+end_src
+
+#+begin_src php name: index.php
+<?php
+include_once("index.html");
+#+end_src
+
+#+begin_src  js name: manifest.json  :exports both :tangle ./PushAPI/pwapushapi/web/manifest.json  :mkdirp yes
+{
+    "name": "AprendendoPWA",
+    "short_name": "AprendPWA",
+    "description": "WEB APP para aprender PWA (Disciplina PAMII).",
+    "display": "fullscreen",
+    "start_url":"index.html",    
+    "scope": "/",
+    
+    "icons": [
+        {
+            "src": "icon/app-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon/app-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }]
+}
+#+end_src
+
+Bom seu projeto deve estar dessa forma..
+Coloque tambem na pasta web/icon icones com esses nomes e tamanhos..
+app-icon-192x192.png 
+app-icon-512x512.png
+
+#+begin_src sh name ls :session s1 :results output replace :exports both
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+tree
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+sh-4.4$ [01;34m.[00m
+├── composer.json
+├── Procfile
+└── [01;34mweb[00m
+    ├── [01;34micon[00m
+    │   ├── [01;35mapp-icon-192x192.png[00m
+    │   └── [01;35mapp-icon-512x512.png[00m
+    ├── index.html
+    ├── index.php
+    ├── [01;34js[00m
+    │   └── main.js
+    ├── manifest.json
+    └── service-worker-push-notification.js
+
+3 directories, 9 files
+#+end_example
+
+** agora vamos fazer o deploy no heroku
+Apesar de ser um pre requisito saber fazer o deploy, vamos por aqui um passo a passo pra isso..
++ Sua pasta tem que ser um repositorio do git
+  Pra isso a gente vai dar um git init na nossa pasta
+
+  #+begin_src sh :name git init :session s1 :results output replace :exports both
+  pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+  cd $pastaDoMeuProjeto
+  git init
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+sh-4.4$ hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+Initialized empty Git repository in /home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi/.git/
+#+end_example
+
+
+  #+begin_src sh :name gitcommit :session s1 :results output replace :exports both
+  pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+  cd $pastaDoMeuProjeto
+  git add .
+  git commit -am "primeiros aquivos do projeto"
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+
+  sh-4.4$ sh-4.4$ [master (root-commit) 749faf6] primeiros aquivos do projeto
+   7 files changed, 73 insertions(+)
+   create mode 100644 Procfile
+   create mode 100644 composer.json
+   create mode 100644 web/index.html
+   create mode 100644 web/index.php
+   create mode 100644 web/js/main.js
+   create mode 100644 web/manifest.json
+   create mode 100644 web/service-worker-push-notification.js
+  #+end_example
+
+Depois de um heroku login -i de o seguinte comando abaixo..
+
+#+begin_src sh :name herokucreate  :session s1 :results output replace :exports both
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+heroku create pwapushapiclass
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : sh-4.4$  [33m›[39m   Warning: heroku update available from [92m7.59.1[39m to [92m7.59.2[39m.
+  : Creating [38;5;104m⬢ pwapushapiclass[0m... done
+  : [36mhttps://pwapushapiclass.herokuapp.com/[39m | [32mhttps://git.heroku.com/pwapushapiclass.git[39m
+
+
+
+#+begin_src sh name: gitremote-v 
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+git remote -v
+#+end_src
+
+#+RESULTS:
+| heroku | https://git.heroku.com/pwapushapiclass.git (fetch) |
+| heroku | https://git.heroku.com/pwapushapiclass.git (push)  |
+
+
+Vamos querer manter nosso codigo no github tambem certo, entao vamos la...
+
+
+#+begin_src sh name: gitaddgithub-v 
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+git remote add origin https://github.com/wagnermarques/pwapushapiclass.git
+git remote -v
+#+end_src
+
+#+RESULTS:
+| heroku | https://git.heroku.com/pwapushapiclass.git (fetch)           |
+| heroku | https://git.heroku.com/pwapushapiclass.git (push)            |
+| origin | https://github.com/wagnermarques/pwapushapiclass.git (fetch) |
+| origin | https://github.com/wagnermarques/pwapushapiclass.git (push)  |
+
+
+agora a gente envia pro heroku pra ver se funciona...
+
+#+begin_src sh name: gitbranch1
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+git branch
+#+end_src
+
+#+RESULTS:
+: * master
+
+#+begin_src sh name: gitpushherokumaster1
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+cd $pastaDoMeuProjeto
+git push heroku master
+#+end_src
+
+#+RESULTS:
+
+
+Vamos acessar nosso app la no heroku e como vc pode ver o deploy aconteceu com sucesso..
+
+
+#+CAPTION: Primeiro deploy no heroku
+#+ATTR_ORG: :width 100px
+[[./PushAPI/imgs/herokuPrimeiroDeploy1.png]]
+
+#+CAPTION: Primeiro deploy no heroku
+#+ATTR_ORG: :width 100px
+[[./PushAPI/imgs/herokuPrimeiroDeploy2.png]]
+
+perceba que no chrome temos a opcao de instalar nosso site, o que demonstra que trata-se de um pwa valido
+
+
+
+* Primeira Parte Terminada: pwa basico terminada - branch pwabasico
+  #+begin_src sh :name git init :session s1 :results output replace :exports both
+  pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+  cd $pastaDoMeuProjeto
+  git branch pwabasico
+#+end_src
+
+#+RESULTS:
+
+
+* Segunda Parte: Configurando Firebase FCM no nosso projeto[fn:6][fn:7][fn:8][fn:9]
+
+Agora vai precisar conhecer um pouco de firebase pra entender essa parte aqui...
+
+Vamos usar o firebase auth, o firebase firestore, o google analytics e so na proxima parte a gente entra no cloud message.
+
+Agora a gente vai configurar o firebase e o firebase FCM no nosso projeto
+
+** Passo 1 - Criar o Projeto no Console do Firebase
+Abaixo segue umas imagens pra lembrar como ser faz isso...
+
+[[./PushAPI/imgs/fbproj1.png]]
+[[./PushAPI/imgs/fbproj2.png]]
+[[./PushAPI/imgs/fbproj3.png]]
+[[./PushAPI/imgs/fbproj4.png]]
+[[./PushAPI/imgs/fbproj5.png]]
+[[./PushAPI/imgs/fbproj6.png]]
+[[./PushAPI/imgs/fbproj7.png]]
+[[./PushAPI/imgs/fbproj8.png]]
+
+** Passo 2 - Configurando Firebase no nosso projeto web
+*** objeto javascript firebaseConfig
+
+Vc precisa desses dados do seu projeto firebase e a ideia e criar um fbConfig.js tipo esse aqui abaixo pro projeto funcionar.
+
+A questao e que se vc criar esse arquivo nesse estilo aqui, quando vc comitar todos os dados de acesso à sua aplicação estarão expostos no github e isso você não quer certo?
+
+Então, para o que o navegador do seu usuario vai receber é um arquivo nesse estilo mas a gente vai montar esse arquivo com php e os dados do firebase serao passados para o php como variáveis de ambiente e o php passa pro javascript.
+
+Abaixo segue um exemplo do objeto javascript "firebaseConfig" que a gente vai precisar...
+
+(Essas chaves nao valem mais porque eu apaguei o projeto referente a esses dados)
+
+#+begin_src  js name: fbconfig
+const firebaseConfig = {
+    apiKey: "AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA",
+    authDomain: "msgsproject.firebaseapp.com",    
+    databaseURL: "https://msgsproject.firebaseio.com",
+    projectId: "msgsproject",
+    storageBucket: "msgsproject.appspot.com",
+    messagingSenderId: "124639374483",
+    appId: "1:124639374483:web:9273a9c11f4f44721b3166"
+};
+#+end_src
+
+Pra chegar nesse objeto, nos vamos criar um arquivo FbConfig.php que vai pegar os dados do projeto de variaveis de ambiente, gerar um json e no javascript
+
+#+begin_src php name: FbConfig.php :exports code :tangle ./PushAPI/pwapushapi/web/FbConfig.php  :mkdirp yes
+<?php
+$arr = array (
+    "apiKey" => getenv("apiKey"),
+    "authDomain" => getenv("authDomain"),
+    "databaseURL" => getenv("databaseURL"),
+    "projectId" => getenv("projectId"),
+    "storageBucket" => getenv("storageBucket"),
+    "messagingSenderId" => getenv("messagingSenderId"),
+    "appId" => getenv("appId"),
+    );
+echo json_encode($arr);     
+#+end_src
+
+
+esse FbConfig.php gera um json como esse abaixo...
+
+#+begin_src  js 
+{"apiKey":"AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA","authDomain":"msgsproject.firebaseapp.com","databaseURL":"https:\/\/msgsproject.firebaseio.com","projectId":"msgsproject,","storageBucket":"msgsproject.appspot.com,","messagingSenderId":"124639374483,","appId":"1:124639374483:web:9273a9c11f4f44721b3166"}
+#+end_src
+
+Pra ver como esse json se transforma naquela objeto javascript vc pode colocar o json e ver como isso vira um objeto javascript (https://www.convertsimple.com/convert-json-to-javascript/)
+
+#+CAPTION: Image Caption
+#+ATTR_ORG: :width 100px
+[[./PushAPI/imgs/PushjsonToJsObjectConvert.png]]
+
+pra obter o nosso json temos que usar um javascript pra fazer uma requisicao pro FbConfig.php e recebendo o json como resposta a gente transforma em objeto javascript
+
+#+begin_src js name: FbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/FbConfig.js  :mkdirp yes
+const firebaseConfig = null;
+let response = await fetch("FbConfig.php");
+if (response.ok) { // if HTTP-status is 200-299
+  let fbConfigJsonFormat = await response.json();
+  firebaseConfig = destr(fbConfigJsonFormat);
+} else {
+  alert("HTTP-Error: " + response.status);
+}
+#+end_src
+
+Entao e isso... o FbConfig.php gera o json quando é acessado pelo nosso FbConfig.js via fetch. Quando acessado FbConfig.php é gerado o json eeque eé utilizado pra gerar o objeto firebaseConfig
+
+Abaixo tem um script onde criamos as variaveis de ambiente pra depois subir o servidozinho php pra programar.
+
+As chaves apresentadas aqui nao sao reais
+
+#+begin_src sh name: startPhpServer.php :exports code :tangle ./PushAPI/pwapushapi/web/startPhpServer.sh  :mkdirp yes
+export apiKey="AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA"
+export authDomain="msgsproject.firebaseapp.com" 
+export databaseURL="https://msgsproject.firebaseio.com"
+export projectId="msgsproject",
+export storageBucket="msgsproject.appspot.com",
+export messagingSenderId="124639374483",
+export appId="1:124639374483:web:9273a9c11f4f44721b3166"
+pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi/web
+cd $pastaDoMeuProjeto
+php -S localhost:3000
+#+end_src
+
+Nao vamos querer submitar e dar push nesse arquivo shell script, entao vamos por ele no .gitignore
+
+#+begin_src text name: gitignore  :exports code :tangle ./PushAPI/pwapushapi/.gitignore  :mkdirp yes
+*/**/startPhpServer.sh
+#+end_src
+
+Ahhh, se a gente está passando variaveis de ambiente, queremos pegar o valor dessas variáveis e por pra dentro do nosso código certo?
+
+Para tanto, nosso arquivo index.php muda um pouquinho... confira abaixo...
+#+begin_src php name: index.php :tangle ./PushAPI/pwapushapi/web/index.php :mkdirp yes
+<?php
+include_once("FbConfig.php");
+include_once("index.html");
+#+end_src
+
+*** Inicializando o firebase app
+
+#+begin_src  js name: fbInit.js  :results replace  :exports code :tangle ./PushAPI/pwapushapi/web/js/fbInit.js  :mkdirp yes
+//https://firebase.google.com/docs/web/alt-setup
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
+import { getAnalytics, initializeAnalytics, isSupported,  setAnalyticsCollectionEnabled, setCurrentScreen, setUserId } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js'
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js'
+import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
+
+const globalThis.fbApp = initializeApp(firebaseConfig);
+const globalThis.fbDb = getFirestore(fbApp);
+const globalThis.fbAuth = getAuth(fbApp);
+
+//const messaging = getMessaging();
+#+end_src
+
+#+begin_src  js name: fbCloudMessageFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbCloudMessageFeatures.js  :mkdirp yes
+// Get registration token. Initially this makes a network call, once retrieved
+// subsequent calls to getToken will return from cache.
+
+getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
+  if (currentToken) {
+    // Send the token to your server and update the UI if necessary
+    // ...
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
+    // ...
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
+});
+#+end_src
+
+
+#+begin_src  js name: fbFirestoreFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbFirestoreFeatures.js  :mkdirp yes
+async function insertUser(){
+
+}
+
+async function getUsers(){
+    const usersCol = collection(db, 'users');
+    const userSnapshot = await getDocs(usersCol);
+    const cityList = userSnapshot.docs.map(doc => doc.data());
+    return userList;
+}
+#+end_src
+
+
+#+begin_src  js name: fbAuthFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbAuthFeatures.js  :mkdirp yes
+function login(){
+    console.log("function login(){...");
+    console.log(fbApp);
+    try{
+        let email = document.getElementById("user_email").value;
+        let senha = document.getElementById("user_password").value;
+        
+        if(email.length == 0) {
+            alert ("digite um email");
+            return false;
+        }
+        
+        if(senha.length == 0){
+            alert ("digite um uma senha");
+            return false;
+        }
+        
+        fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
+            console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
+            console.log(user);
+
+        }).catch(function(error) {
+            console.log("fbAth().signInWithEmailAndPassword(email, senha).catch(function(error) {...");
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            
+            if (errorCode === 'auth/wrong-password') {
+                alert('Senha errada!');
+            } else {
+                alert(errorMessage);
+            }           
+        });
+                
+    }catch(e){
+        console.log(e);
+    }
+}
+
+
+function signup(){
+    let email = document.getElementById("user_email").value;
+    let senha = document.getElementById("user_password").value;
+
+    if(email.length == 0) {
+        alert ("digite um email");
+        return false;
+    }
+    
+    if(senha.length == 0){
+        alert ("digite um uma senha");
+        return false;
+    }
+
+    fbAuth.createUserWithEmailAndPassword(email, senha).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if(errorCode) alert(errorCode);
+        if(errorMessage) alert(errorMessage);
+    })
+}
+
+
+function logout(){
+    try{
+        fbAuth().signOut();
+    }catch(e){
+        alert(e);
+    }
+}
+#+end_src
+
+Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai mudar entao pra ficar conforme abaixo...
+#+begin_src html name: index.html :tangle ./PushAPI/pwapushapi/web/index.html :mkdirp yes
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pushapi</title>
+    <link rel="manifest" href="/manifest.json"></link>
+    <script src="/js/main.js"></script>
+    <script src="/js/fbConfig.js"></script>
+    <script src="/js/fbInit.js" type="module"></script>
+    <script src="/js/fbAuthFeatures.js"></script>
+    <script src="/js/fbFirestoreFeatures.js"</script>
+    <script src="/js/fbCloudMessageFeatures.js"></script>
+  </head>
+  <body>
+    <h1>API de Notificacao</h1><br></br>
+    
+    <label for="user_email">Nome do usuario:</label><br>
+    <input type="text" id="user_email"></input><br></br>
+ 
+    <label for="user_password">Senha:</label><br>
+    <input type="password" id="user_password"></input><br></br>
+
+    <label for="sim_praReceberMsgs">Desejo receber mensagens de estudo</label>
+    <input type="radio" id="sim_praReceberMsgs"></input><br></br>
+
+    <button type="button" onclick="login();">Login</button>
+    <button type="button" onclick="registrarusuario();">Registrar-se</button><br></br>
+    </body>
+</html>
+#+end_src
+
+
+*** Testanto firebase auth
+
+Que vamos fazer aqui é ver se conseguimos cadastrar um usuario e logar ele
+
+
+
+
+* refs
+[fn:1] https://firebase.google.com/docs/cloud-messaging/server#firebase-admin-sdk-for-fcm
+[fn:2] https://firebase.google.com/docs/cloud-messaging/server#choose
+[fn:3] https://console.firebase.google.com/project/_/notification
+[fn:4] https://riptutorial.com/firebase-cloud-messaging
+[fn:5] https://caniuse.com/push-api
+[fn:6] https://firebase.google.com/docs/cloud-messaging/js/client
+[fn:7] https://firebase.google.com/docs/web/setup
+[fn:8] https://firebase.google.com/docs/web/alt-setup
+[fn:9] https://firebase.google.cn/docs/web/learn-more?hl=en&%3Bskip_cache=true&skip_cache=true#add-sdks-cdn
+https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
+https://firebase.google.com/docs/cloud-messaging/

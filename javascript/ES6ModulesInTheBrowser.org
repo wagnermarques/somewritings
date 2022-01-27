@@ -1,0 +1,61 @@
+#+Title: ES6 Modules no navegador
+
+
+
+* o que e es6 javascript modules
+Na internet vc encontra esse mesmo assunto que vamos estudar hoje com nomes diferentes, como por exemplo, "JS modules", "ES modules", "ECMAScript modules" ou "ES6 Modules".
+
+Mas do que se trata esse assunto? Vamos lá, pensa comigo...
+
+Vc tá escrevendo um arquivo javascript pro seu site e esse arquivo comeca a ficar muito grande. O que é mais óbvio de acontecer? Você percebe que esse seu arquivo tem muitas funcionalidades e então você decide separar em dois arquivos, um arquivo para cada grande funcionalidade.
+
+Aqui vc entra no assunto da aula? O professor pode te mostrar que os sites sempre tem muitos arquivos javascripts a serem carregados, porque os desenvolvedores cairam nessa situação que a gente tá conjecturando aqui... tiveream que separar um javascript em outros dois e despois separaram de novo.
+
+A questão é que um determinado arquivo javascript (que a partir de agora a gente vai chamar de módulo, blz?) precisa do outro pra funcionar. Por isso ele precisa dar um jeito de "carregar esse outro" pra que ele possa usar?
+
+Um arquivo ou módulo javascript que precisa de outro pra funcionar precisa carregar esse outro e isso é conhecido na linguagem javascript como "load", ou seja, um arquivo faz um load do outro.
+
+As maneiras pelas quais é possível um javascript carregar outro arquivo javascript mudou várias vezes dentro da linguagem mesmo e isso é uma história muito interessante e na minha opiniao, meio que única no caso do javascript.
+
+A maneira mais moderna de um arquivo javascript carregar outro é es6 modules.
+
+Um arquivo html pode carregar um javascript que seja um modulo es6 também e isso a gente vai ver também nessa aula.
+
+Mas já algo que é simplesmente fantástico nos es6 modules. Lembra que eu falei que os arquivos javascript vao ficando grandes? Isso acontece com qualquer projeto decente que tá dando certo. O legal demais dos módulos es6 é que um arquivo javascript pode carregar não somente outro arquivo javascript mas só um pedaço do arquivo desse outro javascript, ou seja, carregada do outro só o que será usado de verdade. Já estou dando spoiler...
+
+
+
+* vantagens
++ arquivos js menores pra carregar no browser[fn:1]
++ puro javascript moderno[fn:1]
+  nao vai precisar mais de babel
++ npm modules
++ Caching
+
+* diferencas do es6 module
++ Um módulo es6 tem seu próprio "lexical top-level scope"
+  var foo = 42 não implica em window.foo como em outros javascripts tradicionais
++ Palavra chave this undefined
+  Use globalThis para acesso ao this global
++ Palavras chave import e export apenas em modules
++ toplevel await[fn:3]
+  Da pra usar await fora de uma funcao async
++ defer funciona na tag script por padrao[fn:4]
+
+* Carregando um module na sua pagina html
+
+#+begin_example
+<script type="module" src="main.mjs"></script>
+<script nomodule src="fallback.js"></script>
+#+end_example
+
+Lembrando que a extensao do arquivo nao importa, mas recomenda-se usar mjs
+
+
+* refs
+[fn:1] https://david-gilbertson.medium.com/es6-modules-in-the-browser-are-they-ready-yet-715ca2c94d09
+[fn:2] https://v8.dev/features/modules
+[fn:3] https://v8.dev/features/top-level-await
+[fn:4] https://v8.dev/features/modules#defer
+[fn:5] https://www.w3schools.com/Js/js_es6.asp
+https://howtojs.io/how-to-work-with-es6-modules-in-the-browser/

@@ -1,0 +1,342 @@
+#+Title: Laravel8: Views, Routes e Controller
+
+* Tema
+  Views, Routes e Controllers no Laravel8
+  
+* Justificativa e Objetivos
+  Como a gente pode perceber na aula em que foi demonstrado o que tem
+  dentro de um projeto laravel logo apos a criacao do projeto (TODO:
+  link do material), o projeto tem muita coisa dentro dele e a gente
+  precisa comecar a usar nosso projeto pra comecar a conhecer como o
+  framework funciona.
+
+* Duracao
+  1 aula
+
+* Pre-Requisitos
+** Conhecimentos Previos
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+  + Exposicao dialogada do professor
+  + Demonstracao pratica
+  + Atividade pratica
+* Exercicioos e Atividades de Reflexao/Fixacao
+  
+
+* Avaliacao
+  Voces estao criando um projeto que pode ser o integrador ou um
+  projeto seu onde vc esta fazendo as tarefas praticas das nossas
+  aulas.
+  
+  No ponto dessa aula vc acabou de criar um projeto laravel e ainda
+  nao fez nada com ele.
+
+  Para avaliar se vc captou a mensagem desse aula vc ira criar no seu
+  projeto o seguinte:
+  
+  + View "sobre" acessivel pela rota "\about"
+    Essa view "sobre" vc vai explicar como sera o seu projeto
+    integrador ou projeto pessoal dizendo porque o seu projeto e util
+    e tambem quais pessoas estao programando com vc. 
+
+    Nao esqueca de colocar o link do github
+
+    Essa rota devera ser atendida pelo controller Sobre.php, ok?
+
+  + Fazer o mesmo para as view
+    - Contato, indicando email de vcs
+      
+  A entrega seria via link do github do branch com nome
+  aula_view_route_e_controller
+
+  Bons estudos pessoal, obrigado...
+  
+
+* Introducao
+  Apos a criacao do nosso projeto vemos que muita e criada
+  automaticamente que e o que compoe o framework laravel. Bom agora a
+  gente precisa comecar a compreender tudas as coisas que estao la
+  certo? Assim a gente vai comecar a compreender o laravel e fazer
+  coisas uteis...
+
+  Pra isso a gente vai criar algumas views, acessar elas atraves de
+  algumas rotas e depois usar controller pra atender o acesso ao
+  usuario a essa rota.
+
+
+* Mudando a view welcome
+  A primeira coisa que vamos fazer e mudar a view welcome... pode
+  apagar todo html dela e colocar, por exemplo, <h1>Minha View
+  Welcome</h1>
+
+  Agora ve como ficou sua aplicacao
+
+  Claro que vc pode agora fazer um html que faz sentido pra sua
+  aplicacao e usar a welcome mesmo...
+
+
+* Criando uma nova view
+  Simplizao... vc so entra na pasta views dentro da pasta resources e
+  cria um arquivo seguindo uma estrategia de nome de aruqivo...
+
+  Por exemplo se queremos criar uma view "cadastro de usuarios" a
+  gente cria um arquivo com o nome....
+
+  *cadastro_usuarios.blade.php*
+
+  O nome da view sera a porcao antes do .blade.php
+
+  O nome da view pode ser o que vc quizer...
+
+  *cad_user.blade.php*
+
+  Neste segundo exemplo o nome da view sera cad_user
+
+  lembrando que .blade.php sempre tem que ter e e uma exigencia do laravel
+  
+  Nesta tarefa vc pode criar as views que os requisitos da sua aplicao
+  requer.
+
+  Criar o arquivo da nova view e uma coisa, pra poder ver elas na
+  nossa aplicao a gente precisa de uma rota pra ela.
+
+
+* Criando uma Rota usando closure  
+  
+  Conforme vimos naquela aula onde o professor apresentou tudo que
+  tinha sido criado automaticamte no projeto laravel, vc vai lembrar
+  que a gente viu o arquivo onde a gente cria rotas...
+
+  routes/web.php
+
+  Se vc abrir esse arquivo vc vai quer quem tem a rota que mostra a
+  view welcome...
+  
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+Route::get('/', function () {
+    return view('welcome');
+});
+  
+#+END_SRC
+
+Pra criar rotas usando closures so seguir o exemplo...
+
+No caso da view que criamos cad_user.php por exemplo, poderiamos
+fazer...
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+Route::get('/cadastrodeusuario', function () {
+    return view('cad_user');
+});
+  
+#+END_SRC
+
+
+Assim tb funciona...
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+Route::get('cadastrodeusuario', 'cad_user');
+});
+  
+#+END_SRC
+
+Rota recebendo a ultima parte da rota como parametro
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+Route::get('/cadastrodeusuario/{nomeDoUsuario}', function ($nodeDoUsuario) {
+    echo $nomeDoUsuario;
+    return view('cad_user');
+});
+  
+#+END_SRC
+
+Passando esse parametro pra view que vc vai mostrar
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+Route::get('/cadastrodeusuario/{nomeDoUsuario}', function ($nomeDoUsuario) {
+    return view('cad_user',['nome_do_usuario' => $nomeDoUsuario] );
+});
+  
+#+END_SRC
+
+Com isso vc pode ir la na sua view e, pra exibir o nome do usuario, fazer algo do tipo....
+
+
+
+#+NAME:
+#+BEGIN_SRC html :session s1 :results output :exports both
+<h1>{{ nome_do_usuario }}</h1>
+#+END_SRC
+
+
+* Criando uma Rota atendida por um controller
+
+  Bom primeiro vamos querer criar um controller...
+  
+  Pra isso vc entra dentro do diretorio do rpojeto e da o comando 
+
+  *php artisan make:controller NomeDoController*
+
+  conforme estamos fazendo abaixo....
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+php artisan make:controller SistemaUsuarios
+Controller created successfully.
+#+END_SRC
+
+Isso cria um controller novinho e sem nenhum metodo pra vc...
+
+Quando falamos em controller estamos falando apenas de uma classe
+php... 
+
+Vamos ver o controler criado?
+
+Pra ver abra o aquivo que foi gerado em app/http/Controllers/SistemaUsuarios.php
+
+
+segue abaixo o conteudo do arquivo, conforme ele foi criado... 
+
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class SistemaUsuarios extends Controller
+{
+    //
+}
+  
+#+END_SRC
+
+
+interessante ne.. o comando artisan make:controller gera apenas esse
+trecho de codigo... mas acho legal isso porque a gente ia usar control
+c control v de qualquer maneira ja que no inicio a gente nao lembra
+muito bem de usar essa estrutura sertinho com namepace, use etc...
+
+Agora a gente vai usar nosso controller pra responder aquela nossa
+rota "cadastrodeusuario"
+
+
+Pro nosso controller responder a nossa rota ele precisa de uma
+function destinada a isso vamos criar entao essa function conforme
+abaixo
+
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class SistemaUsuarios extends Controller
+{
+    /*
+      Essa funcao tem o objetivo de responder a rota 
+      cadastro de usuarios. Pra isso acontecer tem que configurar a rota 
+      no arquivo Routes/web.php      
+     */
+    public function cadastrodeusuarios(){        
+        echo "echo from: Funcao cadastrodeusuarios no controoler  SistemaUsuarios";
+    }
+}
+  
+#+END_SRC
+
+
+Agora a gente configura a rota pra usar o controller com as seguintes linhas...
+
+  + *use App\Http\Controllers\SistemaUsuarios;*
+    Vc vai usar essa linha porque vc esta num arquivo web.php e esta
+    referenciando outro arquivo que esta em
+    App\Http\Controllers\Sistemausuarios
+    
+    E o mesmo que o import do java que vc ja esta mais acostumado...
+
+  + *Route::get('/cadastrodeusuario', [SistemaUsuarios::class,'cadastrodeusuarios']);*
+    Essa linha e a linha que diz que a rota /cadastrodeusuario via ser
+    atendida pelo metodo cadastrodeusuarios da classe Sistemausuarios
+
+    
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+use App\Http\Controllers\SistemaUsuarios;
+Route::get('/cadastrodeusuario', [SistemaUsuarios::class, 'cadastrodeusuarios']);  
+#+END_SRC
+
+
+
+    O arquivo completo ficaria assim...
+
+
+#+NAME:
+#+BEGIN_SRC php :session s1 :results output :exports code
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SistemaUsuarios;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+#ou tambem x Route::View("/",'welcome');
+Route::get('/cadastrodeusuario', [SistemaUsuarios::class, 'cadastrodeusuarios']);
+  
+#+END_SRC
+
+abaixo segue o resultado visto pelo navegador    
+
+[[./imgs/laravel8-views_rotes_e_controllers/1-rota-cadastrodeusuario-respondida-pela-controller.png]]
+
+Se quizer que a funcao do seu controller retorne uma view e so usar o
+
+
+*return view('nomeDaView')* 
+
+Pra passar dados para view basta enviar um array associativo como
+segundo parametro conforme abaixo...
+
+*return view('nomeDaView', ['chave'=>'vlr,'chave2'=>'vlr2'])* 
+
+O controller pode retornar tambem dados em json, neste caso basta
+retornar um array associativo...
+
+ *return ['name'=>'anil','age'=>27'];*
+
+* conclusao
+  Fizemos nessa aula um basicao do basicao sobre como utilizar o
+  laravel. Criamos uma view e disponibilizamos essa view usando uma
+  rota e depois fizemos com que o nossa view fosse disponibilizada
+  pelo controller. 
+
+* Referencias
+
+
+
+  

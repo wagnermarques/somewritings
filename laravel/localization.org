@@ -1,0 +1,56 @@
+#+Title: Laravel Localization
+
+* timezone
+#+BEGIN_EXAMPLE
+    /*
+    |--------------------------------------------------------------------------
+    | Application Timezone
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the default timezone for your application, which
+    | will be used by the PHP date and date-time functions. We have gone
+    | ahead and set this to a sensible default for you out of the box.
+    |
+    */
+
+    'timezone' => 'America/Sao_Paulo',
+#+END_EXAMPLE
+
+* locale
+:TODO:
+1- qual o problema de nao trocar o locale en pra pt-BR?
+
+:END:
+
+
+
+#+BEGIN_EXAMPLE
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Locale Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application locale determines the default locale that will be used
+    | by the translation service provider. You are free to set this value
+    | to any of the locales which will be supported by the application.
+    |
+    */
+
+    'locale' => 'en',
+
+#+END_EXAMPLE
+
+* configurando linguagem do projeto
+
+#+BEGIN_EXAMPLE
+<span>{{ str_replace('_', '-', app()->getLocale()) }}</span>
+#+END_EXAMPLE
+
+Isso vai te mostrar qual a linguagem
+
+Pra mudar pra portugues do Brasil:
+
+abre config/app.php
+
+

@@ -12,7 +12,7 @@
 #+END_SRC
 
 
-* Viceos sobre modules do emacs
+* Videos sobre modules do emacs
   Sao tantos modules....
 
   Precisa experimenta-los pra conhece-los...
@@ -21,3 +21,4 @@
 
 * refs
 [fn:1] https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Hash.html
+https://orgmode.org/

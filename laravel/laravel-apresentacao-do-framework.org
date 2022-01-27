@@ -1,0 +1,5 @@
+#+Title: Apresentacao do Laravel
+
+* Referencias
+[fn:1forum] https://laracasts.com/discuss
+[fn:2forum] https://laravel.io/forum

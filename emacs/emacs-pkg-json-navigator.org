@@ -1,0 +1,6 @@
+#+Title: Json Navigator
+
+
+https://github.com/DamienCassou/json-navigator
+
+Abrir arquivo json, selecionar tudo com C-x h e rodar M-x json-navigator-navigate-regionjson-navigator-navigator

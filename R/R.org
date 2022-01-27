@@ -1,5 +1,40 @@
 #+Title: Anotacoes Sobre R
 
+* factor
+#+NAME:factor
+#+HEADER: :file myplot.png
+#+HEADER: :dir .
+#+BEGIN_SRC R :session s1 :results output :exports both
+  answers <- c("stock", "bond", "bond", "stock")
+  investment <- factor(answers)
+  investment
+  str(investment)
+#+END_SRC
+
+#+RESULTS: factor
+: [1] stock bond  bond  stock
+: Levels: bond stock
+:  Factor w/ 2 levels "bond","stock": 2 1 1 2
+
+2 1 1 2 numera em ordem alfabetica
+
+* Cut
+#+NAME:cut
+#+HEADER: :file myplot.png
+#+HEADER: :dir .
+#+BEGIN_SRC R :session s1 :results output :exports both
+
+  buckets <- c(0, 10, 20, 30, 40, 50)
+  ranking_grouped <- cut(ranking, breaks = buckets)
+
+  head(ranking_grouped)
+
+#+END_SRC
+
+#+RESULTS: cut
+: Error in cut(ranking, breaks = buckets) : objeto 'ranking' nÃ£o encontrado
+: Error in head(ranking_grouped) : objeto 'ranking_grouped' nÃ£o encontrado
+
 * Scripts portaveis
 * funções apply
   https://www.datacamp.com/community/tutorials/r-tutorial-apply-family?utm_source=adwords_ppc&utm_campaignid=1658343524&utm_adgroupid=63833882055&utm_device=c&utm_keyword=%2Bsapply%20%2Br&utm_matchtype=b&utm_network=g&utm_adpostion=1t1&utm_creative=319558765411&utm_targetid=aud-522010995285:kwd-376025357755&utm_loc_interest_ms=&utm_loc_physical_ms=1001773&gclid=Cj0KCQiA-JXiBRCpARIsAGqF8wWtQ4kIAHLouq-kHjYTP_HkrIUA78HINW0WSiGqCoazbhLnDLet830aAqEUEALw_wcB

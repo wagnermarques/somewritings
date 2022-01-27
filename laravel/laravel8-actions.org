@@ -1,0 +1,70 @@
+#+Title: Laravel8 Actions
+
+* O que e e porque usar Laravel Actions?
+
+* Criando um projeto e instalando Laravel Actions como dependencia
+
+#+NAME: creating  project
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+cd /home/administrador/mnt/pen/sources/laravel-projects/
+composer create-project laravel/laravel learnlaravel8actions --prefer-dist
+export projDir=/home/administrador/mnt/pen/sources/laravel-projects/learnlaravel8actions
+
+echo $projDir
+#+END_SRC
+
+* Instalando o actions como dependencia
+
+#+NAME: composer require lorisleiva/laravel-actions
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+cd $projDir
+composer require lorisleiva/laravel-actions
+#+END_SRC
+
+
+* Usando uma action
+
+Q q e uma action? é basicamente uma classe anotada como action.
+
+O laravel vai tratar nossa classe como uma action, so isso
+
+A gente pode colocar nossa classe action em qualquer logar do nosso codigo, mas como a gente e organizado certo? que tal colocarmos no diretorio app/Actions?
+
+Que bom que vc concordou, vamos criar esse diretorio primeiro pra depois colocar la nossa primeira classe action
+
+
+#+NAME: mkdir -p $projdir/app/Actions
+#+BEGIN_SRC sh  :session s1 :results output :exports both
+cd $projDir/app
+mkemacdir Actions
+ls -l $projdir/app
+#+END_SRC
+
+#+RESULTS: mkdir
+: 
+: mkdir: não foi possível criar o diretório “Actions”: Arquivo existe
+: ls: não foi possível acessar '/app': Arquivo ou diretório inexistente
+
+
+
+
+#+BEGIN_SRC php
+use Lorisleiva\Actions\Concerns\AsAction;
+
+class UpdateUserPassword
+{
+    use AsAction;
+
+    public function handle(User $user, string $newPassword)
+    {
+        // ...
+    }
+}
+#+END_SRC
+
+
+
+
+
+* Refs
+[fn:1] https://laravelactions.com/

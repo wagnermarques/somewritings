@@ -1,0 +1,179 @@
+#+Title: Notification API
+* Entenda o que é Notification
+
+Entra nesse link (https://www.davidwalsh.name/demo/notifications-api.php)e click em "Show Notification" pra ver sobre o que a gente ta falando...
+
+Vou mostrar vc vc no meu note com linux o como fica a notificação...
+
+#+CAPTION: Notification Api Example (Img1)
+#+ATTR_ORG: :width 100px
+[[./NotificationAPI/imgs/img1.png]]
+
+#+CAPTION: Notification Api Example (Img2)
+#+ATTR_ORG: :width 100px
+[[./NotificationAPI/imgs/img2.png]]
+
+#+CAPTION: Notification Api Example (Img3)
+#+ATTR_ORG: :width 100px
+[[./NotificationAPI/imgs/img3.png]]
+
+#+CAPTION: Notification Api Example (Img4)
+#+ATTR_ORG: :width 100px
+[[./NotificationAPI/imgs/img4.png]]
+
+Nao sei se vc percebeu que vc programa a mensagem pro navegador, mas quem emite a mensagem é o seu sistema operacional. Vc chegou a perceber isso? Da hora ne?
+
+Bom... mas se e o sistema operacional que mostra realmente a mensagem, entao no celular a gente vai ver uma mensagem de notificacao nativa do android certo? certo! Vamos ver isso...
+
+[[./NotificationAPI/imgs/img4.png]]
+[[./NotificationAPI/imgs/img4.png]]
+[[./NotificationAPI/imgs/img4.png]]
+[[./NotificationAPI/imgs/img4.png]]
+
+
+* Entenda melhor Notification API (Cuidado ao usar)
+
+Queria qe vc percebesse uma coisa comigo...
+
+Entra de novo no mesmo site e clica no botao de novo...
+
+Estranho.. o navegador nao pede permissao mais e ja vai mostrando a mensagem...
+
+A questao e a seguinte: e se o seu usuario mudar de ideia? Ele aceitou receber as notificacoes e agora ele nao quer mais, como que ele muda essa situacao?
+
+Pra vc desenvolvedor o problema maior de todos e que na maioria das vezes o usuario nao aceita e depois que ele nao aceitou nao adianta clicar nesse botao pra ver a notificacao que a notificacao nao vai ser mostrada. Isso mesmo.... Pro seu usario passar a ver alguma notificacao sua como ele vai fazer?
+
+Nesse segundo caso em que o usuario rejeitou receber suas notificaoes, na pratica vc perdeu ele...
+
+Perdeu porque ele dificilmente seu usuario vai saber mudar de ideia pra ver de novo a notifcao e aceita-la.
+
+* Como mudar a decisao de aceitar/rejeitar a Notification?
+
+Vamos ver agora o seguinte... se vc como usuario do site aceitou receber notificaoes, como vc agora faz pra passar a rejeitar e vice versa?
+
+** No PC com navegador firefox
+
+#+CAPTION: Notification Api Example (Img3)
+#+ATTR_ORG: :width 100px
+[[./NotificationAPI/imgs/img-mudideia1.png]]
+
+[[./NotificationAPI/imgs/img-mudideia1.png]]
+
+[[./NotificationAPI/imgs/img-mudideia1.png]]
+
+** No PC com navegador Chrome
+
+[[./NotificationAPI/imgs/img-mudideia1-chrome.png]]
+[[./NotificationAPI/imgs/img-mudideia2-chrome.png]]
+
+** No PC com Edge
+
+[[./NotificationAPI/imgs/img-mudideia2-edge.png]]
+
+[[./NotificationAPI/imgs/img-mudideia2-edge.png]]
+
+
+** No android
+
+* Requisitos pra Notifications funcionarem
++ Navegador precisa dar suporte[fn:3]
++ Precisa de https[fn:2]
+  
+* Parte Pratica (Vamos fazer as nossas Notifications)
+** Uma Notification bem Simples, mas mas nossa
+
+#+begin_src  js name: displayNotificationSimples1  :var x=1  :session s1 :results replace  :exports both :tangle ./NotificationAPI/tangle/notificationapi.js  :mkdirp yes
+//https://www.braziljs.org/p/web-notification-api
+function isNotificationAPISupported(){
+    return window.Notification? true : false;
+}
+/*
+https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API    
+default (a pergunta ainda nao foi feita pro seu usuario)
+granted (usuario permimtiu receber notificacoes suas)
+denied (usuario nao permitiu receber notificaoes suas)	
+*/
+function getNotificationPermissionStatus(){
+    if(isNotificationAPISupported)
+	return Notification.permission;
+}
+
+function askForNotificationPermission () {
+    if(isNotificationAPISupported()) {
+	return new Promise((resolve, reject) => {	    
+            Notification.requestPermission().then(resolve).catch(reject);
+        });
+    }
+}
+
+function instantiateNotification(strTitle, strBody, strIconPath){
+    if(isNotificationAPISupported())
+	return new Notification(strTitle, {
+        body: strBody,
+        icon: strIconPath // optional
+    });
+}
+
+function showNotificationSimples1(){
+    let titulo = 'Notificacao Simples!'
+    let body = 'corpo da \n notificação'
+    let icone = 'jsImg.jpeg' //https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.DN7ToydkJZEdVaJVK_NhvwHaHa%26pid%3DApi&f=1
+    askForNotificationPermission().then(status => {
+	console.log("Notification.permission = "+status);
+	instantiateNotification(titulo,body,icone);
+    });    
+}
+
+#+end_src
+
+#+begin_src html name: blkname :var x=1 :session s1 :results replace :exports both :tangle ./NotificationAPI/tangle/index.html :mkdirp yes
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notification Simples 1</title>
+    <script src="notificationapi.js"></script>
+  </head>
+    <body>
+     <h1>Exemplo 1 de Notification</h1>
+     <button type="button" onclick="showNotificationSimples1();">Mostra Notificacao Simples1</buton>
+    </body>
+</html>
+#+end_src
+
+O professor vai fazer esse codigo com vcs linha por linha pra vcs verem...
+
+O codigo ta um pouco grande pra que a gente possa conhecer melhor detalhes do que ta acontecendo..
+
+O codigo do David Watch[fn:4][fn:5] e bem mais simples, e e uma opcao pro pessoal que entender com mais facilidade
+
+#+begin_src  js name: davidwatch
+function showNotification() {
+    if(window.Notification) {
+	Notification.requestPermission(function(status) { 
+	    console.log('Status: ', status); 
+	    var n = new Notification('Title', { body: 'I am the body text!' }); 
+	});
+    }
+    else {
+	alert('Your browser doesn\'t support notifications.');
+    }
+}
+#+end_src
+
+Notice the showNotification method is called on the service worker registration object. This creates the notification on the active service worker, so that events triggered by interactions with the notification are heard by the service worker.
+
+* opcoes de notificacao
+
+
+
+* Refs
+[fn:1] https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
+[fn:2] https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API
+[fn:3] https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API#browser_compatibility
+[fn:4] https://www.davidwalsh.name/demo/notifications-api.php
+[fn:5] view-source:https://www.davidwalsh.name/demo/notifications-api.php
+https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission
+https://mdn.github.io/to-do-notifications/
+https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
+https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
+

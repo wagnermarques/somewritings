@@ -1,0 +1,25 @@
+#+Title: Javascript Cache API
+
+https://developer.mozilla.org/en-US/docs/Web/API/Cache
+
+https://www.snipbits.dev/cache-api-javascript
+
+
+* verifica se o browser tem suporte
+  let cacheSupported = "caches" in window;
+
+* Cria-se um cache com o metodo open
+  
+  caches.open("Name of your Cache").then((cache) => {});
+
+* restricoes do cache
+  1. Vc so pode criar um cache apenas pro dominio da sua pagina
+
+  2. O cache que vc criar so pode ser acessado do seu proprio dominio
+
+  3. Da pra criar mais de um cache pra um mesmo dominio
+     pra acessar um cache especifico use o metodo keys()
+
+
+* incluindo itens no cache
+  

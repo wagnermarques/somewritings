@@ -1,34 +1,60 @@
 
+#+TITLE: define #+TITLE:
+#+DATE: define #+DATE:
+#+AUTHOR: wagner
+#+EMAIL: wagnerdocri@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:t p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+CREATOR: Emacs 25.3.1 (Org mode 8.2.10)
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:nil tex:t
+#+CREATOR: <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)
+#+HTML_CONTAINER: div
+#+HTML_DOCTYPE: xhtml-strict
+#+HTML_HEAD:
+#+HTML_HEAD_EXTRA:
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+#+INFOJS_OPT:
+#+LATEX_HEADER:
+
+
+#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../etc/styles/org-mode-tutorials-css-style.css" />
+#+HTML_HEAD: <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Inconsolata:400,700|Droid+Sans|Tangerine" rel="stylesheet" type="text/css" />
+#+HTML_HEAD: <link href="https://fonts.googleapis.com/css?family=Courgette|Fredericka+the+Great|Great+Vibes|Hanalei|Indie+Flower|Italianno|Londrina+Shadow|Lovers+Quarrel|Marck+Script|Molle:400i|Monsieur+La+Doulaise|Pinyon+Script|Rancho|Sacramento|Tangerine" rel="stylesheet">
+
+
+http://orgmode.org/manual/JavaScript-support.html
+http://orgmode.org/worg/code/org-info-js/org-info-src.js
+#+INFOJS_OPT: view:info toc:nil
++OPTIONS: html-link-use-abs-url:nil html-postamble:auto
++OPTIONS: html-preamble:t html-scripts:t html-style:t
++OPTIONS: html5-fancy:nil tex:t
+  
+#+KEYWORDS:
+  
+#+HTML_LINK_HOME:
+#+HTML_LINK_UP:
+#+HTML_MATHJAX:
+
+#+HTML_HEAD_EXTRA:
+
 * TODO HTML                                                        :noexport:
   #+HTML_DOCTYPE: <!DOCTYPE html>
   #+HTML_DOCTYPE: xhtml-strict
   #+HTML_CONTAINER: div
   
-** HTML_HEAD                                                       :noexport:
-*** TODO CSS
-    #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1">
-    #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../etc/styles/org-mode-tutorials-css-style.css" />
-    #+HTML_HEAD: <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Inconsolata:400,700|Droid+Sans|Tangerine" rel="stylesheet" type="text/css" />
-    #+HTML_HEAD: <link href="https://fonts.googleapis.com/css?family=Courgette|Fredericka+the+Great|Great+Vibes|Hanalei|Indie+Flower|Italianno|Londrina+Shadow|Lovers+Quarrel|Marck+Script|Molle:400i|Monsieur+La+Doulaise|Pinyon+Script|Rancho|Sacramento|Tangerine" rel="stylesheet">
-
-
-  http://orgmode.org/manual/JavaScript-support.html
-  http://orgmode.org/worg/code/org-info-js/org-info-src.js
-  #+INFOJS_OPT: view:info toc:nil
-    +OPTIONS: html-link-use-abs-url:nil html-postamble:auto
-  +OPTIONS: html-preamble:t html-scripts:t html-style:t
-  +OPTIONS: html5-fancy:nil tex:t
-  
-  #+KEYWORDS:
-  
-  #+HTML_LINK_HOME:
-  #+HTML_LINK_UP:
-  #+HTML_MATHJAX:
-
-  #+HTML_HEAD_EXTRA:
-  
-  
-
 ** Math Formatting                                                 :noexport:
   +HTML_MATHJAX: align:"left" mathml:t path:"/MathJax/MathJax.js"
 

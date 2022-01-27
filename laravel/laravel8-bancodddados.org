@@ -1,0 +1,27 @@
+#+Title: Laravel8 Banco de Dados e Model
+
+
+* Acessar banco sem model
+
+Configurar o acesso ao banco no .env ou no config/database.php
+
+Cria um controller e importa "use Illuminate\Support\Facades\DB;"
+
+Ai no retorno do metodo que da pra fazer o seguinte...
+
+return DB::Select("select * from users");
+
+com isso os registros da tabela sao retornados com um array de objetos js
+para a view
+
+* Acessar banco com o model
+  
+php artisan create:model User
+
+naquele mesmo controller ao inves de importar um facade do Illuminate,
+importa o model App\Models\User;
+
+Ai pra pegar todos os usuarios basta fazer *return User::all();
+
+
+
