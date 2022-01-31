@@ -1,6 +1,6 @@
 function login(){
     console.log("function login(){...");
-    console.log(fbApp);
+    console.log(globalThis.fbApp);
     try{
         let email = document.getElementById("user_email").value;
         let senha = document.getElementById("user_password").value;
@@ -15,7 +15,7 @@ function login(){
             return false;
         }
         
-        fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
+        globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
             console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
             console.log(user);
 
@@ -35,7 +35,6 @@ function login(){
         console.log(e);
     }
 }
-
 
 function signup(){
     let email = document.getElementById("user_email").value;
@@ -62,7 +61,7 @@ function signup(){
 
 function logout(){
     try{
-        fbAuth().signOut();
+        globalThis.fbAuth().signOut();
     }catch(e){
         alert(e);
     }

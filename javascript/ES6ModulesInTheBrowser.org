@@ -1,7 +1,5 @@
 #+Title: ES6 Modules no navegador
 
-
-
 * o que e es6 javascript modules
 Na internet vc encontra esse mesmo assunto que vamos estudar hoje com nomes diferentes, como por exemplo, "JS modules", "ES modules", "ECMAScript modules" ou "ES6 Modules".
 
@@ -59,3 +57,5 @@ Lembrando que a extensao do arquivo nao importa, mas recomenda-se usar mjs
 [fn:4] https://v8.dev/features/modules#defer
 [fn:5] https://www.w3schools.com/Js/js_es6.asp
 https://howtojs.io/how-to-work-with-es6-modules-in-the-browser/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis
+

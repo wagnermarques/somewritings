@@ -9,34 +9,28 @@ Pra enviar uma mensagem pro usuario da sua aplicacao, dá pra usar o SDK Admin[f
 Lembrando que esse material foi elaborado para ser apresentado por um professor e é simplesmente material de aula.
 
 O objetivo da aula é criar uma aplicação com firebase auth, firebase firestrore e firebase cloud message. A parte nova aqui dessa aula é o cloud message.
-* Pre requisito pra essa aula
+
+
+* O que você precisa saber antes dessa aula
 Usar git e github
+
 Saber fazer o deploy no heroku
+
 Conhecer basicao de pwa
+
 Conhecer firebase auth e firebase firestore
 
-* Requisitos
+
+* Requisitos para push api funcionar
 + Suporte do navegador[fn:5]
 + https[fn:6]
-- cliente do heroku, do firebase
++ cliente do heroku, do firebase
 
-* Resumo do passo a passo do que vamos fazer
-1. criar um pwa basico e hostpedar no heroku
-2. Criar um projeto no console do firebase   
-3. Configurar firebase no projeto (Firebase Auth, Firestore e CloudMessage)
-4. Testar se o Firebase Auth e Firestore estao funcionando ok
-5. 
-1. Configure o Firebase e o FCM no seu app de acordo com as instruções de instalação da sua plataforma.
-2. Desenvolver seu app cliente
-   2.1 Adicione o gerenciamento de mensagens
-   2.2 Adicione a lógica de assinatura de tópicos ou outros recursos opcionais ao app cliente
-   2.3 Durante o desenvolvimento, você pode enviar facilmente mensagens de usar Editor do Notificações para confirmar se as mensagens estao chegando
-3. Desenvolver seu app server
-   3.1 Decida se quer usar o SDK Admin do Firebase ou um dos protocolos do servidor para criar a lógica de envio:
-   3.2 Lógica de autenticação
-   3.2 Criar solicitações de envio, lidar com respostas e assim por diante.
 
-* criando um projeto pwa/php básico e hospedando no heroku (branch _1criaprojeto)
+
+
+
+* Primeira Parte: criando um projeto pwa/php básico e hospedando no heroku (branch 1-criaprojeto)
 ** crie uma pasta pro seu projeto e coloque nessa pasta os seguintes arquivos...
 
 #+begin_src js name: procfile  :exports both :tangle ./PushAPI/pwapushapi/Procfile  :mkdirp yes
@@ -81,7 +75,7 @@ if ('serviceWorker' in navigator) {
 }
 #+end_src
 
-#+begin_src  js name:service-worker-push-notification.js :exports both
+#+begin_src  js name:service-worker-push-notification.js :exports both :tangle service-worker-push-notification.js
 self.addEventListener('install', event => {
     console.log('sw ./ => installing...');
 });
@@ -91,8 +85,8 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    console.log("sw ./ => Detectei um evento fetch para o recurso abaixo:");
-    console.log("sw ./ => "+event.request.url);
+    ///console.log("sw ./ => Detectei um evento fetch para o recurso abaixo:");
+    //console.log("sw ./ => "+event.request.url);
 });
 #+end_src
 
@@ -281,17 +275,16 @@ perceba que no chrome temos a opcao de instalar nosso site, o que demonstra que 
 
 
 
-* Primeira Parte Terminada: pwa basico terminada - branch pwabasico
+
+** separar essa etapa do projeto em uma branch "1-criaprojeto"
   #+begin_src sh :name git init :session s1 :results output replace :exports both
   pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
   cd $pastaDoMeuProjeto
   git branch pwabasico
 #+end_src
 
-#+RESULTS:
 
-
-* Segunda Parte: Configurando Firebase FCM no nosso projeto[fn:6][fn:7][fn:8][fn:9]
+* Segunda Parte: Configurando Firebase Auth, Firestore e FCM no nosso projeto[fn:6][fn:7][fn:8][fn:9]
 
 Agora vai precisar conhecer um pouco de firebase pra entender essa parte aqui...
 
@@ -310,6 +303,7 @@ Abaixo segue umas imagens pra lembrar como ser faz isso...
 [[./PushAPI/imgs/fbproj6.png]]
 [[./PushAPI/imgs/fbproj7.png]]
 [[./PushAPI/imgs/fbproj8.png]]
+
 
 ** Passo 2 - Configurando Firebase no nosso projeto web
 *** objeto javascript firebaseConfig
@@ -338,7 +332,7 @@ const firebaseConfig = {
 
 Pra chegar nesse objeto, nos vamos criar um arquivo FbConfig.php que vai pegar os dados do projeto de variaveis de ambiente, gerar um json e no javascript
 
-#+begin_src php name: FbConfig.php :exports code :tangle ./PushAPI/pwapushapi/web/FbConfig.php  :mkdirp yes
+#+begin_src php name: fbConfig.php :exports code :tangle ./PushAPI/pwapushapi/web/fbConfig.php  :mkdirp yes
 <?php
 $arr = array (
     "apiKey" => getenv("apiKey"),
@@ -352,8 +346,7 @@ $arr = array (
 echo json_encode($arr);     
 #+end_src
 
-
-esse FbConfig.php gera um json como esse abaixo...
+esse fbConfig.php gera um json como esse abaixo...
 
 #+begin_src  js 
 {"apiKey":"AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA","authDomain":"msgsproject.firebaseapp.com","databaseURL":"https:\/\/msgsproject.firebaseio.com","projectId":"msgsproject,","storageBucket":"msgsproject.appspot.com,","messagingSenderId":"124639374483,","appId":"1:124639374483:web:9273a9c11f4f44721b3166"}
@@ -361,37 +354,37 @@ esse FbConfig.php gera um json como esse abaixo...
 
 Pra ver como esse json se transforma naquela objeto javascript vc pode colocar o json e ver como isso vira um objeto javascript (https://www.convertsimple.com/convert-json-to-javascript/)
 
-#+CAPTION: Image Caption
+#+CAPTION: Site: Converte Json para Objeto Javascript
 #+ATTR_ORG: :width 100px
 [[./PushAPI/imgs/PushjsonToJsObjectConvert.png]]
 
 pra obter o nosso json temos que usar um javascript pra fazer uma requisicao pro FbConfig.php e recebendo o json como resposta a gente transforma em objeto javascript
 
-#+begin_src js name: FbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/FbConfig.js  :mkdirp yes
-const firebaseConfig = null;
-let response = await fetch("FbConfig.php");
-if (response.ok) { // if HTTP-status is 200-299
-  let fbConfigJsonFormat = await response.json();
-  firebaseConfig = destr(fbConfigJsonFormat);
-} else {
-  alert("HTTP-Error: " + response.status);
+#+begin_src js name: fbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/fbConfig.js  :mkdirp yes
+export default async function(){
+    let response = await fetch("fbConfig.php");
+    if (response.ok) {
+	     return firebaseConfig = await response.json();
+    } else {
+	     console.log("HTTP-Error: form fbConfig.js" + response.status);
+    }
 }
 #+end_src
 
-Entao e isso... o FbConfig.php gera o json quando é acessado pelo nosso FbConfig.js via fetch. Quando acessado FbConfig.php é gerado o json eeque eé utilizado pra gerar o objeto firebaseConfig
+Entao e isso... o FbConfig.php gera o json quando é acessado pelo nosso fbConfig.js via fetch. Quando acessado FbConfig.php é gerado o json eeque eé utilizado pra gerar o objeto firebaseConfig
 
 Abaixo tem um script onde criamos as variaveis de ambiente pra depois subir o servidozinho php pra programar.
 
 As chaves apresentadas aqui nao sao reais
 
 #+begin_src sh name: startPhpServer.php :exports code :tangle ./PushAPI/pwapushapi/web/startPhpServer.sh  :mkdirp yes
-export apiKey="AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA"
-export authDomain="msgsproject.firebaseapp.com" 
-export databaseURL="https://msgsproject.firebaseio.com"
-export projectId="msgsproject",
-export storageBucket="msgsproject.appspot.com",
-export messagingSenderId="124639374483",
-export appId="1:124639374483:web:9273a9c11f4f44721b3166"
+export apiKey="AIzaSyB240-iOsNvzyuJKsMczQlmCFnJ1C0MHg4"
+export authDomain="fzlbpms-8115f.firebaseapp.com" 
+export databaseURL="fzlbpms-8115f"
+export projectId="fzlbpms-8115f"
+export storageBucket="fzlbpms-8115f.appspot.com"
+export messagingSenderId="393177754483"
+export appId="1:393177754483:web:f088f5f690ad1e9502b306"
 pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi/web
 cd $pastaDoMeuProjeto
 php -S localhost:3000
@@ -408,30 +401,46 @@ Ahhh, se a gente está passando variaveis de ambiente, queremos pegar o valor de
 Para tanto, nosso arquivo index.php muda um pouquinho... confira abaixo...
 #+begin_src php name: index.php :tangle ./PushAPI/pwapushapi/web/index.php :mkdirp yes
 <?php
-include_once("FbConfig.php");
+include_once("fbConfig.php");
 include_once("index.html");
 #+end_src
 
 *** Inicializando o firebase app
 
 #+begin_src  js name: fbInit.js  :results replace  :exports code :tangle ./PushAPI/pwapushapi/web/js/fbInit.js  :mkdirp yes
+
 //https://firebase.google.com/docs/web/alt-setup
+console.log("[fbInit.js] Running...");
+import { getFirebaseConfiguration } from './fbConfig.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
 import { getAnalytics, initializeAnalytics, isSupported,  setAnalyticsCollectionEnabled, setCurrentScreen, setUserId } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js'
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js'
 import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
-import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
+import { getMessaging } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
 
-const globalThis.fbApp = initializeApp(firebaseConfig);
-const globalThis.fbDb = getFirestore(fbApp);
-const globalThis.fbAuth = getAuth(fbApp);
+globalThis.fbConfig = getFirebaseConfiguration();
 
-//const messaging = getMessaging();
+console.log("[fbInit.js] using fbConfig below...");
+console.log(globalThis.fbConfig);
+console.log(fbConfig);
+globalThis.fbApp = initializeApp(fbConfig);
+console.log( globalThis.fbApp );
+
+globalThis.fbDb = getFirestore(fbApp);
+console.log( globalThis.fbDb );
+
+globalThis.fbAuth = getAuth(fbApp);
+e.log( globalThis.fbAuth );
+
+globalThis.fbMessaging = getMessaging();
+console.log( globalThis.fbMessaging );
 #+end_src
 
 #+begin_src  js name: fbCloudMessageFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbCloudMessageFeatures.js  :mkdirp yes
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.
+
+//import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
 
 getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
   if (currentToken) {
@@ -455,7 +464,7 @@ async function insertUser(){
 }
 
 async function getUsers(){
-    const usersCol = collection(db, 'users');
+    const usersCol = collection(globalThis.fbDb, 'users');
     const userSnapshot = await getDocs(usersCol);
     const cityList = userSnapshot.docs.map(doc => doc.data());
     return userList;
@@ -466,7 +475,7 @@ async function getUsers(){
 #+begin_src  js name: fbAuthFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbAuthFeatures.js  :mkdirp yes
 function login(){
     console.log("function login(){...");
-    console.log(fbApp);
+    console.log(globalThis.fbApp);
     try{
         let email = document.getElementById("user_email").value;
         let senha = document.getElementById("user_password").value;
@@ -481,7 +490,7 @@ function login(){
             return false;
         }
         
-        fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
+        globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
             console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
             console.log(user);
 
@@ -501,7 +510,6 @@ function login(){
         console.log(e);
     }
 }
-
 
 function signup(){
     let email = document.getElementById("user_email").value;
@@ -528,7 +536,7 @@ function signup(){
 
 function logout(){
     try{
-        fbAuth().signOut();
+        globalThis.fbAuth().signOut();
     }catch(e){
         alert(e);
     }
@@ -543,10 +551,10 @@ Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai 
     <title>pushapi</title>
     <link rel="manifest" href="/manifest.json"></link>
     <script src="/js/main.js"></script>
-    <script src="/js/fbConfig.js"></script>
+    <script src="/js/fbConfig.js" type="module"></script>
     <script src="/js/fbInit.js" type="module"></script>
     <script src="/js/fbAuthFeatures.js"></script>
-    <script src="/js/fbFirestoreFeatures.js"</script>
+    <script src="/js/fbFirestoreFeatures.js"></script>
     <script src="/js/fbCloudMessageFeatures.js"></script>
   </head>
   <body>
@@ -571,6 +579,8 @@ Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai 
 *** Testanto firebase auth
 
 Que vamos fazer aqui é ver se conseguimos cadastrar um usuario e logar ele
+
+
 
 
 
