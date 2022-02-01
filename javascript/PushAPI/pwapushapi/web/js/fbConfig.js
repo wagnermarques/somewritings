@@ -1,4 +1,4 @@
-export default async function(){
+export default async function getFirebaseConfiguration(){
     let response = await fetch("fbConfig.php");
     if (response.ok) {
 	     return firebaseConfig = await response.json();

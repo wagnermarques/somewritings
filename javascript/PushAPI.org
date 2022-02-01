@@ -361,7 +361,7 @@ Pra ver como esse json se transforma naquela objeto javascript vc pode colocar o
 pra obter o nosso json temos que usar um javascript pra fazer uma requisicao pro FbConfig.php e recebendo o json como resposta a gente transforma em objeto javascript
 
 #+begin_src js name: fbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/fbConfig.js  :mkdirp yes
-export default async function(){
+export default async function getFirebaseConfiguration(){
     let response = await fetch("fbConfig.php");
     if (response.ok) {
 	     return firebaseConfig = await response.json();
@@ -441,77 +441,85 @@ console.log( globalThis.fbMessaging );
 // subsequent calls to getToken will return from cache.
 
 //import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
+class FbCloudMessage {
 
-getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
-  if (currentToken) {
-    // Send the token to your server and update the UI if necessary
-    // ...
-  } else {
-    // Show permission request UI
-    console.log('No registration token available. Request permission to generate one.');
-    // ...
-  }
-}).catch((err) => {
-  console.log('An error occurred while retrieving token. ', err);
-  // ...
-});
+    static getToken = function(vapidKey){
+	    getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
+		if (currentToken) {
+		    // Send the token to your server and update the UI if necessary
+		    // ...
+		} else {
+		    // Show permission request UI
+		    console.log('No registration token available. Request permission to generate one.');
+		    // ...
+		}
+	    }).catch((err) => {
+		console.log('An error occurred while retrieving token. ', err);
+		// ...
+	    });
+    }
+}//class FbCloudMessage {
 #+end_src
 
 
 #+begin_src  js name: fbFirestoreFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbFirestoreFeatures.js  :mkdirp yes
-async function insertUser(){
-
+class FbFirestore {
+    
+    static insertUser = function(user) {
+	    console.log("[fbFirestoreFeatures.js] static insertUser = function(user) {...");
+    }
+    
+    static getUsers = async function(){
+	    const usersCol = collection(globalThis.fbDb, 'users');
+	    const userSnapshot = await getDocs(usersCol);
+	    const cityList = userSnapshot.docs.map(doc => doc.data());
+	    return userList;
+    }
 }
 
-async function getUsers(){
-    const usersCol = collection(globalThis.fbDb, 'users');
-    const userSnapshot = await getDocs(usersCol);
-    const cityList = userSnapshot.docs.map(doc => doc.data());
-    return userList;
-}
+export { FbFirestore };
 #+end_src
 
 
 #+begin_src  js name: fbAuthFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbAuthFeatures.js  :mkdirp yes
-function login(){
-    console.log("function login(){...");
-    console.log(globalThis.fbApp);
-    try{
-        let email = document.getElementById("user_email").value;
-        let senha = document.getElementById("user_password").value;
+class FbAuth {
+    
+    static signInWithEmailAndPassword = function(email,pass){		
+	       console.log("static signInWithEmailAndPassword = function(email,pass){...");
+	         try{
+		    let email = document.getElementById("user_email").value;
+		    let senha = document.getElementById("user_password").value;
         
-        if(email.length == 0) {
-            alert ("digite um email");
-            return false;
-        }
+		    if(email.length == 0) {
+			alert ("digite um email");
+			return false;
+		    }
         
-        if(senha.length == 0){
-            alert ("digite um uma senha");
-            return false;
-        }
-        
-        globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
-            console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
-            console.log(user);
-
-        }).catch(function(error) {
-            console.log("fbAth().signInWithEmailAndPassword(email, senha).catch(function(error) {...");
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            
-            if (errorCode === 'auth/wrong-password') {
-                alert('Senha errada!');
-            } else {
-                alert(errorMessage);
-            }           
-        });
-                
-    }catch(e){
-        console.log(e);
-    }
+		    if(senha.length == 0){
+			alert ("digite um uma senha");
+			return false;
+		    }
+		    
+		    globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
+			console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
+			console.log(user);	
+		    }).catch(function(error) {
+			console.log("fbAth().signInWithEmailAndPassword(email, senha).catch(function(error) {...");
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			
+			if (errorCode === 'auth/wrong-password') {
+			    alert('Senha errada!');
+			} else {
+			    alert(errorMessage);
+			}           
+		    });                
+		}catch(e){
+		    console.log(e);
+		}
 }
 
-function signup(){
+static signup = function(){
     let email = document.getElementById("user_email").value;
     let senha = document.getElementById("user_password").value;
 
@@ -531,16 +539,17 @@ function signup(){
         if(errorCode) alert(errorCode);
         if(errorMessage) alert(errorMessage);
     })
-}
+}//static signup = function()
 
-
-function logout(){
+static logout = function(){
     try{
         globalThis.fbAuth().signOut();
     }catch(e){
         alert(e);
     }
 }
+}
+    export { FbAuth };
 #+end_src
 
 Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai mudar entao pra ficar conforme abaixo...
@@ -553,9 +562,18 @@ Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai 
     <script src="/js/main.js"></script>
     <script src="/js/fbConfig.js" type="module"></script>
     <script src="/js/fbInit.js" type="module"></script>
-    <script src="/js/fbAuthFeatures.js"></script>
-    <script src="/js/fbFirestoreFeatures.js"></script>
-    <script src="/js/fbCloudMessageFeatures.js"></script>
+    <script type="module">
+      import { FbFirestore } from "./js/fbFirestoreFeatures.js"
+      import { FbAuth } from "./js/fbAuthFeatures.js"
+      import { FbCloudMessage } from "./js/fbCloudMessageFeatures.js"
+
+      globalThis.FbFirestore = FbFirestore;
+      
+      console.log( globalThis.fbDb );
+      console.log( globalThis.fbAuth );
+      console.log( globalThis.fbMessaging );
+    </script>
+
   </head>
   <body>
     <h1>API de Notificacao</h1><br></br>
@@ -569,7 +587,7 @@ Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai 
     <label for="sim_praReceberMsgs">Desejo receber mensagens de estudo</label>
     <input type="radio" id="sim_praReceberMsgs"></input><br></br>
 
-    <button type="button" onclick="login();">Login</button>
+    <button type="button" onclick="FbFirestore.insertUser();">Login</button>
     <button type="button" onclick="registrarusuario();">Registrar-se</button><br></br>
     </body>
 </html>
