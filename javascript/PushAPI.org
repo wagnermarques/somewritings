@@ -384,13 +384,13 @@ Abaixo tem um script onde criamos as variaveis de ambiente pra depois subir o se
 As chaves apresentadas aqui nao sao reais
 
 #+begin_src sh name: startPhpServer.php :exports code :tangle ./PushAPI/pwapushapi/web/startPhpServer.sh  :mkdirp yes
-export apiKey="AIzaSyB240-iOsNvzyuJKsMczQlmCFnJ1C0MHg4"
+export apiKey="AIzaSyB240-iO...C0MHg4"
 export authDomain="fzlbpms-8115f.firebaseapp.com" 
 export databaseURL="fzlbpms-8115f"
 export projectId="fzlbpms-8115f"
 export storageBucket="fzlbpms-8115f.appspot.com"
-export messagingSenderId="393177754483"
-export appId="1:393177754483:web:f088f5f690ad1e9502b306"
+export messagingSenderId="3931...4483"
+export appId="1:393177....f5f690ad1e9502b306"
 pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi/web
 cd $pastaDoMeuProjeto
 php -S localhost:3000
@@ -399,13 +399,13 @@ php -S localhost:3000
 no windao, suba o servidor com esse script..
 
 #+begin_src sh name: startPhpServer.bat :exports code :tangle ./PushAPI/pwapushapi/web/startPhpServer.bat  :mkdirp yes
-    set apiKey="AIzaSyB240-iOsNvzyuJKsMczQlmCFnJ1C0MHg4"
+    set apiKey="AIzaSyB...nJ1C0MHg4"
     set authDomain="fzlbpms-8115f.firebaseapp.com" 
     set databaseURL="fzlbpms-8115f"
     set projectId="fzlbpms-8115f"
     set storageBucket="fzlbpms-8115f.appspot.com"
-    set messagingSenderId="393177754483"
-    set appId="1:393177754483:web:f088f5f690ad1e9502b306"
+    set messagingSenderId="39...754483"
+    set appId="1:393177754...690ad1e9502b306"
     set pastaDoMeuProjeto=f:\fzlbpms\submodules\somewritings\javascript\PushAPI\pwapushapi\web
     cd /D %pastaDoMeuProjeto%
     dir
