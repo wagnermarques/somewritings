@@ -1,5 +1,5 @@
 <?php
-$arr = array (
+$arr = array(
     "apiKey" => getenv("apiKey"),
     "authDomain" => getenv("authDomain"),
     "databaseURL" => getenv("databaseURL"),

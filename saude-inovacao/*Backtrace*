@@ -1,8 +1,0 @@
-Debugger entered--Lisp error: (void-function org-src-get-lang-mode)
-  org-src-get-lang-mode(nil)
-  org-eldoc-get-mode-local-documentation-function(nil)
-  org-eldoc-documentation-function()
-  eldoc-print-current-symbol-info()
-  #f(compiled-function () #<bytecode 0x20557f>)()
-  apply(#f(compiled-function () #<bytecode 0x20557f>) nil)
-  timer-event-handler([t 0 0 500000 nil #f(compiled-function () #<bytecode 0x20557f>) nil idle 0])

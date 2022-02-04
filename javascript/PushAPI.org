@@ -63,19 +63,20 @@ web: vendor/bin/heroku-php-apache2 web/
 </html>
 #+end_src
 
-#+begin_src  js name: main.js  :results replace  :exports code 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker-push-notification.js')
-        .then(function(registration) {
-            alert('Registration successful, scope is:', registration.scope);
-        })
-        .catch(function(error) {
-            alert('Service worker registration failed, error:', error);
-        });
-}
+#+begin_src  js name: main.js  :results replace  :exports code  :exports code ./PushAPI/pwapushapi/web/js/main.js
+  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker-push-notification.js')
+	  .then(function(registration) {
+	      alert('Registration successful, scope is:', registration.scope);
+	  })
+	  .catch(function(error) {
+	      console.log('Service worker registration failed, error:...', error);
+	      throw(error);
+	  });
+  }
 #+end_src
 
-#+begin_src  js name:service-worker-push-notification.js :exports both :tangle service-worker-push-notification.js
+#+begin_src  js name:service-worker-push-notification.js :exports code :tangle ./PushAPI/pwapushapi/web/service-workger-push-notification.js
 self.addEventListener('install', event => {
     console.log('sw ./ => installing...');
 });
@@ -155,9 +156,9 @@ Apesar de ser um pre requisito saber fazer o deploy, vamos por aqui um passo a p
   Pra isso a gente vai dar um git init na nossa pasta
 
   #+begin_src sh :name git init :session s1 :results output replace :exports both
-  pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
-  cd $pastaDoMeuProjeto
-  git init
+    pastaDoMeuProjeto=/home/administrador/fzlbpms/submodules/somewritings/javascript/PushAPI/pwapushapi
+    cd $pastaDoMeuProjeto
+    git init
 #+end_src
 
 #+RESULTS:
@@ -320,7 +321,7 @@ Abaixo segue um exemplo do objeto javascript "firebaseConfig" que a gente vai pr
 
 #+begin_src  js name: fbconfig
 const firebaseConfig = {
-    apiKey: "AIzaSyBreLSPcEix9Xh8gKhnh4wWayS-9m5-RfA",
+    apiKey: "AIzaSyBreLSP...h8gKhnh4wWayS-9m5-RfA",
     authDomain: "msgsproject.firebaseapp.com",    
     databaseURL: "https://msgsproject.firebaseio.com",
     projectId: "msgsproject",
@@ -334,7 +335,7 @@ Pra chegar nesse objeto, nos vamos criar um arquivo FbConfig.php que vai pegar o
 
 #+begin_src php name: fbConfig.php :exports code :tangle ./PushAPI/pwapushapi/web/fbConfig.php  :mkdirp yes
 <?php
-$arr = array (
+$arr = array(
     "apiKey" => getenv("apiKey"),
     "authDomain" => getenv("authDomain"),
     "databaseURL" => getenv("databaseURL"),
@@ -360,16 +361,20 @@ Pra ver como esse json se transforma naquela objeto javascript vc pode colocar o
 
 pra obter o nosso json temos que usar um javascript pra fazer uma requisicao pro FbConfig.php e recebendo o json como resposta a gente transforma em objeto javascript
 
-#+begin_src js name: fbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/fbConfig.js  :mkdirp yes
-export async function getFirebaseConfiguration(){
-    let response = await fetch("fbConfig.php");
-    if (response.ok) {
-	     let firebaseConfig = await response.json();
-	     return firebaseConfig;
-    } else {
-	     console.log("HTTP-Error: form fbConfig.js" + response.status);
-    }
-}
+vc vai ver esse codigo daqui a pouquinho no arquivo fbSetup.js
+
+falar nisso faz todo sentido não é? fbSetup fazer uso desse codigo...
+
+#+begin_src js name: fbConfig :exports code
+  export async function getFirebaseConfiguration(){
+      let response = await fetch("fbConfig.php");
+      if (response.ok) {
+	       let firebaseConfig = await response.json();
+	       return firebaseConfig;
+      } else {
+	       console.log("HTTP-Error: form fbConfig.js..." + response.status);
+      }
+  }
 #+end_src
 
 Entao e isso... o FbConfig.php gera o json quando é acessado pelo nosso fbConfig.js via fetch. Quando acessado FbConfig.php é gerado o json eeque eé utilizado pra gerar o objeto firebaseConfig
@@ -391,10 +396,27 @@ cd $pastaDoMeuProjeto
 php -S localhost:3000
 #+end_src
 
+no windao, suba o servidor com esse script..
+
+#+begin_src sh name: startPhpServer.bat :exports code :tangle ./PushAPI/pwapushapi/web/startPhpServer.bat  :mkdirp yes
+    set apiKey="AIzaSyB240-iOsNvzyuJKsMczQlmCFnJ1C0MHg4"
+    set authDomain="fzlbpms-8115f.firebaseapp.com" 
+    set databaseURL="fzlbpms-8115f"
+    set projectId="fzlbpms-8115f"
+    set storageBucket="fzlbpms-8115f.appspot.com"
+    set messagingSenderId="393177754483"
+    set appId="1:393177754483:web:f088f5f690ad1e9502b306"
+    set pastaDoMeuProjeto=f:\fzlbpms\submodules\somewritings\javascript\PushAPI\pwapushapi\web
+    cd /D %pastaDoMeuProjeto%
+    dir
+    php -S localhost:3000
+#+end_src
+
 Nao vamos querer submitar e dar push nesse arquivo shell script, entao vamos por ele no .gitignore
 
 #+begin_src text name: gitignore  :exports code :tangle ./PushAPI/pwapushapi/.gitignore  :mkdirp yes
 */**/startPhpServer.sh
+*/**/startPhpServer.bat	
 #+end_src
 
 Ahhh, se a gente está passando variaveis de ambiente, queremos pegar o valor dessas variáveis e por pra dentro do nosso código certo?
@@ -408,61 +430,66 @@ include_once("index.html");
 
 *** Inicializando o firebase app
 
-#+begin_src  js name: fbInit.js  :results replace  :exports code :tangle ./PushAPI/pwapushapi/web/js/fbInit.js  :mkdirp yes
+#+begin_src  js name: fbSetup.js  :results replace  :exports code :tangle ./PushAPI/pwapushapi/web/js/fbSetup.js  :mkdirp yes
 
-//https://firebase.google.com/docs/web/alt-setup
-console.log("[fbInit.js] Running...");
-import { getFirebaseConfiguration } from './fbConfig.js';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
-import { getAnalytics, initializeAnalytics, isSupported,  setAnalyticsCollectionEnabled, setCurrentScreen, setUserId } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js'
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js'
-import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
-import { getMessaging } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
+  //https://firebase.google.com/docs/web/alt-setup
+  console.log("[fbSetup.js] Running...");
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
+  import { getAnalytics, initializeAnalytics, isSupported,  setAnalyticsCollectionEnabled, setCurrentScreen, setUserId } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js'
+  import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js'
+  import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
+  import { getMessaging } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
 
-globalThis.fbConfig = await getFirebaseConfiguration();
 
-console.log("[fbInit.js] using fbConfig below...");
-console.log(globalThis.fbConfig);
-console.log(fbConfig);
+  async function getFirebaseConfiguration(){
+      let response = await fetch("fbConfig.php");
+      if (response.ok) {
+	  let firebaseConfig = await response.json();
+	  return firebaseConfig;
+      } else {
+	  console.log("HTTP-Error: form fbConfig.js..." + response.status);
+      }
+  }
 
-globalThis.fbApp = initializeApp(fbConfig);
-console.log( globalThis.fbApp );
+  globalThis.fbConf = await getFirebaseConfiguration();
 
-globalThis.fbDb = getFirestore(fbApp);
-console.log( globalThis.fbDb );
+  console.log("[fbInit.js] using fbConfig below...");
+  console.log("=globalThis.fbConfig=");
+  console.log(globalThis.fbConfig);
+  console.log("=fbConfig=");
+  console.log(fbConfig);
 
-globalThis.fbAuth = getAuth(fbApp);
-console.log( globalThis.fbAuth );
+  globalThis.fbApp = initializeApp(fbConf);
 
-globalThis.fbMessaging = getMessaging();
-console.log( globalThis.fbMessaging );
+  export {FbApp, FbConf}
 #+end_src
 
 #+begin_src  js name: fbCloudMessageFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbCloudMessageFeatures.js  :mkdirp yes
-// Get registration token. Initially this makes a network call, once retrieved
-// subsequent calls to getToken will return from cache.
+  // Get registration token. Initially this makes a network call, once retrieved
+  // subsequent calls to getToken will return from cache.
 
-//import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
-class FbCloudMessage {
+  //import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
+  class FbCloudMessage {
 
-    static getToken = function(vapidKey){
-	    getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
-		if (currentToken) {
-		    // Send the token to your server and update the UI if necessary
-		    // ...
-		} else {
-		    // Show permission request UI
-		    console.log('No registration token available. Request permission to generate one.');
-		    // ...
-		}
-	    }).catch((err) => {
-		console.log('An error occurred while retrieving token. ', err);
-		// ...
-	    });
-    }
-}//class FbCloudMessage {
+      static getToken = function(vapidKey){
+	      getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
+		  if (currentToken) {
+		      // Send the token to your server and update the UI if necessary
+		      // ...
+		  } else {
+		      // Show permission request UI
+		      console.log('No registration token available. Request permission to generate one.');
+		      // ...
+		  }
+	      }).catch((err) => {
+		  console.log('An error occurred while retrieving token... ', err);
+		  console.dir(err);
+		  // ...
+	      });
+      }
+  }//class FbCloudMessage {
 
-export { FbCloudMessage }
+  export { FbCloudMessage }
 #+end_src
 
 
@@ -486,115 +513,131 @@ export { FbFirestore };
 
 
 #+begin_src  js name: fbAuthFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbAuthFeatures.js  :mkdirp yes
-class FbAuth {
+  class FbAuth {
 
-    static signInWithEmailAndPassword = function(email,pass){		
-	       console.log("static signInWithEmailAndPassword = function(email,pass){...");
-	         try{
-		    let email = document.getElementById("user_email").value;
-		    let senha = document.getElementById("user_password").value;
-        
-		    if(email.length == 0) {
-			alert ("digite um email");
-			return false;
-		    }
-        
-		    if(senha.length == 0){
-			alert ("digite um uma senha");
-			return false;
-		    }
-		    
-		    globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
-			console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
-			console.log(user);	
-		    }).catch(function(error) {
-			console.log("fbAth().signInWithEmailAndPassword(email, senha).catch(function(error) {...");
-			var errorCode = error.code;
-			var errorMessage = error.message;
-			
-			if (errorCode === 'auth/wrong-password') {
-			    alert('Senha errada!');
-			} else {
-			    alert(errorMessage);
-			}           
-		    });                
-		}catch(e){
-		    console.log(e);
-		}
-}
+      static signInWithEmailAndPassword = function(email,pass){		
+		 console.log("[fbAuthFeatures.js] static signInWithEmailAndPassword = function(email,pass){...");
+		 console.log("=global.fbAuth=")
+		 console.log(global.fbAuth)
 
-static signup = function(){
-    let email = document.getElementById("user_email").value;
-    let senha = document.getElementById("user_password").value;
+		   try{
+		      let email = document.getElementById("user_email").value;
+		      let senha = document.getElementById("user_password").value;
 
-    if(email.length == 0) {
-        alert ("digite um email");
-        return false;
-    }
+		      if(email.length == 0) {
+			  alert ("digite um email");
+			  return false;
+		      }
+
+		      if(senha.length == 0){
+			  alert ("digite um uma senha");
+			  return false;
+		      }
+
+		      globalThis.fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){
+			  console.log("fbAuth().signInWithEmailAndPassword(email, senha).then(function(user){...");
+			  console.log(user);	
+		      }).catch(function(error) {
+			  console.log("fbAth().signInWithEmailAndPassword(email, senha).catch(function(error) {...");
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+
+			  if (errorCode === 'auth/wrong-password') {
+			      alert('Senha errada!');
+			  } else {
+			      alert(errorMessage);
+			  }           
+		      });                
+		  }catch(e){
+		      console.log(e);
+		  }
+  }
+
+  static signup = function(){
+      console.log("[fbAuthFeatures.js]   static signup = function(){...")
+      console.log("=global.fbAuth=")
+      console.log(global.fbAuth)
     
-    if(senha.length == 0){
-        alert ("digite um uma senha");
-        return false;
-    }
+      let email = document.getElementById("user_email").value;
+      let senha = document.getElementById("user_password").value;
 
-    fbAuth.createUserWithEmailAndPassword(email, senha).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        if(errorCode) alert(errorCode);
-        if(errorMessage) alert(errorMessage);
-    })
-}//static signup = function()
+      if(email.length == 0) {
+	  alert ("digite um email");
+	  return false;
+      }
 
-static logout = function(){
-    try{
-        globalThis.fbAuth().signOut();
-    }catch(e){
-        alert(e);
-    }
-}
-}
-export { FbAuth };
+      if(senha.length == 0){
+	  alert ("digite um uma senha");
+	  return false;
+      }
+
+      fbAuth.createUserWithEmailAndPassword(email, senha).catch(function(error) {
+	  var errorCode = error.code;
+	  var errorMessage = error.message;
+	  if(errorCode) alert(errorCode);
+	  if(errorMessage) alert(errorMessage);
+      })
+  }//static signup = function()
+
+  static logout = function(){
+      try{
+	  globalThis.fbAuth().signOut();
+      }catch(e){
+	  alert(e);
+      }
+  }
+  }
+  export { FbAuth };
 #+end_src
 
 Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai mudar entao pra ficar conforme abaixo...
 #+begin_src html name: index.html :tangle ./PushAPI/pwapushapi/web/index.html :mkdirp yes
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>pushapi</title>
-    <link rel="manifest" href="/manifest.json"></link>
-    <script src="/js/main.js"></script>
-    <script src="/js/fbConfig.js" type="module"></script>
-    <script src="/js/fbInit.js" type="module"></script>
-    <script type="module">
-      import { FbFirestore } from "./js/fbFirestoreFeatures.js"
-      import { FbAuth } from "./js/fbAuthFeatures.js"
-      import { FbCloudMessage } from "./js/fbCloudMessageFeatures.js"
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>pushapi</title>
+      <link rel="manifest" href="/manifest.json"></link>
+      <script src="/js/main.js"></script>
 
-      globalThis.FbFirestore = FbFirestore;
+      <!-- usando produtos do firebase -->
+      <script type="module">
+	import { FbApp } from "./js/fbSetup.js"
+	import { FbFirestore } from "./js/fbFirestoreFeatures.js"
+	import { FbAuth } from "./js/fbAuthFeatures.js"
+	import { FbCloudMessage } from "./js/fbCloudMessageFeatures.js"
+
+	globalThis.FbFirestore = FbFirestore;
+
+	console.log("[index.html] =FbApp=");
+	console.log(FbApp);
+
+	console.log("[index.html] =globalThis.fbDb=");
+	console.log( globalThis.fbDb );
+
+	console.log("[index.html] =globalThis.fbAuth=");
+	console.log( globalThis.fbAuth );
       
-      console.log( globalThis.fbDb );
-      console.log( globalThis.fbAuth );
-      console.log( globalThis.fbMessaging );
-    </script>
+	console.log("[index.html] =globalThis.fbMessaging=");
+	console.log( globalThis.fbMessaging );
+      </script>
 
-  </head>
-  <body>
-    <h1>API de Notificacao</h1><br></br>
-    
-    <label for="user_email">Nome do usuario:</label><br>
-    <input type="text" id="user_email"></input><br></br>
- 
-    <label for="user_password">Senha:</label><br>
-    <input type="password" id="user_password"></input><br></br>
+    </head>
+    <body>
+      <h1>API de Notificacao</h1><br></br>
 
-    <label for="sim_praReceberMsgs">Desejo receber mensagens de estudo</label>
-    <input type="radio" id="sim_praReceberMsgs"></input><br></br>
+      <label for="user_email">Nome do usuario:</label><br>
+      <input type="text" id="user_email"></input><br></br>
 
-    <button type="button" onclick="console.log(fbAuth);fbAuth.signInWithEmailAndPassword();">Login</button>
-    <button type="button" onclick="fbAuth.signup();">Registrar-se</button><br></br>
-    </body>
-</html>
+      <label for="user_password">Senha:</label><br>
+      <input type="password" id="user_password"></input><br></br>
+
+      <label for="sim_praReceberMsgs">Desejo receber mensagens de estudo</label>
+      <input type="radio" id="sim_praReceberMsgs"></input><br></br>
+
+      <button type="button" onclick="console.log(fbAuth);fbAuth.signInWithEmailAndPassword();">Login</button>
+      <button type="button" onclick="fbAuth.signup();">Registrar-se</button><br></br>
+      </body>
+  </html>
 #+end_src
 
 
