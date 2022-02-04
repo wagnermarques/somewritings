@@ -361,10 +361,11 @@ Pra ver como esse json se transforma naquela objeto javascript vc pode colocar o
 pra obter o nosso json temos que usar um javascript pra fazer uma requisicao pro FbConfig.php e recebendo o json como resposta a gente transforma em objeto javascript
 
 #+begin_src js name: fbConfig.js :exports code :tangle ./PushAPI/pwapushapi/web/js/fbConfig.js  :mkdirp yes
-export default async function getFirebaseConfiguration(){
+export async function getFirebaseConfiguration(){
     let response = await fetch("fbConfig.php");
     if (response.ok) {
-	     return firebaseConfig = await response.json();
+	     let firebaseConfig = await response.json();
+	     return firebaseConfig;
     } else {
 	     console.log("HTTP-Error: form fbConfig.js" + response.status);
     }
@@ -418,11 +419,12 @@ import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'ht
 import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
 import { getMessaging } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
 
-globalThis.fbConfig = getFirebaseConfiguration();
+globalThis.fbConfig = await getFirebaseConfiguration();
 
 console.log("[fbInit.js] using fbConfig below...");
 console.log(globalThis.fbConfig);
 console.log(fbConfig);
+
 globalThis.fbApp = initializeApp(fbConfig);
 console.log( globalThis.fbApp );
 
@@ -430,7 +432,7 @@ globalThis.fbDb = getFirestore(fbApp);
 console.log( globalThis.fbDb );
 
 globalThis.fbAuth = getAuth(fbApp);
-e.log( globalThis.fbAuth );
+console.log( globalThis.fbAuth );
 
 globalThis.fbMessaging = getMessaging();
 console.log( globalThis.fbMessaging );
@@ -459,6 +461,8 @@ class FbCloudMessage {
 	    });
     }
 }//class FbCloudMessage {
+
+export { FbCloudMessage }
 #+end_src
 
 
@@ -483,7 +487,7 @@ export { FbFirestore };
 
 #+begin_src  js name: fbAuthFeatures.js   :exports code :tangle ./PushAPI/pwapushapi/web/js/fbAuthFeatures.js  :mkdirp yes
 class FbAuth {
-    
+
     static signInWithEmailAndPassword = function(email,pass){		
 	       console.log("static signInWithEmailAndPassword = function(email,pass){...");
 	         try{
@@ -549,7 +553,7 @@ static logout = function(){
     }
 }
 }
-    export { FbAuth };
+export { FbAuth };
 #+end_src
 
 Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai mudar entao pra ficar conforme abaixo...
@@ -587,15 +591,14 @@ Vamos acrescentar uma tela de login e registro de usuario no nosso html que vai 
     <label for="sim_praReceberMsgs">Desejo receber mensagens de estudo</label>
     <input type="radio" id="sim_praReceberMsgs"></input><br></br>
 
-    <button type="button" onclick="FbFirestore.insertUser();">Login</button>
-    <button type="button" onclick="registrarusuario();">Registrar-se</button><br></br>
+    <button type="button" onclick="console.log(fbAuth);fbAuth.signInWithEmailAndPassword();">Login</button>
+    <button type="button" onclick="fbAuth.signup();">Registrar-se</button><br></br>
     </body>
 </html>
 #+end_src
 
 
 *** Testanto firebase auth
-
 Que vamos fazer aqui é ver se conseguimos cadastrar um usuario e logar ele
 
 

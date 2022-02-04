@@ -1,5 +1,5 @@
 class FbAuth {
-    
+
     static signInWithEmailAndPassword = function(email,pass){		
 	       console.log("static signInWithEmailAndPassword = function(email,pass){...");
 	         try{
@@ -65,4 +65,4 @@ static logout = function(){
     }
 }
 }
-    export { FbAuth };
+export { FbAuth };

@@ -7,11 +7,12 @@ import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword  } from 'ht
 import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js';
 import { getMessaging } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
 
-globalThis.fbConfig = getFirebaseConfiguration();
+globalThis.fbConfig = await getFirebaseConfiguration();
 
 console.log("[fbInit.js] using fbConfig below...");
 console.log(globalThis.fbConfig);
 console.log(fbConfig);
+
 globalThis.fbApp = initializeApp(fbConfig);
 console.log( globalThis.fbApp );
 
@@ -19,7 +20,7 @@ globalThis.fbDb = getFirestore(fbApp);
 console.log( globalThis.fbDb );
 
 globalThis.fbAuth = getAuth(fbApp);
-e.log( globalThis.fbAuth );
+console.log( globalThis.fbAuth );
 
 globalThis.fbMessaging = getMessaging();
 console.log( globalThis.fbMessaging );

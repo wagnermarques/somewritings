@@ -1,7 +1,8 @@
-export default async function getFirebaseConfiguration(){
+export async function getFirebaseConfiguration(){
     let response = await fetch("fbConfig.php");
     if (response.ok) {
-	     return firebaseConfig = await response.json();
+	     let firebaseConfig = await response.json();
+	     return firebaseConfig;
     } else {
 	     console.log("HTTP-Error: form fbConfig.js" + response.status);
     }

@@ -20,3 +20,5 @@ class FbCloudMessage {
 	    });
     }
 }//class FbCloudMessage {
+
+export { FbCloudMessage }
