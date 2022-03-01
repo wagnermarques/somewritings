@@ -17,14 +17,24 @@ async function getFirebaseConfiguration(){
     }
 }
 
-globalThis.fbConf = await getFirebaseConfiguration();
+let fbConf = await getFirebaseConfiguration();
+console.log("[fbSetup.js] using fbConf below...");
+console.log("=fbConf=");
+console.log(fbConf);
 
-console.log("[fbInit.js] using fbConfig below...");
-console.log("=globalThis.fbConfig=");
-console.log(globalThis.fbConfig);
-console.log("=fbConfig=");
-console.log(fbConfig);
+let fbApp = initializeApp(fbConf);
+console.log("[fbApp.js] using fbAuth below...");
+console.log("=fbApp=");
+console.log(fbApp);
 
-globalThis.fbApp = initializeApp(fbConf);
+const fbAuth = getAuth();
+console.log("[fbSetup.js] using fbAuth below...");
+console.log("=fbAuth=");
+console.log(fbAuth);
 
-export {FbApp, FbConf}
+const fbFirestoreDb = getFirestore();
+console.log("[fbSetup.js] using fbFirestoreDb below...");
+console.log("=fbFirestoreDb=");
+console.log(fbFirestoreDb);
+
+export { fbConf, fbApp, fbAuth, fbFirestoreDb }

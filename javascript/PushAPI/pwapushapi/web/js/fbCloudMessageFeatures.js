@@ -2,7 +2,7 @@
 // subsequent calls to getToken will return from cache.
 
 //import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-messaging.js";
-class FbCloudMessage {
+class FbCloudMessageFeatures {
 
     static getToken = function(vapidKey){
 	    getToken(messaging, { vapidKey: 'YOUR_PUBLIC_VAPID_KEY_HERE' }).then((currentToken) => {
@@ -22,4 +22,4 @@ class FbCloudMessage {
     }
 }//class FbCloudMessage {
 
-export { FbCloudMessage }
+export { FbCloudMessageFeatures }

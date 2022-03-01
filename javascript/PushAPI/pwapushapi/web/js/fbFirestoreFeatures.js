@@ -1,5 +1,6 @@
-class FbFirestore {
-    
+class FbFirestoreFeatures {
+
+	
     static insertUser = function(user) {
 	    console.log("[fbFirestoreFeatures.js] static insertUser = function(user) {...");
     }
@@ -12,4 +13,4 @@ class FbFirestore {
     }
 }
 
-export { FbFirestore };
+export { FbFirestoreFeatures };
