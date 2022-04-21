@@ -1,0 +1,6 @@
+#+Title: Cordova Storage
+https://cordova.apache.org/docs/en/latest/cordova/storage/storage.html
+
+https://en.docs.monaca.io/tutorials/sqlite/#:~:text=Cordova%20Sqlite%20Storage%20Plugin%20This%20Cordova%2FPhoneGap%20plugin%20opens,Android%2C%20iOS%20and%20Windows%20with%20HTML5%2FWeb%20SQL%20API.
+
+

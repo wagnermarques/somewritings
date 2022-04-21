@@ -1,0 +1,17 @@
+#+Title: Estatistica - Probabilidades
+
+
+#+NAME:
+#+HEADER: :file myplot.png
+#+HEADER: :dir .
+#+BEGIN_SRC R :session s1 :results output :exports both
+  answers <- c("stock", "bond", "bond", "stock")
+  investment <- factor(answers)
+  str(investment)
+#+END_SRC
+
+#+RESULTS: 
+: [1] stock bond  bond  stock
+: Levels: bond stock
+
+

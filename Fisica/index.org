@@ -1,0 +1,6 @@
+#+Title: Notas de Física
+
+* Força Elastica
+Fe=k.x
+WFe = K^2/2
+

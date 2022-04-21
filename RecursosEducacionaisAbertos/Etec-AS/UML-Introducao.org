@@ -1,0 +1,119 @@
+#+SETUPFILE: ../etc/org_mode_SETUPFILE.org
+#+Title: UML - Introdução
+
+* Introdução  
+  Hoje em dia software são necessários para administrar a complexidade
+  da vida das pessoas e também a complexidade de sistemas robóticos ou
+  da tomada de decisões em geral (vide inteligência artificial)
+
+* Desenvolvimento de Software e seus Conceitos 
+** Elementos de um programa orientado a objetos
+** Tempo de desenvolvimento e tempo de execução
+** Abstração e Níveis de abstração
+   Floresta, Arvore, folhas    
+** UML
+*** Utilidades da linguagem UML
+    Mecanismo de registro das decisões de software
+    Viabiliza tratar o software em diferentes níveis de abstração, com
+    foco no detalhes, foco no global... Pra isso há diagramas de
+    análise, de projeto e de implementação
+    
+** Engenharia de software
+** Ciclo de vida de um software
+   Há mais de um ponto de vista sobre isso...
+*** *Análise*
+    Pra entender o problema
+    Tem que ignorar aspectos computacionais, por exemplo, não vou
+    pensar nada sobre banco de dados nem interfaces gráficas.
+
+**** Análise orientada a objetos    
+     Foco no problema
+     É a análise do problema, mas com uma abordagem orientada a
+     objetos
+     Classes associadas ao domínio do preblema
+
+*** *Projeto*
+    Foco na solução
+    Classes associadas ao domínio da solução
+*** Implementação 
+    Também seria possível trabalhar aqui com UML porque podemos fazer
+    modelagem em nível de implementação, ou seja que apresenta todos
+    os detalhes
+*** Testes
+    Manutenção
+** Processo de software
+   Modelagem subsidia o processo de desenvolvimento de software
+
+* Vamos conversar um pouco sobre desenvolvimento software profissional 
+** Desenvolver você com você mesmo e pra vc mesmo é uma coisa
+   Errar aqui, vc ser vira
+** Desenvolver em equipe e para um cliente exigente é outra coisa
+   Errar aqui é como "pizar no rabo do capeta"
+** O maior desafio do processo de desenvolvimento de software profisisonal   
+   Comunicação
+
+** UML-É uma estratégia de comunicação [Its all about comunication]
+*** Fazer certo a coisa errada
+    O processo de software é bom mas entrega o que o cliente não pediu
+*** Fazer errado a coisa certa
+    O processo de software não é bom embora a entrega satisfaça o
+    cliente
+*** Fazer certo a coisa certa
+    O processo de software é bom e entrega o que o cliente solicitou
+*** Mal entendidos geram um campo minado
+    As duas certezas de um desenvolvedor: A morte e As mudanças nos
+    resquisitos de software
+*** Comparar diagrama com uma planta de uma casa
+    Grosso modo: UML é para o software o que uma planta é para uma casa
+** Não é 2 trabalhos? Modelar e depois Programar?
+   Não pensa assim não!!!
+   O construtor constrói a casa sem uma planejamento prévio? Não porque é
+   difícil consertar erros na casa. Mas quem disse que é simples
+   consertar erros em um software?
+   Ah mas o "estrago" de fazer uma edificação errada é muito maior que de
+   um software! Discordo totalmente. O "estrago", o prejuízo da
+   construção de um software errado é grande também... é que você precisa
+   deixar que achar que exercícios didáticos que fazemos em sala de aula
+   e que o professor corrige os erros do aluno em sala de aula
+   mesmo.. não é esse software que estamos falando... software em
+   produção é outra realidade. Quando ele pára, ou quando está com erro,
+   em geral ele traz prejuízos para a a organização que o utiliza e se
+   for o seu cliente, certamente envolve dinheiro... espero que você não
+   entenda isso da pior maneira possível, com seu cliente te cobrando
+   correções que custa o seu tempo ou dinheiro de verdade pra resolver.
+   Desenvolver software não é só escrever código!!! Muito menos códigos
+   muitas e muitas vezes remendados.. isso gera baixa manutenibilidade,
+   prejuízos e problemas...
+   três erros demorarem 5 horas pra correção, pesquise quanto custa a
+   hora de um programador pleno, e multiplique por 5 pra ver quanto
+   custa...[fn:q1]
+   Pior, se o código é uma colcha de retalhos, essas 5 horas vão
+   virar 15, fora mal humar que dá ter que trabalhar num código porco sem
+   planejamento e todo remendado... calcule por favor quanto vai dar?[fn:q2]
+  
+** Já ouviu falar de software que nasce morto?
+   Quando o processo de software não é bom produz-se software sem
+   manutenibiliade nenhuma e quando precisa alterar o software é mais
+   fácil fazer outro.
+   
+** Tem que ter uma alternativa pra não se perder na complexidade do software
+   Desenvolver software em equipe e para um cliente exigente não é
+   simples.
+   Gerenciar a complexidade é preciso.
+  
+
+
+* Orientação a Objetos
+* passo a passo
+  Identificar as classes
+  Quais as responsabilidades dessas classes? Métodos e atributos  (tempo de desenvolvimento)
+  Ver qual classe referencial qual... qual depende de qual.. São as  Dependências  (tempo de desenvolvimento)
+  
+  
+  
+
+[fn:q1]
+[fn:q2]
+
+** Modelagem de software
+   Modelar é mais que criar diagramas

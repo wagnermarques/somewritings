@@ -1,0 +1,458 @@
+Enabled minor modes: Auto-Composition Auto-Compression Auto-Encryption
+Blink-Cursor Electric-Indent File-Name-Shadow Font-Lock Global-Eldoc
+Global-Font-Lock Line-Number Menu-Bar Mouse-Wheel Tool-Bar Tooltip
+Transient-Mark
+
+(Information about these minor modes follows the major mode info.)
+
+Dired by name mode defined in ‘dired.el’:
+Mode for "editing" directory listings.
+In Dired, you are "editing" a list of the files in a directory and
+  (optionally) its subdirectories, in the format of ‘ls -lR’.
+  Each directory is a page: use C-x [ and C-x ] to move pagewise.
+"Editing" means that you can run shell commands on files, visit,
+  compress, load or byte-compile them, change their file attributes
+  and insert subdirectories into the same buffer.  You can "mark"
+  files for later commands or "flag" them for deletion, either file
+  by file or all files matching certain criteria.
+You can move using the usual cursor motion commands.
+The buffer is read-only.  Digits are prefix arguments.
+Type d to flag a file ‘D’ for deletion.
+Type m to Mark a file or subdirectory for later commands.
+  Most commands operate on the marked files and use the current file
+  if no files are marked.  Use a numeric prefix argument to operate on
+  the next ARG (or previous -ARG if ARG<0) files, or just ‘1’
+  to operate on the current file only.  Prefix arguments override marks.
+  Mark-using commands display a list of failures afterwards.  Type ?
+  to see why something went wrong.
+Type u to Unmark a file or all files of an inserted subdirectory.
+Type DEL to back up one line and unmark or unflag.
+Type x to delete (eXpunge) the files flagged ‘D’.
+Type RET to Find the current line’s file
+  (or dired it in another buffer, if it is a directory).
+Type o to find file or Dired directory in Other window.
+Type i to Insert a subdirectory in this buffer.
+Type R to Rename a file or move the marked files to another directory.
+Type C to Copy files.
+Type s to toggle Sorting by name/date or change the ‘ls’ switches.
+Type g to read all currently expanded directories aGain.
+  This retains all marks and hides subdirs again that were hidden before.
+Use ‘SPC’ and ‘DEL’ to move down and up by lines.
+
+If Dired ever gets confused, you can either type g to read the
+directories again, type l to relist the file at point or the marked files or a
+subdirectory, or type M-x dired-build-subdir-alist to parse the buffer
+again for the directory tree.
+
+Customization variables (rename this buffer and type C-h v on each line
+for more info):
+
+  ‘dired-listing-switches’
+  ‘dired-trivial-filenames’
+  ‘dired-marker-char’
+  ‘dired-del-marker’
+  ‘dired-keep-marker-rename’
+  ‘dired-keep-marker-copy’
+  ‘dired-keep-marker-hardlink’
+  ‘dired-keep-marker-symlink’
+
+Hooks (use C-h v to see their documentation):
+
+  ‘dired-before-readin-hook’
+  ‘dired-after-readin-hook’
+  ‘dired-mode-hook’
+  ‘dired-load-hook’
+
+Keybindings:
+key             binding
+---             -------
+
+e .. f		dired-find-file
+
+RET		dired-find-file
+C-o		dired-display-file
+C-t		Prefix Command
+ESC		Prefix Command
+SPC		dired-next-line
+!		dired-do-shell-command
+#		dired-flag-auto-save-files
+$		dired-hide-subdir
+%		Prefix Command
+&		dired-do-async-shell-command
+(		dired-hide-details-mode
+*		Prefix Command
++		dired-create-directory
+-		negative-argument
+.		dired-clean-directory
+0 .. 9		digit-argument
+:		Prefix Command
+<		dired-prev-dirline
+=		dired-diff
+>		dired-next-dirline
+?		dired-summary
+A		dired-do-find-regexp
+B		dired-do-byte-compile
+C		dired-do-copy
+D		dired-do-delete
+G		dired-do-chgrp
+H		dired-do-hardlink
+L		dired-do-load
+M		dired-do-chmod
+O		dired-do-chown
+P		dired-do-print
+Q		dired-do-find-regexp-and-replace
+R		dired-do-rename
+S		dired-do-symlink
+T		dired-do-touch
+U		dired-unmark-all-marks
+W		browse-url-of-dired-file
+X		dired-do-shell-command
+Z		dired-do-compress
+^		dired-up-directory
+a		dired-find-alternate-file
+c		dired-do-compress-to
+d		dired-flag-file-deletion
+g		revert-buffer
+h		describe-mode
+i		dired-maybe-insert-subdir
+j		dired-goto-file
+k		dired-do-kill-lines
+l		dired-do-redisplay
+m		dired-mark
+n		dired-next-line
+o		dired-find-file-other-window
+p		dired-previous-line
+q		quit-window
+s		dired-sort-toggle-or-edit
+t		dired-toggle-marks
+u		dired-unmark
+v		dired-view-file
+w		dired-copy-filename-as-kill
+x		dired-do-flagged-delete
+y		dired-show-file-type
+~		dired-flag-backup-files
+DEL		dired-unmark-backward
+S-SPC		dired-previous-line
+<follow-link>	mouse-face
+<mouse-2>	dired-mouse-find-file-other-window
+<remap>		Prefix Command
+
+C-t C-t		image-dired-dired-toggle-marked-thumbs
+C-t .		image-dired-display-thumb
+C-t a		image-dired-display-thumbs-append
+C-t c		image-dired-dired-comment-files
+C-t d		image-dired-display-thumbs
+C-t e		image-dired-dired-edit-comment-and-tags
+C-t f		image-dired-mark-tagged-files
+C-t i		image-dired-dired-display-image
+C-t j		image-dired-jump-thumbnail-buffer
+C-t r		image-dired-delete-tag
+C-t t		image-dired-tag-files
+C-t x		image-dired-dired-display-external
+
+C-M-d		dired-tree-down
+C-M-n		dired-next-subdir
+C-M-p		dired-prev-subdir
+C-M-u		dired-tree-up
+M-$		dired-hide-all
+M-s		Prefix Command
+M-{		dired-prev-marked-file
+M-}		dired-next-marked-file
+M-DEL		dired-unmark-all-files
+
+M-s a		Prefix Command
+M-s f		Prefix Command
+
+% &		dired-flag-garbage-files
+% C		dired-do-copy-regexp
+% H		dired-do-hardlink-regexp
+% R		dired-do-rename-regexp
+% S		dired-do-symlink-regexp
+% d		dired-flag-files-regexp
+% g		dired-mark-files-containing-regexp
+% l		dired-downcase
+% m		dired-mark-files-regexp
+% r		dired-do-rename-regexp
+% u		dired-upcase
+
+* C-n		dired-next-marked-file
+* C-p		dired-prev-marked-file
+* !		dired-unmark-all-marks
+* %		dired-mark-files-regexp
+* *		dired-mark-executables
+* /		dired-mark-directories
+* ?		dired-unmark-all-files
+* @		dired-mark-symlinks
+* N		dired-number-of-marked-files
+* c		dired-change-marks
+* m		dired-mark
+* s		dired-mark-subdir-files
+* t		dired-toggle-marks
+* u		dired-unmark
+* DEL		dired-unmark-backward
+
+: d		epa-dired-do-decrypt
+: e		epa-dired-do-encrypt
+: s		epa-dired-do-sign
+: v		epa-dired-do-verify
+
+<remap> <advertised-undo>	dired-undo
+<remap> <next-line>		dired-next-line
+<remap> <previous-line>		dired-previous-line
+<remap> <read-only-mode>	dired-toggle-read-only
+<remap> <toggle-read-only>	dired-toggle-read-only
+<remap> <undo>			dired-undo
+
+M-s f C-s	dired-isearch-filenames
+M-s f ESC	Prefix Command
+
+M-s a C-s	dired-do-isearch
+M-s a ESC	Prefix Command
+
+M-s f C-M-s	dired-isearch-filenames-regexp
+
+M-s a C-M-s	dired-do-isearch-regexp
+
+
+
+Auto-Composition minor mode (no indicator):
+Toggle Auto Composition mode.
+
+If called interactively, enable Auto-Composition mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+When Auto Composition mode is enabled, text characters are
+automatically composed by functions registered in
+‘composition-function-table’.
+
+You can use ‘global-auto-composition-mode’ to turn on
+Auto Composition mode in all buffers (this is the default).
+
+Auto-Compression minor mode (no indicator):
+Toggle Auto Compression mode.
+
+If called interactively, enable Auto-Compression mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+Auto Compression mode is a global minor mode.  When enabled,
+compressed files are automatically uncompressed for reading, and
+compressed when writing.
+
+Auto-Encryption minor mode (no indicator):
+Toggle automatic file encryption/decryption (Auto Encryption mode).
+
+If called interactively, enable Auto-Encryption mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+Blink-Cursor minor mode (no indicator):
+Toggle cursor blinking (Blink Cursor mode).
+
+If called interactively, enable Blink-Cursor mode if ARG is positive,
+and disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+If the value of ‘blink-cursor-blinks’ is positive (10 by default),
+the cursor stops blinking after that number of blinks, if Emacs
+gets no input during that time.
+
+See also ‘blink-cursor-interval’ and ‘blink-cursor-delay’.
+
+This command is effective only on graphical frames.  On text-only
+terminals, cursor blinking is controlled by the terminal.
+
+Electric-Indent minor mode (no indicator):
+Toggle on-the-fly reindentation (Electric Indent mode).
+
+If called interactively, enable Electric-Indent mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+When enabled, this reindents whenever the hook ‘electric-indent-functions’
+returns non-nil, or if you insert a character from ‘electric-indent-chars’.
+
+This is a global minor mode.  To toggle the mode in a single buffer,
+use ‘electric-indent-local-mode’.
+
+File-Name-Shadow minor mode (no indicator):
+Toggle file-name shadowing in minibuffers (File-Name Shadow mode).
+
+If called interactively, enable File-Name-Shadow mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+File-Name Shadow mode is a global minor mode.  When enabled, any
+part of a filename being read in the minibuffer that would be
+ignored (because the result is passed through
+‘substitute-in-file-name’) is given the properties in
+‘file-name-shadow-properties’, which can be used to make that
+portion dim, invisible, or otherwise less visually noticeable.
+
+Font-Lock minor mode (no indicator):
+Toggle syntax highlighting in this buffer (Font Lock mode).
+
+If called interactively, enable Font-Lock mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+When Font Lock mode is enabled, text is fontified as you type it:
+
+ - Comments are displayed in ‘font-lock-comment-face’;
+ - Strings are displayed in ‘font-lock-string-face’;
+ - Certain other expressions are displayed in other faces
+   according to the value of the variable ‘font-lock-keywords’.
+
+To customize the faces (colors, fonts, etc.) used by Font Lock for
+fontifying different parts of buffer text, use M-x customize-face.
+
+You can enable Font Lock mode in any major mode automatically by
+turning on in the major mode’s hook.  For example, put in your
+~/.emacs:
+
+ (add-hook 'c-mode-hook 'turn-on-font-lock)
+
+Alternatively, you can use Global Font Lock mode to automagically
+turn on Font Lock mode in buffers whose major mode supports it
+and whose major mode is one of ‘font-lock-global-modes’.  For
+example, put in your ~/.emacs:
+
+ (global-font-lock-mode t)
+
+Where major modes support different levels of fontification, you
+can use the variable ‘font-lock-maximum-decoration’ to specify
+which level you generally prefer.  When you turn Font Lock mode
+on/off the buffer is fontified/defontified, though fontification
+occurs only if the buffer is less than ‘font-lock-maximum-size’.
+
+To add your own highlighting for some major mode, and modify the
+highlighting selected automatically via the variable
+‘font-lock-maximum-decoration’, you can use
+‘font-lock-add-keywords’.
+
+To fontify a buffer, without turning on Font Lock mode and
+regardless of buffer size, you can use M-x font-lock-fontify-buffer.
+
+To fontify a block (the function or paragraph containing point,
+or a number of lines around point), perhaps because modification
+on the current line caused syntactic change on other lines, you
+can use M-o M-o.
+
+You can set your own default settings for some mode, by setting a
+buffer local value for ‘font-lock-defaults’, via its mode hook.
+
+The above is the default behavior of ‘font-lock-mode’; you may
+specify your own function which is called when ‘font-lock-mode’
+is toggled via ‘font-lock-function’.
+
+Global-Eldoc minor mode (no indicator):
+Toggle Eldoc mode in all buffers.
+With prefix ARG, enable Global Eldoc mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Eldoc mode is enabled in all buffers where
+‘turn-on-eldoc-mode’ would do it.
+See ‘eldoc-mode’ for more information on Eldoc mode.
+
+Global-Font-Lock minor mode (no indicator):
+Toggle Font-Lock mode in all buffers.
+With prefix ARG, enable Global Font-Lock mode if ARG is positive;
+otherwise, disable it.  If called from Lisp, enable the mode if
+ARG is omitted or nil.
+
+Font-Lock mode is enabled in all buffers where
+‘turn-on-font-lock-if-desired’ would do it.
+See ‘font-lock-mode’ for more information on Font-Lock mode.
+
+Line-Number minor mode (no indicator):
+Toggle line number display in the mode line (Line Number mode).
+
+If called interactively, enable Line-Number mode if ARG is positive,
+and disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+Line numbers do not appear for very large buffers and buffers
+with very long lines; see variables ‘line-number-display-limit’
+and ‘line-number-display-limit-width’.
+
+Menu-Bar minor mode (no indicator):
+Toggle display of a menu bar on each frame (Menu Bar mode).
+
+If called interactively, enable Menu-Bar mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+This command applies to all frames that exist and frames to be
+created in the future.
+
+Mouse-Wheel minor mode (no indicator):
+Toggle mouse wheel support (Mouse Wheel mode).
+
+If called interactively, enable Mouse-Wheel mode if ARG is positive,
+and disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+Tool-Bar minor mode (no indicator):
+Toggle the tool bar in all graphical frames (Tool Bar mode).
+
+If called interactively, enable Tool-Bar mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+See ‘tool-bar-add-item’ and ‘tool-bar-add-item-from-menu’ for
+conveniently adding tool bar items.
+
+Tooltip minor mode (no indicator):
+Toggle Tooltip mode.
+
+If called interactively, enable Tooltip mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+‘toggle’; disable the mode otherwise.
+
+When this global minor mode is enabled, Emacs displays help
+text (e.g. for buttons and menu items that you put the mouse on)
+in a pop-up window.
+
+When Tooltip mode is disabled, Emacs displays help text in the
+echo area, instead of making a pop-up window.
+
+Transient-Mark minor mode (no indicator):
+Toggle Transient Mark mode.
+
+If called interactively, enable Transient-Mark mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called from
+Lisp, also enable the mode if ARG is omitted or nil, and toggle it if
+ARG is ‘toggle’; disable the mode otherwise.
+
+Transient Mark mode is a global minor mode.  When enabled, the
+region is highlighted with the ‘region’ face whenever the mark
+is active.  The mark is "deactivated" after certain non-motion
+commands, including those that change the text in the buffer, and
+during shift or mouse selection by any unshifted cursor motion
+command (see Info node ‘Shift Selection’ for more details).
+
+You can also deactivate the mark by typing C-g or
+M-ESC ESC.
+
+Many commands change their behavior when Transient Mark mode is
+in effect and the mark is active, by acting on the region instead
+of their usual default part of the buffer’s text.  Examples of
+such commands include M-;, M-x flush-lines, M-x keep-lines,
+M-%, C-M-%, M-x ispell, and C-x u.
+To see the documentation of commands that are sensitive to the
+Transient Mark mode, invoke C-h d and type "transient"
+or "mark.*active" at the prompt.

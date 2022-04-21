@@ -1,0 +1,12 @@
+#+Title: python virtualenv
+
+* criar um virtualenv
+virtualenv -p python3 envname
+
+* ativar o seu virtualenv
+cd envname
+bin/activate
+
+
+* Refs
+https://pythonbasics.org/virtualenv/

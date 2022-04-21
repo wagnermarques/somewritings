@@ -1,0 +1,147 @@
+#+Title: AZ102
+
+
+* Create a Language Understanding solution[fn:r3]
+Natural language processing (NLP) is a common AI problem
+ natural language understanding (NLU)
+** goas
+
+    Provision Azure resources for the Language Understanding service.
+    Define intents and utterances.
+    Define entities.
+    Use patterns to differentiate similar utterances.
+    Use pre-built models.
+    Train, test, publish, and review a model.
+
+* Text Analysis
+** Detect Language
+** Detect Key Prhases
+** Extract Entities[fn:r1]
+    Person
+    Location
+    DateTime
+    Organization
+    Address
+    Email
+    URL
+
+** Extract Linked Entities
+** Sentiment Analysis[fn:r2]
+    If all sentences are neutral, the overall sentiment is neutral.
+    If sentence classifications include only positive and neutral, the overall sentiment is positive.
+    If the sentence classifications include only negative and neutral, the overall sentiment is negative.
+    If the sentence classifications include positive and negative, the overall sentiment is mixed.
+** Exercice: Analyse Text[fn:ex1]
+** Knolege Check[fn:kc1]
+
+1.
+
+How should you create an application that monitors the comments on your company's web site and flags any negative posts?
+
+Use the Language service to extract key phrases.
+
+Use the Language service to perform sentiment analysis of the comments.
+
+Use the Language service to extract named entities from the comments.
+2.
+
+You have analyzed text that contains the word "Paris". How might you determine of this word refers to the French city or the character in Homer's "The Iliad"?
+
+Use the Language service to extract key phrases.
+
+Use the Language service to detect the language of the text.
+
+Use the Language service to extract linked entities.
+
+
+
+* Translate Speech Service
+** Knolege Checks
+
+1.
+
+Which SDK object should you use to specify the language(s) into which you want speech translated?
+
+SpeechConfig
+
+SpeechTranslationConfig
+
+AudioConfig
+2.
+
+Which SDK object should you use as a proxy for the Translation API of Speech service?
+
+TranslationRecognizer
+
+SpeechRecognizer
+
+SpeechSynthesizer
+3.
+
+When translating speech, in which cases can you can use the Synthesizing event to synthesize the translations and speech?
+
+Only when translating to a single target language.
+
+Only when translating to multiple target languages.
+
+When translating to one or more target languages.
+
+
+* Refs
+[fn:r1] https://docs.microsoft.com/en-us/learn/modules/extract-insights-text-with-text-analytics-service/6-extract-entities
+[fn:r2] ttps://docs.microsoft.com/en-us/learn/modules/extract-insights-text-with-text-analytics-service/5-analyze-sentiment
+[fn:r3] https://docs.microsoft.com/en-us/learn/paths/create-language-understanding-solution/
+* Refs Exercices
+[fn:ex1] https://docs.microsoft.com/en-us/learn/modules/extract-insights-text-with-text-analytics-service/8-exercise-analyze-text
+
+** Refs Knoledge Checks
+[fn:kc1] https://docs.microsoft.com/en-us/learn/modules/extract-insights-text-with-text-analytics-service/9-knowledge-check
+
+* Cli Commands 
+
+az login
+az account show
+az account set --subscription <subscriptionName>
+az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
+
+curl -X POST "<yourEndpoint>/text/analytics/v3.1/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':           [{'id':1,'text':'hello'}]}"
+
+* Text Analytics container
+mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.012840001-amd64
+
+docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
+curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+
+
+
+C:\Users\Student>curl -X POST "http://asdfasdf.eastus.azurecontainer.io:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+{"documents":[{"id":"1","detectedLanguage":{"name":"English","iso6391Name":"en","confidenceScore":1.0},"warnings":[]},{"id":"2","detectedLanguage":{"name":"French","iso6391Name":"fr","confidenceScore":1.0},"warnings":[]}],"errors":[],"modelVersion":"2019-10-01"}
+
+
+
+
+* Refs
+https://www.luis.ai/
+https://docs.microsoft.com/pt-br/azure/cognitive-services/face/enrollment-overview
+https://docs.microsoft.com/en-gb/azure/search/service-configure-firewall
+https://docs.microsoft.com/en-us/azure/search/search-security-overview
+https://docs.microsoft.com/pt-br/azure/cognitive-services/luis/luis-concept-data-storage
+https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts-sdk/client-library?tabs=visual-studio&pivots=programming-language-csharp
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cognitiveservices.vision.computervision.computervisionclient?view=azure-dotnet
+https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-prebuilt-model
+https://docs.microsoft.com/en-us/azure/cognitive-services/luis/howto-add-prebuilt-models
+
+
+
+
+
+* Exercices
+
+| Translate speech | https://docs.microsoft.com/en-us/learn/modules/translate-speech-speech-service/5-exercise-translate-speech |
+|                  |                                                                                                            |
+
+
+* Knoledge Checks
+| translate-speech-speech-service | https://docs.microsoft.com/en-us/learn/modules/translate-speech-speech-service/6-knowledge-check                   |
+| text-analytics-service          | https://docs.microsoft.com/en-us/learn/modules/extract-insights-text-with-text-analytics-service/9-knowledge-check |
+|                                 |                                                                                                                    |

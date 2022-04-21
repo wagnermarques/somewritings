@@ -1,0 +1,62 @@
+#+Title: Maplibre
+
+
+
+
+
+
+* json style
+** o que e o json style
+asf
+** Importanto ele no laravel
+https://stackoverflow.com/questions/49542084/laravel-mix-and-webpack-cannot-load-json-file-webpack-adding-js-to-filename
+Install the loader:
+
+npm install --save-dev json-loader
+
+And declare the custom loader:
+
+mix.webpackConfig({
+         module: {
+           loaders: [{
+             test: /\.json$/,
+             loader: 'json-loader'
+             }]
+           }
+       });
+
+** Pitch
+https://maplibre.org/maplibre-gl-js-docs/style-spec/root/#pitch
+
+
+https://maplibre.org/maplibre-gl-js-docs/style-spec/root/#center
+
+https://maplibre.org/maplibre-gl-js-docs/style-spec/root/#pitch
+
+https://maplibre.org/maplibre-gl-js-docs/style-spec/sources/
+
+https://maplibre.org/maplibre-gl-js-docs/style-spec/layers/
+
+https://maplibre.org/maplibre-gl-js-docs/style-spec/
+
+
+https://laravel-mix.com/docs/4.0/installation
+
+https://gist.github.com/moso/b98b8c0a65aedb46b3bfd3dbfebee1e9
+
+https://laravel-mix.com/docs/5.0/extending-mix
+
+https://maplibre.org/maplibre-gl-js-docs/example/simple-map/
+
+https://maplibre.org/maplibre-gl-js-docs/api/
+
+https://github.com/maplibre/maplibre-gl-js
+
+
+
+
+* Refs
+[fn:1] https://support.maptiler.com/i849-how-to-use-maplibre
+[fn:2SiteOfic] https://maplibre.org/
+[fn:3Examples] https://maplibre.org/maplibre-gl-js-docs/example/
+

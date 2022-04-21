@@ -1,0 +1,37 @@
+#+Title: Arquitetura de Computadores
+* Representação de Dados
+BIT vem de BInary digiT, ou dígito binário.
+Byte É o agrupamento de 8 bits
+São três os códigos de representação de caracteres bastante utilizados: ASCII, EBCDIC e UNICÓDIGO.
+ por que 1 Kb  equivale a 1024 bytes
+ grupos de 8 bits, não estamos falando em base 10
+ elevarmos a base 2 à décima potência, teremos 1024
+ Hertz ou (Hz) ou Mega-hertz (MHz) - velocidade do processador
+ não é relacionada ao número de instruções
+ Existem instruções (dados) que são realizadas em um único ciclo de relógio (clock 
+processador), enquanto outras demoram várias dezenas.
+
+Lógica de Boole
+O que é arquitetura de computadores?
+Exemplos  de  processadores  CISC  são o x86 e x64, que usam CISC na superfície e RISC no seu núcleo (HARDWARE.COM.BR, 2007)
+
+Arquitetura de Máquinas Von Neumann
+Von Neumann ratificou a divisão entre dois conceitos importantes: o hardware e o software
+Arquitetura de uma maquina de von neumam
+- memoria principal
+- CPU com ULA (Unidade Logica Aritmetica) e uma UC (Unidade de Controle)
+- E/S
+
+  Na memoria principal temos dados e instrucoes, as instrucoes sao sequenciadas pela UC
+
+  Nao sao maquinas de von neumann
+  Máquinas  paralelas
+  Máquinas de fluxo de dados porque as instrucoes vao depender do fluxo dos dados
+  Redes neurais artificiais
+  Processadores sistólicos (VLSI): celular de processamento fazem as operacoes
+
+  Classificação de Sistemas de  Computação
+  Principais componentes de um sistema de computação
+
+
+

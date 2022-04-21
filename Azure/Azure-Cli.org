@@ -1,0 +1,12 @@
+#+Title: Azure Cli
+* Install   
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
+
+* Exemplos Usando Azure Cli
+** Quickstart: Deploy a Python (Django or Flask) web app to Azure App Service
+https://docs.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=flask%2Cwindows%2Cazure-portal%2Cterminal-bash%2Cvscode-deploy%2Cdeploy-instructions-azportal%2Cdeploy-instructions-zip-azcli
+
+
+** Run a custom container in Azure
+https://docs.microsoft.com/en-us/azure/app-service/quickstart-custom-container?pivots=container-linux&tabs=dotnet
+

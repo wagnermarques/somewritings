@@ -1,0 +1,16 @@
+#+Title: Firebase Auth Rest API
+
+
+
+#+NAME: parseShellAnsiColorCharacters
+#+BEGIN_SRC elisp :session s1 :var data=""  :results silent  :exports node
+  (print (ansi-color-apply data))
+#+END_SRC
+
+
+#+NAME:curl identitytoolkit...
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  export API_KEY=AIzaSyDEitZj9Ii5DrZ1Zjp69dkzGKq3x6w_e_8
+  url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$API_KEY
+  curl url
+#+END_SRC

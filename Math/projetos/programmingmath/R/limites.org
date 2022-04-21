@@ -1,0 +1,13 @@
+#+Title: Estudando Limites
+
+
+#+NAME:teste
+#+BEGIN_SRC shell :session s1 :results file :exports both
+  export projDir=/home/wagner/fzlbpms/submodules/somewritings/Math/projetos/programmingmath/R
+  docker run --name rscripting -it --rm -v $projDir:/scripts wagnermarques/fzl_r:0.0.1 /scripts/run_math_functions_plotting.R
+#+END_SRC
+
+#+RESULTS: teste
+
+
+

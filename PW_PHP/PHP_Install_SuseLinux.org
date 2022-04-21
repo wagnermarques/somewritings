@@ -1,0 +1,19 @@
+#+Title: PHP Install Suse Linux
+
+
+* NoExports
+#+NAME: parseShellAnsiColorCharacters
+#+BEGIN_SRC elisp :session s1 :var data=""  :results silent  :exports node
+>>>>>>> 09df9ed (unstable changes)
+  (print (ansi-color-apply data))
+#+END_SRC
+
+
+* Instalando PHP no suse linux
+  #+NAME:
+  #+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  echo "asdf"
+  #+END_SRC
+
+
+

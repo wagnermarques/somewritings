@@ -1,0 +1,5 @@
+#+Title: Azure Devops
+https://docs.microsoft.com/en-us/azure/devops/cli/quick-reference?view=azure-devops
+* Refs
+https://docs.microsoft.com/en-us/azure/devops/cli/quick-reference?view=azure-devops
+https://docs.microsoft.com/en-us/cli/azure/devops?view=azure-cli-latest

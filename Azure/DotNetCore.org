@@ -1,0 +1,20 @@
+#+Title: Dot Net Core
+
+* Instalacao do .Net Core
+** Open Suse[fn:2]
+#+BEGIN_SRC shell
+sudo zypper install libicu
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+wget https://packages.microsoft.com/config/opensuse/15/prod.repo
+sudo mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo
+sudo chown root:root /etc/zypp/repos.d/microsoft-prod.repo
+sudo zypper install dotnet-sdk-5.0
+sudo zypper install aspnetcore-runtime-5.0
+#+END_SRC
+** Windows 
+** Fedora
+
+
+* Refs
+[fn:1] https://docs.microsoft.com/pt-br/dotnet/core/install/linux#:~:text=O%20.NET%20Core%20est%C3%A1%20dispon%C3%ADvel%20em%20diferentes%20distribui%C3%A7%C3%B5es,Core.%20Most%20Linux%20platforms%20and%20distributions%20have%20
+[fn:2] https://docs.microsoft.com/pt-br/dotnet/core/install/linux-opensuse

@@ -1,0 +1,168 @@
+#+Title: LAMP do Debian
+
+* Tema
+  Apos a gente subir uma instancia e ter conectado nela, a gente vai
+  configurar um servidor web apache2 comm mysql, postgresql e php.
+
+  Esse material foi elaborado pra ser utilizado em sala de aula, fazer
+  sozinho sem participar da aula significa que vc vai ter perdido as
+  explicacoes relativo a esses procedimentos.
+
+  Quanto eu tiver a oportunidade e tempo posso colocar as explicacoes
+  escritas aqui, mas nao deu por enquanto.
+  
+* Justificativa e Objetivos
+* Duracao
+* Pre-Requisitos
+** Conhecimentos Previos
+** Recursos
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+* Exercicioos e Atividades de Reflexao/Fixacao
+* Avaliacao
+
+* Introducao
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+    sudo apt update
+    sudo apt install apache2 apache2-utils
+    systemctl status apache2
+    sudo systemctl enable apache2
+    sudo apache2 -v
+    sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+    sudo chown www-data:www-data /var/www/html/ -R
+#+END_SRC
+
+Com isso a gente instalou nosso servidor web apache...
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  /usr/sbin/apache2ctl -t
+#+END_SRC
+
+queremos o restorno 'systax OK"
+
+pra saber como o apache2ctl pode te ajudar, apenas digite o comando
+sem parametros que ele vai te dizer...
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+/usr/sbin/apache2ctl
+#+END_SRC
+
+
+Agora a gente vai acessar nosso servidor pra saber se ele ta online
+mesmo na web
+
+#+NAME:
+#+BEGIN_SRC shell :session s1 :results output :exports both :post parseShellAnsiColorCharacters(data=*this*)
+  sudo apt install curl
+#+END_SRC
+
+
+Agora vamos criar virtual hosts, pensa virtual host como se fosse
+sites independentes....
+
+*sudo mkdir -p /var/www/planosdeaulas*
+
+Agora a gente diz pro sistema operacional que o dono desse diretorio e
+nosso proprio usuario...
+
+*sudo chown -R $USER:$USER /var/www/planosdeaulas*
+
+Agora a gente diz pro sistema operacional que a nosso usuario pode
+fazer tudo, mas outros usuarios, como o do apache, por exemplo, pode
+ler e executar...
+
+*sudo chmod -R 755 /var/www/planosdeaulas*
+
+Agora a gente cria um index.html dentro do diretorio planosdeaulas com
+o conteudo abaixo
+
+
+#+NAME:
+#+BEGIN_SRC html :session s1 :results output :exports both
+<html>
+    <head>
+        <title>Site Planos de Aulas</title>
+    </head>
+    <body>
+        <h1>Successo!  O Virtual Host do dominio planosdeaulas esta funcionando...</h1>
+    </body>
+</html>
+#+END_SRC
+
+
+Bom agora  a gente tem um index.html dentro de /var/www/planosdeaulas
+
+Para os usuarios do site poderem acessa-lo a gente precisa criar o
+virtual host, pra isso a gente poderia mexer na configuracao do apache
+mas  em /etc/apache2/sites-available/000-default.conf , mas a gente
+vai criar nosso proprio arquivo de configuracao e o apache vai usar o
+que a gente definir pro nosso site.
+
+
+*sudo vim /etc/apache2/sites-available/planosdeaulas.conf*
+
+Minha configuracao ficou assim....
+
+#+NAME:
+#+BEGIN_SRC xml :session s1 :results output :exports code
+<VirtualHost *:80>
+    ServerAdmin admin@planosdeaulas.com
+    DocumentRoot /var/www/planosdeaulas
+    ServerName planosdeaulas.com
+    ServerAlias www.planosdeaulas.com
+    <Directory /var/www/planosdeaulas>
+        #Allowoverride all    ###Uncomment if required
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/planosdeaulas.com_error.log
+    CustomLog ${APACHE_LOG_DIR}/planosdeaulas.com_access.log combined
+</VirtualHost>
+#+END_SRC
+
+
+Agora podemos habilitar nosso virtual host
+
+*sudo a2ensite planosdeaulas*
+
+
+vc vai receber essa resposta
+
+Enabling site planosdeaulas.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+
+
+Agora a gente desabilita o site default...
+
+*sudo a2dissite 000-default.conf*
+
+Site 000-default disabled.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+
+
+  
+
+
+
+
+
+
+* noexport 
+  #+NAME: parseShellAnsiColorCharacters
+#+BEGIN_SRC elisp :session s1 :var data=""  :results silent  :exports node
+  (print (ansi-color-apply data))
+#+END_SRC
+
+* Referencias
+https://sudoti.com.br/debian/como-instalar-o-lamp-stack-no-debian-10-buster-server-desktop/
+  
+
+  

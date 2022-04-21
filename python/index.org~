@@ -1,0 +1,6 @@
+#+Title: Python
+
+* venv / virtualenv
+https://python.land/virtual-environments/virtualenv
+** criando virtual env
+python3 -m venv diretorioDoProjeto

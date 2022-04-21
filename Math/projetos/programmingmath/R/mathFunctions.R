@@ -1,0 +1,1 @@
+curve(exp(x), from = -10, to = 10, main = "exp(x)")

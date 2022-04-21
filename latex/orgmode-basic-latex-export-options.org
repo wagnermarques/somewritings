@@ -1,0 +1,14 @@
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letterpaper]
+#+OPTIONS: toc:t
+
+* titutlo 1
+adsfasdf
+
+** subtitutlo1
+asdfasdf
+
+* titulo 2
+dfgfdg
+
+https://mg.readthedocs.io/latexmk.html

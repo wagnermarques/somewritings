@@ -1,0 +1,17 @@
+#+Title: Matematica com Programacao
+
+
+orgSrcLatex
+
+
+#+NAME:fff
+#+BEGIN_SRC R :session s1 :results output :exports both
+cat("Hello world\n")
+#+END_SRC
+
+
+
+
+
+
+

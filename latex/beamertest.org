@@ -1,0 +1,8 @@
+#+Title: beamer test
+#+AUTHOR:    \href{mailto:email@example.com}{John Doe}
+#+AUTHOR:    \texorpdfstring{John Doe\newline\url{email@example.com}}{John Doe} % DOES NOT WORK XXX -> BEAMER_HEADER???
+#+BEAMER_HEADER: \author{\texorpdfstring{John Doe\newline\url{email@example.com}}{John Doe}} % BAD ORDER XXX
+#+BEAMER_HEADER: \subtitle{Document subtitle}
+#+BEAMER_HEADER: \institute[INST]{Institute\\\url{http://www.institute.edu}}
+
+asdfadsf

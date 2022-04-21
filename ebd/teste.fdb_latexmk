@@ -1,0 +1,11 @@
+# Fdb version 3
+["dvips"] 0 "teste.dvi" "teste.ps" "teste" 0
+  "teste.dvi" 0 -1 0 "latex"
+  (generated)
+  "teste.ps"
+["latex"] 0 "teste.tex" "teste.dvi" "teste" 0
+  "teste.aux" 1642223817 8 a94a2480d3289e625eea47cd1b285758 ""
+  "teste.tex" 0 -1 0 ""
+  (generated)
+  "teste.log"
+  "teste.dvi"

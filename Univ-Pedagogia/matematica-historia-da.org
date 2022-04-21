@@ -1,0 +1,78 @@
+#+Title: Historia da Matematica
+
+egipcio
+babilonico
+grego
+
+indu
+arabico
+
+
+não existem números inteiros positivos que satisfaçam a igualdade para um inteiro maior que 2
+
+* Egito
+* Babilonico
+  Dominaram ira,iraque e siria
+  Mapear curso do ceu noturno
+  Sistema Posicional de base 60
+  Usavam uma casa vazia como zero, o zero nao existia
+  
+  Não e consenso sobre os babilonicos conhecerem as porpriedades do
+  triangulo retangulo. Ha evidencia pra desconfiar que eles conhecia o
+  teorema de pitagoras muito antes dos gregos
+  
+  Ao longo da diagonal esta uma boa aproximacao de raiz de 2
+
+* Gregos
+
+3 grandes matemáticos do helenismo, Euclides, Arquimedes e Apolônio
+** Matematicos
+   Apolônio de Perga (262 a.C. - 190 a.C.)
+
+   Euclides: https://pt.wikipedia.org/wiki/Euclides#cite_note-:0-1
+
+   
+** Escolas Pitagoricas
+  Sec VI A.C. Escolas Pitagoricas em Samus a 1km da costa turca..
+  Partilhavam nao so conehcimentos mas estilo de vida
+  Eles estavam envolvidos com a politica da cidade e envolviam
+  mulheres
+
+  A propriedade dos triangulas 
+
+  Discipulo Pasus
+  
+  Muitas escolas comecaram a surgir mesmo porque nao havia ampli
+  divulgacao das descobertas nas escolas existentes.
+
+
+  Platao fundou a escola "Academia" em Atenas em 387 a.c
+  
+  Tetraedro fogo
+  Icosaedro agua
+  Cubo terra
+  octaedro era o ar
+  dodecaedro era reservado
+
+
+  Alexandria
+  Matematico grego Euclides
+  300 ac +- escreveu o texto "os elementos"
+  Axiomas e depois deducoes logicas e posteriormente teoremoas
+  matematicos sao estabelecidos
+
+  Prova que so ha 5 solidos platonicos
+
+  O demais e que ha argumos pra provar que nao existe um 6 solido
+
+  
+  
+
+
+* matematicos da basileia Agnes e Newton
+  Bernolli
+  
+
+* Refs
+[fn:1] https://www.youtube.com/watch?v=Ztz6VX0kIPc
+

@@ -1,0 +1,90 @@
+#+Title: Graphs
+
+* Parameters to Choose
+** Data Format
+*** NetJson
+
+** Graph Analysis Algorithms (graphanalysis-algorithms)
+Examples of Graph Analysis Algorithms [fn:11],[fn:12]
+** Visualization Technology
+:PROPERTIES:
+:visualizationtech: emscript
+:END:
+** Licence
+** Programming Language Tecnhology
+** Specif Features Offered
+** Active Development[fn:9]
+*** Some options seams abbandonned
++ Cytoscape Web
++ Canviz JS
++ arbor.js 
++ jssvggraph 
++ jsdot
++ Protovis
++ Moo Wheel
++ JSViz
++ dagre
+
+
+
+* Graps visualization[fn:1] [fn:15]
+Selecionei subjetivamente algumas opcoes
+** graphviz
+:PROPERTIES:
+:language: C/C++
+:END:
+
+** H3Viewer[fn:2]
+:PROPERTIES:
+:language: javascript
+:END:
+
+** Walrus - Graph Visualization Tool [fn:3]
+:PROPERTIES:
+:requisitos: java3d
+:language: java
+:END:
+
+** netjsongraph.js[fn:4]
+:PROPERTIES:
+:language: javascript
+:dataformat: netjson
+:END:
+Netjson[fn:5]
+
+** vistorian[fn:6][fn:7]
+:PROPERTIES:
+:dataformat: GML, Paject, Matrix, CSV, JSON
+:visualization-technology: THREE.js
+:END:
+
+** statnet: Software Tools for the Statistical Analysis of Network Data[fn:8]
+:PROPERTIES:
+:language: R
+:END:
+
+** VivaGraphJS [fn:13]
+
+** d3[fn:14]
+
+* refs
+[fn:1] https://elise-deux.medium.com/the-list-of-graph-visualization-libraries-7a7b89aab6a6#:~:text=%20JavaScript%20graph%20visualization%20libraries%20%201%20Alchemy.js%3A.,D3.js%2C%20svg.js%2C%20and%20Cytoscape.js.%20The%20core...%20More%20
+[fn:2] https://graphics.stanford.edu/~munzner/h3/
+[fn:3] https://www.caida.org/catalog/software/walrus/
+[fn:4] https://github.com/openwisp/netjsongraph.js
+[fn:5] http://netjson.org/#second
+[fn:6] https://github.com/networkcube/vistorian
+[fn:7] https://vistorian.github.io/visualizations.html
+[fn:8] https://github.com/statnet/statnet
+[fn:9] https://stackoverflow.com/questions/7034/graph-visualization-library-in-javascript
+[fn:10] http://www.graphviz.org/
+[fn:11] https://live.yworks.com/demos/analysis/graphanalysis/index.html
+[fn:12] https://live.yworks.com/demos/#analysis
+[fn:13] https://github.com/anvaka/VivaGraphJS
+[fn:14] https://observablehq.com/@d3/temporal-force-directed-graph
+[fn:15] https://codersera.com/blog/javascript-data-visualization-libraries/
+[fn:10]
+[fn:10]
+[fn:10]
+[fn:10]
+[fn:10]

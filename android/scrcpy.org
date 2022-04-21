@@ -1,0 +1,29 @@
+#+Title: SCRCPY
+
+* Instalando no Linux
+
+#+begin_src sh :results output :shebang "#!/usr/bin/bash" :tangle ./scrcpy/tangle/ask_for_os.sh  :mkdirp yes
+  echo "asdf"
+#+end_src
+
+#+RESULTS:
+: asdf
+
+#+begin_src html name: blkname :var x=1 :session s1 :results replace :exports both :cache no :noweb no :mkdirp yes
+ <body>
+ </body>
+
+ #+end_src
+
+ #+begin_src html name: blkname :var x=1 :session s1 :results replace :exports both :cache no :noweb no
+ <body>
+ </body>
+
+ #+end_src
+
+#+begin_src sh name: blkname :var x=1 :session s1 :results replace :exports both :cache no :noweb no
+echo asdfasdf
+#+end_src
+
+
+

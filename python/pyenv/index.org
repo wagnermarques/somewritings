@@ -1,0 +1,13 @@
+#+Title: pyenv
+
+
+
+#+Example:
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc 
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+#+End_Example
+
+* refs
+[fn:1] https://nuculabs.dev/2020/06/27/pyenv-for-linux-users/

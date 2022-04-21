@@ -1,0 +1,65 @@
+#+Title: Ensaios Clinicos
+
+* Resumo das Etapas
+** Processo de Desenvolvimento de Novos Produtos  
+   So na geracao pode demorar ate 5 anos
+   Iniciar o processo de desenvolvimento clinico (de 4 a 10 anos)
+   Depois que e registrado o produto pode ser comercializado
+   Valey of Depth dos novos produtos
+
+* Etapas Especificas do Desenvolvimento Clinico
+  
+  No inicio, a nivel de bancada busca-se candidatos a novos produtos,
+  como novas moleculas etc...
+  
+  *Fase pre-clinicos* de provas de conceitos que podem ser *in vitro* ou
+  com *animais*
+
+  Sonhar com a bula
+
+  Inicio do Manual de producao piloto para obter materiais para testes
+  tanto in vitro como possivelmente em animais e possivelmente em
+  seres humanos.
+
+
+  
+* Fase I
+  Poucos participantes porque utilizou-se animiais anteriormente
+
+  Sao estudos de 20 pacientes como no caso de pacientes neoplasicos
+
+  Avaliar a toxicidade e seguranca
+
+  Qual e o limite e escalagem de dose toxima
+
+  Efeitos adversos mais frequentes
+  
+  Estudos de farmacocinetica e farmacodinamica
+
+* Fase II  
+**  Fase II a
+   + Em geral nao precisa de randomizacao e pqno n de pacientes
+   + Nao mudam a pratica clinica
+   + buscam marcadores de respostas e nao a reducao da evolucao da doenca, por exemplo 
+** Fase IIb  
+   + Randomizado
+   + Geralmente tem dois estagios
+     Resultados sao avaliados por um comite externo sobre riscos e efeitos adversos
+   + Busca dose otima
+   + Muitos pacientes  
+
+* False III
+   + Eficacia e seguranca com um n grande de pacientes
+   + ramdomizado
+   + Usa grupos de controle com o padrao outro ou placebo
+   + duplo cego
+   + costumam ser multicentricos
+** Fase IIIb 
+   + Estuda outras aplicacoes da droga
+     
+* False IV
+  + Vigilancia dos efeitos adversos
+    Depois de concedido registro na ANVISA no Diario Oficial
+    Esses efeitos so aparecem depois do uso de uma larga qdte de pessoas    
+    
+

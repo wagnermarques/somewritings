@@ -1,0 +1,95 @@
+#+Title: Hamburger Menu Responsivo
+
+* Tema
+  Hamburger Menu Responsivo
+  
+* Justificativa e Objetivos
+  O minimo de front end que a gente precisa saber pra fazer algo util
+  e criar um menu responsivo e neste caso vamos criar um do tipo menu
+  hamburger.
+  
+* Duracao
+  1 aula
+
+* Pre-Requisitos
+  Bom, vamos dar uma pensada juntos no que vc precisa ter de recursos pra ir de boa
+  nessa aula... Caso vc tenha alguma dificuldade em um desses
+  recursos, simplesmente tem que voltar um pouco pra compreende-los
+  pra pegar direito a ideia dessa aula....
+** Conhecimentos Previos
+*** sintaxe do css
+*** conceito de responsividade
+*** 
+** Recursos
+   Acho que so a maquina mesmo pra poder programar o index.html e o
+   arquivo css
+** Recomendacoes
+   Leia de boa, sem ansiedade...
+   Nao deixe de perguntar pro prof qdo tiver duvidas ok?
+   Visite os links da referencia pra conhece-los, pelo menos
+* Procedimento didatico
+** Exposicao inicial do professor
+** Exposicao do resultado ao final da aula
+   link com o menu hamburger pra mostrar antes de vcs comecarem a
+   programar, assim vc ja fica sabendo qual e o resultado final, ou
+   seja, onde vc quer chegar ao final desta aula.
+  
+* Exercicioos e Atividades de Reflexao/Fixacao
+** Proposta de Atividades
+  
+* Avaliacao
+  
+
+* Introducao
+  Conforme vimos, a ideia da aula e entender como criamos um menu
+  hamburger responsivo pra gente poder utilizar nas nossas aplicacoes.
+  
+* Criando nosso index.html
+  
+  Em primeiro lugar vamos fazer um menu sem ser hamburger primeiro
+
+  
+#+NAME:html
+#+BEGIN_SRC html :session s1 :results output :exports both
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BackupSys</title>
+    <link href="menu_hamburger_responsivo.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <header>
+      <nav id="nav_menu_in_header">
+        <div id="nav_menu_items">
+          <a href="index.html">Home</a>
+          <a href="configurar_uma_tarefa_de_backup.html">Configurar uma tarefa de backup</a>
+          <a href="listar_tarefas_de_backup.html">Listar Tarefas de backup</a>
+          <a href="visualizar_logs.html">visualizar logs</a>
+        </div>
+      </nav>
+    </header>
+    
+  </body>
+</html>
+
+#+END_SRC
+
+
+* Referencias
+
+
+
+
+* Refs
+  https://www.w3schools.com/cssref/css3_pr_flex.asp
+  https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_flex
+  https://www.w3schools.com/html/html5_semantic_elements.asp
+  file:///media/wagner/073c8e64-c4da-49d4-bdfc-221d9ad29e36/workingOn/hamburger_menu_templates/css-ham-menu/index.html
+  https://stackoverflow.com/questions/20194347/org-mode-with-code-example-as-html
+  https://github.com/krisajenkins/ob-browser
+  https://medium.com/@suvratapte/configuring-emacs-from-scratch-packages-220bbc5e55b7
+  
+  
+  
+  

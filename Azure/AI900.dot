@@ -1,0 +1,198 @@
+// https://github.com/ppareit/graphviz-dot-mode
+// https://ogdf.uos.de/
+//https://emacs.stackexchange.com/questions/18386/convert-org-mode-structure-to-dot-source
+
+
+//https://docs.microsoft.com/en-us/learn/modules/get-started-ai-fundamentals/8-understand-responsible-ai
+//https://www.microsoft.com/pt-br/ai/responsible-ai-resources?rtc=1&activetab=pivot1%3aprimaryr4
+
+
+//https://docs.microsoft.com/en-us/learn/certifications/exams/ai-900
+digraph AI900 {    
+    label="Topicos de Estudo para AI900"
+    labelloc=top;
+    labeljust=center;
+
+    node [margin=0 fontcolor=blue style=filled style="filled"]
+    edge [style="filled"]
+
+    //
+    //***** defined nodes *****
+    //
+    //IA Methods
+    Regression, Classification, Clustering [shape="box", color="red" style="filled, rounded"]
+    Classification [href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/introduction",
+                    label=<
+                       Classification <BR/>
+                       <FONT POINT-SIZE="10">
+                       Metodo supervisionado para prever, por exemplo, <BR/>se dadas features de um paciente como peso, pressao sanguinea, etc.. <BR/>se o paciente seria diabetico (1) ou nao diabetico (0)<BR/>
+                       
+                       </FONT>>]
+    TabelaDeConfusao [href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Tabela de Confusao <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    TblConfusaoAcuracy[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Acuracy <BR/>
+                      true positives + true negatives
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    TblConfusaoPrecision[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Precision <BR/>
+                      The number of true positives divided by the number of true <BR/> positives plus false positives
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    TblConfusaoRecall[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Recall <BR/>
+                      The number of true positives divided <BR/>by the number of true positives plus false negatives
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    TblConfusaoF1Score[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      F1 Score <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    TblConfusaoAUC[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      AUC <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    
+    ClusteringAverageDistanceToOtherCenter[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Average Distance To OtherCenter <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    
+    ClusteringAverageDistanceToClusterCenter[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Average Distance To ClusterCenter <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    
+    ClusteringNumberOfPoints[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      NumberOfPoints <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    
+    ClusteringMaximalDistanceToClusterCenter[href="https://docs.microsoft.com/en-us/learn/modules/create-classification-model-azure-machine-learning-designer/evaluate-model",
+                      label=<
+                      Maximal Distance To ClusterCenter <BR/>
+                      <FONT POINT-SIZE="10">                                        
+                      </FONT>>]
+    
+    
+    UnderstandResponsibleAI, EvaluateRegressionModel [shape="box", style="filled, rounded"]
+
+    //defined nodes custom styles
+    // now you can define custom style properties for each node, f.e. the labels
+    Regression [label=<Regression <BR/>(Metodo estatistico supervisionado)>]
+    EvaluateRegressionModel [label="Avaliar a Qualidade da aplicacao do metodo"]
+    MeanAbsoluteError [label=<
+                       Mean Absolute Error (MAE)<BR/>
+                       <FONT POINT-SIZE="10">
+                       Media da diferenca entre vlrs previstos e verdadeiros,<BR/> qto menor melhor.                       
+                       </FONT>>]
+
+    RootMeanSquaredError[label=<
+                       Root Mean Squared Error (RMSE)<BR/>
+                       <FONT POINT-SIZE="10">
+                       Raiz quadrada da diferenca ao quadrado da media, <BR/>qto maior for maior tambem e a variancia 
+                       </FONT>>]
+    
+    RelativeSquaredError[label=<
+                       Relative Squared Error (RSE)<BR/>
+                       <FONT POINT-SIZE="10">
+                       Quanto menor melhor. E uma relacao entre a <BR/>diferenca das medias ao quadrado. Por ser uma medida relativa, pode ser utilizada com labels diferentes.
+                       </FONT>>]
+    
+    RelativeAbsoluteError[label=<
+                       Relative Absolute Error (RAE)<BR/>
+                       <FONT POINT-SIZE="10">
+                       Varia entre zero e um. Diferenca entre <BR/>vlrs medios absolutos entre vlrs previstos e reais.
+                       </FONT>>]
+    
+    CoefficientOfDetermination [label=<
+                       Coefficient of Determination (R2)<BR/>
+                       <FONT POINT-SIZE="10">
+                       Coeficiente Rquadrado varia de 0 a 1. <BR/>O significa nenhum ajustamento e 1 ajustamento perfeito.
+                       </FONT>>]
+    
+    
+subgraph ResponsibleAI {
+    UnderstandResponsibleAI -> "Fairness"
+    UnderstandResponsibleAI -> "Reliability and safety"
+    UnderstandResponsibleAI -> "Privacy and security"
+    UnderstandResponsibleAI -> "Inclusiveness"
+    UnderstandResponsibleAI -> "Transparency"
+    UnderstandResponsibleAI -> "Accountability"
+}
+
+subgraph ChalengesRiscsOfAI
+{
+    "Chalenge & Riscs of AI" -> "Bias can affect results"
+    "Chalenge & Riscs of AI" -> "Errors may cause harm"
+    "Chalenge & Riscs of AI" -> "Data could be exposed"
+    "Chalenge & Riscs of AI" -> "Solutions may not work for everyone"
+    "Chalenge & Riscs of AI" -> "Users must trust a complex system"
+    "Chalenge & Riscs of AI" -> "Who's liable for AI-driven decisions?"
+}
+
+subgraph AIResponsableTools{
+    "AIResponsableTools" -> "entender"
+    "AIResponsableTools" -> "proteger"
+    "AIResponsableTools" -> "controlar"
+    
+    "entender" -> "InterpretML"
+    "entender" -> "Fairlearn"
+    "proteger" -> "Azure ML confidencial"
+    "proteger" -> "Criptografia homomórfica do SEAL"
+    "proteger" -> "Presidio"
+    "controlar" -> "MLOps, ou DevOps para machine learning"
+}
+
+subgraph VisualTools {        
+    "Visual Tools ML Models" -> Regression
+    Regression -> EvaluateRegressionModel
+    EvaluateRegressionModel -> MeanAbsoluteError
+    EvaluateRegressionModel -> RootMeanSquaredError
+    EvaluateRegressionModel -> RelativeSquaredError
+    EvaluateRegressionModel -> RelativeAbsoluteError
+    EvaluateRegressionModel -> CoefficientOfDetermination
+
+    "Visual Tools ML Models" -> Classification
+    Classification -> TabelaDeConfusao
+    TabelaDeConfusao -> TblConfusaoAcuracy
+    TabelaDeConfusao -> TblConfusaoPrecision
+    TabelaDeConfusao -> TblConfusaoRecall
+    TabelaDeConfusao -> TblConfusaoF1Score
+
+    "Visual Tools ML Models" -> Clustering
+    Clustering -> ClusteringAverageDistanceToOtherCenter
+    Clustering -> ClusteringAverageDistanceToClusterCenter
+    Clustering -> ClusteringNumberOfPoints
+    Clustering -> ClusteringMaximalDistanceToClusterCenter
+}
+
+
+//node notes
+
+
+
+//Higher View
+AI900 -> "Visual Tools ML Models"
+AI900 -> a[label=<Birth of George Washington<BR /><FONT POINT-SIZE="10">See also: American Revolution</FONT>>];
+
+AI900 -> UnderstandResponsibleAI
+UnderstandResponsibleAI -> AIResponsableTools
+
+AI900 -> "Chalenge & Riscs of AI"
+
+
+}
+

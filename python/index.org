@@ -1,0 +1,8 @@
+#+Title: Python
+
+* venv / virtualenv
+https://python.land/virtual-environments/virtualenv
+** Criando virtual env
+python3 -m venv diretorioDoProjeto
+** Deletando virtual env
+So apagar a pasta do ambiente virtual

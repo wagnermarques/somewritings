@@ -1,0 +1,15 @@
+
+
+* Definindo variavies
+  
+  
+
+---
+- name: Working with variables
+  hosts: all
+  vars:
+    fav_color: yellow
+
+
+* refs
+  https://linuxhandbook.com/ansible-variables-facts-registers/

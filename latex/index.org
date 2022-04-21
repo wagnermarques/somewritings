@@ -1,0 +1,22 @@
+#+Title: Latex
+MikTeX vs TeXLive 
+
+* Distribuicoes latex
+https://miktex.org/
+
+
+* Refs
+https://www.emacswiki.org/emacs/AUCTeX
+https://www.emacswiki.org/emacs/AUCTeX
+https://www.youtube.com/watch?v=C8nDtzg_D5o
+https://latex-beamer.com/beamer-installation/
+https://tug.org/texlive/quickinstall.html
+https://tug.org/texlive/acquire-netinstall.html
+https://tug.org/texlive/doc/texlive-en/texlive-en.html
+https://latex-cookbook.net/
+https://latexguide.org/book-contents/
+https://texfaq.org/FAQ-typend
+https://mirror.ox.ac.uk/sites/ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+
+
+

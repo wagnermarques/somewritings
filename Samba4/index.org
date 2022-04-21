@@ -1,0 +1,6 @@
+#+Title: Samba4
+
+
+
+* share folder
+sudo apt-get install -y samba samba-common python-glade2 system-config-samba

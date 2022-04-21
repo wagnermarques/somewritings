@@ -1,2 +1,11 @@
 #+Title: ERT: Emacs Lisp Regression Testing
 
+* Introducao
+sobre o ert
+
+* Exemplo pratico 1
+asdfasdf
+
+asdfasdf
+
+asdfasdf

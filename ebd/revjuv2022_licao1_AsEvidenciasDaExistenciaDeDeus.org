@@ -1,0 +1,61 @@
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+#+BEAMER_FRAME_LEVEL: 2
+
+#+Title: Aula EBD: Revista Galera de Cristo: As Evidencias da Existencia de Deus
+#+SubTitle: Lição 3: Deus É Santo
+
+* Oração Inicial e um Louvor
+
+* Objetivo:
+Estudar sobre a Santidade de Deus
+
+* Texto básico:
+Santo Santo Santo é o Senhor dos Exércitos, a terra inteira está cheia da sua glória. Is6.3
+
+* Para ler e meditar durante a semana:
+
+* A lição em uma frase:
+Por que você deve dar esta lição:
+Objetivos:
+Para entender a passagem:
+
+Desenvolvimento da lição
+
+* Ponto de Debate
+Ver na revista as perguntas...
+
+
+* 1. A existencia de Deus
+"Aqueles que tiveram uma experiência com Deus aceitaram que Ele é real"
+
+"No antigo testamento não observamos o povo de Israel defendendo a sua fé acerca da existência de Deus"
+
+"O Senhor revelouse de inúmeras formas:"
+Gn12.1, Gn 28.13-15, Ex 3.1-10
+
+
+* 2. A Revelação de Deus
+** A Essencia de Deus
+"Deus não é uma ideia"
+
+Jo4:24[fn:Jo4v24]
+
+Jó23:13[fn:Joh23v13]
+** Os Nomes de Deus
+Elohim[fn1:2]
+Adonai[fn1:3]
+
+
+
+* Testemunho (se houver)
+
+* Atividade com os alunosgg
+
+* ref
+[fn:1] https://www.youtube.com/watch?v=q8BwkKm-4eI
+[fn:2] https://biblehub.com/topical/e/elohim.htm
+[fn:3] https://biblehub.com/topical/a/adonai.htm
+[fn:Jo4v24] https://www.bibliaonline.com.br/acf/jo/14/24
+[fn:Joh23v13] https://biblehub.com/por/job/23.htm

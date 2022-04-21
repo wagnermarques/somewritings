@@ -1,0 +1,7 @@
+#+Title: Azure AD
+
+* Refs
+https://docs.microsoft.com/en-us/azure/active-directory/cloud-sync/tutorial-basic-ad-azure
+https://docs.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance
+https://docs.microsoft.com/en-us/cli/azure/ad/user?view=azure-cli-latest
+

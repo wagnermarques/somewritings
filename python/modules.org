@@ -1,0 +1,6 @@
+#+Title: Python Modules
+O nome do arquivo python ja e o nome do module acrescentado da extensao .py
+a variavel __name__ contem como valor o nome do module
+
+
+https://docs.python.org/3/tutorial/modules.html

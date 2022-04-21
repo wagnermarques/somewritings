@@ -1,0 +1,8 @@
+#+Title: usando qemu
+
+* raspberry pi os com qemu
+
+
+
+* refs
+https://azeria-labs.com/emulate-raspberry-pi-with-qemu/

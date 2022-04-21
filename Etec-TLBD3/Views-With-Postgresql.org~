@@ -1,0 +1,42 @@
+#+Title: Views com postresql
+
+
+* O que e uma View
+Uma pseudo tabela criada com base numa consulta[fn:1]
+
+* Vamos criar um modelo primeiro pra gente depois criar nossa view
+
+#+Name: setup connection auth
+#+BEGIN_SRC sh :session s1 :sheebang "#!/bin/bash"
+export PGPASSWORD=aluno123
+export PGHOST=172.17.0.2
+export PGUSER=postgres
+#+END_SRC
+
+#+Name:create database
+#+BEGIN_SRC sh  :session s1 :sheebang "#!/bin/bash"
+#psql -c "create database letslearnviews"
+echo asdfasdf
+#+END_SRC
+
+#+RESULTS: create
+
+
+#+Name:asdf
+#+BEGIN_SRC sh :sheebang "#!/bin/bash"
+psql -h 172.17.0.2 -U postgresql -d  -a -f myInsertFile
+#+END_SRC
+
+#+RESULTS: asdf
+: asdf
+
+* Refs
+[fn:1] https://www.tutorialspoint.com/postgresql/postgresql_views.htm
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 

@@ -1,0 +1,11 @@
+#+Title: Recursos Educacionais Abertos
+
+Antes de produzir algum material para um determinado contexto didatico e importante conhecer os que ja existem para avaliar se ha necessidade de elaborar um novo ou reutilizar ou ainda readapartar.
+Existem muitos materiais didáticos na internet mas nem sempre está explícita a licensa do material, ou seja, não é seguro a reutilização dos material didático sem o risco de infrigir direitos 
+Portanto, percebeu-se que há uma série de precauções e cuidados que o professor precisa tomar quando decide utilizar um recurso didático. 
+Segue abaixo um pequeno framework elaborado pelo grupo para uso do professor sempre que ele precisar de um recurso didatico educacional para fazer essa avaliação se dá pra utilizar um recurso pre existente , se já problemas om cliecnas ou se ele realmente precisa elaborar seu próprio recurso.
+
+
+
+
+

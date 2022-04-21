@@ -1,0 +1,64 @@
+#+Title: Views com postresql
+* O que e uma View
+Uma pseudo tabela criada com base numa consulta[fn:1]
+
+* Vamos criar um modelo primeiro pra gente depois criar nossa view
+
+#+Name: setup connection auth
+#+BEGIN_SRC sh :session s1 :sheebang "#!/bin/bash"
+export PGPASSWORD=aluno123
+export PGHOST=172.17.0.2
+export PGUSER=postgres
+#+END_SRC
+
+#+RESULTS: setup
+| [31m┌[[01;37madministrador[00m[31m@[01;37mlocalhost[00m[31m] | [[01;37m/dev/pts/3[00m[31m] | [31m[[01;37mrascunho     | [31m⚡[00m[00m[31m] |
+| [00m                                                                     | [?2004hexport                   | PGPASSWORD=aluno123[?2004l |                             |
+| [31m┌[[01;37madministrador[00m[31m@[01;37mlocalhost[00m[31m] | [[01;37m/dev/pts/3[00m[31m] | [31m[[01;37mrascunho     | [31m⚡[00m[00m[31m] |
+| [00m                                                                     | [?2004hexport                   | PGHOST=172.17.0.2[?2004l   |                             |
+| export                                                                     | PGUSER=postgres                   |                              |                             |
+| [31m┌[[01;37madministrador[00m[31m@[01;37mlocalhost[00m[31m] | [[01;37m/dev/pts/3[00m[31m] | [31m[[01;37mrascunho     | [31m⚡[00m[00m[31m] |
+
+#+Name: psql -c "create database letslearnviews"
+#+BEGIN_SRC sh  :session s1 :sheebang "#!/bin/bash"  :results outpu
+psql -c "create database letslearnviews"
+#+END_SRC
+
+#+RESULTS: psql
+
+
+Veja que o banco foi criado
+#+BEGIN_EXAMPLE
+postgres=# \l
+                                   List of databases
+      Name      |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+----------------+----------+----------+------------+------------+-----------------------
+ estudaviewae   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ letslearnviews | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres       | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0      | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+                |          |          |            |            | postgres=CTc/postgres
+ template1      | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+                |          |          |            |            | postgres=CTc/postgres
+
+#+END_EXAMPLE
+
+
+
+
+
+
+
+
+
+
+* Refs
+[fn:1] https://www.tutorialspoint.com/postgresql/postgresql_views.htm
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 
+[fn:1] 

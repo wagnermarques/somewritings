@@ -1,0 +1,8 @@
+#+Title: Makefile Anots
+* buit in macros[fn:1] 
+    $@ is the name of the file to be made.
+    $? is the names of the changed dependents.
+    
+
+* refs
+[fn:1] https://www.tutorialspoint.com/makefile/makefile_macros.htm

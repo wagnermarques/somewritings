@@ -1,0 +1,32 @@
+#+Title: Push Notifications
+
+* O que é Push Notification?
+Seu PWA nem depende mais do browser estar aberto pro seu usuario receber uma mensagem sua[fn1]. Mas calma aí vamos entender direito esse negocio...
+Mostrar uma mensagem pro usuario é uma tarefa da Notification API, mas é o service workder que usa Push API pra receber a mensagem e usar a api de notificação pra mostrar a mensagem pro usuario...
+Muita informarção em poucas linhas ne? se for o seu caso ve primeiro esse material sobre  Notification API e esse material sobre PUSH API depois vc volta aqui...
+Entender PWA, service worker, Push API e front end sao pre requisitos pra compreender esse assunto aqui... e so ir no seu tempo, de boa... mas pra quem ta tranquilo esses assuntos vamos continuar...
+
+* Vantagens de Usar Push Notification no PWA
++ Mensagens com look and feel nativo[fn:1]
+
++ Pro mobile, pode ativar o vibra do dispositivo[fn:1]
+
++ Permite averigar se o usuario aceitou ou nao a notificacao
+  
+* Desvantagens e cuidados a serem tomados
+
++ Hora certa de mostrar pro usuario se ele deseja aceitar notificacoes
+  Meu... para tudo e presta atencao nisso aqui..
+  Depois que vc pede pro usuario se ele quer aceitar o usuario pode aceitar receber ou nao, qualquer resposta quel ele der vai ficar gravado e ai nao adianta vc perguntar de novo via codigo porque seu codigo vai receber a ultima resposta do usuario o que significa que e bem dificil ter outra chance de perguntar de novo se ele quer depois que ele disse que nao queria. Vc vai tentar perguntar de novo via codigo mas a caixa de dialogo nao vai aparecer porque vc vai receber a ultima resposta que o usuario deu.
+  
+* Requisitos para sua solução Push Notification funcionar...
+
++ Navegador tem que ter suporte
+  Cada navegador implementa seu servico de push, que é um sistema de processamento e roteamento de mensagens para o cliente (usuario do seu pwa) correto. Uma mensagem que será push notification é enviado ao servico correto de push do seu navegador que vai acordar o service worker corretopra recebe-la. Pra conhecer os detalhes sobre como isso funciona estude Push API. Depois de receber e mostrar a mensagem pro usuario o service worker volta a dormir.
+  Seu service worker nao vai ter problemas em receber um retorno dessa notificacao que ele mostra, se precisar ele acorda de novo e volta a dormir de novo depois e é o navegador que cuida desse life time do service worker pra vc...
+  
+
+
+
+* refs
+[fn1] https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications

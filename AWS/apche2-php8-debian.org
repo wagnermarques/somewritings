@@ -1,0 +1,5 @@
+#+Title:  apache2 & php8 on debian
+
+sudo apt install apache2 
+
+

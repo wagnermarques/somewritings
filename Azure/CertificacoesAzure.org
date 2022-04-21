@@ -1,0 +1,43 @@
+#+Title: Azure Certifications
+
+* Visão Geral
+https://docs.microsoft.com/pt-br/learn/certifications/certification-process-overview
+
+* Explorar as Certificações Existentes
+https://docs.microsoft.com/pt-br/learn/certifications/browse/
+Escolha uma função do lado esquerdo para visualizar as possíveis certificações da área
+
+* Se prepare para o exame escolhido
+https://docs.microsoft.com/pt-br/learn/certifications/prepare-exam
+
+** Planejamento dos estudos por roteiros de aprendizagem
+https://docs.microsoft.com/pt-br/learn/browse/
+https://docs.microsoft.com/pt-br/learn/browse/?roles=ai-engineer
+
+* Testes Preparatórios
+https://www.measureup.com
+
+
+* Duração do Exame
+https://docs.microsoft.com/pt-br/learn/certifications/exam-duration-question-types
+De uma olhada nos demos gratuitos e conheca o ambiente do exame
+
+https://pts.measureup.com/web/index.php#demos.php
+
+* Renovar sua Certificação
+https://docs.microsoft.com/pt-br/learn/certifications/renew-your-microsoft-certification
+
+** Nao deixe expirar sua certificação
+https://docs.microsoft.com/pt-br/learn/certifications/certification-expiration-policy
+
+As certificações Microsoft Fundamentals não expiram.
+
+* Painel de Certificação
+https://www.microsoft.com/pt-br/learning/dashboard.aspx
+
+* Perguntas Frequentes
+https://docs.microsoft.com/pt-br/learn/certifications/certification-exam-policies
+
+
+
+

@@ -1,0 +1,1 @@
+#+Title: PHP Global Namespace ($_ENV e $_SERVER)

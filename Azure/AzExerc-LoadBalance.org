@@ -1,0 +1,14 @@
+#+Title: Azure Exercice: Criando Load Balance[fn:1]
+#+NAME: variables
+#+BEGIN_SRC sh :shebang "#!/bin/bash"
+  echo asfd
+  export ResourceGroupName=RG_Ex_LoadBalance
+#+END_SRC
+
+#+NAME: creates a resource group named myResourceGroupLoadBalancer
+#+BEGIN_SRC sh
+  az group create --name myResourceGroupLoadBalancer --location eastus
+#+END_SRC
+
+* Refs
+[fn:1] https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-load-balancer

@@ -1,0 +1,10 @@
+#+Title: Legislacao Sobre Inovacao
+
+* Conitec[fn:conitec1][fn:conitec2]
+
+
+* Referencias
+[fn:csf1] http://www.cienciasemfronteiras.gov.br/web/csf/home
+[fn:csf2] https://www.estudarfora.org.br/ciencia-sem-fronteiras-acabou-entenda/
+[fn:conitec1] https://www.youtube.com/watch?v=XNH_6pZIHPo
+[fn:conitec2] https://www.youtube.com/channel/UC0KQ7jUKtZ_a5hA1LIBScuQ

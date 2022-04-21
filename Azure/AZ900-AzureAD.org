@@ -1,0 +1,48 @@
+#+Title: Azure AD
+
+* Definicao
+Serviço de gerenciamento de *identidade* [fn:10] e de acesso baseado em nuvem da Microsoft[fn:1]
+
+* O que são as licenças do Azure AD?
+Toda assinatura do Azure já recebe um tenant do AD gratuitamente, isso ocorre porque outros servicos dependem do AzureAD.
+Além da licença gratuita, exite tambem a Licanca Premium P1 ou Premium P2. Nenhuma dessas licencas so compativeis com a China pois la exige-se uma assinatura sujeita a legislacao local.[fn:1]
+
+
++ Azure Active Directory Premium P1
+  Permite *usuarios hibridos[fn:2]* acessem recursos locais e de nuvem
+  - Administracao Avancada
+    Grupos Dinâmicos[fn:3][fn:4][fn:5][fn:6]
+    Gerenciamento de grupo de autoatendimento[fn:7]
+    Microsoft Identity Manager[fn:9]
+    Recursos de write-back de nuvem
+    
+
++ Azure Active Directory Premium P2  
+  Azure AD Privileged Identity [fn:11][fn:12]
+
++ aplicativos do Office 365[fn:12]
+  incluido nos apps do office 365  
+  
+ [[https://www.microsoft.com/pt-br/security/business/identity-access-management/azure-ad-pricing][Clique Aqui]] para mais detalhes sobre precos do AzureAD.
+
+
+* Outros servicos usam servicos do AzureAD
+** Itune[fn:13]
+"O Intune integra-se com o Azure AD (Azure Active Directory) para controlar quem tem acesso e o que eles podem acessar"[fn:13]
+
+
+* Referencias
+[fn:1] https://docs.microsoft.com/pt-br/azure/active-directory/fundamentals/active-directory-whatis?WT.mc_id=APC-AzureActiveDirectory
+[fn:2] https://docs.microsoft.com/pt-br/azure/active-directory/hybrid/
+[fn:3] https://azureexperts.azurewebsites.net/azure-ad-grupos-dinamicos/
+[fn:4] https://docs.microsoft.com/pt-br/azure/active-directory/enterprise-users/groups-dynamic-tutorial
+[fn:5] https://docs.microsoft.com/pt-br/azure/active-directory/enterprise-users/groups-dynamic-membership
+[fn:6] https://docs.microsoft.com/pt-br/azure/active-directory/enterprise-users/groups-create-rule
+[fn:7] https://github.com/MicrosoftDocs/azure-docs.pt-br/blob/master/articles/active-directory/enterprise-users/groups-self-service-management.md
+[fn:8] https://docs.microsoft.com/pt-br/azure/active-directory/privileged-identity-management/pim-configure
+[fn:9] https://docs.microsoft.com/en-us/microsoft-identity-manager/install-mim-service-portal-azure-ad-premium
+[fn:10] https://docs.microsoft.com/en-us/graph/azuread-identity-access-management-concept-overview
+[fn:11] https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure
+[fn:12] https://azure.microsoft.com/pt-br/pricing/details/active-directory/
+[fn:13] https://docs.microsoft.com/pt-br/mem/intune/fundamentals/what-is-intune 
+

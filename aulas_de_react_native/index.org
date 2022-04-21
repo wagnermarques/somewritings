@@ -1,0 +1,16 @@
+#+Title: Reactive Native Aula 1
+
+npm install -g create-react-native-app
+npm install -g react-native-cli
+
+create-react-native-app rnAula1
+
+- cd rnAula1
+- npm run android
+- npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
+- npm run web
+
+
+react-native start
+npm run android
+

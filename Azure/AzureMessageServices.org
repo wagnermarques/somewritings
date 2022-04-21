@@ -1,0 +1,58 @@
+#+Title: Event Message Bus (compare-messaging-services)
+
+* Diferenciando Evento e Mensagem de Servico
+
+| caracteristica | evento                                                                                 | mensagem de servico                                                                                              |
+| peso           | lightweight                                                                            |                                                                                                                  |
+| Classificacao  | Discreto ou Seriado                                                                    |                                                                                                                  |
+| Definicao      | (Evento Discreto) Reporta mudanca de Estado                                            | Dados brutos produzidos por um servico                                                                           |
+| Definicao      | (Evento Seriado) É orientado a tempo e sao Correlacionados                             |                                                                                                                  |
+| dados          | Contem info sobre o que ocorreu mas nao dados sobre o que provocou a mudanca de estado | Contem dados relativos ao evento que disparou a msg                                                              |
+| Usos           | (Eventos Discretos) Aplicacacoes servless que precisam escalar                         |                                                                                                                  |
+| Consumo        | Nao faz suposicoes sobre como sera consumido o evento                                  | Faz suposicoes sobre como devera ser consumida, em geral usa um protocolo e aguarda responsta do consumdo da msg |
+|                |                                                                                        |                                                                                                                  |
+
+* Servico Event Grid
+Um backend para programação reativa a eventos. Em outras palavras, vc programa listeners para eventos.
+Trabalho com modelo publish-subscribe
+Forte integração com eventos da plataforma azure
+Tudo isso pra simplificar o consumo de eventos sem precisar fazer pooling
+Também roteia eventos tanto do azure como externos
+Não é um pipeline de dados ou seja não repassa o mesmo objeto atualizado ou não
+
+Características:
++ Escalonável dinamicamente
++ Baixo custo
++ Sem servidor
++ Pelo menos uma entrega de um evento
+
+* Serviço Event Hub
+É uma plataforma de streaming de Big Data e também servico de ingestão de eventos de iot
+Pode processar milhores de eventos por segundo
+Facilita a captura, retenção e reprodução de telemetria
+Faz a captura de eventos e disponibiliza para várias infraestruturas de processamento e serviços de análises
+Dispobiliada o que capturou tanto em fluxo como em batch mode
+Ideal para recuperação rátida de dados para efeitos de processamento em tempo real
+Pode capturar streaming dados inclusive a partir de arquivos
+
+* Barramento de Servicos Azure
+É um message broker
+Funciona tanto no modelo de publish-subscrive de tópicos como também fila de mensagens
+Suporte a transacao
+Ideal para aplicacoes transacionais
+Ideal para aplicações que suportam processos de negócios
+Permite persistencia de mensagens
+Permite entrega de mensagens assincronas
+
+** Características
+
++ "Entrega confiável de mensagens assíncronas (sistema de mensagens empresarial como um serviço) que requer sondagem"
++ "Recursos de sistema de mensagens avançados como PEPS (primeiro a entrar, primeiro a sair), envio em lote/sessões, transações, colocação de mensagens mortas em fila, controle temporal, roteamento e filtragem e detecção de duplicatas"
++ "Pelo menos uma entrega de uma mensagem"
++ "Entrega ordenada opcional de mensagens"
+
+
+* ref
+https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services
+https://docs.microsoft.com/pt-br/azure/event-grid/overview
+https://docs.microsoft.com/en-us/azure/event-grid/overview

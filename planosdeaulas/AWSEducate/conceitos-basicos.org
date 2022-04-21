@@ -1,0 +1,82 @@
+#+Title: AWS Conceitos Basicos
+
+* Principios Basicos[fn:2]
+** 5 Pilares
+   1. Segurança e conformidade
+      Responsabilidade compartilhada entre a AWS e o cliente
+      modelo mental de confiança zero
+      + Conceitos Importantes      
+        Identity and Access Management (IAM)
+        Segurança da rede
+        Criptografia de dados
+
+   2. Eficiência de performance
+      eficiência e escalabilidade na nuvem
+      modelo mental de considerar seus serviços como gado, não animais
+      de estimação
+      Servidores na nuvem sao provisionados em segundos e nao em
+      semanas como on premisses
+      + Conceitos        
+        *Seleção*: No modelo gado, outros sevidores podem ser
+        selecionados facilmente pra servicos especificos. Animal de
+        estimacao a gente fica com ele mesmo se nao e adequado pro
+        servico especifico porque om premisse nao e simples arrumar outro.
+        *Dimensionamento*:
+
+   3. Confiabilidade
+      
+   4. Excelência operacional
+   5. Otimização de custos
+
+
+** Caminhos de Aprendizagem[fn:1]
+Desenvolvedor de soluções completas
+Executar um aplicativo Web e conectá-lo a um back-end
+
+Engenheiro de DevOps
+Criar um pipeline simples de entrega contínua
+
+Desenvolvedor de análises de dados incorporadas
+Painel de análises de dados incorporadas
+
+Desenvolvedor de front-end
+Criar aplicativos completos React, iOS, Android e Flutter
+
+Desenvolvedor de aplicativos de IA
+Analisar sentimento em um texto
+
+Administrador de banco de dados
+Migrar suas cargas de trabalho de bancos de dados
+
+Desenvolvedor hobbista
+Criar e dimensionar um site no WordPress
+
+Cientista de dados
+Criar, treinar e implantar modelos de ML
+Aprofunde-se
+
+** Aprofundando um pouco mais [fn:1]
+* Bancos de dados
+  Aprenda o que são bancos de dados e como escolher os ideais para seus casos de uso e padrões de acesso.
+
+* Machine Learning
+  Aprenda como acrescentar inteligência às suas aplicações e treinar modelos de ML.
+
+* Sem servidor
+  Aprenda a criar e executar aplicativos e serviços de back-end sem se preocupar com servidores.
+
+* Computação
+  Aprenda sobre os serviços de computação para desenvolver, implantar e dimensionar suas aplicações.
+
+* Contêineres
+  Aprenda o que são contêineres e como escolher o ideal para seus casos de uso.
+
+* Armazenamento
+  Aprenda como armazenar de maneira confiável, dimensionável e segura os dados de sua aplicação na nuvem.
+
+   
+
+
+* Refs
+[fn:1] https://aws.amazon.com/pt/getting-started/?e=gs2020&p=console/#Get_to_Know_the_AWS_Cloud
+[fn:2] https://aws.amazon.com/pt/getting-started/fundamentals-core-concepts/?e=gs2020&p=gsrc

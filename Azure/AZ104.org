@@ -1,0 +1,17 @@
+#+Title: AZ104 Notes
+
+* AZ-104: gerenciar identidades e a governança no Azure[fn:2]
+** Describe Azure Active Directory benefits and features[fn:3]
++ Identity
++ Account
++ Azure AD Account
++ Azure subscription
++ Azure tenant/directory
+** Compare Active Directory Domain Services to Azure Active Directory[fn:4]
+
+
+* refs
+[fn:1] https://docs.microsoft.com/pt-br/learn/paths/az-900-describe-cloud-concepts/
+[fn:2] https://docs.microsoft.com/pt-br/learn/paths/az-104-manage-identities-governance/
+[fn:3] https://docs.microsoft.com/en-us/learn/modules/configure-azure-active-directory/2-describe-benefits-features
+[fn:4] https://docs.microsoft.com/en-us/learn/modules/configure-azure-active-directory/4-compare-active-directory-domain-services

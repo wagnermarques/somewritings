@@ -1,0 +1,26 @@
+#+Title: Inventario de conceitos
+
+* Conceito de tecnologia
+"Para Kenski (2003, p. 18), "segundo o Dicionário de filosofia de Nicola
+Abbagnano(1982), a tecnologia é o estudo dos processos técnicos de um
+determinado ramo de produção industrial ou de mais ramos". No entanto tecnologia
+envolve todo um conjunto de técnicas, que são utilizados para o desenvolvimento
+das ferramentas tecnológicas."[fn:1]
+
+* Conceito de tecnologia Educational
+"Para Kenski (2008, p.15), as tecnologias são tão antigas quanto a espécie humana. 
+Na verdade, foi a engenhosidade humana, em todos os tempos, que deu origem às 
+mais diferenciadas tecnologias.  
+Cada  época  foi  marcada  por  elementos  tecnológicos  que  se  fizeram  importantes  
+para a sobrevivência da espécie humana. A água, o fogo, um pedaço de madeira ou 
+um  osso  de  um  animal  qualquer  eram  usados  para  matar,  dominar  ou  afastar  
+animais ou outros homens que podiam representar ameaças 
+Para Kenski (2003, p. 18), "segundo o Dicionário de filosofia de Nicola 
+Abbagnano(1982), a tecnologia é o estudo dos processos técnicos de um 
+determinado ramo de produção industrial ou de mais ramos". No entanto tecnologia 
+envolve  todo  um  conjunto  de  técnicas,  que  são  utilizados  para  o  desenvolvimento  
+das ferramentas tecnológicas."[fn:1]
+
+* Refs
+[fn:1] https://alb.org.br/arquivo-morto/edicoes_anteriores/anais17/txtcompletos/sem16/COLE_932.pdf
+[fn:2] https://www.revistas.ufg.br/sv/article/view/42325/21309

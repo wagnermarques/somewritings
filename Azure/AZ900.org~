@@ -1,0 +1,398 @@
+#+Title: AZ900
+
+* thisfile roadmap *NO-EXPORTS*
+- Note taken on [2021-12-03 sex 10:39] \\
+  C-c C-z permitiu inserir essa anotacao aqui finaliza-la com C-c C-c
+
+
+* Modulo 5 - Identidade, governança, privacidade e conformidade
+** Princípios Básicos do Azure, parte 5: descrever recursos de identidade, governança, privacidade e conformidade[fn:1]
+BYOD, o uso de aplicativos móveis e aplicativos de nuvem, o *limite de segurança primário foi transferido dos firewalls e controles de acesso físico para a identidade*.
+saiba como: 
++ proteger o acesso aos recursos de nuvem
++ o que significa criar uma estratégia de governança de nuvem
++ como o Azure segue os padrões comuns de conformidade e regulamentação
+** estão os roteiros de aprendizagem
+*** Princípios Básicos do Azure, parte 1: descrever os principais conceitos do Azure[fn:2]
+:PROPERTIES:
+:learnquiz_name: Introdução aos conceitos básicos do Azure
+:learnquiz_link: Introdução aos conceitos básicos do Azure
+:todo:     terminar a sequencia de assuntos, ver se vai ficar dentro do modulo 5 porque sao do modulo 1
+:END:
+1. Introdução aos conceitos básicos do Azure[fn:3]
+   + o que e computacao em nuvem?[fn:4]
+   + o que e azure? [fn:5]
+   + tour pelos servicoso do azure[fn:6]
+     https://docs.microsoft.com/pt-br/learn/azure-fundamentals/intro-to-azure-fundamentals/media/azure-services-6c41a736.png
+   + Introdução a contas do Azure [fn:7]
+   + Introdução ao estudo de caso[fn:8]
+   + Verificação de conhecimentos[fn:9]
+     :fzltag:   
+     learnquiz : Introdução aos conceitos básicos do Azure
+     :END:
+     
+
+     
+
+*** Itens do modulo 5
+** Proteger o acesso aos seus aplicativos usando os serviços de identidade do Azure[fn:9]
+:PROPERTIES:
+:objetivosdeaprendizagem: autenticacao x autorizacao; conhecer azure ad; autenticacao sso, mfa, e acesso condicional
+:quizlink: https://docs.microsoft.com/pt-br/learn/modules/secure-access-azure-identity-services/5-knowledge-check
+:END:
+** Criar uma estratégia de governança de nuvem no Azure[fn:10]
+:PROPERTIES:
+:objetivosdeaprendizagem: Tomar decisoes organziacionais utilizando Cloud Adoption Framework; Definir permissoes de acessos com RBAC; Definir Bloqueios ou Locks; Usar TAGS e suas finalidades; Azure Policy pra controle e auditoria; Azure Blueprints pra governanca em escala
+
+:END:
+*** Introducao[fn:11]
+   "O termo governança descreve o processo geral de estabelecer regras e políticas e garantir que elas sejam impostas."
+   Vc realmente precisa de governanca quando:
+   + tem varias equipes envolvidas
+   + varias assinaturas
+   + requisitos regulatorios
+   + ha padroes e boas praticas a serem seguidos
+*** Impedir alterações acidentais usando bloqueios de recursos[fn:12]
+:PROPERTIES:
+:atividade_semarearestrita: https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/4-protect-storage-account-resource-lock
+:END:
+*** Organizar seus recursos do Azure usando marcas[fn:13]
+:PROPERTIES:
+:conceitos: tags; marcas; etiquetas
+:END:
++ Pra que serve as tags?
+  - Gerenciamento de recursos: você localiza recuros usando as marcas
+  - Gerenciar Custos: *Com tags da pra Organizar a fatura por marcas*, acompanhar orçamentos e prever o custos estimados
+  - Gerenciamento de operações:  agrupe os recursos de acordo com os seus SLAs de cada um
+  - Segurança: Vc usa marcas pra lassificar recursos pelo nivel de seguranca
+  - Governança e conformidade: Classifica recursos pelos compliances que precisam seguir
+  - Automação: Automatizar operacoes em recursos de acordo com suas marcas
+
+*** Controlar e auditar seus recursos usando o Azure Policy[fn:14]
+:PROPERTIES:
+:conceitos: Azure Policy, Azure Iniciatives
+:link_exercicio_sem_arearestrita: https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/7-restrict-location-azure-policy
+:END:
+
+*** Controlar várias assinaturas usando o Azure Blueprints[fn:15]
+:PROPERTIES:
+:conceitos: Azure Blueprint, Governanca
+:END:
+
+*** Acelere sua jornada de adoção da nuvem usando o Cloud Adoption Framework para Azure[fn:16]
+:PROPERTIES:
+:conceitos: Cloud Adoption Framework
+:link_quizz: https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/11-knowledge-check
+:link_resumo: https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/12-summary
+:END:
+1. "Definir sua estratégia"
+2. "Criar um plano"
+3. "Preparar sua organização"
+4. "Adotar a nuvem"
+5. "Controlar e gerenciar seus ambientes de nuvem"
+*** Criar uma estratégia de governança de assinatura [fn:17]
+*** Conheça os padrões de privacidade, conformidade e proteção de dados do Azure[fn:18]
+:PROPERTIES:
+:conceitos: privacidade; conformidade; protecao de dados
+:objetivosdeaprendizagem: explicar tipos de ofertas de conformidade; Acessar Politica de Privacidade; Acessar TSO - Termos Servico on Line; Adendo de Protecao da Microsoft; Conhecer padroes de conformidade da azure usando trust center; explicar funcionalidades especificas da azure para governos
+:END:
+**** Introducao[fn:19]
+:PROPERTIES:
+:prerequisitos: estar familizado com terminologia e conceitos basicos de nuvem
+:link_quizz: https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/8-knowledge-check
+:END:
+Tailwind ta acostumada a ter total controle de seus dados
+Deseja ir pra nuvem, mas sabe que o operador da nuvem tera acesso ao hardware onde fica seus dados
+Os dados fica fora de suas unidades fisicas
+Alem disso precisa aderir a regulacoes e outras conformidades
+**** Explorar termos e requisitos de conformidade[fn:20]
+A Tailwind entao pergunta:
++ O quanto o Azure mantém a conformidade com relação à manipulação de dados pessoais?
++ O quanto cada um dos serviços individuais do Azure se mantém em conformidade?
++ As ofertas de conformidade sao:
+  - Global
+  - Governo dos EUA
+  - Setor
+  - Regional
+**** Acessar a Política de Privacidade, os Termos dos Serviços Online e o Adendo de Proteção de Dados da Microsoft[fn:21]
++ Licenciamentos da Microsoft[fn:25]
++ Política de Privacidade da Microsoft[fn:22]
++ Termos dos Serviços Online[fn:23]
++ Adendo de Proteção de Dados[fn:24]
+  Microsoft Products and Services Data Protection Addendum (DPA)
+
+**** Explorar a Central de Confiabilidade (service trust)
++ acessar ao portal trust center[fn:27]
++ na sessao compliance-> compliance offering[fn:28]
+**** Acessar a documentação de conformidade do Azure[fn:29]
++ Documentação de conformidade do Azure[fn:30]
++ Categorias 
+  Global
+  Governo dos EUA
+  Serviços financeiros
+  Saúde
+  Mídia e manufatura
+  Regional
+ 
+**** O que é o Azure Governamental?[fn:31]
+**** O que é o Azure China 21Vianet?[fn:32]
+
+* Module 6 - Azure Fundamentals - Describe Azure cost management and service level agreements[fn:34]
+:PROPERTIES:
+:link-exercicio-semarearestrita--tco-calculator:
+:link-exercicio-semarearestrita--princing-calculator: https://docs.microsoft.com/en-us/learn/modules/plan-manage-azure-costs/5-estimate-workload-cost-pricing-calculator
+:END:
+
++ How much will it cost?
++ What guarantees does Azure provide around uptime and connectivity?
++ How do preview services impact my production applications?
+** Plan and manage your Azure costs[fn:33]
+:PROPERTIES:
+:objetivosdeaprendizagem: Saber pra que serve e como ssar Total Cost of Ownership Calculator; Saber diferentes maneiras de adquirir azure; Saber que serve e como usar Price Calculator; Saber o que impacta no custo total e aplicar recomendacoes pra minimizar os custos com azure
+:END:
+** Compare costs by using the Total Cost of Ownership Calculator[fn:35]
++ TCO Calculator[fn:36]
+** Purchase Azure services[fn:37]
++ What types of Azure subscriptions are available?
+  - Free trial
+     12 months of popular free services
+     a credit to explore any Azure service for 30 days
+     more than 25 services that are always free
+  - Pay-as-you-go
+    enables you to pay for what you use by attaching a credit or debit card to your account.
+  - Member offers
+    credits from some microsoft memberships products like:
+    Visual Studio subscribers, Microsoft Partner Network members, Microsoft for Startups members, and Microsoft Imagine members
++ How do I purchase Azure services?
+  - Through an Enterprise Agreement
+    enterprise customers can sign an Enterprise Agreement with Microsoft
+    The service fee is typically paid annually. 
+    As an Enterprise Agreement customer, you'll receive the best customized pricing based on the kinds and amounts of services you plan on using.
+
+  - Directly from the web
+    you purchase Azure services directly from the Azure portal website and pay standard prices. 
+    You're billed monthly, as a credit card payment or through an invoice. 
+    xThis purchasing method is known as Web Direct.
+
+ - Through a Cloud Solution Provide
+
++ How do we purchase Azure services?
++ Does location or network traffic affect cost?
++ What other factors affect the final cost?[fn:37]
+  Resource type
+  Usage meters
+  Resource usage
+  Azure subscription types
+  Azure Marketplace
+  Location
+  Zones for billing of network traffic
+  
++ How can we get a more detailed estimate of the cost to run on Azure?
+
+
+** Choose the right Azure services by examining SLAs and service lifecycle[fn:38]
+:PROPERTIES:
+:objetivosdeaprendizagem: Describe what a service-level agreement (SLA) is and why SLAs are important; Identify factors, such as the service tier you choose, that can affect an SLA.; Combine SLAs to compute a composite SLA.;Describe the service lifecycle in Azure, including how to access new capabilities that are coming to Azure.
+:END:
+
+
+* Nuvem Publica & Nuvem Privada
+Na nuvem privada o hardware e administrado e monitorado pelo proprietario da nuvem
+Na nuvem publica o hardare e compartilhado e quem usa a nuvem publica nao sabe com quem esta compartilhando o hardware e nao tem dominio algum sobre isso
+
+* Criando Uma Assinatura
+** Conta trial (Precisa de Cartao de Credito)
+https://azure.microsoft.com/pt-br/
+
+#+NAME: fig:img1
+#+CAPTION: img1b
+#+ATTR_ORG: :width 200
+#+ATTR_LATEX: :width 2.0in
+#+ATTR_HTML: :width 1024
+[[./imgs/AZ900/img1.png]]
+
+[[./imgs/AZ900/img2.png]]
+
+[[./imgs/AZ900/img3.png]]
+
+Apois digitar seu email e senha da sua conta microsoft vc devera preencher o formulário solicitado
+
+[[./imgs/AZ900/img4.png]]
+
+[[./imgs/AZ900/img5.png]]
+
+[[./imgs/AZ900/img6.png]]
+
+[[./imgs/AZ900/img7.png]]
+
+[[./imgs/AZ900/img8.png]]
+
+[[./imgs/AZ900/img9.png]]
+ img9 Apesar de ter solicitado o cartao qualquer cobranca so ocorre depois de o usuario autorizar a migracao da conta para conta do tipo pagao pelo uso
+
+** Conta Estudante (Nao precisa de Cartao de Credito)
+
+* (Portal Walktrhou) Conhecendo o portal
+
+[[./imgs/AZ900/portal-walkthrough1.png]]
+
+[[./imgs/AZ900/portal-walkthrough2.png]]
+
+[[./imgs/AZ900/portal-walkthrough3.png]]
+
+[[./imgs/AZ900/portal-walkthrough4.png]]
+
+[[./imgs/AZ900/portal-walkthrough5.png]]
+
+[[./imgs/AZ900/portal-walkthrough6.png]]
+
+[[./imgs/AZ900/portal-walkthrough7.png]]
+
+[[./imgs/AZ900/portal-walkthrough8.png]]
+
+[[./imgs/AZ900/portal-walkthrough9.png]]
+
+[[./imgs/AZ900/portal-walkthrough10.png]]
+
+[[./imgs/AZ900/portal-walkthrough11.png]]
+
+[[./imgs/AZ900/portal-walkthrough12.png]]
+
+[[./imgs/AZ900/portal-walkthrough13.png]]
+
+[[./imgs/AZ900/portal-walkthrough14.png]]
+
+[[./imgs/AZ900/portal-walkthrough15.png]]
+
+[[./imgs/AZ900/portal-walkthrough16.png]]
+
+[[./imgs/AZ900/portal-walkthrough17.png]]
+
+[[./imgs/AZ900/portal-walkthrough18.png]]
+
+[[./imgs/AZ900/portal-walkthrough19.png]]
+
+[[./imgs/AZ900/portal-walkthrough20.png]]
+
+[[./imgs/AZ900/portal-walkthrough21.png]]
+
+[[./imgs/AZ900/portal-walkthrough22.png]]
+
+[[./imgs/AZ900/portal-walkthrough23.png]]
+
+[[./imgs/AZ900/portal-walkthrough24.png]]
+
+[[./imgs/AZ900/portal-walkthrough25.png]]
+
+[[./imgs/AZ900/portal-walkthrough26.png]]
+
+
+
+
+* (Cta Estudante) Consultar Saldo da Assinatura de Estudante
+
+[[./imgs/AZ900/VerSaldoAssEstudante1.png]]
+[[
+./imgs/AZ900/VerSaldoAssEstudante2.png]]
+[[
+./imgs/AZ900/VerSaldoAssEstudante3.png]]
+[[
+./imgs/AZ900/VerSaldoAssEstudante4.png]]
+
+
+
+* Referencias
+[fn:35]
+[fn:35]
+[fn:35]
+[fn:35]
+[fn:35]
+
+
+https://docs.microsoft.com/en-us/learn/educator-center/programs/msle/overview
+https://docs.microsoft.com/en-us/samples/browse/
+https://docs.microsoft.com/en-us/learn/roles/educator
+https://education.microsoft.com/en-us/resource/85bc9fd3
+https://docs.microsoft.com/en-us/learn/educator-center/programs/msle/program-instructions
+
+
+https://github.com/Azure/azure-quickstart-templates
+https://github.com/Azure/AzureStack-QuickStart-Templates
+
+* Footnotes
+
+[fn:1] https://docs.microsoft.com/pt-br/learn/paths/az-900-describe-identity-governance-privacy-compliance-features/
+
+[fn:2] https://docs.microsoft.com/pt-br/learn/paths/az-900-describe-cloud-concepts/
+
+[fn:3] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/
+
+[fn:4] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/what-is-cloud-computing
+
+[fn:5] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/what-is-microsoft-azure
+
+[fn:6] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/tour-of-azure-services
+
+[fn:7] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/get-started-with-azure-accounts
+
+[fn:8] https://docs.microsoft.com/pt-br/learn/modules/intro-to-azure-fundamentals/case-study-introduction
+
+[fn:9] https://docs.microsoft.com/pt-br/learn/modules/secure-access-azure-identity-services/?ns-enrollment-type=LearningPath&ns-enrollment-id=learn.az-900-describe-identity-governance-privacy-compliance-features
+
+[fn:10] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/
+
+[fn:11] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/1-introduction
+
+[fn:12] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/3-prevent-changes-resource-locks
+
+[fn:13] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/5-organize-resource-tags
+
+[fn:14] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/6-control-audit-resources-azure-policy
+
+[fn:15] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/8-govern-subscriptions-azure-blueprints
+
+[fn:16] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/9-accelerate-cloud-adoption-framework
+
+[fn:17] https://docs.microsoft.com/pt-br/learn/modules/build-cloud-governance-strategy-azure/10-create-subscription-governance-strategy
+
+[fn:18] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/
+
+[fn:19] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/1-introduction
+
+[fn:20] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/2-explore-compliance-terms-requirements
+
+[fn:21] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/3-access-microsoft-privacy-statement
+
+[fn:25] https://www.microsoft.com/licensing/docs
+
+[fn:22] https://privacy.microsoft.com/pt-BR/privacystatement
+
+[fn:23] https://www.microsoft.com/licensing/terms/product/ForallOnlineServices
+
+[fn:24] https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA?year=2021
+
+[fn:27] https://www.microsoft.com/en-us/trust-center?rtc=1
+
+[fn:28] https://docs.microsoft.com/en-us/compliance/
+
+[fn:29] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/5-access-azure-compliance-documentation
+
+[fn:30] https://docs.microsoft.com/pt-br/azure/compliance/
+
+[fn:31] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/6-what-is-azure-government
+
+[fn:32] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/7-what-is-azure-china-21vianet
+
+[fn:34] https://docs.microsoft.com/en-us/learn/paths/az-900-describe-azure-cost-management-service-level-agreements/
+
+[fn:33] https://docs.microsoft.com/en-us/learn/modules/plan-manage-azure-costs/
+
+[fn:35] https://docs.microsoft.com/en-us/learn/modules/plan-manage-azure-costs/2-compare-costs-tco-calculator
+
+[fn:36] https://azure.microsoft.com/pt-br/pricing/tco/calculator/
+
+[fn:37] https://docs.microsoft.com/en-us/learn/modules/plan-manage-azure-costs/4-purchase-azure-services
+
+[fn:38] https://docs.microsoft.com/en-us/learn/modules/choose-azure-services-sla-lifecycle/
+
+[fn:26] https://docs.microsoft.com/pt-br/learn/modules/examine-privacy-compliance-data-protection-standards/1-introduction
