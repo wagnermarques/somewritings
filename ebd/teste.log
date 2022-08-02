@@ -1,0 +1,41 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/TeX Live for SUSE Linux) (preloaded format=latex 2022.1.8)  15 JAN 2022 02:16
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**teste.tex
+(./teste.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 50 language(s) loaded.
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2   \frametitle
+                 {There Is No Largest Prime Number}
+? 
+! Interruption.
+\GenericError  ...                                
+                                                  \endgroup 
+l.2   \frametitle
+                 {There Is No Largest Prime Number}
+? 
+! Emergency stop.
+\GenericError  ...                                
+                                                  \endgroup 
+l.2   \frametitle
+                 {There Is No Largest Prime Number}
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 6 strings out of 494036
+ 153 string characters out of 6158548
+ 50086 words of memory out of 5000000
+ 3494 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 475 hyphenation exceptions out of 8191
+ 7i,0n,5p,60b,20s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.
