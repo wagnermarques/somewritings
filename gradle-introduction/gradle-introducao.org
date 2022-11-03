@@ -388,7 +388,8 @@ drwxr-xr-x. 5 wagner wagner      4096 fev  1  1980 gradle-6.3
 
 * Criação de um projeto java básico
   https://guides.gradle.org/building-java-applications/
-
+  https://docs.gradle.org/current/samples/sample_building_java_applications.html
+  
   Pra criar um projeto com gradle a gente cria uma pasta, entra nela e
   dá o comando gradle init + parametros.
   Esse "init" é um plugin do gradle[gradleCodsInitPlugin]

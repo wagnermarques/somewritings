@@ -1,0 +1,63 @@
+#+Title: Nexus3
+
+acessar o servidor
+http://192.168.211.197:8081/#admin/repository/repositories
+
+* configurando o maven pra usar o nexus3
+
+https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/maven-repositories
+
+vai no settings do diretorio conf da instalacao do seu maven, procura a tag mirrors inclua o seguinte mirror
+
+#+begin_src xml
+    <mirror>
+      <!--This sends everything else to /public -->
+      <id>nexus</id>
+      <mirrorOf>*</mirrorOf>
+      <url>http://192.168.211.197:8081/repository/maven-public/</url>
+    </mirror>
+  </mirrors>
+#+end_src
+
+
+depois vc vai na tag profiles e cria um profile
+
+#+begin_src xml
+<profile>
+      <id>nexus</id>
+      <!--Enable snapshots for the built in central repo to direct -->
+      <!--all requests to nexus via the mirror -->
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+     <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+#+end_src
+
+por fim vc tem que ativar esse profile e pra isso vc vai na tag activeProfiles e inclui la o seguinte
+#+begin_src xml
+ <activeProfile>nexus</activeProfile>
+#+end_src
+
+#+begin_src sh name: blkname :session s1 :results replace output :exports both  :shebang "#!/usr/bin/bash" 
+mkdir -p /home/administrador/mnt/hdext/somewritings/devops/nexus3/projetos
+#+end_src
+
+#+RESULTS:
+
+
+
+* configurando o gradle pra usar o nexus3
+https://help.sonatype.com/repomanager2/maven-and-other-build-tools/gradle

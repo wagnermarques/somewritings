@@ -1,0 +1,40 @@
+#+Title: Gradle Cheet Sheet
+gradle init
+gradlew run
+gradlew build
+
+* plugins
+** application
+se vc tiver isso no seu build.gradle vc consegue usar o *./gradlew run*
+#+begin_example
+plugins {
+    id 'application'
+}
+application {
+    mainClass = 'javafxgradlenexus3project.App'
+}
+#+end_example
+
+** distribution[fn:3][fn:4]
+Esse e aplicado automaticamente
+
+** android[fn:5]
+
+* gerando executavel
+./gradlew jar
+* gerenciar daemos do gradle[fn:1]
++ para o processo (nao todos)
+  gradle --stop
++ matar todos os processos rodando (linux)
+  pkill -f '.*GradleDaemon.*'
++ matar todos os processos rodando (windows)
+  WMIC PROCESS where "Name like 'java%' AND CommandLine like '%GradleDaemon%'" Call Terminate
++ obtem status dos processos
+  gradle --status
+
+* Refs
+[fn:1] https://topitanswers.com/post/momentarily-kill-or-restart-gradle-daemon-from-inside-intellij-idea-gradle-stop-doesn-t-work
+[fn:2] https://docs.gradle.org/current/userguide/application_plugin.html
+[fn:3] https://docs.gradle.org/current/userguide/application_plugin.html#sec:the_distribution
+[fn:4] https://docs.gradle.org/current/userguide/distribution_plugin.html#distribution_plugin
+[fn:5] https://docs.gradle.org/current/samples/sample_building_android_apps.html

@@ -2,7 +2,11 @@
 * Install   
 https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
 
-* Exemplos Usando Azure Cli
+* Exemplos Usando Azure Cli[fn:3]
++ fazendo login[fn:1],[fn:2]
++ resource group - criar
++ resource group - listar
+  
 ** Quickstart: Deploy a Python (Django or Flask) web app to Azure App Service
 https://docs.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=flask%2Cwindows%2Cazure-portal%2Cterminal-bash%2Cvscode-deploy%2Cdeploy-instructions-azportal%2Cdeploy-instructions-zip-azcli
 
@@ -10,3 +14,8 @@ https://docs.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=flask%
 ** Run a custom container in Azure
 https://docs.microsoft.com/en-us/azure/app-service/quickstart-custom-container?pivots=container-linux&tabs=dotnet
 
+* Ref
+[fn:1] https://learn.microsoft.com/en-us/azure/batch/scripts/batch-cli-sample-run-job#sign-in-to-azure
+[fn:2] https://learn.microsoft.com/en-us/cli/azure/get-started-with-azure-cli#how-to-sign-into-the-azure-cli
+[fn:3] https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-cli
+https://learn.microsoft.com/en-us/cli/azure/

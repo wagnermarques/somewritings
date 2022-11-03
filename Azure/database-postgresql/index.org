@@ -1,0 +1,21 @@
+#+Title: Postgresql Azure
+
+* criando nosso servidor postgresql
+
+vamos criar nosso banco conforme abaixo
+#+begin_src sh name: blk1 :exports both :session s1
+export DB_NAME=pgdatabase
+export RESOURCE_GROUP=rg_chamadasonline
+export ADMIN_USER=mudaresseadminuser
+export ADMIN_PASS=mudaresseadminpass
+export SKU_NAME=
+export 
+#+end_src
+
+#+begin_src sh name: blkname :exports both
+#az postgres server create --name $DB_NAME --resource-group $RESOURCE_GROUP  --admin-user $ADMIN_USER --admin-password $ADMIN_PASS --sku-name $SKU_NAME
+az postgres server create --name pgdatabase --resource-group rg_chamadasonline  --admin-user adminuser --admin-password admin123 --sku-name $SKU_NAME
+#+end_src
+
+* References
+[fn:1] https://learn.microsoft.com/en-us/azure/postgresql/

@@ -1,0 +1,46 @@
+#+Title: Shellscript
+
+* Informacoes sobre processos
+#+begin_src sh name: procAnalisys1.sh :exports both :shebang "#!/usr/bin/bash" :tangle ./scripts/tangle/procAnalisys1.sh  :mkdirp yes :results replace output :exports both :cache no
+echo "\$$ => numero do processo=$$"
+echo "\$? => Exit code do script :for the script= $?"
+echo "\$! => id do processo executado anteriormente"
+#+end_src
+
+#+RESULTS:
+: $$ => numero do processo=38498
+: $? => Exit code do script :for the script= 0
+
+* Argumentos do script
+** Lidar com argumentos do script com recursos do proprio shell
+
+Vamos escrever nosso primeiro  shellscript que vai receber uns argumentos...
+
+#+begin_src sh name: argAnalisys1.sh :exports both :var x=1 :cmdline a b c :shebang "#!/usr/bin/bash" :tangle ./scripts/tangle/argAnalisys1.sh  :mkdirp yes :results replace output :exports both :cache no
+echo "\$0 => nome do script = $0"
+echo "\$1 => primeiro argumento=$1 \$2 retorna o segundo, e assim por diante"
+echo "\$# => quantidade de parametros recebidos=$#"
+echo "\$@ => representa um array com todos os argumentos passados para o script = $@"
+echo "\${@: $#} => ultimo parametro recebido = ${@: $#}"
+#+end_src
+
+#+RESULTS:
+: $0 => nome do script = /tmp/babel-2P1vR4/sh-script-HvFbUu
+: $1 => primeiro argumento=a $2 retorna o segundo, e assim por diante
+: $# => quantidade de parametros recebidos=3
+: $@ => representa um array com todos os argumentos passados para o script = a b c
+: ${@: 3} => ultimo parametro recebido = c
+
+
+#+begin_src sh name: :exports both :var x=1 :stdin blkName :cmdline arg1 arg2 :shebang "#!/usr/bin/bash" :tangle ./scripts/tangle/argAnalisys2-showUsage.sh  :mkdirp yes :results replace output :exports both :cache no
+[ $# -eq 0 ] && { echo "Usage: $0 passe algum parametro"; exit 1; }
+#+end_src
+
+**  
+** ARGS=("$@")
+    
+
+** Lidar com argumentos do script com outros recursos de shell
+https://stackoverflow.com/questions/2642707/shell-script-argument-parsing
+
+
