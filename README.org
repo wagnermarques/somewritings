@@ -1,7 +1,11 @@
 * Apresentação
-  Este respostório contém anotações de estudos e planos de aulas
-  As anotações estão na branch rascunho
-  E alguma planos de aulas mais organizados nesta branch main
+  Este respostório contém anotações de estudos e planos de aulas.
+  
+  As anotações estão na branch rascunho.
+  
+  E alguma planos de aulas mais organizados nesta branch main.
+
+  A proposta é dividir conteúdos e planos de aulas que vão reunir conteúdos dependendo do propósito da aula.
   
 * Exportação
   Para exportar usando beamer, colocar no inicio do arquivo
