@@ -1,6 +1,8 @@
 * Apresentação
-  Escrevendo algumas coisas como preparação de aulas e anotações
-  diversas em org-mode
+  Este respostório contém anotações de estudos e planos de aulas
+  As anotações estão na branch rascunho
+  E alguma planos de aulas mais organizados nesta branch main
+  
 * Exportação
   Para exportar usando beamer, colocar no inicio do arquivo
   #+SETUPFILE: ../etc/org_mode_SETUPFILE_4Beamer.org
