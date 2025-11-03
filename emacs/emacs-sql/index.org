@@ -1,0 +1,124 @@
+#+Title: Sql com emacs
+
+* Setup
+
+#+name: Esta tabela armazena a informaÃ§Ã£o sobre os arquivos enviados. Ela nÃ£o armazena o arquivo em si.
+#+begin_src elisp
+  (setq sql-connection-alist
+      '((moodle-psql
+         (sql-product 'postgres)
+         (sql-user "postgres")
+         (sql-database "moodle")
+         (sql-server "localhost")
+         (sql-port 5432))))
+
+  (setenv "PGPASSWORD" "1234")
+  (message (getenv "PGPASSWORD"))
+#+end_src
+
+#+RESULTS: Esta tabela armazena a informaÃ§Ã£o sobre os arquivos enviados. Ela nÃ£o armazena o arquivo em si.
+: 1234
+
+
+
+#+name: setup sql code for babel code
+#+begin_src elisp
+  (require 'ob-sql-mode)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sql . t)))
+#+end_src
+
+#+RESULTS: setup sql code for babel code
+
+
+* Tarefas
+
+** preliminares
+
+| curso |   |
+|       |   |
+
+*** Curso: EtecZL - Auxilio Domiciliar e PPs
+
+moodle=# select * from mdl_course;
+ id | category | sortorder |             fullname              |          shortname          | idnumber |     summary      | summaryformat | format | showgrades | newsitems | startdate  |  enddate   | relativedatesmode | marker | maxbytes | legacyfiles | showreports | visible | visibleold | downloadcontent | groupmode | groupmodeforce | defaultgroupingid | lang  | calendartype | theme | timecreated | timemodified | requested | enablecompletion | completionnotify |  cacherev  | originalcourseid | showactivitydates | showcompletionconditions | pdfexportfont 
+----+----------+-----------+-----------------------------------+-----------------------------+----------+------------------+---------------+--------+------------+-----------+------------+------------+-------------------+--------+----------+-------------+-------------+---------+------------+-----------------+-----------+----------------+-------------------+-------+--------------+-------+-------------+--------------+-----------+------------------+------------------+------------+------------------+-------------------+--------------------------+---------------
+  1 |        0 |         1 | EtecZL - Auxilio Domiciliar e PPs | EtecZl Aux Domiciliar e PPs |          |                  |             0 | site   |          1 |         3 |          0 |          0 |                 0 |      0 |        0 |           0 |           0 |       1 |          1 |                 |         0 |              0 |                 0 |       |              |       |  1755614139 |   1755615129 |         0 |                0 |                0 | 1755614925 |                  |                 0 |                          | 
+  2 |        5 |     50001 | Curso PWA                         | Curso PWA                   |          | <p>Curso PWA</p> |             1 | topics |          1 |         5 | 1755730800 | 1787266800 |                 0 |      0 |        0 |           0 |           0 |       1 |          1 |                 |         0 |              0 |                 0 | pt_br |              |       |  1755710085 |   1755710085 |         0 |                1 |                0 | 1755710092 |                  |                 1 |                        1 | 
+(2 linhas)
+
+| Curso     | pwa | id=2, category=5 |
+
+
+*** listando usuarios 
+#+name: listando usuarios
+#+begin_src shell
+moodle=# select * from mdl_user;
+ id |  auth  | confirmed | policyagreed | deleted | suspended | mnethostid |   username   |                                                        password                                                         | idnumber |     firstname     |   lastname   |              email              | emailstop | phone1 | phone2 | institution | department | address |    city    | country | lang  | calendartype | theme | timezone | firstaccess | lastaccess | lastlogin  | currentlogin |   lastip   | secret | picture |                                            description                                             | descriptionformat | mailformat | maildigest | maildisplay | autosubscribe | trackforums | timecreated | timemodified | trustbitmask | imagealt | lastnamephonetic | firstnamephonetic | middlename | alternatename | moodlenetprofile 
+----+--------+-----------+--------------+---------+-----------+------------+--------------+-------------------------------------------------------------------------------------------------------------------------+----------+-------------------+--------------+---------------------------------+-----------+--------+--------+-------------+------------+---------+------------+---------+-------+--------------+-------+----------+-------------+------------+------------+--------------+------------+--------+---------+----------------------------------------------------------------------------------------------------+-------------------+------------+------------+-------------+---------------+-------------+-------------+--------------+--------------+----------+------------------+-------------------+------------+---------------+------------------
+  1 | manual |         1 |            0 |       0 |         0 |          1 | guest        | $6$rounds=10000$GJNSyMGNkNUHnf9t$jEt7ExKYLSLPLotzEJDTcSnj4aW7l3VpdAakDwSHssGqCoG0qwZJJHb2/y3jdVc/2S8lPgeZnCH3J2PPCQG39/ |          | UsuÃ¡rio visitante |              | root@localhost                  |         0 |        |        |             |            |         |            |         | pt_br | gregorian    |       | 99       |           0 |          0 |          0 |            0 |            |        |       0 | Este Ã© um tipo de usuÃ¡rio especial que tem acesso a alguns curso com permissÃ£o limitada Ã  leitura. |                 1 |          1 |          0 |           2 |             1 |           0 |           0 |   1755614141 |            0 |          |                  |                   |            |               | 
+  3 | manual |         1 |            0 |       0 |         0 |          1 | testewgnalun | $6$rounds=10000$u5iNiUY56GSI6vRq$QEKIAehlp8Q5i7aFKAu0K.iAnTb5YX9daHt2E1p67qegu/NwEmvxG8z7ygX6kjL8ix11iijgHSmrT4qCGOZn.. |          | testewgnalun      | testewgnalun | wagnerdocri@gmail.com           |         0 |        |        |             |            |         |            | BR      | pt_br | gregorian    |       | 99       |           0 |          0 |          0 |            0 |            |        |       0 |                                                                                                    |                 1 |          1 |          0 |           2 |             1 |           0 |  1755709709 |   1755709709 |            0 |          |                  |                   |            |               | 
+  4 | manual |         1 |            0 |       0 |         0 |          1 | testewgnprof | $6$rounds=10000$rPmUq8myU/6EMlyk$nHlL2/HwALrfGNiMxdh5tZvwi0GAydyJ05UtjhKyfR.YC89E9ua0cnFAeUmstQxCoCCEROTdJUtAJCw/T.K.u0 |          | testewgnprof      | testewgnprof | wagnerfrancamarques@hotmail.com |         0 |        |        |             |            |         | object:830 | BR      | pt_br | gregorian    |       | 99       |           0 |          0 |          0 |            0 |            |        |       0 |                                                                                                    |                 1 |          1 |          0 |           2 |             1 |           0 |  1755710166 |   1755710166 |            0 |          |                  |                   |            |               | 
+  2 | manual |         1 |            0 |       0 |         0 |          1 | admin        | $6$rounds=10000$9TdwTq1cxShV2AVU$G9wMddpJ7xz4tNpVrF/f8o41IeIH1V27KuozzdHHuJJw6C3/TsOjVJYvRLupECPSKoDXL3Mhlb0jM9NHtnoNP0 |          | Administrador     | UsuÃ¡rio      | wagner.marques3@etec.sp.gov.br  |         0 |        |        |             |            |         |            |         | pt_br | gregorian    |       | 99       |  1755615469 | 1755710171 | 1755709571 |   1755710106 | 172.26.0.1 |        |       0 |                                                                                                    |                 1 |          1 |          0 |           1 |             1 |           0 |           0 |   1755614141 |            0 |          |                  |                   |            |               | 
+(4 linhas)
+#+end_src
+
+
+*** listando usuarios do participantes do curso
+
+| Cenario id | Cenario nome | Curso            | Prof | Alun |   |   |   |
+|------------+--------------+------------------+------+------+---+---+---|
+| 1          |              | id=2, category=5 |      |      |   |   |   |
+| Professor  |              |                  |      |      |   |   |   |
+
+
+
+
+
+
+
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+
+
+
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :engine postgres :dbhost localhost :database moodle :user postgres :port 5432 
+select * from mdl_assign limit 10;
+#+end_src
+
+#+RESULTS: select * from mdl_assign limit 10;
+|---|
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+#+Title: Como checar a saude de um disco rigido
+
+
+* Introdução
+
+* ferramentas
+** smartmontools
+
+** hdparm
+
+* procedimentos
+
+Dependencias: smartmontools hdparm
+
+
+wgn@wgnnote:~$ *sudo smartctl -a /dev/sda*
+[sudo] senha para wgn: 
+smartctl 7.5 2025-04-30 r5714 [x86_64-linux-6.17.4-200.fc42.x86_64] (local build)
+Copyright (C) 2002-25, Bruce Allen, Christian Franke, www.smartmontools.org
+ 
+Read NVMe Identify Controller failed: scsi error unsupported field in scsi command
+
+
+wgn@wgnnote:~$ *sudo badblocks -sv /dev/sda*
+A verificar blocos 0 a 1000204631
+
+-s: Show progress.
+
+-v: Verbose mode.
+
+wgn@wgnnote:~$ sudo badblocks -sv /dev/sda
+A verificar blocos 0 a 1000204631
+A procurar maus blocos (teste só-de-leitura): feito                                                
+Passo concluído, encontrados 0 maus blocos. (0/0/0 erros)
+(demora)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

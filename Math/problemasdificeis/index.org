@@ -1,0 +1,8 @@
+#+TItle: Problemas difíceis de Matemática
+
+
+* [[https://www.claymath.org/millennium-problems/][Milenium Prize Problems]]
+
+** Conjectura de Poincaré (Já foi resolvido)
+
+

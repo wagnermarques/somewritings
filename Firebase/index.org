@@ -1,0 +1,22 @@
+#+Title: Firebase
+
+* Introdução
+
+* Criando um projeto web simplizao pra trabalhar com firebase
+
+#+name: mkdir
+#+begin_src shell :session s1 :exports both :results output
+  mkdir -p $(pwd)/projetoaulafirebase
+  cd $(pwd)/projetoaulafirebase
+  export projdir=$(pwd)
+  echo $projdir
+#+end_src
+
+#+RESULTS: mkdir
+: /run/media/wgn/ext4/Projects-Srcs-Desktop/somewritings/Firebase/projetoaulafirebase/projetoaulafirebase
+
+
+
+
+
+

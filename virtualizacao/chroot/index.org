@@ -1,0 +1,447 @@
+#+Title: chroot
+
+
+* O que é um ambiente chroot (Resumo from perplexity)
+O chroot é utilizado para:
+  + isolar processos
+  + realizar testes controlados
+  + recuperar sistemas após falhas
+  + aumentar a segurança do sistema.​
+
+Quando você executa o comando chroot apontando para um diretório, todos os caminhos absolutos daqueles processos passam a ser relativos ao novo diretório raiz escolhido.
+
+Exemplos de uso: recuperar bootloader, resetar senhas, testar softwares sem afetar o restante do sistema.​
+
+Como funciona a configuração de um ambiente chroot
+Primeiramente, cria-se uma estrutura de diretórios que servirá como novo root (geralmente copiando binários essenciais e suas bibliotecas dependentes para lá).​
+
+Utiliza-se o comando chroot /caminho/para/novo/root comando para acessar essa "jaula".​
+
+É comum copiar os seguintes diretórios para dentro do ambiente chroot: /bin, /lib, /lib64, /usr e /etc, garantindo a funcionalidade de comandos básicos.​
+
+Para ambientes mais avançados, pode-se montar arquivos especiais como
+/proc e /dev dentro do chroot.​
+
+
+* Configurando Ambiente Chroot no Fedora 42 para Builds do Blender
+
+** Instalar Ferramentas Necessárias no Fedora
+
+*** Pré-requisitos
+**** Sistema host executando Rocky Linux 8 ou distribuição similar
+Estou usando um fedora 42 agora. Tanto o Fedora como o Rock Linux são
+da família Red Hat.
+
+#+name: sudo cat /etc/issue sudo cat /etc/fedora-release 
+#+begin_src shell
+wgn@wgnnote:~$ sudo cat /etc/issue
+[sudo] senha para wgn: 
+\S
+Kernel \r on \m (\l)
+
+wgn@wgnnote:~$ sudo cat /etc/fedora-release 
+Fedora release 42 (Adams)
+wgn@wgnnote:~$ 
+
+#+end_src
+
+**** Acesso de root/superusuário
+ok
+
+**** Conexão com internet para download de pacotes
+ok
+
+A ferramentas que vamos utilizar são:
+mock
+fedora-packager
+development-tools (fedora grouped packages)
+**** Download da imagem cloud do Rocky Linux
+consulte as imagens disponiveis para download em : https://rockylinux.org/pt-BR/download
+fiz download dessa: https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-GenericCloud-Base.latest.x86_64.qcow2
+*** Instalando ferramenta mock: sudo dnf install mock
+O mock cria um chroot limpo (ou container) no qual ele instala todas as dependências necessárias para compilar um pacote RPM a partir de seu arquivo .src.rpm ou especificação (.spec).
+Assim, a compilação ocorre em um ambiente controlado, sem interferir
+no seu sistema principal.
+
+**** Ele é usado principalmente por:
+
+Empacotadores (maintainers) do Fedora, EPEL e outras distros RPM.
+
+Desenvolvedores que precisam gerar pacotes RPM consistentes e reproduzíveis.
+
+Sistemas de CI/CD que automatizam a construção de pacotes.
+
+#+name: sudo dnf install mock
+#+begin_src shell
+wgn@wgnnote:~$ sudo dnf install mock
+Atualizando e carregando repositórios:
+Repositórios carregados.
+Pacote                                                        Arch           Versão                                                        Repositório                         Tamanho
+Instalando:
+ mock                                                         noarch         6.4-1.fc42                                                    updates                             1.1 MiB
+Instalando dependências:
+ aardvark-dns                                                 x86_64         2:1.16.0-1.fc42                                               updates                             2.3 MiB
+ catatonit                                                    x86_64         0.2.1-1.fc42                                                  fedora                            776.8 KiB
+ conmon                                                       x86_64         2:2.1.13-1.fc42                                               fedora                            166.3 KiB
+ containers-common                                            noarch         5:0.64.2-1.fc42                                               updates                           128.6 KiB
+ containers-common-extra                                      noarch         5:0.64.2-1.fc42                                               updates                             0.0   B
+ createrepo_c                                                 x86_64         1.2.0-3.fc42                                                  fedora                            202.5 KiB
+ createrepo_c-libs                                            x86_64         1.2.0-3.fc42                                                  fedora                            281.7 KiB
+ drpm                                                         x86_64         0.5.2-8.fc42                                                  fedora                            131.4 KiB
+ libuser                                                      x86_64         0.64-12.fc42                                                  fedora                              1.9 MiB
+ mock-core-configs                                            noarch         43.2-1.fc42                                                   updates                           392.2 KiB
+ mock-filesystem                                              noarch         6.4-1.fc42                                                    updates                            17.7 KiB
+ netavark                                                     x86_64         2:1.16.1-1.fc42                                               updates                            11.4 MiB
+ python3-backoff                                              noarch         2.2.1-9.fc42                                                  fedora                            103.7 KiB
+ python3-jinja2                                               noarch         3.1.6-1.fc42                                                  fedora                              2.9 MiB
+ python3-markupsafe                                           x86_64         3.0.2-2.fc42                                                  fedora                             55.8 KiB
+ python3-pyroute2                                             noarch         0.7.12-5.fc42                                                 fedora                              3.5 MiB
+ python3-templated-dictionary                                 noarch         1.5-2.fc42                                                    fedora                             28.1 KiB
+ qemu-user-static-aarch64                                     x86_64         2:9.2.4-2.fc42                                                updates                            13.7 MiB
+ qemu-user-static-alpha                                       x86_64         2:9.2.4-2.fc42                                                updates                             3.9 MiB
+ qemu-user-static-arm                                         x86_64         2:9.2.4-2.fc42                                                updates                            10.3 MiB
+ qemu-user-static-hexagon                                     x86_64         2:9.2.4-2.fc42                                                updates                             5.7 MiB
+ qemu-user-static-hppa                                        x86_64         2:9.2.4-2.fc42                                                updates                             3.9 MiB
+ qemu-user-static-loongarch64                                 x86_64         2:9.2.4-2.fc42                                                updates                             4.5 MiB
+ qemu-user-static-m68k                                        x86_64         2:9.2.4-2.fc42                                                updates                             4.1 MiB
+ qemu-user-static-microblaze                                  x86_64         2:9.2.4-2.fc42                                                updates                             7.8 MiB
+ qemu-user-static-mips                                        x86_64         2:9.2.4-2.fc42                                                updates                            29.2 MiB
+ qemu-user-static-or1k                                        x86_64         2:9.2.4-2.fc42                                                updates                             3.8 MiB
+ qemu-user-static-ppc                                         x86_64         2:9.2.4-2.fc42                                                updates                            14.4 MiB
+ qemu-user-static-riscv                                       x86_64         2:9.2.4-2.fc42                                                updates                            10.4 MiB
+ qemu-user-static-s390x                                       x86_64         2:9.2.4-2.fc42                                                updates                             4.3 MiB
+ qemu-user-static-sh4                                         x86_64         2:9.2.4-2.fc42                                                updates                             7.8 MiB
+ qemu-user-static-sparc                                       x86_64         2:9.2.4-2.fc42                                                updates                            12.2 MiB
+ qemu-user-static-x86                                         x86_64         2:9.2.4-2.fc42                                                updates                             9.1 MiB
+ qemu-user-static-xtensa                                      x86_64         2:9.2.4-2.fc42                                                updates                            14.0 MiB
+ shadow-utils-subid                                           x86_64         2:4.17.4-1.fc42                                               fedora                             50.4 KiB
+ usermode                                                     x86_64         1.114-12.fc42                                                 fedora                            831.3 KiB
+Instalando dependências fracas:
+ buildah                                                      x86_64         2:1.41.5-1.fc42                                               updates                            30.9 MiB
+ composefs                                                    x86_64         1.0.8-2.fc42                                                  fedora                            180.2 KiB
+ criu-libs                                                    x86_64         4.1.1-1.fc42                                                  updates                            85.1 KiB
+ crun                                                         x86_64         1.24-1.fc42                                                   updates                           577.5 KiB
+ dnf-utils                                                    noarch         4.10.1-1.fc42                                                 fedora                             21.4 KiB
+ fuse-overlayfs                                               x86_64         1.13-3.fc42                                                   fedora                            135.0 KiB
+ podman                                                       x86_64         5:5.6.2-1.fc42                                                updates                            47.3 MiB
+ qemu-user-static                                             x86_64         2:9.2.4-2.fc42                                                updates                            44.6 KiB
+
+Sumário da Transação:
+ Instalando:        45 pacotes
+
+O tamanho total dos pacotes recebidos é 66 MiB. É necessário fazer o download de 66 MiB.
+Após esta operação, 264 MiB adicionais serão utilizados (instalar 264 MiB, remover 0 B).
+Is this ok [y/N]: 
+#+end_src
+
+**** Benefícios do uso
+
+🔒 Isolamento — o build não polui o sistema.
+
+🧹 Ambiente limpo — garante que o pacote declare todas as dependências necessárias.
+
+♻️ Reprodutibilidade — builds idênticos em diferentes máquinas.
+
+⚙️ Multi-distribuição — pode compilar para várias versões do Fedora/RHEL sem precisar mudar de sistema.
+
+**** Exemplo prático
+
+Suponha que você tenha um arquivo hello.spec.
+Você pode criar o pacote assim:
+
+mock -r fedora-40-x86_64 --buildsrpm --spec hello.spec --sources ./sources/
+mock -r fedora-40-x86_64 --rebuild ./result/hello-1.0-1.src.rpm
+
+
+
+
+
+
+Primeiro, instale as ferramentas para criar e gerenciar ambientes chroot:
+
+bash
+dnf install debootstrap dnf-plugins-core
+#+name: sudo dnf install debootstrap dnf-plugins-core
+#+begin_src shell
+wgn@wgnnote:~$ sudo dnf install debootstrap dnf-plugins-core
+[sudo] senha para wgn: 
+Atualizando e carregando repositórios:
+Repositórios carregados.
+O pacote "dnf-plugins-core-4.10.1-1.fc42.noarch" já está instalado.
+
+Pacote                                                        Arch           Versão                                                        Repositório                         Tamanho
+Instalando:
+ debootstrap                                                  noarch         1.0.140-3.fc42                                                fedora                            337.4 KiB
+Instalando dependências:
+ dpkg                                                         x86_64         1.22.20-1.fc42                                                updates                             6.5 MiB
+ keyrings-filesystem                                          noarch         1-23.fc42                                                     fedora                             33.0   B
+Instalando dependências fracas:
+ debian-keyring                                               noarch         2023.4-5.fc42                                                 fedora                            163.5 KiB
+ ubu-keyring                                                  noarch         2023.11.28.1-4.fc42                                           fedora                             19.6 KiB
+
+Sumário da Transação:
+ Instalando:         5 pacotes
+
+O tamanho total dos pacotes recebidos é 2 MiB. É necessário fazer o download de 2 MiB.
+Após esta operação, 7 MiB adicionais serão utilizados (instalar 7 MiB, remover 0 B).
+Is this ok [y/N]: 
+#+end_src
+
+
+dnf install --enablerepo=devel mock
+
+*** Instalando ferramenta fedora-packager: sudo dnf install fedora-packager
+#+name: sudo dnf install fedora-packager
+#+begin_src shell
+wgn@wgnnote:~$ sudo dnf install fedora-packager
+Atualizando e carregando repositórios:
+ Fedora 42 - x86_64 - Updates                                                                                                                 100% |  13.2 KiB/s |  14.3 KiB |  00m01s
+Repositórios carregados.
+Pacote                                                        Arch           Versão                                                        Repositório                         Tamanho
+Desatualizando:
+ cpp                                                          x86_64         15.0.1-0.11.fc42                                              fedora                             37.8 MiB
+   substituindo cpp                                           x86_64         15.2.1-1.fc42                                                 updates                            37.9 MiB
+ gcc                                                          x86_64         15.0.1-0.11.fc42                                              fedora                            110.9 MiB
+   substituindo gcc                                           x86_64         15.2.1-1.fc42                                                 updates                           111.2 MiB
+ libgccjit                                                    x86_64         15.0.1-0.11.fc42                                              fedora                             40.5 MiB
+   substituindo libgccjit                                     x86_64         15.2.1-1.fc42                                                 updates                            40.6 MiB
+ libgomp                                                      x86_64         15.0.1-0.11.fc42                                              fedora                            537.6 KiB
+   substituindo libgomp                                       x86_64         15.2.1-1.fc42                                                 updates                           541.1 KiB
+Instalando:
+ fedora-packager                                              noarch         1.1-2.fc42                                                    fedora                             19.9 KiB
+Instalando dependências:
+ add-determinism                                              x86_64         0.6.0-1.fc42                                                  fedora                              2.5 MiB
+ annobin-docs                                                 noarch         12.94-1.fc42                                                  updates                            98.9 KiB
+ annobin-plugin-gcc                                           x86_64         12.94-1.fc42                                                  updates                           993.5 KiB
+ ansible-srpm-macros                                          noarch         1-17.1.fc42                                                   fedora                             35.7 KiB
+ bodhi-client                                                 noarch         25.5.1-1.fc42                                                 updates                           264.8 KiB
+ build-reproducibility-srpm-macros                            noarch         0.6.0-1.fc42                                                  fedora                            735.0   B
+ dash                                                         x86_64         0.5.12-5.fc42                                                 fedora                            167.1 KiB
+ debugedit                                                    x86_64         5.1-7.fc42                                                    updates                           192.7 KiB
+ devscripts-checkbashisms                                     noarch         2.25.9-1.fc42                                                 updates                            52.5 KiB
+ dwz                                                          x86_64         0.16-1.fc42                                                   updates                           287.1 KiB
+ efi-srpm-macros                                              noarch         6-3.fc42                                                      updates                            40.1 KiB
+ fakeroot                                                     x86_64         1.37.1-1.fc42                                                 fedora                            154.8 KiB
+ fakeroot-libs                                                x86_64         1.37.1-1.fc42                                                 fedora                            124.6 KiB
+ fedora-license-data                                          noarch         1.72-1.fc42                                                   updates                           876.2 KiB
+ fedpkg                                                       noarch         1.46-4.fc42                                                   updates                           311.5 KiB
+ filesystem-srpm-macros                                       noarch         3.18-47.fc42                                                  updates                            38.2 KiB
+ fonts-srpm-macros                                            noarch         1:2.0.5-22.fc42                                               updates                            55.8 KiB
+ forge-srpm-macros                                            noarch         0.4.0-2.fc42                                                  fedora                             38.9 KiB
+ fpc-srpm-macros                                              noarch         1.3-14.fc42                                                   fedora                            144.0   B
+ gcc-plugin-annobin                                           x86_64         15.0.1-0.11.fc42                                              fedora                             57.2 KiB
+ ghc-srpm-macros                                              noarch         1.9.2-2.fc42                                                  fedora                            779.0   B
+ gnat-srpm-macros                                             noarch         6-7.fc42                                                      fedora                              1.0 KiB
+ go-srpm-macros                                               noarch         3.8.0-1.fc42                                                  updates                            61.9 KiB
+ kernel-srpm-macros                                           noarch         1.0-25.fc42                                                   fedora                              1.9 KiB
+ koji                                                         noarch         1.35.3-1.fc42                                                 updates                           896.5 KiB
+ krb5-pkinit                                                  x86_64         1.21.3-6.fc42                                                 updates                           125.2 KiB
+ krb5-workstation                                             x86_64         1.21.3-6.fc42                                                 updates                             2.5 MiB
+ libgit2                                                      x86_64         1.9.0-4.fc42                                                  fedora                              1.3 MiB
+ libkadm5                                                     x86_64         1.21.3-6.fc42                                                 updates                           213.9 KiB
+ license-validate                                             noarch         25-3.fc42                                                     fedora                             17.2 KiB
+ licensecheck                                                 noarch         3.3.9-6.fc42                                                  fedora                            108.4 KiB
+ llhttp                                                       x86_64         9.2.1-6.fc42                                                  updates                            72.5 KiB
+ lua-srpm-macros                                              noarch         1-15.fc42                                                     fedora                              1.3 KiB
+ ocaml-srpm-macros                                            noarch         10-4.fc42                                                     fedora                              1.9 KiB
+ openblas-srpm-macros                                         noarch         2-19.fc42                                                     fedora                            112.0   B
+ package-notes-srpm-macros                                    noarch         0.5-13.fc42                                                   fedora                              1.6 KiB
+ patch                                                        x86_64         2.8-1.fc42                                                    updates                           222.8 KiB
+ perl-Array-IntSpan                                           noarch         2.004-15.fc42                                                 fedora                             53.5 KiB
+ perl-Feature-Compat-Class                                    noarch         0.07-3.fc42                                                   fedora                             43.0 KiB
+ perl-Feature-Compat-Try                                      noarch         0.05-8.fc42                                                   fedora                             35.6 KiB
+ perl-IO-Interactive                                          noarch         1.027-1.fc42                                                  updates                            33.9 KiB
+ perl-Log-Any                                                 noarch         1.717-5.fc42                                                  fedora                            186.5 KiB
+ perl-Log-Any-Adapter-Screen                                  noarch         0.141-3.fc42                                                  fedora                             40.7 KiB
+ perl-Object-Pad                                              x86_64         0.820-1.fc42                                                  fedora                            396.8 KiB
+ perl-Path-Iterator-Rule                                      noarch         1.015-10.fc42                                                 fedora                            139.0 KiB
+ perl-Path-Tiny                                               noarch         0.148-1.fc42                                                  fedora                            234.5 KiB
+ perl-Pod-Constants                                           noarch         0.19-27.fc42                                                  fedora                             28.2 KiB
+ perl-Pod-Parser                                              noarch         1.67-5.fc42                                                   fedora                            262.6 KiB
+ perl-Regexp-Pattern                                          noarch         0.2.14-16.fc42                                                fedora                             69.0 KiB
+ perl-Regexp-Pattern-License                                  noarch         3.11.2-2.fc42                                                 fedora                            638.7 KiB
+ perl-Set-IntSpan                                             noarch         1.19-35.fc42                                                  fedora                             63.0 KiB
+ perl-String-Copyright                                        noarch         0.003014-7.fc42                                               fedora                             58.3 KiB
+ perl-String-Escape                                           noarch         2010.002-45.fc42                                              fedora                             33.2 KiB
+ perl-String-License                                          noarch         0.0.11-2.fc42                                                 fedora                             86.8 KiB
+ perl-Term-Size-Perl                                          x86_64         0.031-21.fc42                                                 fedora                             25.4 KiB
+ perl-Term-Table                                              noarch         0.024-2.fc42                                                  fedora                             77.9 KiB
+ perl-Test-Simple                                             noarch         3:1.302210-1.fc42                                             fedora                              1.7 MiB
+ perl-Unicode-UTF8                                            x86_64         0.62-27.fc42                                                  fedora                             43.8 KiB
+ perl-XS-Parse-Keyword                                        x86_64         0.49-1.fc42                                                   updates                           175.2 KiB
+ perl-XS-Parse-Sublike                                        x86_64         0.39-1.fc42                                                   updates                           127.5 KiB
+ perl-experimental                                            noarch         0.034-2.fc42                                                  fedora                             42.4 KiB
+ perl-srpm-macros                                             noarch         1-57.fc42                                                     fedora                            861.0   B
+ perl-threads                                                 x86_64         1:2.40-512.fc42                                               fedora                            115.0 KiB
+ pyproject-srpm-macros                                        noarch         1.18.4-1.fc42                                                 updates                             1.9 KiB
+ python-srpm-macros                                           noarch         3.13-5.fc42                                                   updates                            51.0 KiB
+ python3-GitPython                                            noarch         3.1.45-1.fc42                                                 updates                             1.8 MiB
+ python3-annotated-types                                      noarch         0.7.0-4.fc42                                                  fedora                             79.9 KiB
+ python3-authlib                                              noarch         1.4.0-2.fc42                                                  fedora                              1.4 MiB
+ python3-beautifulsoup4                                       noarch         4.14.2-1.fc42                                                 updates                           973.5 KiB
+ python3-bugzilla                                             noarch         3.3.0-2.fc42                                                  fedora                            437.4 KiB
+ python3-cccolutils                                           x86_64         1.5-32.fc42                                                   fedora                             47.3 KiB
+ python3-construct                                            noarch         2.10.70-6.fc42                                                fedora                              1.0 MiB
+ python3-cryptography                                         x86_64         44.0.0-3.fc42                                                 fedora                              5.0 MiB
+ python3-decorator                                            noarch         5.1.1-14.fc42                                                 fedora                             78.5 KiB
+ python3-dns                                                  noarch         2.7.0-6.fc42                                                  updates                             2.9 MiB
+ python3-email-validator                                      noarch         2.3.0-1.fc42                                                  updates                           181.0 KiB
+ python3-enchant                                              noarch         3.2.2-15.fc42                                                 fedora                            367.2 KiB
+ python3-gitdb                                                noarch         4.0.11-2.fc42                                                 fedora                            500.1 KiB
+ python3-gssapi                                               x86_64         1.7.3-11.fc42                                                 fedora                              2.6 MiB
+ python3-koji                                                 noarch         1.35.3-1.fc42                                                 updates                             2.2 MiB
+ python3-koji-cli-plugins                                     noarch         1.35.3-1.fc42                                                 updates                            60.1 KiB
+ python3-krb5                                                 x86_64         0.7.0-2.fc42                                                  fedora                              3.3 MiB
+ python3-lark                                                 noarch         1.2.2-2.fc42                                                  fedora                              1.3 MiB
+ python3-libmodulemd                                          x86_64         2.15.2-1.fc42                                                 updates                            15.0 KiB
+ python3-munch                                                noarch         4.0.0-2.fc42                                                  fedora                             60.7 KiB
+ python3-openidc-client                                       noarch         0.6.0^1.0e2ed81-3.fc42                                        fedora                             73.9 KiB
+ python3-progressbar2                                         noarch         4.5.0-1.fc42                                                  fedora                            568.1 KiB
+ python3-pybeam                                               noarch         0.8-3.fc42                                                    fedora                             43.7 KiB
+ python3-pycurl                                               x86_64         7.45.4-2.fc42                                                 fedora                            429.2 KiB
+ python3-pydantic                                             noarch         2.10.6-2.fc42                                                 updates                             4.5 MiB
+ python3-pydantic-core                                        x86_64         2.27.2-5.fc42                                                 updates                             5.0 MiB
+ python3-pygit2                                               x86_64         1.17.0-2.fc42                                                 fedora                              1.1 MiB
+ python3-requests-gssapi                                      noarch         1.2.3-14.fc42                                                 fedora                             61.5 KiB
+ python3-requests-kerberos                                    noarch         0.15.0-2.fc42                                                 fedora                             65.2 KiB
+ python3-rpkg                                                 noarch         1.68-9.fc42                                                   updates                             1.1 MiB
+ python3-rpmautospec                                          noarch         0.8.1-11.fc42                                                 updates                           416.6 KiB
+ python3-rpmautospec-core                                     noarch         0.1.5-3.fc42                                                  fedora                             10.7 KiB
+ python3-smmap                                                noarch         5.0.1-2.fc42                                                  fedora                            198.0 KiB
+ python3-soupsieve                                            noarch         2.7-1.fc42                                                    updates                           298.2 KiB
+ python3-spnego                                               noarch         0.11.1-2.fc42                                                 fedora                              1.0 MiB
+ python3-spnego+kerberos                                      noarch         0.11.1-2.fc42                                                 fedora                              6.5 KiB
+ python3-straight-plugin                                      noarch         1.5.0-30.fc42                                                 fedora                             26.5 KiB
+ python3-tomli-w                                              noarch         1.2.0-1.fc42                                                  fedora                             32.7 KiB
+ python3-typing-extensions                                    noarch         4.12.2-4.fc42                                                 fedora                            458.2 KiB
+ python3-urlgrabber                                           noarch         4.1.0-20.fc42                                                 fedora                            543.4 KiB
+ python3-utils                                                noarch         3.9.0-2.fc42                                                  fedora                            224.0 KiB
+ qt5-srpm-macros                                              noarch         5.15.17-1.fc42                                                updates                           500.0   B
+ qt6-srpm-macros                                              noarch         6.9.2-1.fc42                                                  updates                           464.0   B
+ redhat-rpm-config                                            noarch         342-4.fc42                                                    updates                           185.5 KiB
+ rpkg-common                                                  noarch         1.68-9.fc42                                                   updates                            11.8 KiB
+ rpm-build                                                    x86_64         4.20.1-1.fc42                                                 fedora                            168.7 KiB
+ rpmautospec                                                  noarch         0.8.1-11.fc42                                                 updates                           166.3 KiB
+ rpmdevtools                                                  noarch         9.6-9.fc42                                                    fedora                            213.8 KiB
+ rpmlint                                                      noarch         2.7.0-3.fc42                                                  updates                             1.1 MiB
+ rpmlint-fedora-license-data                                  noarch         1.72-1.fc42                                                   updates                            23.9 KiB
+ rust-srpm-macros                                             noarch         26.4-1.fc42                                                   updates                             4.8 KiB
+ systemd-rpm-macros                                           noarch         257.10-1.fc42                                                 updates                            10.7 KiB
+ tree-sitter-srpm-macros                                      noarch         0.1.0-8.fc42                                                  fedora                              6.5 KiB
+ zig-srpm-macros                                              noarch         1-4.fc42                                                      fedora                              1.1 KiB
+Instalando dependências fracas:
+ fedora-packager-kerberos                                     noarch         1.1-2.fc42                                                    fedora                             23.9 KiB
+ fedora-repoquery                                             x86_64         0.8-1.fc42                                                    updates                            25.5 MiB
+ fedora-repos-rawhide                                         noarch         42-1                                                          fedora                              2.2 KiB
+ fedora-review                                                noarch         0.10.0-13.fc42                                                fedora                            798.6 KiB
+ fedpkg-completion                                            noarch         1.46-4.fc42                                                   updates                            35.0   B
+ fedrq                                                        noarch         1.5.0-1.fc42                                                  fedora                            769.8 KiB
+ perl-Module-Pluggable                                        noarch         2:6.3-2.fc42                                                  fedora                             56.1 KiB
+ perl-Term-Size-Any                                           noarch         0.002-44.fc42                                                 fedora                              8.0 KiB
+ python3-pydantic+email                                       noarch         2.10.6-2.fc42                                                 updates                            31.3 KiB
+ python3-rpmautospec+click                                    noarch         0.8.1-11.fc42                                                 updates                            24.9 KiB
+ python3-rpmautospec+pygit2                                   noarch         0.8.1-11.fc42                                                 updates                            24.9 KiB
+ python3-rpmautospec+rpm                                      noarch         0.8.1-11.fc42                                                 updates                            24.9 KiB
+ rpmdistro-repoquery                                          noarch         0^20250110git2dd8134-4.fc42                                   fedora                             40.1 KiB
+
+Sumário da Transação:
+ Instalando:       133 pacotes
+ Substituindo:          4 pacotes
+ Downgrading:        4 pacotes
+
+O tamanho total dos pacotes recebidos é 88 MiB. É necessário fazer o download de 88 MiB.
+Após esta operação, 85 MiB adicionais serão utilizados (instalar 276 MiB, remover 190 MiB).
+Is this ok [y/N]: 
+
+#+end_src
+
+*** Instalando ferramentas development-group tools
+#+name: wgn@wgnnote:~$ sudo dnf group list | grep development
+#+begin_src shell
+wgn@wgnnote:~$ sudo dnf group list | grep development sudo dnf group install "development-tools"
+Atualizando e carregando repositórios:
+Repositórios carregados.
+kde-software-development    KDE Software Development                           no
+kf6-software-development    KDE Frameworks 6 Software Development              no
+rpm-development-tools       RPM Development Tools                              no
+c-development               C Development Tools and Libraries                  no
+d-development               D Development Tools and Libraries                  no
+development-tools           Development Tools                                  no
+wgn@wgnnote:~$ sudo dnf group install "development-tools"
+Atualizando e carregando repositórios:
+Repositórios carregados.
+O pacote "gettext-0.23.1-2.fc42.x86_64" já está instalado.
+O pacote "git-2.51.0-2.fc42.x86_64" já está instalado.
+O pacote "patch-2.8-1.fc42.x86_64" já está instalado.
+
+Pacote                                                        Arch           Versão                                                        Repositório                         Tamanho
+Instalação de pacotes de grupos/módulos:
+ diffstat                                                     x86_64         1.67-2.fc42                                                   fedora                             80.6 KiB
+ doxygen                                                      x86_64         2:1.13.2-4.fc42                                               fedora                             18.6 MiB
+ patchutils                                                   x86_64         0.4.2-15.fc42                                                 fedora                            201.0 KiB
+ subversion                                                   x86_64         1.14.5-14.fc42                                                fedora                              4.8 MiB
+ systemtap                                                    x86_64         5.3-1.fc42                                                    updates                             0.0   B
+Instalando dependências:
+ bison                                                        x86_64         3.8.2-11.fc42                                                 updates                             3.5 MiB
+ dyninst                                                      x86_64         13.0.0-5.fc42                                                 fedora                             14.2 MiB
+ elfutils-devel                                               x86_64         0.193-2.fc42                                                  updates                           195.8 KiB
+ elfutils-libelf-devel                                        x86_64         0.193-2.fc42                                                  updates                            50.0 KiB
+ flex                                                         x86_64         2.6.4-19.fc42                                                 fedora                            809.2 KiB
+ js-doxygen                                                   noarch         2:1.13.2-4.fc42                                               fedora                            362.7 KiB
+ libserf                                                      x86_64         1.3.10-9.fc42                                                 fedora                            132.3 KiB
+ libzstd-devel                                                x86_64         1.5.7-1.fc42                                                  fedora                            208.0 KiB
+ m4                                                           x86_64         1.4.19-12.fc42                                                fedora                            588.7 KiB
+ openssl-devel                                                x86_64         1:3.2.6-2.fc42                                                updates                             4.3 MiB
+ spdlog                                                       x86_64         1.15.3-1.fc42                                                 updates                           360.1 KiB
+ subversion-libs                                              x86_64         1.14.5-14.fc42                                                fedora                              4.4 MiB
+ systemtap-client                                             x86_64         5.3-1.fc42                                                    updates                            11.8 MiB
+ systemtap-devel                                              x86_64         5.3-1.fc42                                                    updates                             9.2 MiB
+ systemtap-runtime                                            x86_64         5.3-1.fc42                                                    updates                             1.0 MiB
+ web-assets-filesystem                                        noarch         5-23.fc42                                                     fedora                             34.0   B
+ xapian-core-libs                                             x86_64         1.4.26-2.fc42                                                 fedora                              2.1 MiB
+ xz-devel                                                     x86_64         1:5.8.1-2.fc42                                                updates                           258.8 KiB
+ zlib-ng-compat-devel                                         x86_64         2.2.5-2.fc42                                                  updates                           107.0 KiB
+Instalando dependências fracas:
+ elfutils-debuginfod-client-devel                             x86_64         0.193-2.fc42                                                  updates                            10.3 KiB
+ kernel-devel                                                 x86_64         6.17.4-200.fc42                                               updates                            81.1 MiB
+Instalando grupos:
+ Development Tools                                                                                                                                                                    
+
+Sumário da Transação:
+ Instalando:        26 pacotes
+
+O tamanho total dos pacotes recebidos é 47 MiB. É necessário fazer o download de 47 MiB.
+Após esta operação, 158 MiB adicionais serão utilizados (instalar 158 MiB, remover 0 B).
+Is this ok [y/N]: 
+
+#+end_src
+
+
+** passo a passo
+*** criando o ambiente rocky8 linux com chroot
+#+name: #sudo guestmount -a $rocky8ImgPath -i --ro $rocky8chroot_dir
+#+begin_src shell :results output
+  script to create a chroot rocky8 linux
+#+end_src
+
+  script para entrar no rocky 8 linux
+  
+*** usando o rokcy linux
+atualizando com yum update -y
+ yum install git-lfs
+
+ rodando o script de preparacao  do ambiente pra buildar o blender
+
+ https://projects.blender.org/blender/blender/src/branch/main/build_files/build_environment/linux/linux_rocky8_setup.sh
+
+
+ 
+
+#+RESULTS: 
+
+
+* Refs
+
+https://developer.blender.org/docs/handbook/release_process/build/rocky_8/#setting-up-the-chroot-environment
+
+https://www.lenovo.com/us/en/glossary/what-is-chroot/

@@ -1,4 +1,8 @@
 #+Title: Processadores
-
+  
+* Arquitetura: Von Neumann, harvard
+Von Neumann 1946
+Arquitetura Harvard
+https://www.youtube.com/watch?v=pHIrHWlgLys
 * Refs
   

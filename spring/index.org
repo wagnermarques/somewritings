@@ -1,0 +1,23 @@
+#+Title: Spring
+
+
+#+BEGIN_SRC plantuml :file diagram.svg :exports both
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+  
+Alice -> Bob: Another Request
+Alice <-- Bob: Another Response
+@enduml
+#+END_SRC
+
+
+
+* Running your Application with Gradle
+https://docs.spring.io/spring-boot/gradle-plugin/running.html
+
+*** Spring Boot Gradle Plugin
+https://docs.spring.io/spring-boot/gradle-plugin/
+
+
+

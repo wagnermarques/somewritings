@@ -1,0 +1,190 @@
+#+Title: Anots Moodle Db
+
+* Setup
+
+#+name: Esta tabela armazena a informaÃ§Ã£o sobre os arquivos enviados. Ela nÃ£o armazena o arquivo em si.
+#+begin_src elisp
+  (setq sql-connection-alist
+      '((moodle-psql
+         (sql-product 'postgres)
+         (sql-user "postgres")
+         (sql-database "moodle")
+         (sql-server "localhost")
+         (sql-port 5432))))
+#+end_src
+
+#+RESULTS: Esta tabela armazena a informaÃ§Ã£o sobre os arquivos enviados. Ela nÃ£o armazena o arquivo em si.
+| moodle-psql | (sql-product 'postgres) | (sql-user postgres) | (sql-database moodle) | (sql-server localhost) | (sql-port 5432) |
+
+
+#+name: setup sql code for babel code
+#+begin_src elisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sql . t)))
+#+end_src
+
+#+RESULTS: setup sql code for babel code
+
+#+name: select * from mdl_assign limit 10;
+#+begin_src sql :connection moodle-psql
+select * from mdl_assign limit 10;
+#+end_src
+
+
+
+
+* Tarefas/Assignments
+
+** tables
+
+| Esquema | Nome                             | Tipo   | Dono     |   |
+|---------+----------------------------------+--------+----------+---|
+| public  | mdl_assign                       | tabela | postgres |   |
+| public  | mdl_assign_grades                | tabela | postgres |   |
+| public  | mdl_assign_overrides             | tabela | postgres |   |
+| public  | mdl_assign_plugin_config         | tabela | postgres |   |
+| public  | mdl_assign_submission            | tabela | postgres |   |
+| public  | mdl_assign_user_flags            | tabela | postgres |   |
+| public  | mdl_assign_user_mapping          | tabela | postgres |   |
+| public  | mdl_assignfeedback_comments      | tabela | postgres |   |
+| public  | mdl_assignfeedback_editpdf_annot | tabela | postgres |   |
+| public  | mdl_assignfeedback_editpdf_cmnt  | tabela | postgres |   |
+| public  | mdl_assignfeedback_editpdf_quick | tabela | postgres |   |
+| public  | mdl_assignfeedback_editpdf_rot   | tabela | postgres |   |
+| public  | mdl_assignfeedback_file          | tabela | postgres |   |
+| public  | mdl_assignsubmission_file        | tabela | postgres |   |
+| public  | mdl_assignsubmission_onlinetext  | tabela | postgres |   |
+| public  | mdl_role_allow_assign            | tabela | postgres |   |
+| public  | mdl_role_assignments             | tabela | postgres |   |
+ 
+| tbl                      | mod                                                                                       |
+| mdl_asign_               | Tarefa (mod_assign) versoes mais recentes do moodle                                       |
+| mdl_assign_submissions   | module Tarefa (mod_assignment) (Versao Antiga - Legada, ateriores a versao 2.3 do moodle) |
+| mdl_workshop_submissions | mod_workshop                                                                              |
+| mdl_lti_submission       | module Ferramenta Externa mod)Iti                                                         |
+
+
+** mdl_assign
+Para cada aluno em uma tarefa, haverÃ¡ uma linha nesta tabela, mesmo
+que ele ainda nÃ£o tenha enviado nada. Ela controla o fluxo completo:
+rascunho, enviado, avaliado, etc.
+
+
+** mdl_assignsubmission_file
+Finalidade: Liga uma submissÃ£o (mdl_assign_submission) aos arquivos que foram enviados.
+
+
+** mdl_assignsubmission_onlinetext
+Esta tabela armazena o conteÃºdo para submissÃµes do tipo texto online.
+
+Finalidade: Armazena o texto digitado diretamente pelo aluno no Moodle como parte da tarefa.
+
+Campos Chave:
+
+submission: ID da submissÃ£o (um link para mdl_assign_submission.id).
+
+onlinetext: O conteÃºdo de texto em si (geralmente em formato HTML).
+
+onlineformat: O formato do texto (ex: 1 = HTML).
+
+Como funciona: Se a tarefa permite "Texto online", o que o aluno digita na caixa de texto Ã© salvo aqui.
+
+*** listagem de cursos
+
+**** moodle=# select c.* from mdl_course c;
+ id | category | sortorder |             fullname              |          shortname          | idnumber |     summary      | summaryformat | format | showgrades | newsitems | startdate  |  enddate   | relativedatesmode | marker | maxbytes | legacyfiles | showreports | visible | visibleold | downloadcontent | groupmode | groupmodeforce | defaultgroupingid | lang  | calendartype | theme | timecreated | timemodified | requested | enablecompletion | completionnotify |  cacherev  | originalcourseid | showactivitydates | showcompletionconditions | pdfexportfont 
+----+----------+-----------+-----------------------------------+-----------------------------+----------+------------------+---------------+--------+------------+-----------+------------+------------+-------------------+--------+----------+-------------+-------------+---------+------------+-----------------+-----------+----------------+-------------------+-------+--------------+-------+-------------+--------------+-----------+------------------+------------------+------------+------------------+-------------------+--------------------------+---------------
+  1 |        0 |         1 | EtecZL - Auxilio Domiciliar e PPs | EtecZl Aux Domiciliar e PPs |          |                  |             0 | site   |          1 |         3 |          0 |          0 |                 0 |      0 |        0 |           0 |           0 |       1 |          1 |                 |         0 |              0 |                 0 |       |              |       |  1755614139 |   1755615129 |         0 |                0 |                0 | 1755614925 |                  |                 0 |                          | 
+  2 |        5 |     50001 | Curso PWA                         | Curso PWA                   |          | <p>Curso PWA</p> |             1 | topics |          1 |         5 | 1755730800 | 1787266800 |                 0 |      0 |        0 |           0 |           0 |       1 |          1 |                 |         0 |              0 |                 0 | pt_br |              |       |  1755710085 |   1755710085 |         0 |                1 |                0 | 1755710092 |                  |                 1 |                        1 | 
+(2 linhas)
+
+**** moodle=# \d mdl_course;
+                                               Tabela "public.mdl_course"
+          Coluna          |          Tipo           | OrdenaÃ§Ã£o | Pode ser nulo |                 PadrÃ£o                 
+--------------------------+-------------------------+-----------+---------------+----------------------------------------
+ id                       | bigint                  |           | not null      | nextval('mdl_course_id_seq'::regclass)
+ category                 | bigint                  |           | not null      | 0
+ sortorder                | bigint                  |           | not null      | 0
+ fullname                 | character varying(1333) |           | not null      | ''::character varying
+ shortname                | character varying(255)  |           | not null      | ''::character varying
+ idnumber                 | character varying(100)  |           | not null      | ''::character varying
+ summary                  | text                    |           |               | 
+ summaryformat            | smallint                |           | not null      | 0
+ format                   | character varying(21)   |           | not null      | 'topics'::character varying
+ showgrades               | smallint                |           | not null      | 1
+ newsitems                | integer                 |           | not null      | 1
+ startdate                | bigint                  |           | not null      | 0
+ enddate                  | bigint                  |           | not null      | 0
+ relativedatesmode        | smallint                |           | not null      | 0
+ marker                   | bigint                  |           | not null      | 0
+ maxbytes                 | bigint                  |           | not null      | 0
+ legacyfiles              | smallint                |           | not null      | 0
+ showreports              | smallint                |           | not null      | 0
+ visible                  | smallint                |           | not null      | 1
+ visibleold               | smallint                |           | not null      | 1
+ downloadcontent          | smallint                |           |               | 
+ groupmode                | smallint                |           | not null      | 0
+ groupmodeforce           | smallint                |           | not null      | 0
+ defaultgroupingid        | bigint                  |           | not null      | 0
+ lang                     | character varying(30)   |           | not null      | ''::character varying
+ calendartype             | character varying(30)   |           | not null      | ''::character varying
+ theme                    | character varying(50)   |           | not null      | ''::character varying
+ timecreated              | bigint                  |           | not null      | 0
+ timemodified             | bigint                  |           | not null      | 0
+ requested                | smallint                |           | not null      | 0
+ enablecompletion         | smallint                |           | not null      | 0
+ completionnotify         | smallint                |           | not null      | 0
+ cacherev                 | bigint                  |           | not null      | 0
+ originalcourseid         | bigint                  |           |               | 
+ showactivitydates        | smallint                |           | not null      | 0
+ showcompletionconditions | smallint                |           |               | 
+ pdfexportfont            | character varying(50)   |           |               | 
+Ãndices:
+    "mdl_cour_id_pk" PRIMARY KEY, btree (id)
+    "mdl_cour_cat_ix" btree (category)
+    "mdl_cour_idn_ix" btree (idnumber)
+    "mdl_cour_ori_ix" btree (originalcourseid)
+    "mdl_cour_sho_ix" btree (shortname)
+    "mdl_cour_sor_ix" btree (sortorder)
+
+moodle=# 
+
+
+
+
+*** mysql> show tables like '%submiss%';
++---------------------------------+
+| Tables_in_moodle (%submiss%)    |
++---------------------------------+
+|  mdl_assign_submission           |
+| mdl_assignment_submissions      |
+| mdl_assignsubmission_file       |
+| mdl_assignsubmission_onlinetext |
+| mdl_lti_submission              |
+| mdl_workshop_submissions        |
++---------------------------------+
+6 rows in set (0,00 sec)
+
+*** mysql> select distinct status from mdl_assign_submission limit 50;
++-----------+
+| status    |
++-----------+
+| submitted |
+| draft     |
+| reopened  |
+| new       |
++-----------+
+4 rows in set (11,48 sec)
+*** mysql> select distinct status from mdl_assign_submission limit 50;
++-----------+
+| status    |
++-----------+
+| submitted |
+| draft     |
+| reopened  |
+| new       |
++-----------+
+4 rows in set (11,48 sec)
+
+

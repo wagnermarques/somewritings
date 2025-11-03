@@ -1,0 +1,12 @@
+#+Title: Esp32
+
+
+* Arquitetura de Processador
+
+
+
+* Refs
+[fn:refman] https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf
+https://docs.esp-rs.org/std-training/
+https://github.com/esp-rs/book
+https://docs.espressif.com/projects/rust/book/

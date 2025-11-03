@@ -1,0 +1,7 @@
+#+Title: Acessibilidade IHC
+
+* Permite usuario configurar seus recursos de acessibilidade
+* hirarquia de conteúdo conforme as diretrizes do WCAD 2.2
+
+
+

@@ -1,0 +1,80 @@
+#+Title: libguestfs
+
+https://libguestfs.org/
+
+
+* Para que serve?
+
+Visualizar e editar arquivos dentro de VMs.
+
+Criar, clonar e fazer backup de VMs.
+
+Converter servidores físicos em virtuais (P2V) e entre diferentes formatos de virtualização (V2V).
+
+Redimensionar, formatar e diagnosticar discos.
+
+Montar o sistema de arquivos da VM diretamente no seu computador.
+
+Modificar o Registro do Windows dentro de uma VM.
+
+
+* Principais vantagens:
+
+Universal: Funciona com quase todo tipo de imagem de disco (VMware, Hyper-V, etc.), inclusive em locais remotos.
+
+Seguro: Tem várias camadas de proteção contra imagens de disco maliciosas.
+
+Versátil: Pode ser usado via linha de comando (guestfish), como um shell de resgate (virt-rescue) ou integrado em seus próprios programas através de bibliotecas para várias linguagens de programação.
+
+Consolidado: É um projeto maduro, em desenvolvimento desde 2009, muito usado em ambientes corporativos.
+
+
+* Instalar
+sudo yum install libguestfs-tools      # Fedora/RHEL/CentOS
+sudo dnf install libguestfs-tools      # Fedora
+sudo apt-get install libguestfs-tools  # Debian/Ubuntu
+guestfish --ro -i -a disk.img
+
+gn@wgnnote:~$ *sudo dnf install libguestfs-tools*
+[sudo] senha para wgn: 
+Atualizando e carregando repositórios:
+Repositórios carregados.
+Pacote                                                        Arch           Versão                                                        Repositório                         Tamanho
+Instalando:
+ virt-win-reg                                                 noarch         1.54.0-1.fc42                                                 updates                            47.9 KiB
+Instalando dependências:
+ clevis                                                       x86_64         21-10.fc42                                                    fedora                            128.4 KiB
+ clevis-luks                                                  x86_64         21-10.fc42                                                    fedora                             73.0 KiB
+ clevis-pin-tpm2                                              x86_64         0.5.3-9.fc42                                                  fedora                              2.6 MiB
+ dhcpcd                                                       x86_64         10.1.0-2.fc42                                                 fedora                            492.1 KiB
+ gdisk                                                        x86_64         1.0.10-3.fc42                                                 fedora                            775.0 KiB
+ hexedit                                                      x86_64         1.6-8.fc42                                                    fedora                             77.9 KiB
+ hivex-libs                                                   x86_64         1.3.24-3.fc42                                                 fedora                             87.3 KiB
+ jose                                                         x86_64         14-4.fc42                                                     fedora                            113.4 KiB
+ libconfig                                                    x86_64         1.7.3-11.fc42                                                 fedora                            225.4 KiB
+ libguestfs                                                   x86_64         1:1.56.2-1.fc42                                               updates                             3.8 MiB
+ libguestfs-appliance                                         x86_64         1:1.56.2-1.fc42                                               updates                             2.5 MiB
+ libjose                                                      x86_64         14-4.fc42                                                     fedora                            149.9 KiB
+ libldm                                                       x86_64         0.2.4-16.fc41                                                 fedora                            140.7 KiB
+ libluksmeta                                                  x86_64         9-24.fc42                                                     fedora                             45.2 KiB
+ lsscsi                                                       x86_64         0.32-13.fc42                                                  fedora                            124.8 KiB
+ luksmeta                                                     x86_64         9-24.fc42                                                     fedora                             23.5 KiB
+ perl-Sys-Guestfs                                             x86_64         1:1.56.2-1.fc42                                               updates                             1.0 MiB
+ perl-hivex                                                   x86_64         1.3.24-3.fc42                                                 fedora                             93.0 KiB
+ perl-libintl-perl                                            x86_64         1.35-1.fc42                                                   fedora                              4.1 MiB
+ supermin                                                     x86_64         5.3.5-4.fc42                                                  fedora                              2.1 MiB
+ syslinux                                                     x86_64         6.04-0.31.fc42                                                updates                             1.0 MiB
+ syslinux-extlinux                                            x86_64         6.04-0.31.fc42                                                updates                           206.2 KiB
+ syslinux-extlinux-nonlinux                                   noarch         6.04-0.31.fc42                                                updates                           976.8 KiB
+ syslinux-nonlinux                                            noarch         6.04-0.31.fc42                                                updates                             1.8 MiB
+ zerofree                                                     x86_64         1.1.1-15.fc42                                                 fedora                             49.9 KiB
+
+Sumário da Transação:
+ Instalando:        26 pacotes
+
+O tamanho total dos pacotes recebidos é 9 MiB. É necessário fazer o download de 9 MiB.
+Após esta operação, 23 MiB adicionais serão utilizados (instalar 23 MiB, remover 0 B).
+Is this ok [y/N]: 
+
+
+

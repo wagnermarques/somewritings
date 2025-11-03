@@ -1,0 +1,18 @@
+#+Title: Sistemas Abstratos
+
+* Introdução
+O estudo da matemática pode ser mais prático ou pode ser bastante
+abstrato.
+A "investigação de Sistemas Abstratos" segundo FINKBEINER "esclareceu
+e unificou conceitos fundamentais da matemática" e "forneceu a
+descrição de noções como relações, funções e operações em termos da
+noção simples de conjuntos"
+Isso quer dizer a senso comum de muitos a dizerem que o útil é a parte
+mais prática da matemática, a parte abstrata é muito útil também para
+consolidar e apoiar a parte prática. Ou seja, as duas abordagens
+matemáticas são úteis.
+
+
+
+* Refs
+[fn:1] FINKBEINER, Introdução às Matrizes e Transformações Lineares

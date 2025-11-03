@@ -1,0 +1,120 @@
+(defun carregar-tesaurus (arquivo)
+  "Carrega o tesaurus de um arquivo JSON."
+  (with-temp-buffer
+    (insert-file-contents arquivo)
+    (let ((json-data (json-read-from-string (buffer-string))))
+      json-data)))
+
+;; Função para navegar no tesaurus
+(defun navegar-tesaurus (tesaurus &optional nivel-pai)
+  "Navega recursivamente pelo tesaurus imprimindo a estrutura."
+  (let ((nivel-atual (or nivel-pai 0)))
+    (mapcar (lambda (item)
+              (let* ((chave (car item))
+                     (valor (cdr item))
+                     (nivel (assoc-default 'nivel valor))
+                     (descricao (assoc-default 'descricao valor))
+                     (subtopicos (assoc-default 'subtopicos valor)))
+                
+                ;; Imprime o item atual com indentação
+                (message "%s%s (Nível %d): %s"
+                         (make-string (* nivel-atual 2) ? )
+                         chave nivel descricao)
+                
+                ;; Processa subtópicos recursivamente
+                (when subtopicos
+                  (navegar-tesaurus subtopicos (1+ nivel-atual)))))
+            tesaurus)))
+
+;; Função para buscar um tópico específico
+(defun buscar-topico (tesaurus topico &optional caminho)
+  "Busca um tópico específico no tesaurus e retorna seu caminho."
+  (catch 'encontrado
+    (mapcar (lambda (item)
+              (let* ((chave (car item))
+                     (valor (cdr item))
+                     (novo-caminho (append caminho (list chave)))
+                     (subtopicos (assoc-default 'subtopicos valor)))
+                
+                (when (string-equal chave topico)
+                  (throw 'encontrado novo-caminho))
+                
+                (when subtopicos
+                  (buscar-topico subtopicos topico novo-caminho))))
+            tesaurus)
+    nil))
+
+;; Função para listar todos os tópicos de um nível específico
+(defun listar-por-nivel (tesaurus nivel-desejado &optional nivel-atual)
+  "Lista todos os tópicos de um nível específico."
+  (let ((nivel (or nivel-atual 1))
+        (resultado '()))
+    (mapcar (lambda (item)
+              (let* ((chave (car item))
+                     (valor (cdr item))
+                     (subtopicos (assoc-default 'subtopicos valor)))
+                
+                (when (= nivel nivel-desejado)
+                  (push (list chave (assoc-default 'descricao valor)) resultado))
+                
+                (when subtopicos
+                  (setq resultado 
+                        (append resultado 
+                                (listar-por-nivel subtopicos nivel-desejado (1+ nivel)))))))
+            tesaurus)
+    resultado))
+
+;; Função principal para exibir o tesaurus
+(defun exibir-tesaurus ()
+  "Função principal para carregar e exibir o tesaurus."
+  (interactive)
+  (let ((tesaurus (carregar-tesaurus "tesaurus.json")))
+    (message "=== ESTRUTURA DO TESAURO ===")
+    (navegar-tesaurus tesaurus)
+    
+    (message "\n=== TÓPICOS DO NÍVEL 1 ===")
+    (dolist (topico (listar-por-nivel tesaurus 1))
+      (message "- %s: %s" (car topico) (cadr topico)))
+    
+    (message "\n=== TÓPICOS DO NÍVEL 2 ===")
+    (dolist (topico (listar-por-nivel tesaurus 2))
+      (message "- %s: %s" (car topico) (cadr topico)))
+    
+    (message "\n=== TÓPICOS DO NÍVEL 3 ===")
+    (dolist (topico (listar-por-nivel tesaurus 3))
+      (message "- %s: %s" (car topico) (cadr topico)))))
+
+;; Função para buscar caminho de um tópico
+(defun buscar-caminho-topico (topico)
+  "Busca e exibe o caminho completo de um tópico."
+  (interactive "sTópico a buscar: ")
+  (let* ((tesaurus (carregar-tesaurus "tesaurus.json"))
+         (caminho (buscar-topico tesaurus topico)))
+    (if caminho
+        (message "Caminho para '%s': %s" topico (mapconcat 'identity caminho " → "))
+      (message "Tópico '%s' não encontrado" topico))))
+
+;; Função para visualização gráfica simplificada
+(defun visualizar-grafo-tesaurus ()
+  "Exibe uma visualização simplificada do grafo do tesaurus."
+  (interactive)
+  (let ((tesaurus (carregar-tesaurus "tesaurus.json")))
+    (message "=== GRAFO DO TESAURO ===")
+    (mapcar (lambda (nivel1)
+              (let ((chave1 (car nivel1))
+                    (valor1 (cdr nivel1)))
+                (message "• %s" chave1)
+                (let ((sub1 (assoc-default 'subtopicos valor1)))
+                  (when sub1
+                    (mapcar (lambda (nivel2)
+                              (let ((chave2 (car nivel2))
+                                    (valor2 (cdr nivel2)))
+                                (message "  └── %s" chave2)
+                                (let ((sub2 (assoc-default 'subtopicos valor2)))
+                                  (when sub2
+                                    (mapcar (lambda (nivel3)
+                                              (let ((chave3 (car nivel3)))
+                                                (message "      └── %s" chave3)))
+                                            sub2)))))
+                            sub1)))))
+            tesaurus)))

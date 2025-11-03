@@ -1,0 +1,12 @@
+#+Title: AOC - Arquitetura e Organização de Computadores
+
+* História
+
+
+* 1936 Allan Turing postula máquina de turing
+  Inaugura computadore digital
+
+* Refs
+[fn:WilliamStalling] https://www.kufunda.net/publicdocs/Arquitetura%20e%20Organiza%C3%A7%C3%A3o%20de%20Computadores%20(William%20Stallings).pdf
+[fn:WilliamStallingAOC8ed] https://www.telecom.uff.br/orgarqcomp/arq/arquitetura-e-organizacao-computadores-8a.pdf  
+
