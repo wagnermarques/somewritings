@@ -1,5 +1,4 @@
-#+Title: Firebase Auth Rest API
-
+g#+Title: Firebase Auth Rest API
 
 
 #+NAME: parseShellAnsiColorCharacters

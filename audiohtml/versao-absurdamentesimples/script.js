@@ -2,9 +2,11 @@
 const audioElement = document.getElementById('interfaceAudio');
 const btnPlayPause = document.getElementById('btnPlayPause');
 
-// Funcao de Reproducao
-btnPlayPause.addEventListener('click', function() {
-    console.log("..btnPlayPause.addEventListener('click', function() { TOCANDO AUDIO");
+
+let daPlayNoAudio = () => {
     audioElement.play();
-});
+}
+
+// Funcao de Reproducao
+btnPlayPause.addEventListener('click', daPlayNoAudio);
 

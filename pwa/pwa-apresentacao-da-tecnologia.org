@@ -23,12 +23,12 @@
 * Procedimento didatico
   Exposicao Dialogada do professor
   
-* Exercicioos e Atividades de Reflexao/Fixacao
+* Exercicios e Atividades de Reflexao/Fixacao
   video interessante: https://www.youtube.com/watch?v=UeMkXvmk68Q
   Encontrar algumas pwas interessantes instalar elas e experimentar
   como funciona a tecnologia
 
-* Avaliacao
+* Avaliacao 1
   Print das aplicacoes pwa instaladas na maquina e no celular  
 
 * Apresentacao da aula

@@ -1,1 +1,5 @@
-#+Title: somewritings documentatcao
+#+Title: somewritings documentação
+
+* tesaurus local
+
+

@@ -24,7 +24,7 @@
    Conhecimentos basicos de git e github
 
 ** Recursos
-   Cliente do heroku instalado
+   conta no github
 
 ** Recomendacoes
    Leia de boa, sem ansiedade...
@@ -39,13 +39,14 @@
 * Introducao
   Pessoal, nesta aula, vamos criar nosso primeiro pwa. A ideia e fazer
   da maneira mais simples possivel.
+
 * Criando o projeto  
 
   Primeiro vamos criar um diretorio onde todos os *artefatos de
   software do nosso projeto* (todos os arquivos que compoe nosso projeto) vai ser criado.
 
 ** Criando uma pasta pro nosso projeto
-  Eu vou chamar esse projeto de projDir tudo bem?
+  Eu vou chamar essa nova pasta que vamos criar de "projDir" tudo bem?
 
   Esse diretorio pode estar em qualquer lugar da sua maquina, mas nao
   use espaco ou caracteres especiais no caminho desse diretorio porque
@@ -56,10 +57,13 @@
 
 #+NAME:/home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
 #+BEGIN_SRC shell :session s1 :results output :exports both
-  export projDir=/home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
-  mkdir $projDir
+  export projDir=/run/media/wgn/libvirt_ext4/Projects-Srcs-Desktop/somewritings/pwa/projetopwa1
+  mkdir -p $projDir
   
 #+END_SRC
+
+#+RESULTS: /home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
+
 
 ** Inicializando nosso diretorio como repositorio local
    Vcs sabem que pra trabalhar com heroku nosso diretorio tem que ser
@@ -77,174 +81,35 @@ git init
 
 #+RESULTS: git init
 #+begin_example
-
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
 hint:
-hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint:
 hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
 hint: 'development'. The just-created branch can be renamed via this command:
 hint:
-Initialized empty Git repository in /home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1/.git/
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /run/media/wgn/libvirt_ext4/Projects-Srcs-Desktop/somewritings/pwa/projetopwa1/.git/
 #+end_example
 
-** Preparando pro nosso projeto ser reconhecido pelo heroku
-   
-Preparar nosso projeto pra rodar no heroku nao tem nada a ver com pwa,
-mas como nosso projeto vai rodar no heroku, entao temos que fazer isso
-certo?
 
-Agora que eu criei o diretorio e ele e um repositorio local do git,
-vamos comecar a criar o nosso projeto..
-
-Vamos comecar criando o arquivo Procfile, que vc sabe que o heroku vai
-exigir isso de vc ne...
-
-Nosso Procfile vai ser usado pelo heroku pra subir um apache com php
-habilitado pra isso...
-
-entao vamos criar nosso Procfile... Se vc nao compreender o comando
-abaixo, nao ligue pra isso, saiba apenas que vc tem que criar esse
-arquivo texto que chama Profile (sem extensao) na pasta do seu
-projeto.. blz?
-
-
-#+NAME:touch Procfile
-#+BEGIN_SRC shell :session s1 :results output :exports both
-cd $projDir
-echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
-#+END_SRC
-
-#+RESULTS: touch Procfile
-: 
-: /home/wagner/fzlbpms/submodules/somewritings/pwa/projeto1
-
-Esse comando acima criou meu arquivo texto com nome Procfile com o
-seguinte conteudo...
-
-Lembrando que se vc tiver no windows o echo funciona mas insere as
-aspas no Procfile e vc tem que tirar as aspas na mao.. Lembrando
-tambem que se vc tiver usando powershell esse echo nao funciona
-direito porque a insercao acaba sendo algo binario e isso fica
-estranho e o heroku nao consegue parsear o Procfile.
-
-Abaixo o comando ls mostra que o Profile foi criado. Se vc tiver no
-windows ao inves de ls vc vai dar um dir. 
-#+NAME: cat procfile
-#+BEGIN_SRC shell :session s1 :results output :exports both
-  cd $projDir
-  ls -l
-#+END_SRC
-
-#+RESULTS: cat procfile
-: 
-:  total 4
-: -rw-r--r-- 1 wagner wagner 43 fev 13 22:32 Procfile
-
-
-O heroku vai exigir de vc tambem o arquivo composer.json. E exigencia
-do heroku mas pro nosso projeto a gente nao usa porque nenhuma
-dependencia do php sera necessaria pro nosso primeiro pwa.
-
-Entao crie um arquivo composer.json com esse conteudo abaixo e salve
-na nossa pasta do projeto...
-
-
-#+NAME:composer.json
-#+BEGIN_SRC js :session s1 :results output :exports code
-{
-  "require" : {
-  },
-  "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
-  }
-}
-  
-#+END_SRC
-
-
-
-O comando ls abaixo mostra que neste momento tenho os dois arquivos
-criados o Procfile e o composer.json
-
-
-
-#+NAME: ls2
-#+BEGIN_SRC shell :session s1 :results output :exports both
- cd $projDir
- ls -l
-#+END_SRC
-
-#+RESULTS: ls2
-: 
-:  total 8
-: -rw-r--r-- 1 wagner wagner 87 fev 13 22:46 composer.json
-: -rw-r--r-- 1 wagner wagner 43 fev 13 22:32 Procfile
-
-
-
-Por ultimo lembre que nosso procfile preve um diretorio public no
-nosso projeto onde ficara os html imagens etc.. e esse diretorio que o
-heroku ira servir via apache pro nosso usuario...
-
-O comando abaixo mostra que o nosso diretorio public e criado e eu dou
-de novo um ls pra vcs verem como esta nossodiretorio do nosso projeto
-nesse momento...
-
-#+NAME:mkdir public
-#+BEGIN_SRC shell :session s1 :results output :exports both
-  cd $projDir
-  mkdir public
-  ls -l
-#+END_SRC
-
-#+RESULTS: mkdir public
-: 
-: [wagner@wagner-Insp153567 projeto1 total 12
-: -rw-r--r-- 1 wagner wagner   87 fev 13 22:46 composer.json
-: -rw-r--r-- 1 wagner wagner   43 fev 13 22:32 Procfile
-: drwxr-xr-x 2 wagner wagner 4096 fev 13 22:49 public
-
-Nosso projeto web tipo php minimo ta preparado pro heroku entender ele
-mas nao temos ainda um index.php e um index.html no diretorio
-public. Vamos fazer isso entao..
 
 ** Comecando o pwa
    E dentro do diretorio public que nosso pwa acontece, isso porque o
    pwa e so html e javascript...
 
-   Poderiamos criar so um index.html e o javascript, mas como nosso
-   projeto do heroku e um projeto php o heroku vai fornecer para o
-   usuario o index.php entao a gente vai criar o index.php e o
-   index.php vai carregar o index.html.
+   crie um html abrindo o vscode na pasta que acabamos de criar
 
-*** crie o index.php
+   
+
+*** crie o index.html
     
-Crie o arquivo index.php na pasta public com o conteudo abaixo...
-
-
-#+NAME:index.php
-#+BEGIN_SRC php :session s1 :results output :exports code
-  <?php include_once("index.html");
-#+END_SRC
-
-
-#+NAME:ls3
-#+BEGIN_SRC shell :session s1 :results output :exports both
-cd $projDir
-ls ./public
-#+END_SRC
-
-#+RESULTS: ls3
-: 
-: index.php
-
-*** criando nosso index.html
-
  crie o arquivo index.html com o conteudo abaixo e salve ele na pasta
- public
-
+ do projeto
  
 #+NAME:index.html
 #+BEGIN_SRC html :session s1 :results output :exports both
@@ -265,7 +130,7 @@ ls ./public
       <a href="deviceorientation.html">Aprend PWA-Device
         Orientation</a></p>
 
-    <img src="./dog.svg" alt="dogImg"></img>
+    <img src="./dog.jpeg" alt="dogImg"></img>
     
   </body>
 </html> 
@@ -302,7 +167,7 @@ So tem dois detalhes com vc nao pode deixar passar desapercebido...
     Por causa disso nos vamos ter que prover essa imagem tambem na
     pasta public
 
-** Criando o main.js, o manifest.json, dog.svg e cat.svg
+** Criando o main.js, o manifest.json, dog.jpeg e cat.jpeg
 
    Vc vai criar esses arquivos e colocar eles todos no public, ok?
 
@@ -352,12 +217,12 @@ Segue o conteudo o arquivo manifest.json
     
     "icons": [
         {
-            "src": "icon/app-icon-192x192.png",
+            "src": "app-icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icon/app-icon-512x512.png",
+            "src": "app-icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }]
@@ -444,33 +309,40 @@ self.addEventListener('fetch', event => {
 
 #+END_SRC
 
-** Enviando tudo para o heroku
+** Enviando tudo para o git e depois pro gitpages
    Bom, temos tudo que precisamos pro nosso projeto pwa inicial
    simplizao...
 
-   Agora a gente quer enviar tudo pro heroku certo?
+   Agora a gente quer enviar tudo pro gitpages certo?
 
-   Pra isso o heroku tem que ter um projeto criado la... la no site do
-   heroku... Entao o *passo1 pra enviar nosso projeto pro heroku e criar o projeto no heroku que possa receber nosso conteudo*
-   
-   O *passo2 pra enviar nosso projeto pro heroku e dar um git add .  nos arquivos que criamos, comitar e dar git push*
-   
 
-   Entao vamos fazer isso..
-
-   
-#+NAME:heroku create pwaproj1
+#+NAME:git status22
 #+BEGIN_SRC shell :session s1 :results output :exports both
 cd $projDir
-heroku create pwaproj1
+git status
 #+END_SRC
 
-#+RESULTS: heroku create pwaproj1
-: 
-: Creating  pwaproj1... done
-: https://pwaproj1.herokuapp.com/ https://git.heroku.com/pwaproj1.git
+#+RESULTS: git status22
+#+begin_example
+On branch master
 
+No commits yet
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app-icon-192x192.png
+	app-icon-512x512.png
+	dog.jpeg
+	gato.jpeg
+	index.html
+	main.js
+	manifest.json
+	service-worker-minimum-to-intall-pwa.js
+
+nothing added to commit but untracked files present (use "git add" to track)
+#+end_example
+
+   
 #+NAME:git add .
 #+BEGIN_SRC shell :session s1 :results output :exports both
 cd $projDir
@@ -489,25 +361,23 @@ git status
 
 #+RESULTS: git status
 #+begin_example
-
- On branch master
+On branch master
 
 No commits yet
 
 Changes to be committed:
-..." to unstage)
-	new file:   Procfile
-	new file:   composer.json
-	new file:   public/cat.svg
-	new file:   public/dog.svg
-	new file:   public/icon/app-icon-192x192.png
-	new file:   public/icon/app-icon-512x512.png
-	new file:   public/index.html
-	new file:   public/index.php
-	new file:   public/js/main.js
-	new file:   public/manifest.json
-	new file:   public/service-worker-minimum-to-intall-pwa.js
+  (use "git rm --cached <file>..." to unstage)
+	new file:   app-icon-192x192.png
+	new file:   app-icon-512x512.png
+	new file:   dog.jpeg
+	new file:   gato.jpeg
+	new file:   index.html
+	new file:   main.js
+	new file:   manifest.json
+	new file:   service-worker-minimum-to-intall-pwa.js
 #+end_example
+
+
 
 
 
@@ -519,78 +389,75 @@ git commit -am "Arquivos necessarios para proj1 pwa"
 
 #+RESULTS: git commit -am "Arquivos necessarios para proj1 pwa"
 #+begin_example
-
- [master (root-commit) f043e7d] Arquivos necessarios para proj1 pwa
- 11 files changed, 103 insertions(+)
- create mode 100644 Procfile
- create mode 100644 composer.json
- create mode 100644 public/cat.svg
- create mode 100644 public/dog.svg
- create mode 100644 public/icon/app-icon-192x192.png
- create mode 100644 public/icon/app-icon-512x512.png
- create mode 100644 public/index.html
- create mode 100755 public/index.php
- create mode 100644 public/js/main.js
- create mode 100644 public/manifest.json
- create mode 100644 public/service-worker-minimum-to-intall-pwa.js
+[master (root-commit) 064bb35] Arquivos necessarios para proj1 pwa
+ 8 files changed, 83 insertions(+)
+ create mode 100644 app-icon-192x192.png
+ create mode 100644 app-icon-512x512.png
+ create mode 100644 dog.jpeg
+ create mode 100644 gato.jpeg
+ create mode 100644 index.html
+ create mode 100644 main.js
+ create mode 100644 manifest.json
+ create mode 100644 service-worker-minimum-to-intall-pwa.js
 #+end_example
 
+** criando um repo no git e subindo
 
 
-#+NAME:git push heroku master
+#+NAME:git git remote -v1
 #+BEGIN_SRC shell :session s1 :results output :exports both
 cd $projDir
-git push heroku master
+git remote -v
 #+END_SRC
 
-#+RESULTS: git push heroku master
-#+begin_example
-
-[00m Enumerating objects: 16, done.
-(1/16)Counting objects:  12% (2/16)Counting objects:  18% (3/16)Counting objects:  25% (4/16)Counting objects:  31% (5/16)Counting objects:  37% (6/16)Counting objects:  43% (7/16)Counting objects:  50% (8/16)Counting objects:  56% (9/16)Counting objects:  62% (10/16)Counting objects:  68% (11/16)Counting objects:  75% (12/16)Counting objects:  81% (13/16)Counting objects:  87% (14/16)Counting objects:  93% (15/16)Counting objects: 100% (16/16)Counting objects: 100% (16/16), done.
-Delta compression using up to 4 threads
-(1/13)Compressing objects:  15% (2/13)Compressing objects:  23% (3/13)Compressing objects:  30% (4/13)Compressing objects:  38% (5/13)Compressing objects:  46% (6/13)Compressing objects:  53% (7/13)Compressing objects:  61% (8/13)Compressing objects:  69% (9/13)Compressing objects:  76% (10/13)Compressing objects:  84% (11/13)Compressing objects:  92% (12/13)Compressing objects: 100% (13/13)Compressing objects: 100% (13/13), done.
-(1/16)Writing objects:  12% (2/16)Writing objects:  18% (3/16)Writing objects:  25% (4/16)Writing objects:  31% (5/16)Writing objects:  37% (6/16)Writing objects:  43% (7/16)Writing objects:  50% (8/16)Writing objects:  56% (9/16)Writing objects:  62% (10/16)Writing objects:  68% (11/16)Writing objects:  75% (12/16)Writing objects:  81% (13/16)Writing objects:  87% (14/16)Writing objects:  93% (15/16)Writing objects: 100% (16/16)Writing objects: 100% (16/16), 138.61 KiB | 6.03 MiB/s, done.
-Total 16 (delta 0), reused 0 (delta 0), pack-reused 0
-remote: Compressing source files... done.        
-remote: Building source:        
-remote:
-Building on the Heroku-20 stack
-PHP app detected
-Bootstrapping...
-Installing platform packages...        
-remote:        [1;33mNOTICE:[0m No runtime required in composer.lock; using PHP ^7.0.0 | ^8.0.0
-remote:        - apache (2.4.46)        
-remote:        - nginx (1.18.0)        
-remote:        - php (8.0.2)        
-remote:        - composer (1.10.20)
-Installing dependencies...        
-remote:        Composer version 1.10.20 2021-01-27 15:41:06        
-remote:        Loading composer repositories with package information        
-remote:        Updating dependencies        
-remote:        Writing lock file        
-remote:        Generating optimized autoload files
-Preparing runtime environment...
-Checking for additional extensions to install...
-Discovering process types
-web        
-remote:
-Compressing...        
-remote:        Done: 15.1M
-Launching...        
-remote:        Released v3        
-remote:        https://pwaproj1.herokuapp.com/ deployed to Heroku        
-remote: 
-remote: Verifying deploy... done.        
-To https://git.heroku.com/pwaproj1.git
-master
-#+end_example
+#+RESULTS: git git remote -v1
 
 
-* Testando manualmente nosso pwa
-  Agora a ideia a acessar https://pwaproj1.herokuapp.com/ do seu
-  dispositivo movel instalar a aplicacao e testar o seu
-  funcionamento...
+
+#+NAME: git remote add origin https://github.com/wagnermarques/aulasdepwa.git1
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git remote add origin https://github.com/wagnermarques/aulasdepwa.git
+#+END_SRC
+
+#+RESULTS: git remote add origin https://github.com/wagnermarques/aulasdepwa.git1
+
+
+#+NAME:git git remote -v2
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git remote -v
+#+END_SRC
+
+
+#+NAME:git branch11
+#+BEGIN_SRC shell :session s1 :results output :exports both
+cd $projDir
+git branch
+#+END_SRC
+
+considerando que retornou branch master.. vamos continuar.. se na sua
+for main só trocar master por main
+
+[wgn@fedora projetopwa1]$ git push origin master
+fatal: cannot exec '/usr/bin/ksshaskpass': Arquivo ou diretÃ³rio inexistente
+Username for 'https://github.com': wagnermarques
+fatal: cannot exec '/usr/bin/ksshaskpass': Arquivo ou diretÃ³rio inexistente
+Password for 'https://wagnermarques@github.com': sua personal access token
+
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 28 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 191.43 KiB | 63.81 MiB/s, done.
+Total 10 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/wagnermarques/aulasdepwa.git
+ * [new branch]      master -> master
+[wgn@fedora projetopwa1]$ 
+
+
+* mandando pro github pages
+
 
 
 * Exercicioos e Atividades de Reflexao/Fixacao

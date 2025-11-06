@@ -15,10 +15,10 @@
     selecionado e adiciona modificadores))
 
 *** Selecao de objetos
-    Left-Mouse-Click - Seleção de objetos
+    Left-Mouse-Click - SeleÃ§Ã£o de objetos
     A selecionar/desselecionar tudo
     B (De box) permite selecionar objetos com o mouse
-    Crtl + arrasto do mouse pra seleção livre
+    Crtl + arrasto do mouse pra seleÃ§Ã£o livre
     Ctl+Alt Selecionar Arestas Paralelas e coloca +
     Tecla L seleciona todos os poligonos da parte de um objeto agregado
     Selecionar loope de poligonos tipo da esfera (Crl+Alt + o click de
@@ -44,3 +44,10 @@ selecao)
 *** Bones
     Posicionamento
     S-s coloca o cursor, depois seleciona o bone e S-s para o cursor
+
+
+
+* anots
+** novidades do blender 5
+
+https://www.youtube.com/watch?v=DI4RXv3G6so
