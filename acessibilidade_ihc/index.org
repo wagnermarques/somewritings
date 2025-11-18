@@ -1,7 +1,16 @@
 #+Title: Acessibilidade IHC
 
+rascunhos e anotações sobre o assunto...
+
+* norma ABNT NBR 17225:2025
+define aproximadamente 150 requisitos e recomendações em consonancia
+com a WCAG 2.2 fortalecendo o  inclusão digital
+https://focoacessivel.com.br/blog/abnt-nbr-17225-2025-a-nova-norma-de-acessibilidade-digital-no-brasil.html
+https://cta.ifrs.edu.br/abnt-nbr-17225-2025-acessibilidade-em-conteudo-e-aplicacoes-web-requisitos/
+https://mwpt.com.br/wp-content/uploads/2025/04/ABNT-NBR-17225-Acessibilidade-Digital.pdf
 * Permite usuario configurar seus recursos de acessibilidade
 * hirarquia de conteúdo conforme as diretrizes do WCAD 2.2
+
 
 
 

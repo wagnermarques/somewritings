@@ -1,0 +1,5 @@
+#+Title: Kotlin para Desktop
+
+* preparando o ambiente de desenvolvimento
+** Download do Intellij
+   https://www.jetbrains.com/pt-br/idea/download/?section=linux

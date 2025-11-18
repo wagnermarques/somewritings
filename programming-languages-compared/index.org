@@ -1,0 +1,55 @@
+#+Title: Programming Languages Compared
+
+* strings concatenation
+
+
+#+name: python: concatenação com operador "+"
+#+begin_src python :session s1 :shebang "#!/usr/bin/env python3" :exports both :results output
+  primeiro_nome="Ada"
+  sobrenome="Lovelace"
+  idade=28
+  data_ano=1843
+  print("O primeiro algoritmo foi projetado pela princesa " + primeiro_nome + " " + sobrenome + " com " + str(numerointeiro) + " anos de idade, em " + str(data_ano))
+#+end_src
+
+#+RESULTS: python: concatenação com operador "+"
+: O primeiro algoritmo foi projetado pela princesa Ada Lovelace com 3 de idade, em 1843
+
+
+#+name: python: concatenação com f print
+#+begin_src python :session s1 :shebang "#!/usr/bin/env python3" :exports both :results output
+  primeiro_nome="Ada"
+  sobrenome="Lovelace"
+  idade=28
+  data_ano=1843
+  print(f'O primeiro algoritmo foi projetado pela princesa {primeiro_nome} {sobrenome} com {numerointeiro} anos de idade, em {data_ano}')
+#+end_src
+
+#+RESULTS: python: concatenação com f print
+: O primeiro algoritmo foi projetado pela princesa Ada Lovelace com 3 anos de idade, em 1843
+
+
+
+#+name: elisp: concatenação com concat
+#+begin_src elisp 
+  (setq primeiro_nome "Ada")
+  (setq sobrenome "Lovelace")
+  (setq idade 28)
+  (setq data_ano 1843)
+  (message (concat "O primeiro algoritmo foi projetado pela princesa " primeiro_nome " " sobrenome " com " idade " anos de idade, em " data_ano))
+#+end_src
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Refs
+https://levelup.gitconnected.com/30-python-concepts-i-wish-i-knew-way-earlier-3add72af6433
