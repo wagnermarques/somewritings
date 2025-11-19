@@ -2,6 +2,10 @@
 
 * Introdução
 
+* Documentação do Firebase
+https://firebase.google.com/docs?hl=pt-br
+
+
 * Criando um projeto web simplizao pra trabalhar com firebase
 
 #+name: mkdir
@@ -14,6 +18,8 @@
 
 #+RESULTS: mkdir
 : /run/media/wgn/ext4/Projects-Srcs-Desktop/somewritings/Firebase/projetoaulafirebase/projetoaulafirebase
+
+
 
 
 

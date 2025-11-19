@@ -1,9 +1,44 @@
 #+Title: Programming Languages Compared
 
+* arrays
+** Basico do basico
++ criar um array
++ incluir item
++ retirar item
++ iterar no array
+  
+
+#+name: array in shellscript
+#+begin_src shell
+  stack1_containers=('fzl-portainerfzl-portainer' 'fzl-mysql'  'fzl-postgresql' 'fzl_nginx' 'fzl_php8.3-fpm')
+  echo ${stack1_containers[0]}
+  
+  for i in "${stack1_containers[@]}"; do
+      echo "$i"
+  done
+#+end_src
+
+#+RESULTS: array in shellscript
+| fzl-portainerfzl-portainer |
+| fzl-portainerfzl-portainer |
+| fzl-mysql                  |
+| fzl-postgresql             |
+| fzl_nginx                  |
+| fzl_php8.3-fpm             |
+
+
+
+
+
+
+
+
 * strings concatenation
 
 
-#+name: python: concatenação com operador "+"
+#+BEGIN_TABS
+
+#+name: python: concatenaÃ§Ã£o com operador "+"
 #+begin_src python :session s1 :shebang "#!/usr/bin/env python3" :exports both :results output
   primeiro_nome="Ada"
   sobrenome="Lovelace"
@@ -12,11 +47,11 @@
   print("O primeiro algoritmo foi projetado pela princesa " + primeiro_nome + " " + sobrenome + " com " + str(numerointeiro) + " anos de idade, em " + str(data_ano))
 #+end_src
 
-#+RESULTS: python: concatenação com operador "+"
+#+RESULTS: python: concatenaÃ§Ã£o com operador "+"
 : O primeiro algoritmo foi projetado pela princesa Ada Lovelace com 3 de idade, em 1843
 
 
-#+name: python: concatenação com f print
+#+name: python: concatenaÃ§Ã£o com f print
 #+begin_src python :session s1 :shebang "#!/usr/bin/env python3" :exports both :results output
   primeiro_nome="Ada"
   sobrenome="Lovelace"
@@ -25,12 +60,12 @@
   print(f'O primeiro algoritmo foi projetado pela princesa {primeiro_nome} {sobrenome} com {numerointeiro} anos de idade, em {data_ano}')
 #+end_src
 
-#+RESULTS: python: concatenação com f print
+#+RESULTS: python: concatenaÃ§Ã£o com f print
 : O primeiro algoritmo foi projetado pela princesa Ada Lovelace com 3 anos de idade, em 1843
 
 
 
-#+name: elisp: concatenação com concat
+#+name: javascript: concatenaÃ§Ã£o com concat
 #+begin_src elisp 
   (setq primeiro_nome "Ada")
   (setq sobrenome "Lovelace")
@@ -39,7 +74,7 @@
   (message (concat "O primeiro algoritmo foi projetado pela princesa " primeiro_nome " " sobrenome " com " idade " anos de idade, em " data_ano))
 #+end_src
 
-
+#+END_TABS
 
 
 
