@@ -27,16 +27,9 @@
 | fzl_php8.3-fpm             |
 
 
-
-
-
-
-
-
 * strings concatenation
 
-
-#+BEGIN_TABS
+#+BEGIN_TABS 
 
 #+name: python: concatenaÃ§Ã£o com operador "+"
 #+begin_src python :session s1 :shebang "#!/usr/bin/env python3" :exports both :results output

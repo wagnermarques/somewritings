@@ -18,7 +18,10 @@ lisp/imgs
 **/target/*
 **/*.zip
 **/.git
+
 **/*.html
+!/run/media/wgn/ext4/Projects-Srcs-Desktop/somewritings/programming-languages-compared/index.html
+
 **/*.odt
 **/*.dvi
 **/*.tex

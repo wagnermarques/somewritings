@@ -19,6 +19,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 window.fbApp = initializeApp(firebaseConfig);
-window.fbAnalytics = getAnalytics(window.app);
+window.fbAnalytics = getAnalytics(window.fbApp);
 
 
