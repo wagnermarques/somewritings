@@ -1,25 +1,28 @@
-#+Title: Comandos Intermedi·rios do Android
+#+Title: adb - Comandos Intermedi√°rios do Android
 #+Subtitle:
 
 * Tema
-  Comandos Intermedi·rios do Android
+  Comandos Intermedi√°rios do Android
 
 * Objetivo
-  Mostrar a utilizadade o porque È bom utilizar esses comandos
-  itnermedi·rios do android
-
-* DuraÁ„o
+  Mostrar a utilizadade o porque √© bom utilizar esses comandos
+  intermedi√°rios do android
+  
+* Dura√ß√£o
   2 aulas
 
-* PrÈ-Requisitos
-** Conhecimentos PrÈvios
+* Pr√©-Requisitos
+
+** Conhecimentos Pr√©vios
+   ativar o debug via usb nas propriedades de desenvolvedor do android
    file:android_setup_env.org
    file:android_commands_basic.org
+
 ** Recursos
 
 * Procedimento didatico
-** ExposiÁ„o do assunto pelo professor
-** Atividade pr·tica
+** Exposi√ß√£o do assunto pelo professor
+** Atividade pr√°tica
    * Notas Importantes
  adb shell am start -n
  "aulasdeandroid.eteczl.br/eteczl.edu.br.firebaseauth.MainActivity" -a
@@ -95,9 +98,9 @@ pm list permissions: prints all known permissions, optionally only
  adb shell rm storage/3136-6261/videos/*
 
  
-* Exercicios e Atividades de Reflex„o/FixaÁ„o
+* Exercicios e Atividades de Reflex√£o/Fixa√ß√£o
 
-* AvaliaÁ„o
+* Avalia√ß√£o
 
 * Referencias
 

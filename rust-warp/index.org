@@ -1,0 +1,12 @@
+#+Title: Rust Warp
+
+
+
+
+* introdução
+
+" because Warp is the platform and not a CLI-app running within the terminal, Warp has much richer UX capabilities than any CLI agent possibly can. "
+
+
+* refs
+https://www.warp.dev/blog/reimagining-coding-agentic-development-environment

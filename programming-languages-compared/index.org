@@ -1,17 +1,23 @@
 #+Title: Programming Languages Compared
 
 * arrays
-** Basico do basico
-+ criar um array
-+ incluir item
-+ retirar item
-+ iterar no array
-  
+Se na entrevista ou em um bate papo alguém te perguntar o que é um
+array, você simplemente fornece a resposta teórica, mas bem
+informal: - *uma variável que armazena dentro dela um número limitado de valores ou objetos iguais*
+
+Nossa professor, essa frase não faz tanto sentido assim pra mim não.
+
+Tranquilo.. continua lendo com calma e sem ansiedade...
+
+** Arrays: Basico do Básico (Criação, acesso aos itens específicos e interação)
+*** criar um array
+
+#+BEGIN_TABS
 
 #+name: array in shellscript
 #+begin_src shell
   stack1_containers=('fzl-portainerfzl-portainer' 'fzl-mysql'  'fzl-postgresql' 'fzl_nginx' 'fzl_php8.3-fpm')
-  echo ${stack1_containers[0]}
+  echo ${stack1_containers[1]}
   
   for i in "${stack1_containers[@]}"; do
       echo "$i"
@@ -19,12 +25,23 @@
 #+end_src
 
 #+RESULTS: array in shellscript
-| fzl-portainerfzl-portainer |
-| fzl-portainerfzl-portainer |
-| fzl-mysql                  |
-| fzl-postgresql             |
-| fzl_nginx                  |
-| fzl_php8.3-fpm             |
+: fzl-mysql
+
+#+name: array in javascript es5
+#+begin_src javascript
+
+#+end_src
+
+
+#+END_TABS
+
+*** inserir um novo item no array
+*** remover um item do array
+*** iterar no array
+  
+
+
+
 
 
 * strings concatenation

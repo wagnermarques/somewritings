@@ -1,4 +1,27 @@
 #+Title: Desenvolvimento Mobile com Android
 
 * Introducao
-  
+
+Esta página é um ponto central pra vc interagir com seu android, seja
+desenvolvendo softwares, instalando e desistalando apps ou simplesmente transferindo arquivos.
+
+O adb[fn:1] - Android Bridge Device, como o próprio nome já está dizendo, é
+a ponte de comunicação entre o seu computador e o seu dispositivo
+android. Tenha certeza que vc vai querer aprender a usar essa
+ferramenta e também vai pegar a prática em utilizá-la.
+
+* interagindo com seu android usando adb - Android Bridge Device
+
+* adb pull - enviand/recebendo arquivos para seu celular
+
+adb push /run/media/wgn/43c9e96d-f4aa-4ad4-a7ec-9c165935520f/pdfs-disk/ /sdcard
+
+
+[[./android_commands_intermediate.org]]
+
+
+
+ adb shell rm storage/3136-6261/videos/*
+
+ * refs
+[fn:1] http://adbshell.com/   

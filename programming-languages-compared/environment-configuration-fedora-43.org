@@ -1,0 +1,40 @@
+#+Title: Projects configurations in fedora 43
+
+* C project
+
+#+name: sudo dnf install gcc make gdb
+#+begin_src shell
+  sudo dnf install gcc make gdb
+#+end_src
+
+#+RESULTS: sudo dnf install gcc make gdb
+
+
+#+name: mkdir -p src include obj bin
+#+begin_src shell :result output verbatim
+  export projdir="/run/media/wgn/ext4/Projects-Srcs-Desktop/somewritings/programming-languages-compared/c_projects/cproj"
+  cd $projdir
+  mkdir -p src include obj bin
+  tree --charset=ascii
+#+end_src
+
+#+RESULTS: mkdir -p src include obj bin
+| .   |              |         |       |
+|     | --           | bin     |       |
+|     | --           | include |       |
+|     | --           | obj     |       |
+| `-- | src          |         |       |
+|     |              |         |       |
+| 5   | directories, | 0       | files |
+
+
+
+
+
+
+
+
+
+
+
+

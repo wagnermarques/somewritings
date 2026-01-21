@@ -1,0 +1,29 @@
+#+Title: Angular
+
+Pra usar o Angular, primeiro vc instala ele na sua máquina
+
+#+name: 
+#+begin_src shell
+  npm install -g @angular/cli
+#+end_src
+
+
+peceba que vc está usando o comando npm pra esse comando funcionar vc
+tem que instalar o nodejs na sua máquina.
+
+Pra ler mais sobre a instalação do angular, acessi [[https://angular.dev/installation][esse link]].
+
+Nós vamos usar angular no modo mais detalhado mas vc pode usar ia pra
+pedir tudo mais rápido qdo vc souber o que está fazendo. Pra entender
+isso acesse esse [[https://angular.dev/ai/ai-tutor][link do ai-tutor]] 
+
+Um bom começo é dar uma lida nessa [[https://angular.dev/essentials][url]] que traz o que é essencial pro
+seu começo com o angular.
+
+Não precisa ficar doutor em cada assunto, só saber do que se trata
+porque durante a codificação do seu projeto vc precisa lembrar dessas
+coisas que vc leu sobre os assuntos essenciais.
+
+Agora sim, segue [[https://angular.dev/tutorials/first-app][esse tutorial]] pra criar seu primeiro projeto
+
+Depois vc precisa necessariamente estudar [[https://angular.dev/tutorials/signals][signals]] 

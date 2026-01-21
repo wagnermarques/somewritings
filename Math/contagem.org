@@ -1,0 +1,16 @@
+#+Title: Contagem
+
+* Princípio Multiplicativo da Contagem
+
+
+* Exercícios
+1) Qdo lançamos um dado numerado de 1 a 6. Quanto números podem ser obtidos?[Fn:1]
+Ora, o dado tem 6 faces numeradas de 1 a 6. Então temos 6
+possibilidades. Podemos obter seis números diferentes quando lançamos
+um dado.
+
+2) Quantos jogos possíveis se pode fazer na megasena?[Fn:1]
+
+
+* Ref
+[Fn:1] https://www.youtube.com/watch?v=pyqYE9R4Qcs

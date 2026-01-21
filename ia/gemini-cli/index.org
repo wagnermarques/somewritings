@@ -1,0 +1,168 @@
+#+Title: Gemini Cli (Anots)
+
+
+Sério, reserva um tempinho pra ler a [[https://geminicli.com/docs/][documentação]] de qualquer ferramenta que vc for usar...
+
+Gemini cli vai aumentar a sua produtividade absurdamente. Mas precisa
+saber usar, obviamente.
+
+Saber usar, significa saber pedir o que vc precisa, usando termos
+técnicos e conceitos precisos. Pra isso vc precisa entender do assunto
+que vc estará tratando com a ia. 
+
+
+* Instalação do gemini-cli
+
+Tem várias maneiras de instalar.
+
+A mais simples na minha opiniao é essa é usando npm.
+
+#+begin_src shell
+  npm install -g @google/gemini-cli
+#+end_src
+
+depois de intalar vc, na linha de comando, vai até o diretório do seu projeto é digita no prompt o comando: gemini
+
+faz o login..
+
+
+
+* comandos internos do gemini
+
+Pra interagir com o gemini vc só digita e conversa com ele em linguagem natural.
+
+Mas vc pode dar um comando de configuração do próprio gemini é o /settings
+
+tem outros comandos também como /list, /delete /share /directory e vários outros
+
+eis a [[https://geminicli.com/docs/cli/commands/][documentação dos comandos]]
+
+
+
+* Mudando o modelo
+
+Em geral o modelo padrao é o 2.5, mas pra mudar pro 3 vc faz o seguinte...
+
+
+/setting pra abilitar as features em preview
+
+/model pra selecionar o modelo gemini 3
+
+
+
+* ferramentas (extensions) do gemini cli (Mcp Servers)
+
+Resumindo, as ferramentas do gemini cli permite que o gemini consiga [[https://geminicli.com/docs/tools/file-system/][interagir com filesystem]] da sua máquina, [[https://geminicli.com/docs/tools/shell/][rodar comandos]], ele pode [[https://geminicli.com/docs/tools/web-fetch/][obter conteudos da internet]], [[https://geminicli.com/docs/tools/web-search/][fazer pesquisas na internet]], [[https://geminicli.com/docs/tools/][dentre outras]].
+
+Mas creio que as ferramentas mais legais são os servidores [[https://geminicli.com/docs/tools/mcp-server/][MCP que vc pode configurar pro gemini cli utilizar]].
+
+Tem servidores MCPs que vão permitir o gemini interagir com banco de dados, apis, scritps customizados, ou worksflows mais específicos.
+
+** GitHub's official MCP Server
+
+Este é um servidor oficial que permite ao Gemini "ver" e interagir com
+seus repositórios, issues e pull requests.
+
+
+#+name: 
+#+begin_src shell
+wgn@wgn-Vostro-15-3515:~$ gemini extensions list
+No extensions installed.
+wgn@wgn-Vostro-15-3515:~$ gemini extensions install https://github.com/github/github-mcp-server
+Installing extension "github".
+The extension you are about to install may have been created by a third-party developer and sourced from a public repository. Google does not vet, endorse, or guarantee the functionality or security of extensions. Please carefully inspect any extension and its source code before installing to understand the permissions it requires and the actions it may perform.
+This extension will run the following MCP servers:
+  * github (remote): https://api.githubcopilot.com/mcp/
+Do you want to continue? [Y/n]: y
+Extension "github" installed successfully and enabled.
+wgn@wgn-Vostro-15-3515:~$ 
+
+#+end_src
+
+
+> /mcp list
+
+Configured MCP servers:
+
+🟢 github (from github) - Ready (37 tools, 2 prompts)
+  Tools:
+  - add_comment_to_pending_review
+  - add_issue_comment
+  - assign_copilot_to_issue
+  - create_branch
+  - create_or_update_file
+  - create_pull_request
+  - create_repository
+  - delete_file
+  - fork_repository
+  - get_commit
+  - get_file_contents
+  - get_label
+  - get_latest_release
+  - get_me
+  - get_release_by_tag
+  - get_tag
+  - issue_read
+  - issue_write
+  - list_branches
+  - list_commits
+  - list_issues
+  - list_pull_requests
+  - list_releases
+  - list_tags
+  - merge_pull_request
+  - pull_request_read
+  - pull_request_review_write
+  - push_files
+  - request_copilot_review
+  - search_code
+  - search_issues
+  - search_pull_requests
+  - search_repositories
+  - search_users
+  - sub_issue_write
+  - update_pull_request
+  - update_pull_request_branch
+  Prompts:
+  - AssignCodingAgent
+  - issue_to_fix_workflow
+
+
+** alguns servidores mcps interessantes (gemini-cli extensions)
+
+*** gemini extensions install https://github.com/gemini-cli-extensions/angular
+**** leituras relevantes sobre essa extensão
++ https://angular.dev/ai/develop-with-ai#custom-prompts-and-system-instructions
++ https://angular.dev/ai/mcp
+
+
+
+*** https://github.com/github/github-mcp-server
+
+*** https://github.com/gemini-cli-extensions/firestore-native
+
+*** https://github.com/gemini-cli-extensions/mysql
+
+*** https://github.com/elastic/gemini-cli-elasticsearch
+
+*** https://github.com/gemini-cli-extensions/firebase
+
+*** https://github.com/clduab11/gemini-flow
+
+*** https://github.com/grafana/mcp-grafana
+
+*** https://github.com/supabase-community/supabase-mcp
+
+*** https://github.com/GitLab-Ecosystem/Gemini-CLI-Extensions
+
+*** https://github.com/benvenker/gitlab-gemini-extension
+
+*** https://github.com/mongodb-partners/mongodb-gemini-extension
+
+*** https://github.com/JosephKu/blender-mcp-gemini-cli-extension?tab=readme-ov-file
+
+*** https://github.com/ahujasid/blender-mcp/tree/main
+
+*** https://github.com/xprilion/gemini-cli-blender-extension
+
+

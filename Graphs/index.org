@@ -1,18 +1,18 @@
 #+Title: Graphs
 
-* Parameters to Choose
-** Data Format
-*** NetJson
+
+
+* javascript grapth libraries
 
 ** Graph Analysis Algorithms (graphanalysis-algorithms)
-Examples of Graph Analysis Algorithms [fn:11],[fn:12]
+   Examples of Graph Analysis Algorithms [fn:11],[fn:12]
+
 ** Visualization Technology
-:PROPERTIES:
-:visualizationtech: emscript
-:END:
-** Licence
-** Programming Language Tecnhology
-** Specif Features Offered
+   :PROPERTIES:
+   :visualizationtech: emscript
+   :END:
+
+
 ** Active Development[fn:9]
 *** Some options seams abbandonned
 + Cytoscape Web
@@ -27,8 +27,9 @@ Examples of Graph Analysis Algorithms [fn:11],[fn:12]
 
 
 
-* Graps visualization[fn:1] [fn:15]
-Selecionei subjetivamente algumas opcoes
+** Graps visualization[fn:1] [fn:15]
+   Selecionei subjetivamente algumas opcoes
+
 ** graphviz
 :PROPERTIES:
 :language: C/C++

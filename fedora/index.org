@@ -1,0 +1,23 @@
+#+Title: Fedora
+
+
+* Gerenciar fontes no fedora
+
+** listar fontes instaladas
+#+begin_src shell
+  dnf search fonts
+#+end_src
+
+** instalar fontes da microsoft
+
+"Microsoft retains the license for these fonts, so the installer only downloads them for personal use directly from Microsoft’s redistribution packages on SourceForge mirrors. Ensure you have an active internet connection during installation and avoid repackaging or distributing the extracted font files separately."[Fn:4]
+
+sudo dnf upgrade --refresh
+
+sudo dnf install curl cabextract xorg-x11-font-utils fontconfig
+
+* Refs
+[Fn:1] https://docs.fedoraproject.org/en-US/quick-docs/fonts/
+[Fn:2] https://www.nerdfonts.com/#home
+[Fn:3] https://www.nerdfonts.com/cheat-sheet
+[Fn:4] https://linuxcapable.com/install-microsoft-fonts-on-fedora-linux/

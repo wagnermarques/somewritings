@@ -1,0 +1,40 @@
+* mat recursividade
+
+** Somando números de uma Series
+
+*** [[progressão aritmética][progressão aritmética]] de razão 2
+
+Vamos considerar uma progressão aritmética de razão 2, abaixo.
+
+pa = [ a1, a2=a1+2, a3=a2+2, a4=a3+2, an=an-1 +2]
+
+Acho que tá meio tranquilo perceber que cada número da sequencia é encontrado a partir do número anterior somando-se a esse
+número anterior mais duas unidades.
+
+Entao, bem basicao.. consideremos o nosso primeiro número a1 como
+sendo igual a zero, ou seja, a1=0.
+
+Nossa sequencia ficaria assim..
+
+pa = [ 0, 2, 4, 6 ... ]
+
+
+[atividade] jogue um dado escreva a sequencia até o número mais
+próximo de sua idade utilizando como razao da sua PA o número que saiu
+no dado.
+
+[rea_dado_naoviciado] (jogar dado e obter o resultado)
+
+
+*** soma de elementos de uma lista
+lista = [1,2,3,4,5]
+T(1) = 1
+T(2) = T(1) + 2
+
+*** fatorial
+:PROPERTIES:
+:REQUIRES: saber fatorial
+:END:
+*** fibonacci
+
+*** torre de hanoi
