@@ -17,7 +17,7 @@ para funções e membros, além de smart pointers modernos.
 
 
 
-* Fundamentos essenciais de memória em C++[fn:1][fn:1-1]
+* Fundamentos essenciais de memória em C++[fn:1][fn:1-1][fn:2][fn:2-2][fn:2-3][fn:2-4][fn:2-5][fn:2-7][fn:2-8][fn:2-9] 
 
 Para entender inicialização, é essencial conhecer a memória:
 
@@ -412,3 +412,16 @@ Sinta-se à vontade para expandir, reorganizar ou pedir novos módulos!
 * Refs
 [fn:1] https://pages.cs.wisc.edu/~remzi/OSTEP/
 [fn:1-1] https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf
+[fn:2] https://pdos.csail.mit.edu/6.828/2021/xv6/book-riscv-rev2.pdf
+[fn:3] https://github.com/xiyuan1avery/-MIT-6.S081-Operating-System-Engineering?tab=readme-ov-file
+[fn:2-1] https://www.youtube.com/watch?v=YNQghIvk0jc
+[fn:2-2] https://www.geeksforgeeks.org/c/memory-layout-of-c-program/
+[fn:2-3] https://cs50.harvard.edu/x/2024/notes/4/
+[fn:2-4] https://tldp.org/LDP/khg/HyperNews/get/memory/linuxmm.html
+[fn:2-5] https://en.cppreference.com/w/cpp/memory.html
+[fn:2-6] https://web.stanford.edu/class/archive/cs/cs107/cs107.1242/
+[fn:2-7] https://www.open-std.org/jtc1/sc22/wg21/docs/papers/
+[fn:2-8] https://isocpp.org/wiki/faq/ctors#static-init-order
+[fn:2-9] https://cs50.harvard.edu/x/2024/notes/4/
+https://github.com/AnthonyCalandra/modern-cpp-features
+

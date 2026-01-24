@@ -1,0 +1,14 @@
+#+Title: Banco de Dados
+
+
+* Teoria
+
+** ACID
+
+** CAP
+
+** MVCC - Multi-Version Concurrent Controll
+
+** WAL - Write-Ahead Loggin
+
+

@@ -1,0 +1,84 @@
+#+Title: Yii3
+
+* Criando um projeto com yii3
+
+#+name: composer create-project yiisoft/app your_project
+#+begin_src shell :session s1 :exports both :results output
+  composer create-project yiisoft/app yii3taskapp --no-ansi
+#+end_src
+
+#+RESULTS: composer create-project yiisoft/app your_project
+#+begin_example
+Creating a "yiisoft/app" project at "./yii3taskapp"
+Installing yiisoft/app (1.1.0)
+  - Installing yiisoft/app (1.1.0): Extracting archive
+Created project in /media/wgn/ext4/Projects-Srcs-Desktop/somewritings/yii3/yii3taskapp
+Loading composer repositories with package information
+Updating dependencies
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+satisfiable by yiisoft/data-response[2.1.2].
+it is missing from your system. Install or enable PHP's dom extension.
+  Problem 2
+satisfiable by yiisoft/error-handler[4.3.1, 4.3.2].
+it is missing from your system. Install or enable PHP's dom extension.
+  Problem 3
+it is missing from your system. Install or enable PHP's dom extension.
+satisfiable by yiisoft/data-response[2.1.2].
+satisfiable by yiisoft/yii-view-renderer[7.3.1].
+
+To enable extensions, verify that they are enabled in your .ini files:
+    - /etc/php/8.3/cli/php.ini
+    - /etc/php/8.3/cli/conf.d/10-opcache.ini
+    - /etc/php/8.3/cli/conf.d/10-pdo.ini
+    - /etc/php/8.3/cli/conf.d/20-calendar.ini
+    - /etc/php/8.3/cli/conf.d/20-ctype.ini
+    - /etc/php/8.3/cli/conf.d/20-curl.ini
+    - /etc/php/8.3/cli/conf.d/20-exif.ini
+    - /etc/php/8.3/cli/conf.d/20-ffi.ini
+    - /etc/php/8.3/cli/conf.d/20-fileinfo.ini
+    - /etc/php/8.3/cli/conf.d/20-ftp.ini
+    - /etc/php/8.3/cli/conf.d/20-gettext.ini
+    - /etc/php/8.3/cli/conf.d/20-iconv.ini
+    - /etc/php/8.3/cli/conf.d/20-intl.ini
+    - /etc/php/8.3/cli/conf.d/20-mbstring.ini
+    - /etc/php/8.3/cli/conf.d/20-phar.ini
+    - /etc/php/8.3/cli/conf.d/20-posix.ini
+    - /etc/php/8.3/cli/conf.d/20-readline.ini
+    - /etc/php/8.3/cli/conf.d/20-shmop.ini
+    - /etc/php/8.3/cli/conf.d/20-sockets.ini
+    - /etc/php/8.3/cli/conf.d/20-sysvmsg.ini
+    - /etc/php/8.3/cli/conf.d/20-sysvsem.ini
+    - /etc/php/8.3/cli/conf.d/20-sysvshm.ini
+    - /etc/php/8.3/cli/conf.d/20-tokenizer.ini
+    - /etc/php/8.3/cli/conf.d/20-zip.ini
+You can also run `php --ini` in a terminal to see which files are used by PHP in CLI mode.
+Alternatively, you can run Composer with `--ignore-platform-req=ext-dom` to temporarily ignore these required extensions.
+#+end_example
+
+
+
+
+#+name: ls -la yii3taskapp --no-ansi
+#+begin_src shell :session s1 :exports both :results output
+  export NO_COLOR=1
+  ls -la ./ | sed 's/\x1b\[[0-9;]*m//g'
+#+end_src
+
+#+RESULTS: ls -la yii3taskapp --no-ansi
+: total 16
+: drwxrwxr-x   3 wgn wgn 4096 jan 22 01:19 [0m[01;34m.[0m
+: drwxrwxrwx 141 wgn wgn 4096 jan 22 00:48 [34;42m..[0m
+: -rw-rw-r--   1 wgn wgn 2985 jan 22 01:19 index.org
+: drwxrwxr-x   9 wgn wgn 4096 dez 20 09:35 [01;34myii3taskapp[0m
+
+
+
+
+
+
+
+
+* Refs
+[fn:1] https://yiisoft.github.io/docs/guide/start/creating-project.html

@@ -1,0 +1,12 @@
+#+Title: rclone
+
+
+#+name: sudo apt update && sudo apt install rclone -y
+#+begin_src shell :dir /sudo::/
+  apt update && sudo apt install rclone -y
+#+end_src
+
+#+RESULTS: sudo apt update && sudo apt install rclone -y
+
+
+rclone config
