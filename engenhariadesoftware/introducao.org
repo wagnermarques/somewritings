@@ -1,0 +1,32 @@
+#+Title: Introdução
+
+* Conceito de engenharia de software
+É o ancance dos resultados requeridos de qualidade dentro do
+cronograma e do orçamento. (Sommerville)
+
+* Conceito de Processo de Software
+Pára pra pensar. Obter os resultados que falamos no tópico anterior
+exige planejamento e disciplina em segui-lo. Esse planejamento, ou
+métodologia de trabalho, potencializa a obtenção dos resultados
+esperados e é chamdado de Processo de Software.
+
+
+#+NAME: from sommerville
+| Características do produto | Descrição                                                                                                      |
+|----------------------------+----------------------------------------------------------------------------------------------------------------|
+| Manutenibilidade           | Fácil de continuar seu desenvolvimento, pois quase sempre é necessário fazer mudanças.                         |
+| Confiabilidade e Segurança | Quando o software falhar, não deve causar danos físicos ou econômicos. Deve implementar técnicas de segurança. |
+| Eficiência                 | Não deve desperdiçar recursos do sistema (memória, ciclos de CPU). Tempo aceitável de resposta ao usuário.     |
+| Aceitabilidade             | Não deve haver barreiras impeditivas ao usuário para o seu uso.                                                |
+
+
+
+* ISO/IEC 12207[fn:1]
+** Estrutura
+    Processos fundamentais;
+    Processo de apoio;
+    Processos organizacionais;
+    Processos de adaptação.
+
+* Refs
+[fn:1] https://pt.wikipedia.org/wiki/ISO/IEC_12207

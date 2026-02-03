@@ -1,0 +1,48 @@
+#+Title: Linux Alpine
+
+
+* finalizar a instalacao
+
+Configurar o alpine a terminar a instalacao no disco no modo sys
+
+#+name: 
+#+begin_src shell
+alpine-setup
+#+end_src
+
+* apk
+
+despois do setup-alpine
+
+#+name: 
+#+begin_src shell
+sudo apk update
+#+end_src
+
+* sudo or doas
+
+
+#+name: 
+#+begin_src shell
+  apk add doas
+  /etc/doas.conf
+#+end_src
+
+uncomenta: permit persist :wheel
+
+id pra ver se o usuario ta no grupo whell
+
+aí é so usar o doas:  doas apk update
+
+troca o sudo pelo doas
+
+* Desligar (sair) o alpine
+
+
+halt -p
+
+-p pra desligar a máquina junto com a parada da execucao do so
+
+
+* Refs
+[fn:1] https://docs.alpinelinux.org/user-handbook/0.1a/Working/apk.html

@@ -1,0 +1,68 @@
+
+* Database Fixtures (for the data) and Acceptance Testing
+  The best strategy for creating test data and performing use cases in a GUI-based application like yours involves a combination of Database Fixtures (for the data) and Acceptance Testing (for the GUI interaction).
+
+  Since your project already includes Codeception, you are perfectly positioned to use this professional-grade workflow.
+
+  Here is the recommended strategy:
+
+  1. The Strategy: "Fixtures + Acceptance Tests"
+
+   * Database Fixtures: Instead of manually typing data into the database or GUI every time, you use "Fixtures." These are PHP scripts that represent a "known state" of the database (e.g., a specific Pessoa linked to a specific
+     Funcionario).
+   * Codeception Acceptance Tests: You write a script that tells a headless browser exactly what to do: "Open /login, type 'admin', click 'Entrar', go to /catracas, verify the table has 3 rows."
+
+  ---
+
+  2. How to implement it (Step-by-Step)
+
+  Step A: Setup the Test Environment
+  Yii2 has a dedicated test database configuration (config/test_db.php). This ensures your tests don't delete your real development data.
+   1. Create a database named eteczlcatracas_db_test.
+   2. Update config/test_db.php with the credentials.
+
+  Step B: Create a Fixture
+  Create a file tests/fixtures/FuncionarioFixture.php. This will automatically load a Person and an Employee into the test DB before the test runs.
+
+  Step C: Write the Use Case (The Test)
+  You would create an acceptance test (e.g., tests/acceptance/FuncionarioCest.php):
+
+    1 public function checkCreateFuncionario(AcceptanceTester $I)
+    2 {
+    3     $I->amOnPage(['/site/login']);
+    4     $I->fillField('LoginForm[username]', 'admin');
+    5     $I->fillField('LoginForm[password]', 'admin');
+    6     $I->click('login-button');
+    7
+    8     $I->amOnPage(['/funcionarios/create']);
+    9     $I->selectOption('Funcionarios[pessoa_id]', 'Wagner Marques');
+   10     $I->fillField('Funcionarios[cargo]', 'Desenvolvedor');
+   11     $I->click('Salvar');
+   12
+   13     $I->see('Funcionário criado com sucesso', '.alert-success');
+   14 }
+
+  ---
+
+  3. Execution (The "Magic" Part)
+  You run one command, and the system:
+   1. Resets the test database.
+   2. Applies migrations.
+   3. Loads your "Scenario Data."
+   4. Opens a virtual browser and performs the clicks.
+   5. Reports if the GUI behaved as expected.
+
+   1 docker exec -it eteczlcatracas-php-fpm vendor/bin/codecept run acceptance
+
+  Why this is the "Best" way:
+   1. Repeatability: You can run the same test 1,000 times and it will always start from the same clean state.
+   2. Documentation: The test itself acts as documentation for the use case.
+   3. Safety: If you change the code later and break the "Cadastros" menu, the test will catch it immediately.
+
+  Please share your simple test case! I can help you write the specific Fixture and Codeception test for it right now.
+
+ 2 GEMINI.md files | 2 MCP servers                                                                                                                                                                     accepting edits (shift + tab to toggle)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ >   Type your message or @path/to/file                                                                                                                                                                                                     │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+ /media/wgn/btrfs400G/Projects-Srcs-Etec                              
