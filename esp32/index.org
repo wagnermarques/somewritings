@@ -1,0 +1,10 @@
+#+Title: esp32
+
+
+* Resolvendo o Aviso de Permissão (Udev Rules)
+O PlatformIO exibiu um aviso: Warning! Please install 99-platformio-udev.rules. Isso acontece porque, por padrão, o Linux restringe o acesso direto ao hardware USB. Ao instalar essas regras, você não precisará mais usar o comando chmod 666 toda vez que reconectar o ESP32.
+
+Como instalar no Zorin OS: Copie e cole este comando único no seu terminal:
+
+Bash
+curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/master/scripts/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules && sudo udevadm control --reload-rules && sudo udevadm trigger
