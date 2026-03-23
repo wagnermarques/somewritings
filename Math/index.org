@@ -40,5 +40,8 @@ seus mÃºltiplos, desconsiderando ele mesmo, somados dÃ¡ ele mesmo
 a soma de seus mÃºltiplos dÃ¡ um vlr maior que ele
 
 
+* Transformadas de Laplace e de Fourier
+[[./transformadas/laplacefourriereoutras.org]]
+
 * Refs
 [fn:1] https://x.com/Timetheoryps/status/2013505897998197169

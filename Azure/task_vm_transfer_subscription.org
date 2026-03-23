@@ -1,0 +1,55 @@
+#+Title: Transferir Vm De Assinatura
+
+* Usando Bash
+
+Dados necessários para transferência da VM
+
+1) Nome do grupo de recursos da conta que vai receber
+   O grupo de recursos tem que existir 
+2) Id da Assinatura do outro usuário
+   
+
+#+name: 
+#+begin_src shell
+  sourceResourceGroup=
+  osDiskId=
+  snapshotName=snapshot_vmcatracas_20260323
+  az snapshot create --resource-group $sourceResourceGroup --source $osDiskId --name $snapshotName
+#+end_src
+
+   
+** Move the snapshot to the destination resource group and subscription:
+pedir para quem recebe a vm
+1) o nome do resourcegroup
+2) o id da assinatura
+#+name: 
+#+begin_src shell
+   destinationResourceGroup=
+   snapshotId=
+   destinationSubscription=
+   az resource move --destination-group $destinationResourceGroup --ids $snapshotId --subscription $destinationSubscription
+#+end_src
+ 
+** Create a new VM in the destination resource group using the snapshot:
+
+
+#+name: 
+#+begin_src shell
+  destinationResourceGroup=
+  newVmName=
+  snapshotId=
+  destinationSubscription=
+  az vm create --resource-group $destinationResourceGroup --name $newVmName --attach-os-disk $snapshotId --subscription $destinationSubscription
+#+end_src
+
+   
+** Optionally delete the original resource group if no longer needed:
+
+#+name: 
+#+begin_src shell
+    sourceResourceGroup=
+    sourceSubscription=
+    az group delete --name $sourceResourceGroup --subscription $sourceSubscription
+#+end_src
+
+
