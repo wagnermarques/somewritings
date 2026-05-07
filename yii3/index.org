@@ -1,7 +1,108 @@
 #+Title: Yii3
 
+* Criando um projeto yii3
+
+** Criando um projeto yii3 usando docker
+
+Se vc tiver no linux, instale o docker, no windows, vc tem que instalar o [[https://docs.docker.com/desktop/setup/install/windows-install/][docker desktop ]].
+
+execute um docker ps pra ver se seu docker estÃ¡ funcionando, senÃ£o, sÃ³
+abrir o docker desktop e isso o docker sobe tambÃ©m.
+
+escolhe uma pasta pra vc criar o projeto dentro dela
+
+eu vou escolher uma pasta pra eu criar o meu projeto dentro dela,
+conforme comando abaixo
+
+
+#+BEGIN_TABS
+#+name: mkdir tutfolder linux
+#+begin_src shell :results output :session s1
+  export tutorial_projdir=/home/wgn/WORKING/Projects-Srcs/Projects-Srcs-Aulas/yii3-createproject-with-docker
+  #mkdir -p $tutorial_projdir
+  cd $tutorial_projdir
+  pwd
+#+end_src
+
+#+RESULTS: mkdir tutfolder linux
+: /home/wgn/WORKING/Projects-Srcs/Projects-Srcs-Aulas/yii3-createproject-with-docker
+
+
+#+name: mkdir tutfolder wincmd
+#+begin_src shell :results output :session s1
+  set "tutorial_projdir=C:\Users\wgn\Projects-Srcs\yii3-createproject-with-docker"
+  if not exist "%tutorial_projdir%" mkdir "%tutorial_projdir%"
+  cd /d "%tutorial_projdir%"
+  echo %cd%
+#+end_src
+
+
+#+name: mkdir tutfolder win ps
+#+begin_src shell :results output :session s1
+  $tutorial_projdir = "C:\Users\wgn\Projects-Srcs\yii3-createproject-with-docker"
+  if (!(Test-Path $tutorial_projdir)) {
+      New-Item -ItemType Directory -Force -Path $tutorial_projdir
+  }
+  Set-Location $tutorial_projdir
+  Get-Location
+#+end_src
+#+END_TABS
+
+
+
+Entao agora essa é a pasta que vou usar nesse nosso tutorial
+
+considerando que o caminho tá um pouco grande convém a gente chamar a
+pasta de $tutorial_projdir q q vc acha?
+
+
+#+BEGIN_TABS
+
+Temos a pasta, entao, com o comando abaixo, criamos o projeto.
+
+#+name: docker run --rm -it -v 
+#+begin_src 
+         docker run --rm \
+         -it -v "$(pwd):/app"
+         --user $(id -u):$(id -g) \
+         composer/composer \
+         create-project yiisoft/app projetoyii3aula
+#+end_src
+
+
+#+name: win: docker run --rm -it -v 
+#+begin_src 
+         docker run --rm \
+         -it -v "c\pasta\do\seu\projeto:/app"
+         composer/composer \
+         create-project yiisoft/app projetoyii3aula
+#+end_src
+
+
+#+END_TABS
+
+
+
+* Dando uma olhada no projeto criado
+
+
+#+name: tutorial_projdir
+#+begin_src shell :session s1 :exports both :results output
+  cd $tutorial_projdir
+  ls -la
+#+end_src
+
+#+RESULTS: tutorial_projdir
+: total 0
+: drwxr-xr-x. 1 wgn wgn  0 mai  1 17:02 [0m[01;34m.[0m
+: drwxr-xr-x. 1 wgn wgn 96 mai  1 17:02 [01;34m..[0m
+
+
 * yii2 pra comparar
+
 ** webservices
+
+
 
 
 

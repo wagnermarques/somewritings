@@ -1,0 +1,6 @@
+#+Title: Git/Github -  Introdução
+
+* Introdução no Microsoft Learn
+  https://learn.microsoft.com/pt-br/training/modules/introduction-to-github/
+
+  https://learn.microsoft.com/pt-br/training/modules/introduction-to-github/7-knowledge-check  
